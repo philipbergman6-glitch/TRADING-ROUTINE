@@ -118,3 +118,52 @@ TRADE or HOLD (default HOLD if no edge)
 - Triple macro data at 8:30 AM argues strongly for patience.
 - Deployed at 59.1% — below target, but capital preservation ahead of binary events (earnings + GDP) is correct.
 - Re-evaluate energy add (XOM/CVX) Friday once GDP/PCE and early earnings digest.
+
+---
+
+## 2026-05-01 — Pre-market Research
+
+### Account
+- Equity: $101,366.81
+- Cash: $41,487.81
+- Buying power: $142,854.62
+- Deployed: $59,879 (59% — below 75-85% target)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-------|---------|----------|------------|
+| AMD    | 62  | $314.97 | $350.58 | +$2,208 (+11.3%) | $319.45 (10% trail, HWM $354.94) |
+| NVDA   | 90  | $208.64 | $200.70 | -$715 (-3.8%) | $193.26 (10% trail, HWM $214.73) |
+| PLTR   | 142 | $142.30 | $141.44 | -$122 (-0.6%) | $129.47 (10% trail, HWM $143.85) |
+
+### Market Context
+- WTI / Brent: WTI ~$105/bbl (+6.95% yesterday), Brent ~$104.80 (-0.26% today). Elevated on UAE OPEC+ withdrawal (Apr 28) and Strait of Hormuz disruption risk (~7.5M b/d shut-ins). EIA forecasts Brent peak $115/bbl in Q2.
+- S&P 500 futures: ~7,255–7,259, up +0.10–0.21% premarket. SPX near all-time high territory.
+- VIX: 18.68 (open May 1) / 18.81 (Apr 29 close) — moderate, not elevated.
+- Today's catalysts: AAPL reports Q1 earnings after close (major event). Mag-7 earnings mostly strong (AMZN, MSFT, META, GOOGL already beat). INTC +12% yesterday on AI capex optimism; SOX +2%. AMD and PLTR both report next week (May 5 and May 4 respectively — critical for our positions).
+- Earnings before open: None confirmed (Cboe Global Markets possible).
+- Economic calendar: ISM Manufacturing (9–10 AM ET, April data), Construction Spending (9 AM ET). Jobs data (NFP) Monday May 5 at 7:30 AM. FOMC minutes May 20. No Fed meeting today.
+- Sector momentum YTD: Energy +26% (#1 by wide margin), Consumer Staples +10.7%, Industrials +9.6%, Materials +11%. Technology lagging YTD but recovering on AI earnings beats.
+
+### Holdings Update
+- **AMD** (+11.3%): Earnings May 5. $9.8B revenue expected (+32% YoY). MI350 GPUs deployed by Meta/OpenAI. 37 Buy ratings, zero Sells. Tighten stop to 7% trail at +15% ($362.22). Not there yet. Hold.
+- **NVDA** (-3.8%): $1T confirmed order backlog through 2027 (Blackwell + Vera Rubin). Vera Rubin ramps H2 2026. Recent institutional selloff overdone per analysts; consensus target $264–$274. **WATCH:** -7% manual cut = $194.03; trailing stop = $193.26. Spread is only $0.77. Any further weakness triggers cut. Hold but on watch.
+- **PLTR** (-0.6%): Earnings May 4 (Monday pre-market). Consensus $1.532–$1.536B revenue. Bull case: US commercial >$550M → run to $160+. Bear: deceleration → $120–125 support. High-reward binary event. Hold through earnings given small loss and strong bull thesis.
+
+### Trade Ideas
+1. **XOM** (Exxon Mobil) — Energy sector momentum (#1 YTD). Oil at $105 with geopolitical premium from UAE/Hormuz. Entry ~$120–122 on ISM confirmation, stop ~$108–110 (10%), target $140+ (2:1+ R:R). Wait for ISM data and confirm Energy sector holding. Best add for under-deployment gap.
+2. **CVX** (Chevron) — Same energy thesis as backup if XOM overextended. Integrated major benefiting from $105 oil. Entry pullback to $165–168, stop $150, target $195.
+3. **AAPL** (Apple) — Defer until post-earnings clarity today. If AAPL beats and guides up, consumer tech + services momentum play. Entry on Monday gap-up confirmation only — do not chase premarket.
+
+### Risk Factors
+- AAPL earnings after close today — large cap, moves whole market; miss = broad selloff
+- ISM Manufacturing at 9 AM — weak print could spook markets (prior was 52.7, expansion)
+- Oil spike risk — WTI at $105 already elevated; further Hormuz escalation = energy up, everything else down
+- PLTR earnings May 4 (binary event — gap risk both ways)
+- AMD earnings May 5 (gap risk; stop at $319.45 would be triggered on ~-9% gap)
+- **NVDA: -7% manual cut level at $194.03 is only ~$6.70 from current price; monitor intraday**
+- Portfolio at 59% deployed — need to add 1 position to reach target range
+
+### Decision
+**HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
