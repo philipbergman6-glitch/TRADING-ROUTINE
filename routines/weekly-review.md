@@ -19,8 +19,13 @@ IMPORTANT — ENVIRONMENT VARIABLES:
     done
 
 IMPORTANT — PERSISTENCE:
-- Fresh clone. File changes VANISH unless committed and pushed.
-  MUST commit and push at STEP 7.
+- Fresh clone. File changes VANISH unless landed via PR.
+  MUST land via auto-merged PR at STEP 7.
+
+STEP 0 — Sync to clean main so we never inherit stale ancestry:
+git fetch origin
+git checkout main
+git pull --rebase origin main
 
 STEP 1 — Read memory for full week context:
 - memory/WEEKLY-REVIEW.md (match existing template exactly)
@@ -66,9 +71,11 @@ Best: SYM +X%  Worst: SYM -X%
 One-line takeaway: <...>
 Grade: <letter>"
 
-STEP 7 — COMMIT AND PUSH (mandatory):
-git add memory/WEEKLY-REVIEW.md memory/TRADING-STRATEGY.md
+STEP 7 — LAND VIA PR + AUTO-MERGE (mandatory):
+BRANCH="routine/weekly-review-$DATE"
+git checkout -b "$BRANCH"
+git add memory/   # restrict to memory/ — never stage scripts, env, or strategy files
 git commit -m "weekly review $DATE"
-git push origin main
-If TRADING-STRATEGY.md didn't change, add just WEEKLY-REVIEW.md.
-On push failure: rebase and retry.
+git push -u origin "$BRANCH"
+gh pr create --base main --fill
+gh pr merge --auto --squash --delete-branch

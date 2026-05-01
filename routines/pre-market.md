@@ -21,8 +21,13 @@ IMPORTANT — ENVIRONMENT VARIABLES:
     done
 
 IMPORTANT — PERSISTENCE:
-- Fresh clone. File changes VANISH unless committed and pushed.
-  MUST commit and push at STEP 6.
+- Fresh clone. File changes VANISH unless landed via PR.
+  MUST land via auto-merged PR at STEP 6.
+
+STEP 0 — Sync to clean main so we never inherit stale ancestry:
+git fetch origin
+git checkout main
+git pull --rebase origin main
 
 STEP 1 — Read memory for context:
 - memory/TRADING-STRATEGY.md
@@ -58,10 +63,11 @@ STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md:
 STEP 5 — Notification: silent unless urgent.
 bash scripts/email.sh "<one line>"
 
-STEP 6 — COMMIT AND PUSH (mandatory):
-git add memory/RESEARCH-LOG.md
+STEP 6 — LAND VIA PR + AUTO-MERGE (mandatory):
+BRANCH="routine/pre-market-$DATE"
+git checkout -b "$BRANCH"
+git add memory/   # restrict to memory/ — never stage scripts, env, or strategy files
 git commit -m "pre-market research $DATE"
-git push origin main
-
-On push failure: git pull --rebase origin main, then push again.
-Never force-push.
+git push -u origin "$BRANCH"
+gh pr create --base main --fill
+gh pr merge --auto --squash --delete-branch

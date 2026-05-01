@@ -16,9 +16,8 @@ load-bearing.
 
 ## One-time prerequisites per routine
 
-1. Install Claude GitHub App on this repo.
-2. Enable "Allow unrestricted branch pushes" in the routine's environment.
-3. Set env vars on the routine (NOT in a committed .env file):
+1. Install Claude GitHub App on this repo. Routines land work via auto-merged PRs and need only the App's default `contents: write` + `pull-requests: write` permissions — no unrestricted-push override required.
+2. Set env vars on the routine (NOT in a committed .env file):
    `ALPACA_API_KEY`, `ALPACA_SECRET_KEY`, `ALPACA_ENDPOINT`,
    `ALPACA_DATA_ENDPOINT`, `PERPLEXITY_API_KEY`, `PERPLEXITY_MODEL`,
    `RESEND_API_KEY`, `EMAIL_TO`, `EMAIL_FROM`.
