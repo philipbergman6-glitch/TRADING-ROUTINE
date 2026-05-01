@@ -43,3 +43,15 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-01 — Midday Scan (no action)
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| AMD | $314.97 | $358.55 | +13.84% | $322.87 trail | HOLD — approaching +15% tighten threshold ($362.22) |
+| NVDA | $208.64 | $199.30 | -4.48% | $193.26 trail | HOLD — on watch; manual cut at $194.03 |
+| PLTR | $142.30 | $144.31 | +1.41% | $131.80 trail | HOLD — bouncing +3.74% intraday ahead of May 4 earnings |
+
+No cuts, no stop adjustments, no thesis breaks. AAPL earnings after close today — monitor for broad market impact.
