@@ -19,8 +19,13 @@ IMPORTANT — ENVIRONMENT VARIABLES:
     done
 
 IMPORTANT — PERSISTENCE:
-- Fresh clone. File changes VANISH unless committed and pushed.
-  MUST commit and push at STEP 8 if any trades fired.
+- Fresh clone. File changes VANISH unless landed via PR.
+  MUST land via auto-merged PR at STEP 8 if any trades fired.
+
+STEP 0 — Sync to clean main so we never inherit stale ancestry:
+git fetch origin
+git checkout main
+git pull --rebase origin main
 
 STEP 1 — Read memory for today's plan:
 - memory/TRADING-STRATEGY.md
@@ -59,8 +64,13 @@ Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
 
-STEP 8 — COMMIT AND PUSH (mandatory if any trades executed):
-git add memory/TRADE-LOG.md
-git commit -m "market-open trades $DATE"
-git push origin main
-Skip commit if no trades fired. On push failure: rebase and retry.
+STEP 8 — LAND VIA PR + AUTO-MERGE (only if any memory/ files changed):
+if [[ -n "$(git status --porcelain memory/)" ]]; then
+  BRANCH="routine/market-open-$DATE"
+  git checkout -b "$BRANCH"
+  git add memory/   # restrict to memory/ — never stage scripts, env, or strategy files
+  git commit -m "market-open trades $DATE"
+  git push -u origin "$BRANCH"
+  gh pr create --base main --fill
+  gh pr merge --auto --squash --delete-branch
+fi
