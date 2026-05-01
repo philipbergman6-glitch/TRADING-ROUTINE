@@ -43,3 +43,19 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-01 — Market-Open Review (Friday)
+
+**No new trades.** Weekly limit reached (3/3). Pre-market decision: HOLD.
+
+| Ticker | Entry | Current | P&L% | Stop (GTC live) | HWM | Status |
+|--------|-------|---------|-------|-----------------|-----|--------|
+| AMD | $314.97 | $357.50 | +13.5% | $322.41 (10% trail) | $358.23 | HOLD — tighten to 7% trail at +15% ($362.22); not yet |
+| NVDA | $208.64 | $202.29 | -3.0% | $193.26 (10% trail) | $214.73 | HOLD — manual cut at $194.04; watch intraday |
+| PLTR | $142.30 | $146.20 | +2.7% | $131.80 (10% trail) | $146.44 | HOLD — PLTR earnings May 4 pre-market |
+
+**Portfolio:** $102,618.90 | **Cash:** $41,487.81 (40.4%) | **Deployed:** $61,131.09 (59.6%) | **Daytrade count:** 0
+
+**Watch list for next week:** XOM (energy add if ISM ≥50, oil holds $100+, energy sector confirms). AAPL post-earnings gap-up Monday.
