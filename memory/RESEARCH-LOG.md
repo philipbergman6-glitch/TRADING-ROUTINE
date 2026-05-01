@@ -121,6 +121,27 @@ TRADE or HOLD (default HOLD if no edge)
 
 ---
 
+## 2026-04-30 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| AMD | $314.97 | $352.04 | +11.77% | +4.43% | $317.25 (10% trail) |
+| NVDA | $208.64 | $200.42 | -3.94% | -4.22% | $193.26 (10% trail) |
+| PLTR | $142.30 | $138.52 | -2.66% | +0.40% | $129.47 (10% trail) |
+
+### Actions
+- No cuts (no position at -7%)
+- No stop tightening (no position at +15%)
+
+### NVDA Afternoon Addendum
+NVDA -4.22% intraday, -3.94% overall. Perplexity: no specific catalyst — broad semiconductor/valuation normalization, 2026 YTD weakness. No earnings today. Thesis not broken. Stop at $193.26 (HWM $214.73) intact. Watching for continued weakness; cut trigger at ~$194.84 (-7% from $208.64 entry).
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks.
+
+---
+
 ## 2026-05-01 — Pre-market Research
 
 ### Account
