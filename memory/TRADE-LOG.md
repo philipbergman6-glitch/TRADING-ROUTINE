@@ -43,3 +43,16 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## May 01 — EOD Snapshot (Day 4, Friday)
+**Portfolio:** $102,159.73 | **Cash:** $41,487.81 (40.6%) | **Day P&L:** +$971.48 (+0.96%) | **Phase P&L:** +$2,159.73 (+2.16%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 62 | $314.97 | $360.54 | +2.24% | +$2,825.49 (+14.47%) | $336.52 (7% trail) |
+| NVDA | 90 | $208.64 | $198.45 | -0.56% | -$917.10 (-4.88%) | $193.26 (10% trail) |
+| PLTR | 142 | $142.30 | $144.07 | +2.93% | +$251.34 (+1.24%) | $131.80 (10% trail) |
+
+**Notes:** Strong Friday — AMD +2.24%, PLTR +2.93% offset NVDA's -0.56% slip. AMD stop tightened to 7% trail (HWM $361.85, stop $336.52) as it nears the +15% tighten threshold at $362.22. NVDA at -4.88%, still above -7% manual cut ($194.04); stop at $193.26. PLTR recovering nicely. Week 1 closes +2.16% phase. Cash at 40.6% — well below 75-85% target. Week 2 cap resets to 3 new trades; plan to deploy 2-3 positions Mon open to reach deployment target.
