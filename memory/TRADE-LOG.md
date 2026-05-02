@@ -43,3 +43,19 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-02 — Midday Scan (Saturday)
+
+| Ticker | Entry | Current | P&L% | Stop |
+|--------|-------|---------|------|------|
+| AMD | $314.97 | $360.54 | +14.47% | $336.52 → tightened to 7% trail |
+| NVDA | $208.64 | $198.45 | -4.88% | $193.26 (10% trail, HWM $214.73) |
+| PLTR | $142.30 | $144.07 | +1.24% | $131.80 (10% trail, HWM $146.44) |
+
+**Stop change — AMD:** HWM $362.79 = +15.18% from entry, crossing the +15% tighten threshold. Canceled 10% trail (order 5968563f), placed 7% trail (order 669a4405). New stop $336.52 vs old $326.51 — raised $10.01. Rule: tighten to 7% at +15%.
+
+**No cuts:** NVDA -4.88% — above -7% cut level ($194.03). Manual cut trigger $194.03 is only $4.42 above trailing stop $193.26. Monitor Monday open closely.
+
+**No thesis breaks.** PLTR earnings Monday May 4 pre-market (binary). AMD earnings Monday May 5.

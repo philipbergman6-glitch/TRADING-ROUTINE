@@ -126,3 +126,25 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-02 — Midday Scan (Saturday — Markets Closed)
+
+### Positions (Friday Close)
+| Symbol | Entry | Current | P&L% | Stop | Notes |
+|--------|-------|---------|------|------|-------|
+| AMD | $314.97 | $360.54 | +14.47% | $336.52 (7% trail) | **Stop tightened** HWM $362.79 = +15.18% |
+| NVDA | $208.64 | $198.45 | -4.88% | $193.26 (10% trail, HWM $214.73) | Cut trigger $194.03 — $4.42 buffer |
+| PLTR | $142.30 | $144.07 | +1.24% | $131.80 (10% trail, HWM $146.44) | Earnings Mon May 4 pre-mkt |
+
+### Actions Taken
+- **AMD stop tightened 10% → 7%:** Canceled order 5968563f, placed new GTC 7% trail (order 669a4405). New stop $336.52 (up from $326.51). HWM $362.79 confirmed +15.18% threshold crossed — per rule "tighten to 7% at +15%".
+
+### No Other Actions
+- NVDA: -4.88% — above -7% cut level. No cut. Watch Monday open — $194.03 is only $4.42 above trailing stop.
+- PLTR: +1.24% — no threshold triggers. Hold through earnings.
+- No thesis breaks on any position.
+
+### Decision
+**HOLD all.** AMD stop tightened per rules. NVDA watch list for Monday ($194.03 cut). PLTR earnings binary Monday pre-mkt — hold thesis intact. XOM entry scouting starts Monday (ISM + oil price confirm).
