@@ -4,6 +4,61 @@ Daily pre-market research entries will be appended here.
 
 ---
 
+## 2026-05-02 — Pre-market Research
+
+### Account
+- Equity: $102,159.73
+- Cash: $41,487.81
+- Buying power: $143,647.54
+- Deployed: $60,671.92 (59.4% — below 75-85% target)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-------|---------|----------|------------|
+| AMD | 62 | $314.97 | $360.54 | +$2,825 (+14.5%) | $326.51 (10% trail, HWM $362.79) |
+| NVDA | 90 | $208.64 | $198.45 | -$917 (-4.88%) | $193.26 (10% trail, HWM $214.73) |
+| PLTR | 142 | $142.30 | $144.07 | +$251 (+1.2%) | $131.80 (10% trail, HWM $146.44) |
+
+### Market Context
+- **WTI / Brent:** WTI ~$102/bbl, Brent ~$108/bbl. Both pulled back May 1 (Brent -1.4%, WTI -2.9%) on Iran-US negotiation reports reducing supply-disruption premium. Still elevated.
+- **S&P 500:** Closed May 1 ~7,247–7,258. VIX 16.99 (down from 18.68 — improving sentiment).
+- **AAPL Q2 FY2026 (Apr 30 after close):** Revenue $111.2B (+17% YoY), EPS $2.01 vs. $1.94 est. Gross margin 49.3%. $100B new buyback. Services all-time high. Strong beat — positive tech tone for Mon open.
+- **Sectors YTD:** Energy +26% (#1), Staples +10.7%, Industrials +9.6%, Materials +9%. Tech lagging but recovering on Mag-7 beats.
+
+### Key Events This Week
+| Date | Event | Impact |
+|------|-------|--------|
+| Mon May 4 | JOLTs 2 PM ET | Minor |
+| Mon May 4 | **PLTR earnings after close** | HIGH — ±10.55% implied |
+| Tue May 5 | **AMD Q1 earnings after close** | HIGH — binary gap risk |
+| Wed May 7 | **FOMC announcement 2 PM ET + press conf 2:30** | HIGH — rate decision |
+
+No CPI or NFP this week.
+
+### Holdings Update
+- **AMD (+14.5%):** Stop HWM $362.79; tighten trigger at +15% = $362.22. **Already hit — must tighten to 7% trail at Mon open.** Earnings Tue after close. Hold through.
+- **NVDA (-4.88%):** Current $198.45, manual cut at $194.03 (only $4.42 buffer). Stop $193.26. AAPL beat may provide tech relief Mon. Thesis intact ($1T backlog, next earnings May 27). Hold — cut at $194.03 if touched.
+- **PLTR (+1.2%):** Earnings Mon after close. Consensus $1.54B rev (+74% YoY), EPS $0.28 (+115% YoY). Options ±10.55% move. Bull $160+, bear $120–125. Hold — stop at $131.80 limits downside.
+
+### Trade Ideas
+1. **XOM** — Energy #1 YTD. Oil $102–108, geopolitical premium persists. Entry ~$120–122 Mon open if energy holds. Stop ~$110 (10%), target $140+ (2:1+). **Best candidate to close deployment gap.**
+2. **AAPL** — Q2 beat + $100B buyback. Entry Mon if open is orderly (not blow-off). Stop 10%, target 2:1. Secondary add.
+3. **GS/JPM** — FOMC week; rate hold = banks positive. Entry Wed post-FOMC clarity. Third slot if available.
+
+### Risk Factors
+- PLTR binary Mon after close — gap ±10%+ possible; stop $131.80 limits loss
+- AMD earnings Tue — gap risk; stop $326.51 covers ~9.5% gap-down
+- FOMC May 7 — hawkish surprise pressures all positions
+- NVDA only $4.42 from manual cut; broad tech selloff triggers exit
+- AMD tighten must execute Mon open — delay loses protection
+- Oil reversal if Iran deal firms — time XOM entry carefully
+
+### Decision
+**HOLD all. At Mon open: tighten AMD stop to 7% trail (new floor ~$337.40 off HWM $362.79). Scout XOM entry if energy opens strong and oil holds $100+. AAPL secondary on orderly open. 3 trade slots available this week. Watch NVDA — cut at $194.03.**
+
+---
+
 ## 2026-04-30 — Pre-market Research
 
 ### Account
