@@ -126,3 +126,50 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-03 — Weekend Prep / Market-Open Review (Market Closed — Sunday)
+
+### Account
+- Equity: $102,159.73
+- Cash: $41,487.81
+- Buying power: $143,647.54
+- Deployed: $60,671.92 (59.4% — below 75-85% target)
+- Daytrade count: 0
+- Weekly trades used: 0/3 (new week starts May 4)
+
+### Positions
+| Symbol | Qty | Entry | Last | Unr. P&L | Stop (GTC) |
+|--------|-----|-------|------|----------|------------|
+| AMD    | 62  | $314.97 | $360.54 | +$2,825 (+14.47%) | $336.52 (7% trail, HWM $361.85) |
+| NVDA   | 90  | $208.64 | $198.45 | -$917 (-4.88%) | $193.26 (10% trail, HWM $214.73) |
+| PLTR   | 142 | $142.30 | $144.07 | +$251 (+1.24%) | $131.80 (10% trail, HWM $146.44) |
+
+All GTC trailing stops confirmed active.
+
+### Market Context
+- WTI: $102.53/bbl (May 1 close) — down -4.75% on May 1 alone; intraday high $108.94 rolled back on US-Iran negotiation hopes. Oil above $100 but momentum fading.
+- Energy sector: Upside risk shrinking with Iran talks; XOM condition "oil holds $100+" technically met but trend now downward.
+- ISM Manufacturing (May 1): Print not confirmed via research — data unavailable.
+- PLTR Q1 earnings: **Monday May 4 AFTER close** (NOT pre-market — prior log incorrect). Consensus $1.54B revenue (+73.7% YoY), EPS $0.28 (+115% YoY). Bull case run to $160+; bear case $120-125.
+- AMD earnings: May 5 (Tuesday, timing TBD). AMD at +14.47%, stop tightened to 7% trail ($336.52).
+- NVDA: -4.88% from entry. Manual cut trigger = $194.04. Current $198.45. Only $4.41 of cushion. **Monitor at Monday open.**
+
+### Stops Tightening Check
+- AMD: Already tightened to 7% trail (HWM $361.85) — handled via prior midday scan. ✓
+- NVDA: No tighten (well below +15%). ✓ — watch for cut.
+- PLTR: No tighten needed (+1.24%). ✓
+
+### Trade Ideas for Monday May 4
+1. **XOM (Energy)** — Oil fell -4.75% on May 1 on Iran talks. Momentum weakening. Condition "oil holds $100+" barely met but trend is down. Skip — conviction below 8/10.
+2. **New position (non-earnings)** — Could add 1 position to address 59.4% underdeploy. BUT: PLTR earnings Monday after close + AMD earnings Tuesday create gap risk for portfolio. Wait for earnings clarity before adding.
+3. **NVDA watch** — If NVDA opens at or below $194.04 Monday, cut manually per -7% rule.
+
+### Decision for Monday May 4
+**HOLD all. No new entries.**
+- PLTR earnings Monday after close — binary, do not add ahead.
+- AMD earnings Tuesday — binary, do not add.
+- NVDA dangerously close to cut trigger; be ready to sell manually at $194 if needed.
+- XOM: oil momentum fading, skip.
+- Re-evaluate for new entry Tuesday or Wednesday after PLTR/AMD earnings digest.
