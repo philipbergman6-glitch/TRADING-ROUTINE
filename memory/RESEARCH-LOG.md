@@ -126,3 +126,65 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-03 — Pre-market Research (for Monday May 4 open)
+
+### Account
+- Equity: $102,159.73
+- Cash: $41,487.81
+- Buying power: $143,647.54
+- Daytrade count: 0
+- Deployed: $60,671.92 (59.4% — below 75-85% target)
+- Week trade count: 0/3 (new week)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|--------|-----------|---------|----------|------------|
+| AMD | 62 | $314.97 | $360.54 | +$2,825 (+14.47%) | 7% trail, HWM $361.85, stop $336.52 |
+| NVDA | 90 | $208.64 | $198.45 | -$917 (-4.88%) | 10% trail, HWM $214.73, stop $193.26 |
+| PLTR | 142 | $142.30 | $144.07 | +$251 (+1.24%) | 10% trail, HWM $146.44, stop $131.80 |
+
+### Market Context
+- WTI: ~$101/bbl (pulled back from $110+ highs; Brent ~$108). Iran peace-deal optimism eased geopolitical premium. Still elevated vs Jan ($57). Prediction markets see $105-109 by May 8.
+- S&P 500 futures: 6,657.50, +0.10% Sunday premarket. Near all-time highs.
+- VIX: 16.89 (Apr 30 close) — moderate, down sharply from March peak of 30.61. Declining vol = risk-on backdrop.
+- Sector momentum: Energy (+22%+ YTD) > Materials (+17%) > Industrials (+9.6%) > Consumer Staples (+10.7%). Tech lagging YTD but recovering on Mag-7 AI earnings beats.
+
+### This Week's Macro Calendar
+- Mon May 4: Manufacturing orders (10 AM ET)
+- Tue May 5: JOLTS March data (10 AM ET)
+- Wed May 6: Initial claims + Productivity/Costs (8:30 AM ET)
+- **Fri May 8: NFP Jobs Report (8:30 AM ET)** ← major market mover
+
+### Earnings (This Week — Our Positions)
+- **PLTR: Q1 2026 tonight (May 4) after close** — consensus $0.28 EPS (+115% YoY), $1.54B rev (+74% YoY). Consistent beat history (Q2 +13%, Q3 +22%, Q4 +8%). Options pricing ~$15 move (10-13%). Analyst avg target $196.22. RBC bear case $90 (valuation concern at 220x P/E).
+- **AMD: Q1 2026 tomorrow (May 5) after close** — consensus $9.8B revenue (+32% YoY). Stock on best run since 2005. Analysts targets $265-$320. Already at +14.47%, stop tightened to 7% trail.
+- NVDA: Reports May 20. No near-term catalyst. Thesis intact ($1T order backlog, Vera Rubin H2 ramp). But at -4.88% from entry, approaching manual cut.
+
+### Ticker Notes
+- **AMD (+14.47%)**: Near $355 resistance heading into earnings. Stop already at 7% trail (rule: tighten at +15%). HWM $361.85. If stock opens higher Monday and crosses $362.22 (+15% from entry), no additional stop action needed — already at 7%. Gap-down risk on earnings beat misses.
+- **NVDA (-4.88%)**: Manual cut trigger at $194.03 (-7% from $208.64). Current $198.45 — only $4.42 gap. Stop trigger at $193.26. Monitor opening print Monday. Any weakness toward $194 = cut manually. Thesis not broken but at limit of patience.
+- **PLTR (+1.24%)**: Binary event tonight. Stock rallied into earnings per Benzinga. HWM $146.44, stop $131.80 (9.9% below). A 10% gap down from $144.07 = ~$129.7 — would blow through stop; expect gap fill ~$129-130 and position exit at market. Max loss scenario: ~$1,800 realized. Max upside per analyst consensus: $196 target (+36%).
+
+### Trade Ideas
+1. **XOM (Energy)** — Conditions from prior week partially met: oil $101 (holds above $100 ✓), energy sector #1 YTD ✓. But oil pulled back from $110 to $101 — better entry point than last week. Entry $120-122, stop $108 (10% trail), target $140+ (2:1 R:R). Conviction 6/10. ❌ Below 8/10 threshold — DO NOT BUY ahead of PLTR/AMD binary events.
+2. **PLTR add** — Not actionable. Holding through earnings binary. Adding size pre-earnings = gambling, not investing.
+3. **HOLD cash for post-earnings clarity** — PLTR tonight + AMD tomorrow create back-to-back binary events. Wait for Tuesday/Wednesday clarity before any new entries. If both beat and react positively, reassess XOM on Wednesday.
+
+### Risk Factors
+- **PLTR earnings tonight (HIGH)** — 10-13% expected move. Gap-down scenario wipes our modest +1.24% gain and extends the loss; worst case stop triggered at ~$130.
+- **AMD earnings tomorrow (MEDIUM-HIGH)** — +14.47% cushion and 7% trail stop provide buffer, but a large gap-down (>10%) could pierce stop.
+- **NVDA at -4.88% (HIGH)** — Manual cut at $194.03 is only $4.42 away at Friday's close. Monday premarket weakness could gap below cut level; exit near open if $194 prints.
+- **NFP Friday May 8 (MEDIUM)** — Strong jobs could push Fed hawkish; weak jobs = recession fears. Sentiment binary.
+- **Oil pullback (LOW-MEDIUM)** — WTI $101 from $110+; if Iran deal confirmed, energy collapses, XOM thesis fails.
+- **Portfolio 59.4% deployed** — Under-deployed but binary week not the time to force deployment.
+
+### Decision
+**HOLD all — no new positions today.**
+- PLTR and AMD both report this week; adding before resolution = taking on binary risk with no edge.
+- NVDA: Monitor opening Monday. Cut manually if $194 prints intraday.
+- AMD: Already at 7% trail stop. If opens above $362.22 (+15%), confirm stop remains at 7% trail (no further action needed — already tightened).
+- XOM / energy add: Defer to Wednesday at earliest. Conditions must be: (1) PLTR and AMD reactions settled, (2) oil holds $100+, (3) VIX stable.
+- Patience > activity.
