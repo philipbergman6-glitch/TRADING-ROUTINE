@@ -126,3 +126,46 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-04 — Pre-market Research (inline, no prior entry)
+
+### Account
+- Equity: $102,054.85
+- Cash: $41,487.81
+- Buying power: $143,542.66
+- Deployed: $60,567.04 (59.3% — below 75-85% target)
+- Daytrade count: 0
+- Pattern day trader: false
+
+### Positions
+| Symbol | Qty | Entry | Current | Unr. P&L | Today% | Stop (GTC) |
+|--------|-----|-------|---------|----------|--------|------------|
+| AMD    | 62  | $314.97 | $349.11 | +$2,117 (+10.84%) | -3.17% | $336.52 (7% trail, HWM $361.85) |
+| NVDA   | 90  | $208.64 | $198.52 | -$911 (-4.85%)   | +0.03% | $193.26 (10% trail, HWM $214.73) |
+| PLTR   | 142 | $142.30 | $148.20 | +$838 (+4.15%)   | +2.87% | $134.66 (10% trail, HWM $149.62) |
+
+### Market Context
+- WTI crude: $105.54/bbl (+3.76% today). Strait of Hormuz still blockaded — no de-escalation.
+- S&P 500 E-Mini: ~7,266, +0.11% premarket (near flat).
+- VIX May '26 futures: ~19.69 (+1.11%) — slightly elevated.
+- PLTR Q1 2026 earnings: reported pre-market today. Stock +2.87% intraday (HWM $149.62) — positive reaction. Full results not yet in search data but price action confirms beat/inline.
+- AMD: earnings tomorrow May 5 after close. Stock -3.17% today (profit-taking ahead of binary event). AMD stop tightened to 7% trail per rule (HWM $361.85 hit +15% threshold).
+
+### Trade Ideas
+1. **XOM** — Oil still $105+, Hormuz blocked, energy #1 sector YTD. BUT: XOM now at $151.88 vs planned entry $120-122 — gap of 25%. Planned R:R and stop math (stop $108-110) are no longer valid at current levels. Would need full recalibration. Conviction: 5/10 at current price — chasing. ❌ Below threshold.
+2. **HOLD cash** — AMD earnings tomorrow (May 5) is a portfolio binary event (AMD = largest winner at +10.84%). Adding new positions ahead of this introduces unnecessary risk.
+
+### GTC Stop Status (confirmed live)
+- AMD: 7% trail, HWM $361.85, stop $336.52 ✓ (correctly tightened per +15% rule)
+- PLTR: 10% trail, HWM $149.62, stop $134.66 ✓
+- NVDA: 10% trail, HWM $214.73, stop $193.26 ✓ (above -7% manual cut of $194.03)
+
+### Decision
+**HOLD** — No new buys today.
+- XOM entry at $151.88 is 25% above planned $120-122; setup materially changed — no chase.
+- AMD binary event tomorrow argues strongly for patience.
+- NVDA -4.85%: above $193.26 trailing stop and above $194.03 manual cut — HOLD.
+- PLTR +4.15%, positive earnings reaction: HOLD; stop automatically advanced to $134.66.
+- Re-evaluate XOM entry post-AMD earnings (May 5) with fresh R:R math at current price.
