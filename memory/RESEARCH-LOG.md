@@ -126,3 +126,29 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-04 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop | Stop Type |
+|--------|-------|---------|------|--------|------|-----------|
+| AMD | $314.97 | $342.71 | +8.81% | -4.95% | $336.52 (7% trail, HWM $361.85) | GTC trailing |
+| NVDA | $208.64 | $197.23 | -5.47% | -0.62% | $193.26 (10% trail, HWM $214.73) | GTC trailing |
+| PLTR | $142.30 | $146.92 | +3.25% | +1.98% | $134.66 (10% trail, HWM $149.62) | GTC trailing |
+
+### Actions
+- **No cuts** — no position at -7% (NVDA at -5.47%, manual cut trigger at $194.03; current $197.23)
+- **No stop tightening** — no position at +15% threshold (AMD already tightened to 7% from prior session; not yet at +20% = $377.97)
+
+### AMD Afternoon Research
+AMD -4.95% intraday — no specific breaking catalyst found. Pre-earnings rotation ahead of May 5 Q1 report ($9.84B rev consensus). Stop at 7% trail ($336.52 active) provides downside protection. Thesis intact — AI data-center demand story unchanged. No action.
+
+### Key Watches
+- **NVDA critical level:** $194.03 = -7% manual cut trigger. Current $197.23 = only $3.20 buffer. Trailing stop $193.26 just below. One bad tick away from exit. Monitor rest of day.
+- **PLTR** reported pre-market today — stock +1.98% with HWM updated to $149.62 (positive reaction). Thesis confirmed.
+- **AMD earnings tomorrow May 5** — gap risk both directions. 7% trailing stop ($336.52) is protection floor.
+
+### Decision
+HOLD all. No rule triggers. No thesis breaks.
