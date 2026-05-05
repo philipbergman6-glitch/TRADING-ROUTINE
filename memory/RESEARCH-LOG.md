@@ -126,3 +126,54 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-05 — Pre-market Research
+
+### Account
+- Equity: $100,977.13
+- Cash: $41,487.81
+- Buying power: $142,464.94
+- Deployed: $59,489 (58.9% — below 75-85% target)
+- Day P&L: -$1,182.60 vs prior close ($102,159.73)
+- Daytrade count: 0
+- Week trades: 0/3 (new week)
+
+### Positions
+| Symbol | Qty | Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-------|---------|----------|------------|
+| AMD | 62 | $314.97 | $348.00 | +$2,048 (+10.5%) | $336.52 (7% trail, HWM $361.85) |
+| NVDA | 90 | $208.64 | $198.55 | -$908 (-4.84%) | $193.26 (10% trail, HWM $214.73) |
+| PLTR | 142 | $142.30 | $141.16 | -$162 (-0.8%) | $134.66 (10% trail, HWM $149.62) |
+
+### Market Context
+- **WTI**: ~$104.31/bbl (down from $105 prior session). Brent ~$116/bbl. Brent-WTI spread ~$12. Geopolitical premium from Iran/Hormuz tensions.
+- **S&P 500 futures**: +0.33% (+23.75 pts) premarket. Market recovering after Monday's lower close. US-Iran ceasefire talks positive catalyst.
+- **VIX**: 18.51 (May 4 close), +8.95% on day — moderately elevated but not alarming.
+- **Today's events**: AMD Q1 earnings after close (major catalyst, options imply ±8% move). No major macro data today.
+- **Earnings before open**: Life Time (LTH) only — no impact on our holdings.
+- **NFP**: Friday May 8 at 8:30 AM, forecast +60K (weak vs March +178K). Key risk for the week.
+- **FOMC**: May 13 rate decision — NFP Friday critical input.
+- **Sector momentum**: Energy +26% YTD (#1). Tech lagging but recovering on AI earnings cycle (hit record high Apr 23 after 6-month lull). Materials, Industrials leading non-tech rotation.
+
+### Holdings Update
+- **PLTR** (+EARNINGS): Q1 2026 — Revenue $1.633B (+85% YoY, beat $1.54B consensus by 6%). Adj EPS $0.33 vs $0.27 est. US Commercial $595M (+133% YoY) — exceeded bull case ($550M). Guidance raised to $7.65-7.66B full year. Adj operating margin ~60%. Down -3.34% today = sell-the-news after pre-earnings run ($142 → $146). Thesis confirmed stronger. HWM $149.62, stop $134.66 intact. Hold.
+- **AMD** (+EARNINGS TONIGHT): Reports after close May 5. Consensus $9.84-9.88B (+33% YoY), EPS $1.28-1.29. Data center expected $5.56B (+51% YoY). Key: beat data center, MI325 ramp, China license update. Options imply ±8% move. Stop $336.52 (7% trail, HWM $361.85). Gap-down risk if miss; stop may not protect on >4% gap at current price $348. Up +1.89% today (pre-earnings optimism). Thesis intact.
+- **NVDA** (+WATCH): Current $198.55, -4.84% from entry. Manual cut trigger $194.04 — only $4.51 buffer. Stop $193.26 (10% trail, HWM $214.73). Analyst target $272-274 (38% upside). Earnings May 20. Thesis not broken — AI backlog, Blackwell demand. China export risk flagged. Hold but monitor intraday; cut if $194.
+
+### Trade Ideas
+1. **XOM** (Exxon Mobil) — Energy #1 YTD (+26%). WTI $104 with geopolitical premium. New week, 0/3 trades. Under-deployed at 59%. Entry ~$120-122 on pullback, stop $108-110 (10%), target $140+ (2:1+). **Wait for after AMD earnings reaction Wed morning** before pulling trigger — don't add during binary event day.
+2. **OXY** (Occidental Petroleum) — Berkshire-backed energy backup to XOM. Similar WTI leverage. Entry on any sector pullback to $60-62, stop $54, target $74+.
+3. **PLTR additional** — Not actionable; already positioned. Monitor recovery post sell-the-news. If confirms thesis reversal (closes >$145), consider that stop tightening to 7% at +15% ($163.65) is still far off.
+
+### Risk Factors
+- **AMD earnings tonight**: ±8% implied move. Gap-down risk through stop ($336.52). If AMD misses, position loss could be large.
+- **NVDA at -4.84%**: Only $4.51 from -7% manual cut ($194.04). Intraday watch required.
+- **PLTR sell-the-news**: -3.34% post-earnings. Could continue lower toward stop ($134.66) before reversing.
+- **NFP Friday**: Forecast +60K (very weak). Weak print = rate-cut hopes → mixed signals. Strong print = rate worry. Either direction moves market.
+- **VIX 18.51**: Elevated vs recent lows; uncertainty persists.
+- **Deployment gap**: At 59% — need 1 more position to reach 75% floor. XOM is the target add.
+
+### Decision
+**HOLD all — no new trades today.** AMD earnings binary event prevents new additions. Monitor NVDA — cut manually if price touches $194.04. Scout XOM for Wednesday entry if: (1) AMD reacts positively, (2) WTI holds $100+, (3) broad market stabilizes. PLTR thesis confirmed; ignore today's sell-the-news noise.
