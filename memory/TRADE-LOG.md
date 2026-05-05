@@ -43,3 +43,19 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-05 — Midday Scan
+
+**No trades executed.** No positions at -7%. No stop tightening triggered.
+
+| Ticker | Current | P&L% | Stop | Notes |
+|--------|---------|-------|------|-------|
+| AMD | $354.90 | +12.68% | $336.52 (7% trail) | HOLD — approaching +15% tighten threshold |
+| NVDA | $197.70 | -5.24% | $193.26 (10% trail) | WATCH — manual cut at $194.03, only $3.67 away |
+| PLTR | $136.10 | -4.36% | $134.66 (10% trail) | WATCH — stop 1.1% away; -6.8% today post-earnings sell-the-news |
+
+**PLTR**: Earnings May 4 — strong guidance (+71% revenue, +120% US commercial). -6.8% today = sell-the-news, not thesis break. Trailing stop at $134.66 may fire naturally.
+**NVDA**: Opened $209.93, dropped to $197.70 on high volume (224.7M). No fundamental catalyst. Thesis intact. Watch $194.03.
+**AMD**: Trailing stop already at 7% (correctly tightened when HWM hit $361.85, ~+15%). No further action until +20% ($377.96).

@@ -126,3 +126,31 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-05 — Midday Addendum
+
+### Positions Scanned
+| Symbol | Entry | Current | P&L% | Stop | Distance to Stop |
+|--------|-------|---------|-------|------|-----------------|
+| AMD | $314.97 | $354.90 | +12.68% | $336.52 (7% trail, HWM $361.85) | -5.2% |
+| NVDA | $208.64 | $197.70 | -5.24% | $193.26 (10% trail) | -2.3% |
+| PLTR | $142.30 | $136.10 | -4.36% | $134.66 (10% trail, HWM $149.62) | -1.1% |
+
+### Actions
+- **No cuts** — no position at -7% from entry
+- **No stop tightening** — AMD at +12.68% (needs +15% for 7% tighten; stop already at 7% from prior session)
+- **No thesis breaks confirmed**
+
+### PLTR Post-Earnings Analysis
+- PLTR reported Q1 on May 4; market reaction -6.8% today on sell-the-news
+- Reported FY2026 guidance: ~$1.8B revenue, +71% YoY; US commercial +120% YoY; $400M buyback
+- Fundamentals strong — thesis (AI/defense software, government contracts) intact
+- Sell-the-news reaction, not a thesis break → HOLD
+- **Risk**: Trailing stop at $134.66 is only 1.1% from current $136.10 — may trigger naturally
+
+### NVDA Intraday Alert
+- NVDA opened $209.93, trading at $197.70 (down -5.85% from open, volume 224.7M)
+- No fundamental catalyst; high-volume profit-taking from gap up
+- Thesis intact; manual cut level $194.03 is $3.67 away — watch closely into close
