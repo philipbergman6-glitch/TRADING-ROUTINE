@@ -43,3 +43,21 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-05 — Market-Open Review
+
+**No new trades.** AMD binary event tonight; patience rule applies.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AMD | $314.97 | $347.46 | +10.3% | $336.52 (7% trail, HWM $361.85) | HOLD — earnings tonight, stop manages risk |
+| NVDA | $208.64 | $199.20 | -4.5% | $193.26 (10% trail, HWM $214.73) | HOLD — manual cut trigger $194.04; watch intraday |
+| PLTR | $142.30 | $139.48 | -2.0% | $134.66 (10% trail, HWM $149.62) | HOLD — post-earnings sell on valuation; stop $4.82 below |
+
+**Week of 2026-05-05 trade count: 0/3**
+
+**Portfolio:** $100,808.98 | **Deployed:** 58.8% | **Daytrade count:** 0
+
+**Rationale:** AMD earnings after close = binary event with ~8% implied move. All three positions are tech; adding new exposure into AMD earnings night contradicts patience > activity rule. PLTR beat estimates strongly (+85% YoY revenue) but sold off on 78x sales multiple — thesis intact, stop active. NVDA at -4.5% from entry with manual cut and trailing stop both within $6 of current price. XOM quote feed unreliable today; defer energy add to next session with clean data.

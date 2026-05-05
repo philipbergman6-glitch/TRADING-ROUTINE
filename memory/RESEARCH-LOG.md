@@ -126,3 +126,47 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-05 — Pre-market Research (inline, no prior entry)
+
+### Account
+- Equity: $100,808.98
+- Cash: $41,487.81
+- Deployed: $59,321.17 (58.8% — below 75-85% target)
+- Daytrade count: 0
+- Week trades: 0/3 (new week)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|--------|-----------|---------|----------|------------|
+| AMD    | 62  | $314.97 | $347.46 | +$2,015 (+10.3%) | $336.52 (7% trail, HWM $361.85) |
+| NVDA   | 90  | $208.64 | $199.20 | -$850 (-4.5%) | $193.26 (10% trail, HWM $214.73) |
+| PLTR   | 142 | $142.30 | $139.48 | -$400 (-2.0%) | $134.66 (10% trail, HWM $149.62) |
+
+### Market Context
+- AMD reports Q1 earnings TONIGHT after close. Consensus: $9.87B revenue (+33% YoY), EPS $1.30. Options pricing ~8% move. Data center expected ~50% of revenue. Binary risk.
+- PLTR Q1 2026 results (May 4): $1.633B revenue (+85% YoY, beat $1.54B estimate). EPS $0.33 vs $0.29. Q2 guide $1.8B vs $1.68B consensus. FY2026 guide raised to $7.65B. All-around beat — but stock selling off on 78x sales valuation. Down -4.49% today from $146.03.
+- NVDA: Down -4.5% from entry ($208.64 → $199.20). Manual cut trigger: $194.04. Trailing stop: $193.26. Both very close — monitor intraday.
+- NFP April 2026 data: Not available (no Perplexity data returned).
+- Energy sector (XOM): Quote feed showing anomalous bid/ask spread ($145/$161) — unreliable for entry.
+- S&P 500: No current level available from data.
+
+### Holdings Update
+- **AMD** (+10.3%): Stop tightened to 7% trail (HWM $361.85, stop $336.52). Earnings tonight = binary. Current $347.46 — stop provides $10.94 buffer. If AMD gaps -15%+, stop may not execute at stated price. Risk managed per rules; no further action.
+- **NVDA** (-4.5%): Recovering slightly today (+0.36%). Manual cut = $194.04. Trailing stop = $193.26. Hold but on high alert.
+- **PLTR** (-2.0%): Post-earnings sell-off despite strong beat. Stop at $134.66 ($4.82 buffer from $139.48). Thesis confirmed by earnings but valuation multiple compression ongoing. Hold — not at -7% manual cut ($132.34).
+
+### Trade Ideas
+1. **XOM (Energy)** — Sector momentum intact. XOM quote feed unreliable today. No NFP data to confirm macro backdrop. Defer to next session when data is clean. Conviction: 6/10 — below threshold.
+2. **AAPL (Consumer Tech)** — Post-earnings at ~$279. Q1 earnings beat; services momentum. Could be momentum add. No clear catalyst for entry today. Conviction: 5/10 — below threshold.
+3. **HOLD CASH** — AMD earnings tonight = major binary event. Portfolio already carrying 3 positions; adding risk pre-AMD-earnings violates patience > activity rule.
+
+### Decision
+**HOLD ALL — NO NEW TRADES.**
+- AMD binary tonight: let 7% trailing stop manage risk. No manual intervention unless catastrophic gap.
+- NVDA: cut manually if intraday touches $194.04.
+- PLTR: stop at $134.66 active; hold unless manual cut trigger reached ($132.34).
+- No new entries until AMD earnings digested and XOM/AAPL re-evaluated with clean data.
+- Deployed 58.8% — under-deployment acknowledged but intentional given event risk.
