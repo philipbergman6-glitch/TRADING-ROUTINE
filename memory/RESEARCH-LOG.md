@@ -126,3 +126,75 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-06 — Pre-market Research
+
+### Account
+- Equity: $105,166.08
+- Cash: $41,487.81
+- Buying power: $146,653.89
+- Deployed: $63,678.27 (60.5% — below 75-85% target)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|--------|-----------|---------|----------|------------|
+| AMD | 62 | $314.97 | $424.78 | +$6,808 (+34.87%) | 7% trail, HWM $361.85, stop $336.52 ⚠️ MUST TIGHTEN TO 5% |
+| NVDA | 90 | $208.64 | $201.35 | -$656 (-3.49%) | 10% trail, HWM $214.73, stop $193.26 |
+| PLTR | 142 | $142.30 | $135.36 | -$986 (-4.88%) | 10% trail, HWM $149.62, stop $134.66 ⚠️ ONLY $0.70 CLEARANCE |
+
+### Open Orders
+- AMD: GTC trailing stop, 7% trail, stop $336.52 — stale HWM ($361.85 vs $424.78 market) → **REPLACE with 5% trail at market open**
+- NVDA: GTC trailing stop, 10% trail, stop $193.26, HWM $214.73
+- PLTR: GTC trailing stop, 10% trail, stop $134.66, HWM $149.62
+
+### Market Context
+- WTI: ~$99.92/bbl (-2.30% today) — descending triangle, bearish bias; Middle East ceasefire holding, easing Hormuz risk premium
+- Brent: ~$115/bbl (May 4 data; likely tracking WTI lower today)
+- S&P 500 futures: 7,303.25, +0.22% — near all-time highs, healthy tape
+- VIX: 17.38 (down -4.98% from May 5 close) — low-vol bull regime; 20-day realized vol 11.9%; constructive for risk assets
+- FOMC: Rates held at 3.50–3.75% (Apr 29); core PCE Q1 at 4.3% — elevated inflation limiting cuts; July cut now 88.5% probability
+- Earnings today (BMO): HSBC, Sunoco, AGCO, Atkore — no major market-movers
+- Semiconductor sector rallying on AMD blowout earnings; Yahoo Finance headline: "S&P 500, Nasdaq, Dow rise as oil slides, wave of solid earnings rolls in"
+
+### Holdings Update
+
+**AMD (+34.87%):** Q1 2026 blowout on May 5:
+- Revenue $10.3B (+38% YoY), Data Center $5.8B (+57% YoY)
+- EPS $1.37 vs $1.30 est (+5.59% beat)
+- Q2 2026 guidance: ~$11.2B revenue
+- Stock +19.57% today to $424.78 (up from $355.26 close yesterday)
+- **ACTION REQUIRED at market open:** Stop at +34.87% — rule requires 5% trail at +20%. Cancel 7% GTC, replace with 5% GTC trail. At $424.78, 5% trail = stop ~$403.54. Do not delay.
+
+**NVDA (-3.49%):** No new catalyst. Recovering today (+2.47% to $201.35). Analyst consensus target $272.08 (37 Buy ratings). Earnings May 20. Manual cut at $194.03 — current $201.35 is $7.32 away. Trailing stop at $193.26 (HWM $214.73). Hold.
+
+**PLTR (-4.88%):** Q1 2026 earnings on May 4:
+- Revenue +85% YoY, U.S. revenue +104% YoY
+- EPS $0.33 vs $0.28 expected (+18% beat); FY26 guidance raised to +71% growth
+- Rule of 40 score: 145 — exceptional
+- Despite explosive results, stock at $135.36 — "sell the news" or sector headwind
+- Trailing stop at $134.66 — only $0.70 clearance. Likely stopped out today on any weakness.
+- Do NOT override stop (rules: never move stop down). Thesis was vindicated by earnings; price action disagreed. Let stop execute if triggered.
+
+### Trade Ideas
+1. **AMD stop tighten (mandatory, not optional)** — At +34.87%, the 5% trail rule applies (threshold +20%). Cancel order 669a4405, submit new GTC trailing stop 5% trail for 62 AMD shares at market open. Expected new stop ~$403–405 range.
+2. **XOM (Energy — deferred)** — Energy still sector #1 YTD (+26-30%), oil at ~$100 post-ceasefire. Oil pullback could be dip or structural shift. Wait 1-2 sessions to see if ceasefire holds; if WTI stabilizes above $95, energy thesis intact. Conviction: 6/10 — below 8/10 threshold. ❌ Not yet.
+3. **HOLD cash** — Deployed at 60.5%. PLTR stop-out likely today (-4.88% = -$986 loss, frees ~$19K). Wait for positions to settle before adding 4th name. Best entry after PLTR resolves.
+
+### Risk Factors
+- PLTR stop ($134.66) likely gets hit intraday — loss of -$986 realizable
+- AMD gap-up means trailing stop gap-risk; 5% trail at $424.78 = $403.54 floor
+- Oil ceasefire narrative could accelerate if confirmed → energy sector rotates out (XOM/CVX pullback risk)
+- NVDA earnings May 20 — binary event, currently underwater; if doesn't recover before then, thesis weakens
+- Inflation (core PCE 4.3%) limits Fed flexibility — macro headwind for tech multiples
+- S&P at all-time highs (+6.19% above 50-DMA) — low margin for error on macro surprise
+
+### Decision
+**TIGHTEN AMD STOP (mandatory) + HOLD everything else.**
+- AMD: replace GTC stop at market open — 7% → 5% trail. Non-negotiable rule.
+- PLTR: let trailing stop run ($134.66). Do not add, do not override. If stopped, evaluate energy add with freed capital.
+- NVDA: HOLD, monitor $194 manual cut. Recovering today.
+- No new buys until PLTR resolved and XOM conviction reaches 8/10.
+- Deployed at 60.5% — acceptable while PLTR situation is live.
