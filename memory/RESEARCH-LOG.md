@@ -126,3 +126,25 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-06 — Midday Scan
+
+### Portfolio State
+| Symbol | Shares | Entry | Current | P&L% | Today% | Stop |
+|--------|--------|-------|---------|------|--------|------|
+| NVDA | 90 | $208.64 | $204.98 | -1.75% | +4.32% | $193.26 (10% trail, HWM $214.73) |
+
+- AMD and PLTR no longer in positions — exits unlogged (stops triggered during earnings events May 4–5; TRADE-LOG has gap since Apr 30 EOD).
+
+### Actions
+- **No cuts** — NVDA at -1.75%, cut threshold is -7% ($194.03)
+- **No stop tightening** — NVDA not at +15% threshold
+- **Thesis check NVDA: INTACT** — broad chip-sector surge pushing market cap back above $5T; 200-day SMA ($185) acting as support; no negative news; AI GPU demand narrative unchanged; earnings May 20
+
+### NVDA Intraday Note
+Yesterday NVDA closed at $196.50 — within $3.25 of trailing stop ($193.26). Today +4.32% recovery on chip-sector strength; no specific catalyst. Technical: reclaimed $200, near HWM resistance at $214.73. Stop at $193.26 GTC remains appropriate.
+
+### Decision
+HOLD NVDA. No action warranted. Monitor into earnings May 20 (binary event).
