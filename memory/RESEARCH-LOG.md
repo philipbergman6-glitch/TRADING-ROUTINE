@@ -126,3 +126,54 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-06 — Pre-market Research
+
+### Account
+- Equity: $104,571.80
+- Cash: $60,278.63
+- Long market value: $44,293.17
+- Deployed: ~42.3% (well below 75-85% target)
+- Daytrade count: 0
+- Week of May 5-9 trades: 0/3
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop |
+|--------|--------|-----------|---------|----------|------|
+| AMD | 62 | $314.97 | $424.36 | +$6,782 (+34.7%) | $402.80 (5% trail, HWM $424.00) — tightened today |
+| NVDA | 90 | $208.64 | $199.72 | -$803 (-4.3%) | $193.26 (10% trail, HWM $214.73) |
+| PLTR | — | — | — | — | Stopped out (stop was $129.47) |
+
+### Market Context
+- S&P 500 futures: ~7,303 (+0.22%) — near all-time highs
+- VIX: Not available
+- Tech: Nasdaq 100 +1.31% yesterday; sector recovering on earnings beats
+- Middle East ceasefire holding → reduced Hormuz risk premium
+- AMD Q1 2026 earnings (May 5 after close): Rev $10.3B (+38% YoY, beat $9.9B est), EPS $1.37 (beat $1.27 est) → +19.45% gap today
+- QCOM +10.79% May 5 on custom silicon/hyperscaler news
+- No major economic data today
+
+### Holdings Update
+- **AMD** (+34.7%): Post-earnings gap +19.45% today. Data Center drove growth; gross margin 53%. Q2 guide strong ($1.45 EPS est). Stop tightened from 7% to 5% trail per rule (tighten to 5% at +20% gain). HWM $424, stop $402.80. HOLD.
+- **NVDA** (-4.3%): No new catalyst. Manual cut at $194.04, trailing stop at $193.26 — only $0.78 buffer. Today +1.64%, slight recovery. Thesis intact (Blackwell/Vera Rubin, earnings May 20). HOLD but on close watch.
+- **PLTR**: Stopped out between May 1-6. Stop was $129.47.
+
+### Trade Ideas
+1. **XOM** (~$156.94) — Energy/oil. Consensus target $159-162, only ~2-3% upside. No 2:1 R:R possible. Middle East ceasefire reduces oil premium. Conviction: 5/10. ❌ Below threshold.
+2. **CVX** (~$195.30) — Already at prior target of $195. Overextended. ❌ Skip.
+3. **QCOM** (~$190) — Extended +50% rally, RSI 71 (overbought), street target $159 BELOW current price. ❌ Skip.
+
+### Risk Factors
+- NVDA manual cut only $5.68 above current price — any weakness triggers exit
+- Deployed at 42.3% — significantly below 75-85% target; no ideas clear 8/10 threshold today
+- AMD +34.7% unrealized — stop at $402.80 protects $5,451 of gains
+
+### Decision
+**HOLD** — No new buys today.
+- Zero trade ideas clear 8/10 conviction threshold.
+- XOM/CVX: insufficient R:R. QCOM: overbought, below analyst targets.
+- AMD stop tightened to 5% trail (mandatory at +20%+ rule).
+- NVDA: Hold through weakness; cut manually at $194.04.
+- Re-evaluate energy or new sector ideas tomorrow with fresh catalysts.
