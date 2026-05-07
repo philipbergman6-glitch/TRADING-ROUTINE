@@ -126,3 +126,35 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-07 — Midday Scan
+
+### Account
+- Equity: $104,445.97
+- Cash: $24,088.78
+- Deployed: $80,357.19 (76.9% — within 75-85% target ✓)
+- Day P&L: +$109.20 (+0.10%)
+- Phase P&L: +$4,445.97 (+4.45%)
+
+### Positions
+| Symbol | Shares | Entry | Current | P&L% | Today% | Stop |
+|--------|--------|-------|---------|------|--------|------|
+| AMD | 49 | $414.16 | $405.61 | -2.06% | -3.75% | $379.54 (10% trail, HWM $421.71) |
+| NVDA | 90 | $208.64 | $212.19 | +1.70% | +2.10% | $193.26 (10% trail, HWM $214.73) |
+| PLTR | 152 | $136.96 | $137.69 | +0.53% | +2.91% | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $146.21 | +0.19% | -1.67% | $131.83 (10% trail, HWM $146.48) |
+
+### Actions
+- No cuts (no position at -7%)
+- No stop tightening (no position at +15%)
+
+### Earnings Research (post-event)
+- **AMD Q1 2026** (reported May 5): Revenue $10.3B (+38% YoY, beat $9.89B est), EPS $0.84 (beat $0.73 est), data center +57% YoY, record FCF $2.6B. Guidance: server CPU >70% YoY Q2, TAM >$120B by 2030. Bull thesis ✓ intact. Stock gapped up post-earnings (HWM $421.71) then pulled back to $405.61 today — normal consolidation.
+- **PLTR Q1 2026** (reported May 4): Revenue $1.633B (+85% YoY, beat $1.569B est), EPS $0.34 GAAP, US commercial +133% YoY, Rule of 40 score 145%, FCF $925M. FY guidance raised to 71% YoY. Best quarter ever — stock sold off post-earnings ("sell the news"). Bull thesis ✓ very intact. Position averaged to $136.96 on dip.
+- **NVDA**: No earnings this week (May 20). Up +2.10% today — AI tailwind from AMD/PLTR earnings signal. Thesis intact.
+- **XOM**: No specific news. Down -1.67% today. Energy sector holding. Thesis intact.
+
+### Decision
+HOLD all — no rule triggers. Thesis intact across all four positions. AMD pullback from post-earnings HWM is normal; stop at $379.54 provides 6.4% buffer. PLTR "sell the news" dip absorbed; fundamentals exceptional. Deployed at 76.9% — on target.
