@@ -126,3 +126,69 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-07 — Pre-market Research
+
+### Account
+- Equity: $104,325.97 (+4.3% from $100K start)
+- Cash: $85,632.07
+- Buying power: $189,958.04
+- Deployed: $18,693.90 (~18% — **critically under-deployed** vs 75-85% target)
+- Daytrade count: 0
+- Week of May 5-9 trade count: 0 new buys confirmed
+
+### Positions
+| Symbol | Qty | Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-------|---------|----------|------------|
+| NVDA   | 90  | $208.64 | $207.77 | -$78 (-0.42%) | $193.26 (10% trail, HWM $214.73) |
+
+- **AMD and PLTR closed** during May 4-6 (earnings reactions; trailing stops executed or manual exits). Net effect: portfolio +$4,326 from baseline.
+
+### Market Context
+- **WTI**: ~$92–103/bbl (pulled back from $116 high on May 1; Polymarket shows >$105 priced at 100% for May, suggesting floor ~$100–103)
+- **Brent**: ~$103–105 range; volatile on Strait of Hormuz/Gulf geopolitics
+- **S&P 500**: May 6 close ~7,380; premarket today +0.75% on geopolitical optimism ("potential end to conflict")
+- **VIX**: 17.38 (May 5 close) — calm, below 20 avg; declining from Apr 30 high of 18.68
+- **Today's releases**: Q1 Productivity & Costs at 8:30 AM ET (minor); no FOMC
+- **FOMC**: On hold at 3.50–3.75% (Apr 29 vote). Powell term ends May 15 — transition uncertainty. No cuts signaled.
+- **CPI**: Feb 2026 +2.4% YoY (still above 2% target); Cleveland nowcast May MoM +0.42%
+- **NFP**: March +178K (beat); April report out May 2 (results not in research data)
+- **Earnings AMC today**: DDOG (exp. $0.51/share); OPEN possible
+- **Key premarket mover**: SMCI +14.12%, semis broadly surging; Nasdaq futures +1.25%
+
+### Sector Momentum (YTD)
+| Sector | Status | YTD Perf |
+|--------|--------|----------|
+| Energy | Leading | +22% |
+| Consumer Staples | Leading (ATH) | +10.7% |
+| Industrials | Leading | +11.4% (6-mo) |
+| Materials | Leading | +17.2% (6-mo) |
+| Technology | **Lagging** | negative |
+| Comm Services | Lagging | — |
+| Consumer Disc | Lagging | — |
+
+### Holdings Update
+- **NVDA** (-0.42%): Current $207.77. Stop $193.26, HWM $214.73. Analyst consensus Strong Buy; avg target $270 (+30% upside). AI/Blackwell thesis intact. Tech sector is Lagging — headwind. HOLD; do not add in lagging sector.
+
+### Trade Ideas
+1. **CAT** (Caterpillar, Industrials) — Sector is Leading (+11% 6-mo). Infrastructure and defense spending tailwinds persist. Geopolitical risk-on environment supports capital investment cycle. Entry: ~$345–360 on today's open confirmation; stop: 10% trailing GTC; target: 2:1 R:R (~$395–410). Less correlated to oil than energy names. **Conviction: 7/10 — scout today, buy on open strength.**
+2. **XOM** (Exxon, Energy) — Sector is Leading (+22% YTD). Oil pulled back from $116 → $92-103; could be a dip entry, OR geopolitical resolution (today's catalyst) pushes oil lower first. Risk: conflict-resolution → oil drops → energy underperforms near-term. Entry: wait for oil to stabilize above $100 with 2 daily closes. Do not chase today. **Conviction: 6/10 — wait.**
+3. **WMT** (Walmart, Consumer Staples) — Sector at all-time highs. Defensive quality, inflation-resilient. Entry: ~$90–95 pullback; stop: 10% trailing; target: 2:1. Good diversifier against tech overconcentration. **Conviction: 6/10 — secondary scout.**
+
+### Risk Factors
+- **Extreme under-deployment**: 18% deployed vs 75-85% target — leaving ~$67K idle; urgently need 3–4 new positions
+- Conflict resolution → oil price drop → energy sector rotation out (XOM risk)
+- Powell transition May 15 → Fed uncertainty, possible market volatility
+- Tech sector Lagging — NVDA may underperform broader market
+- DDOG earnings AMC today could swing tech/growth sentiment
+- VIX calm now but oil volatility high ($116→$92 in days)
+- CPI above target → Fed holds → rate-sensitive names pressured
+
+### Decision
+**HOLD NVDA.** Do not add to tech (sector Lagging).
+**SCOUT CAT today** — Industrials is a Leading sector; risk-on environment supports entry. If market opens strong (+0.5%+ SPX), enter CAT at market open with 10% trailing GTC stop. Position size: ~$18–20K (≤20% of equity).
+**XOM**: Wait — oil floor unconfirmed post-geopolitical news. Re-evaluate next session.
+**WMT**: Secondary candidate; add after CAT if deployment gap remains.
+Target: add 3 positions this week to reach 60-75% deployed by Friday close.
