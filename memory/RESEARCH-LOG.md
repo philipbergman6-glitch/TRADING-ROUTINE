@@ -126,3 +126,35 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-07 — Pre-market Research (inline, no prior entry)
+
+### Account
+- Equity: $104,302.57
+- Cash: $85,632.07
+- Deployed: $18,670 (17.9% — severely below 75-85% target)
+- Daytrade count: 0
+- **Only NVDA remains** (AMD/PLTR closed during May 1-6, likely via trailing stops)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop |
+|--------|--------|-----------|---------|----------|------|
+| NVDA | 90 | $208.64 | $208.01 | -$57 (-0.3%) | GTC trailing (existing) |
+
+### Market Context
+- S&P 500 / Nasdaq: At record highs; AI/tech earnings driving broad rally
+- WTI: ~$113.70 (+1.15%) — elevated on Strait of Hormuz disruption risk; US-Iran peace talks ongoing
+- Sector momentum: Energy #1 YTD; AI/Tech surging on blowout Mag-7 earnings
+- AMD Q1 2026 (reported May 5): $10.3B revenue, EPS $1.37 vs $1.28 est; stock +18-21% on May 6 — best post-earnings gain in 7 years
+- PLTR Q1 2026 (reported May 4): EPS $0.33 vs $0.27 est (+22% beat); stock at $136.91 (+2.33% today)
+- NVDA: Earnings May 20; ~$208, flat. AI infrastructure capex confirmed by Alphabet/Meta/Amazon/MSFT.
+
+### Trade Ideas
+1. **PLTR (re-entry)** — EPS beat +22%; AI/defense thesis intact; entry $136.96, below prior cost basis of $142.30. Stop: 10% trail ($123). Target: $165. R:R: 2.0:1. Conviction: 7/10. ✓ BUY
+2. **XOM (Energy)** — Energy sector #1 YTD; oil $113.70 with geopolitical premium; entry $145.94, stop 10% trail ($131). Target: $175. R:R: 2.0:1. Conviction: 8/10. ✓ BUY
+3. **AMD (re-entry)** — Q1 2026 blowout; AI data-center demand; analysts raised to $450-500; entry $414.16 post-gap stabilization. Stop: 10% trail ($373). Target: $495. R:R: 2.0:1. Conviction: 7/10. ✓ BUY
+
+### Decision
+**BUY all three** — deployed from 17.9% to ~77% (in 75-85% target range). Weekly trade count now 3/3. NVDA hold — earnings May 20 catalyst upcoming.

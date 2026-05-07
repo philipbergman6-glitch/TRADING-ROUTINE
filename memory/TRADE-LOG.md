@@ -43,3 +43,17 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-07 — Market-Open Trades
+
+**Pre-open state:** Equity $104,302.57 | Cash $85,632.07 | Only NVDA remaining (AMD/PLTR closed during May 1-6) | Deployed 17.9% (well below 75-85% target) | Week trades used: 0/3
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-05-07 | PLTR | BUY | 152 | $136.96 | 10% trailing GTC (initial $123.00, HWM $136.67) | Q1 2026 EPS beat $0.33 vs $0.27 est (+22%); AI/defense software re-entry below prior cost basis | $165 | 2.0:1 |
+| 2026-05-07 | XOM | BUY | 140 | $145.94 | 10% trailing GTC (initial $130.98, HWM $145.53) | Energy sector #1 YTD; WTI at $113.70; Strait of Hormuz geopolitical risk premium | $175 | 2.0:1 |
+| 2026-05-07 | AMD | BUY | 49 | $414.16 | 10% trailing GTC (initial $373.16, HWM $414.62) | Q1 2026 blowout: $10.3B rev (+5% beat), EPS $1.37 vs $1.28 est; AI data-center demand surge; analysts raising to $450-500 | $495 | 2.0:1 |
+
+**Week of 2026-05-05 trade count: 3/3**
