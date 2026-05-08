@@ -126,3 +126,29 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-08 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop | HWM |
+|--------|-------|---------|------|--------|------|-----|
+| AMD | $414.16 | $444.00 | +7.21% | +8.70% | $401.47 (10% trail) | $446.08 |
+| NVDA | $208.64 | $215.46 | +3.27% | +1.87% | $196.02 (10% trail) | $217.80 |
+| PLTR | $136.96 | $135.15 | -1.32% | -1.39% | $126.86 (10% trail) | $140.95 |
+| XOM | $145.94 | $144.89 | -0.72% | -1.15% | $132.37 (10% trail) | $147.08 |
+
+### Actions
+- No cuts — no position at ≤ -7%
+- No stop tightening — no position at ≥ +15%
+- No thesis breaks detected
+
+### Notes
+- AMD surging +8.7% intraday — likely post-earnings momentum (earnings were May 5); AI/data-center thesis intact; approaching +15% tighten threshold at $476.78
+- NVDA +1.87% today, +3.27% overall; thesis intact; earnings May 20
+- PLTR -1.32% overall, -1.39% today; stop at $126.86 is 6.1% below current; within bounds; monitor
+- XOM -0.72% overall, energy thesis intact; stop at $132.37 holds
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks.
