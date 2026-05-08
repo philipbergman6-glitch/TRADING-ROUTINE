@@ -126,3 +126,67 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-08 — Pre-market Research
+
+### Account
+- Equity: $105,027.17 (+5.03% vs $100K baseline)
+- Cash: $24,088.78
+- Buying power: $129,115.95
+- Deployed: $80,938.39 (77.1% — within 75-85% target)
+- Daytrade count: 0
+- Day P&L vs yesterday: +$536.05 (+0.51%)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|--------|-----------|---------|----------|------------|
+| AMD | 49 | $414.16 | $415.24 | +$53 (+0.26%) | $379.54 (10% trail, HWM $421.71) |
+| NVDA | 90 | $208.64 | $213.40 | +$428 (+2.28%) | $193.26 (10% trail, HWM $214.73) |
+| PLTR | 152 | $136.96 | $137.34 | +$57 (+0.28%) | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $146.50 | +$79 (+0.39%) | $132.37 (10% trail, HWM $147.08) |
+
+**Note:** All stops were reset on May 7. AMD was restructured (62 shares@$314.97 → 49 shares@$414.16 post-earnings pop). PLTR added 10 shares (142→152). XOM initiated 140 shares. **3/3 trades used this week (all May 7).** No new trades possible until week of May 11.
+
+### Market Context
+- **WTI:** ~$94.87–96/barrel — dropped ~13% from $109.76 on May 4; OPEC+ adding 206k bpd + Saudi push for faster hikes + weak payroll signal. **XOM thesis weakening.**
+- **Brent:** ~$100–102 estimated (WTI + ~$5 spread)
+- **S&P 500 futures:** ~7,362–7,389 (near all-time highs; up strongly from 6,657 on Apr 30)
+- **VIX:** 17.08 (May 7 close), declining from 18.81 high. Moderate, manageable.
+- **Today's releases:**
+  - 8:30 AM ET — **Employment Situation (NFP), April 2026** ⚠️ MAJOR
+  - 10:00 AM ET — Univ. of Michigan Consumer Sentiment (preliminary)
+  - 10:00 AM ET — Wholesale Trade (March 2026)
+  - CPI: May 12 | PPI: May 13 | FOMC: mid-May
+- **Earnings before open:** Week of May 4–8 included Cencora, CVS Health, Shopify, Hertz; no Mag-7 today
+- **Sector momentum YTD:** Energy +26–30% (#1), Consumer Staples +10.7%, Industrials +9.6–11%, Materials +11%. Technology recovering on AI earnings but still lagging YTD.
+
+### Holdings Update
+- **AMD** (+0.26%): Crushed Q1 2026 earnings May 5 — Server CPU up >50% YoY, GPU ramp on track. Stock surged to HWM $421.71 (now at $415.24 — post-earnings consolidation). Wall Street raised targets to $415–$450 (Jefferies, Goldman, BofA, Susquehanna). EPS expected +60% in 2026. MI450 GPUs on track H2 2026. HOLD — thesis intact, stop safe at $379.54 (~8.6% below current).
+- **NVDA** (+2.28%): New strategic partnerships — IREN (5GW AI infra buildout, 5-year right to buy 30M IREN shares at $70) and Corning (optical connectivity, 10x capacity expansion). Current $213.40; 52-week high $216.83. Earnings May 20. Prediction markets lean bearish for May 31 close. HOLD — stop at $193.26 (9.4% below current). Watch for tighten at +15% (~$239.94).
+- **PLTR** (+0.28%): Crushed Q1 2026 — EPS $0.33 vs $0.28 est; revenue +85% YoY; US revenue +104% YoY to $1.28B. FY2026 guidance raised to +71% rev growth; US commercial raised to +120%. Added 10 shares post-earnings (now 152 @ avg $136.96). Current $137.34 — barely above entry. HWM $140.95, stop $126.86. HOLD — thesis confirmed, tighten at +15% (~$157.50).
+- **XOM** (+0.39%): Q1 2026 adj EPS $2.09 vs $1.07 est — beat. Rev $85.1B, $9.2B shareholder distributions. Analyst consensus $159.80 target (Buy). BUT oil dropped from $109 to $95 — ~13% decline since May 4. XOM trading $146.50 near HWM $147.08. OPEC+ accelerating production increases. Energy sector momentum at risk of reversal. Stop $132.37 (9.6% below current). WATCH: if oil continues toward $90, thesis breaks. No cut yet but elevated monitoring.
+
+### Trade Ideas
+1. **HOLD all — no action today.** NFP at 8:30 AM is binary. Weak print = broad rally (rate cut expectations); strong print = rate hike fears = mixed. Either way, wait for clarity.
+2. **Energy exit evaluation:** Post-NFP, if oil continues below $95 toward $90, revisit XOM thesis. Energy momentum was predicated on Hormuz risk premium and $105+ oil. With OPEC+ flooding supply, that premium is fading.
+3. **Tech add (next week):** With AMD and PLTR earnings confirmed strong and NVDA partnerships announced, consider adding a 5th tech position next week (e.g., NVDA add, or MRVL/SMCI on AI infra theme). At 3/3 weekly cap, cannot trade today.
+
+### Risk Factors
+- **NFP at 8:30 AM ET** — binary event; hot print = rate hike fears; miss = recession fears. Either tail could move markets 1–2%.
+- **XOM / Oil**: WTI down 13% in 4 days. OPEC+ adding supply. Energy thesis depends on oil staying >$100 — now broken below. Monitor closely.
+- **AMD post-earnings consolidation**: Entered 49 shares at $414.16 near the HWM ($421.71). If AMD pulls back below $379.54, stop fires. Currently thin margin (+$1.08/share).
+- **NVDA earnings May 20**: 12 days out, binary event. Stop at $193.26 is wide enough for pre-earnings drift.
+- **PLTR near entry**: $137.34 vs entry $136.96 — essentially flat. A weak market day could push toward stop territory.
+- **3/3 weekly cap used** — cannot act on opportunities until May 11.
+- **CPI May 12, PPI May 13** — inflation print cluster next week adds uncertainty.
+
+### Decision
+**HOLD all — no new trades possible this week (3/3 cap reached May 7).**
+- No position at -7% manual cut level.
+- No position at +15% stop-tighten level.
+- NFP 8:30 AM argues strongly for patience today — do not chase any morning move.
+- XOM elevated monitoring: oil at $95 is below original entry thesis (~$105+). Not a cut yet (stop at $132.37 still intact), but thesis is weakening. Re-evaluate Monday.
+- Next week priority: decide on XOM continuation vs. exit; scout tech add if market holds.
+- S&P near all-time highs with VIX declining = benign backdrop, but one bad jobs number could shift the tone.
