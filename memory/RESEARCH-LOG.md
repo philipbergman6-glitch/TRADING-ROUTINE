@@ -126,3 +126,37 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-08 — Pre-market Research (inline, market-open)
+
+### Account
+- Equity: $105,021.31
+- Cash: $24,088.78
+- Deployed: $80,932.53 (77.1% — within 75-85% target)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop |
+|--------|--------|-----------|---------|----------|------|
+| AMD | 49 | $414.16 | $428.98 | +$720 (+3.6%) | $385.04 (10% trail, HWM $427.82) |
+| NVDA | 90 | $208.64 | $215.52 | +$619 (+3.3%) | $193.92 (10% trail, HWM $215.47) |
+| PLTR | 152 | $136.96 | $133.68 | -$499 (-2.4%) | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $144.47 | -$206 (-1.0%) | $132.37 (10% trail, HWM $147.08) |
+
+### Market Context
+- S&P 500 futures: ~7,400 (+0.03% pre-market); cash closed May 7 at 7,337 (-0.38%)
+- Nasdaq futures: -0.01% pre-market; resilient vs Dow on AI/tech support
+- Geopolitical: Middle East tensions and rising inflation expectations pulling equities from ATH
+- Sector momentum: Technology AI names resilient; Energy tracking oil/geopolitics
+- WTI crude: Tracking elevated (Hormuz risk premium intact, exact level unconfirmed this AM)
+
+### Rule Checks
+- Weekly trades: 3/3 used (AMD, XOM, PLTR — all May 7) → **NO NEW TRADES**
+- PLTR -7% manual cut: $127.37 | current $133.68 → above threshold, HOLD
+- NVDA -7% manual cut: $194.03 | current $215.52 → above threshold, HOLD
+- No position at +15% threshold → no stop tightening needed
+
+### Decision
+**HOLD all.** Weekly limit exhausted. No position requires manual cut or stop tighten. Deployed 77.1% — on target. Monitor PLTR (-2.4%) for continued weakness into weekend.
