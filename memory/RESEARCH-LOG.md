@@ -126,3 +126,44 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-09 — Pre-Market Research (Saturday — Markets Closed)
+
+### Account
+- Equity: $106,946.49
+- Cash: $24,088.78 (22.5%)
+- Deployed: $82,857.71 (77.5%) ✓ within 75-85% target
+- Daytrade count: 0
+- Phase P&L: +$6,946.49 (+6.95%)
+
+### Positions
+| Symbol | Shares | Avg Entry | Last Close | Unr. P&L | Stop (GTC) | HWM |
+|--------|--------|-----------|------------|----------|------------|-----|
+| AMD | 49 | $414.16 | $455.19 | +$2,011 (+9.9%) | $410.66 trail (10%) | $456.29 |
+| NVDA | 90 | $208.64 | $215.20 | +$590 (+3.1%) | $196.02 trail (10%) | $217.80 |
+| PLTR | 152 | $136.96 | $137.80 | +$127 (+0.6%) | $126.86 trail (10%) | $140.95 |
+| XOM | 140 | $145.94 | $144.57 | -$192 (-0.9%) | $132.37 trail (10%) | $147.08 |
+
+### Market Context (Week of May 5–8)
+- S&P 500: Hit ATH 7,230 on May 1; held ~7,259 by May 5; +12% in 13 days from March volatility lows. 84% Q1 earnings beat rate — highest since Q2 2021.
+- VIX: Implied low given 6-week consecutive gain streak. Geopolitical tension (Iran/Hormuz) adds tail risk.
+- Sectors: Tech leading (+1.5% Fri); Energy pressured by oil volatility despite $100+ WTI.
+- Oil: WTI stubbornly >$100/bbl on Iran/Hormuz risk premium, elevated inflation fears.
+- Catalysts next week: Fed speakers, continued Q1 earnings tail-end, geopolitical developments.
+
+### Ticker Notes
+- **AMD** (+9.9%): AI CPU momentum intact. Approaching +15% tighten threshold ($476.28). Tighten trail to 7% on Monday if AMD opens ≥$476.
+- **NVDA** (+3.1%): Recovering. HWM $217.80, stop $196.02. Thesis intact (Blackwell ramp, Vera Rubin H2 2026).
+- **PLTR** (+0.6%): Essentially flat from re-entry. Stop $126.86. Needs catalyst to push higher.
+- **XOM** (-0.9%): Energy sector #1 YTD but OPEC+ noise creating intraday swings. Manual cut trigger $135.72 (-7%). Stop $132.37. Hold — thesis (Hormuz premium) intact.
+
+### Stop Tighten Check
+- AMD at +9.9%: tighten trail to 7% at +15% ($476.28) → NOT YET
+- NVDA at +3.1%: NO
+- PLTR at +0.6%: NO
+- XOM at -0.9%: NO
+
+### Decision
+**HOLD all — no new trades.** Weekly limit 3/3 reached (AMD, XOM, PLTR all entered May 7). Markets closed today (Saturday). Monday: watch AMD for +15% tighten trigger; watch XOM for any drop toward $135 cut level.
