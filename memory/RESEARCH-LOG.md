@@ -126,3 +126,59 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-09 — Pre-market Research (Saturday, for Monday May 11)
+
+### Account
+- Equity: $106,946.49 (+6.95% from $100k start)
+- Cash: $24,088.78
+- Buying power: $131,035.27
+- Long market value: $82,857.71 | Deployed: 77.5% (within 75-85% target)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Last Px | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------------|-----|
+| AMD    | 49  | $414.16   | $455.19 | +$2,011 (+9.91%) | $410.66 (10% trail) | $456.29 |
+| NVDA   | 90  | $208.64   | $215.20 | +$590 (+3.14%) | $196.02 (10% trail) | $217.80 |
+| PLTR   | 152 | $136.96   | $137.80 | +$127 (+0.61%) | $126.86 (10% trail) | $140.95 |
+| XOM    | 140 | $145.94   | $144.57 | -$192 (-0.94%) | $132.37 (10% trail) | $147.08 |
+
+### Market Context
+- **WTI:** ~$94.68 (Jun futures CLM26); pulled back from $106 peak — Hormuz tensions partially de-escalating; Brent ~$100.45 (May 7). JPMorgan warns $5/gal gas if Iran war escalates.
+- **S&P 500:** ESM26 7,420.50, +0.78% Friday; April close 7,209 (record high); strong rally YTD.
+- **VIX:** 17.28 (May 8 CBOE) — moderate, not fearful.
+- **Week's catalysts:** CPI Apr (Tue May 12 8:30 AM, core est. +0.3% MoM / +2.7% YoY); PPI Apr (Wed May 13 8:30 AM). No FOMC this week.
+- **Monday BMO earnings:** CEG (est. $2.54 EPS), FOXA ($0.98), MNDY ($0.93), MOS ($0.24).
+- **Sector momentum YTD:** Energy +38.3% (#1), Telecoms +33.6%, Industrials/Materials/Staples in leading quadrant. Technology lagging but recovering on AI earnings.
+
+### Holdings Update
+- **AMD (+9.91%):** Q1 2026 earnings May 5 — massive beat: $10.3B revenue (+38% YoY), EPS $1.37 vs $1.25 est. Stock +21% post-earnings; up 90% YTD. Q2 guided $11.2B (+46% YoY). Goldman/BofA targets raised to $450+. Currently $455.19, near HWM $456.29. Tighten stop 10%→7% trigger at $476.28 (+15% from $414.16 avg). Not there yet. **HOLD. Watch $476.**
+- **NVDA (+3.14%):** IREN partnership announced (right to buy $2.1B IREN stock, $3.4B five-year AI cloud contract). Corning deal (+10× optical capacity). Earnings May 20. Up ~9% this week. HWM $217.80, stop $196.02. -7% manual cut at $194.04 — well clear. **HOLD. Thesis strengthening pre-earnings.**
+- **PLTR (+0.61%):** Q1 2026 earnings May 4 — blowout: EPS $0.33 vs $0.28, revenue $1.63B (+85% YoY), US revenue +104% YoY. FY guidance raised to +71% growth. Surging estimate revisions. At $137.80 vs stop $126.86. Underlying bull thesis confirmed; modest gain from avg entry. **HOLD. Thesis confirmed, let it run.**
+- **XOM (-0.94%):** Oil pulled back to ~$94 (from $106 high). Q1 earnings call May 7. TD Cowen Buy reaffirmed, $172 target. 20-analyst consensus Buy, avg target $159.80. Energy sector #1 YTD +38%. Stop $132.37, HWM $147.08. XOM at $144.57, slightly below entry. No -7% trigger ($135.72). **HOLD. Oil headwind short-term; structural tailwind intact.**
+
+### Stop Tighten Check (15% / 20% thresholds)
+| Symbol | +15% Level | +20% Level | Current | Action |
+|--------|-----------|-----------|---------|--------|
+| AMD    | $476.28   | $496.99   | $455.19 | None — watch $476 |
+| NVDA   | $239.94   | $250.37   | $215.20 | None |
+| PLTR   | $157.50   | $164.35   | $137.80 | None |
+| XOM    | $167.83   | $175.13   | $144.57 | None |
+
+### Trade Ideas
+1. **MPC (Marathon Petroleum)** — Energy refiner, +22% 12-week momentum, fwd P/E 8.88, 155% EPS growth projected. Refiners benefit from $90–$100 WTI band (margin sweet spot). Entry ~$185 on Monday open if energy holds; stop 10% (~$166), target $215+ (2:1 R:R). Wait for CPI clearance (Tue) before pulling trigger.
+2. **CEG (Constellation Energy)** — Nuclear power for AI data centers; reports Monday BMO. Structural AI power demand tailwind; nuclear baseload uniquely positioned. If earnings beat and stock opens strong → entry on gap-fill or day-2 dip, stop 10%, target $280+. Do NOT chase a gap open; let it settle.
+3. **Post-CPI tech add (Wed/Thu)** — If CPI prints benign (≤0.3% MoM core) → growth tailwinds intact → consider adding to existing winners (AMD near $476 tighten, or NVDA pre-earnings into May 20). If CPI hot → stay flat, protect stops.
+
+### Risk Factors
+- **CPI Tuesday May 12** — core inflation print; hot number could crack market off all-time highs; defer new entries until data clears
+- **PPI Wednesday May 13** — second inflation confirmation; double-header risk
+- **NVDA earnings May 20** — binary event; can hold into it given strong partnerships but gap risk both ways
+- **Oil pullback** — WTI $94.68 (-11% from recent peak); XOM headwind; Hormuz de-escalation would further pressure energy
+- **S&P at records** — any macro surprise amplified by elevated valuations; VIX 17 gives some buffer but not much
+
+### Decision
+**HOLD all four positions.** All stops properly set as GTC trailing orders. No tighten triggers reached. Do not add new positions until CPI clears Tuesday — patience over activity. On Monday: watch AMD approaching $476 tighten level; watch CEG earnings reaction for potential entry. Best new position candidate is MPC (energy refiner momentum) or CEG (nuclear/AI power) — add one only after CPI confirms benign. Weekly trade budget: 3 new trades available.
