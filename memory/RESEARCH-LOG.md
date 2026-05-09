@@ -126,3 +126,33 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-09 — Midday Scan (Saturday — market closed)
+
+### Positions (as of May 8 close)
+| Symbol | Shares | Avg Entry | Price | P&L% | Stop | HWM |
+|--------|--------|-----------|-------|-------|------|-----|
+| AMD | 49 | $414.16 | $455.19 | +9.91% | $410.66 (10% trail) | $456.29 |
+| NVDA | 90 | $208.64 | $215.20 | +3.14% | $196.02 (10% trail) | $217.80 |
+| PLTR | 152 | $136.96 | $137.80 | +0.61% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $144.57 | -0.94% | $132.37 (10% trail) | $147.08 |
+
+### Step 3 — Cut Losers (-7%)
+None. XOM is -0.94% — not triggered.
+
+### Step 4 — Tighten Stops (+15%/+20%)
+None. AMD at +9.91% is the leader — below +15% threshold.
+
+### Step 5 — Thesis Check
+- **AMD INTACT** — Q1 2026 blowout: EPS $1.37 (beat $1.27), rev $10.3B (beat $9.84B est), +38% YoY. Stock jumped +18.6% on May 6. Data center rev $5.8B (+57% YoY). Q2 guide $11.2B (above $10.52B est). YTD +112%. Agentic AI CPU demand accelerating.
+- **NVDA INTACT** — AI GPU thesis holding. +3.14% from entry. HWM $217.80, stop $196.02. Earnings May 20 (next binary event). AI infrastructure partnership boosted confidence. No thesis break.
+- **PLTR INTACT** — Q1 2026 strong beat: EPS $0.33 (vs $0.28 est, +19%), rev $1.63B (+85% YoY), US rev +104% YoY. Raised FY2026 guidance to +71% growth, US commercial +120%. Muted stock reaction post-earnings — stock near entry. Thesis confirmed.
+- **XOM WATCH** — Q1 2026: EPS $1.16 beat estimates, but net income -45% YoY ($4.2B vs $7.7B). Energy Products had $1.3B derivative loss. Stock declining: $155 (May 4) → $144.57 (May 8), -7.1% from week-high. Entry $145.94, now -0.94%. Not at -7% cut. Stop $132.37 provides 8.5% additional cushion. Short-term momentum negative. Watch closely Mon — cut if it approaches $136.
+
+### Actions
+None — market closed. No rule triggers, no thesis breaks requiring immediate exit.
+
+### Decision
+HOLD all. Re-examine XOM Monday open for thesis confirmation.

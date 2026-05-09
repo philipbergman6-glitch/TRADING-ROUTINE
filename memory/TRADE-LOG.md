@@ -43,3 +43,19 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-09 — Midday Scan Snapshot (Saturday; memory gap May 1–9 noted)
+
+*Note: Trade log entries for May 1–8 are missing. Based on Alpaca positions/orders as of May 8 close, the portfolio was restructured — AMD position rebuilt at higher price post-earnings, XOM added, PLTR shares added. All trailing stops placed May 7 (GTC). Full reconstruction of May 1–8 trades pending next market-open run.*
+
+| Ticker | Shares | Avg Entry | Price (May 8) | P&L% | Stop | HWM |
+|--------|--------|-----------|---------------|-------|------|-----|
+| AMD | 49 | $414.16 | $455.19 | +9.91% | $410.66 (10% trail) | $456.29 |
+| NVDA | 90 | $208.64 | $215.20 | +3.14% | $196.02 (10% trail) | $217.80 |
+| PLTR | 152 | $136.96 | $137.80 | +0.61% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $144.57 | -0.94% | $132.37 (10% trail) | $147.08 |
+
+**Actions:** None. Market closed Saturday. No rule triggers.
+**Status:** 4 positions, all stops in place as GTC trailing orders.
