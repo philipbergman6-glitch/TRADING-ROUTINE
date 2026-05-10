@@ -126,3 +126,64 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-05 through 2026-05-09 — Weekly Context (Backfill)
+
+### Key Events This Week
+- **AMD Q1 2026 earnings (May 5):** Revenue $10.25B (+38% YoY), non-GAAP EPS $1.37 (beat $1.25 est. by 9.6%). Q2 guide ~$11.2B. Data center +57% YoY. Stock surged post-earnings. Original 62-share position closed; re-entered 49 shares @ $414.16 (sized to <20% of equity).
+- **PLTR Q1 2026 earnings (May 4):** Revenue $1.63B (+85% YoY, beat $1.54B est.). Adj. EPS $0.33 (beat $0.28). US commercial +133%. FY guide raised to $7.65–7.66B (+71% YoY). BUT stock dropped ~5–6% on valuation concerns. Original 142-share position exited (trailing stop triggered ~$129); re-entered 152 shares @ $136.96 avg.
+- **XOM:** New position opened May 7 — 140 shares @ $145.94. Energy sector #1 YTD; US-Iran tensions providing oil price floor.
+- **S&P 500:** Strong week (7,230 → 7,420 range); semiconductors led by AMD earnings catalyst.
+- **Week trade count:** 3/3 (AMD re-entry + PLTR re-entry + XOM new).
+
+---
+
+## 2026-05-10 — Pre-Market Research (for Monday May 11)
+
+### Account
+- Equity: $106,946.49
+- Cash: $24,088.78
+- Buying power: $131,035.27
+- Deployed: $82,857.71 (77.5% — within 75–85% target)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Shares | Avg Entry | Current (May 8 close) | Unr. P&L | Stop |
+|--------|--------|-----------|-----------------------|----------|------|
+| AMD  | 49  | $414.16 | $455.19 | +$2,011 (+9.9%)  | $410.66 (10% trail, HWM $456.29) |
+| NVDA | 90  | $208.64 | $215.20 | +$590 (+3.1%)   | $196.02 (10% trail, HWM $217.80) |
+| PLTR | 152 | $136.96 | $137.80 | +$127 (+0.6%)   | $126.86 (10% trail, HWM $140.95) |
+| XOM  | 140 | $145.94 | $144.57 | -$192 (-0.9%)   | $132.37 (10% trail, HWM $147.08) |
+
+### Market Context
+- S&P 500 futures (ESM26): ~7,420.50 (+0.78% as of May 9 close)
+- SPX weekly range May 4–9: 7,230 → 7,363–7,420 (strong uptrend)
+- VIX: Not confirmed; US-Iran tensions cited as geopolitical risk
+- Oil (WTI/Brent): Elevated on US-Iran military exchange; specific price not confirmed. Supports XOM thesis.
+- Sector leadership: Tech recovering (AMD earnings beat + semiconductor rally); Energy firm on geopolitical premium
+
+### Holdings Update
+- **AMD (+9.9%):** Thesis confirmed by blowout Q1. Q2 guide $11.2B = another beat likely. Re-entered at $414; stop $410.66. Tighten to 7% trail at +15% from entry = $476.28. Not there yet. HOLD.
+- **NVDA (+3.1%):** $1T order backlog; Vera Rubin ramps H2 2026. Earnings late May (watch). Stop HWM $217.80; cut trigger (-7%) = $194.03. Current $215.20 — healthy. HOLD.
+- **PLTR (+0.6%):** Blowout Q1 but stock down on valuation overhang. US commercial $595M (+133%), FY raised to $7.65B. Long-term thesis intact. Stop $126.86, cut trigger $127.37. HOLD.
+- **XOM (-0.9%):** Slight dip from entry; oil elevated by geopolitical premium. Stop $132.37; cut trigger (-7%) = $135.72. Monitoring — still above cut level. HOLD.
+
+### Trade Ideas
+1. **No new additions** — deployed 77.5%; max headroom to 85% cap is only ~$8K, insufficient for a meaningful position.
+2. **XOM watch:** If XOM drops below $138 pre-market Monday, monitor intraday closely (cut trigger $135.72). Oil sentiment key.
+3. **AMD tighten stop:** At +15% from $414.16 = $476.28 → tighten trailing stop to 7%. Not triggered yet at $455.
+
+### Risk Factors
+- US-Iran tensions — geopolitical binary; de-escalation = energy sector headwind for XOM
+- NVDA earnings late May — volatility ahead; stop at $196 provides buffer
+- PLTR valuation overhang — stock dropped despite blowout earnings; further selling possible
+- SPX near all-time highs with elevated geopolitical risk
+
+### Decision
+**HOLD** — No new buys Monday.
+- All 4 positions within stops, no -7% triggers.
+- Deployed 77.5% — within target range; insufficient room for a full new position.
+- No new trade idea clears 8/10 conviction threshold.
+- Week of May 11: 0/3 trades available — reserve for high-conviction setups.
