@@ -126,3 +126,27 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-10 — Midday Scan (Sunday — Market Closed)
+
+### Account (EOD May 8 basis)
+- Equity: $106,946.49 | Cash: $24,088.78 (22.5%) | Deployed: 77.5% ✓
+- Phase P&L: +$6,946.49 (+6.95%)
+
+### Positions
+| Symbol | Shares | Avg Entry | Last Close | Unr. P&L% | Stop (GTC) | HWM |
+|--------|--------|-----------|------------|-----------|------------|-----|
+| AMD | 49 | $414.16 | $455.19 | +9.91% | $410.66 (10% trail) | $456.29 |
+| NVDA | 90 | $208.64 | $215.20 | +3.14% | $196.02 (10% trail) | $217.80 |
+| PLTR | 152 | $136.96 | $137.80 | +0.61% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $144.57 | -0.94% | $132.37 (10% trail) | $147.08 |
+
+### Actions
+- No cuts — no position at ≤-7%
+- No stop tightening — AMD closest at +9.91% (threshold: +15% = $476.28)
+- Thesis intact all four: AI/data-center (AMD/NVDA), AI-defense (PLTR), energy (XOM)
+
+### Decision
+**No action.** All rules satisfied. Market closed Sunday — no trades possible. Monitor AMD on Monday open; tighten to 7% trail if it reaches $476.28.
