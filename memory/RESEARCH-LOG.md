@@ -126,3 +126,55 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-10 — Pre-market Research
+
+### Account
+- Equity: $106,946.49
+- Cash: $24,088.78
+- Buying power: $131,035.27
+- Long market value: $82,857.71
+- Deployed: 77.5% — within 75-85% target
+- Daytrade count: 0
+- Phase P&L: +$6,946.49 (+6.95% vs $100K start)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------------|-----|
+| AMD    | 49  | $414.16   | $455.19 | +$2,011 (+9.91%) | $410.66 (10% trail) | $456.29 |
+| NVDA   | 90  | $208.64   | $215.20 | +$590 (+3.14%)   | $196.02 (10% trail) | $217.80 |
+| PLTR   | 152 | $136.96   | $137.80 | +$127 (+0.61%)   | $126.86 (10% trail) | $140.95 |
+| XOM    | 140 | $145.94   | $144.57 | -$192 (-0.94%)   | $132.37 (10% trail) | $147.08 |
+
+*Note: AMD position restructured post-earnings week — 49 shares @ $414.16 avg (prior: 62 shares @ $314.97).*
+
+### Market Context
+- **WTI**: ~$95.42/bbl — retreating from $105+ early-May highs; ceasefire hopes reduced Hormuz premium. Twelve Data May 8 close ~$94.72.
+- **S&P 500**: Last close ~7,363 (May 7). Closed April at all-time high 7,209. Mag-7 + Broadcom drove bulk of YTD gains. Futures inactive Sunday.
+- **VIX**: ~17.85 (May 8 close ~17.52). Moderate and declining — risk-on.
+- **Economic calendar Mon May 11**: No major releases. CPI (Apr) Tuesday May 12 @ 8:30 AM ET. PPI (Apr) Wednesday May 13 @ 8:30 AM ET. FOMC minutes Thursday May 21.
+- **Earnings BMO Mon May 11**: No confirmed BMO reports of significance.
+- **Sector momentum YTD**: Energy +26-30% (#1), Materials +17%, Consumer Staples +11%, Industrials +9-11%. Technology lagging YTD but AI names recovering sharply. Leadership rotating toward defensives/cyclicals.
+
+### Holdings Update
+- **AMD** (+9.91%): Q1 2026 beat May 5 — EPS $1.37 vs $1.30 est (+5.4% surprise), revenue $10.3B (+38% YoY). Raised Q2 guidance ~$11.2B (+46% YoY). Stock +17% on May 7. Up 95% YTD. Tighten stop to 7% trail at +15% threshold ($476.52 price). Not there yet — current $455.19. HOLD.
+- **NVDA** (+3.14%): Earnings scheduled May 20. Goldman Sachs raised EPS/revenue estimates (Q1 est $1.86 EPS, $80B rev). IREN 5GW AI infrastructure partnership announced May 7. Stop $196.02 (HWM $217.80). No action needed. HOLD into earnings.
+- **PLTR** (+0.61%): Q1 2026 massive beat May 4 — EPS $0.33 vs $0.28 est, revenue $1.63B (+85% YoY) vs $1.54B est. US revenue +104% YoY. FY guidance raised to 71% growth. Rule of 40 = 145%. Strong fundamentals but sluggish post-earnings price action (stock barely moved). Stop $126.86. HOLD.
+- **XOM** (-0.94%): Q1 beat May 1 — EPS $1.16 vs $1.03 est, revenue $85.14B. Oil has pulled back to $95 from $105+. At -0.94% from avg entry; manual cut trigger = -7% ($135.72). Stop at $132.37. Watch oil; thesis weakens if WTI breaks $90. No action yet. HOLD.
+
+### Trade Ideas
+1. **No new entries Monday (pre-CPI)** — CPI Tuesday creates volatility risk; adding exposure the day before is poor risk management.
+2. **Post-CPI Wednesday/Thursday**: If CPI ≤ expectations (≤2.6% core) → risk-on; consider adding 5th position in Technology (cybersecurity momentum — CRWD or FTNT) or adding to NVDA ahead of May 20 earnings. Budget ~$20K (keep deployed ≤85%).
+3. **XOM watch**: If WTI breaks below $90, reassess XOM thesis. Energy sector losing momentum would be a red flag; cut to preserve capital.
+
+### Risk Factors
+- **CPI Tuesday May 12** — hot print (>2.6% core) = market selloff, all positions vulnerable
+- **Oil declining** — WTI at $95 down from $105; XOM thesis depends on $90+ floor
+- **NVDA earnings May 20** — binary event; stock at $215 with stop $196 (8.9% buffer). Gap risk on miss.
+- **AMD valuation** — 144x trailing P/E at 95% YTD gain; vulnerable to rotation sell-off
+- **PLTR flat post-earnings** — despite massive beat, stock stuck at $137; possible distribution signal
+
+### Decision
+**HOLD all four positions.** No new trades Monday — CPI overhang. Reassess post-CPI (Wed/Thu). Watch XOM vs $90 oil floor. Tighten AMD stop to 7% trail if/when $476.52 reached.
