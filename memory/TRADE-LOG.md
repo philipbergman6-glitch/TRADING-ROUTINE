@@ -43,3 +43,17 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## May 10 — EOD Snapshot (Day 10, Sunday — non-trading)
+**Portfolio:** $106,946.49 | **Cash:** $24,088.78 (22.5%) | **Day P&L:** $0 (0.00%) | **Phase P&L:** +$6,946.49 (+6.95%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $455.19 | 0% | +$2,010.66 (+9.91%) | $410.66 |
+| NVDA | 90 | $208.64 | $215.20 | 0% | +$590.40 (+3.14%) | $196.02 |
+| PLTR | 152 | $136.96 | $137.80 | 0% | +$127.32 (+0.61%) | $126.86 |
+| XOM | 140 | $145.94 | $144.57 | 0% | -$191.56 (-0.94%) | $132.37 |
+
+**Notes:** Sunday — no trading; reflects Friday May 8 close. Portfolio +6.95% from $100K baseline. EOD snapshots for May 1–9 were not committed; positions differ from Apr 30 log — AMD reduced 62→49 shares with avg entry rising to $414.16 (partial exit and re-entry at higher prices), PLTR added 10 shares at lower avg ($136.96 vs $142.30), XOM initiated (140 shares @ $145.94). All four positions hold active 10% trailing GTC stops. 77.5% deployed — within 75-85% target. No positions near -7% manual cut trigger (XOM weakest at -0.94%). Trades this week: unknown (missing log entries); assume 3 new trades placed Mon–Thu per position changes. AMD approaching +15% tighten threshold (+9.91%); watch for $477+ to tighten stop to 7%.
