@@ -126,3 +126,51 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-11 — Pre-market Research
+
+### Account
+- Equity: $106,884.77
+- Cash: $24,088.78
+- Buying power: $130,973.55
+- Deployed: $82,795.99 (77.5% — within 75-85% target ✓)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC trail 10%) |
+|--------|--------|-----------|---------|----------|----------------------|
+| AMD  | 49  | $414.16 | $460.80 | +$2,285 (+11.3%) | $420.91 (HWM $467.68) |
+| NVDA | 90  | $208.64 | $215.49 | +$617 (+3.3%)   | $196.02 (HWM $217.80) |
+| PLTR | 152 | $136.96 | $132.96 | -$608 (-2.9%)   | $126.86 (HWM $140.95) |
+| XOM  | 140 | $145.94 | $147.21 | +$177 (+0.9%)   | $132.64 (HWM $147.38) |
+
+### Market Context
+- S&P 500: ~7,398 Friday close (new ATH +0.84%); futures -0.11% premarket today — muted open
+- VIX: ~16.74-19.95 range last week; normalizing (1-month -29.79%)
+- Oil: Rising — Trump rejected Iran peace response; XOM/energy bullish
+- Nasdaq: +1.70% last week on AI/earnings beat momentum
+- CPI tomorrow (May 12) — binary inflation print; don't add before it
+- NFP: +115k beat last week
+- FOMC: Jun 16-17 next meeting
+
+### Holdings Check
+- **AMD** (+11.3%): Stop $420.91, HWM $467.68. Not yet at +15% tighten threshold ($476.28). Hold.
+- **NVDA** (+3.3%): Stop $196.02, HWM $217.80. Thesis intact (AI demand). Hold.
+- **PLTR** (-2.9%): Down -3.51% today. No specific catalyst. Stop $126.86, manual cut at $127.37 (-7% from $136.96). Currently $132.96 — above both triggers. Watch.
+- **XOM** (+0.9%): Up +1.8% today on Iran/oil news. Stop $132.64. Thesis intact. Hold.
+
+### Stop Tighten Check
+- AMD at +11.3% — threshold +15% ($476.28). Not there. No change.
+- None require tightening today.
+
+### Trade Ideas
+- No new positions today: deployed at 77.5% (in target range), CPI tomorrow is binary event, no high-conviction catalyst above 8/10 threshold.
+
+### Decision
+**HOLD** — No new buys.
+- Deployed 77.5% (target met).
+- CPI tomorrow — binary inflation print argues for patience.
+- PLTR weak (-3.5% today) but above all exit triggers; stop intact.
+- Weekly trade count: 0/3 (new week).
