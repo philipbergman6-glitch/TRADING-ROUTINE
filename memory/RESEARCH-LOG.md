@@ -126,3 +126,85 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-11 — Pre-market Research
+
+### Account Snapshot
+- Equity: $107,360.49 | Phase P&L: +$7,360.49 (+7.36%)
+- Cash: $24,088.78 | Buying power: $131,449.27
+- Deployed: $83,271.71 (77.6% — within 75-85% target)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC trail) | HWM |
+|--------|-----|-----------|---------|----------|------------------|-----|
+| AMD    | 49  | $414.16   | $467.68 | +$2,623 (+12.9%) | 10% trail, stop $410.66 | $456.29 |
+| NVDA   | 90  | $208.64   | $214.41 | +$519 (+2.8%) | 10% trail, stop $196.02 | $217.80 |
+| PLTR   | 152 | $136.96   | $135.51 | -$221 (-1.1%) | 10% trail, stop $126.86 | $140.95 |
+| XOM    | 140 | $145.94   | $146.15 | +$30 (+0.1%) | 10% trail, stop $132.37 | $147.08 |
+
+**Note:** AMD qty/entry changed vs prior log — 49 shares @ $414.16 avg (post-earnings restructure). PLTR: 152 shares @ $136.96 (10 shares added at lower price vs original 142 @ $142.30). XOM added since May 1 research.
+
+### Market Context
+- **WTI**: ~$98.91/bbl (+3.7%), Iran/Strait of Hormuz tensions sustaining premium. CME June future at $98.67.
+- **Brent**: ~$100.45 (May 7 latest; elevated on geopolitics). EIA 5-yr avg inventory 1% above average.
+- **S&P 500 futures (ESM26)**: 7,412.50 (-0.09%). SPX closed last week at 7,398.51 — new all-time high, 6-week winning streak. Support 7,200-7,230; resistance 7,469-7,585.
+- **VIX**: ~17.1-17.4 (May 6 close 17.39). Moderate/subdued. Put/call premium ratio 3.54 on VIX options — hedging elevated.
+- **Sector momentum YTD**: Energy +22% (leader), Consumer Staples +10.7%, Industrials +9.6%, Materials +11%. Tech lagging YTD but recovering on AI earnings; 5-yr cumulative Energy +110%.
+
+### Economic Calendar (Week of May 11)
+- **Today (Mon May 11)**: NAR Existing Home Sales 10 AM ET, SCE Housing Survey 11 AM ET. No macro shock risk.
+- **Tue May 12**: ⚠️ **CPI April** 8:30 AM ET — consensus headline 0.6% MoM / 3.7% YoY; core 0.3% / 2.7%. #1 catalyst this week; Fed policy inflection risk.
+- **Wed May 13**: PPI April 8:30 AM ET.
+- **Thu May 14**: Retail Sales April + Initial Claims 8:30 AM ET.
+- **Fri May 15**: Univ. Michigan Consumer Sentiment; Powell term ends; Kevin Warsh Senate confirmation expected.
+- **FOMC**: Next meeting June 16-17.
+
+### Pre-Market Earnings (Today)
+No major holdings reporting. Smaller names: KGS, OVV (energy), SPG, STE. No direct portfolio impact.
+
+### Holdings Update
+
+**AMD (+12.9%)** — Post-earnings juggernaut.
+- Q1 2026: Revenue $10.3B (+38% YoY), Data Center $5.8B (+57%). Blowout beat.
+- Stock surged +16-21% on May 6. Current $467.68, avg entry $414.16.
+- ⚠️ **TIGHTEN THRESHOLD: $476.28 (+15% from entry). Only $8.60 away (~1.8%). AMD up 2.74% today — may cross threshold intraday.**
+- Price targets: Goldman/Wedbush/BofA all at $450+. Thesis intact.
+- Action: Monitor today. If touches $476.28, tighten trailing stop from 10% → 7%.
+
+**NVDA (+2.8%)** — Stable, holding.
+- Trading ~$214. Earnings May 20 — key binary event. Consensus $272 PT (+26% upside).
+- Partnership with Corning (optical connectivity) and Eli Lilly (drug AI). No negative catalysts.
+- Stop: $196.02 (10% trail, HWM $217.80). -7% manual cut = $194.03. Comfortable spread.
+- Action: HOLD through May 20 earnings.
+
+**PLTR (-1.1%)** — Trading below entry despite monster earnings.
+- Q1 2026: Revenue $1.63B (+85% YoY); EPS $0.33 vs $0.28 consensus. US revenue +104% YoY. Raised FY guide to +71% YoY.
+- Stock sold off post-earnings from ~$144 pre-report. Classic "sell the news" on stretched valuation (P/E 154x).
+- Current $135.51, avg entry $136.96. Stop $126.86, -7% manual cut = $127.37.
+- Stop and cut levels nearly identical — if PLTR drops to ~$127, both trigger simultaneously.
+- Thesis intact (AI/defense software). Action: HOLD. No cut yet. Watch if approaches $127.
+
+**XOM (+0.1%)** — Essentially flat, energy sector holding up.
+- Q1 earnings beat; Permian 1.8M boe/d on track. Analyst consensus $159-165 (Buy).
+- Oil elevated ($98-100+) on Iran geopolitics = durable tailwind.
+- Stop: $132.37 (10% trail, HWM $147.08). Today +1.09%.
+- Action: HOLD.
+
+### Trade Ideas
+1. **No new positions today** — CPI tomorrow is a landmine. Hot print → rate fears → tech selloff; cold print → relief rally. Neither outcome justifies adding exposure ahead of the release. Portfolio at 77.6% deployed (within target).
+2. **Post-CPI add (if favorable)**: If CPI prints ≤ 2.7% core YoY and markets rally, scout CRWD (cybersecurity momentum, post-Fortinet rally) or ETN (industrials momentum). Entry only after tape confirms, not on news.
+3. **AMD stop tighten**: Not a new trade — housekeeping action. If AMD crosses $476.28 intraday, tighten GTC trail from 10% → 7%. Reduce stop to $476.28 * 0.93 = $442.94 or trail will auto-set.
+
+### Risk Factors
+- ⚠️ CPI Tuesday: Hot print (core >0.3%) = rate spike, tech/growth selloff — AMD/NVDA/PLTR all vulnerable.
+- PLTR approaching dual stop/cut trigger at ~$127 — any gap down risks position close.
+- WTI at ~$99: If Iran tensions escalate → oil spikes → energy up but broad market down (inflation fear).
+- NVDA earnings May 20: Binary gap risk both ways.
+- Powell transition Friday: Policy uncertainty if Warsh signals hawkish shift.
+- AMD at ATH territory after +16% pop: profit-taking risk on any negative tech headline.
+
+### Decision
+**HOLD all. No new positions today.** CPI tomorrow is the week's pivot. AMD stop tighten is the only actionable trigger — monitor intraday for $476.28. PLTR and XOM require no action.
