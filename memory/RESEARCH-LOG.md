@@ -126,3 +126,30 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-11 — Midday Scan
+
+### Positions
+| Symbol | Shares | Entry | Current | P&L% | Today% | Stop | HWM |
+|--------|--------|-------|---------|------|--------|------|-----|
+| AMD | 49 | $414.16 | $464.04 | +12.05% | +1.94% | $420.91 (10% trail) | $467.68 |
+| NVDA | 90 | $208.64 | $220.56 | +5.71% | +2.49% | $200.07 (10% trail) | $222.30 |
+| PLTR | 152 | $136.96 | $134.85 | -1.54% | -2.14% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $148.82 | +1.98% | +2.94% | $134.16 (10% trail) | $149.07 |
+
+### Actions
+- No cuts — no position at ≤-7%
+- No stop tightening — AMD at +12.05%, threshold is +15% (~$476.28); not there yet
+- PLTR thesis check run via Perplexity
+
+### PLTR Thesis Check
+- Q1 earnings (May 5): beat consensus, raised guidance — fundamental thesis intact
+- Weakness today (-2.14%) driven by valuation compression (40x sales, 100x forward P/E now below that for first time in ~1 yr), Anthropic competitive-threat narrative (Burry post Apr 9), and market pricing zero Fed cuts 2026 (high-multiple pressure)
+- No new contract losses, no guidance cut, no thesis break
+- Stop at $126.86 provides ~5.9% buffer from current price
+- **Decision: HOLD** — weakness is sentiment/multiple-driven, not fundamental
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. AMD approaching +15% tighten threshold; watch for ~$476.28.
