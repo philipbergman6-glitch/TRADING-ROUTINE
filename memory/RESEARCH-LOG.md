@@ -126,3 +126,55 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-12 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $107,260.36 (+7.26% vs $100K base)
+- **Cash:** $24,088.78
+- **Buying power:** $131,349.14
+- **Long market value:** $83,171.58 (77.5% deployed — within 75-85% target)
+- **Daytrade count:** 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------------|-----|
+| AMD    | 49  | $414.16   | $445.86 | +$1,553 (+7.66%) | $422.29 (10% trail) | $469.21 |
+| NVDA   | 90  | $208.64   | $217.51 | +$798 (+4.25%)   | $200.07 (10% trail) | $222.30 |
+| PLTR   | 152 | $136.96   | $134.91 | -$311 (-1.50%)   | $126.86 (10% trail) | $140.95 |
+| XOM    | 140 | $145.94   | $151.70 | +$807 (+3.95%)   | $134.75 (10% trail) | $149.72 |
+
+### Market Context
+- **WTI crude:** ~$99–100/bbl (down from $107 week ago); elevated on US-Iran strikes (May 7-8), truce now shaky. Prediction markets: ~$91-102 range consensus.
+- **Brent:** ~$99-101/bbl
+- **S&P 500 futures:** ESM26 -0.03% premarket; indices near highs, ~7,200-7,400 range. Muted open expected.
+- **VIX:** ~17.4 (May 6 close); moderate, not elevated.
+- **Sector momentum YTD:** Energy +30-42% (leading, 6-12 mo); Consumer Staples +7% (defensive). Tech lagged YTD but recovered in April (+2% best sector in April).
+- **No BMO earnings** for US companies today.
+- **Key release today:** **CPI April 2026 at 8:30 AM ET** — consensus 3.4% YoY, core 2.7% YoY. March CPI was 3.3% driven by gasoline (+21%) from Middle East conflict.
+- **Tomorrow (May 13):** PPI April at 8:30 AM ET (consensus +0.5% MoM).
+- **Fed:** Kevin Warsh confirmation vote expected; FOMC next meeting May 20. No rate decision today.
+- **NFP (Apr):** Already released May 8 — 115,000 jobs added (avg 76K/mo in 2026).
+
+### Holdings Update
+- **AMD** (+7.66%): Earnings May 5 — beat, stock +17% post-earnings. Strong AI/data center thesis confirmed. $9.8B revenue, CEO Lisa Su bullish on data center market share. Now at $445.86, intraday -2.83% (normal pullback post-run). Tighten stop to 7% at +15% ($476.28). HWM $469.21, stop $422.29 — well above entry. Not at +15% tighten threshold yet. **HOLD.**
+- **NVDA** (+4.25%): Earnings May 20 — approaching binary event. Vera Rubin trial production June 2026, shipments to hyperscalers July. TSMC revenue +17.5% YoY (April). NVDA/IREN 5 GW AI infrastructure deal announced. GPU smuggling into China being investigated (headline risk). Current $217.51, stop $200.07 (HWM $222.30). Stop rising with price. **HOLD; watch May 20 earnings for gap risk.**
+- **PLTR** (-1.50%): Q1 reported May 4 — revenue $1.63B (beat $1.54B consensus), +85% YoY. BUT US commercial weak, stock fell 2%+ after-hours. YTD -23% per Morningstar. Raised 2026 guidance to $7.65-7.66B, US commercial +120% growth target. Current $134.91, manual cut at -7% from entry = $127.37. Trailing stop $126.86 (HWM $140.95). $8 above stop. Thesis intact on government + international but US commercial concern. **HOLD; monitor — near mid-risk zone.**
+- **XOM** (+3.95%): Q1 earnings beat (released May 7), Permian/Guyana ramp on track. Record Guyana production. Oil at $99-100 supports earnings. Argus PT raised to $169 (Buy). Consensus median PT $165, range $123-195. Intraday +1.35% today. Stop $134.75 (HWM $149.72). **HOLD — energy thesis intact.**
+
+### Trade Ideas
+1. **NVDA add (post-CPI):** If CPI prints cool (≤3.3% YoY / core ≤2.6%), tech rallies; could add 20-30 NVDA shares ~$218-220, stop 10% below entry, target $260+ (2:1 R:R). BUT: earnings May 20 = gap risk within 8 days — size small if adding.
+2. **XOM add:** Energy holding well at $99-100 oil. If oil stabilizes and stops at $134.75 are not threatened, no need to add. Could add 30-40 shares if oil breaks above $102 post-CPI on hot print. Caution: would push toward 3 positions in separate sectors.
+3. **HOLD for now:** 77.5% deployed is within target. CPI risk justifies staying pat until 8:30 data.
+
+### Risk Factors
+- **CPI at 8:30 AM (CRITICAL):** Hot print (>3.6% / core >2.8%) = fewer rate cuts = tech selloff; affects AMD, NVDA, PLTR. Cool print = tech rally.
+- **NVDA earnings May 20:** Binary gap risk within 8 days. Position at +4.25% — not at +15% to tighten. Stop at $200.07.
+- **PLTR US commercial weakness:** Core revenue beat but key growth metric disappointed; stock YTD -23%. At -1.50% from entry, $8 above trailing stop.
+- **Oil pullback risk:** WTI dropped from $107 to $99 in a week post-US-Iran truce. If truce holds, energy sector could give back gains; XOM stop at $134.75 (11% below current $151.70).
+- **AMD intraday -2.83%:** Post-earnings giveback normal but watch if it extends toward $422.29 stop.
+
+### Decision
+**HOLD all positions.** Do not add before CPI (8:30 AM ET). After CPI: if cool print, consider small NVDA add (~20-25 shares) for remaining ~$4-5K capacity before hitting 85% deployed cap. Default HOLD — 77.5% deployed is already in target range. Watch PLTR; cut manually if it drops to $127.37.
