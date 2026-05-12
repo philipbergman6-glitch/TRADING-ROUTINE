@@ -126,3 +126,25 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-12 — Midday Scan
+
+### Positions
+| Symbol | Qty | Entry | Current | P&L% | Today% | Trail Stop | HWM |
+|--------|-----|-------|---------|-------|--------|-----------|-----|
+| AMD | 49 | $414.16 | $431.89 | +4.28% | -5.86% | $422.29 (10% trail) | $469.21 |
+| NVDA | 90 | $208.64 | $216.34 | +3.69% | -1.41% | $201.33 (10% trail) | $223.70 |
+| PLTR | 152 | $136.96 | $133.98 | -2.18% | -2.13% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $150.96 | +3.44% | +0.85% | $136.63 (10% trail) | $151.81 |
+
+### Actions
+- No cuts — no position at -7%
+- No stop tightening — no position at +15%
+
+### AMD Afternoon Addendum
+AMD -5.86% intraday. Perplexity: no specific May 12 catalyst — broad profit-taking after +74% April surge + post-earnings run (Q1 beat $10.3B rev, +38% YoY; data center +57% YoY). HSBC May 4 downgrade to Hold (valuation 42x forward vs NVDA 21x) adding pressure. Thesis NOT broken — AI demand intact, fundamentals strong. WARNING: stop at $422.29 only 2.2% below current $431.89 — one more down day could trigger. No manual action; stop working as designed.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. AMD trailing stop tight; let it work.
