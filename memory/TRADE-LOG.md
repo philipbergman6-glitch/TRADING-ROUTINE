@@ -43,3 +43,18 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-12 — Market-Open Review
+
+**No new trades.** VIX elevated (20.47, +2.09%), CPI day, no ≥8/10 conviction candidate.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| AMD  | $414.16 | $452.33 | +9.22% | $422.29 trail (HWM $469.21) | HOLD |
+| NVDA | $208.64 | $218.11 | +4.54% | $200.07 trail (HWM $222.30) | HOLD |
+| PLTR | $136.96 | $136.86 | -0.07% | $126.86 trail (HWM $140.95) | HOLD |
+| XOM  | $145.94 | $151.17 | +3.58% | $136.21 trail (HWM $151.34) | HOLD — near HWM |
+
+**Portfolio:** $107,810.62 (+7.8%) | **Deployed:** 77.7% | **Week trades:** 0/3 | **Daytrade count:** 0

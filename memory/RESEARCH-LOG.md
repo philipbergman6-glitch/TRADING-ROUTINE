@@ -126,3 +126,54 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-12 — Pre-market Research (inline)
+
+### Account
+- Equity: $107,810.62
+- Cash: $24,088.78
+- Buying power: $131,899.40
+- Deployed: $83,721.84 (77.7% — within 75-85% target ✅)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-------|---------|----------|------------|
+| AMD    | 49  | $414.16 | $452.33 | +$1,870.57 (+9.22%) | $422.29 (10% trail, HWM $469.21) |
+| NVDA   | 90  | $208.64 | $218.11 | +$852.30 (+4.54%)  | $200.07 (10% trail, HWM $222.30) |
+| PLTR   | 152 | $136.96 | $136.86 | -$15.56 (-0.07%)   | $126.86 (10% trail, HWM $140.95) |
+| XOM    | 140 | $145.94 | $151.17 | +$731.74 (+3.58%)  | $136.21 (10% trail, HWM $151.34) |
+
+### Market Context
+- SPY: ~$736 (flat at open post-CPI)
+- QQQ: ~$707
+- VIX: ~20.47 (+2.09%) — elevated and rising; caution warranted
+- CPI: April 2026 released 8:30 AM ET today. Consensus: +0.59% MoM / +3.7% YoY. Actual print not yet indexed. Oil shock (Iran war) is primary driver of inflation expectations.
+- PPI: Tomorrow May 13, 8:30 AM ET — back-to-back inflation data week
+- Oil rising on Iran war (Trump rejected Iran response); exact WTI/Brent unavailable but elevated
+- Sector momentum: Energy leading YTD (XOM in portfolio); AI/tech recovering on earnings beats
+
+### Holdings Update
+- **AMD** (+9.22%): HWM $469.21; today -1.41%. Pulling back from highs. Stop $422.29 healthy.
+- **NVDA** (+4.54%): HWM $222.30; today -0.61%. Thesis intact, stop $200.07.
+- **PLTR** (-0.07%): Essentially flat. HWM $140.95; stop $126.86. Holding.
+- **XOM** (+3.58%): Near HWM ($151.17 vs HWM $151.34). Oil momentum. Stop $136.21.
+
+### Trade Ideas
+None meeting ≥8/10 conviction threshold today.
+
+### Risk Factors
+- CPI day: actual print vs. expectations creates near-term binary; VIX rising
+- PPI tomorrow — no clear inflation read until Wednesday
+- Iran war oil premium — reversal risk on ceasefire news
+- AMD/NVDA both slightly down today — tech momentum pause
+
+### Decision
+**HOLD — No new trades.**
+- 77.7% deployed, within 75-85% target — no urgent deployment gap.
+- VIX elevated (20.47, +2.09%); CPI print uncertainty; PPI tomorrow.
+- No catalyst at ≥8/10 conviction.
+- All stops active and healthy; no manual cuts needed.
+- Re-evaluate Friday if CPI/PPI clear and VIX compresses.
