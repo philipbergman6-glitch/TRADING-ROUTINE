@@ -126,3 +126,26 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-13 — Midday Scan
+
+### Positions
+| Symbol | Shares | Entry | Current | P&L% | Today% | Stop | HWM |
+|--------|--------|-------|---------|------|--------|------|-----|
+| AMD | 49 | $414.16 | $450.55 | +8.79% | +0.50% | $422.29 (10% trail) | $469.21 |
+| NVDA | 90 | $208.64 | $226.95 | +8.78% | +2.79% | $205.06 (10% trail) | $227.84 |
+| PLTR | 152 | $136.96 | $131.59 | -3.92% | -3.24% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $150.97 | +3.45% | +0.23% | $136.63 (10% trail) | $151.81 |
+
+### Actions
+- **Cuts:** None — no position at -7% threshold
+- **Stop tightening:** None — no position at +15% threshold
+- **Thesis breaks:** None
+
+### PLTR Afternoon Addendum (Perplexity)
+PLTR -3.24% intraday, -3.92% from entry. Research confirms no negative catalysts. Q1 2026 beat: revenue $1.63B (+85% YoY, vs $1.54B est.), adj. EPS $0.33 (vs $0.28 est.), U.S. revenue +104% YoY. Raised FY2026 guidance to $7.65-7.66B revenue (+71% YoY). Drop is post-earnings valuation digestion at 154x P/E; technical consolidation range $125-140 expected. No contract cancellations, no sector rotation. Consensus Buy (21 analysts, avg PT $193.95). **Thesis intact — HOLD.** Stop at $126.86 provides downside floor.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. Monitor PLTR stop ($126.86) as price at $131.59 is ~3.6% above trigger.
