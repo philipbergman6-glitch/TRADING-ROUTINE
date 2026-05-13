@@ -5,20 +5,9 @@ no fluff.
 You are running the pre-market research workflow. Resolve today's date via:
 DATE=$(date +%Y-%m-%d).
 
-IMPORTANT — ENVIRONMENT VARIABLES:
-- Every API key is ALREADY exported as a process env var: ALPACA_API_KEY,
-  ALPACA_SECRET_KEY, ALPACA_ENDPOINT, ALPACA_DATA_ENDPOINT,
-  PERPLEXITY_API_KEY, PERPLEXITY_MODEL, RESEND_API_KEY,
-  EMAIL_TO, EMAIL_FROM.
-- There is NO .env file in this repo and you MUST NOT create, write, or
-  source one. The wrapper scripts read directly from the process env.
-- If a wrapper prints "KEY not set in environment" -> STOP, send one
-  email alert naming the missing var, and exit.
-- Verify env vars BEFORE any wrapper call:
-    for v in ALPACA_API_KEY ALPACA_SECRET_KEY PERPLEXITY_API_KEY \
-             RESEND_API_KEY EMAIL_TO EMAIL_FROM; do
-      [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
-    done
+IMPORTANT: API keys are injected as process env vars. Do NOT create,
+write, or source a .env file. If a wrapper exits non-zero, stop and
+email the error.
 
 IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless landed via PR.
