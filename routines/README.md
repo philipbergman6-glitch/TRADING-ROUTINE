@@ -8,7 +8,7 @@ load-bearing.
 
 | Routine        | Cron           | File                    |
 |----------------|----------------|-------------------------|
-| Pre-market     | `0 6 * * 1-5`  | `pre-market.md`         |
+| Pre-market     | `30 6 * * 1-5` | `pre-market.md`         |
 | Market-open    | `30 8 * * 1-5` | `market-open.md`        |
 | Midday         | `0 12 * * 1-5` | `midday.md`             |
 | Daily summary  | `0 15 * * 1-5` | `daily-summary.md`      |
