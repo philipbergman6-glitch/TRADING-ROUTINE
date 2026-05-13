@@ -126,3 +126,57 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-13 — Pre-market Research
+
+### Account
+- Equity: $108,305.46 | Last equity: $107,685.39 | Day P&L: +$620.07 (+0.58%)
+- Cash: $24,088.78 | Buying power: $132,394.24
+- Deployed: $84,216.68 (77.8% — in target range)
+- Phase P&L: +$8,305.46 (+8.31%) from $100,000 baseline
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | P&L% | Day Chg | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------|---------|------------|-----|
+| AMD | 49 | $414.16 | $456.84 | +$2,091.51 | +10.3% | +1.91% | 10% trail, stop $422.29 | $469.21 |
+| NVDA | 90 | $208.64 | $225.60 | +$1,526.40 | +8.1% | +2.18% | 10% trail, stop $201.33* | $223.70 |
+| PLTR | 152 | $136.96 | $135.30 | -$252.68 | -1.2% | -0.52% | 10% trail, stop $126.86 | $140.95 |
+| XOM | 140 | $145.94 | $149.73 | +$530.56 | +2.6% | -0.60% | 10% trail, stop $136.63 | $151.81 |
+
+*NVDA stop note: current $225.60 > HWM $223.70 — broker should update stop to ~$203.04 intraday.
+
+### Market Context
+- **WTI crude**: ~$101-103/bbl (futures CLM26 ~$101.87); Brent ~$110/bbl
+- **S&P 500 futures (ESM6)**: 7,436.25, +0.13% premarket (ATH zone; 6-week win streak)
+- **VIX**: ~18.38 (May 11 close) — moderate, no fear spike
+- **April CPI (released May 12)**: 3.8% headline (est. 3.7%), core 2.8% (est. 2.7%) — slightly hot
+- **April PPI**: releasing TODAY 8:30 AM ET — critical risk event; prior March +4.0% YoY
+- **April NFP (May 8)**: +178,000 jobs, unemployment 4.3%
+- **CSCO earnings**: today after/during session — AI networking proxy
+- **Trump-Xi Summit**: May 14-15 — semiconductor/AI export policy overhang; high binary risk for semis
+- **Sector YTD leaders**: Energy +22-26% (#1), Consumer Staples +10-13% (#2), Industrials +9-16% (#3); Tech improving on AI but lagging YTD
+
+### Holdings Update
+- **AMD** (+10.3%): Strong. Tighten trail to 7% at +15% = $476.28. Gap from current: +$19.44 (+4.3%). Monitor.
+- **NVDA** (+8.1%): Recovery strong. Stop HWM lag — broker should update. Trump-Xi summit risk (chip export rules). Thesis intact.
+- **PLTR** (-1.2%): Flat. -7% manual cut = $127.38. Stop at $126.86. No action needed; monitor.
+- **XOM** (+2.6%): Energy sector momentum holding. Oil $101-110 supportive. Hold.
+
+### Trade Ideas
+1. **AVGO** (Broadcom) — AI networking/semiconductor cycle. Analysts flagging as top pick alongside NVDA. Entry on PPI-calm open: ~$240-245, stop 10% ~$216-220, target $290+ (2:1+). Catalyst: data center AI spending cycle; semis recovering. Wait for PPI clear.
+2. **CVX** (Chevron) — Energy #1 sector backup; integrated major benefiting from $110 Brent. Entry pullback to $165-168, stop 10% ~$149, target $195. Companion to XOM thesis.
+3. **MPC** (Marathon Petroleum) — Zacks top pick in energy; downstream/refiner margins strong with $100+ crude. Entry ~$170, stop 10% ~$153, target $205. Higher beta energy play.
+
+### Risk Factors
+- **PPI 8:30 AM ET** — hot print (>+4.5% YoY) = inflation reignition, Fed hawkish surprise, broad selloff risk
+- **Trump-Xi Summit May 14-15** — AI/semiconductor export policy outcome is binary for AMD, NVDA
+- **AMD stop gap**: current $456.84, stop $422.29 (−7.6% buffer). Approaching tighten threshold.
+- **NVDA trailing stop lag**: stop may be stale; broker update expected intraday
+- **S&P at ATH zone**: low margin for error; any hot macro print could trigger pullback
+- 4 positions vs target 5-6 — room to add 1 position but only after PPI confirmed benign
+
+### Decision
+**HOLD all.** No new entries today until PPI clears at 8:30 AM ET. If PPI benign (≤+4.0% YoY), scout AVGO entry intraday. Trump-Xi summit starts tomorrow — reduce new semiconductor exposure today. AMD approaching tighten threshold; set alert at $476.28.
