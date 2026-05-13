@@ -126,3 +126,50 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-13 — Pre-market Research (inline, market-open session)
+
+### Account
+- Equity: $108,279.60
+- Cash: $24,088.78
+- Deployed: $84,190.82 (77.7% — within 75-85% target)
+- Daytrade count: 0
+- Trades this week (May 11–13): 0/3
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|--------|-----------|---------|----------|------------|-----|
+| AMD | 49 | $414.16 | $446.53 | +$1,586 (+7.8%) | $422.29 trailing 10% | $469.21 |
+| NVDA | 90 | $208.64 | $225.85 | +$1,549 (+8.3%) | $204.44 trailing 10% | $227.16 |
+| PLTR | 152 | $136.96 | $136.65 | -$47 (-0.2%) | $126.86 trailing 10% | $140.95 |
+| XOM | 140 | $145.94 | $150.01 | +$570 (+2.8%) | $136.63 trailing 10% | $151.81 |
+
+### Market Context
+- VIX: ~19.50 (down -0.98%) — moderate
+- 10-year yield: 4.46% (+5bp prior session)
+- S&P 500: Mixed; Nasdaq -0.87% May 12; AI/earnings tailwind May 11
+- Semiconductors: Leading sector today (SOX broad rally, "on fire")
+- AMD: Strong post Q1-2026 earnings (+18.6% May 5); annual meeting today; +7.8% from entry
+- NVDA: +4% catching up today; $1T confirmed order backlog (Blackwell/Vera Rubin)
+- PLTR: Essentially flat from entry; thesis intact (AI/defense)
+- XOM: +2.8% from entry; energy supported by US-Iran stalemate / Hormuz closure
+- Oil: WTI elevated (Hormuz risk premium); energy sector YTD leader
+
+### Stop Tighten Watch
+- AMD: +15% trigger $476.28 (current $446.53 — $30 away)
+- NVDA: +15% trigger $239.94 (current $225.85 — $14 away)
+
+### Trade Ideas
+1. **No new trades** — Deployed 77.7% (in target), no 8/10 conviction idea
+2. Semiconductor concentration risk: AMD + NVDA already 40%+ of portfolio
+3. No pre-planned entry with documented catalyst for any new name
+
+### Decision
+**HOLD** — No new trades today.
+- All positions above stops; no manual cut triggers breached
+- 77.7% deployed — within 75-85% target; no urgency to add
+- Semiconductor sector already 2/4 positions; over-concentration risk on further adds
+- Watch AMD closely — approaches +15% tighten trigger ($476.28); tighten trail to 7% if reached
+- Patience > activity
