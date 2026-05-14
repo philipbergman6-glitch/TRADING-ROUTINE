@@ -126,3 +126,34 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-14 — Midday Scan
+
+### Positions
+| Symbol | Shares | Entry | Current | P&L% | Today% | Stop | HWM |
+|--------|--------|-------|---------|------|--------|------|-----|
+| AMD  | 49  | $414.16 | $448.91 | +8.39% | +0.77% | $422.29 (10% trail) | $469.21 |
+| NVDA | 90  | $208.64 | $235.56 | +12.90% | +4.31% | $212.82 (10% trail) | $236.47 |
+| PLTR | 152 | $136.96 | $133.11 | -2.82% | +2.35% | $126.86 (10% trail) | $140.95 |
+| XOM  | 140 | $145.94 | $152.47 | +4.48% | +0.59% | $137.81 (10% trail) | $153.12 |
+
+### Actions
+- **No cuts** — no position at -7% (PLTR worst at -2.82%)
+- **No stop tightening** — no position at +15% threshold
+  - NVDA closest: +12.90% vs $239.94 trigger (+15% from $208.64); $4.38 away — WATCH
+  - AMD: +8.39% — not near threshold
+  - XOM: +4.48% — not near threshold
+
+### NVDA Afternoon Addendum
+NVDA +4.31% today, HWM touched $236.47. Perplexity returned no specific catalyst — move consistent with AI GPU thesis (Blackwell ramp, sustained hyperscaler CapEx). Stop at $212.82 (10% trail from $236.47 HWM) intact. **Alert: NVDA reaches +15% tighten trigger at $239.94 — next up-move tightens trail to 7%.**
+
+### Thesis Check
+- AMD: AI CPU/data-center thesis intact. Position modified (49 shares @ $414.16 avg).
+- NVDA: AI GPU thesis intact and performing. Approaching stop-tighten threshold.
+- PLTR: AI/defense thesis intact. -2.82% — within stop tolerance. No manual cut warranted.
+- XOM: Energy sector momentum thesis intact. +4.48% — holding well.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. Monitor NVDA for +15% tighten event.
