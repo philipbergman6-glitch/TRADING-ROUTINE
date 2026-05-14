@@ -43,3 +43,17 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+### May 14 — EOD Snapshot (Day 13, Wednesday)
+**Portfolio:** $108,988.76 | **Cash:** $24,088.78 (22.1%) | **Day P&L:** +$1,758.38 (+1.64%) | **Phase P&L:** +$8,988.76 (+8.99%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $449.46 | +0.89% | +$1,729.79 (+8.52%) | $422.29 |
+| NVDA | 90 | $208.64 | $235.99 | +4.50% | +$2,461.50 (+13.11%) | $212.89 |
+| PLTR | 152 | $136.96 | $133.47 | +2.63% | -$530.84 (-2.55%) | $126.86 |
+| XOM | 140 | $145.94 | $152.50 | +0.61% | +$918.64 (+4.50%) | $137.81 |
+
+**Notes:** Strong day led by NVDA +4.5% (now +13.1% from entry, approaching +15% tighten threshold at $239.94) and PLTR recovery +2.6% (still -2.55% unrealized). AMD +0.9%, XOM +0.6% — steady holders. No trades today; 0/3 weekly cap used. Portfolio deployed 77.9% — within 75-85% target. Watch NVDA: tighten trail to 7% if/when it hits $239.94. PLTR monitoring for -7% manual cut at $127.37.
