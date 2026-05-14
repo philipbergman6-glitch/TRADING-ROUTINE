@@ -4,6 +4,58 @@ Daily pre-market research entries will be appended here.
 
 ---
 
+## 2026-05-14 — Pre-market Research
+
+### Account
+- Equity: $107,186.96 (+7.19% vs $100K baseline)
+- Cash: $24,088.78
+- Buying power: $131,275.74
+- Long market value: $83,098.18 (77.5% deployed — in target range)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------------|-----|
+| AMD | 49 | $414.16 | $438.25 | +$1,181 (+5.82%) | $422.29 (10% trail) | $469.21 |
+| NVDA | 90 | $208.64 | $229.84 | +$1,908 (+10.16%) | $205.06 (10% trail) | $227.84 |
+| PLTR | 152 | $136.96 | $130.07 | -$1,048 (-5.03%) | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $151.20 | +$737 (+3.61%) | $136.63 (10% trail) | $151.81 |
+
+### Market Context
+- WTI: ~$101.65/bbl (May 14); Brent ~$110 (May 12 data — elevated on geopolitical premium)
+- S&P 500 futures: ~7,479 (near ATH; SPX closed April at 7,209 ATH, continued higher in May)
+- VIX: No live data available today; last known moderate (18-19 range)
+- Catalysts today: Trump-Xi Summit (May 14-15) on AI guardrails — binary for semis/tech. Cisco + Applied Materials earnings after close. No major macro data today.
+- Recent data: CPI (May 12) core +0.4% MoM above estimates; PPI (May 13) +6.0% YoY vs 4.3% prior — inflation reaccelerating. Fed chair transition (Powell → Warsh) seen as accommodative.
+- Sector momentum: Energy +22% YTD (dominant leader). Momentum factor strategies +20% vs S&P +8% YTD. Tech recovering on AI earnings beats.
+
+### Holdings Update
+- **AMD** (+5.82%): Avg entry $414.16 (repositioned from original). HWM $469.21 → pulled back to $438.25. Stop at $422.29 — only 3.6% cushion. Down -1.6% yesterday. Tighten trigger at +15% = $476.30; not reached. Monitor for further pullback; stop acts as floor.
+- **NVDA** (+10.16%): Thesis intact. HWM $227.84, current $229.84 (> HWM, data lag likely). Stop $205.06. Up +1.77% yesterday. Tighten trigger at +15% = $239.94 — approaching. Hold.
+- **PLTR** (-5.03%): ⚠️ WATCH. Avg entry $136.96, current $130.07. Manual cut at -7% = $127.37 — only $2.70 buffer. Trailing stop at $126.86. Any further weakness today triggers manual cut.
+- **XOM** (+3.61%): Energy thesis intact. WTI ~$102, geopolitical premium holds. HWM $151.81, stop $136.63. Hold.
+
+### Trade Ideas
+1. **PLTR cut → CVX replacement**: If PLTR hits $127.37 today, cut manually. Replace with CVX (Chevron) — same energy sector tailwind, WTI support, entry ~$168, stop $150, target $196 (2.3:1 R:R). Would keep sector exposure balanced.
+2. **NVDA tighten at $239.94**: If NVDA reaches +15% today, tighten stop to 7% trail. Action: cancel current GTC, replace with 7% trailing stop.
+3. No new positions today — market near ATH, hot inflation data, Trump-Xi binary event, AMD fragile near stop.
+
+### Risk Factors
+- **PLTR**: $2.70 above manual cut trigger — single bad day cuts this position
+- **AMD**: Stop only 3.6% below current price after recent pullback from HWM $469
+- **Trump-Xi AI guardrails**: Negative outcome = semis/AI stocks gap down (AMD, NVDA, PLTR all hit)
+- **Inflation reaccelerating**: PPI +6% YoY could force Fed to stay hawkish → valuation headwind for growth
+- **Cisco/AMAT earnings after close**: Tech sector tone-setter; miss could pressure AMD/NVDA overnight
+
+### Decision
+**HOLD all.** No new trades today.
+- **PLTR**: Set alert at $127.37; cut manually on touch.
+- **NVDA**: Set alert at $239.94; tighten stop to 7% trail on touch.
+- **AMD**: Monitor stop at $422.29; do not intervene unless stop triggers.
+- **XOM**: Hold — energy thesis intact.
+
+---
+
 ## 2026-04-30 — Pre-market Research
 
 ### Account
