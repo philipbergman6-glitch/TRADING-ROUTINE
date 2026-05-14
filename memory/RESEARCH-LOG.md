@@ -126,3 +126,54 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-14 — Market-Open Research
+
+### Account
+- Equity: $107,768.33
+- Cash: $24,088.78
+- Deployed: $83,679.55 (77.6% — within 75-85% target ✓)
+- Daytrade count: 0
+- Weekly trades (May 11–15): 0/3
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop |
+|--------|--------|-----------|---------|----------|------|
+| AMD | 49 | $414.16 | $439.38 | +$1,236 (+6.09%) | $422.29 (10% trail, HWM $469.21) |
+| NVDA | 90 | $208.64 | $231.72 | +$2,077 (+11.06%) | $208.97 (10% trail, HWM $232.19) |
+| PLTR | 152 | $136.96 | $132.06 | -$745 (-3.58%) | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $152.05 | +$856 (+4.19%) | $137.00 (10% trail, HWM $152.22) |
+
+### Market Context
+- S&P 500: ~7,444 (closed -0.08% yesterday; SPY -0.65% on inflation concerns)
+- CPI: Hotter than expected; wholesale inflation ~6% YoY (largest jump since 2022) — inflation headwind for growth stocks
+- Nasdaq: Slightly green; tech resilient but macro concern elevated
+- Oil: Back above $100/bbl — XOM thesis intact
+- NVDA earnings: Next week — binary risk for AI/tech positions
+- Sector momentum: Energy, Materials, Utilities forecasted for double-digit earnings growth; Tech accounts for 63% of S&P 500 2026 earnings growth projection
+
+### Holdings Review
+- **AMD** (+6.09%): -1.37% today; stop $422.29 (3.66% below current). Comfortable. +15% tighten trigger = $476.28 (HWM $469.21 — near trigger, watch).
+- **NVDA** (+11.06%): +2.61% today; HWM $232.19, stop $208.97. +15% tighten trigger = $239.94 — close, watch. Earnings next week (major binary). Oppenheimer OPF $265, BofA Buy $320.
+- **PLTR** (-3.58%): +1.55% today recovering. Manual cut = $127.37 (-7% from $136.96). Current $132.06 — $4.69 above cut level (3.55%). Stop $126.86 just below cut trigger. Monitor closely.
+- **XOM** (+4.19%): +0.32% today; oil >$100 supports thesis. Stop $137.00 (9.9% below current). Solid.
+
+### Stop Tighten Check
+- AMD: +6.09% → no tighten (need +15%)
+- NVDA: +11.06% → no tighten (need +15% = $239.94)
+- PLTR: -3.58% → no tighten; WATCH manual cut at $127.37
+- XOM: +4.19% → no tighten
+
+### Trade Ideas
+- None identified. Deployed at 77.6% (within target). Adding positions into NVDA earnings week and hot CPI print is imprudent.
+- Risk/reward doesn't favor new entries today.
+
+### Decision
+**HOLD all — no new trades.**
+- Deployed 77.6% ✓ — no urgency to add
+- CPI hot print = inflation headwind; do not increase growth-stock exposure
+- NVDA earnings next week = binary risk; hold current exposure flat
+- PLTR at -3.58%; watch intraday; cut if touches $127.37
+- NVDA approaching +15% tighten trigger ($239.94); tighten to 7% trail if hit
