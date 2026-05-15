@@ -126,3 +126,38 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-15 — Pre-market Research (inline)
+
+### Account
+- Equity: $107,564.71
+- Cash: $24,088.78 (22.4%)
+- Deployed: $83,475.93 (77.6% — within 75-85% target)
+- Daytrade count: 0
+- Week trades: 0/3
+
+### Positions
+| Symbol | Qty | Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-------|---------|----------|------------|-----|
+| AMD | 49 | $414.16 | $431.16 | +$832.95 (+4.1%) | $422.29 (10% trail) | $469.21 |
+| NVDA | 90 | $208.64 | $226.64 | +$1,620 (+8.6%) | $212.89 (10% trail) | $236.54 |
+| PLTR | 152 | $136.96 | $133.49 | -$528.56 (-2.5%) | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $153.99 | +$1,127.24 (+5.5%) | $138.60 (10% trail) | $154.00 |
+
+### Market Context
+- S&P 500 futures: 7,457.50, -68.00 (-0.90%) — market selling off
+- VIX futures: 14.48, +6.71% — volatility rising
+- Catalysts: US Retail Sales release + Trump-Xi summit headlines
+- Tech sector: AMD -4.1%, NVDA -3.9% intraday; Energy (XOM) +0.8% — rotation into energy/defensives
+- AMD: HWM $469.21 → trailing stop $422.29 → current $431.16; only $8.87 (2.1%) from stop. High auto-trigger risk today.
+
+### Decision
+**HOLD — no new buys today.**
+- SPX -0.9% / VIX +6.7% = unfavorable entry conditions
+- AMD within 2.1% of trailing stop; adding risk on down-market Friday is wrong
+- Deployed 77.6% within target range — no pressure to add
+- Friday before weekend with macro uncertainty (Retail Sales + summit)
+- No position at -7% manual cut level; no stop tightening needed
+- Monitor AMD intraday — stop at $422.29 may auto-trigger

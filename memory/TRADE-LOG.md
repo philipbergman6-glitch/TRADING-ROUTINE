@@ -43,3 +43,22 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-15 — Market-Open Review
+
+**No new trades.** SPX futures -0.9%, VIX +6.7% — unfavorable entry. AMD dangerously close to stop; Friday before weekend.
+
+| Ticker | Entry | Current | P&L% | Today% | Stop (GTC) | HWM | Status |
+|--------|-------|---------|-------|--------|------------|-----|--------|
+| AMD | $414.16 | $431.16 | +4.1% | -4.1% | $422.29 (10% trail) | $469.21 | ⚠️ NEAR STOP — $8.87 gap |
+| NVDA | $208.64 | $226.64 | +8.6% | -3.9% | $212.89 (10% trail) | $236.54 | HOLD |
+| PLTR | $136.96 | $133.49 | -2.5% | -0.2% | $126.86 (10% trail) | $140.95 | HOLD |
+| XOM | $145.94 | $153.99 | +5.5% | +0.8% | $138.60 (10% trail) | $154.00 | HOLD |
+
+**Portfolio:** $107,564.71 | **Cash:** $24,088.78 (22.4%) | **Deployed:** $83,475.93 (77.6%) | **Daytrade count:** 0
+
+**Week of 2026-05-11 trade count: 0/3**
+
+**Notes:** Market selling off -0.9% premarket on Retail Sales release + Trump-Xi summit uncertainty. VIX futures up 6.7%. AMD fell -4.1% from $449.70 yesterday close to $431.16 — trailing stop at $422.29 (HWM $469.21) is only 2.1% below current price; may auto-trigger today. No manual action required — stops in place for all positions. Deployed 77.6% within 75-85% target; no urgency to add in down-market Friday. No stop tightening triggered (no position at +15% from entry). No -7% manual cuts needed.
