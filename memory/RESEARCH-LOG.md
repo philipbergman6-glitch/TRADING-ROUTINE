@@ -59,6 +59,65 @@ Daily pre-market research entries will be appended here.
 
 ---
 
+---
+
+## 2026-05-15 — Pre-market Research
+
+### Account
+- Equity: $107,803.43
+- Cash: $24,088.78
+- Buying power: $131,892.21
+- Deployed: $83,714.65 (77.7% — within 75-85% target ✓)
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC trail) |
+|--------|-----|-----------|---------|----------|------------------|
+| AMD    | 49  | $414.16   | $436.49 | +$1,094 (+5.39%) | 10% trail, HWM $469.21, stop $422.29 |
+| NVDA   | 90  | $208.64   | $231.20 | +$2,030 (+10.81%) | 10% trail, HWM $236.54, stop $212.89 |
+| PLTR   | 152 | $136.96   | $132.32 | -$706 (-3.39%) | 10% trail, HWM $140.95, stop $126.86 |
+| XOM    | 140 | $145.94   | $152.90 | +$975 (+4.77%) | 10% trail, HWM $153.12, stop $137.81 |
+
+**Total unrealized P&L: +$3,393 (+3.26% blended)**
+
+### Market Context
+- **WTI**: Futures (CLK26) ~$92/bbl; spot last reported ~$110 on May 12 (Brent). Some divergence — Hormuz tension risk premium may be easing.
+- **S&P 500**: E-mini ESM6 ~7,515, down -0.13% (May 14 close). Market at/near all-time highs.
+- **VIX**: 17.26 on May 14 (down from 18.81 late April) — volatility easing, calm backdrop.
+- **Big macro week mostly DONE**: CPI (Tue May 12, +0.6% MoM, +3.7% YoY), PPI (Wed May 13, +1.4% final demand, **+6.0% YoY — hot**), Retail Sales (Thu May 14, consensus +0.6%). Today (Fri May 15): only Import/Export Price Indexes at 10 AM ET (minor).
+- **New Fed chair**: transition underway this week — policy continuity unclear, modest uncertainty premium.
+- **Sector momentum YTD**: Energy #1 (~+26%), Consumer Staples, Industrials, Materials outperforming. Tech recovering on AI earnings beats. Momentum factor ETFs beating S&P 500 YTD.
+
+### Ticker Notes
+- **AMD (+5.39%)**: Goldman Sachs upgraded to Buy, $450 price target (May 11), citing agentic AI tailwinds and 66% GPU unit growth in 2026 + Meta 6-GW deployment deal. Consensus $389.82 (34 analysts, Buy). Finbold ML notes +80% 1-month rally. Today down -2.94% (AMD closed at $449.70 yesterday, now $436.49). Stop $422.29 is safe. Earnings already past — holding on AI momentum thesis.
+- **NVDA (+10.81%)**: Earnings May 20 next week — key binary event. Q1 guidance ~$78B revenue (+14% QoQ). Goldman raised EPS forecast. Stock near record ~$231 (HWM $236.54). Tighten threshold = +15% → $239.94 — not yet triggered. Stop $212.89 solid. Today -1.93% pullback, normal pre-earnings chop.
+- **PLTR (-3.39%)**: Q1 2026 beat on May 4 — EPS $0.33 vs $0.28 est, revenue $1.63B vs $1.54B est (+85% YoY, US +104%). Raised full-year guidance. Despite strong results, stock drifting to $132. Manual cut trigger: $136.96 × 0.93 = **$127.37** — current price $132.32 is **only $4.95 above cut level**. Trailing stop $126.86. Thesis intact (beat + raised), but price action bearish post-earnings.
+- **XOM (+4.77%)**: Analyst consensus Buy, $162.05 target (20 analysts). Energy sector #1 YTD. Permian/Guyana growth intact. Near HWM $153.12; stop $137.81 well below. Model forecast ~$183 end-2026. Steady compounder — no action needed.
+
+### Trade Ideas
+1. **No new positions** — deployed 77.7%, squarely in 75-85% target range. No deployment gap to fill.
+2. **NVDA stop watch** — if NVDA trades to $239.94 (+15% from entry), tighten trail from 10% → 7% per strategy. Not there yet.
+3. **PLTR watch** — if PLTR touches $127.37, cut manually before trailing stop at $126.86. Earnings were a beat; price action is the concern. Next catalyst unclear.
+4. **XOM add** (low conviction) — energy sector leadership, XOM approaching HWM, target $162. Below 7/10 conviction threshold with deployed capital already on target. ❌ Do not add.
+
+### Risk Factors
+- **NVDA earnings May 20** — record-high valuation, $78B revenue expectation. Miss or weak guide = -10%+ gap risk on our 90-share position
+- **PPI +6.0% YoY** — stagflation signal; if Fed tightens under new chair, growth stocks hit
+- **PLTR $132 and falling** — only $4.95 above manual cut; monitoring intraday
+- **AMD -2.94% today** — post-rally consolidation or reversal? Watch stop $422.29
+- **Oil price divergence** — WTI futures ~$92 vs prior spot $110; Hormuz de-escalation could hurt XOM
+- **Fed chair transition** — new leadership, some policy unpredictability
+
+### Decision
+**HOLD all positions.** No new buys.
+- Deployment at 77.7% is in-range — no urgency to add.
+- NVDA binary (May 20) dominates near-term risk. Do not add to any position ahead of it.
+- PLTR: hold above $127.37. Cut manually if touched.
+- XOM and AMD: hold with trailing stops in place.
+- Friday — lightest macro day of the week. Let positions breathe.
+
+---
+
 ## 2026-04-30 — Midday Scan
 
 ### Positions
