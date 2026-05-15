@@ -126,3 +126,29 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-15 — Midday Scan
+
+### Positions
+| Symbol | Qty | Entry | Current | P&L% | Today% | Stop | HWM |
+|--------|-----|-------|---------|-------|--------|------|-----|
+| AMD | 49 | $414.16 | $431.73 | +4.24% | -4.00% | $422.29 (10% trail) | $469.21 |
+| NVDA | 90 | $208.64 | $228.06 | +9.31% | -3.26% | $212.89 (10% trail) | $236.54 |
+| PLTR | 152 | $136.96 | $134.44 | -1.85% | +0.53% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $156.27 | +7.08% | +2.28% | $140.87 (10% trail) | $156.52 |
+
+### Actions
+- No cuts (no position at ≤ -7%)
+- No stop tightening (no position at ≥ +15%)
+
+### Sector Catalyst — AMD/NVDA -4% Today
+- **Cause:** Sector-wide chipmaker selloff. INTC -7%, AMD -4%, NVDA -4% — coordinated decline.
+- **Driver:** Pre-earnings profit-taking + mechanical derisking ahead of NVDA May 20 earnings. Seven-session AI rally unwinding into weekend.
+- **Thesis intact:** No company-specific negative. AI/data-center thesis unchanged. BofA raised NVDA target to $320 (May 13).
+- No PLTR-specific news. PLTR +0.53% today, thesis intact.
+- XOM +2.28% today — energy sector holding.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. NVDA earnings May 20 is the next binary event; monitor closely.
