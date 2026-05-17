@@ -19,13 +19,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
     done
 
 IMPORTANT — PERSISTENCE:
-- Fresh clone. File changes VANISH unless landed via PR.
-  MUST land via auto-merged PR at STEP 6 — tomorrow's Day P&L depends on it.
-
-STEP 0 — Sync to clean main so we never inherit stale ancestry:
-git fetch origin
-git checkout main
-git pull --rebase origin main
+- Fresh clone. File changes VANISH unless committed and pushed.
+  MUST commit and push at STEP 6 — tomorrow's Day P&L depends on it.
 
 STEP 1 — Read memory for continuity:
 - tail of memory/TRADE-LOG.md (find most recent EOD snapshot -> yesterday's
@@ -62,11 +57,8 @@ Open positions:
   SYM ±X.X% (stop \$X.XX)
 Tomorrow: <one-line plan>"
 
-STEP 6 — LAND VIA PR + AUTO-MERGE (mandatory — tomorrow's Day P&L depends on this):
-BRANCH="routine/daily-summary-$DATE"
-git checkout -b "$BRANCH"
-git add memory/   # restrict to memory/ — never stage scripts, env, or strategy files
+STEP 6 — COMMIT AND PUSH (mandatory — tomorrow's Day P&L depends on this):
+git add memory/TRADE-LOG.md
 git commit -m "EOD snapshot $DATE"
-git push -u origin "$BRANCH"
-gh pr create --base main --fill
-gh pr merge --auto --squash --delete-branch
+git push origin main
+On push failure: rebase and retry.

@@ -19,13 +19,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
     done
 
 IMPORTANT — PERSISTENCE:
-- Fresh clone. File changes VANISH unless landed via PR.
-  MUST land via auto-merged PR at STEP 8 if any memory files changed.
-
-STEP 0 — Sync to clean main so we never inherit stale ancestry:
-git fetch origin
-git checkout main
-git pull --rebase origin main
+- Fresh clone. File changes VANISH unless committed and pushed.
+  MUST commit and push at STEP 8 if any memory files changed.
 
 STEP 1 — Read memory so you know what's open and why:
 - memory/TRADING-STRATEGY.md (exit rules)
@@ -57,13 +52,8 @@ sharply with no obvious cause. Append afternoon addendum to RESEARCH-LOG.
 STEP 7 — Notification: only if action was taken.
 bash scripts/email.sh "<action summary>"
 
-STEP 8 — LAND VIA PR + AUTO-MERGE (only if any memory/ files changed):
-if [[ -n "$(git status --porcelain memory/)" ]]; then
-  BRANCH="routine/midday-$DATE"
-  git checkout -b "$BRANCH"
-  git add memory/   # restrict to memory/ — never stage scripts, env, or strategy files
-  git commit -m "midday scan $DATE"
-  git push -u origin "$BRANCH"
-  gh pr create --base main --fill
-  gh pr merge --auto --squash --delete-branch
-fi
+STEP 8 — COMMIT AND PUSH (if any memory files changed):
+git add memory/TRADE-LOG.md memory/RESEARCH-LOG.md
+git commit -m "midday scan $DATE"
+git push origin main
+Skip commit if no-op. On push failure: rebase and retry.

@@ -5,18 +5,24 @@ no fluff.
 You are running the pre-market research workflow. Resolve today's date via:
 DATE=$(date +%Y-%m-%d).
 
-IMPORTANT: API keys are injected as process env vars. Do NOT create,
-write, or source a .env file. If a wrapper exits non-zero, stop and
-email the error.
+IMPORTANT — ENVIRONMENT VARIABLES:
+- Every API key is ALREADY exported as a process env var: ALPACA_API_KEY,
+  ALPACA_SECRET_KEY, ALPACA_ENDPOINT, ALPACA_DATA_ENDPOINT,
+  PERPLEXITY_API_KEY, PERPLEXITY_MODEL, RESEND_API_KEY,
+  EMAIL_TO, EMAIL_FROM.
+- There is NO .env file in this repo and you MUST NOT create, write, or
+  source one. The wrapper scripts read directly from the process env.
+- If a wrapper prints "KEY not set in environment" -> STOP, send one
+  email alert naming the missing var, and exit.
+- Verify env vars BEFORE any wrapper call:
+    for v in ALPACA_API_KEY ALPACA_SECRET_KEY PERPLEXITY_API_KEY \
+             RESEND_API_KEY EMAIL_TO EMAIL_FROM; do
+      [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
+    done
 
 IMPORTANT — PERSISTENCE:
-- Fresh clone. File changes VANISH unless landed via PR.
-  MUST land via auto-merged PR at STEP 6.
-
-STEP 0 — Sync to clean main so we never inherit stale ancestry:
-git fetch origin
-git checkout main
-git pull --rebase origin main
+- Fresh clone. File changes VANISH unless committed and pushed.
+  MUST commit and push at STEP 6.
 
 STEP 1 — Read memory for context:
 - memory/TRADING-STRATEGY.md
@@ -52,11 +58,10 @@ STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md:
 STEP 5 — Notification: silent unless urgent.
 bash scripts/email.sh "<one line>"
 
-STEP 6 — LAND VIA PR + AUTO-MERGE (mandatory):
-BRANCH="routine/pre-market-$DATE"
-git checkout -b "$BRANCH"
-git add memory/   # restrict to memory/ — never stage scripts, env, or strategy files
+STEP 6 — COMMIT AND PUSH (mandatory):
+git add memory/RESEARCH-LOG.md
 git commit -m "pre-market research $DATE"
-git push -u origin "$BRANCH"
-gh pr create --base main --fill
-gh pr merge --auto --squash --delete-branch
+git push origin main
+
+On push failure: git pull --rebase origin main, then push again.
+Never force-push.

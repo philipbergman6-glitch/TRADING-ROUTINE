@@ -16,7 +16,7 @@ load-bearing.
 
 ## One-time prerequisites per routine
 
-1. Install Claude GitHub App on this repo. Routines land work via auto-merged PRs and need only the App's default `contents: write` + `pull-requests: write` permissions — no unrestricted-push override required.
+1. Install Claude GitHub App on this repo with `contents: write` so the routine can `git push origin main` directly. If `main` is protected, either disable protection or whitelist the App actor — the routine does not open PRs.
 2. Set env vars on the routine (NOT in a committed .env file):
    `ALPACA_API_KEY`, `ALPACA_SECRET_KEY`, `ALPACA_ENDPOINT`,
    `ALPACA_DATA_ENDPOINT`, `PERPLEXITY_API_KEY`, `PERPLEXITY_MODEL`,
