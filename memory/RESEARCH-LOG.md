@@ -126,3 +126,64 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-18 — Pre-market Research
+
+### Account
+- Equity: $107,618.81 (+7.62% vs $100k start)
+- Cash: $24,088.78 (22.4%)
+- Buying power: $131,707.59
+- Long market value: $83,530.03
+- Deployed: 77.6% — within 75-85% target ✓
+- Daytrade count: 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AMD | 49 | $414.16 | $421.33 | +$352 (+1.73%) | 10% trail, HWM $469.21, **stop $422.29 ⚠️ BELOW CURRENT PRICE** |
+| NVDA | 90 | $208.64 | $227.07 | +$1,659 (+8.83%) | 10% trail, HWM $236.54, stop $212.89 |
+| PLTR | 152 | $136.96 | $132.58 | -$666 (-3.20%) | 10% trail, HWM $140.95, stop $126.86 |
+| XOM | 140 | $145.94 | $159.26 | +$1,865 (+9.13%) | 10% trail, HWM $157.43, stop $141.68 |
+
+### ⚠️ CRITICAL: AMD Trailing Stop Breach
+- Stop trigger price: $422.29 (10% trail from HWM $469.21)
+- Current pre-market price: $421.33 — **$0.96 BELOW the stop level**
+- Last session close: $424.10; today's pre-market -0.65% puts it below the stop
+- Action: Stop order is live GTC. AMD will **likely execute at market open** if price stays below $422.29. Do NOT cancel or intervene — let the rule work.
+- After stop fill: ~$20,645 added back to cash; deployed drops to ~58% → 5th slot available
+
+### Market Context
+- WTI: ~$102.46/bbl (May 15 close), Brent ~$106.34 — retreated from $108 highs; geopolitical premium easing modestly
+- S&P 500 futures: ~7,375–7,400 premarket (vs May 14 close ~7,477) — ~0.8% softer open implied
+- VIX: 17.26 (May 14 FRED close) / 18.43 (May 15 Cboe spot) — calm, well below 20
+- Earnings before open today: No major names identified
+- Economic calendar today: Quiet — no CPI/PPI/FOMC/NFP today (CPI was May 12; next NFP/CPI June 10-11; FOMC minutes ~May 20)
+- Sector momentum YTD (through May 17): Energy +32.61% (#1), Technology +20.06% (#2), Transportation +13.40% (#3)
+
+### Holdings Update
+- **AMD** (⚠️ stop breach — see above): Pre-market below trailing stop. Accept the stop fill; do not override. AMD avg entry is now $414.16 (position adjusted higher from original $314.97 entry). Stop likely executes at open.
+- **NVDA** (+8.83%): AI semiconductor dominance intact. HWM $236.54; tighten stop to 7% trail at +15% → entry $208.64 × 1.15 = **$239.94 trigger**. Not there yet at $227.07. Hold.
+- **PLTR** (-3.20%): Q1 2026 revenue +85% YoY — fastest growth ever; US business more than doubled (Economic Times). Thesis powerfully intact. Stock weakness is valuation/sentiment overhang, not fundamental. Manual cut at -7% from entry = **$127.37** (trailing stop $126.86 is essentially the same level). Hold; stop is the backstop.
+- **XOM** (+9.13%): XOM up 20%+ YTD per Zacks; Permian + Guyana production growth cited bullish. Oil at $102-106 still elevated. HWM $157.43 is stale — today's price $159.26 exceeds it; Alpaca will update HWM and raise stop during market hours. Tighten to 7% trail at +15% → entry $145.94 × 1.15 = **$167.83 trigger**. Not there yet. Hold.
+
+### Trade Ideas
+1. **Post-AMD-stop: Scout CVX or FANG (energy)** — Energy leads YTD at +32.61% and XOM is proving the thesis. If AMD stops out, deploy ~$17-19k into CVX (entry ~$165-168, stop -10%, target $195+, R:R 2:1) as a 5th position. Wait for market open and AMD stop confirmation before ordering. Conviction: 7/10.
+2. **NVDA add near $240** — If NVDA pushes to $239.94 we tighten the stop AND could consider a small tactical add on any pullback to $230-235 given 90-share position is only ~19% of portfolio. Wait for +15% confirmation first. Conviction: 6/10 — monitor, not actionable pre-open.
+3. **HOLD cash otherwise** — Market futures slightly soft (-0.8%). No macro catalyst today to force action. AMD stop will resolve the deployment issue organically.
+
+### Risk Factors
+- AMD stop executes at open — size $20.6k position exits; reduces deployed to ~58% temporarily
+- PLTR -3.2% — strong fundamentals but weak price action; manual cut at $127.37 is ~$5 away; intraday vol could trigger
+- Market futures soft (~7,375 vs 7,477 prior close) — broad-based light selling pressure
+- Energy sector: oil retreating from $108 toward $102 — XOM's tailwind moderating
+- No major macro data today, but FOMC minutes ~May 20 could spike VIX mid-week
+- 4 positions only; after AMD stop → 3 positions, deployed 58% — need to rebuild to 4-5 within week
+
+### Decision
+**HOLD NVDA, PLTR, XOM.** AMD trailing stop will execute at open — do not intervene, honor the rule.
+- After AMD stop confirms: evaluate CVX entry for 5th position (energy sector, oil intact at $102+)
+- Watch PLTR intraday — manual cut at $127.37 if touched
+- Watch NVDA for $239.94 stop-tighten trigger
+- XOM HWM will auto-update to reflect new highs once market opens
