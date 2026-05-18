@@ -43,3 +43,19 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-18 — Midday Reconciliation (position state audit)
+
+*Memory files not updated May 1–18. Reconciling from live Alpaca data.*
+
+| Ticker | Shares | Avg Entry | Current | P&L% | Stop (GTC) | HWM | Status |
+|--------|--------|-----------|---------|------|------------|-----|--------|
+| NVDA | 90 | $208.64 | $222.46 | +6.62% | $212.89 (10% trail) | $236.54 | HOLD — earnings May 20 |
+| PLTR | 152 | $136.96 | $134.06 | -2.12% | $126.86 (10% trail) | $140.95 | HOLD |
+| XOM | 140 | $145.94 | $160.73 | +10.14% | $145.11 (10% trail) | $161.23 | HOLD |
+
+**AMD:** Position closed between May 1–18 (trailing stop or manual exit). Exact exit price/date not captured in memory — to be reconciled from Alpaca account history.
+**PLTR:** Qty increased 142→152, avg entry lowered $142.30→$136.96 — averaged down at some point May 1–18.
+**XOM:** Added per May 1 research plan (energy sector thesis, oil elevated). 140 shares @ $145.94 avg.

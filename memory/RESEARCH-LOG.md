@@ -126,3 +126,32 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-18 — Midday Scan
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | P&L% | Today% | Trailing Stop | HWM |
+|--------|--------|-----------|---------|------|--------|---------------|-----|
+| NVDA | 90 | $208.64 | $222.46 | +6.62% | -1.27% | $212.89 (10%) | $236.54 |
+| PLTR | 152 | $136.96 | $134.06 | -2.12% | +0.05% | $126.86 (10%) | $140.95 |
+| XOM | 140 | $145.94 | $160.73 | +10.14% | +1.78% | $145.11 (10%) | $161.23 |
+
+**Note:** AMD position no longer present (exited between May 1–18; date/price not in memory files). PLTR qty increased 142→152 and XOM added — entries not captured in trade log.
+
+### Actions
+- No cuts (no position at -7%)
+- No stop tightening (no position at +15%; XOM +10.14% approaching threshold ~$167.83)
+
+### Perplexity Thesis Check
+- **NVDA:** Earnings May 20 after close. Consensus $78.8B rev / $1.74 EPS. Expected ±5.8% move on print. Stock up ~20% in a month into earnings — expectations elevated. Trailing stop $212.89 (~4.3% below current) provides backstop. Thesis intact; holding through binary.
+- **PLTR:** No breaking news. Thesis intact.
+- **XOM:** No breaking news. Energy momentum continues (+1.78% today). Thesis intact.
+
+### Key Watches
+- **NVDA earnings May 20** (after close) — ±5.8% expected move. Stop at $212.89 could be triggered on disappointment. Tighten to 7% trail if +15% ($239.94) is hit first.
+- **XOM approaching +15% tighten threshold** — tighten to 7% trail if/when price ≥ $167.83.
+
+### Decision
+**HOLD all** — no rule triggers, no thesis breaks. No email (no action taken).
