@@ -126,3 +126,44 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-18 — Market-Open Research (inline, no pre-market entry found)
+
+### Account
+- Equity: $107,942.44 | Cash: $24,088.78 | Deployed: $83,853.66 (77.7% — within 75-85% ✓)
+- Daytrade count: 0 | Week trades: 0/3
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|--------|-----------|---------|----------|------------|
+| AMD    | 49     | $414.16   | $436.70 | +$1,104 (+5.4%) | $422.29 (10% trail, HWM $469.21) |
+| NVDA   | 90     | $208.64   | $227.80 | +$1,724 (+9.2%) | $212.89 (10% trail, HWM $236.54) |
+| PLTR   | 152    | $136.96   | $132.61 | -$662 (-3.2%)   | $126.86 (10% trail, HWM $140.95) |
+| XOM    | 140    | $145.94   | $155.83 | +$1,385 (+6.8%) | $142.20 (10% trail, HWM $158.00) |
+
+### Market Context
+- S&P 500: Risk-on open; futures implied ~7,375-7,425 (Polymarket 96% "Up" open)
+- AMD: Post-earnings pull-back from $469.21 HWM; AI-fueled Q3 forecast beat drove ~15% jump ~May 6. Currently consolidating at $436.
+- NVDA: Earnings **May 20 (Wednesday)** — binary event. Currently +9.2%, approaching +15% tighten threshold ($239.94). No tighten yet.
+- PLTR: Weak action, -3.2% from entry. Manual cut at -7% = $127.37; current $132.61 has room.
+- XOM: Near HWM $158. Energy sector strength from oil geopolitical premium.
+
+### Stop Tighten Check
+- AMD +5.4% — no tighten (threshold +15%)
+- NVDA +9.2% — no tighten (threshold +15%, but watch Wed earnings)
+- PLTR -3.2% — no action
+- XOM +6.8% — no tighten
+
+### New Trade Analysis
+- Deployment 77.7% — max new position within 85% cap = ~$7,900 (7% of equity)
+- Strategy intent is 20% positions; $7,900 is too small → no new trade justified
+- NVDA earnings May 20 adds binary portfolio risk; not the time to add exposure
+
+### Decision
+**HOLD all. No new buys.**
+- Deployment within target (77.7%)
+- No position fits within 85% deployment cap at meaningful size
+- NVDA earnings Wed = portfolio risk event; hold cash as buffer
+- All 4 trailing stops active and appropriate
