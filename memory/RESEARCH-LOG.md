@@ -126,3 +126,57 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-19 — Pre-market Research
+
+### Account
+- Equity: $107,704.22
+- Cash: $44,739.28
+- Buying power: $152,443.50
+- Long market value: $62,964.94
+- Deployed: 58.5% (target 75-85% — still under)
+- Daytrade count: 0
+- Phase P&L: +$7,704.22 (+7.70%)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------------|-----|
+| NVDA | 90 | $208.64 | $220.71 | +$1,086 (+5.79%) | $212.89 (10% trail) | $236.54 |
+| PLTR | 152 | $136.96 | $135.15 | -$275 (-1.32%) | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $161.13 | +$2,127 (+10.41%) | $145.56 (10% trail) | $161.73 |
+
+**Notes:** AMD no longer in positions (stopped out). PLTR shares increased to 152 (avg $136.96). XOM entered per May 1 plan.
+
+### Market Context
+- **WTI:** ~$103.21–103.30/bbl (down from ~$105 recent high)
+- **Brent:** ~$109.15–110.40/bbl (-1.95% today)
+- **S&P 500 futures:** ~6,657.50, +0.10% premarket (mixed signals — another source shows ESM26 -0.41% earlier)
+- **VIX:** ~17.82 (May 18 close) — moderate, not elevated
+- **Today's releases:** BLS Metro Area Employment (10 AM ET, March data only) — low impact
+- **Next major macro:** NFP June 5, PPI June 11; no FOMC today
+- **Sector momentum:** Energy #1 YTD (was +26% through March, pulled back in April); Tech recovering May; Consumer Staples / Industrials / Materials also strong YTD
+
+### Holdings Update
+- **NVDA (+5.79%):** **EARNINGS TOMORROW MAY 20 (after close).** HWM was $236.54 — stock pulled back ~6.7% from peak. Stop at $212.89 (~3.5% below current). Thesis intact: $1T backlog (Blackwell + Vera Rubin through 2027), US cleared 10 Chinese firms to buy H200s, BofA target $275. Risk: sell-the-news gap after recent runup. Do NOT add. Hold through earnings; trailing stop provides floor.
+- **PLTR (-1.32%):** Q1 2026 results strong — US commercial +104% YoY, full-year guidance raised to $7.18–7.20B revenue (71% growth), US commercial >$3.14B guided. Essentially at entry. Stop at $126.86 (~6.1% below current). Hold.
+- **XOM (+10.41%):** Q1 2026 earnings $4.2B ($1.00/share; $2.09 excl. items). Record Guyana production, Golden Pass Train 1 LNG live. $20B buyback plan 2026. 20 analysts Buy, consensus target $162.05 — XOM at $161.13 is essentially at target. Oil at $103-110 still supportive. Stop HWM $161.73; tighten to 7% trail at +15% ($167.83) — not there yet. Hold.
+
+### Trade Ideas
+1. **Post-NVDA entry (AI/semiconductor):** If NVDA beats and guides up tomorrow, look to add a complementary name — e.g., MRVL (Marvell, custom AI silicon) or ANET (Arista, AI networking). Entry only on confirmed gap + hold. Wait for clarity.
+2. **New sector play (Healthcare/Staples):** If NVDA disappoints and tech rotates, consider UNH (United Health, beaten-down healthcare) or COST (Costco, staples momentum). R:R 2:1 required. Entry $18-20K to address deployment gap.
+3. **Add XOM:** If oil stabilizes above $100 and XOM pulls back to $155-157 support, add shares. Near analyst consensus target currently — don't chase.
+
+### Risk Factors
+- **NVDA earnings May 20 (tomorrow)** — binary event; gap risk both ways on our 90-share position; trailing stop at $212.89 won't help on a large overnight gap
+- Portfolio only 58.5% deployed — capital sitting idle
+- Oil declining slightly (WTI -1-2% from recent highs) — could pressure XOM
+- S&P futures mixed; geopolitical Iran risk flagged by Morgan Stanley
+- No new major macro releases today but April PPI was hot (6.0% YoY) per May 13 release — inflation still a concern
+
+### Decision
+**HOLD all three positions.** Do NOT add new positions today — NVDA earnings overhang makes it premature to deploy more capital before knowing direction. After NVDA reports (tomorrow after close), re-evaluate:
+- NVDA beat + guide up → look for complementary AI add on Wednesday
+- NVDA miss or guide-down → assess stop status, hold XOM/PLTR, conserve cash
+Week trade count: 0/3 — capacity available if conditions align post-earnings.
