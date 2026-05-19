@@ -126,3 +126,34 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-19 — Midday Scan
+
+### Account (live)
+- Positions: NVDA, PLTR, XOM (AMD no longer held; PLTR averaged; XOM added since last log)
+
+### Positions
+| Symbol | Shares | Entry | Current | P&L% | Today% | Stop (GTC) |
+|--------|--------|-------|---------|------|--------|------------|
+| NVDA | 90 | $208.64 | $223.15 | +6.95% | +0.37% | $212.89 (10% trail, HWM $236.54) |
+| PLTR | 152 | $136.96 | $134.44 | -1.84% | -0.52% | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $161.96 | +10.98% | +0.91% | $145.94 (10% trail, HWM $162.15) |
+
+### Actions
+- No cuts (no position at -7%)
+- No stop tightening (no position at +15%+ threshold yet; XOM at +10.98% is closest)
+
+### Thesis Check (via Perplexity)
+- **NVDA**: Intact — Blackwell demand exceeding supply, AI GPU dominance uncontested. GPU prices up 15-23%, lead times 3-7 months. No thesis break.
+- **PLTR**: Intact — Q1 2026 EPS beat +18%, FY2026 revenue guidance raised ~71%, US commercial accelerating (+104% YoY), total contract value +61% YoY. No government contract losses or cuts flagged.
+- **XOM**: Intact — Energy sector momentum continues. Trading near daily high (~$162), no major negative catalyst. Ex-dividend date was May 15. Energy thesis holding.
+
+### Watch
+- XOM at +10.98%: tighten stop to 7% trail at +15% (~$167.83). Close; monitor intraday.
+- PLTR at -1.84%: manual cut at -7% ($127.37). Stop at $126.86 — gap risk only concern.
+- NVDA pulled back from HWM $236.54 to $223.15 (-5.7% off HWM). Stop at $212.89 intact.
+
+### Decision
+**HOLD all.** No rule triggers. All theses intact. XOM approaching tighten threshold — act at $167.83+.

@@ -43,3 +43,18 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-19 — Midday Snapshot
+
+**Note:** Log gap May 1–18 (AMD exited, PLTR averaged down, XOM entered — detailed entries missing from prior sessions.)
+
+| Ticker | Shares | Entry | Current | P&L% | Stop | Status |
+|--------|--------|-------|---------|------|------|--------|
+| NVDA | 90 | $208.64 | $223.15 | +6.95% | $212.89 (HWM $236.54) | HOLD — below +15% tighten |
+| PLTR | 152 | $136.96 | $134.44 | -1.84% | $126.86 (HWM $140.95) | HOLD — well above -7% cut |
+| XOM | 140 | $145.94 | $161.96 | +10.98% | $145.94 (HWM $162.15) | HOLD — approaching +15% |
+
+**Midday actions:** None. No cuts, no stop adjustments. All theses intact.
+**XOM tighten trigger:** $167.83 (+15%). When hit → cancel stop, replace with 7% trail.
