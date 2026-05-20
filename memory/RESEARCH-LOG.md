@@ -126,3 +126,27 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-20 — Midday Scan
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L% | Today% | Stop (GTC) |
+|--------|--------|-----------|---------|-----------|--------|------------|
+| NVDA | 90 | $208.64 | $224.65 | +7.67% | +1.83% | $212.89 (10% trail, HWM $236.54) |
+| PLTR | 152 | $136.96 | $135.89 | -0.79% | +0.46% | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $158.34 | +8.50% | -2.59% | $147.31 (10% trail, HWM $163.68) |
+
+### Actions
+- No cuts (no position at -7%)
+- No stop tightening (no position at +15%)
+- No thesis breaks
+
+### Research
+- **NVDA earnings tonight** (Q1 FY2027): Consensus $78.5–78.8B revenue, $1.77–1.78 EPS. Whisper ~$80B. Options pricing 5–10% move. Trailing stop at $212.89 covers downside. Thesis intact — AI GPU cycle, Blackwell strong.
+- **XOM -2.59% today**: Oil easing on reduced geopolitical risk premium; profit-taking after energy's run. Q1 2026 EPS $1.00 (already reported). Trailing stop at $147.31 provides protection. Thesis softened but not broken — energy still #1 sector YTD.
+- **PLTR -0.79% overall**: Flat, no news. Already reported earnings. Trailing stop at $126.86.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. NVDA binary event tonight; stop in place. Watch XOM for continued crude weakness — if oil breaks lower further, re-evaluate thesis.
