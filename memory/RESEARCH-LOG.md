@@ -126,3 +126,45 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-20 — Pre-market Research (inline, market-open run)
+
+### Account
+- Equity: $107,738.28
+- Cash: $44,739.28
+- Buying power: $152,477.56
+- Daytrade count: 0
+- Deployed: $62,999 (58.5% — below 75-85% target)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|--------|-----------|---------|----------|------------|
+| NVDA   | 90     | $208.64   | $221.32 | +$1,141 (+6.1%) | $212.89 trailing (HWM $236.54) |
+| PLTR   | 152    | $136.96   | $132.73 | -$643 (-3.1%)   | $126.86 trailing (HWM $140.95) |
+| XOM    | 140    | $145.94   | $163.56 | +$2,467 (+12.1%)| $147.31 trailing (HWM $163.68) |
+
+### Market Context
+- S&P 500 futures: ~7,379 (up slightly); risk-on tone premarket
+- Chip stocks: Rebounding premarket ahead of NVDA earnings
+- **NVDA earnings: after close today (2026-05-20) — binary event, major market mover**
+- VIX: No clean quote, tone appears constructive based on futures
+- Sector leadership: Semis/AI names leading premarket
+- Energy (XOM): No specific catalyst; trades on oil price and risk appetite
+
+### Ticker Notes
+- **NVDA (+6.1%)**: Reports after close today. HWM was $236.54; currently at $221.32 — already down 6.4% from high, stop at $212.89 (3.8% below current). Trailing stop protects us if earnings disappoint. Hold.
+- **PLTR (-3.1%)**: Weak action. Manual cut trigger at -7% from avg = $127.37. Current $132.73 is above trigger. Stop at $126.86. Monitor — if drops through $127.37, cut manually.
+- **XOM (+12.1%)**: Approaching +15% tighten threshold ($167.83). Trailing stop self-adjusting. No catalyst today. Hold.
+
+### Trade Ideas
+1. No new position today — NVDA binary earnings event tonight creates broad uncertainty across tech/AI; no catalyst identified with ≥8/10 conviction.
+
+### Decision
+**HOLD all — no new buys.**
+- Deployed 58.5%; prefer to wait for post-NVDA-earnings clarity before adding.
+- NVDA: Hold through earnings; trailing stop at $212.89 protects.
+- PLTR: Watch $127.37 manual cut level.
+- XOM: Watch $167.83 for stop tighten to 7%.
+- Re-evaluate new positions Thursday/Friday if NVDA beat drives AI sector momentum.
