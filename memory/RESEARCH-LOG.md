@@ -126,3 +126,51 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all existing positions.** Do not add new positions today (Friday, AAPL overhang, ISM data risk). Scout XOM for Monday entry if: (1) ISM prints ≥50, (2) oil holds $100+, (3) energy sector confirms. Watch NVDA intraday — cut manually if touches $194.
+
+---
+
+## 2026-05-21 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $107,480.54 | **Cash:** $44,739.28 | **Buying power:** $152,219.82
+- **Day P&L:** -$97.04 (-0.09%) | **Phase P&L:** +$7,480.54 (+7.48%)
+- **Deployed:** $62,741 (58.4% — below 75-85% target)
+- **Daytrade count:** 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| NVDA   | 90  | $208.64   | $223.85 | +$1,368 (+7.29%) | $212.89 (10% trail, HWM $236.54) |
+| PLTR   | 152 | $136.96   | $135.35 | -$245 (-1.18%)   | $126.86 (10% trail, HWM $140.95) |
+| XOM    | 140 | $145.94   | $157.30 | +$1,591 (+7.79%) | $147.31 (10% trail, HWM $163.68) |
+
+### Market Context
+- **WTI:** ~$99/bbl (CME May 20) | **Brent:** ~$110/bbl (May 18). Elevated on geopolitical premium.
+- **S&P 500 futures (ESM26):** ~7,451–7,500; rose +0.96% on May 20. Near all-time highs.
+- **VIX:** 18.06 (May 19 close) — moderate; up slightly from 17.82 prior day.
+- **FOMC minutes** (Apr 28-29 meeting): released ~May 20. No major surprise.
+- **Macro today:** Clean calendar — no CPI/PPI/NFP/FOMC today. Next NFP June 10.
+- **Earnings BMO today:** Home Depot (HD), Walmart (WMT), Deere (DE), Baidu (BIDU), NIO.
+- **Key overnight catalyst — NVDA earnings (May 20 AMC):** Beat estimates but guidance disappointed. Headlines: "Nvidia Disappoints," "Nvidia slips after earnings." Semi sector under pressure in Asia premarket. NVDA off from HWM $236.54 → $223.85 (-5.4% from high).
+- **SpaceX IPO filing** — background buzz.
+- **Sector YTD (mid-May):** Energy +34.4% (#1) | Tech +18.0% | Cons. Staples +11.8% | Comms +11.3% | Industrials +11.1% | Materials +10.0% | Health Care -5.4% | Financials -5.6%.
+
+### Holdings Update
+- **NVDA** (+7.29%): Beat Q1 but guidance disappointed — stock slipped post-earnings. Current $223.85, stop $212.89 (HWM $236.54). Tighten threshold $239.94 (+15%) — not reached. Stop manages downside, do NOT move stop down. Thesis intact. Hold.
+- **PLTR** (-1.18%): Q1 2026 blowout (US rev +104% YoY, total +85% YoY, FY guidance raised to +71%). 21 analysts Buy, consensus target $193.95. Stock ~$135 near avg entry $136.96. -7% cut = $127.37; stop $126.86. Thesis intact. Hold.
+- **XOM** (+7.79%): Q1 EPS $1.16 vs $0.98 est — beat. Energy #1 YTD (+34%). Oil $99-110 elevated. Analyst target $161.55. HWM $163.68, stop $147.31. Tighten threshold $167.83 (+15%) — not reached. Thesis intact. Hold.
+
+### Trade Ideas
+1. **WMT (Walmart)** — Consumer Staples sector (+11.8% YTD, #3). Reporting BMO today. If beats + raises guidance: entry on gap-up confirmation post-open, 10% trailing stop, target +20%+. Diversifies away from tech concentration. Do NOT pre-buy — wait for print and open reaction.
+2. **HD (Home Depot)** — Also reporting BMO. If beats: home improvement/construction resilience play. Same entry framework. R:R 2:1+ with 10% trailing stop.
+3. **CVX (Chevron)** — Energy sector backup to boost deployment. If WMT/HD ideas not actionable, CVX entry ~$165-170, stop $150, target $195+.
+
+### Risk Factors
+- NVDA post-earnings slip — semi sector pressure today; watch stop at $212.89
+- Risk-off tone in Asia premarket (semis weak)
+- WMT/HD miss risk — consumer sector sells off if they disappoint
+- Oil sliding from $110 Brent to ~$99 WTI; XOM stop at $147.31 (~6.3% below current)
+- 58.4% deployed — below target; can't force a bad trade to fix it
+
+### Decision
+**HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
