@@ -43,3 +43,16 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## May 21 — EOD Snapshot (Day 18, Wednesday)
+**Portfolio:** $107,112.97 | **Cash:** $44,727.85 (41.8%) | **Day P&L:** -$464.61 (-0.43%) | **Phase P&L:** +$7,112.97 (+7.11%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $219.47 | -1.79% | +$974.47 (+5.19%) | $212.89 |
+| PLTR | 152 | $136.96 | $137.49 | +0.25% | +$80.20 (+0.39%) | $126.86 |
+| XOM | 140 | $145.94 | $155.26 | -0.65% | +$1,304.75 (+6.39%) | $147.31 |
+
+**Notes:** Down day — NVDA -1.79% and XOM -0.65% dragged the portfolio; PLTR +0.25% provided small offset. WMT daytrade today was a scratch (-$11, buy 175 @ $122.44 / sell @ $122.38). AMD fully exited Mon May 18 (49 shares @ $421.44; strong winner from $314.97 entry, +33.8%). Log has gaps May 1–May 20 due to missed EOD runs; XOM added ~May 7 and PLTR re-entered at lower cost basis ($136.96 vs original $142.30). Deployed 58.2% — below 75–85% target; NVDA trailing stop at $212.89 is exactly 3.0% below current price ($219.47), at minimum threshold per rules. Week trades: 1 new (WMT daytrade), 2/3 cap remaining. Tomorrow: look for 4th position to close deployment gap; NVDA stop needs watching if it slides further.
