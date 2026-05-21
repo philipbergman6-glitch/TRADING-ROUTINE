@@ -174,3 +174,27 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-21 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| NVDA | $208.64 | $220.17 | +5.53% | -1.48% | $212.89 (10% trail, HWM $236.54) |
+| PLTR | $136.96 | $136.57 | -0.29% | -0.42% | $126.86 (10% trail, HWM $140.95) |
+| XOM  | $145.94 | $156.41 | +7.18% | +0.08% | $147.31 (10% trail, HWM $163.68) |
+
+### Actions
+- No cuts — no position at -7%
+- No stop tightening — no position at +15% (thresholds: NVDA $239.94 | PLTR $157.50 | XOM $167.83)
+- No thesis breaks
+
+### Notes
+- NVDA -1.48% today: post-earnings follow-through on guidance miss. Pre-market flagged. Thesis intact. Stop at $212.89 — $7.28 cushion. No action.
+- PLTR -0.42%: essentially flat. No concern.
+- XOM +0.08%: flat, thesis intact.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks.
