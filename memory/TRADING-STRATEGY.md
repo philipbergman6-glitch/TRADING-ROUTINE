@@ -27,3 +27,4 @@ Beat the S&P 500 over the challenge window. Stocks only — no options, ever.
 - Sector in momentum?
 - Stop level (7-10% below entry)
 - Target (min 2:1 R:R)
+- When deployed <70% for 2+ weeks: pre-market must surface 3+ new candidates daily until gap closes
