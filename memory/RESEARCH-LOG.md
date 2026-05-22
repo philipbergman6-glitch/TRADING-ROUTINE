@@ -174,3 +174,50 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-22 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $107,238 | **Cash:** $44,727.82 | **Buying power:** $151,965.82
+- **Phase P&L:** +$7,238 (+7.24%)
+- **Deployed:** $62,510 (58.3% — below 75-85% target)
+- **Daytrade count:** 1
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------------|-----|
+| NVDA   | 90  | $208.64   | $219.91 | +$1,015 (+5.40%) | $212.89 (10% trail) | $236.54 |
+| PLTR   | 152 | $136.96   | $137.49 | +$80 (+0.39%)    | $126.86 (10% trail) | $140.95 |
+| XOM    | 140 | $145.94   | $155.83 | +$1,385 (+6.78%) | $147.31 (10% trail) | $163.68 |
+
+### Market Context
+- **WTI:** ~$98.45/bbl | Brent: ~$116 (US-Iran tensions keeping geopolitical premium)
+- **S&P 500 futures (ESM26):** 7,482.75 (+0.22%) — near all-time highs, gentle bid
+- **VIX:** 16.76 (May 21) — declining from 18.06 on May 19; fear draining
+- **Energy sector (May 21):** -2.59% one-day pullback; XOM slipped from HWM $163.68 → $155.83
+- **Macro today:** State Employment & Unemployment (April) at 10 AM ET — minor; no CPI/PPI/FOMC/NFP
+- **Earnings BMO today:** NIO, WMS (Advanced Drainage), DAVA (Endava) — no market movers
+- **Macro themes:** AI bull market intact (Morgan Stanley, JPM); "big beautiful bill" fiscally positive; rising Treasury yields a near-term headwind; US-Iran uncertainty supports oil
+- **Sector YTD (May 2026):** Energy +22% (#1, dominant) | Materials +17% | Industrials +11% | Cons. Staples +11% | Tech +4.7% (lagging) | Comms/Financials/Disc lagging
+
+### Holdings Update
+- **NVDA** (+5.40%): Post-earnings stabilization ~$219-223. Morningstar May 21: "AI adoption on track; fair value up 8% to $368, shares undervalued." Stop $212.89 — **CAUTION: 3.2% cushion from current price.** HWM $236.54 not revisited. Tighten threshold $239.94 — not reached. Thesis intact; hold but monitor intraday.
+- **PLTR** (+0.39%): Q1 beat — EPS $0.33 vs $0.28 est, rev $1.63B vs $1.54B est. High analyst target $260. Consolidating near entry. Stop $126.86 (~7.7% cushion). Tighten threshold $157.50 — far. Thesis intact; hold.
+- **XOM** (+6.78%): Energy sector -2.59% May 21 — pulled from HWM $163.68 to $155.83. Oil WTI $98.45. Analyst high target $171. Stop $147.31 (~5.5% cushion). Tighten threshold $167.83 — not reached. Thesis intact; hold.
+
+### Trade Ideas
+1. **WMT (Walmart)** — Scouted May 21 (reported BMO, decision was HOLD). Consumer Staples #3 YTD. If post-earnings consolidation looks constructive Monday: entry ~market, 10% trailing stop, target +20%. Reduces tech concentration.
+2. **CVX (Chevron)** — Energy #1 YTD (+22%). Boosts deployment, adds second energy name. Entry ~$165-170, stop $150, target $195+. Risk: one-day energy sector pullback; wait for WTI to stabilize $98+.
+3. **HOLD today** — Friday; quiet calendar; post-earnings-week consolidation expected; NVDA stop proximity adds intraday risk.
+
+### Risk Factors
+- **NVDA stop proximity:** $219.91 current vs $212.89 stop — 3.2% buffer; any weakness triggers exit
+- **Energy pullback:** XOM down ~5% from HWM; oil WTI $98 vs prior $99-105 range
+- **Treasury yield spike:** Schwab flags near-term headwind for growth/tech
+- **Deployment gap:** 58.3% vs 75-85% target — can't force a bad trade to close the gap
+- **State employment data 10 AM:** minor; low surprise probability
+
+### Decision
+**HOLD all.** No new trades today (Friday, quiet calendar, NVDA stop risk). Weekly trade count: 0/3 used this week — room to add next week. Scout WMT for Monday entry if post-earnings consolidation is constructive. CVX as backup energy play. No stops to tighten (no position at +15% threshold).
