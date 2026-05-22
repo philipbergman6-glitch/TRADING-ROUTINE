@@ -174,3 +174,54 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+### May 21 Execution Note
+- WMT entry taken at open ($122.44, 175 shares) on Q1 beat thesis.
+- WMT Q1 actual: Rev $177.75B vs $174.84B est (beat), adj EPS $0.61-$0.66 (beat). Comp sales +4.5%.
+- Despite beat, market reaction: -7.27% (buy-the-rumor-sell-the-news). Position closed same day (daytrade).
+- HD reported May 19 (early): EPS $3.30 vs $3.45 est (miss). Comp sales flat. Cautious guidance. No entry.
+
+---
+
+## 2026-05-22 — Market-Open Research
+
+### Account Snapshot
+- **Equity:** $107,037.62 | **Cash:** $44,727.82 | **Buying power:** $151,765.44
+- **Phase P&L:** +$7,037.62 (+7.04%)
+- **Deployed:** $62,309.80 (58.2% — below 75-85% target)
+- **Daytrade count:** 1 (WMT daytrade May 21)
+- **Weekly trades used:** 1/3 (WMT)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| NVDA   | 90  | $208.64   | $219.38 | +$966 (+5.15%)  | $212.89 (10% trail, HWM $236.54) |
+| PLTR   | 152 | $136.96   | $137.75 | +$120 (+0.58%)  | $126.86 (10% trail, HWM $140.95) |
+| XOM    | 140 | $145.94   | $154.47 | +$1,194 (+5.85%)| $147.31 (10% trail, HWM $163.68) |
+
+### Market Context
+- **S&P 500 futures:** ~7,487.50 (May 22) vs 7,466 (May 21) — near all-time highs, modestly higher.
+- **Memorial Day:** Monday May 25 is holiday — today is last trading session until Tue May 27.
+- **WMT:** Beat revenue (+7.4% YoY, $177.75B vs $174.84B est) but stock -7.27% — buy-the-rumor-sell-the-news. Currently ~$121.37 (below our $122.44 daytrade entry).
+- **HD:** EPS $3.30 vs $3.45 est (miss). Comp sales +0.6%. Cautious guidance on housing affordability. Weak.
+- **NVDA:** ~$219.38 (recovering slightly from post-earnings slip). Stop at $212.89 intact.
+- **No major macro catalysts today** — clean calendar, no Fed, no NFP, no CPI.
+
+### Holdings Update
+- **NVDA** (+5.15%): Post-earnings at $219.38, stop $212.89 (HWM $236.54). Thesis intact. Hold.
+- **PLTR** (+0.58%): Recovering from May 21 weakness, near entry. Stop $126.86. Thesis intact. Hold.
+- **XOM** (+5.85%): Energy still #1 YTD. Stop $147.31 (HWM $163.68). Thesis intact. Hold.
+
+### Trade Ideas
+1. **WMT** — Post-earnings downtrend, -7.27% reaction. No catalyst for reversal today. ❌
+2. **HD** — EPS miss, cautious guidance. Consumer discretionary sector weak. ❌
+3. **CVX** — Energy backup, but unreliable quote and already have XOM in energy (sector concentration risk). ❌
+
+### Risk Factors
+- Holiday weekend liquidity — thin markets, gap risk over 3-day weekend
+- WMT/HD post-earnings weakness signals consumer caution
+- NVDA stop at $212.89 only ~$6.50 below current price — modest cushion
+- Deployment 58.2% — below target but no quality entry available today
+
+### Decision
+**HOLD — no new trades.** No trade idea clears 8/10 conviction threshold. Memorial Day weekend creates gap risk and thin liquidity. Consumer sector (WMT -7%, HD miss) and no high-momentum catalyst. Re-evaluate Tue May 27 with fresh scan: energy add (CVX/COP), any post-holiday momentum breakouts.
