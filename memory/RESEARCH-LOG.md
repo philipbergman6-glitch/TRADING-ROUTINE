@@ -174,3 +174,40 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-25 — Memorial Day (Market Closed)
+
+### Account Snapshot
+- **Equity:** $106,602.08 | **Cash:** $44,727.82 | **Buying power:** $151,329.90
+- **Deployed:** $61,874.26 (58.0% — below 75-85% target)
+- **Daytrade count:** 1
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| NVDA   | 90  | $208.64   | $215.33 | +$602 (+3.2%)   | $212.89 (10% trail, HWM $236.54) ⚠️ |
+| PLTR   | 152 | $136.96   | $136.88 | -$13 (-0.06%)   | $126.86 (10% trail, HWM $140.95) |
+| XOM    | 140 | $145.94   | $154.92 | +$1,257 (+6.2%) | $147.31 (10% trail, HWM $163.68) |
+
+### Market Context
+- **Holiday:** US markets closed — Memorial Day. Next open: Tuesday May 26.
+- **S&P 500 futures (May 26):** ~7,550–7,575 implied — still elevated; longest weekly rally since 2023 on 5/22.
+- **NVDA:** AI leadership intact but retracing from HWM $236.54; support ~$196 per Perplexity. Stop at $212.89 is only 1.1% below last price of $215.33. ⚠️
+- **XOM / Energy:** Constructive — relative beneficiary if oil stays elevated. Energy #1 YTD.
+- **Week-ahead risks:** Holiday-shortened week, thinned liquidity, inflation data, oil/geopolitical noise.
+- **Week trade count:** 0/3 (fresh week starting May 26).
+
+### Key Watch — Tuesday Open
+- **NVDA stop proximity:** $215.33 current → stop $212.89 (gap: $2.44, 1.1%). Any negative AI/semi gap-down risks stop-out. Do NOT move stop down. If stopped out, do not re-enter same session.
+- **Tighten thresholds:** NVDA +15% = $239.94 (not reached). PLTR +15% = $157.50 (not reached). XOM +15% = $167.83 (not reached).
+- **Deployment gap:** ~$18–26K needed to reach 75-85% target. Room for 1–2 new positions (max 6 total, have 3).
+
+### Trade Ideas for May 26+
+1. **WMT (Walmart)** — Consumer Staples momentum. Entry on confirmed strength, 10% trail, target +20%. Conviction 6/10 — need catalyst confirmation at open.
+2. **CVX (Chevron)** — Energy backup to XOM. Entry ~$165–170, stop $150, target $195+. Conviction 6/10 — energy sector #1 YTD supports thesis.
+3. **HOLD cash** unless a clear 8/10 conviction setup emerges Tuesday.
+
+### Decision
+**MARKET CLOSED.** No trades today. Monitor NVDA stop proximity on Tuesday open — gap-down risk exists. Weekly trade count resets to 0/3. Target 1 new position this week if high-conviction setup emerges; do not force deployment.
