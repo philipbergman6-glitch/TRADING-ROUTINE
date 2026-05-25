@@ -4,6 +4,67 @@ Daily pre-market research entries will be appended here.
 
 ---
 
+## 2026-05-25 — Pre-market Research (Memorial Day — Market Closed)
+
+### Account Snapshot
+- **Equity:** $106,602.08 | **Cash:** $44,727.82 | **Buying power:** $151,329.90
+- **Day P&L:** $0 (holiday) | **Phase P&L:** +$6,602.08 (+6.60%)
+- **Deployed:** $61,874.26 (58.1% — below 75-85% target)
+- **Daytrade count:** 1
+
+### Positions
+| Symbol | Qty | Avg Entry | Last Close | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|------------|----------|------------|-----|
+| NVDA   | 90  | $208.64   | $215.33    | +$602 (+3.2%)  | $212.89 (10% trail) | $236.54 |
+| PLTR   | 152 | $136.96   | $136.88    | -$13 (-0.1%)   | $126.86 (10% trail) | $140.95 |
+| XOM    | 140 | $145.94   | $154.92    | +$1,257 (+6.2%)| $147.31 (10% trail) | $163.68 |
+
+### ⚠️ Critical Alert: NVDA Stop Proximity
+- NVDA at $215.33 — stop at $212.89 — only **1.1% away from stop trigger**
+- Slid from HWM $236.54 (-9.0%) on post-earnings drift (Q4 FY2026 beat but some profit-taking)
+- Any gap-down Tuesday morning will likely trigger stop
+
+### Market Context
+- **TODAY: US MARKETS CLOSED — Memorial Day.** NYSE/NASDAQ reopen Tuesday May 26.
+- **S&P 500 futures (ESM26):** ~7,537, +46 (+0.61%) as of May 24 close. Constructive tone.
+- **VIX:** 16.70 (May 23 close) — calm, down from 18.06 on May 19.
+- **WTI crude:** ~$91.90/bbl (May 24) — dropped significantly from ~$99 on May 21. Oil weakening.
+- **Brent:** ~$106.52 (stale; May 6 reference). Wide Brent-WTI spread persists.
+- **NVDA earnings update:** Q4 FY2026 beat — $68.1B revenue (record), guided Q1 FY2027 to $78B ±2%. $80B buyback, dividend 25x increase. Post-earnings pop fading — stock at $215.33 from HWM $236.54.
+- **Sector YTD (late May 2026):** Energy (#1, ~+22%) | Industrials | Materials | Consumer Staples | Tech — per sector rotation sources. Health Care described as "surprising top performer YTD."
+- **Asia overnight:** SoftBank +12% (Vision Fund), Nikkei up, risk-on tone in Asia.
+
+### Holdings Update
+- **NVDA** (+3.2%): Fundamentals strong (record revenue, massive buyback, AI GPU dominance). But stop at $212.89 — only 1.1% cushion. Will not move stop down. If triggered Tuesday, accept exit, evaluate redeployment.
+- **PLTR** (-0.1%): Q1 2026 blowout (+104% US rev, +85% total, FY guidance raised to +71%). Rule of 40 = 145%. Thesis excellent. Hold.
+- **XOM** (+6.2%): Oil softening (WTI $91.90 from $99). Energy still #1 YTD sector. Stop $147.31 ($7.61 / 4.9% below current). Thesis intact but monitor oil slide. Do not lower stop.
+
+### Week Ahead Catalysts (Tue May 26 – Fri May 30)
+- **Tue May 26:** Markets reopen. Consumer Confidence 10 AM. Earnings: AZO, ZS.
+- **Wed May 27:** Earnings: MRVL (Marvell), CRM (Salesforce), SNOW (Snowflake), SNPS, DKS.
+- **Thu May 28:** Q1 GDP second estimate 8:30 AM, Initial Jobless Claims 8:30 AM.
+- **Fri May 29:** PCE Inflation 8:30 AM — key inflation print; could move rates/equities.
+- **No FOMC, CPI, PPI, or Jobs data this week** (CPI Jun 10, PPI Jun 12, Jobs Jun 5).
+
+### Trade Ideas
+1. **If NVDA stopped out Tuesday:** Redeploy ~$19.4K. Best candidate: **MRVL (Marvell Technology)** — AI chip/data center play similar to NVDA, reports Wed May 27. AI tailwind thesis, sector momentum. Entry at open Tuesday if tone is constructive; stop 10% trail; target +20%+. Risk: binary earnings event Wed.
+2. **CRM (Salesforce):** Enterprise AI software momentum. Reports May 27 BMO. If pre-earnings setup looks clean Tuesday, could enter. Sector (Tech/SaaS) in momentum. Entry confirmation needed.
+3. **Hold XOM / add CVX:** If oil stabilizes above $90, XOM thesis intact. CVX as backup energy add if XOM stops out.
+
+### Risk Factors
+- **NVDA stop likely triggered Tuesday** — $215.33 vs stop $212.89 (1.1% gap)
+- **Oil slide** — WTI $91.90, down from $99; XOM stop $147.31 (4.9% away); if oil breaks $88, XOM at risk
+- **PCE Friday** — hot print = rate fears = tech/growth selloff
+- **MRVL/CRM earnings binary** — entering pre-earnings carries gap risk
+- **58.1% deployed** — well below 75-85% target; need 1-2 new positions but cannot force bad trades
+- **Weekly trade count:** Reset for new week (0/3 trades used)
+
+### Decision
+**MARKET CLOSED TODAY.** No action possible.
+**Tuesday plan:** Monitor NVDA at open — if stop triggered, immediately evaluate MRVL entry (before CRM/MRVL earnings Wed). Hold PLTR and XOM. Scout PCE Friday risk before adding any rate-sensitive names. Do NOT pre-buy MRVL/CRM ahead of earnings without confirmation.
+
+---
+
 ## 2026-04-30 — Pre-market Research
 
 ### Account
