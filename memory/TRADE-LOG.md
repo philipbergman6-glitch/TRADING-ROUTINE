@@ -43,3 +43,16 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## May 25 — EOD Snapshot (Holiday — Memorial Day; reflects May 22 close)
+**Portfolio:** $106,602.08 | **Cash:** $44,727.82 (42.0%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,602.08 (+6.60%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $215.33 | — (holiday) | +$602.10 (+3.21%) | $212.89 |
+| PLTR | 152 | $136.96 | $136.88 | — (holiday) | -$12.52 (-0.06%) | $126.86 |
+| XOM | 140 | $145.94 | $154.92 | — (holiday) | +$1,257.44 (+6.15%) | $147.31 |
+
+**Notes:** Market closed for Memorial Day. Snapshot reflects May 22 (Fri) close. Portfolio has evolved significantly since Apr 30: AMD exited (trailing stop triggered or manual cut), XOM added as energy sector position, PLTR scaled to 152 shares at blended avg $136.96. Net phase gain +6.60% vs S&P. Deployed 58% — below 75-85% target; look to add a 4th position Tuesday if market confirms direction. NVDA reclaimed above entry (+3.21%), XOM strong (+6.15%). PLTR essentially flat (-0.06%). Trades this week (May 19-25): 0 — capacity for 3 new trades next week.
