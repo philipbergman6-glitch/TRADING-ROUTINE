@@ -43,3 +43,16 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+### May 26 — EOD Snapshot (Day 20, Tuesday)
+**Portfolio:** $106,636.22 | **Cash:** $42,532.22 (39.9%) | **Day P&L:** +$34.14 (+0.03%) | **Phase P&L:** +$6,636.22 (+6.64%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MU | 25 | $853.58 | $895.30 | +19.21% | +$1,043.00 (+4.89%) | $825.12 |
+| PLTR | 152 | $136.96 | $136.55 | -0.24% | -$62.68 (-0.30%) | $126.86 |
+| XOM | 140 | $145.94 | $149.81 | -3.30% | +$542.04 (+2.65%) | $147.31 |
+
+**Notes:** First trading day after Memorial Day. Portfolio barely moved (+$34 on the day) despite MU surging +19.2% on a major catalyst — MU was bought today at $853.58, rode up to HWM $916.80, and pulled back to close $895.30. XOM gave back -3.3% and is now within ~$2.50 of its stop ($147.31); watch closely. PLTR flat (-0.24%). AMD and NVDA exited since Apr 30 snapshot. MU buy counts as 1 trade this week (1/3). Deployed at ~60% — below 75-85% target; look to add a position Wed/Thu if setups emerge.
