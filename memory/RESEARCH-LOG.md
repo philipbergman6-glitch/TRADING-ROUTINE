@@ -174,3 +174,50 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-26 — Pre-market Research
+
+### Account
+- **Equity:** $106,048.58 | **Cash:** $44,727.82 | **Buying power:** $150,776.40
+- **Day P&L:** — | **Phase P&L:** +$6,048.58 (+6.05%)
+- **Deployed:** $61,320.76 (57.8% — below 75-85% target)
+- **Daytrade count:** 1 (from May 22)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| NVDA   | 90  | $208.64   | $216.68 | +$723 (+3.85%)   | $212.89 (10% trail, HWM $236.54) |
+| PLTR   | 152 | $136.96   | $134.74 | -$338 (-1.62%)   | $126.86 (10% trail, HWM $140.95) |
+| XOM    | 140 | $145.94   | $152.42 | +$907 (+4.44%)   | $147.31 (10% trail, HWM $163.68) |
+
+### Market Context
+- **S&P 500 futures (ESM26):** 7,548.25 (+0.76%) — risk-on, constructive. Day after Memorial Day.
+- **VIX:** 17.81 (-16.58%) — declining, improving sentiment.
+- **WTI:** ~$92.59/bbl (day range $90.93–$93.60) — down from $96-99 last week. US-Iran peace talks reducing geopolitical risk premium. Bearish near-term for energy.
+- **Brent:** Not cleanly available; tracking lower with WTI.
+- **Sector momentum YTD:** Energy #1 (+34%), Tech recovering, AI/semi stocks leading today.
+- **Overnight catalyst:** US-Iran peace negotiations reducing geopolitical premium (oil down). AI chipmakers rallying. Workday (WDAY) Q1 beat + raised guidance → SaaS/AI software strength.
+- **This week's macro:** JOLTS, ADP, jobless claims, NFP (labor data heavy week).
+
+### Holdings Update
+- **NVDA** (+3.85%): AI GPU rally today, semis strong. Stop at $212.89 (distance 1.75%); thesis intact. Tighten threshold $239.94 (+15%) — not reached. Hold.
+- **PLTR** (-1.62%): Down 1.56% intraday. Stop $126.86 (5.85% away). -7% cut at $127.37 — stop likely triggers before cut. Thesis intact; hold.
+- **XOM** (+4.44%): Oil dropped to $92.59 (from $99 last week) on Iran-US peace talks. XOM stop at $147.31 is 3.4% below current $152.42. Oil decline weakens thesis partially, but stop manages downside. Do NOT move stop down. Hold.
+
+### Trade Ideas
+1. **MU (Micron Technology)** — NerdWallet #1 AI stock May 2026, Zacks Strong Buy. HBM (High Bandwidth Memory) demand for NVDA/AI chips is the core catalyst. Tech/AI sector rallying today. At ~$853, 20% of equity = 25 shares. Diversifies within AI ecosystem. R:R 2:1 (10% trail, target +20%). Conviction: 8/10. ✅ **BUY**
+2. **GEV (GE Vernova)** — AI power/grid infrastructure. Very wide bid/ask spread in paper data; skip today.
+3. **INTC (Intel)** — Apple-Intel chip partnership catalyst (record $114.51 on May 7). Now ~$120. Concentration risk (already NVDA in portfolio). Defer.
+
+### Risk Factors
+- NVDA stop at $212.89 only 1.75% from current; any intraday dip could trigger
+- PLTR and XOM both slightly weak intraday
+- Oil falling (-$7/bbl from last week) could pressure XOM further
+- Labor data week (JOLTS through NFP) — binary macro risk
+- After MU buy: 4 positions, 77.9% deployed — within target
+
+### Decision
+**BUY MU 25 shares at market.** Brings deployment to ~78%. AI memory catalyst is clear and documented. All other positions HOLD — let stops manage downside.
+- Week trade count after: 1/3

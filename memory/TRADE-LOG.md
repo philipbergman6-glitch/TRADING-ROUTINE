@@ -43,3 +43,13 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-26 — Market-Open Trades
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-05-26 | MU | BUY | 25 | $853.58 | 10% trailing GTC (initial $766.58, HWM $851.75) | HBM memory demand for AI/NVDA chips; NerdWallet #1 AI stock May 2026, Zacks Strong Buy; tech/AI sector rally | $1,024+ | 2:1 |
+
+**Week of 2026-05-26 trade count: 1/3**
