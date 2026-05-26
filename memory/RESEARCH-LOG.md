@@ -129,6 +129,58 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ---
 
+## 2026-05-26 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $106,412.62 | **Cash:** $44,727.82 | **Buying power:** $151,140.44
+- **Day P&L:** n/a (premarket) | **Phase P&L:** +$6,412.62 (+6.41%)
+- **Deployed:** $61,684.80 (58.0% — below 75-85% target)
+- **Daytrade count:** 1 | **Weekly trades used:** 0/3
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|----------|------------|-----|
+| NVDA   | 90  | $208.64   | $217.88 | +$831 (+4.43%)   | $212.89 (10% trail) | $236.54 |
+| PLTR   | 152 | $136.96   | $136.50 | -$70 (-0.34%)    | $126.86 (10% trail) | $140.95 |
+| XOM    | 140 | $145.94   | $152.25 | +$884 (+4.33%)   | $147.31 (10% trail) | $163.68 |
+
+**STOP ALERT — XOM:** Stop $147.31 is only 3.2% below current $152.25. One bad day in oil triggers exit.
+
+### Market Context
+- **WTI:** ~$92/bbl (May '26 front-month); Brent ~$113/bbl. Elevated geopolitical premium (US-Iran tensions)
+- **S&P 500 futures (ESM26):** 7,548.25, +57.25 (+0.76%) — strong post-Memorial-Day return to risk
+- **VIX:** 16.85 (trending down from 18.06 on May 19) — calm, conducive to equity risk
+- **Today's macro:**
+  - 8:00 AM: FHFA Home Price Index
+  - 10:00 AM: Conference Board Consumer Confidence (prior: 92.8; expectations index 72.2 — watch)
+  - 10:30 AM: Dallas Fed Manufacturing Survey
+  - No CPI, PPI, FOMC, or jobs data
+- **Earnings BMO today:** Xiaomi ADR (XIACY), New Fortress Energy — no major market movers
+- **Sector YTD (best available ~May 2026):** Energy +26%+ (#1) | Tech +18% | Comms +11% | Cons.Staples +11% | Industrials +11% | Materials +10% | Financials –2% | Health Care –5%
+- **First trading day back after Memorial Day** (May 25 market closed)
+
+### Holdings Update
+- **NVDA** (+4.43%): Q1 beat ($81.6B rev vs $78.8B est), $80B buyback, dividend raised to $0.25/qtr. Vera Rubin shipments on track H2 2026. Post-earnings stabilizing — up +1.18% premarket. Stop $212.89 is 2.3% below $217.88; trailing stop managing fine, do NOT adjust. Tighten threshold ($239.94) not yet reached. Thesis intact. Hold.
+- **PLTR** (-0.34%): Wall Street consensus target ~$192 (+40.1% upside from $136.50). Citi sees 80% sales upside in 2026; strong Q1 beat. Nearly flat vs. entry. -7% cut level ~$127.36 vs. stop $126.86. Thesis intact. Hold.
+- **XOM** (+4.33%): Rose +3.17% May 11 on US-Iran oil supply threat. Oil still elevated ($92/WTI, $113/Brent). Analyst mean target $166.68. **Stop $147.31 is 3.2% below current — dangerously close; monitor intraday.** Thesis intact but stop could trigger on oil weakness. Hold.
+
+### Trade Ideas
+1. **MSFT (Microsoft)** — Tech/AI/cloud secular growth; less binary risk than NVDA. Diversifies concentration. Entry ~$440–445 at open if futures hold green, 10% trailing stop (~$396), target $510+. R:R 2:1+. Would bring deployment to ~66%.
+2. **META (Meta Platforms)** — Communications sector #3 YTD. AI-driven ad revenue; strong Q1. Entry ~$640–650, 10% trailing stop (~$576), target $740+. Adds sector diversification, boosts deployment to ~73%.
+3. **CVX (Chevron)** — Energy backup to XOM. US-Iran premium supports oil. Entry ~$165–170, stop $149, target $192+. Adds energy alongside XOM; would put energy at ~40% — borderline concentrated. Lower priority.
+
+### Risk Factors
+- **XOM stop at 3.2%** — triggered if oil slides or risk-off; watch $152 intraday
+- **Holiday-weekend gap risk** — first day back can see unexpected positioning; wait for first 30 min
+- **Consumer Confidence at 10 AM** — expectations index below 80 signals recession; weak print = sell
+- **NVDA stop proximity** — at $212.89, only 2.3% below current; any broad tech selloff could trigger
+- **58% deployed** — pressure to add, but don't force it; patience > activity
+
+### Decision
+**HOLD all existing positions.** Do not open new trades today — first day back after long weekend, observe open for 30 min. If market holds green and Consumer Confidence prints ≥93, scout **MSFT entry Wednesday** as the cleanest path to 75%+ deployment. Watch XOM intraday — if oil breaks below $90/WTI, cut manually before stop triggers.
+
+---
+
 ## 2026-05-21 — Pre-market Research
 
 ### Account Snapshot
