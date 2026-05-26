@@ -174,3 +174,22 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-26 — Afternoon Addendum (Midday Scan)
+
+### MU Catalyst Research (+18% today)
+- **Cause:** AI memory re-rating, not a single intraday headline. Driven by: (1) Q2 FY26 beat-and-raise (March 18) — rev $23.86B, EPS $12.20, "significant records" guided for Q3; (2) HBM/DRAM demand from cloud/AI infra remains very strong; (3) S&P 100 inclusion passive fund buying; (4) MU up +70% YTD 2026 — sector momentum.
+- **Entry context:** Position entered at market open today ($853.58, 25 shares). Gapped from prior close $751 → opened ~$853. Intraday HWM $891.27.
+- **Thesis status:** INTACT. Memory supply tight, AI infra capex accelerating, beat-and-raise profile intact.
+
+### Positions at 12:30 ET
+| Symbol | Qty | Entry | Current | Unr. P&L | Stop | Action |
+|--------|-----|-------|---------|----------|------|--------|
+| MU | 25 | $853.58 | $887.00 | +$835 (+3.92%) | $802.14 (10% trail, HWM $891.27) | HOLD |
+| PLTR | 152 | $136.96 | $137.14 | +$26 (+0.13%) | $126.86 (10% trail, HWM $140.95) | HOLD |
+| XOM | 140 | $145.94 | $150.70 | +$667 (+3.26%) | $147.31 (10% trail, HWM $163.68) | HOLD — down -2.72% today; monitor |
+
+### Decision
+No action — no -7% losers, no +15% winners to tighten, no thesis breaks. All stops in place via GTC orders. XOM softness today watched; stop buffer ~$3.39 intact.

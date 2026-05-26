@@ -43,3 +43,26 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-26 — Market-Open Trade
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-05-26 | MU | BUY | 25 | $853.58 | 10% trailing GTC (initial ~$768.22) | AI memory leader — HBM/DRAM demand from AI infra; S&P 100 inclusion passive flows; Q2 FY26 beat-and-raise ($23.86B rev, $12.20 EPS); tight supply driving pricing power | $1,024.30 | 2:1 |
+
+**Week of 2026-05-26 trade count: 1/3**
+
+---
+
+## 2026-05-26 — Midday Scan
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| MU | $853.58 | $887.00 | +3.92% | $802.14 (10% trail, HWM $891.27) | HOLD — gapped +18% today on AI memory re-rating; thesis intact; tighten threshold +15% = $981.62 not reached |
+| PLTR | $136.96 | $137.14 | +0.13% | $126.86 (10% trail, HWM $140.95) | HOLD — flat; thesis intact |
+| XOM | $145.94 | $150.70 | +3.26% | $147.31 (10% trail, HWM $163.68) | HOLD — down -2.72% today; stop buffer $3.39; energy thesis intact |
+
+**Actions:** None — no positions at -7%, no positions at +15%+ for stop tighten, no thesis breaks.
+**Deployed:** ~$64,117 / ~$100K = ~64% (below 75-85% target; MU added but still under-deployed)
