@@ -43,3 +43,19 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+### May 27 — EOD Snapshot (Day 21, Wednesday)
+**Portfolio:** $106,240.66 | **Cash:** $45,940.60 (43.2%) | **Day P&L:** -$425.14 (-0.40%) | **Phase P&L:** +$6,240.66 (+6.24%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $423.51 | +0.35% | -$177.77 (-1.04%) | $386.56 |
+| MU | 25 | $853.58 | $926.78 | +3.45% | +$1,829.99 (+8.58%) | $860.36 |
+| PLTR | 152 | $136.96 | $132.83 | -2.76% | -$628.12 (-3.02%) | $126.86 |
+
+**Trades today:** AVGO BUY 40 @ $427.95 (new position); XOM SELL 140 @ $146.62 (closed, +$95 gain from May 7 entry).
+**Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
+
+**Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
