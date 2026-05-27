@@ -174,3 +174,34 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-27 — Midday Scan
+
+### Account Snapshot
+- **Positions:** AVGO, MU, PLTR
+
+| Symbol | Qty | Avg Entry | Current | Unr. P&L% | Stop (GTC) | HWM |
+|--------|-----|-----------|---------|-----------|------------|-----|
+| AVGO | 40 | $427.95 | $420.05 | -1.85% | $386.56 (10% trail) | $429.51 |
+| MU | 25 | $853.58 | $909.01 | +6.49% | $860.36 (10% trail) | $955.96 |
+| PLTR | 152 | $136.96 | $133.61 | -2.45% | $126.86 (10% trail) | $140.95 |
+
+### Losers (-7% threshold): None
+- AVGO -1.85% — below cut trigger. No action.
+- PLTR -2.45% — below cut trigger ($127.37). No action.
+
+### Stop Tighten (+15% threshold): None
+- MU +6.49% — tighten threshold $981.62 (+15%). Not reached.
+
+### Thesis Check
+- **AVGO**: -0.46% today after +3.46% yesterday (BCM68850 50G PON SoC launch, AI momentum). Normal retracement. Thesis intact.
+- **MU**: +1.47% today. AI/HBM memory demand thesis intact. Tracking toward +15% tighten.
+- **PLTR**: -2.19% today. Cause: valuation pressure, profit-taking, RBC bearish stance (declining contract values per RBC). No fundamental break — AI/defense contracts thesis intact. Monitor RBC thesis closely; cut at -7% ($127.37) if fundamentals deteriorate.
+
+### Action Taken
+**None.** No cuts, no stop changes, no new trades.
+
+### Decision
+**HOLD all.** PLTR drift is valuation noise, not thesis break. Watch PLTR stop $126.86 — currently $6.75 of cushion. MU progressing toward +15% tighten level; monitor.
