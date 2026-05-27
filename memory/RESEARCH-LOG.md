@@ -174,3 +174,47 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-27 — Pre-market Research (inline at market-open)
+
+### Account
+- **Equity:** $106,437.99 | **Cash:** $42,532.20 | **Buying power:** $148,970.19
+- **Deployed:** $63,905.79 (60.0% — below 75-85% target)
+- **Daytrade count:** 1 | **Phase P&L:** +$6,437.99 (+6.44%)
+
+### Positions at Open
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| MU | 25 | $853.58 | $937.87 | +$2,107 (+9.88%) | $860.36 (10% trail, HWM $955.96) |
+| PLTR | 152 | $136.96 | $131.87 | -$774 (-3.72%) | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $146.42 | +$67 (+0.33%) | $147.31 trailing — BELOW stop, triggering |
+
+### Market Context
+- **S&P 500 futures (ESM26):** ~7,541.50, +0.06% — near all-time highs
+- **WTI crude:** ~$113.70/bbl (elevated, geopolitical premium)
+- **VIX:** Not directly quoted; risk-on tone
+- **Sector momentum:** AI/tech leading; Nasdaq outperforming S&P; energy variable on oil
+- **Key catalyst:** AI infrastructure spending continues — hyperscaler capex strong; TSM raised 2026 capex guidance to $52-56B
+- **AVGO:** Q1 FY2026 reported March 4 — $19.3B rev (+29%), EPS $2.05 (beat $1.88), Q2 guided $22B (+47%); 52-week high $442.36; no negative May news
+- **ANET:** Analyst upgrade (Raymond James, Outperform, $164 PT May 15); 800G→1.6T upgrade cycle; slightly extended
+
+### XOM Alert
+- Trailing stop at $147.31 (HWM $163.68); current price ~$146 — gapped below stop at open
+- Stop order triggered: sold 140 shares at avg $146.61 (+0.46% from entry; -10.4% from HWM)
+- Energy sector rotation underway; XOM breakeven exit
+
+### Trade Decisions
+1. **AVGO — BUY 40 shares @ market** ✅ EXECUTED
+   - AI custom silicon (Google/Meta ASICs) + Ethernet networking for AI clusters
+   - Q2 guided $22B (+47%) — strong beat-and-raise pattern
+   - Sector #1 momentum; market at ATH
+   - Next earnings: June 3 (7 days) — binary risk noted, thesis strong enough
+   - Entry: $427.95 | Stop: 10% trail ($386.56) | Target: $513.54 | R:R: 2:1
+2. **ANET — PASS** — buyable but extended; prefer pullback entry; 1 trade slot reserved
+3. **PLTR — HOLD** — -3.72% from entry; thesis intact (Q1 +85% rev YoY); stop at $126.86
+4. **MU — HOLD** — +9.88%; tighten at +15% ($981.12); stop at $860.36
+
+### Decision
+Bought AVGO (AI infrastructure, high conviction). Deployed rises to 56.7% after XOM stop-out. 1 trade slot remaining this week — watch ANET or other AI play for potential add if market holds momentum.

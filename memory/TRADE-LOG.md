@@ -43,3 +43,32 @@ No positions yet. Bot launches tomorrow.
 | PLTR | 142 | $142.30 | $139.97 | +1.45% | -$330.86 (-1.64%) | $129.47 |
 
 **Notes:** Mixed session — AMD surged +4.6% on strong momentum, PLTR recovered +1.5%, but NVDA fell -4.6% and is now -4.35% from entry (manual cut trigger at $194.04). Portfolio closed at +0.37% on the day. No new trades; at 3-trade weekly cap (AMD/NVDA/PLTR all entered Apr 28). Deployed only 59% vs 75-85% target — unable to add until next week. Watch NVDA closely Fri; cut if it touches $194.
+
+---
+
+## 2026-05-27 — Market-Open Trades
+
+### XOM — Stop-Out (Trailing Stop Triggered)
+- **Entry:** 2026-05-07 | 140 shares @ $145.94 | Stop set 10% trail
+- **Exit:** 2026-05-27 | 140 shares @ $146.61 (avg) | +$93 (+0.46%)
+- **Reason:** Trailing stop triggered — stock fell from HWM $163.68; stop activated at $147.31, gapped below at open
+- **Result:** Essentially breakeven; sector rotation out of energy as oil slipped from $163 HWM
+
+### New Trades
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-05-27 | AVGO | BUY | 40 | $427.95 | 10% trailing GTC (initial $386.56) | AI infrastructure — custom silicon (Google/Meta ASICs) + networking; Q2 guidance $22B (+47% YoY); market at ATH, AI/tech sector leading | $513.54 | 2:1 |
+
+**Week of 2026-05-26 trade count: 2/3** (MU 2026-05-26, AVGO 2026-05-27)
+
+### Portfolio State After Open
+**Equity:** $106,220.05 | **Cash:** $45,940.60 | **Deployed:** 56.7% | **Daytrade count:** 1
+
+| Ticker | Shares | Avg Entry | Current | Unr. P&L | Stop |
+|--------|--------|-----------|---------|----------|------|
+| MU | 25 | $853.58 | $921.40 | +$1,695 (+7.95%) | $860.36 (10% trail, HWM $955.96) |
+| PLTR | 152 | $136.96 | $132.84 | -$627 (-3.01%) | $126.86 (10% trail, HWM $140.95) |
+| AVGO | 40 | $427.95 | $429.39 | +$57 (+0.34%) | $386.56 (10% trail, HWM $429.51) |
+
+**Notes:** XOM trailing stop triggered at open — sold 140 shares at ~$146.61 avg (+0.46% from entry, down from HWM $163.68). Added AVGO as AI infrastructure replacement — Broadcom Q1 beat ($19.3B rev, +29%), Q2 guided $22B (+47%). Deployed at 56.7% — below 75-85% target; 1 trade slot remaining this week to add if strong opportunity arises.
