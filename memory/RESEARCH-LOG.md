@@ -174,3 +174,64 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-28 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $105,598.14 | **Cash:** $45,940.57 | **Buying power:** $151,538.71
+- **Day P&L (vs last close):** -$568.60 (-0.54%) | **Phase P&L:** +$5,598.14 (+5.60%)
+- **Deployed:** $59,657.57 (56.5% — below 75-85% target)
+- **Daytrade count:** 1 (yesterday)
+- **Week trades used:** 2/3 (MU May 26, AVGO May 27) — 1 remaining
+
+### Positions
+| Symbol | Shares | Avg Entry | Premarket | Unr. P&L | Stop (GTC) | HWM |
+|--------|--------|-----------|-----------|----------|------------|-----|
+| AVGO | 40 | $427.95 | $417.00 | -$438 (-2.56%) | $386.56 (10% trail) | $429.51 |
+| MU | 25 | $853.58 | $904.57 | +$1,275 (+5.97%) | $860.36 (10% trail) | $955.96 |
+| PLTR | 152 | $136.96 | $133.97 | -$455 (-2.19%) | $126.86 (10% trail) | $140.95 |
+
+### Market Context
+- **WTI:** ~$90-94/bbl (-3.38% today); Brent ~$95-100/bbl; oil pulling back sharply from recent highs
+- **S&P 500 futures (ESM26):** ~7,507-7,530, flat to slightly positive (+0.04%)
+- **VIX:** ~17.44-18.25 (May monthly avg 17.44, VIX futures 18.25) — moderate
+- **Economic calendar today:** BLS Productivity & Costs (10 AM ET), Initial Jobless Claims — no CPI/PPI/FOMC/NFP
+- **Next major macro:** NFP June 5, CPI June 10
+- **Key catalyst — semi sector sell-off:** Post-market May 28 recap shows Qualcomm -6.2%, Arm Holdings -5.7%. Broad chip sector weakness; headwind for AVGO and MU today.
+- **FOMC minutes released May 26** — already digested, no new surprises noted
+- **Sector momentum YTD:** Energy +42% (#1) | Industrials, Materials, Consumer Staples — Leading quadrant | Tech, Comms, Discretionary, Financials — Lagging | Momentum factor ETF +20% YTD (vs SPX +8%)
+- **Earnings today BMO:** No major confirmed BMO reporters. Q1 2026 S&P 500 earnings growth tracking +28.4% (FactSet).
+
+### Holdings Update
+- **AVGO (-2.56%):** AI semiconductor revenue doubled YoY in Q1 FY2026, exceeded forecasts. Launched 50G ITU-PON home gateway SoC. Analyst avg target $470.47 (Buy consensus). Stock at $417, traded $416-434 range yesterday; in mild drawdown but well above stop ($386.56) and manual cut (-7% = $397.99). Semi sector headwind today. Thesis intact.
+- **MU (+5.97%):** AI memory demand (HBM) remains strong catalyst. Q1 run from ~$666 (May 6) to HWM $955.96, now at $904.57 — pulled back ~$51 from peak. Stop at $860.36 is 4.9% below current (safe). CEO sold 40k shares May 1 (noted risk). Algo price target of $485.68 by May 31 is likely stale (pre-rally). Thesis intact. Tighten stop threshold (+15% from entry = $981.62) — not yet reached.
+- **PLTR (-2.19%):** Q1 2026 beat (+85% YoY revenue, US commercial +133%). FAA AI air-traffic system finalist (only qualified company). FY2026 guidance raised to ~$7.19B (+61%). Stock at $133.97, up +1.10% premarket. -7% manual cut = $127.37; stop = $126.86 — still $6.60 buffer. Weak price action despite strong fundamentals. Thesis intact. Watch closely.
+
+### Trade Ideas
+1. **WMT (Walmart) — Consumer Staples, week's 3rd trade slot**
+   Defensive sector, Leading quadrant YTD. Resilient consumer demand. Entry: gap-up confirmation above $95 resistance on positive data. Stop: 10% trailing. Target: +20% in 4-8 weeks (R:R ~2:1). Conviction: 6/10 — diversifies tech concentration but no earnings catalyst today; sector is leading. ❌ Below 8/10 threshold.
+
+2. **XOM — Energy sector momentum add**
+   Energy +42% YTD is clear leader. Oil is down ~3% today — poor timing for entry. Wait for oil to stabilize. Entry: on oil bouncing above $95 WTI with sector confirmation. Stop: 10% trail. Target: +20%. Conviction: 5/10 today due to oil sell-off. ❌ Below threshold.
+
+3. **HOLD cash — preserve 3rd trade slot**
+   Semi sector headwind, oil selling off, no major catalyst today. Best use of final weekly trade is patience — wait for higher-conviction setup Thursday/Friday or next week. Conviction: 9/10 to HOLD.
+
+### Risk Factors
+- Chip sector sell-off (QCOM -6.2%, ARM -5.7%) — direct headwind for AVGO and MU today
+- Oil down ~3% — would pressure XOM (not held) and energy sector thesis
+- PLTR: -2.19% unrealized, stop $126.86 only $6.60 above -7% manual cut ($127.37) — needs monitoring
+- MU: pulled back $51 from HWM; if semi sell-off deepens, trailing stop at $860.36 is still 5% away
+- 56.5% deployed — below 75-85% target; pressure to add but no setup clears threshold
+- 1 trade remaining this week — must not waste on suboptimal entry
+
+### Decision
+**HOLD all. No new buys today.**
+- Semi sector headwind is a real risk for AVGO and MU — no new tech exposure today.
+- Oil selling off sharply makes energy add timing poor; preserve 3rd trade slot for better entry.
+- All three positions are within stops and thesis intact; no manual cuts warranted.
+- PLTR showing +1.1% premarket recovery — thesis (FAA catalyst, Q1 blowout) is solid.
+- MU stop at $860.36 safe at current levels; tighten trigger ($981.62) not reached.
+- Re-evaluate XOM entry if oil stabilizes above $93 WTI by end of week.
