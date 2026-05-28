@@ -174,3 +174,25 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-28 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | Unr P&L% | Today% | Stop | HWM |
+|--------|-------|---------|----------|--------|------|-----|
+| AVGO | $427.95 | $427.00 | -0.22% | +1.22% | $386.56 (10% trail) | $429.51 |
+| MU | $853.58 | $947.93 | +11.05% | +2.10% | $860.36 (10% trail) | $955.96 |
+| PLTR | $136.96 | $139.67 | +1.98% | +5.40% | $126.86 (10% trail) | $140.95 |
+
+### Actions
+- No cuts — no position at -7% or worse
+- No stop tightening — MU at +11.05%, threshold +15% ($981.62); not reached
+- No thesis breaks
+
+### PLTR Afternoon Note
+PLTR +5.4% intraday, recovering from yesterday's -2.76% close ($132.83 → $139.67). Perplexity search found no specific catalyst today — bounce/recovery move after weakness. Thesis (AI/defense software) intact. Stop $126.86 unchanged.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. Watch MU: approaching +15% tighten threshold ($981.62); current $947.93, gap of ~$34 remaining. One trade left this week (2/3 used: MU May 26, AVGO May 27). Deployed ~55% — below 75-85% target.
