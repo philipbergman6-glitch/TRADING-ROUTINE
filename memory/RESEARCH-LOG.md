@@ -174,3 +174,46 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-28 — Pre-market Research (inline, market-open)
+
+### Account
+- **Equity:** $106,657.03 | **Cash:** $45,940.57 | **Buying power:** $152,597.60
+- **Deployed:** $60,716 (56.9% — below 75-85% target)
+- **Daytrade count:** 1
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO   | 40  | $427.95   | $417.42 | -$263.97 (-1.54%) | $386.56 (10% trail, HWM $429.51) |
+| MU     | 25  | $853.58   | $931.09 | +$1,937.64 (+9.08%) | $860.36 (10% trail, HWM $955.96) |
+| PLTR   | 152 | $136.96   | $135.23 | -$263.32 (-1.27%) | $126.86 (10% trail, HWM $140.95) |
+
+### Market Context
+- **S&P 500 futures:** +0.36% | **Nasdaq 100 futures:** +0.56% — risk-on, tech/AI led open
+- **VIX:** Level not confirmed; implied moderate (risk-on tape, no elevated fear signal)
+- **Sector leadership:** Tech/AI #1 today; Energy weak from prior session
+- **Key catalysts today:** No major earnings BMO; general AI optimism driving tape
+- **AVGO catalyst:** Wells Fargo raised target to $545 (May 14, AI chip demand 30-40% above consensus); Goldman Sachs target $435. Both stale (~2 weeks old). No fresh event today.
+
+### Holdings Update
+- **AVGO** (-1.54%): Analyst consensus bullish ($435-$545 range). AI semiconductor play. Current $417 below entry $427.95. -7% cut = $398.00 — not threatened. Thesis intact. HWM $429.51, stop $386.56.
+- **MU** (+9.08%): AI infrastructure/memory play. HWM $955.96, stop $860.36. Tighten threshold +15% = $981.62 — not reached at $931. Thesis intact.
+- **PLTR** (-1.27%): Rebounding +2.05% today. Stop $126.86, -7% cut $127.37 — very close together; watch. Thesis intact.
+
+### Trade Ideas
+1. **AVGO add** (~9 shares, ~$3,757) — Within 20% cost limit ($20,875 < $21,331), analyst targets well above current. Against: catalyst is 2 weeks stale, adding to a losing position, spends last weekly trade. Conviction: 5/10 ❌
+2. **New position** — No specific fresh catalyst or ticker identified today. AI tape is supportive but generic. ❌
+3. **HOLD** — Preserve last weekly trade for higher-conviction event-driven setup. ✓
+
+### Risk Factors
+- AVGO below entry — further weakness could approach -7% cut ($398) within ~5% from here
+- PLTR stop ($126.86) and -7% cut ($127.37) nearly identical — any gap down triggers both
+- MU below HWM ($955.96 → $931) — slight pullback; stop not near
+- 56.9% deployed — below target but no quality entry to force deployment
+
+### Decision
+**HOLD — no new trades.** No specific fresh catalyst for any buy today. AVGO has analyst support but no event-driven trigger and is below entry. One weekly trade slot preserved for a higher-conviction setup. All stops current and properly placed.
+- **Weekly trade count: 2/3**
