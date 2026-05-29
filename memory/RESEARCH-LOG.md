@@ -174,3 +174,25 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-29 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| AVGO | $427.95 | $438.90 | +2.56% | +2.89% | $403.72 (10% trail, HWM $448.58) |
+| MU | $853.58 | $962.28 | +12.73% | +4.20% | $882.90 (10% trail, HWM $981.00) |
+| PLTR | $136.96 | $155.59 | +13.60% | +8.55% | $144.59 (7% trail, HWM $155.47) — tightened |
+
+### Actions
+- **PLTR:** Tightened trailing stop 10% → 7% (HWM $157.78 exceeded +15% threshold). New stop $144.59 vs old $142.00 (+$2.59 higher). No cuts, no thesis breaks.
+- **MU:** HWM $981.00 just below +15% trigger $981.62 — monitor, hold 10% trail.
+- **AVGO:** No action needed.
+
+### PLTR Catalyst Research
+Q1 2026 beat: revenue $1.63B (+85% YoY) vs $1.532–1.536B guide. U.S. commercial accelerating. FY guidance raised. Rosenblatt PT raised to $225. Strong post-earnings re-rating. Thesis confirmed and upgraded.
+
+### Decision
+HOLD all. PLTR stop tightened per rules. No new trades (need to check weekly count — 2/3 used as of May 27, one trade remaining this week). Portfolio strengthening across all positions.

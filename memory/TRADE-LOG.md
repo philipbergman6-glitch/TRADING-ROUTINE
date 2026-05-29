@@ -59,3 +59,28 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-05-29 — Midday Scan
+
+### Positions at Scan
+| Ticker | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| AVGO | $427.95 | $438.90 | +2.56% | +2.89% | $403.72 (10% trail, HWM $448.58) |
+| MU | $853.58 | $962.28 | +12.73% | +4.20% | $882.90 (10% trail, HWM $981.00) |
+| PLTR | $136.96 | $155.59 | +13.60% | +8.55% | **tightened — see below** |
+
+### Actions
+- **PLTR stop tightened 10% → 7%:** HWM $157.78 exceeded +15% threshold ($136.96×1.15=$157.50). Cancelled order 1dfb4fc7; placed new GTC 7% trailing stop (order 1c6e9b3d). New stop $144.59, HWM $155.47. Old stop was $142.00 — moved up $2.59. ✓ Not within 3% of current price; stop not moved down.
+- **No cuts:** All positions positive; none at -7%.
+- **MU not tightened:** HWM $981.00 just below +15% threshold $981.62 — holds at 10% trail.
+- **AVGO no action:** +2.56%; well below tighten thresholds.
+
+### Catalyst — PLTR +8.55% intraday
+Q1 2026 earnings beat after close (prior session): revenue $1.63B (+85% YoY) vs guidance $1.532–1.536B. U.S. commercial accelerating. Raised FY guidance. Rosenblatt PT $225. Thesis strongly confirmed.
+
+### Thesis Check
+- AVGO: intact. Semiconductor/AI momentum.
+- MU: intact. AI memory demand, strong momentum.
+- PLTR: intact (upgraded). Q1 beat + raised guidance confirms bull thesis.
