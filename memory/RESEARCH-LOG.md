@@ -174,3 +174,54 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-29 — Pre-market Research
+
+### Account
+- **Equity:** $109,775.98 | **Cash:** $45,940.57 | **Buying power:** $155,716.55
+- **Day P&L:** n/a | **Phase P&L:** +$9,775.98 (+9.78%)
+- **Deployed:** $63,835.41 (58.1% — below 75-85% target)
+- **Daytrade count:** 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO   | 40  | $427.95   | $436.96 | +$360 (+2.10%)    | $395.46 (10% trail, HWM $439.40) |
+| MU     | 25  | $853.58   | $952.07 | +$2,462 (+11.54%) | $867.89 (10% trail, HWM $964.32) |
+| PLTR   | 152 | $136.96   | $148.23 | +$1,713 (+8.23%)  | $134.58 (10% trail, HWM $149.53) |
+
+### Market Context
+- **S&P 500:** 7,563.63 (May 28 close) — near all-time highs; longest weekly rally since 2023
+- **Market tone:** Risk-on; AI/chipmaker cycle dominant; SPX gaining on semi strength
+- **VIX:** Not sourced — assume moderate given ATH rally tone
+- **Oil (Brent):** ~$120/bbl (late April reference); J.P. Morgan notes AI + energy as key 2026 forces
+- **Sector YTD momentum:** AI/semis leading; energy elevated; tech broadly strong
+- **Earnings calendar:** No major earnings today (Friday). Next week: watch for any semi/AI names.
+- **Economic calendar today (May 29):** GDP Price Index QoQ 2nd estimate, PPI MoM, MBA Mortgage data — moderate impact
+
+### Ticker Notes
+- **AVGO (+2.10%):** Analyst consensus $454–479 (32 analysts, avg $454.55; eToro $478.56); high target $582 (Evercore ISI). Susquehanna raised target ahead of Q2 earnings. AI infrastructure demand thesis intact. Approaching HWM $439.40 today. Tighten threshold at $492.14 (+15%) — not reached.
+- **MU (+11.54%):** Up 70%+ in 2026. Q2 FY26 beat: EPS $12.20 vs $9.21 est, Rev $23.9B vs $20.0B est. AI memory demand supercycle. DA Davidson target $1,500; Mizuho $1,150. HWM $964.32 today. Tighten threshold at $981.62 (+15%) — approaching (~$29 away). Watch closely.
+- **PLTR (+8.23%):** Strong momentum; thesis intact. HWM $149.53. Tighten threshold $157.50 (+15%) — not reached (~$9 away). Q1 2026 blowout (US rev +104% YoY) still underpinning thesis.
+
+### Trade Ideas
+1. **XOM / CVX (Energy)** — Oil Brent elevated ~$120. Energy sector #1 YTD. Diversifies AI concentration. But: previously held XOM from May 7→May 27 with near-zero gain; no fresh catalyst today. Conviction: 5/10. ❌
+2. **Another AI/semi name** — Sector momentum strong but portfolio is already 3/3 AI/tech. Concentration risk; no diversification benefit. ❌
+3. **HOLD cash** — Friday; no 8/10+ conviction idea; S&P near ATH creates extended risk. Preserve last weekly trade for next week setup.
+
+### Risk Factors
+- MU approaching +15% tighten threshold ($981.62) — if hit, tighten stop to 7% trail
+- PLTR approaching +15% threshold ($157.50) — watch intraday
+- S&P near all-time highs — limited mean-reversion cushion
+- Portfolio at 58.1% deployed — below target, but cannot force a bad trade
+- 1 trade remaining this week — preserve for 8/10+ catalyst
+
+### Decision
+**HOLD all. No new buys today.**
+- No trade idea clears 8/10 conviction threshold.
+- Friday gap risk; S&P at ATH; AI-tech already 3/3 concentration.
+- MU approaching 15% tighten threshold — monitor intraday; tighten stop to 7% trail if $981.62 hit.
+- Preserve final weekly trade for a genuine catalyst next week.
+- Re-evaluate XOM/CVX or a diversification add Monday with fresh research.
