@@ -174,3 +174,53 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-05-29 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $109,097.73 | **Cash:** $45,940.57 | **Buying power:** $155,038.30
+- **Day P&L:** +$1,218.28 (+1.13% vs last equity $107,879.45) | **Phase P&L:** +$9,097.73 (+9.10%)
+- **Deployed:** $63,157.16 (57.9% — below 75-85% target)
+- **Daytrade count:** 0
+- **Week trades:** 2/3 used (MU May 26, AVGO May 27) → 1 slot remaining today
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO   | 40  | $427.95   | $432.84 | +$195 (+1.14%)   | $386.71 (10% trail, HWM $429.68→$432.84) |
+| MU     | 25  | $853.58   | $947.04 | +$2,336 (+10.95%)| $860.36 (10% trail, HWM $955.96) |
+| PLTR   | 152 | $136.96   | $145.84 | +$1,349 (+6.48%) | $129.08 (10% trail, HWM $143.42→$145.84) |
+
+### Market Context
+- **WTI:** ~$89/bbl (down significantly from $105 peak in late April) | **Brent:** ~$91-92 est. Elevated on Iran skirmishes/Hormuz risk, but off highs.
+- **S&P 500 futures (ESM26):** ~7,550–7,585 — near all-time highs per Investing.com; SPX in record territory.
+- **VIX:** 16.29 (down from 17.01 prior day; 1yr ago 18.96) — low-moderate, favorable for risk assets.
+- **Yesterday's macro releases (May 28):** GDP Q1 2nd est. 1.6% (below 2.0% consensus), Core PCE YoY 3.3% (in-line), Jobless claims 215K (slightly above 211K est). Mild soft data — market reaction flat.
+- **Today (May 29) calendar:** Consumer Inflation Expectations (May), 3-Month Bill Auction. No major macro. Clean tape.
+- **Earnings BMO today:** No major S&P 500 names (DLNG small-cap LNG carrier). Light day.
+- **Sector YTD:** Energy +21% (#1) | Materials +17% | Cons. Staples +15% | Industrials +12% | Tech lagging (value rotation).
+- **Key macro backdrop:** Iran-U.S. skirmishes keeping oil bid; AI capex theme driving semis/tech; Q1 S&P 500 earnings grew +28.4% YoY (FactSet) — broad beat cycle.
+
+### Holdings Update
+- **AVGO** (+1.14%): $432.84, yesterday's range $413–$435. Broadcom Q2 earnings **June 3** (5 days). AI custom silicon demand + FuriosaAI partnership. UBS/analysts bullish; AVGO +23% YTD. Tighten threshold: $427.95 × 1.15 = $492.14 — not reached. **BINARY RISK June 3 — no add.** Hold.
+- **MU** (+10.95%): $947.04, HWM $955.96 from recent run. **UBS raised target to $1,625 from $535 on May 26** — most bullish Street target. Stock surged +12% on May 26, now +10.95% from our entry. Tighten threshold: $853.58 × 1.15 = **$981.62** — at $947, only ~$35 away. Watch intraday: if MU touches $981.62, tighten stop from 10% → 7% trail. Max 20% rule: $23,676 = 21.7% of equity — already at cap, no add. Hold; tighten alert active.
+- **PLTR** (+6.48%): $145.84, yesterday $143.34 (+1.74%). HWM in order at $143.42 — today's price $145.84 is new HWM; stop will ratchet to ~$131.26. Q1 2026 beat (EPS $0.33 vs $0.28 est); FAA air traffic AI contract finalist (massive gov't catalyst). Analyst consensus ~$158, range $60–$255. Tighten threshold $136.96 × 1.15 = **$157.50** — ~$12 away. Hold; watch for tighten trigger.
+
+### Trade Ideas
+1. **XOM (Exxon Mobil)** — Energy #1 YTD (+21%). Oil ~$89 still elevated on Iran risk. XOM was held/closed May 27 flat; re-entry valid if energy confirms. Entry ~$140–142 on pullback, stop $127 (10%), target $165+ (2:1). Best bet for deployment gap and diversification out of pure tech. **Scout Monday.**
+2. **COST (Costco)** — Consumer Staples +15% YTD. Defensive diversifier vs 3-tech concentration. Resilient earnings record, next report June 5. Entry ~$1,050–1,060, stop $945 (10%), target $1,200+ (2:1+). **Scout Monday — better after AVGO earnings June 3 clears.**
+3. **ANET (Arista Networks)** — AI/cloud networking infrastructure play. Benefits from same capex theme as MU/AVGO but different end-market. Entry $300–310, stop $270 (10%), target $365+ (2:1). Lower conviction today; monitor.
+
+### Risk Factors
+- **AVGO earnings June 3** — binary event in 5 days; gap risk both ways
+- **Iran/oil escalation** — any Hormuz closure = oil spike, risk-off for growth stocks
+- **MU HWM pullback** — $955.96 HWM suggests consolidation; stop at $860 if reversal
+- **Tech concentration** — all 3 positions in tech (AVGO, MU, PLTR); no sector diversification
+- **Deployed 57.9%** — persistent underdeployment; 1 trade slot remains this week
+- **Friday factor** — thin volume, end-of-week positioning; avoid chasing intraday moves
+- **Soft GDP 1.6%** — below-trend growth; rate-cut hopes supportive but not a catalyst
+
+### Decision
+**HOLD all. No new trades today (Friday).** AVGO earnings June 3 adds binary risk to adding there; MU at cap (21.7%); PLTR near 20% cap. Use 1 remaining trade slot **Monday** for diversifying add — XOM (energy) preferred if oil holds $85+ and sector confirms. Watch MU intraday: tighten stop to 7% trail if touches $981.62. Watch PLTR: tighten stop to 7% trail if touches $157.50.
