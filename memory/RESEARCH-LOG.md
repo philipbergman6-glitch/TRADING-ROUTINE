@@ -174,3 +174,24 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-06-01 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| AVGO | $427.95 | $460.60 | +7.63% | +3.10% | $417.26 (10% trail, HWM $463.62) |
+| MU | $853.58 | $1,043.18 | +22.21% | +7.43% | $994.34 (5% trail, HWM $1,046.67) |
+| PLTR | $136.96 | $162.09 | +18.35% | +3.55% | $150.90 (7% trail, HWM $162.26) |
+
+### Actions
+- No cuts (all positions positive; none at -7%)
+- No stop tightening (MU already at 5% trail from prior session; PLTR already at 7% trail from prior session)
+
+### MU Afternoon Addendum
+MU +7.43% intraday (+22.21% total). Catalyst: AI-memory demand surge — DRAM ASPs estimated +50-60% QoQ, 2026 HBM output fully committed under long-term contracts, Susquehanna raised target $600→$1,750 (Positive). Move is fundamental, not a one-off headline. 5% trailing stop at $994.34 (HWM $1,046.67) protects gains. Thesis stronger than ever. No action needed.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
