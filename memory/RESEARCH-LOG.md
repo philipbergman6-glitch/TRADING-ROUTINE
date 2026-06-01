@@ -174,3 +174,49 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ### Decision
 **HOLD all. Scout WMT and HD at the open.** NVDA earnings volatility adds intraday risk — no new tech today. If WMT or HD print strong beats with raised guidance: evaluate at open (confirm weekly trade count before acting). XOM and PLTR theses intact. No stops to tighten yet.
+
+---
+
+## 2026-06-01 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $113,453.59 | **Cash:** $45,940.57 | **Buying power:** $159,394.16
+- **Day P&L:** +$1,573.14 (+1.41%) | **Phase P&L:** +$13,453.59 (+13.45%)
+- **Deployed:** $67,513.02 (59.5% — below 75-85% target)
+- **Daytrade count:** 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO | 40 | $427.95 | $445.03 | +$683 (+3.99%) | $405.48 (10% trail, HWM $450.53) |
+| MU | 25 | $853.58 | $1,027.04 | +$4,337 (+20.32%) | $969.33 → **tightened to 5%** (HWM $1,020.35) |
+| PLTR | 152 | $136.96 | $157.82 | +$3,170 (+15.23%) | $149.54 (7% trail, HWM $160.80) ✓ already tightened |
+
+### Stop Adjustments Executed
+- **MU:** At +20.32% — tightened trailing stop 10% → 5%. Cancelled order `741f6750`, placed new stop at $969.33 GTC.
+- **PLTR:** Already at 7% trail (tightened previously) ✓
+- **AVGO:** +3.99% — no tighten needed yet (threshold +15%)
+
+### Market Context
+- **S&P 500 futures (ESM26):** +0.18–0.20% pre-open — mildly bullish. S&P near 7,600 area. June target 7,700 per analysts.
+- **VIX:** Data unavailable; market tone constructive.
+- **Macro:** US-Iran deal optimism easing geopolitical premium → crude lower, risk assets bid. AI infrastructure enthusiasm driving tech leadership.
+- **Key catalyst:** NFP June 10 is next major macro event. Clean calendar today.
+- **Sector leadership:** AI infrastructure / semiconductors #1; tech broadly bid.
+
+### Holdings Update
+- **MU** (+20.32%): AI memory demand (DRAM/HBM) remains exceptional. WallStreetZen flags as "AI memory king" week of 6/1. Stop tightened to 5% per rules. Thesis intact.
+- **PLTR** (+15.23%): Stop already at 7%. AI/defense software thesis intact. Monitor for +20% tighten to 5%.
+- **AVGO** (+3.99%): AI chip momentum; stop at 10%. No action needed.
+
+### Trade Ideas Evaluated
+1. **ANET (Arista Networks)** — AI Ethernet networking (800G→1.6T upgrade cycle). Morgan Stanley PT $180, JPM $200, Rosenblatt $210. **PASS:** At ~$163 price, consensus target $181 = ~1:1 R:R — below 2:1 minimum. No fresh event catalyst today. Revisit if consolidation creates better entry or fresh catalyst emerges.
+
+### Risk Factors
+- Deployed only 59.5% vs 75-85% target — structural gap, but no forced entries
+- MU at +20%: tighter stop means higher stop-out risk on intraday volatility
+- PLTR at +15%: approaching +20% tighten threshold (~$164.33)
+- Iran deal optimism = crude lower → no energy catalyst
+
+### Decision
+**No new trades.** Stop tighten on MU executed (10% → 5%). PLTR stop watch: tighten to 5% if/when it touches $164.33 (+20%). ANET fails R:R test at current price — patience. All three positions hold. Weekly trade count: 0/3.
