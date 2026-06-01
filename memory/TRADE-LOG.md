@@ -59,3 +59,19 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+### Jun 01 — EOD Snapshot (Day 24, Monday)
+**Portfolio:** $114,530.97 | **Cash:** $45,940.57 (40.1%) | **Day P&L:** +$2,650.52 (+2.37%) | **Phase P&L:** +$14,530.97 (+14.53%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $460.60 | +3.10% | +$1,305.83 (+7.63%) | $419.45 (10% trail) |
+| MU | 25 | $853.58 | $1,033.49 | +6.44% | +$4,497.75 (+21.08%) | $994.62 (5% trail) |
+| PLTR | 152 | $136.96 | $160.01 | +2.22% | +$3,503.24 (+16.83%) | $152.20 (7% trail) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Strong broad-based rally to open the week — all three positions advanced. MU surged +6.44% to $1,033.49, now +21.08% from entry; 5% trailing stop at $994.62 (HWM $1,046.97) correctly tightened. PLTR gained +2.22% to $160.01, now +16.83% from entry; 7% trail at $152.20 (HWM $163.66) in place. AVGO added +3.10% to $460.60, +7.63% unrealized. No trades today; fresh week with full 3/3 cap available. Deployed 59.9% ($68,590 / $114,531) — below 75-85% target; looking for 1-2 new setups this week in AI/semis/momentum sectors if market holds strength.
