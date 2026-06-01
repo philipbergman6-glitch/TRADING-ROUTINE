@@ -129,6 +129,64 @@ HOLD all — no rule triggers, no thesis breaks.
 
 ---
 
+## 2026-06-01 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $114,165.76 | **Cash:** $45,940.57 | **Buying Power:** $160,106.33
+- **Day P&L:** n/a (pre-open) | **Phase P&L:** +$14,165.76 (+14.17%)
+- **Deployed:** $68,225.19 (59.8% — below 75-85% target)
+- **Daytrade count:** 0 | **Week trades:** 0/3
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO | 40 | $427.95 | $458.75 | +$1,232 (+7.20%) | $403.99 (10% trail, HWM $448.88 — will update intraday) |
+| MU | 25 | $853.58 | $1,007.19 | +$3,840 (+18.00%) | $882.90 (10% trail, HWM $981) ⚠️ MUST TIGHTEN |
+| PLTR | 152 | $136.96 | $162.47 | +$3,877 (+18.62%) | $146.14 (7% trail, HWM $157.14) |
+
+### ⚠️ URGENT — Stop Tighten Required at Open
+- **MU**: +18.0% from entry, past the +15% tighten threshold ($981.62). Stop is still 10% trailing. **Replace with 7% trailing stop at market open.**
+- **PLTR**: +18.6% from entry, approaching +20% threshold ($164.35). Stop already at 7%. Monitor for 5% tighten if $164.35 hit.
+
+### Market Context
+- **WTI:** ~$88–90/bbl (down sharply from $99–108 in May; oil in correction) | **Brent:** ~$90s
+- **S&P 500 futures (ESM26):** ~7,590–7,600; flat to slightly lower (-0.07%). S&P hit 21st record close May 29 at 7,563.
+- **VIX:** 15.92 — calm/benign. No fear in the market.
+- **ISM Manufacturing PMI** at 10 AM ET: prior 52.7 (expansion); consensus ~52.6–53.0. Key first print of June data.
+- **JOLTS** Tuesday, **ADP + ISM Services** Wednesday, **NFP** Friday (consensus +95k) — jobs-heavy week.
+- **Earnings today BMO:** SAIC. **AMC:** HPE, CRDO (Credo Technology).
+- **AVGO earnings Wednesday June 3** — major binary event; AI revenue expected +140% YoY; consensus targets $500–545.
+- **MU Q3 earnings June 24** — next major catalyst for existing position.
+- **Sector leadership:** Energy still #1 YTD, but oil now declining (~$88 vs $108 peak). AI/Semis/Tech outperforming on individual stock basis. Consumer Staples and Industrials also leading sector indices.
+- **Macro backdrop:** S&P at all-time highs, AI-driven rally, breadth lagging but momentum intact.
+
+### Holdings Update
+- **AVGO (+7.2%):** Q2 2026 earnings June 3 (2 days). Expectations: +140% AI revenue YoY; guidance guided to ~$22B Q2 revenue (+47% YoY). Wells Fargo PT $545, Citi PT $500. Binary event — gap risk either way. Stop at ~$403–413 (10% trail; will update to reflect $458.75 HWM today). Tighten threshold +15% = $492.15 — not reached. Hold, manage stop.
+- **MU (+18.0%):** Up ~70% YTD in 2026. Zacks Bull of the Day today. Q3 earnings June 24. Strong AI memory demand thesis intact. **Stop must be tightened to 7% at open.** New 7% stop from current HWM = $1,007.19 × 0.93 = ~$936.69.
+- **PLTR (+18.6%):** Q1 results ($1.63B rev, +85% YoY) and FY guidance raised to +71% — thesis intact. Analyst consensus PT $193.95. Current $162.47 — 16% below target. Next +20% tighten at $164.35 (close). Stop at 7% trail, HWM $157.14 (will lag current; auto-trails). Hold.
+
+### Trade Ideas
+1. **CRDO (Credo Technology)** — Reports AMC today. AI networking/connectivity chips, data center buildout. If beats: entry Tuesday morning on gap confirmation, 10% trailing stop, target 25%+. Would add AI infrastructure exposure alongside MU. Sector momentum intact. Entry ~$70–80 range (to confirm post-open). R:R ≥2:1.
+2. **HPE (Hewlett Packard Enterprise)** — Reports AMC today. AI server/data center infrastructure play. If prints strong AI revenue growth and raises guidance: entry Tuesday, stop -10%, target +20%+. Trades at more modest valuation than pure AI names — better margin of safety.
+3. **SMH or SOXX** — If no clean single-stock setup, could add broad semis ETF to boost deployment. Not preferred vs. single names but worth considering to reach 75% deployed.
+
+### Risk Factors
+- **AVGO earnings (June 3):** Largest near-term gap risk. If miss or soft guidance → AVGO could drop 10-15% in a day; stop at ~$403-413 would trigger. Accept the risk or partial trim pre-earnings.
+- **Oil declining:** Energy sector tailwind fading. No XOM/CVX exposure — no action needed, but don't add energy.
+- **Jobs week:** ISM today, JOLTS/ADP/NFP through Friday — any weak print shifts rate-cut timeline and spooks growth stocks.
+- **59.8% deployed:** Under-deployed for 3 weeks. Earnings plays (CRDO/HPE tonight) offer legitimate reason to add 1 position Tuesday if confirmed.
+- **PLTR approaching +20% tighten level ($164.35):** Need to monitor intraday; if hit, immediately replace 7% trail with 5%.
+- **Concentration:** All 3 positions are AI/tech. No sector diversification. Mitigated somewhat by strategy rules (follow momentum).
+
+### Decision
+**HOLD all positions.** One urgent maintenance action at open:
+1. **MU: Replace 10% trailing stop with 7% trailing stop** (rules: tighten at +15%; MU is now +18%).
+2. Scout CRDO and HPE post-close tonight. If either beats decisively, evaluate Tuesday entry (0/3 trades available this week).
+3. Watch PLTR at $164.35 intraday — tighten to 5% if hit.
+4. No action until ISM prints at 10 AM; if strong (≥53), market context favors adds.
+
+---
+
 ## 2026-05-21 — Pre-market Research
 
 ### Account Snapshot
