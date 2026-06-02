@@ -59,3 +59,25 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-06-02 — Market-Open Review
+
+**No new trades.** No setup cleared 8/10 conviction threshold.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AVGO | $427.95 | $487.56 | +13.93% | 10% trail @ $439.81 (HWM $488.68) | HOLD — approaching +15% tighten threshold ($492.14) |
+| MU | $853.58 | $1,028.40 | +20.48% | 5% trail @ $999.40 (HWM $1,052.00) | HOLD — already tightened to 5% |
+| PLTR | $136.96 | $155.46 | +13.51% | 7% trail @ $152.20 (HWM $163.66) | HOLD — $3.26 above stop; watch closely |
+
+**Portfolio:** $114,804.16 | **Deployed:** $68,863.59 (59.98%) | **Daytrade count:** 0
+**Week trades:** 0/3
+
+**Reasons for no action:**
+- S&P futures -0.2% to -0.3% (slight negative open)
+- AVGO earnings this week — binary risk on existing position
+- No new trade idea clears 8/10 conviction (CRWD/PANW pre-earnings binary; ESLT/KEYS no today catalyst)
+- PLTR proximity to stop ($155.46 vs $152.20) — not a day to add new risk
+- Patience > activity; 3 trade slots preserved for higher-conviction setups

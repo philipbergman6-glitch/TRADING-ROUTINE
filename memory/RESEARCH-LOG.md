@@ -195,3 +195,55 @@ MU +7.43% intraday (+22.21% total). Catalyst: AI-memory demand surge — DRAM AS
 
 ### Decision
 HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
+
+---
+
+## 2026-06-02 — Pre-market Research + Market-Open
+
+### Account
+- **Equity:** $114,804.16 | **Cash:** $45,940.57 | **Buying power:** $160,744.73
+- **Day P&L:** N/A (open) | **Phase P&L:** +$14,804.16 (+14.80%)
+- **Deployed:** $68,863.59 (59.98% — below 75-85% target)
+- **Daytrade count:** 0
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO   | 40  | $427.95   | $487.56 | +$2,384 (+13.93%) | 10% trail @ $439.81 (HWM $488.68) |
+| MU     | 25  | $853.58   | $1,028.40 | +$4,371 (+20.48%) | 5% trail @ $999.40 (HWM $1,052.00) |
+| PLTR   | 152 | $136.96   | $155.46 | +$2,812 (+13.51%) | 7% trail @ $152.20 (HWM $163.66) |
+
+### Market Context
+- **S&P 500 futures (ESM26):** ~7,595–7,601, -0.2% to -0.3% premarket (slight softness)
+- **WTI:** ~$91.96/bbl, -0.22% (softening from $105+ highs; geopolitical premium fading)
+- **VIX:** Not confirmed live (Perplexity data unavailable); estimated moderate range
+- **Macro calendar:** No confirmed major economic releases today
+- **Earnings this week (cited Morningstar):** AVGO, PANW, CRWD — all binary events
+- **Sector momentum:** Tech/AI holding; defense (ESLT) and cybersecurity (PANW, CRWD) in focus; energy thesis weakening as oil retreats to ~$92
+
+### Holdings Update
+- **AVGO (+13.93%):** Earnings due this week (exact date unconfirmed). Stop (10% trail, HWM $488.68, stop $439.81) protects downside. Approaching +15% tighten threshold ($492.14) — not yet triggered at $487.56. Thesis: AI custom ASIC and networking chip demand. Hold through earnings with stop in place.
+- **MU (+20.48%):** Already on 5% trail (tightened at +20% threshold). Stop $999.40, HWM $1,052. Slightly below HWM today (-0.69%). AI-memory demand thesis intact. Hold.
+- **PLTR (+13.51%):** 7% trail stop at $152.20 (HWM $163.66). Today -3.23% to $155.46 — only $3.26 above stop. Watch closely; do not move stop down. Thesis intact: US commercial AI + defense software growth.
+
+### Trade Ideas
+1. **CRWD pre-earnings (cybersecurity)** — Reports this week. Momentum setup pre-catalyst. ❌ Binary event, conviction 5/10.
+2. **PANW pre-earnings (cybersecurity)** — Same framework as CRWD. ❌ Binary event, conviction 5/10.
+3. **ESLT (Elbit Systems, defense)** — Zacks Rank #1 momentum (June 1). Defense sector leadership. No specific today catalyst confirmed. ❌ Conviction 5/10.
+4. **KEYS (Keysight, AI infra/test equipment)** — Zacks Rank #1 momentum (June 1). AI infrastructure theme. ❌ No confirmed today catalyst. Conviction 5/10.
+
+### Risk Factors
+- AVGO earnings binary this week — existing 40-share position exposed to gap risk; stop at $439.81 is 9.8% below current
+- PLTR only $3.26 above its 7% trailing stop ($152.20); -3.23% today puts it close
+- S&P futures -0.2% to -0.3% — slight negative open; monitor for continuation
+- Portfolio 100% tech (AVGO, MU, PLTR) — no sector diversification
+- WTI sliding to ~$92 — energy thesis weakened; XOM/CVX ideas deprioritized
+- Deployed 59.98% — below 75-85% target, but no high-conviction setup to add today
+
+### Decision
+**HOLD — No new buys today. 0 trades fired.**
+- No trade idea clears 8/10 conviction threshold.
+- S&P futures slightly negative; AVGO binary event this week argues for caution.
+- PLTR stop proximity ($155.46 vs $152.20) — do not force a new position while managing existing risk.
+- Week trade count: 0/3 (capacity preserved for Thursday/Friday if a strong setup emerges).
+- Re-evaluate CRWD or PANW post-earnings if either beats strongly and sets up a post-earnings momentum entry.
