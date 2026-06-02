@@ -4,6 +4,56 @@ Daily pre-market research entries will be appended here.
 
 ---
 
+## 2026-06-02 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $115,549.32 | **Cash:** $45,940.57 (39.8%) | **Deployed:** $69,608.75 (60.2%)
+- **Daytrade count:** 0 | **Phase P&L:** +$15,549.32 (+15.55%)
+
+### Positions & Stops (live)
+| Symbol | Qty | Entry | Current | P&L% | Today% | Stop (GTC) |
+|--------|-----|-------|---------|------|--------|------------|
+| AVGO | 40 | $427.95 | $488.94 | +14.25% | +6.30% | $419.45 (10% trail, HWM ~$488.94) |
+| MU | 25 | $853.58 | $1,050.07 | +23.02% | +1.41% | $994.62 (5% trail, HWM $1,046.97) |
+| PLTR | 152 | $136.96 | $156.58 | +14.32% | -2.54% | $152.20 (7% trail, HWM $163.66) |
+
+### Market Context
+- **WTI:** ~$91/bbl | **Brent:** ~$103–106/bbl (geopolitical premium persistent)
+- **S&P 500 futures (ESM26):** ~7,595–7,604; premarket slightly negative (-0.24%)
+- **VIX:** ~16.05 — benign/calm; down from 18.06 in late May
+- **Sector YTD (trailing 12M):** Tech +52.7% (#1) | Energy +50.0% | Comms +43.9% | Industrials +23.7% | Health Care -4.5% | Financials -1.0%
+
+### Today's Macro Calendar
+- **JOLTS (Job Openings):** 10:00 AM ET — potential market mover
+- **No CPI / PPI / FOMC today**
+- **Jobs report:** Friday June 5
+- **CPI:** June 10 | **PPI:** June 11 | **FOMC:** later June
+
+### Earnings BMO Today
+- DG (Dollar General), MDT (Medtronic), M (Macy's), OLLI, SIG — none are holdings
+
+### Holdings Update
+- **AVGO (+14.25%):** Up +6.30% today — strong AI/semi momentum. Morgan Stanley raised to $485 (Overweight). Current $488.94 is AT consensus analyst targets ($455–$495). Approaching +15% tighten threshold ($492.14); not reached yet. Stop tracking HWM. Thesis intact. Watch for tighten trigger at open.
+- **MU (+23.02%):** AI memory demand narrative dominant. Stock crossed $1T market cap. Earnings June 24; analyst consensus elevated (Raymond James target $1,100). 5% trail stop at $994.62 protects +16.5% locked gain. Thesis strongest of the three. Hold.
+- **PLTR (+14.32%):** Down -2.54% today; stop at $152.20 is only $4.38 (2.8%) below current $156.58. Government contracts + AIP adoption = intact thesis. Risk: JOLTS miss or risk-off open could trigger stop. Watch closely at market open.
+
+### Trade Ideas (week of June 2; 0/3 trades used)
+1. **ORCL (Oracle)** — AI cloud infrastructure, enterprise AI adoption, earnings June 9. Entry $170–$175 on strength, 10% trailing stop, target $210+. Catalyst: upcoming earnings + Azure/OCI AI buildout. Sector: Tech #1. R:R 2:1+.
+2. **ARM Holdings (ARM)** — AI chip IP licensing; every AI workload runs ARM architecture. Strong 2026 momentum. Entry ~$185–190, 10% trail, target $225+. R:R 2:1. Catalyst: AI capex cycle + Nvidia partnership.
+3. **META Platforms (META)** — AI monetization via advertising + Llama adoption. Diversifies tech sub-sector. Entry on pullback <$650, 10% trail, target $750+. Catalyst: AI ad revenue inflection.
+
+### Risk Factors
+- PLTR stop dangerously close (2.8% buffer) — weak open could fill
+- JOLTS at 10 AM could disappoint and pull market/tech lower
+- AVGO at consensus price targets — limited near-term sell-side upside
+- 60.2% deployed; below 75–85% target — needs 2 new positions this week
+- Tech concentration: all 3 holdings are tech sector
+
+### Decision
+**HOLD all positions. Scout ORCL and ARM for entries this week.** Watch AVGO at open — if it clears $492.14 (+15%), tighten trail to 7%. Watch PLTR stop closely at open. No pre-market buys; wait for JOLTS print and market tone before acting. Deployment gap ($15K–$25K needed) is the priority for the week, but no forced trades.
+
+---
+
 ## 2026-04-30 — Pre-market Research
 
 ### Account
