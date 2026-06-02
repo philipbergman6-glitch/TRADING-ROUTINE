@@ -195,3 +195,34 @@ MU +7.43% intraday (+22.21% total). Catalyst: AI-memory demand surge — DRAM AS
 
 ### Decision
 HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
+
+---
+
+## 2026-06-02 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| AVGO | $427.95 | $479.08 | +11.95% | +4.16% | $439.94 (10% trail, HWM $488.82) |
+| MU | $853.58 | $1,049.12 | +22.91% | +1.31% | $1,019.20 (5% trail, HWM $1,072.84) |
+| PLTR | $136.96 | — | CLOSED | — | — |
+
+### PLTR Exit
+- Trailing stop (7%, HWM $163.66) triggered today at 13:57 UTC
+- Filled: 152 shares @ $152.21 | Realized P&L: +$2,317.64 (+11.14%)
+
+### AVGO Afternoon Addendum
+AVGO +4.16% intraday. No single discrete catalyst — continuation of AI/semi momentum, bullish analyst sentiment (Goldman target $435+), Jensen Huang commentary lifting AVGO/MRVL while broader tech weak. Q2 2026 earnings upcoming (analysts project EPS $2.02, +51.9% YoY) — binary risk, confirm date pre-market tomorrow. Tighten threshold at $492.14 (+15% from entry), currently $479.08 (~2.7% gap). Thesis intact; stop at $439.94 (10% trail, HWM $488.82).
+
+### Actions
+- No cuts (all remaining positions green)
+- No stop tightening (AVGO below +15% threshold; MU already on 5% trail)
+- PLTR stopped out cleanly
+
+### Deployment Alert
+- Deployed: $45,349 / $114,425 = 39.6% — well below 75-85% target
+- PLTR exit freed ~$23,136 in cash
+- Need 2 new positions; prioritize for pre-market research tomorrow (Jun 3)
+
+### Decision
+HOLD AVGO and MU — no rule triggers, no thesis breaks. Flag pre-market for 2 new position ideas to restore deployment target.

@@ -59,3 +59,32 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-06-02 — Midday Scan
+
+### PLTR Exit (trailing stop triggered)
+| Ticker | Shares | Entry | Exit | Realized P&L | Notes |
+|--------|--------|-------|------|--------------|-------|
+| PLTR | 152 | $136.96 | $152.21 | +$2,317.64 (+11.14%) | 7% trailing stop triggered; HWM $163.66 → stop $152.20 |
+
+PLTR peaked at $163.66, reversed, and trailing stop executed 2026-06-02 at 13:57 UTC. Exited cleanly per rule.
+
+### Midday Snapshot
+**Portfolio:** $114,425.27 | **Cash:** $69,076.49 (60.4%) | **Day P&L:** -$220.40 (-0.19%) | **Phase P&L:** +$14,425.27 (+14.43%)**
+
+| Ticker | Shares | Entry | Current | P&L% | Today% | Stop |
+|--------|--------|-------|---------|------|--------|------|
+| AVGO | 40 | $427.95 | $479.08 | +11.95% | +4.16% | $439.94 (10% trail, HWM $488.82) |
+| MU | 25 | $853.58 | $1,049.12 | +22.91% | +1.31% | $1,019.20 (5% trail, HWM $1,072.84) |
+
+### Actions
+- PLTR: trailing stop executed — position closed, gain locked
+- No manual cuts (no position at -7%)
+- No stop tightening: AVGO at +11.95% (threshold +15% = $492.14, ~2.7% away — monitor); MU already on 5% trail
+
+### Notes
+- Deployed only 39.6% — significantly below 75-85% target. PLTR exit freed ~$23,136. Need 2 new positions; flag for pre-market tomorrow.
+- AVGO +4.16% today on AI/semi momentum + Jensen Huang commentary; Q2 earnings upcoming (binary risk — confirm date pre-market).
+- MU +1.31% today; HWM extended to $1,072.84; 5% trail intact at $1,019.20.
