@@ -4,6 +4,64 @@ Daily pre-market research entries will be appended here.
 
 ---
 
+## 2026-06-03 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $115,693.96 | **Cash:** $69,076.46 | **Buying power:** $184,770.42
+- **Day P&L:** +$2,331.20 (+2.06%) | **Phase P&L:** +$15,693.96 (+15.69%)
+- **Deployed:** $46,617.50 (40.3% — significantly below 75-85% target)
+- **Daytrade count:** 0
+- **Weekly trade count:** 0/3 (new week)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO   | 40  | $427.95   | $490.75 | +$2,512 (+14.67%) | 10% trail, HWM $488.82 → stop $439.94 |
+| MU     | 25  | $853.58   | $1,079.50 | +$5,648 (+26.47%) | 5% trail, HWM $1,076.56 → stop $1,022.73 |
+
+**Note:** PLTR closed (trailing stop triggered between May 27 and today). Both remaining stops are GTC trailing orders confirmed on Alpaca.
+
+### Market Context
+- **WTI:** ~$87–95/bbl (front-month Jun contract; range reflects conflicting sources — Aug CME $87.46, Kalshi pricing >$95). Oil elevated.
+- **Brent:** ~$91–98 estimated (inferred spread).
+- **S&P 500 futures:** ~7,594–7,620; roughly flat (-0.05% to -0.25%). Near recent highs.
+- **VIX:** ~16.29–17.84 (spot ~16.29 per Fed data; June futures 17.84). Moderate — vol low, complacency risk.
+- **Sector momentum YTD:** Energy +22-26% (#1, Leading) | Consumer Staples +11% (#2, Leading) | Industrials +10% (#3, Leading) | Tech/Comm/Financials: Lagging quadrant.
+
+### Catalysts Today
+| Time (ET) | Event | Expected Impact |
+|-----------|-------|----------------|
+| 8:15 AM | ADP Employment Report | Jobs surprise → Fed expectations → rates |
+| 9:00 AM | ISM Services PMI | <50 = recession signal; >55 = risk-on |
+| ~1:00–2:00 PM | FOMC Decision/Statement | HIGH IMPACT — rate path, guidance |
+| AMC | **AVGO Q2 FY2026 Earnings** | BINARY — our largest unrealized gain |
+
+- **CPI:** Not today — June 10. **PPI:** Not today — June 11.
+- **AVGO Q2 guidance:** mgmt guided ~$22B revenue, ~68% adj. EBITDA. Consensus EPS $2.32. Q1 was $2.05 (beat). AI infrastructure demand the driver.
+- **MU Q3 FY2026 earnings:** expected ~June 24. Q2 was a massive beat ($12.20 EPS vs $9.21 est; $23.9B rev vs $20.0B). AI memory demand structural.
+
+### Holdings Update
+- **AVGO (+14.67%):** Q2 earnings TONIGHT AMC — binary risk. Current $490.75, tighten threshold = $492.14 (+15%). If AVGO opens at or above $492.14, tighten stop 10% → 7%. 10% trailing stop at $441 provides reasonable protection; even a 10% post-earnings drop = still +3% from entry. Do NOT cancel stop before earnings. Thesis intact: AI networking/XPU demand secular.
+- **MU (+26.47%):** 5% trailing stop correctly set ($1,022.73). Next catalyst June 24 earnings. AI memory (HBM/DRAM) demand explosive; Susquehanna $1,750 target. Well protected. Hold.
+
+### Trade Ideas
+1. **XOM (Exxon Mobil)** — Energy sector #1 YTD momentum (+22-26%). Oil elevated, Q1 EPS beat, diversified integrated major. Entry ~$150-155, 10% trailing stop (~$135-140), target $190+ (2:1+ R:R). Deploy ~$17,000 (110 shares). Familiar from prior trade. **Scout — do not enter until after FOMC (post 2:30 PM).**
+2. **WMT (Walmart)** — Consumer Staples #2 YTD. Defensive with digital/ecommerce growth. Resilient in macro uncertainty. Entry ~$105-110, 10% trailing stop, target $135+ (2:1+). Deploy ~$16,000 (150 shares). **Scout — confirm price reaction after ISM data.**
+3. **HON (Honeywell)** — Industrials #3 YTD. Aerospace/defense + energy efficiency. Restructuring catalyst. Entry ~$225-235, 10% trailing stop, target $285+ (2:1+). Deploy ~$17,000 (75 shares). **Lower priority; validate after FOMC.**
+
+### Risk Factors
+- **AVGO earnings AMC (HIGHEST RISK):** Binary event on our 2nd-largest position. Miss/guidance cut = gap down risk. Stop at $441 limits damage but cannot prevent gap-through loss.
+- **FOMC at 1 PM:** Any hawkish surprise (rate hike, no-cut signal) → broad risk-off selloff. Hold on new positions until after statement.
+- **AVGO tighten trigger:** At $492.14 (+15%) must immediately place new 7% trailing stop order and cancel 10% GTC order. Watch intraday.
+- **Portfolio only 40.3% deployed** — opportunity cost, but risk-off day not the time to force capital to work. Post-FOMC/post-AVGO clarity before adding.
+- **VIX low at 16-17:** Complacency. Market could reprice fast on a hawkish FOMC surprise.
+- **Tech "Lagging" in sector momentum** — but AVGO/MU are idiosyncratic AI plays, not pure sector bets. Thesis stays.
+
+### Decision
+**HOLD all positions. No new trades today.** FOMC + AVGO earnings = two binary events in one session. Wait for post-FOMC clarity (2:30 PM+) and post-AVGO earnings clarity (tomorrow premarket). If both print well, initiate XOM on Thursday. Watch AVGO intraday: if it touches $492.14 at any point, tighten stop 10% → 7% per strategy rules. Patience > activity.
+
+---
+
 ## 2026-04-30 — Pre-market Research
 
 ### Account
