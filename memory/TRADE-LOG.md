@@ -59,3 +59,20 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+### Jun 03 — EOD Snapshot (Day 26, Wednesday)
+**Portfolio:** $114,269.45 | **Cash:** $28,371.60 (24.8%) | **Day P&L:** +$906.69 (+0.80%) | **Phase P&L:** +$14,269.45 (+14.27%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $478.77 | -0.58% | +$2,032.63 (+11.87%) | $445.50 |
+| MSFT | 48 | $436.20 | $427.25 | -3.19% | -$429.60 (-2.05%) | $392.30 |
+| MU | 25 | $853.58 | $1,076.15 | +1.13% | +$5,564.25 (+26.08%) | $1,034.83 |
+| NVDA | 90 | $219.64 | $214.88 | -3.56% | -$428.06 (-2.17%) | $197.79 |
+
+**Trades today:** MSFT BUY 48 @ $436.20 (new position); NVDA re-entry BUY 90 @ $219.64.
+**Week trades:** 2/3 (MSFT Jun 03, NVDA Jun 03). One trade slot remaining this week.
+
+**Notes:** Portfolio gained +$906.69 (+0.80%) on the day despite broad tech weakness. Two new entries today — MSFT (48 shares @ $436.20) and NVDA re-entry (90 shares @ $219.64) — both opened in a down session and closed modestly underwater (-2.05% and -2.17%), well within the -7% manual cut threshold. MU continues as portfolio anchor at +26.08% from entry; stop tightened to 5% trail at $1,034.83 (triggered above the +20% threshold). AVGO slipped -0.58% but holds +11.87% unrealized with stop at $445.50 based on $495 HWM. Four positions, 75.2% deployed — squarely in the 75-85% target band. One trade slot remaining this week; PLTR was stopped out between May 27 and today (stop at $126.86 triggered near -7% cut level).
