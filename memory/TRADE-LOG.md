@@ -59,3 +59,22 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-06-02 — PLTR Stop-Out
+
+| Date | Ticker | Side | Shares | Exit | Entry | P&L | Notes |
+|------|--------|------|--------|------|-------|-----|-------|
+| 2026-06-02 (approx) | PLTR | SELL (stop) | 152 | ~$150.90 | $136.96 | +$2,118 (+10.2%) | 7% trailing stop triggered from HWM $162.26 |
+
+---
+
+## 2026-06-03 — Market-Open Trades
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-03 | NVDA | BUY | 90 | $219.64 | 10% trailing GTC (initial $197.24) | AI GPU leader; BofA $320 target (+45%), AI CapEx $1.2T, Computex + Vera Rubin H2 ramp | $264.44 | 2:1 |
+| 2026-06-03 | MSFT | BUY | 48 | $436.20 | 10% trailing GTC (initial $392.10) | Agentic AI on Azure+Windows (NVDA partnership); Azure AI rev +35%+ YoY | $524.40 | 2:1 |
+
+**Week of 2026-06-02 trade count: 2/3**

@@ -195,3 +195,42 @@ MU +7.43% intraday (+22.21% total). Catalyst: AI-memory demand surge — DRAM AS
 
 ### Decision
 HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
+
+---
+
+## 2026-06-03 — Pre-market Research (inline)
+
+### Account
+- Equity: $115,282.26 | Cash: $69,076.46 | Buying power: $184,358.72
+- Deployed: $46,206 (40.1% — well below 75-85% target; PLTR stop-out freed capital)
+- Daytrade count: 0
+
+### Positions (before today's trades)
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| AVGO   | 40  | $427.95   | $488.16 | +$2,408 (+14.1%) | $445.50 (10% trail, HWM $495) |
+| MU     | 25  | $853.58   | $1,067.45 | +$5,347 (+25.1%) | $1,034.27 (5% trail, HWM $1,088.71) |
+
+*PLTR 152 shares stopped out ~$150.90 (approx June 2) — 7% trailing stop triggered from HWM $162.26; +10.2% gain*
+
+### Market Context
+- S&P 500: ATH — third consecutive week of gains >3%; risk-on tape
+- VIX: Moderate, declining from prior elevated levels
+- WTI/Brent: Tumbled — Strait of Hormuz reopened; Brent below $90/bbl
+- Energy sector: Weakening momentum — prior geopolitical tailwind removed
+- AI/Tech sector: Leading — AI CapEx $1.2T forecast (BofA), hyperscaler spend intact
+- Catalysts: Computex June 2-6 (NVDA product launches); NVDA-MSFT agentic AI stack launch; BofA raised NVDA to $320 (May 14)
+- Macro: No major Fed/jobs releases today
+
+### Trade Ideas
+1. **NVDA** — BofA raised target $320 (+45% from $220); AI accelerator market $1.2T (raised from $1.0T); Computex June catalyst; Trump-Xi chip export relief talks; Vera Rubin GPU ramp H2 2026. Conviction: 8/10. Entry ~$220, stop 10% trail, target $264 (2:1).
+2. **MSFT** — Agentic AI stack (NVDA + Azure + Windows unified platform); Azure AI rev +35%+ YoY; AI enterprise monetization accelerating. Conviction: 7/10. Entry ~$436, stop 10% trail, target $524 (2:1).
+
+### Risk Factors
+- AI sector concentration — all 4 positions tech/AI (AVGO, MU, NVDA, MSFT); sector rotation risk
+- AVGO approaching +15% tighten threshold ($492.14); monitor
+- MU already at 5% trail (tightened at +20%); HWM $1,088.71 — any pullback could stop
+- Market at ATH — reduced margin for error on macro surprise
+
+### Decision
+**BUY NVDA 90 + MSFT 48.** Deploy ~$40K to bring total deployment to ~75%. Both trades pass all hard-rule checks.
