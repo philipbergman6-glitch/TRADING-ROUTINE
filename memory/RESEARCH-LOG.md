@@ -195,3 +195,28 @@ MU +7.43% intraday (+22.21% total). Catalyst: AI-memory demand surge — DRAM AS
 
 ### Decision
 HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
+
+---
+
+## 2026-06-03 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| AVGO | $427.95 | $484.41 | +13.19% | +0.59% | $445.50 (10% trail, HWM $495) |
+| MSFT | $436.20 | $424.79 | -2.62% | -3.74% | $392.30 (10% trail, HWM $435.89) |
+| MU | $853.58 | $1,060.73 | +24.27% | -0.32% | $1,034.27 (5% trail, HWM $1,088.71) |
+| NVDA | $219.64 | $215.70 | -1.79% | -3.20% | $197.79 (10% trail, HWM $219.77) |
+
+### Actions
+- No cuts (no position at -7%; closest: MSFT -2.62%, NVDA -1.79%)
+- No stop tightening (MU already at 5% trail; AVGO at +13.19%, below +15% threshold)
+
+### MSFT Afternoon Addendum
+MSFT -3.74% intraday (-2.62% overall). Catalyst: Trump executive order creating federal AI model oversight/review program — sector-level regulatory headwind, not MSFT-specific operational break. MSFT in intermediate downtrend Aug 2025–Apr 2026, but AI catalysts building per analyst consensus. Thesis weakened but not broken: MSFT is a diversified enterprise company with cloud, productivity, and gaming revenue beyond AI. Stop at $392.30 (HWM $435.89) protects against further deterioration. Cut trigger at -7% = ~$405.67. Monitor.
+
+### NVDA Afternoon Addendum
+NVDA -3.20% intraday (-1.79% overall, fresh entry today). Catalyst: Reports of H200 chip sales to China stalling (buyers not receiving approved chips); China domestic substitution pressure; broader semiconductor selloff. This is an ongoing known risk (H200 export controls), not a new thesis break. Blackwell/Vera Rubin ramp thesis intact. Stop at $197.79 (10% trail, HWM $219.77). Cut trigger -7% = ~$204.26. Within range — monitor closely.
+
+### Decision
+HOLD all — no rule triggers, no thesis breaks. Both MSFT and NVDA drops are macro/sector-driven, not company-specific operational failures. No email sent (no actions taken).

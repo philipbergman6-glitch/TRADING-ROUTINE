@@ -59,3 +59,27 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-06-03 — Market-Open Trades & PLTR Exit
+
+**PLTR exit (trailing stop triggered, ~Jun 2–3):** 7% trailing stop at $150.90 (HWM $162.26 from Jun 1 midday) triggered. Realized P&L: estimated +~$2,132 (+10.3% from $136.96 entry × 152 shares). Logged as trailing stop exit — no manual action required.
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-03 | MSFT | BUY | 48 | $436.20 | 10% trailing GTC (initial $392.30, HWM $435.89) | AI recovery + enterprise cloud; intermediate downtrend reversal thesis; AI catalysts building per May 26 analyst notes | $523.44 | 2:1 |
+| 2026-06-03 | NVDA | BUY | 90 | $219.64 | 10% trailing GTC (initial $197.79, HWM $219.77) | AI GPU dominance re-entry; Blackwell/Vera Rubin ramp H2 2026; $1T order backlog through 2027 | $263.56 | 2:1 |
+
+---
+
+## 2026-06-03 — Midday Snapshot
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AVGO | $427.95 | $484.41 | +13.19% | $445.50 (10% trail, HWM $495) | HOLD — approaching +15% tighten threshold ($492.14) |
+| MSFT | $436.20 | $424.79 | -2.62% | $392.30 (10% trail, HWM $435.89) | HOLD — monitor; AI regulation EO headwind; cut at -7% = ~$405.67 |
+| MU | $853.58 | $1,060.73 | +24.27% | $1,034.27 (5% trail, HWM $1,088.71) | HOLD — at 5% trail (correct), HWM $1,088.71 |
+| NVDA | $219.64 | $215.70 | -1.79% | $197.79 (10% trail, HWM $219.77) | HOLD — monitor; China H200 headwind; cut at -7% = ~$204.26 |
+
+No cuts, no stop changes. No email sent.
