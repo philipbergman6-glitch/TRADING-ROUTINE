@@ -59,3 +59,18 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+### Jun 04 — EOD Snapshot (Day 27, Thursday)
+**Portfolio:** $110,269.20 | **Cash:** $70,109.19 (63.6%) | **Day P&L:** -$4,100.66 (-3.59%) | **Phase P&L:** +$10,269.20 (+10.27%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MSFT | 48 | $436.20 | $427.72 | +0.09% | -$407.04 (-1.94%) | $392.45 |
+| NVDA | 90 | $219.64 | $218.11 | +1.56% | -$137.81 (-0.70%) | $199.44 |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Portfolio fell -$4,100 (-3.59%) on the day despite NVDA rising +1.56% and MSFT essentially flat (+0.09%) — the drop reflects position changes during the week not captured in this log (AVGO/MU/PLTR from May 27 snapshot no longer held; MSFT and NVDA entered, stops placed Jun 3). Both current positions are within normal range, well above the -7% cut threshold (MSFT cut: $405.67, NVDA cut: $204.26). Deployed only 36.4% vs 75-85% target — significantly under-deployed; need 2-3 new setups tomorrow. NVDA trailing stop at $199.44 (HWM $221.60); MSFT trailing stop at $392.45 (HWM $436.05). Phase P&L: +10.27% vs S&P benchmark.
