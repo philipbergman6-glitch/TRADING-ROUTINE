@@ -257,3 +257,25 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
+
+---
+
+## 2026-06-04 — Midday Scan
+
+### Positions (post open-stop executions)
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| MSFT | $436.20 | $426.96 | -2.12% | -0.09% | $392.45 (10% trail, HWM $436.05) |
+| NVDA | $219.64 | $218.01 | -0.74% | +1.52% | $197.79 (10% trail, HWM $219.77) |
+
+### Stop Executions at Open
+- **AVGO:** trailing stop triggered at open (~$409 vs stop $445.50). Exit ~-4.4% from entry $427.95. Rule-compliant.
+- **MU:** trailing stop triggered at open (~$1,013 vs stop $1,034.83). Exit ~+18.6% from entry $853.58. Locked gains.
+
+### Actions
+- No cuts (MSFT -2.12%, NVDA -0.74% — neither at -7%)
+- No stop tightening (neither at +15%)
+- No thesis breaks
+
+### Decision
+HOLD both — no rule triggers. NFP tomorrow Jun 5 (8:30 AM ET); binary event. No new positions today. Rebuild deployment next week.

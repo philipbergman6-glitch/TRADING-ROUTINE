@@ -59,3 +59,40 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-06-03 — Market-Open Trade
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-03 | MSFT | BUY | 48 | $436.20 | 10% trailing GTC (initial $392.30, HWM $436.05) | AI/Azure momentum, Microsoft Build Conference catalyst (+5.45% Jun 1), cloud leadership | $523.44 | 2:1 |
+
+**Week of 2026-06-02 trade count: 1/3**
+
+---
+
+## 2026-06-04 — Stop Executions at Open
+
+AVGO and MU trailing stops triggered at market open on gap-down opens (both stop prices were above the open per pre-market analysis).
+
+| Date | Ticker | Side | Shares | Entry | Exit | P&L | P&L% | Reason |
+|------|--------|------|--------|-------|------|-----|------|--------|
+| 2026-06-04 | AVGO | SELL | 40 | $427.95 | ~$409 | ~-$758 | ~-4.4% | Trailing stop gap-filled at open; AVGO earnings AMC Jun 3 — guidance miss (AI rev cut $62.5B→$55B, Anthropic order restructure). Stop $445.50 above open. Rule-compliant exit. |
+| 2026-06-04 | MU | SELL | 25 | $853.58 | ~$1,013 | ~+$3,974 | ~+18.6% | Trailing stop gap-filled at open; semi sector sympathy (AVGO miss). Stop $1,034.83 above open. Locked gains at +18.6%. |
+
+**Net from exits today: ~+$3,216**
+
+---
+
+## 2026-06-04 — Midday Scan
+
+**Portfolio:** $110,223.68 | **Cash:** $70,109.19 (63.6%) | **Deployed:** 36.4% | **Phase P&L:** +$10,223.68 (+10.22%)
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| MSFT | $436.20 | $426.96 | -2.12% | $392.45 (10% trail, HWM $436.05) | HOLD — above -7% cut, below -0% thesis intact |
+| NVDA | $219.64 | $218.01 | -0.74% | $197.79 (10% trail, HWM $219.77) | HOLD — recovering +1.52% intraday, thesis intact |
+
+**Actions:** None. No positions at -7% cut trigger. No positions at +15% tighten threshold. No thesis breaks.
+**Reminder:** NFP tomorrow Jun 5 — do not add positions today. Rebuild 2-3 positions next week after NFP prints.
