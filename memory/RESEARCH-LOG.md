@@ -195,3 +195,65 @@ MU +7.43% intraday (+22.21% total). Catalyst: AI-memory demand surge — DRAM AS
 
 ### Decision
 HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
+
+---
+
+## 2026-06-04 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $109,893.80 | **Cash:** $28,371.59 | **Buying power:** $276,530 (4× margin)
+- **Last equity:** $114,369.86 | **Session P&L:** -$4,476 (-3.91%) | **Phase P&L:** +$9,893.80 (+9.89%)
+- **Deployed:** $81,522 (74.2%) | **Daytrade count:** 0
+- **Weekly trade count:** 1/3 (MSFT added June 3)
+
+### Positions
+| Symbol | Qty | Avg Entry | Last | Unr. P&L | Premarket% | Stop (GTC) |
+|--------|-----|-----------|------|----------|------------|------------|
+| AVGO | 40 | $427.95 | $409.17 | -$751 (-4.4%) | -14.6% | 10% trail, HWM $495.00, stop **$445.50 ⚠️ ABOVE PRICE** |
+| MSFT | 48 | $436.20 | $431.42 | -$229 (-1.1%) | +1.0% | 10% trail, HWM $435.89, stop $392.30 |
+| MU | 25 | $853.58 | $1,012.53 | +$3,974 (+18.6%) | -6.2% | 5% trail, HWM $1,089.29, stop **$1,034.83 ⚠️ ABOVE PRICE** |
+| NVDA | 90 | $219.64 | $212.52 | -$640 (-3.2%) | -1.0% | 10% trail, HWM $219.77, stop $197.79 |
+
+### ⚠️ CRITICAL: Two Stops Will Execute at Open
+- **AVGO ($409.17 vs. stop $445.50):** Q2 2026 earnings reported AMC June 3. Guidance 16.5% growth vs. ~25% expected; AI revenue forecast cut $62.5B→$55B (Anthropic order restructure). Stock gapped below stop in after-hours. Trailing stop will gap-fill at open ~$409. Exit = -4.4% from entry ($427.95). Rule-compliant exit; no manual override.
+- **MU ($1,012.53 vs. stop $1,034.83):** No MU-specific catalyst. Fell -6.2% in semi sector sympathy. Stop will gap-fill at open ~$1,013. Exit = +18.6% gain from entry ($853.58). Lock it in.
+- Both orders status "new" — will trigger at 9:30 AM open.
+
+### Post-Stop Projection
+| Item | Value |
+|------|-------|
+| Cash after AVGO exit (40 × ~$409) | +$16,360 |
+| Cash after MU exit (25 × ~$1,013) | +$25,313 |
+| Total cash post-exits | ~$70,044 |
+| Remaining deployed (MSFT + NVDA) | ~$39,835 |
+| Deployed % | ~36% — far below 75-85% target |
+| Rebuild needed | 2-3 new positions next week |
+
+### Market Context
+- **WTI:** ~$96/bbl | **Brent:** ~$103/bbl — elevated, geopolitical premium
+- **S&P 500 futures (ESM26):** ~7,545, -0.35% premarket — mild softness
+- **VIX:** ~16-17 (May average 16.29) — moderate, no panic
+- **Today's release:** Productivity & Costs Q1 2026 @ 8:30 AM ET — low market impact
+- **Tomorrow 8:30 AM:** NFP May jobs report — HIGH impact, binary risk
+- **Upcoming:** CPI Jun 10 | PPI Jun 11 | FOMC Jun 16-17
+- **Earnings BMO today:** None confirmed (0 before open per Digrin)
+- **Sector YTD:** Energy +26% (#1) | Consumer Staples +11% | Industrials +10% | Tech mixed/negative
+
+### Holdings Update (remaining after open)
+- **MSFT** (-1.1%): Microsoft Build Conference catalyst (Jun 1 +5.45%) has faded. $431 vs. entry $436. Stop $392.30 (10% trail). AI/Azure thesis intact. HOLD.
+- **NVDA** (-3.2%): RTX Spark chip announcement (Jun 2) was recent catalyst. Now $212.52, HWM $219.77, stop $197.79 — only $14.73 cushion (-6.9% to stop). Semi sector headwinds today. Watch intraday. HOLD unless stop triggers.
+
+### Trade Ideas (next week — not today)
+1. **XOM / CVX (Energy)** — Sector #1 YTD (+26%). Oil $96-103. Post-stop cash available. Entry after NFP clears Thursday.
+2. **AMD** — AI/CPU thesis; may be oversold if semi sector overreacts to AVGO miss. Confirm sector stabilizes before entry.
+3. **GOOGL or META** — Diversifies away from semi concentration. Benefiting from AI ad revenue tailwind. Scout after FOMC clarity.
+
+### Risk Factors
+- **NFP tomorrow (Jun 5)** — miss = broad selloff; beat = rates up; binary either way
+- **Semi sector contagion** — AVGO guidance cut may reprice AMD/NVDA/MU further today
+- **NVDA stop proximity** — $197.79, only 6.9% below current; could trigger on heavy selling
+- **Low deployment post-exits** — ~36% vs. 75-85% target; cannot force trades in weak tape
+- **FOMC Jun 16-17** — adds overhang to any new multi-week positions
+
+### Decision
+**HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
