@@ -59,3 +59,17 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-06-04 — Market-Open (Trailing Stop Exits)
+
+**No new buys.** HOLD MSFT and NVDA. NFP Jun 5 = binary risk; no new entries today.
+
+| Date | Ticker | Side | Shares | Exit Price | Entry | P&L | Stop Level | Notes |
+|------|--------|------|--------|------------|-------|-----|------------|-------|
+| 2026-06-04 | AVGO | SELL | 40 | $410.09 | $427.95 | -$714 (-4.2%) | $445.50 trail (HWM $495.00) | Q2 guidance miss: AI rev $55B vs $62.5B est; gapped below stop at open |
+| 2026-06-04 | MU | SELL | 25 | $1,013.36 | $853.58 | +$3,995 (+18.7%) | $1,034.83 trail (HWM $1,089.29) | Semi sector sympathy selloff; +18.7% locked in from May 26 entry |
+
+**Weekly trade count:** 1/3 new entries (MSFT Jun 3); stop exits are automatic — not counted.
+**Portfolio:** $110,038 | **Cash:** $70,109 | **Deployed:** ~36% (MSFT + NVDA only) | **Net exit P&L today:** +$3,281
