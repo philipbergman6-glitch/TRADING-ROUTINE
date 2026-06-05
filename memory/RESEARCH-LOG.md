@@ -257,3 +257,49 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
+
+---
+
+## 2026-06-05 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $110,161.98 | **Cash:** $70,109.16 | **Buying power:** $360,542 (4× margin)
+- **Last equity:** $110,334.96 | **Session P&L:** -$172.98 (-0.16%) | **Phase P&L:** +$10,161.98 (+10.16%)
+- **Deployed:** $40,052.82 (36.4%) — significantly below 75-85% target
+- **Daytrade count:** 0 | **Weekly trade count:** 0/3
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| MSFT | 48 | $436.20 | $429.79 | -$307.68 (-1.47%) | 10% trail, HWM $436.05, stop $392.45 |
+| NVDA | 90 | $219.64 | $215.81 | -$344.36 (-1.74%) | 10% trail, HWM $221.60, stop $199.44 |
+
+Cut thresholds: MSFT $405.67 | NVDA $204.27 — both well above stops. No immediate action needed.
+
+### Market Context
+- **WTI:** ~$93/bbl | **Brent:** ~$106.50/bbl — elevated, geopolitical premium sustained
+- **S&P 500 futures (ESM26):** ~7,545, -0.35% premarket — mild softness
+- **VIX:** ~15.4–16.1 — low/moderate, calm tape
+- **TODAY 8:30 AM ET: NFP May jobs report** — consensus 85K–102K; April printed 115K — HIGH-IMPACT binary event
+- **Earnings BMO today:** 0 confirmed before open (Medtronic possible per one source, unconfirmed)
+- **Upcoming:** FOMC Jun 16-17 | CPI Jun 10 | PPI Jun 11
+- **Sector YTD momentum:** Energy #1 (+22%+, oil elevated) | Consumer Staples, Industrials following | Tech mixed/lagging in rotation
+
+### Holdings Update
+- **MSFT** (-1.47%): AI policy overhang — federal AI model review program (voluntary) created headline selling. Azure/cloud thesis and Morningstar intrinsic value discount intact. Stop $392.45 (10% trail). HOLD.
+- **NVDA** (-1.74%): GTC keynote positives — Nematron 3 Ultra (5× faster, 30% cheaper), PC expansion push, Blackwell Ultra demand strong, Vera Rubin on track for 2026. Price drifted from $224→$215 post-GTC. Stop $199.44 (7.8% cushion) — watch carefully if selling resumes. HOLD.
+
+### Trade Ideas
+1. **XOM (Energy)** — Sector #1 YTD. Oil $93 WTI / $106 Brent with geopolitical premium. Post-NFP entry if tape is stable. Entry: $129–132, stop 10% trailing (~$116–119), target $155+ (2:1+ R:R). Position size: ~$21K (19% of equity). Risk: OPEC supply decision, demand slowdown.
+2. **NVDA add** — GTC catalyst still live; Nematron 3 Ultra is a major AI edge product. If NFP benign and semis stabilize, adding 40–50 shares at $215–218 brings NVDA to ~15% of equity. Confirm no further sector selling before entry. Stop: existing GTC adjusts automatically.
+3. **GOOGL** — AI ad revenue tailwind; diversifies away from semi concentration. Underperforming relative to fundamentals (AI model leadership, YouTube, Cloud). Entry: near recent support ~$175–180, stop 10% trailing, target 2:1. Complements existing Tech exposure without doubling NVDA risk.
+
+### Risk Factors
+- **NFP today 8:30 AM** — miss = soft economy fear / beat = rates-higher-longer; binary either way; no new positions before print
+- **NVDA stop proximity** — $199.44 stop only 7.8% below $215.81; heavy premarket selling could trigger
+- **MSFT AI policy headline risk** — voluntary program, but could expand; Azure thesis remains primary anchor
+- **Under-deployed** — 36% vs 75-85% target; urgency to rebuild but forced entry into weak tape is worse
+- **FOMC Jun 16-17** — rate overhang caps upside on growth positions; size appropriately
+
+### Decision
+**HOLD through NFP.** Wait for 8:30 AM print. If near consensus (85K–102K) and tape stabilizes post-open, initiate **XOM** (Energy, ~$21K, ~19%) as first rebuild trade. Assess NVDA add or GOOGL entry intraday if sector tone improves. Do not chase — wait for clean setups. Weekly budget: **0/3 trades used**; can add up to 3 this week to reach 75–85% deployment target.
