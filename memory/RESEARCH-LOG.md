@@ -257,3 +257,31 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
+
+---
+
+## 2026-06-05 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| MSFT | $436.20 | $420.26 | -3.65% | -1.82% | $392.45 (10% trail, HWM $436.05) |
+| NVDA | $219.64 | $207.49 | -5.53% | -5.11% | $199.44 (10% trail, HWM $221.60) |
+
+### Market Context
+- **NFP May 2026:** 172K actual vs. 85K consensus — massive beat. Unemployment 4.3% unchanged. Resilient labor market.
+- Market should be equity-positive on NFP, but semis still selling on AVGO guidance cut contagion (-14.6% gapped AVGO earlier this week; uncertainty around AI capex demand durability).
+- No NVDA or MSFT specific news today driving moves; sector pressure only.
+
+### Actions
+- **No cuts** — MSFT -3.65%, NVDA -5.53%; neither at -7% threshold.
+  - MSFT -7% cut trigger: $405.67 (current $420.26 — $14.59 above)
+  - NVDA -7% cut trigger: $204.26 (current $207.49 — **$3.23 above ⚠️**)
+- **No stop tightening** — both positions negative; nothing to tighten.
+- **No thesis breaks confirmed:** AVGO's AI revenue miss is custom-silicon specific (Anthropic chip restructure). NVDA GPU thesis distinct — hyperscaler GPU demand (Blackwell, HBM) remains intact per most recent data. MSFT AI/Azure thesis unchanged.
+
+### ⚠️ NVDA Watch
+NVDA at $207.49, manual cut trigger at $204.26. Only 1.6% further downside before rule-mandated exit. If NVDA touches $204.26 intraday, cut immediately regardless of trailing stop. Trailing stop at $199.44 provides backstop but manual rule fires first.
+
+### Decision
+**HOLD both. No action.** NFP beat is macro-positive but semi sector pressure persists. Monitor NVDA intraday — cut at $204.26 if triggered. Do not add new positions today (Friday, week-end risk, 0/3 weekly trades used — save budget for next week's deployment rebuild).
