@@ -257,3 +257,63 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
+
+---
+
+## 2026-06-08 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $108,952.70 | **Cash:** $70,109.16 | **Buying power:** $389,198 (4× margin)
+- **Last equity:** $108,568.32 | **Session P&L:** +$384 (+0.35%) | **Phase P&L:** +$8,952.70 (+8.95%)
+- **Deployed:** $38,843.54 (35.7%) — well below 75-85% target
+- **Daytrade count:** 0 | **Week trades:** 0/3 (new week)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| MSFT | 48 | $436.20 | $415.9988 | -$969.66 (-4.63%) | 10% trail, HWM $436.05, stop $392.45 |
+| NVDA | 90 | $219.64 | $209.7289 | -$891.66 (-4.51%) | 10% trail, HWM $221.60, stop $199.44 |
+
+**MSFT cut level:** $405.67 (-7%). Distance to stop: 5.7%. Not at cut threshold.
+**NVDA cut level:** $204.26 (-7%). Distance to stop: 4.9%. ⚠️ Tight — AI trades unwinding today.
+
+### Market Context
+- **WTI:** ~$92-94/bbl | **Brent:** ~$106/bbl — elevated, geopolitical premium
+- **S&P 500 futures (ETM26):** ~7,416-7,419, +0.21% premarket — mildly green
+- **VIX:** 19.90, -7.48% today — calming but elevated (Jun 4 close was 15.40; spiked ~30%)
+- **May NFP (released Jun 5):** 158,736K jobs — materially strong; "fueled Fed rate hike bets" → higher-for-longer narrative, headwind for high-multiple tech
+- **Today (Jun 8):** No major macro releases
+- **Wed Jun 10:** May CPI @ 8:30 AM ET — HIGH impact binary risk
+- **Thu Jun 11:** May PPI @ 8:30 AM ET — SpaceX IPO expected pricing
+- **Fri Jun 12:** SpaceX IPO expected trading debut — potential market sentiment catalyst
+- **FOMC Jun 16-17** — rate decision, overhang on new positions
+- **Iran-Israel escalation** — geopolitical premium in oil, risk-off pressure on indices
+
+### Sector Momentum YTD
+| Sector | YTD | Trailing 6-Mo |
+|--------|-----|----------------|
+| Energy | +26% | +35.3% |
+| Consumer Staples | +11% | — |
+| Industrials | +10% | — |
+| Financials | +29% | — |
+| Information Technology | Mixed | +18.7% |
+
+### Holdings Update
+- **MSFT ($415.9988):** Fell ~8% this week on $190B capex overhang and margin concern. Azure growth 40%, AI revenues +123%, Copilot 20M seats — long-term thesis intact but near-term pressure. Zacks "Hold." Not at -7% cut level. HOLD.
+- **NVDA ($209.7289):** AI trades unwinding June 8 per CNBC/Bloomberg. Google cloud deal (110K GPUs from Oct 2026), Vera CPU deliveries to OpenAI/Anthropic/Oracle intact. Revenue $81.6B +85% YoY. Stop $199.44 only 4.9% below current — monitor closely. Higher-for-longer macro is a valuation headwind. HOLD but tight.
+
+### Trade Ideas (NOT today — post-CPI Wednesday)
+1. **XOM (Energy)** — Sector #1 YTD +26%, oil $92-94 WTI, benefits from higher-for-longer + geopolitical premium. Entry ~$155-160, stop -10%, target +20% → 2:1 R:R. Ideal entry after CPI prints Wed Jun 10.
+2. **JPM (Financials)** — Strong NFP → higher rates → bank NIM expansion. Sector +29% YTD. Defensive against AI rout. Entry after CPI. Stop -10%, target +15%.
+3. **CVX (Energy)** — Paired energy add if XOM fills first. Same macro thesis, dividend yield provides floor. Alt to JPM if financials lag.
+
+### Risk Factors
+- **AI trade unwind** — NVDA stop proximity at 4.9%; could trigger on selling pressure today
+- **Higher-for-longer** — Strong NFP + elevated oil = Fed stays put → compresses tech multiples
+- **CPI Wed Jun 10** — Hot print would hammer MSFT/NVDA further; binary event, no adds until resolved
+- **VIX spike** — Jumped from 15.40 → ~20; elevated uncertainty, wide spreads intraday
+- **SpaceX IPO Jun 12** — Could suck capital from existing tech names short-term
+- **FOMC Jun 16-17** — Policy overhang on any new 2+ week positions
+
+### Decision
+**HOLD MSFT and NVDA.** Do NOT add positions today — elevated VIX, CPI Wednesday is binary risk, NVDA stop proximity concerning. Let trailing stops do their job if triggered. Rebuild deployment AFTER CPI clears Wednesday. Target entry window: Wed Jun 10 afternoon or Thu Jun 11. Plan: 1 Energy (XOM) + 1 Financial (JPM) if tape confirms. Weekly budget: 3/3 remaining.
