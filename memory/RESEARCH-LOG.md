@@ -257,3 +257,23 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
+
+---
+
+## 2026-06-08 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| MSFT | $436.20 | $409.12 | -6.21% | -1.81% | $392.45 (10% trail, HWM $436.05) |
+| NVDA | $219.64 | $208.05 | -5.28% | +1.44% | $199.44 (10% trail, HWM $221.60) |
+
+### Actions
+- No cuts — MSFT -6.21% and NVDA -5.28%, neither at -7% cut threshold
+- No stop tightening — both positions negative, no +15%/+20% winners
+
+### MSFT Thesis Check (Perplexity)
+MSFT approaching -7% cut level ($405.67 vs. $409.12 current — $3.45 cushion). Perplexity result: weakness is broad AI-capex skepticism and multiple compression, **not** an Azure/fundamental breakdown. Stock down from $460.52 (Jun 1) → $427.34 (Jun 3) → $409.12 (Jun 8) — market-wide de-rating of AI spend, not company-specific deterioration. Thesis intact. Trailing stop at $392.45 protects downside. Manual cut triggers at $405.67; watching intraday.
+
+### Decision
+HOLD both — no rule triggers, no thesis breaks. MSFT proximity to -7% warrants continued intraday monitoring. Both stops correctly set and GTC orders confirmed active.
