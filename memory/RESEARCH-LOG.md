@@ -257,3 +257,62 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
+
+---
+
+## 2026-06-08 — Pre-market Research (inline, market-open)
+
+### Account Snapshot
+- **Equity:** $108,656.70 | **Cash:** $70,109.16 | **Buying power:** $388,369.75
+- **Day P&L:** +$88.38 (+0.08%) | **Phase P&L:** +$8,656.70 (+8.66%)
+- **Deployed:** $38,548 (35.5% — significantly below 75-85% target)
+- **Daytrade count:** 0 | **PDT:** false
+- **Weekly trade count:** 0/3 (new week)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) |
+|--------|-----|-----------|---------|----------|------------|
+| MSFT   | 48  | $436.20   | $412.44 | -$1,140 (-5.45%) | $392.45 (10% trail, HWM $436.05) |
+| NVDA   | 90  | $219.64   | $208.34 | -$1,016 (-5.14%) | $199.44 (10% trail, HWM $221.60) |
+
+### Position Risk Check
+- **MSFT** -7% cut level: $405.67 — current $412.44 is above → no cut
+- **NVDA** -7% cut level: $204.26 — current $208.34 is above → no cut
+- Both stops in place as GTC trailing orders
+
+### Market Context
+- **WTI / Brent:** ~$96-103/bbl range (geopolitical premium persisting, Hormuz risk)
+- **S&P 500 futures (ESM26):** ~7,400–7,460; market bouncing after Friday's sharp tech selloff
+- **VIX:** ~19.65–19.90 (down ~8.65% from Friday's ~21.8 — fear fading, still elevated)
+- **NFP May 2026 (June 5 print):** Stronger than expected → Treasury yields higher → "higher for longer" rates narrative reinforced; tech headwind
+- **This week's macro calendar:**
+  - Mon Jun 8: Census QFR 10:00 AM (low impact)
+  - Tue Jun 9: Int'l Trade + Wholesale Trade 8:30/10:00 AM (moderate)
+  - **Wed Jun 10: CPI May 2026 @ 8:30 AM (HIGH — binary)**
+  - **Thu Jun 11: PPI @ 8:30 AM (HIGH — secondary)**
+  - Next week: FOMC Jun 16-17 (major overhang)
+- **Sector YTD:** Energy +26% (#1) | Tech mixed/recovering | Consumer Staples +11%
+
+### Holdings Update
+- **MSFT** (-5.45%): Microsoft Build Conference catalyst (Jun 1) fully faded. Trading $412 vs. entry $436. Strong NFP pushing rates higher adds tech headwind. Stop $392.45 intact. Thesis (Azure/AI) long-term valid. HOLD. Watch -7% cut level ($405.67).
+- **NVDA** (-5.14%): Recovering +1.58% today after Friday semi sector selloff. HWM $221.60, stop $199.44 (only $8.90 cushion, 4.1% away). RTX Spark chip + Blackwell pipeline thesis intact. HOLD. Monitor stop proximity.
+
+### Trade Ideas
+1. **XOM** (~$152) — Energy #1 YTD. Q1 beat ($1.16 vs $0.98 est). Analyst target $165.55. But:
+   - Entry $152 → stop $136.80 (-10%) → 2:1 target = $182.40
+   - XOM 52-week high: $176.41 — target exceeds historical high ❌ Fails 2:1 R:R rule
+   - Conviction: 6/10. ❌ SKIP.
+2. **CVX** (~$189) — Same energy thesis. Analyst target $216.04.
+   - Entry $189 → stop $170.10 → 2:1 target = $226.80
+   - Analyst consensus only $216 → falls short of 2:1 ❌ SKIP.
+3. **HOLD cash** — CPI/PPI double data event Wed-Thu is binary. VIX still ~20. Both current positions underwater. Energy R:R doesn't cleanly clear 2:1 rule.
+
+### Risk Factors
+- CPI Wed Jun 10: hot print = selloff + no-cut fear; cool print = risk-on rally
+- PPI Thu Jun 11: secondary inflation confirmation
+- NVDA stop proximity — $199.44, only 4.1% below current $208; monitor intraday
+- MSFT at -5.45% approaching -7% manual cut; watch $405.67
+- Low deployment (35.5%) creates pressure to trade — resist forcing bad R:R
+
+### Decision
+**HOLD — no new buys today.** Both current positions within stops; no manual cuts warranted. XOM and CVX energy thesis sound but R:R fails the 2:1 minimum at current prices. CPI Wed + PPI Thu are binary events — enter before them only with compelling setup, which doesn't exist today. Scout XOM for post-CPI entry Thursday if: (1) CPI prints ≤ 3.2%, (2) oil holds $95+, (3) energy sector confirms. 2 new trades budgeted for later this week.

@@ -74,3 +74,17 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0/3
 
 **Notes:** Portfolio fell -$4,100 (-3.59%) on the day despite NVDA rising +1.56% and MSFT essentially flat (+0.09%) — the drop reflects position changes during the week not captured in this log (AVGO/MU/PLTR from May 27 snapshot no longer held; MSFT and NVDA entered, stops placed Jun 3). Both current positions are within normal range, well above the -7% cut threshold (MSFT cut: $405.67, NVDA cut: $204.26). Deployed only 36.4% vs 75-85% target — significantly under-deployed; need 2-3 new setups tomorrow. NVDA trailing stop at $199.44 (HWM $221.60); MSFT trailing stop at $392.45 (HWM $436.05). Phase P&L: +10.27% vs S&P benchmark.
+
+---
+
+## 2026-06-08 — Market-Open Review
+
+**No new trades.** Energy R:R fails 2:1 rule; CPI Wed + PPI Thu binary events argue for patience.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| MSFT | $436.20 | $412.44 | -5.45% | $392.45 (10% trail, HWM $436.05) | HOLD — -7% cut at $405.67 |
+| NVDA | $219.64 | $208.34 | -5.14% | $199.44 (10% trail, HWM $221.60) | HOLD — monitor stop proximity |
+
+**Portfolio:** $108,656.70 | **Deployed:** 35.5% | **Daytrade count:** 0
+**Week trades:** 0/3 — scout XOM post-CPI Thu for energy add if CPI ≤ 3.2% and oil holds $95+
