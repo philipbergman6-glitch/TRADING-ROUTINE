@@ -74,3 +74,18 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0/3
 
 **Notes:** Portfolio fell -$4,100 (-3.59%) on the day despite NVDA rising +1.56% and MSFT essentially flat (+0.09%) — the drop reflects position changes during the week not captured in this log (AVGO/MU/PLTR from May 27 snapshot no longer held; MSFT and NVDA entered, stops placed Jun 3). Both current positions are within normal range, well above the -7% cut threshold (MSFT cut: $405.67, NVDA cut: $204.26). Deployed only 36.4% vs 75-85% target — significantly under-deployed; need 2-3 new setups tomorrow. NVDA trailing stop at $199.44 (HWM $221.60); MSFT trailing stop at $392.45 (HWM $436.05). Phase P&L: +10.27% vs S&P benchmark.
+
+---
+
+### Jun 08 — EOD Snapshot (Day 29, Monday)
+**Portfolio:** $108,665.16 | **Cash:** $70,109.16 (64.5%) | **Day P&L:** +$96.84 (+0.09%) | **Phase P&L:** +$8,665.16 (+8.67%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MSFT | 48 | $436.20 | $411.82 | -1.16% | -$1,170.24 (-5.59%) | $392.45 |
+| NVDA | 90 | $219.64 | $208.65 | +1.73% | -$988.76 (-5.00%) | $199.44 |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Quiet Monday — portfolio edged up +$97 (+0.09%) as NVDA bounced +1.73% off recent lows while MSFT slid -1.16%. Both positions remain above their -7% cut thresholds (MSFT cut $405.67, NVDA cut $204.26) and well above trailing stops ($392.45 and $199.44 respectively). Deployed only 35.5% vs 75-85% target — the portfolio is severely underdeployed. Need 2-3 new high-quality setups this week to close the gap. MSFT trending down from HWM $436.05 — monitor closely; cut if it touches $405.67. NVDA showing early bounce; stop at $199.44 (HWM $221.60). Phase P&L: +8.67% vs S&P 500 benchmark.
