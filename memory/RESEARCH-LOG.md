@@ -4,6 +4,64 @@ Daily pre-market research entries will be appended here.
 
 ---
 
+## 2026-06-09 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $108,646.74 | **Cash:** $70,109.16 | **Buying power:** $388,341 (4× margin)
+- **Last equity:** $108,650.28 | **Session P&L:** -$3.54 | **Phase P&L:** +$8,646.74 (+8.65%)
+- **Deployed:** $38,537.58 (35.5%) — well below 75-85% target; need 2-3 new positions
+- **Daytrade count:** 0 | **Weekly trade count:** 0/3 (fresh week)
+
+### Positions
+| Symbol | Qty | Avg Entry | Current | Unr. P&L | Stop (GTC) | Cut Level (-7%) |
+|--------|-----|-----------|---------|----------|------------|-----------------|
+| MSFT | 48 | $436.20 | $410.26 | -$1,245 (-5.95%) | $392.45 trail (HWM $436.05) | $405.67 ⚠️ only $4.59 away |
+| NVDA | 90 | $219.64 | $209.39 | -$922 (-4.67%) | $199.44 trail (HWM $221.60) | $204.27 |
+
+### Open Orders
+- MSFT: trailing stop sell 48 @ 10% trail, stop $392.45, HWM $436.05 — GTC
+- NVDA: trailing stop sell 90 @ 10% trail, stop $199.44, HWM $221.60 — GTC
+
+### Market Context
+- **WTI:** ~$90.95/bbl | **Brent:** ~$94.15/bbl — oil pulling back from recent highs (~$96/$103 last week)
+- **S&P 500 futures (ESM26):** ~7,434, +0.25% premarket — mild positive tone
+- **VIX:** ~16.06 — calm, no panic signal
+- **Today's release:** U.S. International Trade (Goods & Services) @ 8:30 AM — low impact
+- **⚠️ FOMC meeting: June 9-10 (TODAY + tomorrow)** — rate decision Wednesday; major overhang
+- **⚠️ CPI May 2026: Wednesday June 10 @ 8:30 AM** — binary inflation print
+- **PPI May 2026: Thursday June 11 @ 8:30 AM**
+- **Earnings BMO today:** ASO, SJM, MDT, SAIL, UNFI — none in held sectors; no impact on positions
+
+### Sector Momentum (YTD)
+- **Energy:** +35.3% 6-month trailing — #1, "Leading"
+- **Industrials:** +13.1% — Leading
+- **Consumer Staples:** Leading
+- **Materials:** Leading
+- **Technology/Communications:** "Lagging" per rotation analysis — headwind for MSFT/NVDA
+- **S&P 500 YTD:** +7.86%
+
+### Holdings Update
+- **MSFT ($410.26):** -5.95% from entry. Cut threshold $405.67 — only $4.59 buffer. Build conference catalyst (Jun 1) fully faded. Long-term bull case intact (Morningstar FV ~$600, Wedbush bullish AI monetization). HOLD but on watch; cut if it touches $405.67.
+- **NVDA ($209.39):** -4.67% from entry. AI demand remains strong; Blackwell/Vera Rubin rollout on track. Shareholder meeting June 24 upcoming catalyst. HWM $221.60, stop $199.44 — $9.95 cushion. HOLD; stop protects downside.
+
+### Trade Ideas (post-FOMC/CPI — not today)
+1. **XOM (Energy)** — Sector leading +35% YTD. Oil ~$91-94/bbl, geopolitical premium. Entry ~$135-138, stop 10% trail (~$122), target $160+. 2:1 R:R. Wait for CPI clarity Thursday.
+2. **CVX (Energy)** — Alternative to XOM, diversifies energy exposure. Same thesis. Entry on confirmed sector strength after macro events clear.
+3. **AMD (Tech/AI)** — AI/CPU thesis, currently lagging tech sector could rotate if FOMC is dovish. Entry ~$175-180 if semi sector stabilizes post-FOMC. Stop 10% trail, target $210. Confirm before entry.
+
+### Risk Factors
+- **FOMC June 9-10:** Rate decision Wednesday; hawkish surprise = broad selloff
+- **CPI June 10 @ 8:30 AM:** Hot print = selloff; cool print = rally; binary
+- **MSFT proximity to cut level:** $410.26 vs. $405.67 cut — 1.1% downside triggers manual exit
+- **Tech sector lagging:** Rotation out of tech = continued drag on MSFT/NVDA
+- **Under-deployment risk:** 35.5% deployed vs. 75-85% target; cannot force trades into binary events
+- **Oil pullback:** WTI ~$91 (down from ~$96) — energy thesis still valid but monitor for further softness
+
+### Decision
+**HOLD both positions. Do NOT add new trades today.** FOMC starts today; CPI prints tomorrow — two major binary events within 24 hours. Patience > activity. Scout XOM entry Thursday if macro picture clears (dovish Fed + tame CPI). Watch MSFT intraday: manual cut if it touches $405.67. 3 trades remaining this week for deployment post-clarity.
+
+---
+
 ## 2026-04-30 — Pre-market Research
 
 ### Account
