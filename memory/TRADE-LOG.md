@@ -78,11 +78,14 @@ No positions yet. Bot launches tomorrow.
 ---
 
 ## Jun 09 — EOD Snapshot (Day 30, Tuesday)
-**Portfolio:** $108,628.62 | **Cash:** $70,109.16 (64.5%) | **Day P&L:** -$21.66 (-0.02%) | **Phase P&L:** +$8,628.62 (+8.63%)
+**Portfolio:** $107,304.78 | **Cash:** $107,304.78 (100%) | **Day P&L:** -$1,345.50 (-1.24%) | **Phase P&L:** +$7,304.78 (+7.30%)**
 
-| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
-|--------|--------|-------|-------|---------|----------------|------|
-| MSFT | 48 | $436.20 | $410.67 | -0.26% | -$1,225.44 (-5.85%) | $392.45 |
-| NVDA | 90 | $219.64 | $208.97 | +0.16% | -$959.96 (-4.86%) | $199.44 |
+| Ticker | Shares | Entry | Exit | Realized P&L | Notes |
+|--------|--------|-------|------|--------------|-------|
+| MSFT | 48 | $436.20 | ~$401 | ~-$1,690 (-8.1%) | Trailing stop triggered ($392.45 level) |
+| NVDA | 90 | $219.64 | ~$199 | ~-$1,857 (-9.4%) | Trailing stop triggered ($199.44 level) |
 
-**Notes:** Flat session — portfolio essentially unchanged (-$21.66, -0.02%) at the close. MSFT slipped -0.26%, NVDA ticked up +0.16%. Both positions underwater from entry (MSFT -5.85%, NVDA -4.86%) but neither near its -7% manual cut or trailing stop (MSFT stop $392.45, NVDA stop $199.44). No new trades; 0 trades this week. Only 35.5% deployed ($38.5K of $108.6K) — well below the 75-85% target, leaving room to add 1-2 positions. Phase P&L holding at +8.63%. Note: remaining log gap is Apr 30 → May 27 (original AMD/NVDA/PLTR exits and the May entries that preceded the AVGO/MU/PLTR book not individually logged) — worth backfilling.
+**Trades today:** MSFT SELL 48 (stop hit), NVDA SELL 90 (stop hit)
+**Week trades:** 0 new entries (exits only)
+
+**Notes:** Both remaining positions stopped out during the session — MSFT and NVDA hit their 10% trailing stops as the tech sector continued under pressure. Portfolio is now 100% cash at $107,304.78. Day P&L -$1,345.50 (-1.24%). Phase P&L slips to +7.30% from the +10.27% peak (Jun 4). The May–June tech book (MSFT/NVDA) was entered too early and both exited via stops at a loss. Fully reset — need 3 fresh setups in pre-market tomorrow. Sector thesis review warranted: AI/tech momentum has stalled; consider broadening to industrials, energy, or consumer setups. Deployed 0% vs 75-85% target — highest priority is finding quality entries Wednesday.
