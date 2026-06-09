@@ -257,3 +257,48 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. Let AVGO and MU trailing stops execute at open — rule-compliant, no override.** Do not add new positions today; NFP tomorrow is a binary event. Rebuild deployment next week after NFP prints and sector signals confirm. Target: 1 Energy (XOM/CVX) + 1 Tech/Growth entry if tape stabilizes. Weekly budget: 2 trades remaining.
+
+---
+
+## 2026-06-09 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $108,637.26 | **Cash:** $70,109.16 | **Buying power:** $388,315 (4× margin)
+- **Last equity:** $108,650.28 | **Session P&L:** -$13.02 (-0.01%) | **Phase P&L:** +$8,637.26 (+8.64%)
+- **Deployed:** $38,528 (35.5%) | **Daytrade count:** 0
+- **Weekly trade count:** 0/3
+
+### Positions
+| Symbol | Qty | Avg Entry | Last | Unr. P&L | Stop (GTC) | -7% Cut |
+|--------|-----|-----------|------|----------|------------|---------|
+| MSFT | 48 | $436.20 | $410.85 | -$1,217 (-5.81%) | 10% trail, HWM $436.05, stop $392.45 | $405.67 |
+| NVDA | 90 | $219.64 | $208.97 | -$960 (-4.86%) | 10% trail, HWM $221.60, stop $199.44 | $204.26 |
+
+### Market Context
+- **WTI:** ~$89-91/bbl | **Brent:** ~$103/bbl — elevated, Iran geopolitical premium
+- **S&P 500 futures:** ~7,434, +0.25% premarket — mild risk-on
+- **VIX:** 18.16 (down from 18.92 Jun 8) — moderate, no panic
+- **TODAY's release:** none high-impact
+- **⚠️ TOMORROW Jun 10, 8:30 AM:** May CPI — HIGH impact, binary macro event
+- **Upcoming:** PPI + jobless claims Jun 11 | FOMC Jun 16-17
+- **Earnings BMO today:** ASO, SJM, SAIL, UNFI (none held)
+- **Sector YTD:** Energy +22-26% (#1) | Consumer Staples +11-13% | Industrials +10-16% | Tech leading recent 1-mo (+~16%)
+
+### Holdings Update
+- **MSFT (-5.81%):** Build 2026 (Jun 2-3) reaction faded; closed $416 → now $410.85. AI revenue run-rate ~$37B, analyst avg target ~$561 (constructive). Dividend $0.91 payable Jun 11. Only $5.18 (-1.3%) above -7% cut ($405.67); stop $392.45. Azure/AI thesis intact. **HOLD — watch the cut line.**
+- **NVDA (-4.86%):** GTC 2026 news flow + Rubin ramp (2H26) + possible China H200 approval are the live catalysts. Avg target ~$305. $4.71 (-2.3%) above -7% cut ($204.26); stop $199.44. **HOLD unless cut/stop triggers.**
+
+### Trade Ideas (scout — do NOT enter pre-CPI)
+1. **XOM / CVX (Energy)** — Sector #1 YTD (+22-26%); oil $89-103 on Iran premium. Best diversification away from semi/tech concentration. *Entry after CPI clears Wed. Stop 10% below; target 2:1.*
+2. **GOOGL or META** — AI ad-revenue tailwind; diversifies off the two-name tech book. *Scout post-CPI / post-FOMC.*
+3. **AMD** — AI/CPU thesis if semis stabilize; correlated with existing NVDA exposure — lower priority.
+
+### Risk Factors
+- **CPI tomorrow (Jun 10)** — binary; hot print = rate-fear selloff, cool = relief rally. Don't add risk into it.
+- **MSFT proximity to cut** — only -1.3% from -7% manual cut; a -2% down day triggers it.
+- **Semi/tech concentration** — both holdings are AI-tech; CPI-driven tech selloff hits both at once.
+- **Iran geopolitics** — supports Energy, but a flare-up is a broad risk-off vector.
+- **Under-deployment** — 35.5% vs 75-85% target; room for 2-3 adds, but not worth forcing pre-CPI.
+
+### Decision
+**HOLD MSFT and NVDA. No new trades today.** CPI tomorrow is a binary event — patience > activity. Both holdings are above their cut lines but MSFT needs watching (-1.3% cushion). Queue 1 Energy entry (XOM/CVX) + 1 diversifier (GOOGL/META) for Wed/Thu after CPI prints and tape confirms. Weekly budget: 3 trades available.
