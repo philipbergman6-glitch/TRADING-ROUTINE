@@ -86,3 +86,25 @@ No positions yet. Bot launches tomorrow.
 | NVDA | 90 | $219.64 | $208.97 | +0.16% | -$959.96 (-4.86%) | $199.44 |
 
 **Notes:** Flat session — portfolio essentially unchanged (-$21.66, -0.02%) at the close. MSFT slipped -0.26%, NVDA ticked up +0.16%. Both positions underwater from entry (MSFT -5.85%, NVDA -4.86%) but neither near its -7% manual cut or trailing stop (MSFT stop $392.45, NVDA stop $199.44). No new trades; 0 trades this week. Only 35.5% deployed ($38.5K of $108.6K) — well below the 75-85% target, leaving room to add 1-2 positions. Phase P&L holding at +8.63%. Note: remaining log gap is Apr 30 → May 27 (original AMD/NVDA/PLTR exits and the May entries that preceded the AVGO/MU/PLTR book not individually logged) — worth backfilling.
+
+---
+
+## Jun 09 — Midday Exits
+
+**NVDA — Trailing Stop Triggered (12:40 PM ET)**
+- Exit: $199.37 | Entry: $219.64 | Shares: 90
+- Realized P&L: **-$1,824.30 (-9.23%)**
+- Stop $199.44 (10% trail, HWM $221.60) triggered on intraday decline; filled at $199.37 (minor slippage).
+- Rule-compliant exit. Thesis (AI GPU demand) intact but stop did its job.
+
+**MSFT — Cut at -7% Rule (1:04 PM ET)**
+- Exit: $401.09 | Entry: $436.20 | Shares: 48
+- Realized P&L: **-$1,685.28 (-8.05%)**
+- MSFT dropped to $400.82 intraday (-8.11% from entry), breaching -7% cut level ($405.67). Cancelled trailing stop (order f330a23e), then closed position. "Cut at -7% per rule."
+- Azure/AI thesis not broken; exit is rule-driven, not fundamental.
+
+**Post-Exit State (Jun 09 Midday)**
+**Portfolio:** $107,304.78 | **Cash:** $107,304.78 (100%) | **Day P&L:** -$1,345.50 (-1.24%) | **Phase P&L:** +$7,304.78 (+7.30%)
+- No open positions. Deployed: 0%.
+- Weekly trade count: 0/3 (exits do not count against weekly buy limit).
+- Queue: 2-3 fresh setups needed. Scout Energy (XOM/CVX) + Diversifier (GOOGL/META/AMD) post-CPI (Jun 10 8:30 AM).

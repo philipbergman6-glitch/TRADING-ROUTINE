@@ -302,3 +302,29 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. No new trades today.** CPI tomorrow is a binary event — patience > activity. Both holdings are above their cut lines but MSFT needs watching (-1.3% cushion). Queue 1 Energy entry (XOM/CVX) + 1 diversifier (GOOGL/META) for Wed/Thu after CPI prints and tape confirms. Weekly budget: 3 trades available.
+
+---
+
+## 2026-06-09 — Midday Scan
+
+### Positions at Scan
+| Symbol | Entry | Current | P&L% | Stop |
+|--------|-------|---------|------|------|
+| NVDA | $219.64 | $199.37 (stop hit) | -9.23% | $199.44 — **TRIGGERED** |
+| MSFT | $436.20 | $400.82 | -8.11% | $392.45 — **CUT** |
+
+### Actions Taken
+- **NVDA** trailing stop $199.44 hit at 12:40 PM ET — filled $199.37. Realized P&L: -$1,824.30 (-9.23%). Rule-compliant stop exit.
+- **MSFT** -8.11% below entry ($400.82 < cut level $405.67). Cancelled trailing stop order, closed at $401.09 at 1:04 PM ET. Realized P&L: -$1,685.28 (-8.05%). "Cut at -7% per rule."
+- No thesis violations triggered these exits independently — NVDA stop did its job; MSFT exit is pure rule enforcement.
+
+### Post-Scan State
+**Portfolio:** $107,304.78 | **Cash:** 100% | **Phase P&L:** +$7,304.78 (+7.30%)
+- 0 open positions. Fully in cash.
+- No stops to manage, no tightening needed.
+
+### Forward
+- **CPI tomorrow Jun 10 8:30 AM** — binary event. Stay in cash until print confirms direction.
+- If CPI cool: enter XOM/CVX (Energy #1 YTD) + GOOGL or META (diversification). 2-3 positions to rebuild to 75-85% deployment.
+- If CPI hot: wait for tape to stabilize before adding risk.
+- Weekly budget: 3/3 trades remaining.
