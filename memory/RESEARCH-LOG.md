@@ -302,3 +302,40 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. No new trades today.** CPI tomorrow is a binary event — patience > activity. Both holdings are above their cut lines but MSFT needs watching (-1.3% cushion). Queue 1 Energy entry (XOM/CVX) + 1 diversifier (GOOGL/META) for Wed/Thu after CPI prints and tape confirms. Weekly budget: 3 trades available.
+
+---
+
+## 2026-06-10 — Market-Open Research (inline)
+
+### Account Snapshot
+- **Equity:** $107,304.74 | **Cash:** $107,304.74 | **Deployed:** 0%
+- **Daytrade count:** 0 | **Weekly trade count:** 0/3
+
+### Live Prices (9:35 AM ET)
+| Symbol | Last Trade | Notes |
+|--------|-----------|-------|
+| XOM | $150.65 | Energy — up on Iran oil premium |
+| CVX | $189.31 | Energy — same thesis |
+| GOOGL | $363.44 | Tech — sector leading DOWN |
+| META | $585.02 | Tech — sector leading DOWN |
+| NVDA | $205.54 | Semis — bounced from stop, still weak |
+| AMD | $467.26 | Semis — weak |
+
+### Market Context
+- **S&P 500:** -1.06% (~-78 pts) | **Nasdaq:** -1.6% | **Dow:** -0.95%
+- **WTI:** ~$89.92/bbl — up on US strikes against Iran
+- **VIX:** Elevated; tech and growth under pressure
+- **May CPI:** +0.5% MoM / +4.2% YoY (highest since Apr 2023) — HOT print
+- **Driver:** US self-defense strikes on Iran → geopolitical risk-off; oil spike; inflation fears
+- **Sector:** Energy leading (up); Tech leading declines; Growth headwinds from CPI + FOMC Jun 16-17
+
+### Trade Decision
+**BUY XOM 142 shares @ market**
+- Catalyst: Iran military escalation → WTI $90 → energy sector direct beneficiary
+- Energy sector #1 YTD (+22-26%); XOM analyst targets $161-200+
+- Entry ~$150.65, stop 10% trailing (initial ~$135.59), target $180.78 (2:1 R:R)
+- Position cost ~$21,392 (19.9% of equity) — within 20% rule
+
+**SKIP GOOGL/META:** Tech leading sector DOWN today. Hot CPI + FOMC Jun 16-17 = rate headwinds for growth. Re-evaluate Thu/Fri.
+**SKIP NVDA/AMD:** Chips specifically weak; NVDA just stopped out Jun 09.
+**SKIP CVX:** Same thesis as XOM — will add diversity next trade slot if Energy holds.
