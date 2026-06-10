@@ -89,3 +89,24 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0 new entries (exits only)
 
 **Notes:** Both remaining positions stopped out during the session — MSFT and NVDA hit their 10% trailing stops as the tech sector continued under pressure. Portfolio is now 100% cash at $107,304.78. Day P&L -$1,345.50 (-1.24%). Phase P&L slips to +7.30% from the +10.27% peak (Jun 4). The May–June tech book (MSFT/NVDA) was entered too early and both exited via stops at a loss. Fully reset — need 3 fresh setups in pre-market tomorrow. Sector thesis review warranted: AI/tech momentum has stalled; consider broadening to industrials, energy, or consumer setups. Deployed 0% vs 75-85% target — highest priority is finding quality entries Wednesday.
+
+---
+
+## Jun 10 — Market-Open Trades
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-10 | XOM | BUY | 142 | $150.14 | 10% trailing GTC (initial $135.13) | Energy sector rotation after full-cash reset; energy/industrial momentum vs stalled AI-tech | $180.17 | 2:1 |
+
+**Week of 2026-06-10 trade count: 1/3**
+
+---
+
+### Jun 10 — EOD Snapshot (Day 31, Wednesday)
+**Portfolio:** $107,380.00 | **Cash:** $85,984.86 (80.1%) | **Day P&L:** +$75.26 (+0.07%) | **Phase P&L:** +$7,380.00 (+7.38%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XOM | 142 | $150.14 | $150.67 | +1.18% | +$75.26 (+0.35%) | $137.24 (10% trail, HWM $152.49) |
+
+**Notes:** Resumed deploying capital after Jun 09 full-cash reset. Entered XOM 142 shares @ $150.14 (energy sector rotation) with 10% trailing GTC stop (HWM $152.49, current stop $137.24). XOM +1.18% on the day; position +0.35% on day one. Portfolio +$75.26 (+0.07%). Still significantly under-deployed at 19.9% vs 75-85% target — need 2 more quality setups this week. Week trade count: 1/3. Phase P&L: +7.38% vs S&P benchmark.
