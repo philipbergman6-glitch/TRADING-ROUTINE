@@ -89,3 +89,27 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0 new entries (exits only)
 
 **Notes:** Both remaining positions stopped out during the session — MSFT and NVDA hit their 10% trailing stops as the tech sector continued under pressure. Portfolio is now 100% cash at $107,304.78. Day P&L -$1,345.50 (-1.24%). Phase P&L slips to +7.30% from the +10.27% peak (Jun 4). The May–June tech book (MSFT/NVDA) was entered too early and both exited via stops at a loss. Fully reset — need 3 fresh setups in pre-market tomorrow. Sector thesis review warranted: AI/tech momentum has stalled; consider broadening to industrials, energy, or consumer setups. Deployed 0% vs 75-85% target — highest priority is finding quality entries Wednesday.
+
+---
+
+## Jun 10 — Market-Open Trades (Day 31, Wednesday)
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-10 | XOM | BUY | 142 | $150.14 | 10% trailing GTC (initial $136.62, HWM $151.80) | Energy sector #1 YTD (+22-26%); oil elevated on Iran geopolitical premium; entered after May CPI confirmed benign print | $172.50+ | 2:1 |
+
+**Week trades: 1/3**
+
+---
+
+## Jun 10 — Midday Scan (Day 31, Wednesday)
+
+**Portfolio:** $107,541.88 | **Cash:** $85,984.86 (79.9%) | **Day P&L:** +$237.14 (+0.22%) | **Phase P&L:** +$7,541.88 (+7.54%)**
+
+| Ticker | Shares | Entry | Current | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|---------|---------|----------------|------|
+| XOM | 142 | $150.14 | $151.76 | +1.91% | +$230.04 (+1.08%) | $136.62 (10% trail, HWM $151.80) |
+
+**Actions:** None. No position at -7% cut. No position at +15% tighten threshold. Thesis intact.
+
+**Notes:** XOM entered at open after May CPI confirmed favorable. Up +1.91% on the day — energy sector bid on CPI relief rally. Deployed only 20% vs 75-85% target; 2 more trades available this week. Need 2 additional setups (scout GOOGL/META or industrials).

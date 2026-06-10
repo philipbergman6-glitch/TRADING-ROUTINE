@@ -302,3 +302,20 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. No new trades today.** CPI tomorrow is a binary event — patience > activity. Both holdings are above their cut lines but MSFT needs watching (-1.3% cushion). Queue 1 Energy entry (XOM/CVX) + 1 diversifier (GOOGL/META) for Wed/Thu after CPI prints and tape confirms. Weekly budget: 3 trades available.
+
+---
+
+## 2026-06-10 — Midday Scan
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| XOM | $150.14 | $151.76 | +1.08% | +1.91% | $136.62 (10% trail, HWM $151.80) |
+
+### Actions
+- No cuts (XOM +1.08%, far from -7% cut at $139.63)
+- No stop tightening (XOM below +15% threshold of $172.66)
+- Thesis intact: energy sector momentum, oil geopolitical premium. XOM up on CPI relief rally — expected behavior.
+
+### Decision
+HOLD XOM — no rule triggers, no thesis breaks. Deployed 20% ($21,557 / $107,542) vs 75-85% target. 2 trades remaining this week. Scout GOOGL/META or industrials for afternoon/pre-market Thursday.
