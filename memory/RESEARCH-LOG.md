@@ -302,3 +302,46 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. No new trades today.** CPI tomorrow is a binary event — patience > activity. Both holdings are above their cut lines but MSFT needs watching (-1.3% cushion). Queue 1 Energy entry (XOM/CVX) + 1 diversifier (GOOGL/META) for Wed/Thu after CPI prints and tape confirms. Weekly budget: 3 trades available.
+
+---
+
+## 2026-06-10 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $107,304.74 | **Cash:** $107,304.74 (100%) | **Buying power:** $429,218.96 (4× margin)
+- **Day P&L:** $0 | **Phase P&L:** +$7,304.74 (+7.30%)
+- **Deployed:** $0 (0% — fully in cash; MSFT + NVDA stopped out Jun 9)
+- **Daytrade count:** 0 | **Weekly trade count:** 0/3
+
+### Positions
+None — 100% cash after Jun 9 stop-outs.
+
+### Market Context
+- **WTI:** ~$87–88/bbl | **Brent:** ~$89–90/bbl — down from $103 range; geopolitical premium fading
+- **S&P 500 futures (ESM26):** ~7,354–7,370, **-0.31% premarket** — mild risk-off ahead of CPI
+- **VIX:** **20.09** (Cboe spot Jun 10; up from 18.16 Jun 9) — elevated and rising; fear creeping in
+- **⚠️ TODAY 8:30 AM ET: May 2026 CPI** — consensus headline **+4.2% YoY** (vs +3.8% April, ACCELERATING); core **+2.9% YoY**; +0.5% MoM. Highest binary risk event of the week.
+- **Upcoming:** PPI + jobless claims Jun 11 | FOMC Jun 16–17 (hot CPI reduces rate-cut probability further)
+- **Earnings BMO today:** CHWY (Chewy, $0.24 EPS est.) + small-caps (CRMT, BORR, MDRX). No major market-movers before open.
+- **AI/Catalyst:** Anthropic released a new flagship model today ahead of anticipated IPO — semi/AI buildout narrative intact. China announced $295B nationwide AI infrastructure spend (Bloomberg Jun 10). Supportive for AI-linked names.
+- **Sector YTD (through early Jun):** Energy +26% (#1) | Consumer Staples +11% | Industrials +10% | Tech mixed; 1-mo tech momentum +~16% but semis stalling
+
+### Trade Ideas (scout — DO NOT enter pre-CPI)
+1. **XOM (Exxon Mobil) — Energy** — Sector #1 YTD (+26%). Oil pulled back to $87–88 from $103 peak; may offer a reset entry. CPI hot → energy + commodity inflation hedge. Catalyst: persistent Iran/Hormuz geopolitical premium + OPEC+ supply discipline. Entry ~$115–118 post-CPI confirmation, 10% trailing stop, target +20% ($138–142). R:R ~2:1. Conviction: 7/10. Wait for tape post-8:30.
+2. **GOOGL (Alphabet) — Communication Services / AI** — AI ad-revenue tailwind; Anthropic model release keeps AI narrative hot; diversifies away from semi concentration. Entry ~$185–190 on CPI relief bounce, 10% trail, target $225+ (~2:1 R:R). Conviction: 6/10. Requires cool/inline CPI print.
+3. **CAT (Caterpillar) — Industrials** — Sector #3 YTD; infrastructure/reshoring secular tailwind. Less CPI-sensitive than tech. Entry ~$370–380, stop ~$333, target $440+ (2:1 R:R). Conviction: 6/10. Best pick if CPI hot and tech sells off — defensive within growth.
+
+### Risk Factors
+- **⚠️ CPI at 8:30 AM** — hot print (+4.2%+ YoY) kills rate-cut hopes for 2026, triggers tech/growth selloff; cool print (<4.0%) sparks relief rally. Binary — both directions are large.
+- **VIX at 20.09** — elevated; market is pricing uncertainty. Spreads widen, vol compression unlikely today.
+- **FOMC Jun 16–17** — a hot CPI print one week out locks the Fed into hold; hawkish tone risk compounds any hot print.
+- **0% deployed** — maximum optionality but also zero market exposure. Miss a relief rally if CPI cool and no entry positioned.
+- **AI semi concentration risk** — if CPI hot, NVDA/AMD/MSFT re-test recent lows; avoid re-entering tech before macro clears.
+- **Oil demand risk** — if CPI cool + recession fear, oil could slide further from $87-88; invalidates energy thesis temporarily.
+
+### Decision
+**HOLD CASH. No new trades until CPI prints and tape confirms direction.**
+- Fully reset at $107K; 3 trade credits fresh for the week.
+- CPI consensus 4.2% vs 3.8% prior — IF it prints at or above consensus: rates stay high, avoid adding tech; consider XOM as inflation hedge only on a confirmed energy bounce.
+- IF it prints cool (<3.8%): buy GOOGL or XOM at the open with CPI relief momentum behind it.
+- Either way: wait for print + 30-min tape read before entering any position. Patience > activity.
