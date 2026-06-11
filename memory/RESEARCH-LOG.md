@@ -302,3 +302,45 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD MSFT and NVDA. No new trades today.** CPI tomorrow is a binary event — patience > activity. Both holdings are above their cut lines but MSFT needs watching (-1.3% cushion). Queue 1 Energy entry (XOM/CVX) + 1 diversifier (GOOGL/META) for Wed/Thu after CPI prints and tape confirms. Weekly budget: 3 trades available.
+
+---
+
+## 2026-06-11 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $107,448.15 | **Cash:** $85,984.85 | **Buying power:** $404,037 (4× margin)
+- **Last equity:** $107,372.89 | **Session P&L:** +$75.26 (+0.07%) | **Phase P&L:** +$7,448.15 (+7.45%)
+- **Deployed:** $21,463 (20.0%) | **Daytrade count:** 0
+- **Weekly trade count:** 1/3 (XOM Jun 10)
+
+### Positions
+| Symbol | Qty | Avg Entry | Last | Unr. P&L | Stop (GTC) | -7% Cut |
+|--------|-----|-----------|------|----------|------------|---------|
+| XOM | 142 | $150.14 | $151.15 | +$143 (+0.67%) | 10% trail, HWM $152.49, stop $137.24 | $139.63 |
+
+### Market Context
+- **WTI:** ~$90-92/bbl | **Brent:** ~$93-95/bbl — Hormuz/Iran premium intact; Exxon SVP floats $150-160 spike risk
+- **S&P 500 futures:** ~7,305, +0.36% | **Nasdaq futures:** +0.61% — mild risk-on, CPI (Jun 10) digested without damage
+- **VIX:** ~16 (source dated — treat as approximate; was 18.16 Jun 9)
+- **TODAY 8:30 AM ET:** PPI (last print hot: +0.5% m/m, ~4.0% YoY) + jobless claims — MEDIUM-HIGH impact
+- **Upcoming:** FOMC Jun 16-17 (next week)
+- **Earnings BMO today:** LOVE, ACB, HOFT, VRA (minor, none held) | **AMC:** ADBE, RH — tech-sentiment read
+- **Sector YTD:** Energy +23-25% (#1) | Materials +17% | Staples +15% | Industrials +14% | Tech/Financials negative
+
+### Holdings Update
+- **XOM (+0.67%):** Closed $150.72 +1.22% Jun 10; extended hours $151-152. Tailwinds: Coral Norte LNG win (Mozambique), Guyana profitability ($4.67B 2025), Hormuz oil premium. +25% YTD. Trail $137.24 (HWM $152.49). Thesis intact. **HOLD.**
+
+### Trade Ideas (conditional on benign PPI — verify quotes at open, pre-market spreads wide)
+1. **CVX (Energy)** — Catalyst: Energy #1 YTD, oil $90-95 on Hormuz premium; pairs with XOM in leading sector but watch combined energy = ~40% if full size. Entry ~$178 | Stop: 10% trail GTC (~$160) | Target ~$213 (2:1).
+2. **CAT (Industrials)** — Catalyst: Industrials +14% YTD (#4), data-center/infrastructure buildout. Pre-market quote wide ($850 bid/$941 ask) — confirm at open. Entry ~market | Stop: 10% trail GTC | Target +20% (2:1).
+3. **LIN (Materials)** — Catalyst: Materials #2 YTD (+17%), quality compounder, diversifies off energy. Quote wide ($485 bid/$539 ask) — confirm at open. Entry ~market | Stop: 10% trail GTC | Target +20% (2:1).
+
+### Risk Factors
+- **PPI 8:30 AM today** — trend is hot (4.0% YoY Mar); a hot print pre-FOMC = rate-fear selloff. Do NOT enter before the print clears.
+- **FOMC Jun 16-17** — overhang on any new multi-week position entered this week.
+- **Hormuz escalation** — bullish XOM/CVX but a broad risk-off vector; two energy names doubles that exposure.
+- **ADBE/RH earnings tonight** — tech-sentiment swing factor for tomorrow.
+- **Under-deployment** — 20% vs 75-85% target; pressure to deploy is real but cannot force entries into a hot PPI.
+
+### Decision
+**Conditional TRADE at market-open: if PPI prints in-line/cool AND futures hold green, add 1-2 of the ideas above (prefer 1 energy + 1 non-energy diversifier, ≤20% each), using the 2 remaining weekly trade slots. If PPI is hot or tape turns red → HOLD and reassess Friday.** XOM: hold, trail working.
