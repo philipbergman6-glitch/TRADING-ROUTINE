@@ -22,6 +22,11 @@ IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
   MUST commit and push at STEP 8 if any memory files changed.
 
+STEP 0 — SYNC TO LATEST MAIN (mandatory, BEFORE reading any memory file):
+git fetch origin main && git reset --hard FETCH_HEAD
+The sandbox clone is often stale. Skipping this means trading on outdated
+memory. If the fetch fails, STOP, email "SYNC FAILED $DATE", and exit.
+
 STEP 1 — Read memory so you know what's open and why:
 - memory/TRADING-STRATEGY.md (exit rules)
 - tail of memory/TRADE-LOG.md (entries, original thesis per position, stops)
@@ -52,8 +57,16 @@ sharply with no obvious cause. Append afternoon addendum to RESEARCH-LOG.
 STEP 7 — Notification: only if action was taken.
 bash scripts/email.sh "<action summary>"
 
-STEP 8 — COMMIT AND PUSH (if any memory files changed):
+STEP 8 — COMMIT, PUSH, VERIFY (if any memory files changed):
+Skip this step entirely if no-op.
 git add memory/TRADE-LOG.md memory/RESEARCH-LOG.md
 git commit -m "midday scan $DATE"
-git push origin main
-Skip commit if no-op. On push failure: rebase and retry.
+git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
+Never force-push.
+
+Then VERIFY the push landed (the proxy rewrites SHAs — compare subjects,
+never SHAs):
+git fetch origin main
+git log --format=%s -3 FETCH_HEAD | grep -qxF "midday scan $DATE" \
+  && echo "PUSH VERIFIED" \
+  || bash scripts/email.sh "PUSH NOT ON MAIN $DATE — origin/main tip: $(git log -1 --format='%h %s' FETCH_HEAD)"

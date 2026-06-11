@@ -22,6 +22,11 @@ IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
   MUST commit and push at STEP 7.
 
+STEP 0 — SYNC TO LATEST MAIN (mandatory, BEFORE reading any memory file):
+git fetch origin main && git reset --hard FETCH_HEAD
+The sandbox clone is often stale. Skipping this means trading on outdated
+memory. If the fetch fails, STOP, email "SYNC FAILED $DATE", and exit.
+
 STEP 1 — Read memory for full week context:
 - memory/WEEKLY-REVIEW.md (match existing template exactly)
 - ALL this week's entries in memory/TRADE-LOG.md
@@ -66,9 +71,16 @@ Best: SYM +X%  Worst: SYM -X%
 One-line takeaway: <...>
 Grade: <letter>"
 
-STEP 7 — COMMIT AND PUSH (mandatory):
+STEP 7 — COMMIT, PUSH, VERIFY (mandatory):
 git add memory/WEEKLY-REVIEW.md memory/TRADING-STRATEGY.md
 git commit -m "weekly review $DATE"
-git push origin main
 If TRADING-STRATEGY.md didn't change, add just WEEKLY-REVIEW.md.
-On push failure: rebase and retry.
+git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
+Never force-push.
+
+Then VERIFY the push landed (the proxy rewrites SHAs — compare subjects,
+never SHAs):
+git fetch origin main
+git log --format=%s -3 FETCH_HEAD | grep -qxF "weekly review $DATE" \
+  && echo "PUSH VERIFIED" \
+  || bash scripts/email.sh "PUSH NOT ON MAIN $DATE — origin/main tip: $(git log -1 --format='%h %s' FETCH_HEAD)"
