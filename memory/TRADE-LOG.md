@@ -110,3 +110,15 @@ No positions yet. Bot launches tomorrow.
 | XOM | 142 | $150.14 | $150.67 | +1.18% | +$75.26 (+0.35%) | $137.24 (10% trail, HWM $152.49) |
 
 **Notes:** Resumed deploying capital after Jun 09 full-cash reset. Entered XOM 142 shares @ $150.14 (energy sector rotation) with 10% trailing GTC stop (HWM $152.49, current stop $137.24). XOM +1.18% on the day; position +0.35% on day one. Portfolio +$75.26 (+0.07%). Still significantly under-deployed at 19.9% vs 75-85% target — need 2 more quality setups this week. Week trade count: 1/3. Phase P&L: +7.38% vs S&P benchmark.
+
+### Jun 11 — EOD Snapshot (Day 32, Thursday)
+**Portfolio:** $106,802.05 | **Cash:** $85,984.85 (80.5%) | **Day P&L:** -$577.95 (-0.54%) | **Phase P&L:** +$6,802.05 (+6.80%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XOM | 142 | $150.14 | $146.60 | -2.67% | -$502.68 (-2.36%) | $137.24 (10% trail, HWM $152.49) |
+
+**Trades today:** none
+**Week trades:** 1/3 (XOM Jun 10)
+
+**Notes:** Quiet but red day — XOM pulled back -2.67% to $146.60, dragging the portfolio down $577.95 (-0.54%) on day two of the position. Unrealized P&L now -2.36%; well above the -7% manual cut level ($139.63) and the trailing stop ($137.24, HWM $152.49). No new trades placed. Still under-deployed at 19.5% vs 75-85% target with 2 trades remaining this week — Friday priority is finding 1-2 quality setups, but only if pre-market research supports them; don't force entries into weakness. Phase P&L: +6.80%.
