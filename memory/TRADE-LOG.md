@@ -122,3 +122,15 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 1/3 (XOM Jun 10)
 
 **Notes:** Quiet but red day — XOM pulled back -2.67% to $146.60, dragging the portfolio down $577.95 (-0.54%) on day two of the position. Unrealized P&L now -2.36%; well above the -7% manual cut level ($139.63) and the trailing stop ($137.24, HWM $152.49). No new trades placed. Still under-deployed at 19.5% vs 75-85% target with 2 trades remaining this week — Friday priority is finding 1-2 quality setups, but only if pre-market research supports them; don't force entries into weakness. Phase P&L: +6.80%.
+
+### Jun 12 — EOD Snapshot (Day 33, Friday)
+**Portfolio:** $106,860.27 | **Cash:** $85,984.85 (80.5%) | **Day P&L:** +$58.22 (+0.05%) | **Phase P&L:** +$6,860.27 (+6.86%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XOM | 142 | $150.14 | $147.01 | +0.28% | -$444.46 (-2.08%) | $137.24 (10% trail, HWM $152.49) |
+
+**Trades today:** none
+**Week trades:** 1/3 (XOM Jun 10)
+
+**Notes:** Flat Friday — XOM ticked up +0.28% to $147.01, leaving the portfolio +$58.22 (+0.05%) on the day. Position remains -2.08% from entry, well above both the -7% manual cut ($139.63) and the trailing stop ($137.24, HWM $152.49). No new trades despite 2 slots remaining this week — pre-market setups didn't justify forcing entries into a soft tape. Week closes at 1/3 trades and only 19.5% deployed vs 75-85% target; Monday priority is fresh research for 2-3 quality setups to rebuild deployment. Phase P&L: +6.86%.
