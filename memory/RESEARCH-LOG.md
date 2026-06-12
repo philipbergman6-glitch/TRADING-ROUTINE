@@ -344,3 +344,46 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **Conditional TRADE at market-open: if PPI prints in-line/cool AND futures hold green, add 1-2 of the ideas above (prefer 1 energy + 1 non-energy diversifier, ≤20% each), using the 2 remaining weekly trade slots. If PPI is hot or tape turns red → HOLD and reassess Friday.** XOM: hold, trail working.
+
+---
+
+## 2026-06-12 — Pre-market Research
+
+### Account Snapshot
+- **Equity:** $106,648.21 | **Cash:** $85,984.85 | **Buying power:** $401,797 (4× margin)
+- **Last equity:** $106,802.05 | **Session P&L (pre-mkt):** -$153.84 (-0.14%) | **Phase P&L:** +$6,648.21 (+6.65%)
+- **Deployed:** $20,663 (19.4%) | **Daytrade count:** 0
+- **Weekly trade count:** 1/3 (XOM Jun 10)
+
+### Positions
+| Symbol | Qty | Avg Entry | Last (pre-mkt) | Unr. P&L | Stop (GTC) | -7% Cut |
+|--------|-----|-----------|----------------|----------|------------|---------|
+| XOM | 142 | $150.14 | $145.52 | -$657 (-3.08%) | 10% trail, HWM $152.49, stop $137.24 | $139.63 |
+
+### Market Context
+- **WTI:** ~$86/bbl | **Brent:** ~$88/bbl — sharp breakdown, Brent -3.1% overnight and **-17% over the past month**; Iran/Hormuz premium unwinding fast
+- **S&P 500 futures:** ~7,398-7,404, flat to +0.1% after Thursday's strong rally (ES +1.7%, NQ +3.3%)
+- **VIX:** ~22.2 (Jun 11 close) — elevated, up from ~18 earlier in the week
+- **CPI (Jun 10, May data):** HOT — +0.5% m/m, 4.2% YoY (vs 3.8% prior)
+- **PPI (Jun 11, May data):** VERY HOT — +1.1% m/m, 6.5% YoY
+- **Jobs (May, released Jun 5):** 172k vs ~85k consensus — rate-HIKE bets rising
+- **Today:** no major releases (Employer Costs 10 AM, minor). **FOMC Jun 16-17 next week — live meeting, hot data into it**
+- **Earnings BMO:** none material
+- **Sector (Schwab 6M):** Energy +35% / Tech +19% / Materials +14% / Industrials +13%; Financials & Health Care negative — but Energy momentum now at risk with oil rolling over
+
+### Holdings Update
+- **XOM (-3.08%):** Oil breakdown is the direct driver — Brent -17%/month as geopolitical premium unwinds; no negative company-specific news (Mizuho PT raised to $175). Entry thesis (energy momentum + oil premium) is weakening. Pre-mkt $145.52; -7% cut $139.63 (4.1% below), trail stop $137.24. **HOLD — let cut/stop discipline do its job. If oil slide accelerates and XOM breaches $139.63 intraday, cut manually per rules.**
+
+### Trade Ideas (scout only — NO entries today)
+1. **GOOGL / META (Comm Svcs)** — AI ad-revenue tailwind, diversifier off energy; Comm Svcs +44% trailing 12M. *Scout entry post-FOMC (after Jun 17). Stop 10% trail; target 2:1.*
+2. **NVDA / AVGO re-entry (Tech)** — AI capex buildout still the dominant market theme; Tech +53% trailing 12M and NQ +3.3% Thursday. Burned twice on early entries — require post-FOMC confirmation + a green tape before re-entry. *Stop 10% trail; target 2:1.*
+3. **CAT (Industrials)** — Reshoring/data-center infra capex catalyst, +24% trailing 12M. *Post-FOMC only.*
+
+### Risk Factors
+- **FOMC Jun 16-17** — hot CPI (4.2%) + hot PPI (6.5%) + hot jobs = real hike risk; any new position entered today eats a binary event in 3 sessions.
+- **Oil breakdown** — Brent -17%/month directly attacks the XOM thesis; sector momentum can flip fast.
+- **VIX 22** — elevated vol regime; stop-outs more likely (we lost MSFT/NVDA to stops Jun 9).
+- **Friday + 19% deployed** — under-deployment pressure is real, but adding risk into a hawkish-FOMC weekend is exactly how the last book died.
+
+### Decision
+**HOLD. No new trades today.** Hot inflation into a live FOMC + VIX 22 + oil breaking down = worst setup of the week to deploy. Keep 2 weekly slots unused (week resets Monday anyway). Manage XOM by the rules: manual cut at $139.63, trail at $137.24. Re-engage post-FOMC (Jun 18+) with the scout list above. Patience > activity.
