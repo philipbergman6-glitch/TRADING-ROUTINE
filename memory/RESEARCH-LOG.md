@@ -387,3 +387,26 @@ HOLD all — no rule triggers, no thesis breaks. All stops correctly set.
 
 ### Decision
 **HOLD. No new trades today.** Hot inflation into a live FOMC + VIX 22 + oil breaking down = worst setup of the week to deploy. Keep 2 weekly slots unused (week resets Monday anyway). Manage XOM by the rules: manual cut at $139.63, trail at $137.24. Re-engage post-FOMC (Jun 18+) with the scout list above. Patience > activity.
+
+---
+
+## 2026-06-15 — Midday Addendum (Thesis Break Research)
+
+### Trigger
+XOM down -5% intraday on heavy volume ($986M+). No pre-market entry today — needed to verify before cutting.
+
+### Finding
+**US-Iran peace deal announced this morning.** This directly removes the Hormuz/geopolitical risk premium that had been supporting oil prices. Yahoo Finance/CNBC confirm XOM down ~4-5% due to oil price plunge on the peace deal. Sector-wide energy selloff, not XOM-specific.
+
+### Thesis Assessment
+**BROKEN.** Entry thesis (Jun 10): "Energy sector rotation after full-cash reset; energy/industrial momentum vs stalled AI-tech." The geopolitical premium in oil (Brent +17% on Iran tensions) was explicitly a bullish driver per Jun 11 research. Peace deal reverses this structurally — not a temporary pullback.
+
+### Action Taken
+Cut XOM 142 @ $141.74. Canceled trailing stop (GTC, HWM $152.49). Realized P&L: -$1,192.80 (-5.60%).
+
+### Post-FOMC Scout List
+- **GOOGL / META** — Comm Svcs, AI ad-revenue tailwind, diversifier off energy
+- **NVDA / AVGO** — AI capex buildout; require post-FOMC green tape confirmation
+- **CAT** — Industrials, reshoring/data-center infra
+
+**Decision: Hold all cash through FOMC Jun 16-17. Deploy Wednesday Jun 18 if clarity emerges and tape is green.**

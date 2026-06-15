@@ -134,3 +134,17 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 1/3 (XOM Jun 10)
 
 **Notes:** Flat Friday — XOM ticked up +0.28% to $147.01, leaving the portfolio +$58.22 (+0.05%) on the day. Position remains -2.08% from entry, well above both the -7% manual cut ($139.63) and the trailing stop ($137.24, HWM $152.49). No new trades despite 2 slots remaining this week — pre-market setups didn't justify forcing entries into a soft tape. Week closes at 1/3 trades and only 19.5% deployed vs 75-85% target; Monday priority is fresh research for 2-3 quality setups to rebuild deployment. Phase P&L: +6.86%.
+
+---
+
+### Jun 15 — Midday Cut (Day 34, Monday)
+**Portfolio:** $106,111.93 | **Cash:** $106,111.93 (100%) | **Day P&L:** -$748.34 (-0.70%) | **Phase P&L:** +$6,111.93 (+6.11%)**
+
+| Ticker | Shares | Entry | Exit | Realized P&L | Notes |
+|--------|--------|-------|------|--------------|-------|
+| XOM | 142 | $150.14 | $141.74 | -$1,192.80 (-5.60%) | Thesis break — US-Iran peace deal eliminated geopolitical oil premium; cut per thesis-break rule |
+
+**Trades today:** XOM SELL 142 @ $141.74 (thesis break cut, trailing stop also canceled)
+**Week trades:** 0/3 (new week)
+
+**Notes:** Cut XOM at -5.60% before the -7% trigger via thesis-break rule. US-Iran peace deal announced this morning directly removed the Hormuz/geopolitical risk premium that was a pillar of the energy entry thesis — XOM -5% on $986M volume. Original thesis (energy sector rotation, geopolitical premium supporting oil) is no longer valid. Portfolio 100% cash at $106,111.93. Phase P&L: +6.11%. FOMC Jun 16-17 tomorrow — hold all cash through the meeting. Re-engage Wednesday post-FOMC with fresh setups (GOOGL/META/CAT/NVDA-AVGO per scout list if tape supports).
