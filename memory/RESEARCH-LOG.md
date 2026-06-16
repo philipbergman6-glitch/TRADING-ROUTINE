@@ -410,3 +410,27 @@ Cut XOM 142 @ $141.74. Canceled trailing stop (GTC, HWM $152.49). Realized P&L: 
 - **CAT** — Industrials, reshoring/data-center infra
 
 **Decision: Hold all cash through FOMC Jun 16-17. Deploy Wednesday Jun 18 if clarity emerges and tape is green.**
+
+---
+
+## 2026-06-16 — Midday Scan (FOMC Day 1, no-op)
+
+### Account Snapshot
+- **Equity:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Positions:** 0 | **Orders:** 0
+
+### Market Conditions (midday)
+- **S&P 500:** -0.2% | **Nasdaq:** -0.4% | **Dow:** +0.7% (new intraday ATH)
+- **Oil (WTI):** ~$80/bbl — lowest since mid-April; Iran peace deal confirmed, geopolitical premium fully unwound
+- **Rotation:** Cyclicals (Materials, Financials) > Growth (Tech lagging)
+- **FOMC:** Rate hold widely expected; Warsh debut; dot plot & press conference tomorrow Jun 17 ~2 PM ET
+- **Hike bias:** Markets now pricing possible 1-2 hikes in 2026; "wait and see" stance persists
+
+### Actions
+- **None.** No positions to cut, tighten, or thesis-check.
+
+### Scout List Status (deploy Wednesday Jun 18 post-FOMC, if tape green)
+- **GOOGL / META** — primary candidates; AI ad-revenue, Comm Svcs sector strength
+- **NVDA / AVGO** — secondary; require green tape + confirmed AI capex signals
+- **CAT** — tertiary; industrials/reshoring catalyst
+
+**Holding cash through FOMC. No trades today.**
