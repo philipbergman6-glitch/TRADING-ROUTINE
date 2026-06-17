@@ -462,3 +462,26 @@ Cut XOM 142 @ $141.74. Canceled trailing stop (GTC, HWM $152.49). Realized P&L: 
 
 ### Decision
 **HOLD into the 2PM FOMC decision. No pre-market trades.** Patience > activity. Plan: re-assess after the presser today; if reaction is green/neutral and a scout name confirms, deploy GOOGL (and possibly CAT) at the Jun 18 market-open run. Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
+
+### Midday Addendum (~12:30 PM ET)
+**Positions:** 0 | **Cash:** 100% | **Action:** None (no-op scan)
+
+**Tape into 2PM FOMC:**
+- S&P futs +0.3%, Nasdaq 100 futs +0.8% — slightly green, tech leading
+- VIX ~17 (down from 23+ earlier in week) — calm but options expiry Thursday (not Friday; market closed Friday for holiday) adds vol risk
+- Oil: Brent below $79, WTI ~$76 — 5th consecutive day falling; energy remains dead
+- NVDA +3% yesterday, MU +10% — AI chip momentum intact pre-FOMC
+
+**FOMC Setup:**
+- Hold 97% priced in (3.50–3.75%). Real risk: removal of "easing bias," possible hike signal in dot plot
+- Warsh expected to run more hawkish committee despite his own prior dovish reputation
+- Market reaction will hinge on dot plot and presser tone (2:30 PM ET) — not the decision itself
+
+**Scout names — intraday status:**
+- GOOGL: No new negatives; Mag 7 broadly green; thesis intact
+- CAT: Old economy/industrials showing relative strength vs Nasdaq in 2026; thesis intact
+- AVGO/NVDA: Strong momentum but most hawkish-dot-plot sensitive — only with green FOMC reaction
+
+**Thursday options expiry flag:** Expiration moved to Thursday (Friday holiday). Elevated intraday volatility possible Thursday — factor into Jun 18 entry sizing.
+
+**Carry-forward decision:** Plans unchanged. Deploy GOOGL (primary) + CAT (secondary) at Jun 18 market-open IF post-FOMC tape closes green/neutral today. Watch Warsh presser 2:30 PM — any explicit hike lean → stand down until next week.
