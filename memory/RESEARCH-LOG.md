@@ -434,3 +434,31 @@ Cut XOM 142 @ $141.74. Canceled trailing stop (GTC, HWM $152.49). Realized P&L: 
 - **CAT** — tertiary; industrials/reshoring catalyst
 
 **Holding cash through FOMC. No trades today.**
+
+---
+
+## 2026-06-17 — Pre-Market Research (FOMC Decision Day)
+
+### Account Snapshot
+- **Equity:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Buying power:** $424,447 (4x) | **Positions:** 0 | **Orders:** 0 | **Daytrades:** 0
+
+### Market Context
+- **Oil:** WTI ~$75/bbl, Brent low/mid-$90s — geopolitical premium fully unwound post Iran peace deal; energy no longer a momentum sector
+- **Indices (premarket):** S&P futs ~7,523 (+0.06%), Nasdaq 100 +0.5%, Dow flat — quiet, slightly green
+- **VIX:** ~16.2 (near YTD low; down from 22 on Jun 10) — calm tape into the decision
+- **FOMC (TODAY 2PM ET):** Hold at 3.50–3.75% near-certain (~97%). Real event = SEP/dot plot + Warsh's FIRST presser as chair. Skew is hawkish — risk of fewer/no 2026 cuts or a penciled hike, "higher-for-longer." Tech/semis most rate-sensitive.
+- **Earnings (pre-open):** JBL (AI hardware demand read-through), KMX, SWBI — none held
+- **Sector momentum:** Energy YTD leader but reversing; Tech/Industrials/Materials regaining leadership over recent months
+
+### Trade Ideas (deploy POST-FOMC only, if tape green)
+1. **GOOGL** — Comm Svcs, primary. Catalyst: Piper Sandler PT→$445 (OW) on AI Search engagement; Citi 90-day Catalyst Watch (Gemini/Search/YouTube/Cloud). Entry ~mkt post-presser; stop 10% trail (initial ~-9%); target +20% (2:1+). Diversifier off energy.
+2. **CAT** — Industrials, secondary. Reshoring + data-center infra capex tailwind; sector momentum improving. Stop 10% trail; target 2:1.
+3. **AVGO/NVDA** — AI capex, tertiary. Require explicitly green/dovish FOMC reaction; both are most exposed to a hawkish dot plot. Only with confirmation.
+
+### Risk Factors
+- Binary event at 2PM: hawkish dot plot / Warsh hawkish debut → growth/tech selloff. Deploying pre-decision = uncompensated event risk.
+- Energy premium gone; do not chase XOM-type theses.
+- Still 0% deployed vs 75-85% target — but forcing entries into a binary is the wrong fix.
+
+### Decision
+**HOLD into the 2PM FOMC decision. No pre-market trades.** Patience > activity. Plan: re-assess after the presser today; if reaction is green/neutral and a scout name confirms, deploy GOOGL (and possibly CAT) at the Jun 18 market-open run. Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
