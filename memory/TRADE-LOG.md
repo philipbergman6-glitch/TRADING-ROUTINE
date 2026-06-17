@@ -148,3 +148,15 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0/3 (new week)
 
 **Notes:** Cut XOM at -5.60% before the -7% trigger via thesis-break rule. US-Iran peace deal announced this morning directly removed the Hormuz/geopolitical risk premium that was a pillar of the energy entry thesis — XOM -5% on $986M volume. Original thesis (energy sector rotation, geopolitical premium supporting oil) is no longer valid. Portfolio 100% cash at $106,111.93. Phase P&L: +6.11%. FOMC Jun 16-17 tomorrow — hold all cash through the meeting. Re-engage Wednesday post-FOMC with fresh setups (GOOGL/META/CAT/NVDA-AVGO per scout list if tape supports).
+
+### Jun 17 — EOD Snapshot (Day 36, Wednesday)
+**Portfolio:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,111.89 (+6.11%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| — | — | — | — | — | 100% cash | — |
+
+**Trades today:** none
+**Week trades:** 0/3 (new week)
+
+**Notes:** Flat, fully-cash FOMC day — no positions, no trades. Held all cash through the 2PM FOMC decision per plan; equity unchanged at $106,111.89 (Day P&L $0.00). Hold priced in at 97% (3.50–3.75%); risk was the dot plot / Warsh presser tone rather than the decision. Pre-market and midday both no-op (patience > activity into the meeting). Phase P&L holds at +6.11%. Plan into Jun 18: if post-FOMC tape closed green/neutral and scout names confirm, deploy GOOGL (primary) + CAT (secondary) at market-open to rebuild deployment from 0% toward the 75-85% target. Week ammo full at 0/3. Thursday options-expiry (Friday holiday) flags elevated intraday vol — size entries accordingly.
