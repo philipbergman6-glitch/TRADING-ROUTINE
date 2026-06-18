@@ -160,3 +160,15 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0/3 (new week)
 
 **Notes:** Flat, fully-cash FOMC day — no positions, no trades. Held all cash through the 2PM FOMC decision per plan; equity unchanged at $106,111.89 (Day P&L $0.00). Hold priced in at 97% (3.50–3.75%); risk was the dot plot / Warsh presser tone rather than the decision. Pre-market and midday both no-op (patience > activity into the meeting). Phase P&L holds at +6.11%. Plan into Jun 18: if post-FOMC tape closed green/neutral and scout names confirm, deploy GOOGL (primary) + CAT (secondary) at market-open to rebuild deployment from 0% toward the 75-85% target. Week ammo full at 0/3. Thursday options-expiry (Friday holiday) flags elevated intraday vol — size entries accordingly.
+
+### Jun 18 — EOD Snapshot (Day 37, Thursday)
+**Portfolio:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,111.89 (+6.11%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| — | — | — | — | — | 100% cash | — |
+
+**Trades today:** none
+**Week trades:** 0/3 (new week)
+
+**Notes:** Second flat, fully-cash day — no positions, no trades, equity unchanged at $106,111.89 (Day P&L $0.00). The post-FOMC GOOGL/CAT deployment plan did not execute at market-open; capital remains 100% cash vs the 75-85% target. Patience held but deployment is now overdue — re-engaging is the clear priority. Thursday options-expiry ahead of the Friday holiday kept intraday vol elevated, but that's no longer a reason to sit out. Week ammo full at 0/3. Monday (markets closed Fri) priority: fresh pre-market research and decisive deployment of 2-3 quality setups (GOOGL primary, CAT secondary per scout list) to rebuild from 0%. Phase P&L holds at +6.11%.
