@@ -485,3 +485,33 @@ Cut XOM 142 @ $141.74. Canceled trailing stop (GTC, HWM $152.49). Realized P&L: 
 **Thursday options expiry flag:** Expiration moved to Thursday (Friday holiday). Elevated intraday volatility possible Thursday — factor into Jun 18 entry sizing.
 
 **Carry-forward decision:** Plans unchanged. Deploy GOOGL (primary) + CAT (secondary) at Jun 18 market-open IF post-FOMC tape closes green/neutral today. Watch Warsh presser 2:30 PM — any explicit hike lean → stand down until next week.
+
+---
+
+## 2026-06-18 — Pre-Market Research (Post-FOMC, Triple-Witching Thursday)
+
+### Account Snapshot
+- **Equity:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Buying power:** $424,447 (4x) | **Positions:** 0 | **Orders:** 0 | **Daytrades:** 0
+
+### Market Context
+- **FOMC (yesterday):** Held at 3.50–3.75% but HAWKISH debut for Warsh — 9 of 18 members now project a 2026 hike; dropped forward guidance; "work to do on price stability." S&P closed -1.2% (7,420), Nasdaq -1.34%, Dow -0.98%. Traders now price ~60% odds of ≥1 hike this year. **Regime shift: easing bias → tightening bias.** Tape closed RED — deploy condition NOT met.
+- **Indices (premarket):** S&P futs ~flat, Nasdaq 100 futs +0.4%, Dow flat — stabilizing but not a green reversal.
+- **VIX:** 17.10 (-7%, 4.5-month low) — calm headline vol, but…
+- **Triple-witching TODAY:** Quarterly options expiry moved to Thursday (Friday market holiday) → elevated intraday vol risk despite low VIX.
+- **Oil:** WTI ~$75.33 — energy momentum still unwound post Iran peace deal; not chasing.
+- **Earnings (pre-open):** ACN (~$3.41), KR (~$1.34), PGR update — none held.
+- **Econ:** Weekly jobless claims 8:30 ET, consensus 225K vs 229K prior. No CPI/PPI today.
+- **Sector momentum YTD:** Energy +23.3%, Materials +17.4%, Consumer Staples +15.6%, Industrials +14.1%. Rate-sensitive mega-tech/semis now facing a hawkish-Fed headwind.
+
+### Trade Ideas (deploy NEXT WEEK on confirmation, not into today's opex)
+1. **CAT** — Industrials, now PRIMARY. Catalyst: raised FY26 guidance (low double-digit sales growth, margin expansion, MP&E FCF >$9.5B), reshoring/data-center capex tailwind; industrials +14% YTD; far less rate-sensitive than tech. Caution: trades above Freedom Broker PT ($710, Hold). Entry on confirmation/pullback; stop 10% trail (initial ~-9%); target +18-20% (2:1+).
+2. **GOOGL** — DOWNGRADED to watch. AI capex surge (~$180B) + $80-85B equity raise = dilution + margin overhang; recent losing streak; most exposed to the hawkish-Fed rate-sensitivity. Stand down until the financing overhang clears.
+3. **Materials proxy** — tertiary scout. Sector +17% YTD, second-strongest momentum, less rate-sensitive. Watch for a specific catalyst before engaging.
+
+### Risk Factors
+- Hawkish regime shift: dot plot leans toward a 2026 hike (~60% odds); rate-sensitive tech under pressure — headwind for GOOGL/semis.
+- Triple-witching / quarterly opex TODAY → elevated intraday vol; Friday holiday (illiquid into close).
+- 100% cash vs 75-85% target — deployment gap is the standing risk, but forcing entries into a regime shift + opex is the wrong fix.
+
+### Decision
+**HOLD. No pre-market trades.** The pre-FOMC plan to deploy GOOGL+CAT was conditional on a green/neutral post-FOMC tape — it closed RED with a hawkish, hike-leaning dot plot, so the condition failed. Don't force entries into a regime shift on a triple-witching day. Re-engage Monday Jun 22 favoring **CAT (industrials)** on confirmation; **GOOGL downgraded** pending financing clarity. Scout list pivots toward Industrials/Materials and away from rate-sensitive mega-tech given the tightening bias. Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
