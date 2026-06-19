@@ -172,3 +172,15 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0/3 (new week)
 
 **Notes:** Second flat, fully-cash day — no positions, no trades, equity unchanged at $106,111.89 (Day P&L $0.00). The post-FOMC GOOGL/CAT deployment plan did not execute at market-open; capital remains 100% cash vs the 75-85% target. Patience held but deployment is now overdue — re-engaging is the clear priority. Thursday options-expiry ahead of the Friday holiday kept intraday vol elevated, but that's no longer a reason to sit out. Week ammo full at 0/3. Monday (markets closed Fri) priority: fresh pre-market research and decisive deployment of 2-3 quality setups (GOOGL primary, CAT secondary per scout list) to rebuild from 0%. Phase P&L holds at +6.11%.
+
+### Jun 19 — EOD Snapshot (Day 38, Friday)
+**Portfolio:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,111.89 (+6.11%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| — | — | — | — | — | 100% cash | — |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Juneteenth — US markets closed, no session. Equity unchanged at $106,111.89 (Day P&L $0.00), 100% cash for a third straight day. No trades, no positions. Deployment remains the overdue priority: 0% vs the 75-85% target with full week ammo (0/3) and no capital at work. Next trading day is Monday Jun 22 — priority is fresh pre-market research and decisive deployment of 2-3 quality setups (GOOGL primary, CAT secondary per scout list) to rebuild from cash. Phase P&L holds at +6.11%.
