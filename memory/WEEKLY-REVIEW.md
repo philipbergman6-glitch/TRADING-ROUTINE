@@ -95,3 +95,56 @@ Template for each entry:
 ### Overall Grade: C-
 
 No strategy rule changes — failures were execution (late -7% cuts) and timing, not rule design. Flagging for watch: if -7% cuts are missed again next week, add an explicit intraday cut-check rule to TRADING-STRATEGY.md.
+
+---
+
+## Week ending 2026-06-19
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $106,860.27 (Mon Jun 15 AM = Fri Jun 12 close) |
+| Ending portfolio | $106,111.89 |
+| Week return | -$748.38 (-0.70%) |
+| S&P 500 week | +0.93% (7,431.46 → 7,500.58, Fri Jun 12 → Thu Jun 18 close; Fri holiday) |
+| Bot vs S&P | -1.63% |
+| Trades | 1 (W:0 / L:1 / open:0) |
+| Win rate | 0% |
+| Best trade | none (only XOM closed) |
+| Worst trade | XOM -5.60% |
+| Profit factor | 0.00 |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| XOM | $150.14 | $141.74 | -$1,192.80 (-5.60%) | Thesis-break cut Jun 15 — US-Iran peace deal removed Hormuz oil premium; cut before -7% trigger |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| — | — | — | 100% cash | — |
+
+### What Worked
+- Thesis-break discipline: cut XOM at -5.60% on the US-Iran peace deal (structural removal of the oil premium), before the -7% line — last week's flagged failure (late cuts) was not repeated.
+- FOMC patience was vindicated: held 100% cash through Jun 16-17; the hawkish Warsh debut (9/18 projecting a 2026 hike) sent S&P -1.2% on Jun 17 — sitting out the binary saved real drawdown.
+- Capital preserved through a regime shift (easing → tightening bias) with zero new risk taken into it.
+
+### What Didn't Work
+- 100% cash ALL week — 0% deployed vs 75-85% target for five straight sessions. Pure cash drag; lagged S&P by 1.63% doing nothing.
+- The post-FOMC GOOGL/CAT deployment plan never fired (Jun 18 nor staged for Jun 22) — "patience" curdled into paralysis once the binary had passed.
+- Down week (-0.70%) in an up market (+0.93%) — the only P&L event was a realized loss (XOM) with no offsetting positions working.
+
+### Key Lessons
+- Patience into a binary (FOMC) is correct; staying flat AFTER the binary clears is just under-deployment. The two must be separated — once the event passes, re-engagement is the job, not more waiting.
+- A thesis-break cut is now executing cleanly (XOM) — that muscle is built. The deficit has shifted entirely from exits to entries.
+- Three consecutive weeks under deployment target is a pattern, not a blip. Cash-heavy "discipline" is itself a benchmark risk when the tape grinds higher.
+
+### Adjustments for Next Week
+- Monday Jun 22: decisive deployment is the #1 priority — rebuild from 0% toward 75-85% with 2-3 quality setups. CAT (industrials, raised FY26 guide, low rate-sensitivity) is PRIMARY; GOOGL downgraded pending the ~$80-85B financing/dilution overhang.
+- Favor industrials/materials (less rate-sensitive) over mega-tech/semis given the hawkish tightening bias; require a forward catalyst, not a faded one.
+- Set a hard deployment floor mindset: if a setup clears the entry checklist, take it — do not let "wait one more day" recur a fourth week.
+- 3 weekly trade slots open. Keep ≤20% per name; 10% trailing GTC on every entry.
+
+### Overall Grade: C-
+
+No strategy rule changes. Risk discipline (XOM thesis-break cut, FOMC patience) was textbook; the failure is chronic under-deployment — an execution gap, not a rule-design gap. Forcing entries into a hawkish regime shift on triple-witching would have been the wrong fix. Flagging for watch: if deployment is still at/near 0% by Wed Jun 24 after a green-enough tape, that is a discipline failure to correct — not a rules problem to legislate.
