@@ -548,3 +548,23 @@ Cut XOM 142 @ $141.74. Canceled trailing stop (GTC, HWM $152.49). Realized P&L: 
 - **Market-open run:** initiate a starter (one position, ~15-18% / not full size) ONLY if tape is constructive (green/flat, not breaking the 50-DMA) AND a name confirms — preferring **CAT on a pullback toward $900-920** or a Materials name with a fresh catalyst.
 - Otherwise hold cash into Thursday's PCE; re-assess post-print. Avoid building size right before the inflation read.
 Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
+
+### Midday Addendum (~12:00 PM ET)
+**Positions:** 0 | **Cash:** 100% | **Action:** None (no-op scan)
+
+**Intraday tape:**
+- S&P 500 +0.1%, Dow +0.4%, Nasdaq flat — tepid green; 50-DMA intact; not a strong risk-on signal
+- VIX ~17 (calm; consistent with pre-market read)
+- Oil WTI ~$75 — Iran peace talk "promising progress" + roadmap toward deal in 60 days; energy momentum stays dead; no energy entries
+
+**Notable movers:**
+- **GOOGL -7%**: Senior AI researcher John Jumper (Nobel laureate) departing for Anthropic. Dilution overhang + rate sensitivity + now key talent loss = GOOGL downgrade confirmed. Do NOT enter.
+- **MU +5%**: Surging ahead of earnings this week on AI memory demand. No position held. Monitoring as potential post-earnings setup (must not chase pre-report).
+- **Semi/AI broadly green** — AI capex thesis intact intraday, but GOOGL departure signals competitive pressure risk at Google.
+
+**Rule checks:**
+- No positions → no cuts, no stop tightening, no thesis breaks
+- CAT entry trigger (~$900-920) not confirmed — no current quote available; tape is tepid, not pulling toward entry zone
+- PCE Thursday is still the dominant risk; no size build warranted
+
+**Decision:** HOLD all cash. No intraday entries. Re-assess Thursday post-PCE print. MU earnings a read-through for AI/semi sentiment — watch for setup after the print (not before).
