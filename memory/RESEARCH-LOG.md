@@ -515,3 +515,36 @@ Cut XOM 142 @ $141.74. Canceled trailing stop (GTC, HWM $152.49). Realized P&L: 
 
 ### Decision
 **HOLD. No pre-market trades.** The pre-FOMC plan to deploy GOOGL+CAT was conditional on a green/neutral post-FOMC tape — it closed RED with a hawkish, hike-leaning dot plot, so the condition failed. Don't force entries into a regime shift on a triple-witching day. Re-engage Monday Jun 22 favoring **CAT (industrials)** on confirmation; **GOOGL downgraded** pending financing clarity. Scout list pivots toward Industrials/Materials and away from rate-sensitive mega-tech given the tightening bias. Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
+
+---
+
+## 2026-06-22 — Pre-Market Research (Day 39, Monday)
+
+### Account Snapshot
+- **Equity:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Buying power:** $424,447 (4x) | **Positions:** 0 | **Orders:** 0 | **Daytrades:** 0
+
+### Market Context
+- **Indices (premarket):** S&P futs ~7,556 (-0.19%), Nasdaq 100 futs ~30,647 (-0.24%) — slightly red, near recent highs. June is a digestion month: lower-highs/lower-lows, daily momentum negatively diverging. Support 50-DMA ~7,315; downside risk target 7,000 (Equity Clock).
+- **VIX:** no clean live read; ~17 last week (calm).
+- **Oil:** WTI ~$75.4, Brent ~$77 — geopolitical premium still unwound post Iran peace deal; energy momentum dead. Not chasing.
+- **Fed regime (HAWKISH):** June SEP raised 2026 median funds rate 3.4%→3.8%, core PCE 2.7%→3.3%; 9/18 dots pencil hikes by year-end. Market prices July hike at 38%, ~92% by Sept; Yardeni expects July. Tightening bias = headwind for rate-sensitive mega-tech/semis.
+- **Econ calendar:** Mon quiet (no major releases; T-bill auctions). Tue flash PMIs. **Thu is the load: final Q1 GDP, May PCE (core PCE expected hot ~3.30% y/y, +0.24% m/m), durable goods, jobless claims (~226K).** PCE is the key inflation risk.
+- **Earnings:** none held; Micron later this week a sentiment read for AI/semis.
+- **Sector momentum YTD:** Energy still leads but reversing; **Industrials & Materials constructive** (AI data-center capex, defense, reshoring; both "More Favored"/less rate-sensitive). Tech strong but most hawkish-Fed-exposed.
+
+### Trade Ideas
+1. **CAT** — Industrials, scout. Thesis intact (raised FY26 guide, data-center/reshoring capex, 16/26 Buy). **BUT extended: ~$977 vs $935 consensus PT (-5% downside to target)**, after rebounding $856→$987. Buying above the Street's avg target into a digestion tape 3 days before a hot PCE print = poor R:R. Entry trigger: pullback toward $900–920 (nearer support/target). Stop 10% trail; target 2:1.
+2. **Materials proxy (XLB/specific name)** — tertiary. Sector constructive, less rate-sensitive, +13.6% trailing 6M. Needs a specific catalyst before engaging — none today.
+3. **GOOGL** — remains DOWNGRADED to watch. ~$348. AI-capex/equity-raise dilution overhang + most rate-sensitive into a tightening Fed. Stand down until financing clarity.
+
+### Risk Factors
+- Hawkish regime + hot core PCE (3.30%) Thursday = binary inflation risk; deploying into it is uncompensated event risk.
+- Digestion month, negative momentum divergence, indices near highs with downside target 7,000.
+- CAT (primary scout) extended above consensus target — chasing it is the "forced entry" mistake.
+- Standing risk: 100% cash vs 75-85% target for a 4th session — opportunity cost is real and deployment is overdue.
+
+### Decision
+**HOLD pre-market. No forced entries.** Deployment is overdue, but the fix is a quality entry, not chasing CAT $42 above its consensus target into a hot-PCE week. Concrete plan to break the cash-sit without forcing:
+- **Market-open run:** initiate a starter (one position, ~15-18% / not full size) ONLY if tape is constructive (green/flat, not breaking the 50-DMA) AND a name confirms — preferring **CAT on a pullback toward $900-920** or a Materials name with a fresh catalyst.
+- Otherwise hold cash into Thursday's PCE; re-assess post-print. Avoid building size right before the inflation read.
+Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
