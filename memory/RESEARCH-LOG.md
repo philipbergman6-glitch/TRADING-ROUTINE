@@ -601,3 +601,24 @@ Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
 - **Market-open run:** initiate a starter (one position, ~15-18% / not full size) ONLY if the post-PMI tape stabilizes (VIX fades back toward ~17, futures green/flat, 50-DMA intact) AND a name confirms — preferring a **precious/industrial-metals name (NEM/GDX)** as a risk-off + inflation-hedge fit, or **CAT on a pullback toward $900-920**.
 - If VIX stays elevated / tape risk-off, hold cash into Thursday's PCE and re-assess post-print.
 Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
+
+### Midday Addendum (~12:00 PM ET)
+**Positions:** 0 | **Cash:** 100% | **Action:** None (no-op scan)
+
+**Intraday tape:**
+- S&P 500 ~7,353 (-1.60% / -119 pts intraday) at 10 AM ET — decisively risk-off, opened lower and stayed lower
+- Tech selloff spreading to Europe; Alphabet -5% (Jumper/Anthropic departure catalyst carries over from Jun 22)
+- Day High: 7,408 / Day Low: 7,348 — no stabilization, early advance given up
+- VIX: ~20+ (was already elevated pre-market; rising further with tape selling)
+- Oil WTI ~$73.5 — energy momentum dead, energy excluded
+
+**Entry trigger check (vs. pre-market plan):**
+- Trigger required: VIX fades toward ~17 + tape green/flat + 50-DMA intact
+- Outcome: VIX stayed elevated, tape red -1.6%, risk-off spreading → **trigger NOT met**
+- No NEM/GDX or CAT entry warranted
+
+**Rule checks:**
+- No positions → no losers to cut, no stops to tighten, no thesis breaks
+- Patience > activity; no chasing into a vol spike 2 days before Thursday PCE
+
+**Decision:** HOLD all cash. Tape did not stabilize post-PMI; risk-off environment deepened. Next re-assessment: Thursday post-PCE print (May core PCE ~3.3% expected). If PCE is in-line or cool, reassess fresh entries (NEM/GDX primary, CAT secondary on pullback toward $900-920).
