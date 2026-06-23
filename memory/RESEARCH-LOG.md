@@ -568,3 +568,36 @@ Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
 - PCE Thursday is still the dominant risk; no size build warranted
 
 **Decision:** HOLD all cash. No intraday entries. Re-assess Thursday post-PCE print. MU earnings a read-through for AI/semi sentiment — watch for setup after the print (not before).
+
+---
+
+## 2026-06-23 — Pre-Market Research (Day 40, Tuesday)
+
+### Account Snapshot
+- **Equity:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Buying power:** $424,447 (4x) | **Positions:** 0 | **Orders:** 0 | **Daytrades:** 0
+
+### Market Context
+- **Indices (premarket):** S&P futs ~7,549 (-0.2 to -0.3%), Nasdaq 100 futs ~30,645 (-0.24%), Dow futs +0.27% — slightly red/mixed, still near recent highs. Digestion tape, negative momentum divergence persists.
+- **VIX:** **~19.8, +14.6% from 16.78 close — a fresh risk-off spike.** First clean elevated read in weeks; bid for protection into Thursday's PCE. This is the day's most important new signal.
+- **Oil:** WTI ~$73.5 (-1.7%), Brent ~$77.2 (-1.3%) — lowest in ~3 months. Geopolitical premium keeps unwinding on US-Iran de-escalation/supply recovery. Energy momentum dead; not chasing. (Note: one Perplexity source claimed an ongoing "Iran war" — contradicted by the falling-oil tape; treating as stale/conflicting data.)
+- **Fed regime (HAWKISH):** June SEP raised 2026 median funds 3.4%→3.8%, core PCE 2.7%→3.3%; 9/18 dots pencil hikes. Tightening bias = headwind for rate-sensitive mega-tech/semis.
+- **Econ calendar:** Today = **flash PMIs (9:45 ET): services 50.7, manufacturing 55.1 — resilient/expansionary.** Initial jobless claims ~226K. **Thursday Jun 25 is the load: final Q1 GDP, May PCE (core ~3.3% y/y expected hot), durable goods** — the binary inflation risk. (Perplexity's econ answer garbled PCE into today; PCE is Thursday.)
+- **Earnings (pre-open):** FDX, CCL, DRI, MKC, KBH, BB — none held. MU reports tomorrow (Jun 24), an AI/semi sentiment read. No earnings gambling.
+- **Sector momentum YTD:** Energy +23.3% (reversing), Materials +17.4%, Cons Staples +15.6%, Industrials +14.1% — all "Leading." Tech/Comm/Discretionary/Financials "Lagging" (IT -3.3%, Discretionary -3.8%, Financials -6.9%). Rotation toward hard assets / less rate-sensitive cyclicals + explicit street call for **precious & industrial metals**.
+
+### Trade Ideas
+1. **CAT** — Industrials, primary scout. Thesis intact (raised FY26 guide, data-center/reshoring capex, 16/26 Buy) but **still extended ~$977 vs ~$935 consensus PT**. Buying above the Street's target into a VIX spike + pre-PCE = poor R:R. Entry trigger: pullback toward **$900-920**. Stop 10% trail; target 2:1.
+2. **Precious-metals proxy (NEM / GDX)** — NEW, fits today. Gold ~$4,170; precious metals are the explicit street rotation call AND a coherent VIX-spike + sticky-inflation hedge (works in risk-off). Less rate-sensitive than tech. Needs confirmation of a clean trend, not a blow-off candle. Watch at open.
+3. **GOOGL** — remains DOWNGRADED to watch (~$348, last seen -7% on Jumper→Anthropic departure). Dilution/equity-raise overhang + most rate-sensitive into a tightening Fed + talent-loss signal. Stand down.
+
+### Risk Factors
+- **VIX +14.6% to ~20** = genuine risk-off; initiating size into a vol spike 2 days before a hot-PCE print is uncompensated event risk.
+- Hawkish regime + Thursday core PCE (~3.3%) = binary inflation risk.
+- Digestion month, negative momentum divergence, indices near highs.
+- Standing risk: 100% cash vs 75-85% target for a **5th straight session** — opportunity cost is real and deployment is badly overdue. The fix remains a quality entry, not chasing into a vol spike.
+
+### Decision
+**HOLD pre-market. No forced entries into a VIX +14.6% spike.** Deployment is overdue (5th cash session), but the disciplined fix is a quality entry, not chasing CAT above its target or buying a vol spike before Thursday PCE. Concrete plan to break the cash-sit:
+- **Market-open run:** initiate a starter (one position, ~15-18% / not full size) ONLY if the post-PMI tape stabilizes (VIX fades back toward ~17, futures green/flat, 50-DMA intact) AND a name confirms — preferring a **precious/industrial-metals name (NEM/GDX)** as a risk-off + inflation-hedge fit, or **CAT on a pullback toward $900-920**.
+- If VIX stays elevated / tape risk-off, hold cash into Thursday's PCE and re-assess post-print.
+Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
