@@ -652,3 +652,24 @@ Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
 - **Thursday Jun 25 post-PCE (after 8:30 print) is the non-negotiable deployment window.** If PCE is in-line/cool and the tape stabilizes, deploy 2-3 quality setups to rebuild toward 75-85%: **CAT on a pullback to $900-920** (primary), a **precious-metals name (NEM/GDX)** as a risk-off/inflation fit, and a **post-print MU** only if it beat and confirmed.
 - If PCE prints hot and the tape stays risk-off, hold and reassess — but do not let a 7th, 8th idle session accumulate without a concrete name.
 Week trades 0/3 — full ammo. Manual rules N/A (no positions).
+
+### Midday Addendum (~12:00 PM ET)
+**Positions:** 0 | **Cash:** 100% | **Action:** None (no-op scan)
+
+**Intraday tape (as of ~10–11 AM ET):**
+- S&P 500: ~+0.2–0.4% (prev close 7,365.46, -1.44% on Jun 23) — modest stabilization bounce
+- Nasdaq: +0.2–0.4% — AI/tech stocks stabilizing after recent rout
+- Oil: WTI -4.4% to $69.96, Brent -4% to $73.72 — US-Iran peace deal progress accelerating (same catalyst that killed XOM Jun 15)
+- **Gold: -2.6%, slipped below $4,000/oz** (was >$5,000 earlier in year) — major downtrend confirmed
+- 10Y yield: 4.41% (down from 4.50%) — slight relief for rate-sensitive names
+
+**Scout list update:**
+- **NEM/GDX — REMOVE.** Gold broke below $4,000 (from >$5,000 peak = -20%+ trend reversal). The precious-metals/inflation-hedge thesis is broken. Dropping from scout list.
+- **CAT — still valid** but needs pullback to $900–920; no data to confirm current price vs level. Reshoring/data-center capex thesis intact; industrials resilient.
+- **MU** — no post-earnings data available yet; check pre-market Thursday.
+
+**Rule checks:**
+- No positions → no losers to cut, no stops to tighten, no thesis breaks
+- Patience correct; tape bouncing but still pre-PCE binary (Thursday 8:30 ET)
+
+**Decision:** HOLD all cash. Modest bounce does not clear the PCE binary risk tomorrow. NEM/GDX removed from deployment list — gold trend broken. **Thursday post-PCE remains the non-negotiable deployment window: CAT (primary, pullback to $900–920) + post-print MU if it beat (secondary).** No precious metals name until gold trend re-establishes.
