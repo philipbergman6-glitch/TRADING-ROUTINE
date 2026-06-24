@@ -622,3 +622,33 @@ Week trade count 0/3 — full ammo. Manual rules N/A (no positions).
 - Patience > activity; no chasing into a vol spike 2 days before Thursday PCE
 
 **Decision:** HOLD all cash. Tape did not stabilize post-PMI; risk-off environment deepened. Next re-assessment: Thursday post-PCE print (May core PCE ~3.3% expected). If PCE is in-line or cool, reassess fresh entries (NEM/GDX primary, CAT secondary on pullback toward $900-920).
+
+## 2026-06-24 — Pre-Market Research (Day 41, Wednesday)
+
+### Account Snapshot
+- **Equity:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Buying power:** $424,447 (4x) | **Positions:** 0 | **Orders:** 0 | **Daytrades:** 0
+
+### Market Context
+- **Indices (premarket):** S&P futs ~7,441 (**-1.33%**, -100 pts), Nasdaq 100 futs ~29,732 (**-3.01%**) — sharp tech/semi-led risk-off. Driver: renewed concern over stretched tech/AI valuations + "higher-for-longer" rate fears.
+- **VIX:** **~19.3** (prev close 19.49, -0.6%) — eased back below 20 but still elevated vs the mid-teens norm. Not a fresh spike; a sustained elevated regime.
+- **Oil:** WTI ~$73.1 (-1.4%), Brent ~$77.9 — still grinding lower on weak demand signals. Energy momentum dead; excluded.
+- **Fed regime (HAWKISH):** Market pricing ~50% hike odds by Oct, ~67% by Dec. 10Y ~4.5%. Tightening bias = headwind for rate-sensitive mega-tech/semis (exactly what's selling off premarket).
+- **Econ calendar:** **THURSDAY JUN 25 8:30 ET is the load — May Core PCE (expected hot), final Q1 GDP, Personal Income/Spending, durable goods, jobless claims (~226K).** Binary inflation print. Today: only minor productivity data.
+- **Earnings:** **MU (Micron) reports AFTER CLOSE tonight** — closed Jun 23 at $1,051.77 (**-13.18%** into the print). Options price a **±11% (~±$132)** move; binary AI-memory sentiment event. None held. No earnings gambling.
+- **Sector momentum YTD:** Momentum factor extremely extended (S&P Momentum +35% YTD vs S&P +11%). Tech/semis led the rally but are the epicenter of today's selloff. Energy leading-but-reversing. Narrow breadth + crowded momentum = cautionary signal (Goldman).
+
+### Trade Ideas
+1. **CAT** — Industrials, scout. Live mid ~$989 (stale Jun-23 close, wide paper spread); still **above ~$935 Street PT**. Thesis intact (reshoring/data-center capex) but buying above target into a -3% Nasdaq tape + two binary events = poor R:R. Entry trigger: pullback toward **$900-920**. Stop 10% trail; target 2:1.
+2. **NEM / GDX (precious metals)** — risk-off + sticky-inflation hedge, less rate-sensitive than tech; fits the rotation-out-of-tech tape. Mids ~NEM $98 / GDX $78. Wait for a clean trend confirmation, not a blow-off; reassess post-PCE.
+3. **MU** — NOT a pre-print buy (±11% binary tonight). If it beats + guides strong, watch for a post-earnings continuation setup Thursday/Friday. Watch only.
+
+### Risk Factors
+- **Two binary events in next 24h:** MU earnings tonight (AI/semi sentiment) + Thursday 8:30 Core PCE (inflation). Initiating into either with no edge = uncompensated event risk.
+- Tech-led risk-off tape (-1.3% S&P / -3% Nasdaq premarket) + hawkish Fed + crowded/extended momentum factor.
+- **Standing risk:** 100% cash vs 75-85% target for a **6th straight session** — opportunity cost is real and deployment is badly overdue. Patience has edged toward paralysis. The fix is a disciplined entry once catalysts clear, NOT chasing a -3% tape into two binaries.
+
+### Decision
+**HOLD all cash pre-market. No entries into a -3% Nasdaq tape ahead of MU tonight + Core PCE tomorrow.** This is the correct read of "uncompensated event risk," not more paralysis. Commitment to break the cash-sit:
+- **Thursday Jun 25 post-PCE (after 8:30 print) is the non-negotiable deployment window.** If PCE is in-line/cool and the tape stabilizes, deploy 2-3 quality setups to rebuild toward 75-85%: **CAT on a pullback to $900-920** (primary), a **precious-metals name (NEM/GDX)** as a risk-off/inflation fit, and a **post-print MU** only if it beat and confirmed.
+- If PCE prints hot and the tape stays risk-off, hold and reassess — but do not let a 7th, 8th idle session accumulate without a concrete name.
+Week trades 0/3 — full ammo. Manual rules N/A (no positions).
