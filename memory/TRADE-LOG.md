@@ -220,3 +220,16 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0/3
 
 **Notes:** Sixth straight flat, fully-cash day — equity unchanged at $106,111.89 (Day P&L $0.00). The "non-negotiable" Jun 24 deployment again did not execute; capital remains 100% cash vs the 75-85% target with full week ammo (0/3). Six consecutive idle sessions is a sustained execution failure — the daily-summary routine keeps logging the same overdue-deployment note while no buys ever land at market-open. Root issue is the market-open routine not running/executing, not a research gap. Tomorrow (Thu Jun 25): priority is to verify the market-open routine actually fires and places 2-3 quality setups (GOOGL primary, CAT secondary per scout list) with 10% trailing GTC stops to rebuild deployment from 0%. Phase P&L holds at +6.11%.
+
+---
+
+## 2026-06-25 — Market-Open Trades
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-25 | GOOGL | BUY | 62 | $336.36 | 10% trailing GTC (initial $302.76) | Hyperscaler AI-capex supercycle ($725B 2026, +77% YoY) + Gemini; comm-services/AI-capex anchor | $410 (+20%) | 2:1 |
+| 2026-06-25 | XLF | BUY | 390 | $53.97 | 10% trailing GTC (initial $48.61) | Financials = YTD sector leader (+28.8%); sticky-PCE/higher-for-longer tape aids bank NIM; clean liquid exposure vs wide JPM paper spread | $64.75 (+20%) | 2:1 |
+
+**Week of 2026-06-22 trade count: 2/3**
+
+**Notes:** Idle-streak BROKEN after 6 straight 100%-cash sessions — market-open routine executed and both buys filled. Deployed ~39.5% ($41,901 cost / $106,112 equity): GOOGL 19.7%, XLF 19.8%, both under the 20% cap. CAT DEFERRED — ask $1,076 sits far above the ~$935 Street PT (fails R:R rule; never buy above PT). PCE (8:30 ET, consensus 3.4%) printed before fills; tape held green (GOOGL ~$336, VIX ~17.9). Kept 3rd weekly trade in reserve to top toward 75-85% next week. Both 10% trailing GTC stops confirmed active (GOOGL stop $302.76 / hwm $336.40; XLF stop $48.61 / hwm $54.01). Daytrade count 0; not PDT.
