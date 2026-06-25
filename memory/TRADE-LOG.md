@@ -233,3 +233,16 @@ No positions yet. Bot launches tomorrow.
 **Week of 2026-06-22 trade count: 2/3**
 
 **Notes:** Idle-streak BROKEN after 6 straight 100%-cash sessions — market-open routine executed and both buys filled. Deployed ~39.5% ($41,901 cost / $106,112 equity): GOOGL 19.7%, XLF 19.8%, both under the 20% cap. CAT DEFERRED — ask $1,076 sits far above the ~$935 Street PT (fails R:R rule; never buy above PT). PCE (8:30 ET, consensus 3.4%) printed before fills; tape held green (GOOGL ~$336, VIX ~17.9). Kept 3rd weekly trade in reserve to top toward 75-85% next week. Both 10% trailing GTC stops confirmed active (GOOGL stop $302.76 / hwm $336.40; XLF stop $48.61 / hwm $54.01). Daytrade count 0; not PDT.
+
+### Jun 25 — EOD Snapshot (Day 42, Thursday)
+**Portfolio:** $106,311.92 | **Cash:** $64,211.02 (60.4%) | **Day P&L:** +$200.03 (+0.19%) | **Phase P&L:** +$6,311.92 (+6.31%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $342.20 | -0.90% | +$362.08 (+1.74%) | $311.01 (10% trail GTC) |
+| XLF | 390 | $53.97 | $53.55 | -0.32% | -$162.05 (-0.77%) | $49.21 (10% trail GTC) |
+
+**Trades today:** GOOGL BUY 62 @ $336.36; XLF BUY 390 @ $53.97
+**Week trades:** 2/3
+
+**Notes:** Idle streak BROKEN — first deployment after 6 straight 100%-cash sessions. Market-open routine fired and both buys filled. Equity +$200.03 to $106,311.92 (Day P&L +0.19%) on net gains; GOOGL working (+$362, +1.74%) while XLF dipped slightly (-$162, -0.77%). Deployed ~39.6% ($42,101) vs the 75-85% target — GOOGL 20.0%, XLF 19.6%, both at/under the 20% cap. Both 10% trailing GTC stops confirmed active and trailing up (GOOGL stop $311.01/hwm $345.57; XLF stop $49.21/hwm $54.68). CAT still deferred (ask above Street PT). One weekly trade left (2/3). Tomorrow (Fri Jun 26) is weekly-review day: assess GOOGL/XLF theses, and consider deploying the 3rd trade plus sizing up toward 75-85% next week. Phase P&L +6.31%.
