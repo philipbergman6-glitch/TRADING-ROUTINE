@@ -673,3 +673,36 @@ Week trades 0/3 — full ammo. Manual rules N/A (no positions).
 - Patience correct; tape bouncing but still pre-PCE binary (Thursday 8:30 ET)
 
 **Decision:** HOLD all cash. Modest bounce does not clear the PCE binary risk tomorrow. NEM/GDX removed from deployment list — gold trend broken. **Thursday post-PCE remains the non-negotiable deployment window: CAT (primary, pullback to $900–920) + post-print MU if it beat (secondary).** No precious metals name until gold trend re-establishes.
+
+---
+
+## 2026-06-25 — Pre-Market Research (Day 42, Thursday)
+
+### Account Snapshot
+- **Equity:** $106,111.89 | **Cash:** $106,111.89 (100%) | **Buying power:** $424,447 (4x) | **Positions:** 0 | **Orders:** 0 | **Daytrades:** 0
+
+### Market Context
+- **Indices (premarket, RISK-ON):** S&P futs ~7,472–7,488 (**+0.5% to +0.8%**), Nasdaq 100 futs ~30,000 (**+1.2% to +1.8%**), Dow +0.46%. Sharp reversal of yesterday's tech-led selloff — AI-capex theme ($725B 2026 hyperscaler capex, +77% YoY) reasserting as the anchor bid.
+- **VIX:** **~17.9** (prev close 18.63, **-3.9%**) — back below 18 and decisively under the 20 line. Vol regime easing, not spiking. Constructive.
+- **Oil:** WTI ~$69.5 (-1.3%), Brent ~$72.9 — Brent **-25% over the past month** on US-Iran de-escalation + weak demand. Energy momentum broken; excluded.
+- **Econ calendar — TODAY IS THE LOAD:** **May Core PCE @ 8:30 ET, consensus 3.4% YoY (up from 3.3% Apr); headline ~3.9%.** Fed's preferred gauge — a hot/sticky print keeps Sep-hike odds alive. Binary inflation event, prints AFTER this routine runs. Also final Q1 GDP, personal income/spending, jobless claims. NFP Jul 2.
+- **Earnings:** BMO — DRI, CMC, MKC, BB, SNX, WGO (none held, none on scout list). AMC — **MU, FDX, CCL** (MU = AI-memory sentiment; not held, no pre-print gambling).
+- **Sector momentum YTD:** **Financials +28.8%**, **Energy +20–26%** (reversing with oil), **Industrials +12%** (AI infra + defense capex), Materials +15%. **Tech ~-2% YTD** (laggard despite AI narrative — rotation, not leadership). Leadership = Financials/Industrials, NOT mega-tech.
+
+### Trade Ideas (staged for market-open execution post-PCE)
+1. **GOOGL** — Comm services / AI-capex primary. Mid ~$341.7 (bid $338 / ask $345, wide paper spread). Catalyst: hyperscaler capex supercycle + Gemini. Entry market-open ≤ ~$345; size ~18–20% (~$20k). Stop: 10% trailing GTC (~$308). Target: +20% (~$410), 2:1+ R:R.
+2. **XLF or JPM (Financials)** — NEW idea, sector is YTD leader (+28.8%) and a sticky-PCE/higher-for-longer tape HELPS bank NIM (fits a hot print, unlike rate-sensitive tech). Confirm live quote at open. Size ~18–20%. Stop 10% trail; target 2:1.
+3. **CAT** — Industrials (sector in momentum, reshoring/data-center/defense capex). **Paper quote unreliable** (bid $900/ask $1088); last real close ~$989, Street PT ~$935. Buying above PT = poor R:R. Only enter on confirmation near/below ~$1000 at open; else defer in favor of the financials name.
+
+### Risk Factors
+- **PCE binary @ 8:30 ET** prints after this routine — a hot beat (>3.4%) could re-ignite Sep-hike fears and reverse the green tape. Deployment must wait for the print + open digestion.
+- Tech leadership is thin (tech -2% YTD); chasing mega-cap on the AI narrative alone carries rotation risk — pair it with the genuine leaders (Financials/Industrials).
+- Oil/energy momentum broken (-25% MoM) — no energy exposure.
+- **Standing risk — the real problem:** 100% cash vs 75–85% target for a **7th straight session**. Root cause per trade-log = the **market-open routine not executing**, not a research gap. Six "non-negotiable" deployment notes have logged with zero buys landing. This must break today.
+
+### Decision
+**HOLD pre-market into the 8:30 PCE print — but this is a STAGED entry, not another idle day.** The deployment plan is concrete and the market-open routine MUST fire:
+- **If PCE ≤ ~3.4% (in-line/cool) and tape holds green:** deploy **GOOGL + a Financials name (XLF/JPM) + CAT-or-alternative**, ~18–20% each → ~55–60% deployed (capped by the **3-new-trades/week** rule; full ammo 0/3). Each with a **10% trailing GTC stop** placed immediately. Top toward 75–85% next week.
+- **If PCE prints hot (>~3.5%) and tape rolls over:** scale to the **2 highest-conviction names (GOOGL + Financials)** rather than defer entirely — a benign-to-hot-but-priced PCE is NOT grounds for a 7th idle session. Only a genuine risk-off break (S&P -1%+, VIX >22) justifies holding.
+- **Do not** initiate any energy name; **do not** buy CAT above its ~$935 PT.
+Week trades 0/3 — full ammo. Manual rules N/A (no positions).
