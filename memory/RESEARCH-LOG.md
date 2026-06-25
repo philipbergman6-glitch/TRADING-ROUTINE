@@ -706,3 +706,30 @@ Week trades 0/3 — full ammo. Manual rules N/A (no positions).
 - **If PCE prints hot (>~3.5%) and tape rolls over:** scale to the **2 highest-conviction names (GOOGL + Financials)** rather than defer entirely — a benign-to-hot-but-priced PCE is NOT grounds for a 7th idle session. Only a genuine risk-off break (S&P -1%+, VIX >22) justifies holding.
 - **Do not** initiate any energy name; **do not** buy CAT above its ~$935 PT.
 Week trades 0/3 — full ammo. Manual rules N/A (no positions).
+
+---
+
+## 2026-06-25 — Midday Scan (Day 42, Thursday)
+
+### Account Snapshot
+- **Equity:** ~$106,452 | **Deployed:** ~39.5% (GOOGL + XLF, both entered this morning) | **Week trades:** 2/3
+
+### Positions
+| Symbol | Entry | Current | P&L% | Today% | Stop (GTC) | HWM |
+|--------|-------|---------|------|--------|------------|-----|
+| GOOGL | $336.36 | $341.85 | +1.63% | -1.00% | $308.70 (10% trail) | $343.00 |
+| XLF | $53.97 | $53.76 | -0.38% | +0.07% | $49.21 (10% trail) | $54.68 |
+
+### PCE Read-Through
+- **May Core PCE: 3.4% YoY** — matched consensus exactly (up from 3.3% prior). No upside surprise. Uptick attributed to portfolio mgmt services cost (S&P rally driven), not broad demand. Markets not reacting negatively.
+- Tape remains constructive post-print per pre-market risk framework.
+
+### Actions
+- **No cuts** — GOOGL +1.63%, XLF -0.38%; neither at -7% trigger
+- **No stop tightening** — neither at +15% threshold (GOOGL $386.81, XLF $62.06)
+- **No thesis breaks:**
+  - GOOGL: -1% intraday = normal digestion. PCE in-line = no hawkish shock. AI-capex supercycle ($725B 2026) intact. No GOOGL-specific news.
+  - XLF: Sticky PCE 3.4% = higher-for-longer = supports bank NIM. Financials sector thesis intact.
+
+### Decision
+HOLD both — no rule triggers, no thesis breaks. Both stops correctly set and active.
