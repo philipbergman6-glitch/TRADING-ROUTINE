@@ -733,3 +733,47 @@ Week trades 0/3 — full ammo. Manual rules N/A (no positions).
 
 ### Decision
 HOLD both — no rule triggers, no thesis breaks. Both stops correctly set and active.
+
+---
+
+## 2026-06-26 — Pre-Market Research (Day 43, Friday)
+
+### Account Snapshot
+- **Equity:** $106,249.45 | **Cash:** $64,211.01 (60.4%) | **Buying power:** $374,551 (4x) | **Positions:** 2 | **Open orders:** 2 (trailing stops) | **Daytrades:** 0 (not PDT)
+- **Deployed:** ~39.6% ($42,038 mkt value) vs 75-85% target — still underdeployed.
+- **GOOGL:** 62 sh @ $336.36 → $341.13, **+$295.72 (+1.42%)**; stop $311.01 / hwm $345.57 (10% trail GTC active).
+- **XLF:** 390 sh @ $53.97 → $53.56, **-$158.15 (-0.75%)**; stop $49.21 / hwm $54.68 (10% trail GTC active).
+
+### Market Context
+- **Indices (premarket, MIXED/soft):** ES (Sep) last ~7,423, bid/ask ~7,434, day range 7,357–7,454; reads span -0.6% (late-session) to +0.27% (last snapshot). Net roughly flat-to-slightly-soft, choppy — not a clean risk-on tape.
+- **VIX:** **~20.26 (+7.25%)**, range 19.52–20.32, prev close 18.89. **Back above the 20 line** — vol creeping up, first time over 20 in this window. Constructive regime eroding; watch.
+- **Oil:** WTI ~$69–71 (-2 to -3%), Brent ~$73 (-2%). **Energy momentum still broken** (Brent ~-20% MoM). NOTE: a catalyst feed cited a "US-Israel campaign vs Iran" lifting oil — contradicted by live quotes (oil DOWN); treat as stale/cross-contaminated sourcing. No energy exposure.
+- **Econ calendar — LIGHT:** No CPI/PPI/FOMC/jobs today. 8:30 ET Advance Goods Trade Balance (May, est -$83.7B) + Advance Retail; Goolsbee speech later. Next majors all July (CPI Jul 14, jobs Jul 6, FOMC Jul). Non-binary day.
+- **Earnings (BMO):** DRI, SNX, AYI, CMC, WGO, NNOX — none held, none on scout list. No held-name prints.
+
+### Sector Momentum — ROTATION NOTED
+- **Industrials (XLI) = new dominant leader (~+22% YTD)** — AI-infra buildout + defense supercycle ($1.5T US / NATO 5% GDP) + electrification capex.
+- **Financials (XLF) now reads LAGGING** ("losing relative edge as Fed pauses easing"); Q1 EPS growth solid (~15%) but fwd outlook softening (Q2 ~5.6%). **This is a shift from last week's "+28.8% leader" read — XLF thesis on watch.**
+- **Tech LAGGING/cooling** (AI-capex payoff skepticism), though comm-services AI names (GOOGL) hold up.
+
+### Held-Name News
+- **GOOGL:** Working for us (+1.42%). Bigger picture: 4-week losing streak (longest in >1yr) on dilution fears from the **$85B equity offering** (~8% new shares) to fund AI capex; still consensus BUY (PTs $399–$445), Q1 rev +21.8%, Cloud +63%, near 52wk high. Thesis (AI-capex supercycle + Gemini) intact; dilution is the known overhang, not a break.
+- **XLF:** $53.45 close, 52wk range $47.67–$56.51. Higher-for-longer aids big-bank NIM (JPM/BAC) but regional NIMs squeezed; technicals reset from overbought. Sector-rotation risk per above — monitor relative strength.
+
+### Trade Ideas (for weekly-review / market-open with live quotes)
+1. **XLI (Industrials ETF)** — NEW idea, cleanest read: sector is now the YTD momentum leader (+22%), liquid ETF, fits "follow sector momentum." Candidate for the **3rd weekly trade** (2/3 used) to push deployment toward target. Entry on confirmation at open; 10% trailing GTC; target +20%, 2:1.
+2. **Add toward target via existing winners** — GOOGL already at the 20% cap; XLF thesis softening so avoid adding. Net: new capital should favor the leading sector (XLI), not double the laggard.
+3. **CAT** — Industrials single-name, but paper quote unreliable and prior Street PT ~$935 vs ask far above; **fails R:R / never buy above PT.** Prefer XLI ETF over CAT.
+
+### Risk Factors
+- **VIX >20 + soft, choppy futures** = constructive regime eroding. No chasing into the open; require tape confirmation before any new entry. A genuine risk-off break (S&P -1%+, VIX >22) = stand down.
+- **Sector rotation against XLF** — financials losing relative edge; XLF (-0.75%) is the weaker holding. If it rolls over toward the -7% manual cut or thesis confirms broken, exit and redeploy to the leader (Industrials).
+- **GOOGL dilution overhang** ($85B raise) — known, priced; not a break while position is green and AI-capex thesis intact.
+- **Chronic underdeployment** — 39.6% vs 75-85% for the 2nd session post-deployment. One weekly trade left to begin closing the gap (XLI primary candidate), but discipline > forcing size into a >20-VIX tape.
+
+### Decision
+**HOLD pre-market — no new entries before the open; defer the 3rd-trade (XLI) decision to today's weekly-review / market-open with live quotes.**
+- **Manual rules:** GOOGL +1.42% and XLF -0.75% — neither near the -7% cut; no stop-tighten (need +15%: GOOGL $386.81, XLF $62.06). Both 10% trailing GTC stops active and correct. No action on positions.
+- **New deployment:** Today is weekly-review day; assess XLF relative strength vs the rotation read, and if tape holds (S&P green-to-flat, VIX easing back under 20), deploy **XLI** as the 3rd weekly trade (~18-20%, 10% trailing GTC) to begin rebuilding toward 75-85%. If VIX stays >20 / futures roll over, hold the trade in reserve — do not chase.
+- **Do not** add to XLF (thesis softening), buy any energy name, or buy CAT above PT.
+- Week trades 2/3 — one left.
