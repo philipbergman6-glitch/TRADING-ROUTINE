@@ -246,3 +246,16 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3
 
 **Notes:** Idle streak BROKEN — first deployment after 6 straight 100%-cash sessions. Market-open routine fired and both buys filled. Equity +$200.03 to $106,311.92 (Day P&L +0.19%) on net gains; GOOGL working (+$362, +1.74%) while XLF dipped slightly (-$162, -0.77%). Deployed ~39.6% ($42,101) vs the 75-85% target — GOOGL 20.0%, XLF 19.6%, both at/under the 20% cap. Both 10% trailing GTC stops confirmed active and trailing up (GOOGL stop $311.01/hwm $345.57; XLF stop $49.21/hwm $54.68). CAT still deferred (ask above Street PT). One weekly trade left (2/3). Tomorrow (Fri Jun 26) is weekly-review day: assess GOOGL/XLF theses, and consider deploying the 3rd trade plus sizing up toward 75-85% next week. Phase P&L +6.31%.
+
+### Jun 26 — EOD Snapshot (Day 43, Friday)
+**Portfolio:** $106,037.79 | **Cash:** $64,211.01 (60.6%) | **Day P&L:** -$274.13 (-0.26%) | **Phase P&L:** +$6,037.79 (+6.04%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $337.30 | -1.87% | +$58.28 (+0.28%) | $311.72 (10% trail GTC) |
+| XLF | 390 | $53.97 | $53.63 | +0.33% | -$132.37 (-0.63%) | $49.21 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 2/3
+
+**Notes:** First full session holding the new book; equity slipped -$274.13 to $106,037.79 (Day P&L -0.26%) as GOOGL gave back -1.87% on the day (still +0.28% vs entry) while XLF firmed +0.33% (-0.63% vs entry). Deployed 39.4% ($41,827) vs the 75-85% target — GOOGL 19.7%, XLF 19.7%, both under the 20% cap. Both 10% trailing GTC stops confirmed active and intact (GOOGL stop $311.72/hwm $346.36; XLF stop $49.21/hwm $54.68). No new trades; one weekly trade remains (2/3). Friday = weekly-review day: theses on GOOGL (AI-capex supercycle) and XLF (financials sector leadership) remain valid and neither is near its stop. Priority next week: deploy the 3rd weekly trade and size up toward the 75-85% target to close the under-deployment gap. Phase P&L +6.04%.
