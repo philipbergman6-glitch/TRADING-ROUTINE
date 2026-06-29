@@ -259,3 +259,17 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3
 
 **Notes:** First full session holding the new book; equity slipped -$274.13 to $106,037.79 (Day P&L -0.26%) as GOOGL gave back -1.87% on the day (still +0.28% vs entry) while XLF firmed +0.33% (-0.63% vs entry). Deployed 39.4% ($41,827) vs the 75-85% target — GOOGL 19.7%, XLF 19.7%, both under the 20% cap. Both 10% trailing GTC stops confirmed active and intact (GOOGL stop $311.72/hwm $346.36; XLF stop $49.21/hwm $54.68). No new trades; one weekly trade remains (2/3). Friday = weekly-review day: theses on GOOGL (AI-capex supercycle) and XLF (financials sector leadership) remain valid and neither is near its stop. Priority next week: deploy the 3rd weekly trade and size up toward the 75-85% target to close the under-deployment gap. Phase P&L +6.04%.
+
+---
+
+## 2026-06-29 — Market-Open Trades (Day 44, Monday)
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-29 | XLF | SELL | 390 | $53.83 (exit) | — | EXIT/rotation: financials = WORST S&P sector YTD (~-7 to -10%); original "sector leadership" thesis broken. Sector-momentum rule no longer supports it. | — | — |
+| 2026-06-29 | XLI | BUY | 116 | $182.16 | 10% trailing GTC (initial $164.06) | Industrials = leading sector (+14.1% YTD); AI-infra + defense capex supercycle; no oil headwind. Rotate into a leader. | $218.59 (+20%) | 2:1 |
+| 2026-06-29 | XLB | BUY | 412 | $51.07 | 10% trailing GTC (initial $45.97) | Materials = #2 sector (+17.4% YTD); AI/energy-capacity capex linked; hard-asset leadership regime. | $61.28 (+20%) | 2:1 |
+
+**Week of 2026-06-29 trade count: 2/3** (new week reset Mon; XLI + XLB new, XLF exit = sell not a new trade)
+
+**Notes:** Sector rotation executed at the open — exited XLF (broken thesis: financials now the single worst S&P sector YTD) at $53.83 (~$20,994 proceeds; realized ~-$53 vs cost), redeployed into the two leading sectors XLI (Industrials) and XLB (Materials). Deployment rebuilt from 39.6% to **59.7%** ($63,730 mkt value / $106,763 equity): GOOGL 20.0%, XLI 19.8%, XLB 19.7% — all at/under the 20% cap. 3 positions (≤6). Tape risk-on at entry (ES +0.67%, VIX ~18.4 <20). All three carry active 10% trailing GTC stops (GOOGL $313.71/hwm $347.8; XLI $164.06; XLB $45.97). GOOGL HELD — green (+$668, DJIA inclusion today + Berkshire $10B stake; AI-capex thesis intact; not near +15% tighten at $386.81). Daytrade count 0; not PDT. One weekly trade left (2/3) to size further toward 75-85% later in the week.
