@@ -822,3 +822,17 @@ HOLD both — no rule triggers, no thesis breaks. Both stops correctly set and a
 - **XLF:** **Lean EXIT at open** — sector thesis broken (financials = worst S&P sector). Only -0.53%, so not a forced -7% cut, but rotate the capital to a leading sector. If executed, frees ~$20.9k to redeploy.
 - **New deployment:** Deploy **XLI** (primary) — and optionally **XLB** — as the week's trade(s) into leading sectors to rebuild toward 75-85%, each ~18-20% with a 10% trailing GTC stop, only if tape holds (ES green, VIX <20).
 - **Do not** buy energy (near-term trend broken), add to XLF, or chase any name without tape confirmation. Week trades 0/3 — full ammo.
+
+### 2026-06-29 — Midday Addendum
+
+**XLB intraday check (-2.35% today, $51.60→$50.39):**
+- Perplexity scan: no catalyst identified. No macro event, no sector-level news, no holdings-specific print.
+- Prior 3-day decline pattern (Tickeron): historically reverses. Zacks rank 2 (Buy). Stop at $46.16 intact.
+- Conclusion: normal sector noise. Materials thesis (YTD #2 sector, AI-infra/hard-asset regime) **intact**.
+
+**Midday scan result — NO ACTION:**
+- GOOGL: +4.64% ($351.95). Thesis strong. Stop trailing at $317.49 / hwm $352.77.
+- XLI: +0.17% ($182.47). Industrials thesis intact. Stop $165.22 / hwm $183.58.
+- XLB: -1.33% ($50.39). Thesis intact. Stop $46.16 / hwm $51.29.
+- No -7% losers. No +15% winners to tighten. No thesis breaks.
+- Deployment: ~59.7% ($63,748 / ~$106,781) — still below 75-85% target; 1 weekly trade remaining (2/3).
