@@ -777,3 +777,48 @@ HOLD both — no rule triggers, no thesis breaks. Both stops correctly set and a
 - **New deployment:** Today is weekly-review day; assess XLF relative strength vs the rotation read, and if tape holds (S&P green-to-flat, VIX easing back under 20), deploy **XLI** as the 3rd weekly trade (~18-20%, 10% trailing GTC) to begin rebuilding toward 75-85%. If VIX stays >20 / futures roll over, hold the trade in reserve — do not chase.
 - **Do not** add to XLF (thesis softening), buy any energy name, or buy CAT above PT.
 - Week trades 2/3 — one left.
+
+## 2026-06-29 — Pre-Market Research (Day 44, Monday)
+
+### Account Snapshot
+- **Equity:** $106,267.13 | **Cash:** $64,211.01 (60.4%) | **Buying power:** $374,601 (4x) | **Positions:** 2 | **Open orders:** 2 (trailing stops) | **Daytrades:** 0 (not PDT)
+- **Deployed:** ~39.6% ($42,056 mkt value) vs 75-85% target — still chronically under.
+- **GOOGL:** 62 sh @ $336.36 → $340.66, **+$266.60 (+1.28%)**; stop $311.72 / hwm $346.36 (10% trail GTC active).
+- **XLF:** 390 sh @ $53.97 → $53.68, **-$111.35 (-0.53%)**; stop $49.21 / hwm $54.68 (10% trail GTC active).
+- **New week (Mon):** week trade count resets to **0/3**.
+
+### Market Context
+- **Indices (premarket, RISK-ON):** ES (Sep) ~7,451, **+0.67%** (+49.5 pts), day range 7,398–7,458. Dow +0.41%, Nasdaq-100 +1.0%. Constructive tape.
+- **VIX:** **~18.4** (prev close 18.60/18.89), back **below the 20 line** after last week's spike. Vol regime re-calming — constructive.
+- **Oil:** WTI ~$70.16 (+1.3% today), Brent ~$72.68 (+1.0% today) — modest bounce, but **Brent still ~-10% on the week, ~-23% MoM**. Near-term energy trend broken despite YTD strength. No energy exposure.
+- **Econ calendar — LIGHT:** No CPI/PPI/FOMC/jobs today. Case-Shiller + Chicago PMI tomorrow (Tue). Next majors: June jobs Jul 3, CPI Jul 14, PPI Jul 15, FOMC Jul 29. Non-binary day.
+- **Macro watch:** Catalyst feed flags Fed-funds futures pricing a **possible Sept hike** on Chair Warsh's inflation focus (hawkish) — but XLF feed says hikes "not materializing, low rates maintained." Conflicting; monitor, not actionable today.
+- **Earnings (BMO):** NKE, AVAV, STZ, CNXC — none held, none on scout list. No held-name prints today.
+
+### Sector Momentum — ROTATION CONFIRMED & HARDENED
+- **Leaders (YTD):** Energy **+23.3%**, Materials **+17.4%**, Consumer Staples **+15.6%**, Industrials **+14.1%**. Hard-asset / cyclical leadership regime.
+- **Laggards (YTD):** **Financials WORST at ~-7% to -10%**, Consumer Discretionary -3.8%, Info Tech -3.3%, Comm Services -1.2%.
+- **XLF thesis is now BROKEN.** Original entry rationale was "financials = YTD leader (+28.8%)"; financials are now the **single worst-performing S&P sector YTD**. Sector-momentum rule no longer supports the position.
+- Energy is #1 YTD but recent (week/month) trend is sharply down — prefer Industrials (XLI) / Materials (XLB) for fresh exposure: leading sectors without the oil-collapse headwind.
+
+### Held-Name News
+- **GOOGL — POSITIVE catalyst:** Officially **joins the Dow Jones Industrial Average today** (replaces Verizon) — passive index-inclusion buying tailwind. $80-85B equity raise (incl. confirmed **$10B Berkshire Hathaway** investment) to fund AI capex; oversubscribed. Dilution overhang known/priced; Berkshire stake = strong institutional vote. Consensus still BUY. Thesis (AI-capex supercycle + Gemini) intact. Position green (+1.28%).
+- **XLF:** ~$53.68; worst S&P sector YTD. NIM squeeze (esp. regionals); RSI rising off oversold (modest technical bounce signal). Some "buy-the-dip" narrative but fundamental sector leadership is gone.
+
+### Trade Ideas (for market-open with live quotes)
+1. **EXIT XLF — rotate out of the laggard.** Financials = worst S&P sector YTD; entry thesis (sector leadership) is broken. Position only -0.53% (not at -7% manual cut), but sector-momentum discipline favors exit at open and redeploy into a leader. **Primary action candidate.**
+2. **XLI (Industrials ETF)** — leading sector (+14.1% YTD), AI-infra + defense supercycle, no oil headwind. **Primary new-deployment candidate** (~18-20%, 10% trailing GTC, target +20%, 2:1) to push toward 75-85%.
+3. **XLB (Materials ETF)** — #2 sector (+17.4%), AI/energy-capacity capex linked. Secondary diversifier candidate.
+
+### Risk Factors
+- **Conflicting Fed signals** (possible Sept hike vs. low-for-longer) = headline risk; a confirmed hawkish pivot pressures equities broadly and is mixed-to-negative for financials.
+- **Energy YTD-strength is backward-looking** — oil -10% wk / -23% MoM means chasing XLE risks buying a rolling-over leader. Avoid energy single-names/ETF.
+- **Chronic underdeployment** — 39.6% vs 75-85% for multiple sessions; full ammo this week (0/3). Rebuild deliberately into leaders, don't force size.
+- **GOOGL dilution overhang** ($80-85B raise) — known/priced; not a break while green and Berkshire is buying in.
+
+### Decision
+**HOLD pre-market — no orders before the open.** Stage two actions for the market-open routine (live quotes):
+- **GOOGL:** HOLD. +1.28%, not near -7% cut; no tighten (need +15% → $386.81). DJIA inclusion + Berkshire = tailwinds. Stop active/correct.
+- **XLF:** **Lean EXIT at open** — sector thesis broken (financials = worst S&P sector). Only -0.53%, so not a forced -7% cut, but rotate the capital to a leading sector. If executed, frees ~$20.9k to redeploy.
+- **New deployment:** Deploy **XLI** (primary) — and optionally **XLB** — as the week's trade(s) into leading sectors to rebuild toward 75-85%, each ~18-20% with a 10% trailing GTC stop, only if tape holds (ES green, VIX <20).
+- **Do not** buy energy (near-term trend broken), add to XLF, or chase any name without tape confirmation. Week trades 0/3 — full ammo.
