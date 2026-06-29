@@ -273,3 +273,17 @@ No positions yet. Bot launches tomorrow.
 **Week of 2026-06-29 trade count: 2/3** (new week reset Mon; XLI + XLB new, XLF exit = sell not a new trade)
 
 **Notes:** Sector rotation executed at the open — exited XLF (broken thesis: financials now the single worst S&P sector YTD) at $53.83 (~$20,994 proceeds; realized ~-$53 vs cost), redeployed into the two leading sectors XLI (Industrials) and XLB (Materials). Deployment rebuilt from 39.6% to **59.7%** ($63,730 mkt value / $106,763 equity): GOOGL 20.0%, XLI 19.8%, XLB 19.7% — all at/under the 20% cap. 3 positions (≤6). Tape risk-on at entry (ES +0.67%, VIX ~18.4 <20). All three carry active 10% trailing GTC stops (GOOGL $313.71/hwm $347.8; XLI $164.06; XLB $45.97). GOOGL HELD — green (+$668, DJIA inclusion today + Berkshire $10B stake; AI-capex thesis intact; not near +15% tighten at $386.81). Daytrade count 0; not PDT. One weekly trade left (2/3) to size further toward 75-85% later in the week.
+
+### Jun 29 — EOD Snapshot (Day 44, Monday)
+**Portfolio:** $107,036.18 | **Cash:** $43,033.18 (40.2%) | **Day P&L:** +$998.39 (+0.94%) | **Phase P&L:** +$7,036.18 (+7.04%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $353.50 | +4.78% | +$1,062.68 (+5.10%) | $318.92 (10% trail GTC) |
+| XLI | 116 | $182.16 | $182.88 | +0.93% | +$83.52 (+0.40%) | $165.22 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.66 | -1.82% | -$169.05 (-0.80%) | $46.16 (10% trail GTC) |
+
+**Trades today:** XLF SELL 390 @ $53.83; XLI BUY 116 @ $182.16; XLB BUY 412 @ $51.07
+**Week trades:** 2/3
+
+**Notes:** Sector rotation day — exited XLF (broken thesis: financials now worst S&P sector YTD) and redeployed into the two leading sectors XLI (Industrials) and XLB (Materials). Equity rose +$998.39 to $107,036.18 (Day P&L +0.94%), a fresh phase high, driven almost entirely by GOOGL ripping +4.78% on the day (DJIA inclusion + Berkshire $10B stake; now +$1,063, +5.10% vs entry). New positions mixed on debut: XLI +0.93% (+$83), XLB -1.82% (-$169). Deployment rebuilt from 39.4% to 59.8% ($64,003 mkt value) — GOOGL 20.5%, XLI 19.8%, XLB 19.5%, all at/near the 20% cap; 3 positions (≤6). All three 10% trailing GTC stops confirmed active (GOOGL $318.92/hwm $354.35; XLI $165.22/hwm $183.58; XLB $46.16/hwm $51.29). GOOGL not yet near +15% tighten ($386.81). One weekly trade left (2/3) to push toward the 75-85% deployment target later in the week. Daytrade count 0; not PDT. Phase P&L +7.04%.
