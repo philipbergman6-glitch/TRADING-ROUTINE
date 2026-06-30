@@ -307,3 +307,20 @@ No positions yet. Bot launches tomorrow.
 - XLB: $50.875 (-0.38% vs entry) — stop $46.16/hwm $51.29. Materials thesis intact; minor dip, far from stop.
 - XLP: $83.435 (-0.39% vs entry) — stop $75.45/hwm $83.83. CS thesis intact; new position, minor dip intraday.
 Deployed ~79.4% — inside 75-85% band. Week 3/3 — no new trades until Monday.
+
+### Jun 30 — EOD Snapshot (Day 45, Tuesday)
+**Portfolio:** $107,390.64 | **Cash:** $22,093.10 (20.6%) | **Day P&L:** +$354.46 (+0.33%) | **Phase P&L:** +$7,390.64 (+7.39%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $355.95 | +0.65% | +$1,214.58 (+5.82%) | $322.76 (10% trail GTC) |
+| XLI | 116 | $182.16 | $185.23 | +1.35% | +$356.12 (+1.69%) | $166.91 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.83 | +0.34% | -$99.01 (-0.47%) | $46.16 (10% trail GTC) |
+| XLP | 250 | $83.76 | $83.20 | -1.39% | -$140.00 (-0.67%) | $75.45 (10% trail GTC) |
+
+**Trades today:** XLP BUY 250 @ $83.76
+**Week trades:** 3/3
+
+**Notes:** Quiet, constructive session — equity rose +$354.46 to $107,390.64 (Day P&L +0.33%), a fresh phase high (+7.39%). Deployed the 3rd and final weekly trade (XLP, Consumer Staples) at the open, lifting deployment to 79.4% ($85,298 mkt value) — squarely inside the 75-85% target band for the first time this phase. 4 positions (≤6): GOOGL 20.5%, XLI 20.0%, XLB 19.5%, XLP 19.4%, all at/under the 20% cap. Cash 20.6%. GOOGL again the engine, +0.65% on the day and +5.82% vs entry (AI-capex + DJIA-inclusion thesis intact; not near +15% tighten at $386.81). XLI led the new book +1.35% (+1.69% vs entry); XLB +0.34% (-0.47% vs entry); XLP soft on debut -1.39% (-0.67% vs entry) but defensive diversifier thesis intact, far from stop. All four 10% trailing GTC stops confirmed active and intact (GOOGL $322.76/hwm $358.62; XLI $166.91/hwm $185.45; XLB $46.16/hwm $51.29; XLP $75.45/hwm $83.83). Week now 3/3 — no further new trades until Monday reset. Daytrade count 0; not PDT. Next focus: monitor for stop tightens (none triggered) and let leaders run.
+
+---
