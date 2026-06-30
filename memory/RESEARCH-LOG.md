@@ -822,3 +822,47 @@ HOLD both — no rule triggers, no thesis breaks. Both stops correctly set and a
 - **XLF:** **Lean EXIT at open** — sector thesis broken (financials = worst S&P sector). Only -0.53%, so not a forced -7% cut, but rotate the capital to a leading sector. If executed, frees ~$20.9k to redeploy.
 - **New deployment:** Deploy **XLI** (primary) — and optionally **XLB** — as the week's trade(s) into leading sectors to rebuild toward 75-85%, each ~18-20% with a 10% trailing GTC stop, only if tape holds (ES green, VIX <20).
 - **Do not** buy energy (near-term trend broken), add to XLF, or chase any name without tape confirmation. Week trades 0/3 — full ammo.
+
+## 2026-06-30 — Pre-Market Research (Day 45, Tuesday)
+
+### Account Snapshot
+- **Equity:** $107,237.90 | **Cash:** $43,033.10 (40.1%) | **Buying power:** $351,906 (4x) | **Positions:** 3 | **Open orders:** 3 (trailing stops) | **Daytrades:** 0 (not PDT)
+- **Deployed:** ~59.9% ($64,205 mkt value) vs 75-85% target — still under; one weekly trade left to close the gap.
+- **GOOGL:** 62 sh @ $336.36 → $355.02, **+$1,156.92 (+5.55%)**; stop $318.92 / hwm $354.35 (10% trail GTC active).
+- **XLI:** 116 sh @ $182.16 → $183.31, **+$133.40 (+0.63%)**; stop $165.22 / hwm $183.58 (10% trail GTC active).
+- **XLB:** 412 sh @ $51.07 → $50.80, **-$111.37 (-0.53%)**; stop $46.16 / hwm $51.285 (10% trail GTC active).
+- **Week (of Mon 6/29):** trade count **2/3** — one left.
+
+### Market Context
+- **Indices (premarket, RISK-ON continuation):** ES (Sep, ESU26) ~7,502-7,508; **+0.72% this morning** after Monday settled **sharply higher (+1.20%)**. Constructive, low-vol tape.
+- **VIX:** **~17.7** (prev close 18.41), well **below 20**. Vol regime calm — constructive.
+- **Oil:** WTI ~$70.5, Brent ~$73 (small daily moves). Brent still **~-22.6% MoM** — near-term energy trend broken despite #1 YTD. No energy exposure; avoid chasing XLE.
+- **Econ calendar — LIGHT/2nd-tier:** No CPI/PPI/FOMC/jobs. Today: Case-Shiller, Chicago PMI, Consumer Confidence + **JOLTS (10:00 ET)** — could nudge the tape but non-binary. Next majors: June jobs Jul 3, CPI Jul 14, FOMC Jul 28-29.
+- **Earnings (BMO):** None noteworthy. NKE, STZ, PRGS all **after close** — no held-name BMO prints.
+
+### Sector Momentum — ROTATION INTACT
+- **Leaders (YTD):** Energy **+23.3%**, Materials **+17.4%** (XLB ✓), Consumer Staples **+15.6%**, Industrials **+14.1%** (XLI ✓). Hard-asset / cyclical / defensive leadership regime.
+- **Laggards (YTD):** Info Tech **-3.3%**, Comm Services / Consumer Discretionary in the lagging quadrant.
+- Book is correctly tilted to leaders (XLI + XLB). To add the 3rd weekly trade, prefer a **non-cyclical leader without the oil headwind**: **Consumer Staples (XLP, +15.6%)** is the cleanest diversifier — leading sector, defensive, low correlation to XLI/XLB.
+
+### Held-Name News
+- **GOOGL:** Q4 **beat** revenue & profit, but **2026 capex guide raised to ~$180B** and **equity raise upsized to $85B** (from $80B) → headline pressure / 4th weekly loss streak. **Still +120% 1Y; analysts stay BUY (Jefferies, BofA); PT range $425-475**. Dilution/capex overhang known & priced; AI-capex supercycle + Gemini/Search-AI/YouTube/Waymo thesis intact. Position **+5.55%**, green; Alpaca shows +0.39% today. Not near +15% tighten ($386.81).
+- **XLI / XLB:** No adverse single-name news; both in leading sectors, near flat-to-green, far from stops.
+
+### Trade Ideas (for market-open with live quotes)
+1. **XLP (Consumer Staples ETF)** — leading sector (+15.6% YTD), defensive, no oil headwind, diversifies the cyclical book. **Primary 3rd-weekly-trade candidate** (~18-20%, 10% trailing GTC, target +20%, 2:1). Lifts deployment ~60% → ~78%, into the 75-85% band.
+2. **No add-ons possible** — GOOGL (20.5%), XLI (19.8%), XLB (19.5%) all at/over the 20% cap.
+3. **Avoid Energy** — #1 YTD but -22.6% MoM; chasing a rolling-over leader.
+
+### Risk Factors
+- **GOOGL capex/dilution headline** ($180B capex, $85B raise) — known overhang, still BUY-rated and green; not a thesis break while institutions stay long.
+- **Energy YTD-strength is backward-looking** — avoid XLE/energy single-names.
+- **Chronic underdeployment** (59.9% vs 75-85%) — one weekly trade left; deploy XLP deliberately, don't force.
+- **10:00 ET data cluster** (JOLTS/Consumer Confidence) — minor headline risk; size the new trade only if tape holds post-print.
+
+### Decision
+**HOLD pre-market — no orders before the open.** Stage for the market-open routine (live quotes):
+- **GOOGL:** HOLD. +5.55%, not near -7% cut; no tighten (need +15% → $386.81). Capex headline noisy but thesis intact, analysts BUY. Stop active/correct.
+- **XLI / XLB:** HOLD. Leading sectors, near flat, far from stops. No action.
+- **New deployment:** Deploy **XLP** as the 3rd weekly trade (~18-20%, 10% trailing GTC, target +20%) **only if tape holds** (ES green, VIX <20) — pushes toward 75-85%. If tape rolls over post-10:00 data, hold in reserve; do not chase.
+- **Do not** buy energy, add to capped positions, or chase any name without tape confirmation. Week trades **2/3** — one left.
