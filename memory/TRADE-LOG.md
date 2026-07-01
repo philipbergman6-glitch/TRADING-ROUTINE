@@ -334,3 +334,20 @@ Deployed ~79.4% — inside 75-85% band. Week 3/3 — no new trades until Monday.
 No sharp unexplained moves; no Perplexity research needed. Deployed ~79.5% ($85,576.89 mkt value / $107,669.98 equity) — inside 75-85% band. Week 3/3 — no new trades until Monday 7/6 reset.
 
 ---
+
+### Jul 1 — EOD Snapshot (Day 46, Wednesday)
+**Portfolio:** $107,577.99 | **Cash:** $22,093.09 (20.5%) | **Day P&L:** +$187.35 (+0.17%) | **Phase P&L:** +$7,577.99 (+7.58%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $361.39 | +1.13% | +$1,551.86 (+7.44%) | $326.65 (10% trail GTC) |
+| XLI | 116 | $182.16 | $183.41 | -0.98% | +$145.00 (+0.69%) | $167.09 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.93 | +0.20% | -$57.81 (-0.28%) | $46.32 (10% trail GTC) |
+| XLP | 250 | $83.76 | $83.28 | +0.25% | -$120.00 (-0.57%) | $75.45 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 3/3
+
+**Notes:** Quiet green session — equity +$187.35 to $107,577.99 (Day P&L +0.17%), another fresh phase high (+7.58%). No trades: week is full at 3/3, no new positions until Monday 7/6 reset. GOOGL again the engine, +1.13% on the day to a new closing high and +7.44% vs entry (AI-capex + DJIA-inclusion thesis intact, Strong Buy consensus; still short of the +15% tighten trigger at $386.81). XLI slipped -0.98% but holds +0.69% vs entry; XLB +0.20% (-0.28% vs entry); XLP +0.25% (-0.57% vs entry) — all three sector ETFs flat-to-mildly-mixed, far from stops, theses intact. 4 positions (≤6), all at/under the 20% cap: GOOGL 20.8%, XLI 19.8%, XLB 19.5%, XLP 19.4%. Deployment 79.5% — inside the 75-85% target band. All four 10% trailing GTC stops confirmed active and ratcheting (GOOGL $326.65/hwm $362.94; XLI $167.09/hwm $185.65; XLB $46.32/hwm $51.47; XLP $75.45/hwm $83.83); none lowered. Daytrade count 0; not PDT. Tomorrow: hold and monitor — let GOOGL run toward the +15% tighten, watch for any stop triggers; no new trades until Monday.
+
+---
