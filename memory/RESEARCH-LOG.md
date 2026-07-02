@@ -912,3 +912,50 @@ HOLD both — no rule triggers, no thesis breaks. Both stops correctly set and a
 - **XLI / XLB / XLP:** HOLD. Leading sectors, near flat, far from stops. No action.
 - **All 4 trailing stops confirmed active/correct.** Deployment 79.4% — inside 75-85%; no rebalancing needed.
 - **Do not** add to capped names, buy energy, or chase the tech pop mid-week. Reassess a possible tech-rotation entry at the 7/6 reset with fresh tape confirmation. Patience > activity.
+
+## 2026-07-02 — Pre-Market Research (Day 47, Thursday)
+
+### Account Snapshot
+- **Equity:** $107,529.74 | **Cash:** $22,093.09 (20.5%) | **Buying power:** $327,595 (4x) | **Positions:** 4 | **Open orders:** 4 (trailing stops) | **Daytrades:** 0 (not PDT)
+- **Deployed:** ~79.5% ($85,436.65 mkt value) vs 75-85% target — **inside the band**.
+- **GOOGL:** 62 sh @ $336.36 → $359.31, **+$1,422.89 (+6.82%)**; stop $326.646 / hwm $362.94 (10% trail GTC active).
+- **XLI:** 116 sh @ $182.16 → $184.20, **+$236.64 (+1.12%)**; stop $167.085 / hwm $185.65 (10% trail GTC active).
+- **XLB:** 412 sh @ $51.07 → $50.77, **-$123.73 (-0.59%)**; stop $46.323 / hwm $51.47 (10% trail GTC active).
+- **XLP:** 250 sh @ $83.76 → $83.50, **-$65.00 (-0.31%)**; stop $75.45 / hwm $83.8341 (10% trail GTC active).
+- **Position weights:** GOOGL 20.7%, XLI 19.9%, XLB 19.5%, XLP 19.4% — GOOGL fractionally over 20% on appreciation (not a new buy; OK).
+- **Week (of Mon 6/29):** trade count **3/3 — FULL**. No new trades until Monday 7/6 reset.
+
+### Market Context
+- **Indices (premarket):** ES ~7,544-7,554 (**flat-to-mixed**, ~+0.1% to -0.2% across sources) after prev SPX close -0.22%. NDX got hit hard yesterday (**-1.54%**) on tech/AI weakness — watch for follow-through. Cautious start to Q3 ahead of jobs data + Fed remarks.
+- **VIX:** **~16.7** (prev close 16.45), well **below 20**. Calm vol regime — constructive.
+- **Oil:** WTI **~$69** (soft, -0.5%), Brent **~$72** (-1%); Brent down ~27% MoM. Weak on US-Iran de-escalation + Strait of Hormuz shipping recovery — validates our zero-energy stance despite Energy's YTD lead.
+- **Econ calendar — BINARY DAY:** **June Nonfarm Payrolls 8:30 ET** — forecast **+114K** (vs +172K prior), unemployment **4.3%**, AHE +0.3% MoM / +3.5% YoY. Weekly jobless claims also 8:30 (prior 215K). No CPI/FOMC today (next FOMC ~mid-July). Holiday-shortened week — **market closed Fri 7/3** (July 4th observed); thin, choppy tape.
+- **Fed:** New Chair Kevin Warsh — market awaiting remarks; hawkish-lean = headline risk for broad equities.
+- **Earnings (BMO):** No held-name prints.
+
+### Sector Momentum — ROTATION INTACT (book correctly positioned)
+- **Leaders (YTD):** Energy **+23.3%**, Materials **+17.4%** (XLB ✓), Consumer Staples **+15.6%** (XLP ✓), Industrials **+14.1%** (XLI ✓). Book tilted to sectors #2-4 — aligned with leadership.
+- **Laggards (YTD):** Comm Services **-1.2%**, Info Tech **-3.3%**, Consumer Disc **-3.8%**, Financials **-6.9%** (worst).
+- **Watch:** Tech/AI led yesterday's decline (NDX -1.54%) — the AI-capex trade wobbled ($725B hyperscaler capex a double-edged narrative). A tech re-leadership rotation remains the key thing to confirm for the 7/6 reset; GOOGL is our AI-linked exposure.
+
+### Held-Name News
+- **GOOGL:** Consensus **Strong Buy** (50% Strong Buy / 38% Buy / 13% Hold / 0% Sell), mean PT ~$399-445. Q1 rev $109.9B (+21.8%), 82% earnings growth; AI Search/Cloud thesis intact. $80B equity raise = known overhang, funds long-dated capex. Position **+6.82%**, green; not near +15% tighten ($386.81). HOLD.
+- **XLI / XLB / XLP:** No adverse single-name news. XLB/XLP small red (-0.59% / -0.31%) but leading sectors, far from stops, theses intact.
+
+### Trade Ideas (staging only — week is full, no trades until 7/6)
+1. **GOOGL** — riding AI leadership; watch for +15% tighten trigger at $386.81. No add (at 20.7% cap).
+2. **Tech re-leadership rotation** — if Info Tech/Comm Services momentum confirms after the NDX wobble, XLK or a GOOGL add-through-rotation is the primary idea for the 7/6 reset. Needs confirmation post-jobs; do not pre-empt.
+3. **Avoid Energy** — #1 YTD but oil soft (WTI ~$69, Brent ~$72, -27% MoM); chasing a rolling-over leader.
+
+### Risk Factors
+- **June jobs report 8:30 ET** — the week's binary event; a hot/cold surprise (esp. wages/unemployment) moves the whole tape and Fed odds. No positioning changes around it.
+- **Tech wobble** — NDX -1.54% yesterday; if AI-capex narrative sours further it pressures GOOGL and could rotate leadership. Watch, don't act.
+- **Holiday liquidity** — thin, choppy pre-July-4 tape (closed Fri 7/3) can exaggerate swings; discount intraday noise.
+- **Warsh/hawkish-Fed headline risk** — a hawkish lean pressures equities broadly.
+
+### Decision
+**HOLD — no orders. Week trades 3/3 (full); nothing to place until the Monday 7/6 reset.**
+- **GOOGL:** HOLD. +6.82%, not near -7% cut; no tighten (need +15% → $386.81). Strong Buy consensus, thesis intact. Stop active/correct.
+- **XLI / XLB / XLP:** HOLD. Leading sectors, near flat, far from stops. No action.
+- **All 4 trailing stops confirmed active/correct.** Deployment 79.5% — inside 75-85%; no rebalancing needed.
+- **Do not** add to capped names, buy energy, or chase pre-jobs. Reassess a possible tech-rotation entry at the 7/6 reset with fresh tape confirmation post-NFP. Patience > activity.
