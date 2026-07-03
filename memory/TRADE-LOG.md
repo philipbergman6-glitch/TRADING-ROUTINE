@@ -378,3 +378,20 @@ No sharp unexplained moves (NFP day — broad tape choppy as expected); no Perpl
 **Notes:** Strong green close on a choppy NFP day — equity +$745.08 to $108,323.07 (Day P&L +0.69%), a fresh phase high (+8.32%). No trades: week full at 3/3, no new positions until Monday 7/6 reset. Leadership rotated to the defensives/cyclicals today: XLP +2.03% (+1.47% vs entry) and XLB +1.94% (+1.84% vs entry) led, XLI +0.30% (+0.96% vs entry); GOOGL cooled -0.78% but still +6.55% vs entry (AI-capex + DJIA thesis intact, Strong Buy consensus; still short of the +15% tighten at $386.81). 4 positions (≤6), all at/under the 20% cap: GOOGL 20.5%, XLB 19.8%, XLI 19.7%, XLP 19.6%. Deployment 79.6% — inside the 75-85% band. All four 10% trailing GTC stops confirmed active and ratcheting (GOOGL $327.78/hwm $364.21; XLI $167.09/hwm $185.65; XLB $46.82/hwm $52.03; XLP $76.62/hwm $85.14); none lowered. Daytrade count 0; not PDT. Tomorrow (Fri): weekly review day — hold and monitor, let leaders run, no new trades until Monday.
 
 ---
+
+### Jul 3 — EOD Snapshot (Day 48, Friday)
+**Portfolio:** $108,416.69 | **Cash:** $22,093.09 (20.4%) | **Day P&L:** +$93.62 (+0.09%) | **Phase P&L:** +$8,416.69 (+8.42%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $359.91 | +0.42% | +$1,460.10 (+7.00%) | $327.78 (10% trail GTC) |
+| XLI | 116 | $182.16 | $183.91 | 0.00% | +$203.00 (+0.96%) | $167.09 (10% trail GTC) |
+| XLB | 412 | $51.07 | $52.01 | 0.00% | +$387.15 (+1.84%) | $46.82 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.99 | 0.00% | +$307.50 (+1.47%) | $76.62 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 3/3
+
+**Notes:** Quiet half-day session (July 3, pre-Independence Day close) — equity +$93.62 to $108,416.69 (Day P&L +0.09%), a fresh phase high (+8.42%). GOOGL the sole mover on thin holiday tape, +0.42% to $359.91 and +7.00% vs entry (AI-capex + DJIA-inclusion thesis intact, Strong Buy consensus; still short of the +15% tighten trigger at $386.81). The three sector ETFs closed flat vs prior day: XLI +0.96% vs entry, XLB +1.84%, XLP +1.47% — all theses intact, all far from stops. No trades: week full at 3/3, no new positions until Monday 7/6 reset. 4 positions (≤6): GOOGL 20.6% (mild drift above the 20% cap from appreciation — no trim, not a rule breach on an existing position), XLB 19.8%, XLI 19.7%, XLP 19.6%. Deployment 79.6% — inside the 75-85% band; cash 20.4%. All four 10% trailing GTC stops confirmed active and intact (GOOGL $327.78/hwm $364.21; XLI $167.09/hwm $185.65; XLB $46.82/hwm $52.03; XLP $76.62/hwm $85.14); none lowered. Daytrade count 0; not PDT. Monday 7/6: week resets to 0/3 — hold and monitor, let GOOGL run toward the +15% tighten, scan for fresh setups.
+
+---
