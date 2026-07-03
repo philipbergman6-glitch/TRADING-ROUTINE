@@ -204,3 +204,62 @@ No strategy rule changes. Risk discipline (XOM thesis-break cut, FOMC patience) 
 ### Overall Grade: C+
 
 A step up from the prior two C- weeks: capital was finally deployed, risk rules were clean (stops on entry, no bad-R:R chases, patience through two binaries), and the book beat the S&P. But the relative win was mostly cash-drag luck in a down tape, not deployed alpha, and chronic under-deployment plus late execution persist. No strategy rule changes — the deficit is execution/deployment cadence, not rule design. The standing Jun 24 deployment flag was technically hit (0% through Wed) but corrected Thu Jun 25; keep the routine firing and close the deployment gap next week.
+
+---
+
+## Week ending 2026-07-03
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $106,039.11 (Mon Jun 29 AM = Fri Jun 26 close) |
+| Ending portfolio | $108,416.69 |
+| Week return | +$2,377.58 (+2.24%) |
+| S&P 500 week | +1.71% (7,357.49 Jun 26 → 7,483.24 Jul 2; Jul 3 holiday) |
+| Bot vs S&P | +0.53% |
+| Trades | 4 (W:0 / L:1 / open:3) |
+| Win rate | 0% (1 closed, a loss) |
+| Best trade | GOOGL +7.00% (open, carried) |
+| Worst trade | XLF -0.26% (closed) |
+| Profit factor | 0.00 (no closed winners) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| XLF | $53.97 | $53.83 | -$54.60 (-0.26%) | Jun 29 thesis-break exit — financials flipped to WORST S&P sector YTD; sector-momentum rule no longer supported it. Rotated proceeds into leaders XLI/XLB. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| GOOGL | $336.36 | $359.91 | +$1,460.10 (+7.00%) | $327.78 (10% trail GTC, hwm $364.21) |
+| XLB | $51.07 | $52.01 | +$387.15 (+1.84%) | $46.82 (10% trail GTC, hwm $52.03) |
+| XLI | $182.16 | $183.91 | +$203.00 (+0.96%) | $167.09 (10% trail GTC, hwm $185.65) |
+| XLP | $83.76 | $84.99 | +$307.50 (+1.47%) | $76.62 (10% trail GTC, hwm $85.14) |
+
+### What Worked
+- Best week of the phase: +2.24% and a fresh equity high every session (Mon→Fri), beating the S&P by +0.53% on deployed alpha — not cash-drag luck this time.
+- The chronic under-deployment gap was finally closed: 39.4% → 79.6% by Tuesday, squarely inside the 75-85% band and held there all week (first time this phase).
+- Clean sector rotation executed same-day: cut the broken XLF thesis (financials → worst YTD) for a trivial -0.26% and redeployed straight into the two leading sectors, XLI + XLB, then added defensive XLP.
+- GOOGL carried the book (+7.00% vs entry) on AI-capex + DJIA-inclusion + Berkshire stake — the anchor position ran while the new sector ETFs seasoned.
+- Every entry got a 10% trailing GTC stop on fill; all four ratcheted up through the week, none lowered. Zero rule breaches.
+
+### What Didn't Work
+- Full 3/3 weekly trades were spent by Tuesday, leaving no ammo for the rest of the week — front-loaded deployment means no flexibility if a better setup had appeared Wed-Fri.
+- New ETF entries were sluggish out of the gate (XLB/XLP both red on debut); the week's gains leaned heavily on the carried GOOGL position, not the fresh capital.
+- Concentration risk: 3 of 4 positions are broad sector ETFs (XLI/XLB/XLP) that move with the same macro tape — diversified by sector label but correlated in a risk-off shock.
+- GOOGL drifted to 20.6% of equity (above the 20% cap on appreciation) — not a breach on an existing position, but a trim candidate if it keeps running.
+
+### Key Lessons
+- Deployment discipline paid immediately: the week we finally hit 75-85% was the week we generated real relative alpha. The prior three weeks' cash drag was the actual cost, confirmed.
+- Same-day thesis-break rotation (XLF → XLI/XLB) is now muscle memory — exit fast and cheap when the sector-momentum rule flips, redeploy into leaders rather than sitting in cash.
+- Anchoring the book with one high-conviction single-name (GOOGL) alongside sector ETFs worked: the single-name provided the upside while the ETFs provided base exposure.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Jul 6 — hold the book, let GOOGL run toward the +15% tighten ($386.81), no forced trades.
+- Watch correlation: before adding a 5th position, favor a low-correlation single-name or defensive over a 4th cyclical sector ETF.
+- July catalysts: June jobs (Jul 6), CPI (Jul 14), PPI (Jul 15), FOMC (Jul 28-29). No new risk into CPI/FOMC binaries; re-engage after.
+- Manage by rules: -7% manual cut at midday, 10% trailing GTC on any new entry, never move a stop down. Trim GOOGL only if it materially exceeds the 20% cap.
+
+### Overall Grade: B+
+
+The best week of the phase and a clear inflection: capital was fully deployed inside the target band for the first time, the book beat the S&P on real deployed alpha (+0.53%), risk rules were spotless, and the one closed trade was a disciplined -0.26% thesis-break rotation. Short of an A only on portfolio construction — three correlated sector ETFs plus one carrying single-name is thin diversification, and all three weekly trades were spent by Tuesday. No strategy rule changes: the chronic deficit (under-deployment) was execution, and this week it was fixed by executing. Sustain the deployment cadence and broaden the book's diversification next.
