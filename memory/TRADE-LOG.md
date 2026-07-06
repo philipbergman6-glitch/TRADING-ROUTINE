@@ -405,3 +405,20 @@ No sharp unexplained moves (NFP day — broad tape choppy as expected); no Perpl
 No sharp unexplained moves; no Perplexity research needed. Deployed ~79.6% ($86,272.06 mkt value / $108,365.15 equity) — inside 75-85% band. Week 0/3 (reset today, pre-market Decision was HOLD — no fresh catalyst) — no new trades. No email sent (no action taken).
 
 ---
+
+### Jul 6 — EOD Snapshot (Day 49, Monday)
+**Portfolio:** $108,765.07 | **Cash:** $22,093.09 (20.3%) | **Day P&L:** +$348.38 (+0.32%) | **Phase P&L:** +$8,765.07 (+8.77%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $366.23 | +1.76% | +$1,851.94 (+8.88%) | $331.14 (10% trail GTC) |
+| XLI | 116 | $182.16 | $185.56 | +0.90% | +$394.40 (+1.87%) | $167.80 (10% trail GTC) |
+| XLB | 412 | $51.07 | $51.98 | -0.06% | +$374.79 (+1.78%) | $46.83 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.10 | -1.05% | +$85.00 (+0.41%) | $76.62 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Green start to the new week — equity +$348.38 to $108,765.07 (Day P&L +0.32%), a fresh phase high (+8.77%). GOOGL led again, +1.76% to a new closing high $366.23 and +8.88% vs entry (AI-capex + DJIA-inclusion thesis intact, Strong Buy consensus; hwm ratcheted to $367.93, stop lifted to $331.14 — still short of the +15% tighten trigger at $386.81). XLI +0.90% (+1.87% vs entry) firm; XLB -0.06% (+1.78% vs entry) and XLP -1.05% (+0.41% vs entry) drifted lower but hold green vs entry, both far from stops, theses intact. No trades: week reset to 0/3 today, pre-market Decision was HOLD (no fresh catalyst), midday scan confirmed no action. 4 positions (≤6), all at/under the 20% cap: GOOGL 20.9%, XLI 19.8%, XLB 19.7%, XLP 19.3%. Deployment 79.7% — inside the 75-85% band; cash 20.3%. All four 10% trailing GTC stops confirmed active and ratcheting (GOOGL $331.14/hwm $367.93; XLI $167.80/hwm $186.45; XLB $46.83/hwm $52.04; XLP $76.62/hwm $85.14); none lowered. Daytrade count 0; not PDT. Tomorrow: hold and monitor — let GOOGL run toward the +15% tighten, watch for stop triggers; scan for fresh setups with 3 trades available this week.
+
+---
