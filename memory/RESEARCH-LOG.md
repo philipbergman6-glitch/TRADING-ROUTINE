@@ -968,3 +968,52 @@ HOLD both — no rule triggers, no thesis breaks. Both stops correctly set and a
 - XLB: $52.01 (+1.84% vs entry) — stop $46.82/hwm $52.03.
 - XLP: $84.99 (+1.47% vs entry) — stop $76.62/hwm $85.14.
 All 4 trailing GTC stops confirmed active, unchanged since 2026-07-02. No losers, no tighten triggers, no thesis breaks — nothing to do with a closed tape. No Perplexity research needed. No email sent (no action taken). Next session: Monday 2026-07-06 (week trade count resets to 0/3).
+
+## 2026-07-06 — Pre-Market Research (Day 49, Monday — Week resets to 0/3)
+
+### Account Snapshot
+- **Equity:** $108,687.39 | **Cash:** $22,093.09 (20.3%) | **Buying power:** $330,836 (4x) | **Positions:** 4 | **Open orders:** 4 (trailing stops) | **Daytrades:** 0 (not PDT)
+- **Deployed:** ~79.7% ($86,594.30 mkt value) vs 75-85% target — **inside the band**.
+- **GOOGL:** 62 sh @ $336.36 → $361.80, **+$1,577.28 (+7.56%)**; stop $327.78 / hwm $364.21 (10% trail GTC active).
+- **XLB:** 412 sh @ $51.07 → $52.30, **+$506.63 (+2.41%)**; stop $46.82 / hwm $52.03 (10% trail GTC active).
+- **XLI:** 116 sh @ $182.16 → $184.85, **+$312.04 (+1.48%)**; stop $167.09 / hwm $185.65 (10% trail GTC active).
+- **XLP:** 250 sh @ $83.76 → $84.69, **+$232.50 (+1.11%)**; stop $76.62 / hwm $85.14 (10% trail GTC active).
+- **Position weights:** GOOGL 20.6%, XLB 19.8%, XLI 19.7%, XLP 19.5% — GOOGL fractionally over 20% on appreciation (not a new buy; OK).
+- **Week (of Mon 7/6):** trade count **0/3 — RESET**. Up to 3 new trades available; slots for 1-2 more positions (4 held, max 5-6).
+
+### Market Context
+- **Indices (premarket):** ES ~7,551-7,557 (**+0.38%**, +28.75), constructive start after Fri's holiday half-day. NDX firm (+1.17% premarket read). Q3 opening on a modest bid.
+- **VIX:** **not reported by Perplexity today**; last known ~16-17 (well below 20). Assume calm vol regime — constructive; verify live if positioning.
+- **Oil:** WTI **~$68.70** (soft, sub-$70), Brent **~$71.69**; both easing after recent gains. Weak oil **validates our zero-energy stance** despite Energy's YTD lead.
+- **Econ calendar — LIGHT DAY:** S&P final services PMI **9:45 ET (51.3 est)**, ISM services June **10:00 ET (54.5 est)**. **No CPI/PPI/FOMC/jobs today.** June jobs report ~Fri 7/10; CPI ~mid-month (7/15-16); July FOMC ~7/16-17.
+- **Fed:** Chair Warsh has signaled inflation focus; fed funds futures now price a possible **hike as soon as September** — broad headline risk, not today's event.
+- **Earnings (BMO):** **None noteworthy today.** Week's first prints: HELE Wed, PEP Thu, DAL Fri. **GOOGL Q2 earnings 7/28** (next held-name catalyst).
+
+### Sector Momentum — ROTATION INTACT (book aligned)
+- **Leaders (YTD):** Energy **+23.3%**, Materials **+17.4%** (XLB ✓), Consumer Staples **+15.6%** (XLP ✓), Industrials **+14.1%** (XLI ✓). Book tilted to sectors #2-4 — aligned with leadership.
+- **Laggards (YTD):** Comm Services **-1.2%**, Info Tech **-3.3%**, Consumer Disc **-3.8%**, Financials **-6.9%** (worst).
+- **Tech re-leadership NOT confirmed:** Broadcom (AVGO) sank **~12-14%** post-earnings — record rev but no AI-outlook raise disappointed. The AI-capex trade is wobbling again; a broad tech rotation is **not** confirmed. **Stand down** on the prior XLK/tech-add idea; GOOGL remains our sole AI-linked exposure and it's holding independent of the AVGO knock.
+
+### Held-Name News
+- **GOOGL:** Consensus **Strong Buy** (64 analysts), mean PT **~$432** (+20%). Wells Fargo trimmed target to $416 but **reaffirmed Buy/Overweight**. AI Search/Cloud thesis intact; Q2 print 7/28 the next catalyst. Position **+7.56%**, green; not near +15% tighten ($386.81). HOLD.
+- **XLI / XLB / XLP:** No adverse single-name news; all green vs entry, leading sectors, far from stops, theses intact.
+
+### Trade Ideas (week reset — up to 3 available; default HOLD without a fresh catalyst)
+1. **GOOGL** — riding AI leadership; watch for +15% tighten trigger at **$386.81**. No add (already 20.6%, at cap).
+2. **5th position slot open** — stay in leadership sectors. Cleanest fit would be a leadership-aligned name with a *specific* catalyst, but **none present on a quiet Monday** (no earnings, only PMI/ISM). Do not force a trade to fill a slot. Reassess midweek if a catalyst appears.
+3. **Avoid Energy chase** — #1 YTD but oil soft (WTI ~$68.70, sub-$70); chasing a rolling-over leader. Avoid Tech add — AVGO disappointment shows AI-capex narrative still fragile.
+
+### Risk Factors
+- **AI-capex fragility** — AVGO -12-14% on outlook; if the narrative sours further it could pressure GOOGL and rotate leadership. Watch, don't act.
+- **Sept-hike repricing** — Warsh's inflation lean + fed funds futures pricing a Sept hike = broad equity headline risk into mid-month CPI/FOMC.
+- **Holiday-week liquidity** — thin post-July-4 tape can exaggerate swings; discount intraday noise early in the week.
+- **Oil/commodity softening** — supports our zero-energy tilt but a sharp reversal (Iran headlines) would flip the inflation calculus.
+
+### Decision
+**HOLD — no orders today.** Week resets to 0/3 but there is **no fresh catalyst** to justify a new position on a quiet Monday. Patience > activity.
+- **GOOGL:** HOLD. +7.56%, not near -7% cut; no tighten (need +15% → $386.81). Strong Buy consensus, thesis intact. Stop active/correct.
+- **XLI / XLB / XLP:** HOLD. Leading sectors, all green, far from stops. No action.
+- **All 4 trailing stops confirmed active/correct**; none lowered. Deployment 79.7% — inside 75-85%; no rebalancing needed.
+- **Do not** add to capped GOOGL, buy energy, or chase the AI-capex pop after the AVGO knock. Scan midweek for a catalyst-backed 5th position aligned with leadership sectors. 3 trade slots available but unused until a setup earns it.
+
+---
