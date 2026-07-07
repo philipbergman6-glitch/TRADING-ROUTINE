@@ -1017,3 +1017,52 @@ All 4 trailing GTC stops confirmed active, unchanged since 2026-07-02. No losers
 - **Do not** add to capped GOOGL, buy energy, or chase the AI-capex pop after the AVGO knock. Scan midweek for a catalyst-backed 5th position aligned with leadership sectors. 3 trade slots available but unused until a setup earns it.
 
 ---
+
+## 2026-07-07 — Pre-Market Research (Day 50, Tuesday — Week 0/3)
+
+### Account Snapshot
+- **Equity:** $109,088.89 | **Cash:** $22,093.09 (20.3%) | **Buying power:** $331,960.60 (4x) | **Positions:** 4 | **Open orders:** 4 (trailing stops) | **Daytrades:** 0 (not PDT)
+- **Deployed:** ~79.7% ($86,995.80 mkt value) vs 75-85% target — **inside the band**.
+- **GOOGL:** 62 sh @ $336.36 → $367.80, **+$1,949.28 (+9.35%)**; stop $331.14 / hwm $367.93 (10% trail GTC active).
+- **XLI:** 116 sh @ $182.16 → $185.75, **+$416.44 (+1.97%)**; stop $167.80 / hwm $186.45 (10% trail GTC active).
+- **XLB:** 412 sh @ $51.07 → $52.10, **+$424.23 (+2.02%)**; stop $46.83 / hwm $52.04 (10% trail GTC active).
+- **XLP:** 250 sh @ $83.76 → $84.72, **+$240.00 (+1.15%)**; stop $76.62 / hwm $85.14 (10% trail GTC active).
+- **Position weights:** GOOGL 20.9%, XLI 19.8%, XLB 19.7%, XLP 19.4% — GOOGL fractionally over 20% on appreciation (not a new buy; OK).
+- **Week (of Mon 7/6):** trade count **0/3**. Up to 3 new trades available; slots for 1-2 more positions (4 held, max 5-6).
+
+### Market Context
+- **Indices (premarket):** ES ~7,580 (**-0.15%**), NQ **-0.62%** (29,757), YM +0.08% — modest pullback after Mon's chip-led pop; Dow near record. Digesting Mon's AI-semi rally.
+- **VIX:** **~15.9** (open 16.4, close 15.87 area) — calm vol regime, well below 20. Constructive.
+- **Oil:** WTI **~$69.16** (sub-$70, +0.9%), Brent **~$72-73**; still soft on rising inventories + softer demand + US-Iran MOU. Weak oil **validates our zero-energy stance** despite Energy's YTD lead.
+- **Econ calendar — LIGHT:** US trade balance (May) ~8:30 ET; misc (MBA, consumer inflation expectations). **No CPI/PPI/FOMC/jobs today.** CPI **7/14**, PPI **7/15**, FOMC decision **7/29** (per BLS/Fed — note: later than the strategy's earlier ~7/16 estimate). June jobs already printed soft (+57k, unemp 4.2%).
+- **Fed:** New Chair Warsh hawkish/inflation-focused, no forward guidance; fed funds futures still price a possible **Sept hike**. Broad headline risk, not today's event.
+- **Earnings (BMO):** **None noteworthy today** (HELE nominal $0.01 est). PEP Thu, DAL Fri. **GOOGL Q2 earnings 7/28** (next held-name catalyst).
+
+### Sector Momentum — ROTATION INTACT (book aligned)
+- **Leaders (YTD):** Energy **+23.3%**, Materials **+17.4%** (XLB ✓), Consumer Staples **+15.6%** (XLP ✓), Industrials **+14.1%** (XLI ✓). Book tilted to sectors #2-4 — aligned with leadership.
+- **Laggards (YTD):** Comm Services **-1.2%**, Info Tech **-3.3%**, Consumer Disc **-3.8%**, Financials **-6.9%** (worst).
+- **AI/chip trade revived Monday:** SOX **~+5%**, AMD +106% YTD (Goldman raised PT to $640/Buy), Tesla +6.7%. But this is a *laggard-sector* (Tech -3.3% YTD) bounce off oversold AI-semis, and Morgan Stanley's Wilson warns stocks "struggle at new highs as investors rotate out of the momentum trade." **Do not chase overextended AI semis** — conflicts with leadership discipline. GOOGL remains our sole AI-linked exposure, holding on its own thesis.
+
+### Held-Name News
+- **GOOGL:** Consensus **Strong Buy**; mean PT **~$399-446** (+8-28% upside), high $515. AI Search/Cloud thesis intact; 2026 CapEx guided to $180B (AI-demand signal); Cloud backlog >$460B. Minor June overhang: two senior Gemini researchers departed (to OpenAI/Anthropic) — narrative, not fundamental. Q2 print **7/28** next catalyst. Position **+9.35%**, green; not near +15% tighten ($386.81). HOLD.
+- **XLI / XLB / XLP:** No adverse single-name news; all green vs entry, leading sectors, far from stops, theses intact.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh catalyst)
+1. **GOOGL** — riding AI leadership; watch for +15% tighten trigger at **$386.81** (now $367.80, ~5% away). No add (already 20.9%, at cap).
+2. **5th position slot open** — stay in leadership sectors (Materials/Staples/Industrials). Cleanest fit = a leadership-aligned name with a *specific* catalyst, but **none present today** (no earnings, light data). Do not force a trade to fill a slot.
+3. **Avoid:** Energy chase (#1 YTD but oil soft/rolling over); AI-semi chase (overextended laggard-sector pop, Wilson rotation warning). Neither fits our discipline.
+
+### Risk Factors
+- **Momentum-rotation risk** — Wilson (MS) flags stocks struggling at highs as money rotates out of momentum; watch for leadership shifting under our sector tilt.
+- **Sept-hike repricing** — Warsh's inflation lean + no forward guidance = broad equity headline risk into 7/14 CPI / 7/29 FOMC.
+- **AI-narrative whipsaw** — semis ripped Mon after selling off Fri; two-way volatility in AI could spill to GOOGL (our only AI name), though it's trading independently.
+- **Oil reversal** — soft oil supports our zero-energy tilt; a sharp Iran-headline reversal would flip the inflation calculus.
+
+### Decision
+**HOLD — no orders today.** Week 0/3 but **no fresh catalyst** to justify a new position on a light-data Tuesday. Patience > activity.
+- **GOOGL:** HOLD. +9.35%, not near -7% cut; no tighten (need +15% → $386.81, ~5% away). Strong Buy, thesis intact. Stop active/correct.
+- **XLI / XLB / XLP:** HOLD. Leading sectors, all green, far from stops. No action.
+- **All 4 trailing stops confirmed active/correct**; none lowered. Deployment 79.7% — inside 75-85%; no rebalancing needed.
+- **Do not** add to capped GOOGL, buy energy, or chase the AI-semi pop. Scan midweek for a catalyst-backed 5th position aligned with leadership sectors. 3 trade slots available but unused until a setup earns it.
+
+---
