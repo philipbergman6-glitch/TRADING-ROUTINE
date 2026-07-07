@@ -432,3 +432,20 @@ No sharp unexplained moves; no Perplexity research needed. Deployed ~79.6% ($86,
 No sharp unexplained moves; no Perplexity research needed. Deployed ~79.62% ($86,333.66 mkt value / $108,426.75 equity) — inside 75-85% band. Week 0/3. No email sent (no action taken).
 
 ---
+
+### Jul 7 — EOD Snapshot (Day 50, Tuesday)
+**Portfolio:** $108,409.91 | **Cash:** $22,093.09 (20.4%) | **Day P&L:** -$355.16 (-0.33%) | **Phase P&L:** +$8,409.91 (+8.41%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $366.51 | +0.01% | +$1,869.30 (+8.96%) | $335.835 (10% trail GTC) |
+| XLI | 116 | $182.16 | $182.38 | -1.71% | +$25.52 (+0.12%) | $167.8005 (10% trail GTC) |
+| XLB | 412 | $51.07 | $51.51 | -0.90% | +$181.15 (+0.86%) | $46.908 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.86 | +0.90% | +$275.00 (+1.31%) | $77.3622 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Modest red day on a rotation tape — equity -$355.16 to $108,409.91 (Day P&L -0.33%), backing off Monday's phase high but still +8.41% for the phase. The AI-semi/profit-taking rotation flagged in pre-market (MS Wilson) hit the cyclicals: XLI -1.71% (now +0.12% vs entry) and XLB -0.90% (+0.86% vs entry) gave back gains; XLP +0.90% (+1.31% vs entry) caught the defensive bid and led; GOOGL flat (+0.01% day) but held its ground at $366.51, +8.96% vs entry (AI-capex + DJIA thesis intact, Strong Buy consensus; still short of the +15% tighten trigger at $386.81, hwm $373.15). All theses intact; no position near its stop. No trades: week 0/3, pre-market Decision was HOLD, midday scan confirmed no action. 4 positions (≤6): GOOGL 21.0% (mild drift above 20% cap from appreciation — no trim, not a breach on an existing position), XLB 19.6%, XLI 19.5%, XLP 19.6%. Deployment 79.6% — inside the 75-85% band; cash 20.4%. All four 10% trailing GTC stops confirmed active and ratcheting (GOOGL $335.835/hwm $373.15; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12; XLP $77.3622/hwm $85.958); none lowered. Daytrade count 0; not PDT. Tomorrow (Wed): hold and monitor — let GOOGL run toward the +15% tighten, watch cyclicals for follow-through on the rotation; scan for fresh setups with 3 trades available this week.
+
+---
