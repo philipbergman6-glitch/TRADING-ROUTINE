@@ -449,3 +449,20 @@ No sharp unexplained moves; no Perplexity research needed. Deployed ~79.62% ($86
 **Notes:** Modest red day on a rotation tape — equity -$355.16 to $108,409.91 (Day P&L -0.33%), backing off Monday's phase high but still +8.41% for the phase. The AI-semi/profit-taking rotation flagged in pre-market (MS Wilson) hit the cyclicals: XLI -1.71% (now +0.12% vs entry) and XLB -0.90% (+0.86% vs entry) gave back gains; XLP +0.90% (+1.31% vs entry) caught the defensive bid and led; GOOGL flat (+0.01% day) but held its ground at $366.51, +8.96% vs entry (AI-capex + DJIA thesis intact, Strong Buy consensus; still short of the +15% tighten trigger at $386.81, hwm $373.15). All theses intact; no position near its stop. No trades: week 0/3, pre-market Decision was HOLD, midday scan confirmed no action. 4 positions (≤6): GOOGL 21.0% (mild drift above 20% cap from appreciation — no trim, not a breach on an existing position), XLB 19.6%, XLI 19.5%, XLP 19.6%. Deployment 79.6% — inside the 75-85% band; cash 20.4%. All four 10% trailing GTC stops confirmed active and ratcheting (GOOGL $335.835/hwm $373.15; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12; XLP $77.3622/hwm $85.958); none lowered. Daytrade count 0; not PDT. Tomorrow (Wed): hold and monitor — let GOOGL run toward the +15% tighten, watch cyclicals for follow-through on the rotation; scan for fresh setups with 3 trades available this week.
 
 ---
+
+### Jul 8 — EOD Snapshot (Day 51, Wednesday)
+**Portfolio:** $107,249.33 | **Cash:** $22,093.09 (20.6%) | **Day P&L:** -$1,160.58 (-1.07%) | **Phase P&L:** +$7,249.33 (+7.25%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $361.50 | -1.51% | +$1,558.68 (+7.47%) | $335.835 (10% trail GTC) |
+| XLI | 116 | $182.16 | $180.57 | -0.99% | -$184.44 (-0.87%) | $167.8005 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.26 | -2.43% | -$333.85 (-1.59%) | $46.908 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.36 | -0.59% | +$150.00 (+0.72%) | $77.3622 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Broad red day — equity -$1,160.58 to $107,249.33 (Day P&L -1.07%), the phase's largest single-day drawdown this week but still +7.25% for the phase. Every position closed lower: the cyclical/rotation pressure flagged since Monday deepened, with XLB -2.43% the worst (now -1.59% vs entry, first close below cost basis) and XLI -0.99% (-0.87% vs entry, also slipped red vs entry) as materials/industrials led the selloff; GOOGL -1.51% to $361.50 gave back ground but holds +7.47% vs entry (AI-capex + DJIA thesis intact, Strong Buy consensus; well short of the +15% tighten trigger at $386.81, hwm $373.15); XLP -0.59% (+0.72% vs entry) held up best on the defensive bid. All theses intact; no position remotely near its stop (nearest is GOOGL ~7% above its $335.835 stop). No trades: week 0/3, pre-market Decision was HOLD, midday scan confirmed no action. 4 positions (≤6): GOOGL 20.9%, XLP 19.7%, XLI 19.5%, XLB 19.3% — all at/under the 20% cap. Deployment 79.4% ($85,156.24 mkt value / $107,249.33 equity) — inside the 75-85% band; cash 20.6%. All four 10% trailing GTC stops confirmed active and intact (GOOGL $335.835/hwm $373.15; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12; XLP $77.3622/hwm $85.958); none lowered. Daytrade count 0; not PDT. Tomorrow (Thu): hold and monitor — watch cyclicals (XLI/XLB) for a rotation bounce vs further slippage toward the -7% cut, let GOOGL run toward the +15% tighten; 3 trades still available this week if a fresh leader sets up.
+
+---
