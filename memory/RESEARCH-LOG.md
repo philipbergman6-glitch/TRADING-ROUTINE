@@ -1066,3 +1066,52 @@ All 4 trailing GTC stops confirmed active, unchanged since 2026-07-02. No losers
 - **Do not** add to capped GOOGL, buy energy, or chase the AI-semi pop. Scan midweek for a catalyst-backed 5th position aligned with leadership sectors. 3 trade slots available but unused until a setup earns it.
 
 ---
+
+## 2026-07-08 — Pre-Market Research (Day 51, Wednesday — Week 0/3)
+
+### Account Snapshot
+- **Equity:** $107,886.08 | **Cash:** $22,093.09 (20.5%) | **Buying power:** $328,592.72 (4x) | **Positions:** 4 | **Open orders:** 4 (trailing stops) | **Daytrades:** 0 (not PDT)
+- **Deployed:** ~79.5% ($85,792.99 mkt value) vs 75-85% target — **inside the band**.
+- **GOOGL:** 62 sh @ $336.36 → $361.79, **+$1,576.66 (+7.56%)**; stop $335.835 / hwm $373.15 (10% trail GTC active).
+- **XLB:** 412 sh @ $51.07 → $51.11, **+$16.35 (+0.08%)**; stop $46.908 / hwm $52.12 (10% trail GTC active).
+- **XLI:** 116 sh @ $182.16 → $180.23, **-$224.45 (-1.06%)**; stop $167.8005 / hwm $186.445 (10% trail GTC active).
+- **XLP:** 250 sh @ $83.76 → $85.59, **+$458.58 (+2.19%)**; stop $77.3622 / hwm $85.958 (10% trail GTC active).
+- **Position weights:** GOOGL 20.8%, XLP 19.8%, XLB 19.5%, XLI 19.4% — all at/under 20% cap.
+- **Week (of Mon 7/6):** trade count **0/3**. Up to 3 new trades available; slots for 1-2 more positions (4 held, max 5-6).
+
+### Market Context
+- **Indices (premarket):** ES ~7,540 (**-0.15%**), roughly flat; Dow near record 52,900 (set 7/6). Bifurcated tape — broad market (S&P equal-weight, Russell 2000) bullish while **Nasdaq breaking below its 50-day SMA** on AI-semi weakness. Digesting the momentum-trade rotation.
+- **VIX:** **~16.5** (prev close 15.57, range 15.5-16.6) — calm vol regime, below 20. Constructive.
+- **Oil:** WTI **~$72.25** (up sharply from **$68.78 on 7/3** — now back above $70), Brent ~$75-80 (inferred). **Catalyst: US launched strikes on Iran + canceled its license to sell Iranian oil**, spiking crude. This is a war-premium reversal, not clean demand momentum — cuts both ways (mean-reverts on de-escalation). Re-energizes Energy's #1 YTD lead but risky to chase.
+- **Econ calendar — LIGHT:** Wholesale inventories (May) 10:00 ET, Consumer Credit 3:00 ET, EIA crude inventories. **FOMC minutes this week.** No CPI/PPI/FOMC/jobs today. CPI **7/14**, PPI **7/15**, FOMC decision **7/29**.
+- **Macro:** Weak June jobs (**+57k** vs 117k consensus) has cooled July-hike odds; Fed seen holding. Broad market broadening outside the AI theme.
+- **Earnings (BMO):** **None noteworthy today.** AMC today: AZZ, LEVI, PSMT. **PEP Thu 7/9, DAL Fri 7/10.** **GOOGL Q2 earnings 7/28** (next held-name catalyst).
+
+### Sector Momentum — ROTATION INTACT (book aligned)
+- **Leaders (YTD):** Energy **+23.3%**, Materials **+17.4%** (XLB ✓), Consumer Staples **+15.6%** (XLP ✓), Industrials **+14.1%** (XLI ✓). Book tilted to sectors #2-4 — aligned with leadership.
+- **Laggards (YTD):** Info Tech **-3.3%**, Consumer Disc **-3.8%**, Financials **-6.9%** (worst).
+- **AI-semi weakness:** MU/AMD/INTC down ~5% recently; Nasdaq under its 50-day. Confirms the momentum-trade rotation. GOOGL holding independently of the semi knock — our sole AI-linked name, thesis on its own footing.
+
+### Held-Name News
+- **GOOGL:** Consensus **Strong Buy** (64 analysts) / Moderate Buy (blended); mean PT **~$413-432** (+13-18%), high $515. Wells Fargo reaffirmed Buy, PT $416 (7/2). AI Search/Cloud thesis intact; Q2 print **7/28** next catalyst. Position **+7.56%**, green; not near +15% tighten ($386.81). HOLD.
+- **XLI / XLB / XLP:** No adverse single-name news; leading sectors, near/above entry, far from stops, theses intact. XLI fractionally red vs entry (-1.06%) on the cyclical give-back but well clear of its -7% stop.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh catalyst)
+1. **GOOGL** — riding AI leadership independent of semi weakness; watch +15% tighten trigger at **$386.81** (now $361.79, ~7% away). No add (already 20.8%, at cap).
+2. **XLE / Energy (5th slot) — WATCH, do not chase.** Energy is #1 YTD and Iran strikes gave a fresh upside catalyst (WTI $68→$72). Entry: XLE on a *pullback/consolidation*, not into a war-premium spike. Catalyst-driven geopolitical pops mean-revert on de-escalation — no clean momentum entry today. Reassess if oil holds >$72 and consolidates.
+3. **Avoid:** chasing the Iran oil spike (mean-reversion risk); AI-semi dip-buy (Nasdaq under 50-day, rotation intact); Financials (-6.9%, worst). Do not force a trade to fill the 5th slot.
+
+### Risk Factors
+- **Iran geopolitical escalation** — US strikes + oil-license cancellation spiking crude; a widening conflict or, conversely, a fast de-escalation would whipsaw oil and the inflation calculus. Two-way risk.
+- **AI-narrative whipsaw** — semis under pressure, Nasdaq below 50-day; could spill to GOOGL (our only AI name) though it's trading independently.
+- **Sept-hike repricing / FOMC minutes** — minutes this week + hawkish Warsh lean = broad headline risk into 7/14 CPI / 7/29 FOMC. (Weak jobs has cooled near-term hike odds.)
+- **Oil-driven inflation re-acceleration** — a sustained crude spike above $75 would flip the disinflation narrative and pressure the Fed dovish pivot.
+
+### Decision
+**HOLD — no orders today.** Week 0/3 but **no clean catalyst** to justify a new position; the only fresh catalyst (Iran oil spike) is a war-premium pop to avoid chasing. Patience > activity.
+- **GOOGL:** HOLD. +7.56%, not near -7% cut; no tighten (need +15% → $386.81, ~7% away). Strong Buy, thesis intact. Stop active/correct.
+- **XLI / XLB / XLP:** HOLD. Leading sectors, far from stops, theses intact. No action.
+- **All 4 trailing stops confirmed active/correct**; none lowered. Deployment 79.5% — inside 75-85%; no rebalancing needed.
+- **Do not** add to capped GOOGL, chase the Iran oil spike, or dip-buy AI semis. Watch XLE for a clean consolidation entry if oil holds >$72; 3 trade slots available but unused until a setup earns it.
+
+---
