@@ -1115,3 +1115,13 @@ All 4 trailing GTC stops confirmed active, unchanged since 2026-07-02. No losers
 - **Do not** add to capped GOOGL, chase the Iran oil spike, or dip-buy AI semis. Watch XLE for a clean consolidation entry if oil holds >$72; 3 trade slots available but unused until a setup earns it.
 
 ---
+
+### Jul 8 — Midday Scan
+**No action.** All 4 positions above -7% cut threshold; no position at +15%/+20% tighten triggers.
+- GOOGL: $360.93 (+7.31% vs entry) — stop $335.835/hwm $373.15. Thesis intact (AI-capex/DJIA, Strong Buy consensus); intraday dip (-1.66%) tracks broader AI-semi/Nasdaq weakness flagged in pre-market research, not a thesis break. Not near +15% tighten ($386.81).
+- XLB: $50.30 (-1.51% vs entry) — stop $46.908/hwm $52.12. Materials thesis intact; intraday dip (-2.35%) largest of the four but consistent with today's broad cyclical give-back (Iran oil-spike/rotation backdrop from pre-market research), not an unexplained move — far from -7% stop.
+- XLI: $180.24 (-1.05% vs entry) — stop $167.8005/hwm $186.445. Industrials thesis intact; intraday dip (-1.17%) same rotation pattern, far from stop.
+- XLP: $84.805 (+1.25% vs entry) — stop $77.3622/hwm $85.958. CS thesis intact; roughly flat (-0.07% intraday), defensive as expected.
+No sharp unexplained moves; no Perplexity research needed. No email sent (no action taken).
+
+---
