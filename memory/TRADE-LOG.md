@@ -530,3 +530,18 @@ No sharp unexplained moves; no Perplexity research needed. Week 0/3. No email se
 No sharp unexplained moves; no Perplexity research needed. Deployed ~79.36% ($84,956.83 mkt value / $107,049.92 equity) — inside 75-85% band. Week 0/3. No email sent (no action taken).
 
 ---
+
+### Jul 13 — EOD Snapshot (Day 54, Monday)
+**Portfolio:** $106,859.33 | **Cash:** $22,093.09 (20.7%) | **Day P&L:** -$503.10 (-0.47%) | **Phase P&L:** +$6,859.33 (+6.86%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $352.42 | -1.33% | +$995.72 (+4.78%) | $335.835 (10% trail GTC) |
+| XLI | 116 | $182.16 | $180.37 | -0.85% | -$207.64 (-0.98%) | $167.8005 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.58 | -0.61% | -$202.01 (-0.96%) | $46.908 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.59 | +0.56% | +$207.50 (+0.99%) | $77.3622 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Modest red day to open the week — equity -$503.10 to $106,859.33 (Day P&L -0.47%), trimming the phase to +6.86%. Risk-off tape (Iran-headline overhang flagged pre-market) pressured mega-cap and cyclicals while defensives held: GOOGL -1.33% to $352.42 was the biggest drag but still +4.78% vs entry (AI-capex/Cloud thesis intact, Strong Buy consensus, Q2 print ~7/28; well short of the +15% tighten at $386.81, hwm $373.15); XLI -0.85% (-0.98% vs entry) and XLB -0.61% (-0.96% vs entry) softened with the cyclical fade, though the Iran oil bid remains a tailwind for XLB's hard-asset tilt; XLP +0.56% to $84.59 was the lone gainer on the defensive rotation (+0.99% vs entry, best-positioned). All theses intact; no position near its stop (nearest GOOGL ~4.7% above its $335.835 stop). No trades: week 0/3, pre-market Decision was HOLD, midday scan confirmed no action. 4 positions (≤6): GOOGL 20.5%, XLP 19.8%, XLI 19.6%, XLB 19.5% — GOOGL nudged marginally over the 20% cap on appreciation only (no add), rest under. Deployment 79.3% ($84,766.24 mkt value / $106,859.33 equity) — inside the 75-85% band; cash 20.7%. All four 10% trailing GTC stops confirmed active and intact (GOOGL $335.835/hwm $373.15; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12; XLP $77.3622/hwm $85.958); none lowered. Daytrade count 0; not PDT. Tomorrow (Tue): hold and monitor — watch for Iran-headline follow-through, let GOOGL run toward the +15% tighten, watch cyclicals (XLI/XLB) for a rotation bounce vs the defensive bid; 3 trades available this week for a fresh leader.
