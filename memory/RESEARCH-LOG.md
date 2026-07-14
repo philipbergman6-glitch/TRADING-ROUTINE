@@ -1329,3 +1329,13 @@ No sharp unexplained moves; no Perplexity research needed. No email sent (no act
 - **Do not** add into CPI, add to capped GOOGL, chase fading oil, or gamble bank earnings. Reassess post-CPI at midday.
 
 ---
+
+### Jul 14 — Midday Scan
+**No action.** All 4 positions above -7% cut threshold; no position at +15%/+20% tighten triggers.
+- GOOGL: $356.91 (+6.11% vs entry) — stop $335.835/hwm $373.15. Thesis intact (AI-capex/Cloud, Strong Buy consensus, Q2 print ~7/22-23); intraday gain (+1.25%) post-CPI, tape relief. Not near +15% tighten ($386.81).
+- XLB: $50.625 (-0.87% vs entry) — stop $46.908/hwm $52.12. Materials thesis intact; flat intraday (+0.09%), far from stop.
+- XLI: $180.02 (-1.18% vs entry) — stop $167.8005/hwm $186.445. Industrials thesis intact; minor intraday dip (-0.19%), far from stop.
+- XLP: $83.535 (-0.27% vs entry) — stop $77.3622/hwm $85.958. CS thesis intact; intraday dip (-1.25%) as defensive bid fades post-CPI, far from stop.
+No sharp unexplained moves; no Perplexity research needed. Week 0/3. No email sent (no action taken).
+
+---
