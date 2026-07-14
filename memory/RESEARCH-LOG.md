@@ -1278,3 +1278,54 @@ No sharp unexplained moves; no Perplexity research needed. No email sent (no act
 - **Do not** add to capped GOOGL, chase the Iran oil gap, or dip-buy AI semis. Watch XLE for a clean consolidation if crude holds; 3 slots available but unused until a setup earns it.
 
 ---
+
+## 2026-07-14 — Pre-market Research (Day 55, Tuesday — CPI DAY)
+
+### Account
+- Equity: $106,690.93 | Cash: $22,093.09 (20.7%) | Buying power: $325,246.31
+- Daytrade count: 0 (not PDT)
+- Deployed: $84,597.84 (**79.3%** — inside 75-85% band)
+
+### Positions
+- **GOOGL:** 62 sh @ $336.36 → $350.91, **+$902.10 (+4.33%)**; stop $335.835 / hwm $373.15 (10% trail GTC active).
+- **XLP:** 250 sh @ $83.76 → $84.45, **+$172.50 (+0.82%)**; stop $77.3622 / hwm $85.958 (10% trail GTC active).
+- **XLI:** 116 sh @ $182.16 → $180.37, **-$207.64 (-0.98%)**; stop $167.8005 / hwm $186.445 (10% trail GTC active).
+- **XLB:** 412 sh @ $51.07 → $50.50, **-$234.97 (-1.12%)**; stop $46.908 / hwm $52.12 (10% trail GTC active).
+- **Position weights:** GOOGL 20.4%, XLP 19.8%, XLI 19.6%, XLB 19.5% — all at/under 20% cap.
+- **Week (of Mon 7/13):** trade count **0/3**. Up to 3 new trades available; 1-2 open slots (4 held, max 5-6).
+
+### Market Context
+- **Indices (premarket):** ES ~7,577 (**-0.57%**). **Risk-off into CPI** — futures red for a second session as the market de-risks ahead of the 8:30 ET print.
+- **VIX:** **~16.9** (+12% premarket) — still below 20 but jumping on CPI-day nerves.
+- **Oil — REVERSED LOWER:** WTI **~$69-74**, Brent **~$72** (both **-1 to -1.5%**). Iran headline **de-escalated again** over the last 24h — the two-way whipsaw flagged all week swung back down, unwinding Monday's escalation spike. Mild headwind to XLB's hard-asset tilt / energy-chase thesis; removes the reason to chase XLE.
+- **Econ calendar — CPI TODAY 8:30 ET (THE event):** June CPI — consensus headline **~3.9% YoY** (down from May's 4.2%), core **~2.9% YoY** / **+0.3% m/m**; Cleveland Fed nowcast ~3.9%. Last major inflation read before **7/28-29 FOMC**. **PPI 7/15 (Wed)**, **Retail Sales 7/16 (Thu)**. **Warsh testimony today = wildcard** (new Fed Chair's first congressional appearance).
+- **Earnings:** **Big banks today BMO** — JPM, GS, C, BAC, WFC (Financials worst sector YTD ~-6.9%; not held, watch only). **GOOGL Q2 now ~7/22-23** (moved up from ~7/28) — next held-name catalyst, ~1 week out.
+
+### Sector Momentum — ROTATION INTACT (book aligned)
+- **Leaders (YTD):** Energy **+20-33%** (#1), Materials **~+11-18%** (XLB ✓), Industrials **~+14-30%** (XLI ✓), Consumer Staples **~+11-16%** (XLP ✓). Book tilted to the leadership cohort.
+- **Laggards (YTD):** Financials **~-6.9%** (worst — bank earnings today), Consumer Disc, Info Tech (mixed/negative mid-year).
+- Oil pullback slightly softens the hard-asset bid but leadership structure unchanged; book stays aligned. GOOGL trades on its own AI thesis.
+
+### Held-Name News
+- **GOOGL:** Consensus **Strong Buy**; mean PT **~$432** (+~23% from $351); fresh targets KeyBanc $445, Arete $450, GS $440, Wells Fargo $416. Q2 EPS est ~$2.14 (+13% YoY), search rev +17%, total Google rev +32%. **Q2 print ~7/22-23** next catalyst. Position **+4.33%**, green; not near +15% tighten ($386.81, ~10% away). Minor overhangs (EU antitrust, $180B CapEx) already digested. HOLD.
+- **XLI / XLB / XLP:** No adverse single-name news; leading sectors, near/around entry, far from stops, theses intact.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh clean setup)
+1. **GOOGL** — riding AI leadership; watch +15% tighten at **$386.81** (now $350.91, ~10% away). No add (already 20.4%, at cap). Q2 ~7/22-23.
+2. **XLE / Energy (5th slot) — STAND DOWN.** Oil reversed lower on Iran de-escalation — the chase thesis is off; no clean base and now a fading catalyst. Revisit only if crude stabilizes and XLE consolidates.
+3. **Avoid:** adding risk into the CPI print; chasing oil (now fading); Financials/bank-earnings gamble (-6.9%, worst); AI-semi dip-buy.
+
+### Risk Factors
+- **CPI 8:30 ET** — the day's whole tape. A hot core (>+0.3% m/m) + Warsh hawkishness could reprice hike odds and pressure equities; a soft print does the reverse. Asymmetric setup — one disappointment (CPI, banks, or Warsh) can sink it; upside needs all three to cooperate.
+- **Iran two-way whipsaw** — de-escalating now; any re-escalation headline re-spikes oil (mirror of Monday). Highest-conviction two-way risk.
+- **Bank earnings today** — Financials worst sector; a weak read adds tape pressure (not held).
+- **GOOGL** near peak valuation into its ~7/22-23 Q2 print; our only AI name.
+
+### Decision
+**HOLD — no orders today.** CPI day: sit tight, do not add risk into the 8:30 print. Week 0/3 but **no clean fresh setup**; the energy-chase idea is off now that oil has reversed lower. Patience > activity.
+- **GOOGL:** HOLD. +4.33%, not near -7% cut; no tighten (need +15% → $386.81, ~10% away). Strong Buy, thesis intact, Q2 ~7/22-23. Stop active/correct.
+- **XLI / XLB / XLP:** HOLD. Leading sectors, far from stops, theses intact. Oil pullback a mild headwind to XLB but structure intact. No action.
+- **All 4 trailing stops confirmed active/correct**; none lowered. Deployment 79.3% — inside 75-85%; no rebalancing needed.
+- **Do not** add into CPI, add to capped GOOGL, chase fading oil, or gamble bank earnings. Reassess post-CPI at midday.
+
+---
