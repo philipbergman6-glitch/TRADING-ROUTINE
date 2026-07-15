@@ -1339,3 +1339,56 @@ No sharp unexplained moves; no Perplexity research needed. No email sent (no act
 No sharp unexplained moves; no Perplexity research needed. Week 0/3. No email sent (no action taken).
 
 ---
+
+## 2026-07-15 — Pre-market Research
+
+### Account
+- Equity: $107,027.27
+- Cash: $22,093.09 (20.6%)
+- Buying power: $326,188.07
+- Daytrade count: 0 (not PDT)
+- Deployed: $84,934.18 (79.4% — inside 75-85% band)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop |
+|--------|--------|-----------|---------|----------|-----|------|
+| GOOGL | 62 | $336.36 | $357.64 | +$1,319 (+6.33%) | 20.7% | $335.835 (10% trail GTC, hwm $373.15) |
+| XLI | 116 | $182.16 | $181.44 | -$84 (-0.40%) | 19.7% | $167.8005 (10% trail GTC, hwm $186.445) |
+| XLB | 412 | $51.07 | $50.64 | -$177 (-0.84%) | 19.5% | $46.908 (10% trail GTC, hwm $52.12) |
+| XLP | 250 | $83.76 | $83.40 | -$90 (-0.43%) | 19.5% | $77.3622 (10% trail GTC, hwm $85.958) |
+
+All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to stop: GOOGL ~6.5% above.
+
+### Market Context
+- **Oil REBOUNDING on Iran re-escalation:** WTI **$80.57** (+1.55%), Brent **$86.30** (+1.86%). Trump moving to impose Strait of Hormuz shipping fees + reinstate Iranian-port blockade; tanker attacks continuing. Reverses last week's de-escalation pullback — **tailwind for XLB** hard-asset tilt, two-way whipsaw risk.
+- **Indices:** S&P 500 futures ~flat (-0.06%, ~7,559). VIX **16.43** (-4.2%, low/calm).
+- **Today's releases:** **June PPI** + **Fed Chair Warsh testimony to Congress** — the day's tape. Follows Tuesday's soft June CPI (risk-on relief). Warsh hawkishness (year-end hike odds live) is the swing factor.
+- **Earnings (none held):** BMO — JNJ, ASML, BLK, MS, ELV, PNC, BK, KMI. Netflix AMC. Movers: Pinterest +17% (Elliott 9% stake), Citi +11% rev.
+
+### Sector Momentum — ROTATION INTACT (book aligned)
+- **Leaders (YTD):** Energy **+23.3%** (#1), Materials **+17.4%** (XLB ✓), Consumer Staples **+15.6%** (XLP ✓), Industrials **+14.1%** (XLI ✓). Book fully tilted to the leadership cohort.
+- **Laggards (YTD):** Financials **-6.9%** (worst), Consumer Disc **-3.8%**, Info Tech **-3.3%** (valuations stretched, -9% past two weeks). GOOGL trades on its own AI thesis, not the Tech tape.
+- Oil rebound firms the hard-asset bid; leadership structure unchanged. Book stays aligned.
+
+### Held-Name News
+- **GOOGL:** Q2 print **CONFIRMED Wed 7/22 AMC** (7 days out) — next held-name catalyst. Consensus **Strong Buy**; mean PT **~$433.59** (+~21% from $357), high $515. Q2 rev est ~$116.8B (+21% YoY). Position **+6.33%**, green; not near +15% tighten ($386.81, ~8% away). HOLD.
+- **XLI / XLB / XLP:** No adverse single-name news; leading sectors, near/around entry, far from stops, theses intact. Iran oil bid a tailwind for XLB.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh clean setup)
+1. **GOOGL** — riding AI leadership into 7/22 print; watch +15% tighten at **$386.81** (now $357.64, ~8% away). No add (already 20.7%, at cap).
+2. **XLE / Energy (5th slot) — WATCH, not yet.** Energy is #1 YTD and oil re-spiked on Iran, but this is a headline-driven chase with no clean base. Enter only on a crude-stabilized XLE consolidation, not a geopolitical spike. Entry idea: XLE breakout above consolidation w/ 10% trail; target 2:1 R:R.
+3. **Avoid:** adding risk into the PPI/Warsh print; chasing the oil spike; Financials/bank-earnings gamble (-6.9%, worst); AI-semi dip-buy (Tech stretched).
+
+### Risk Factors
+- **PPI + Warsh testimony** — the day's swing. Hot PPI and/or hawkish Warsh (year-end hike odds live) could unwind Tuesday's CPI relief; benign reads extend it.
+- **Iran two-way whipsaw** — re-escalating now (Hormuz fees/blockade); any de-escalation headline re-drops oil (mirror of last week). Highest-conviction two-way risk.
+- **GOOGL** into its 7/22 Q2 print — our only AI name near peak valuation; event risk builds over the next week.
+
+### Decision
+**HOLD — no orders today.** PPI/Warsh day: sit tight, do not add risk into the print. Week 0/3 but **no clean fresh setup** — the energy idea is a headline chase without a base. Patience > activity.
+- **GOOGL:** HOLD. +6.33%, not near -7% cut; no tighten (need +15% → $386.81, ~8% away). Strong Buy, thesis intact, Q2 7/22. Stop active/correct.
+- **XLI / XLB / XLP:** HOLD. Leading sectors, far from stops, theses intact. Oil rebound a tailwind for XLB. No action.
+- **All 4 trailing stops confirmed active/correct**; none lowered. Deployment 79.4% — inside 75-85%; no rebalancing needed.
+- **Do not** add into PPI/Warsh, add to capped GOOGL, chase the oil spike, or gamble bank earnings. Reassess at midday.
+
+---
