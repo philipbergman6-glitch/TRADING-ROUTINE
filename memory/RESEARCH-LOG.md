@@ -1392,3 +1392,8 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 - **Do not** add into PPI/Warsh, add to capped GOOGL, chase the oil spike, or gamble bank earnings. Reassess at midday.
 
 ---
+
+### Jul 15 — Midday Addendum
+GOOGL popped +3.43% intraday to $371.84 (+10.55% vs entry) on no verified catalyst — checked via Perplexity, but the response was unreliable/stale (cited a "Q3 earnings beat" that hasn't occurred; our confirmed Q2 print is 7/22 AMC, still pending) and quoted a stale price ($359.51) inconsistent with live data. No credible adverse news either. Treating the move as broad strength/thesis intact, not actionable. GOOGL now ~4% below the +15% tighten trigger ($386.81) — watch closely into next scan/EOD. No trades; see TRADE-LOG Jul 15 Midday Scan for full detail.
+
+---
