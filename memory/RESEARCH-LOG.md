@@ -1397,3 +1397,57 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 GOOGL popped +3.43% intraday to $371.84 (+10.55% vs entry) on no verified catalyst — checked via Perplexity, but the response was unreliable/stale (cited a "Q3 earnings beat" that hasn't occurred; our confirmed Q2 print is 7/22 AMC, still pending) and quoted a stale price ($359.51) inconsistent with live data. No credible adverse news either. Treating the move as broad strength/thesis intact, not actionable. GOOGL now ~4% below the +15% tighten trigger ($386.81) — watch closely into next scan/EOD. No trades; see TRADE-LOG Jul 15 Midday Scan for full detail.
 
 ---
+
+## 2026-07-16 — Pre-market Research
+
+### Account
+- Equity: $107,792.67
+- Cash: $22,093.09 (20.5%)
+- Buying power: $328,331.18
+- Daytrade count: 0 (not PDT)
+- Deployed: $85,699.58 (79.5% — inside 75-85% band)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop |
+|--------|--------|-----------|---------|----------|-----|------|
+| GOOGL | 62 | $336.36 | $375.07 | +$2,400 (+11.51%) | 21.6% | $336.276 (10% trail GTC, hwm $373.64) |
+| XLI | 116 | $182.16 | $180.06 | -$244 (-1.15%) | 19.4% | $167.8005 (10% trail GTC, hwm $186.445) |
+| XLB | 412 | $51.07 | $50.19 | -$363 (-1.72%) | 19.2% | $46.908 (10% trail GTC, hwm $52.12) |
+| XLP | 250 | $83.76 | $83.52 | -$60 (-0.29%) | 19.4% | $77.3622 (10% trail GTC, hwm $85.958) |
+
+All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to stop: GOOGL ~10.3% above its $336.276 stop (well clear). GOOGL's stop auto-lifts on a new hwm during RTH (last hwm $373.64; price now $375.07).
+
+### Market Context
+- **Oil — holding the Iran bid:** WTI **~$80** (+~0.5%), Brent **~$85** (+~0.4%) — roughly flat vs Tuesday, the re-escalation premium intact (Hormuz fees/blockade overhang). Tailwind for XLB's hard-asset tilt; two-way whipsaw risk persists.
+- **Indices/VIX:** S&P 500 futures **~7,621 (+0.08%)** — quietly firm, near ATHs. VIX **~16** (calm; a stale MarketWatch 20.95 Feb-dated print disregarded). Tape constructive after Tuesday's soft June CPI (-0.4% m/m, core flat) cut July hike odds to ~17%.
+- **Econ calendar (Thu):** No CPI/PPI today (June CPI landed 7/14; next CPI 8/12). **Weekly jobless claims** and **Empire State Manufacturing** ~8:30 ET; **June retail sales** possible mid-month read. No FOMC (rates 3.50-3.75%; Sept next). Second-tier day macro-wise.
+- **Earnings (none held):** BMO — **TSM** (the AI-capex benchmark; guidance is the day's key AI read), **GE Aerospace, UnitedHealth (UNH), Abbott (ABT)**, Truist (TFC), J.B. Hunt. **Netflix AMC**. TSM's forward guidance can move AI/mega-cap sentiment (GOOGL sympathy).
+
+### Sector Momentum — ROTATION INTACT (book aligned)
+- **Leaders (YTD):** Energy **~+20-33%** (#1), Materials **~+11-18%** (XLB ✓), Industrials **~+10-14%** (XLI ✓), Consumer Staples **~+11-16%** (XLP ✓). Book fully tilted to the leadership cohort; most leaders above 200-dma.
+- **Laggards (YTD):** Financials **~-2 to -7%** (worst), Info Tech / Comm Services weakest on momentum. GOOGL trades on its own AI thesis, not the Tech tape.
+- Oil bid firms the hard-asset tilt; leadership structure unchanged. Book stays aligned.
+
+### Held-Name News
+- **GOOGL:** Q2 print **CONFIRMED Wed 7/22 AMC** (call 4:30 ET; 6 days out) — next held-name catalyst. Consensus **Strong Buy** (43/53); mean PT **~$433.59** (+~22% from $375), Q2 EPS est ~$2.87 (+24% YoY), rev ~$116.5B (+21% YoY); beat 4 straight quarters. Position **+11.51%**, best of the book; now **~3.1% below the +15% tighten trigger ($386.81)** — watch closely into midday. Minor EU-antitrust overhang digested. HOLD.
+- **XLI / XLB / XLP:** No adverse single-name news; leading sectors, near/around entry, far from stops, theses intact. Iran oil bid a tailwind for XLB.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh clean setup)
+1. **GOOGL** — riding AI leadership into the 7/22 print; **watch +15% tighten at $386.81** (now $375.07, ~3.1% away → tighten trail to 7% if hit). No add (already 21.6%, over cap on appreciation only).
+2. **XLE / Energy (5th slot) — WATCH, not yet.** Energy is #1 YTD and the Iran oil bid holds, but no clean base — a headline-driven chase, not a setup. Enter only on a crude-stabilized XLE consolidation/breakout w/ 10% trail, 2:1 R:R — not a geopolitical spike.
+3. **Avoid:** chasing the oil bid without a base; Financials/bank-earnings gamble (worst sector); AI-semi dip-buy into TSM print (event risk); adding to capped GOOGL.
+
+### Risk Factors
+- **TSM earnings (BMO)** — the day's key AI read; weak guidance could pressure mega-cap/AI sentiment and give GOOGL a sympathy wobble into its own 7/22 print.
+- **Iran two-way whipsaw** — re-escalation premium in oil now; any de-escalation headline re-drops crude (softens XLB). Highest-conviction two-way risk.
+- **GOOGL** near the +15% tighten and building event risk into its 7/22 Q2 print — our only AI name near peak valuation.
+- Second-tier macro (claims/Empire State) — low odds of a tape-mover, but a hot/cold surprise can nudge rate-cut odds.
+
+### Decision
+**HOLD — no orders today.** Quiet macro day; sit tight and let winners work. Week 0/3 but **no clean fresh setup** — the energy idea is a headline chase without a base. Patience > activity.
+- **GOOGL:** HOLD. +11.51%, not near -7% cut; **~3.1% below +15% tighten ($386.81)** — if it trips intraday, tighten trail to 7%. Strong Buy, thesis intact, Q2 7/22 AMC. Stop active/correct.
+- **XLI / XLB / XLP:** HOLD. Leading sectors, far from stops, theses intact. Oil bid a tailwind for XLB. No action.
+- **All 4 trailing stops confirmed active/correct**; none lowered. Deployment 79.5% — inside 75-85%; no rebalancing needed. GOOGL 21.6% over 20% cap on appreciation only (no add/trim per rule).
+- **Do not** add to capped GOOGL, chase the oil bid, gamble bank earnings, or dip-buy AI-semis into TSM. Reassess at midday — key watch: GOOGL vs the $386.81 tighten, TSM-driven AI sentiment.
+
+---
