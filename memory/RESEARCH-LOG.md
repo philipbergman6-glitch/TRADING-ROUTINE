@@ -1451,3 +1451,8 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 - **Do not** add to capped GOOGL, chase the oil bid, gamble bank earnings, or dip-buy AI-semis into TSM. Reassess at midday — key watch: GOOGL vs the $386.81 tighten, TSM-driven AI sentiment.
 
 ---
+
+### Jul 16 — Midday Addendum
+XLP popped +2.46% intraday to $85.525 (new 52-week-high territory) with no discrete single-name or index-rebalance catalyst. Perplexity check: move attributed to a multi-day defensive rotation out of Tech (AI-scare fatigue), inflation/rate-path uncertainty, and consumer-staples earnings strength (10/12 names beat). Consistent with existing sector-momentum thesis, not a break — no action. GOOGL still ~3.1% below the +15% tighten trigger ($386.81); no other position near a trigger. No trades; see TRADE-LOG Jul 16 Midday Scan for full detail.
+
+---
