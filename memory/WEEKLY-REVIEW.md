@@ -322,3 +322,62 @@ The best week of the phase and a clear inflection: capital was fully deployed in
 ### Overall Grade: C+
 
 A disciplined but flat-to-down holding week: risk rules were spotless (stops active/ratcheting, deployment in-band, no forced trades, no chases) — but the book lost -0.97% against a +0.81% S&P (-1.78% relative) because a correlated cyclical/defensive sector-ETF construction has no independent engine when the tape rotates and grinds. Not a risk failure and not an execution failure this week; the gap is portfolio construction and idea generation. No strategy rule changes — the rules performed exactly as designed; the improvement is discretionary (broaden diversification, source a low-correlation 5th name), not a rule to legislate. Twice-flagged now: address the concentration next week or the book will keep tracking the same macro factor up and down.
+
+---
+
+## Week ending 2026-07-17
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $107,362.43 (Mon Jul 13 AM = Fri Jul 10 close) |
+| Ending portfolio | $106,468.17 (Fri Jul 17 close) |
+| Week return | -$894.26 (-0.83%) |
+| S&P 500 week | -0.90% (7,543.64 Jul 10 → 7,475.69 Jul 17; AP wire: first losing week in three, Fri -1%) |
+| Bot vs S&P | +0.07% (bot beat; +0.77% on the alt -1.6% S&P print) |
+| Trades | 0 (W:0 / L:0 / open:4 carried) |
+| Win rate | n/a (no closed trades) |
+| Best trade | GOOGL +2.85% (open, carried) |
+| Worst trade | XLI -1.51% (open, carried) |
+| Profit factor | n/a (no closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | None closed this week |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| GOOGL | $336.36 | $345.93 | +$593.34 (+2.85%) | $337.74291 (10% trail GTC, hwm $375.27) |
+| XLP | $83.76 | $85.19 | +$357.50 (+1.71%) | $78.687 (10% trail GTC, hwm $87.43) |
+| XLB | $51.07 | $50.53 | -$222.61 (-1.06%) | $46.908 (10% trail GTC, hwm $52.12) |
+| XLI | $182.16 | $179.41 | -$319.00 (-1.51%) | $167.8005 (10% trail GTC, hwm $186.445) |
+
+### What Worked
+- Beat the benchmark: bot -0.83% vs S&P ~-0.90% (+0.07%, up to +0.77% on the alt print) — the defensive/staples tilt cushioned a genuine down week (Iran risk-off, tech-to-defensive rotation, first S&P losing week in three).
+- XLP was the standout — the deliberate defensive diversifier added Jun 29 did its job, hitting fresh highs (hwm $87.43, stop auto-lifted to $78.687) and finishing +1.71% while mega-cap and cyclicals faded.
+- Risk rules spotless for a third straight week: all four 10% trailing GTC stops active and ratcheting, none lowered, no position near a stop or the -7% cut all week; GOOGL's midweek high auto-lifted its stop to $337.74291 before the fade, locking the ratchet.
+- Deployment discipline held: 79.2-79.6% every session, inside the 75-85% band for a third straight week — the chronic under-deployment gap stays closed.
+- Patience over activity: no clean fresh catalyst, so 0 trades forced into a CPI (Jul 14) + Iran-headline tape; correctly declined to chase.
+
+### What Didn't Work
+- GOOGL round-tripped a big intraweek move: ran to +10.55% (Tue Jul 15, ~4% from the +15% tighten) then faded all the way back to +2.85% by Friday on the capex-plan + Gemini 3.5 Pro delay + broad risk-off. Never triggered the tighten, so the full round-trip was given back — now the closest name to its stop (~2.4% above).
+- No independent alpha again: the relative "win" was cash + defensive-cushion luck in a down tape (same mechanism as Jun 26), not deployed alpha. In an up week this same book lagged (last week -1.78%). It remains a market-tracker with a defensive tilt, no independent engine.
+- Second straight zero-trade week, and the book has been static since the Jun 29 XLP entry — three weeks with no new idea sourced despite 3 open trade slots every week.
+- The diversification flag is now THRICE-logged and still unaddressed: 3 correlated cyclical/defensive ETFs + 1 single-name. No low-correlation 5th name added.
+
+### Key Lessons
+- The defensive tilt is a genuine two-way street, not pure liability: it lagged the up week (Jul 10) and cushioned this down week. That reframes the "concentration" flag — the problem isn't the defensive names, it's the ABSENCE of an independent alpha engine to pair with them. Sourcing one low-correlation leader (not removing the cushion) is the fix.
+- GOOGL demonstrated the cost of a wide 10% trail on a single-name that spikes: a +10% intraweek move that stalls just short of the +15% tighten gives the whole run back. The rule held (never move a stop down, tighten only at +15%), but a high-beta single-name needs watching for a discretionary partial trim near a stalled +10-15% pop — flag, not a rule change yet.
+- Two consecutive zero-trade weeks with a static book is where "patience > activity" tips toward idea-generation drought. Patience is correct when there's no catalyst; the deficit is that no new leader has been actively hunted for three weeks.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Jul 20. GOOGL Q2 print confirmed Wed Jul 22 AMC (note: dates drifted across sources 7/22-7/28 during the week — 7/22 AMC is the confirmed date) — GOOGL is the swing name and closest to its stop; no add into the binary, hold and let the print resolve the thesis-under-scrutiny question.
+- Actively hunt one low-correlation leader for the open 5th slot (a quality single-name outside the XLI/XLB/XLP macro cluster) — this is now the primary discretionary task, thrice-flagged. Do not add a 4th correlated cyclical ETF.
+- Manage by rules: -7% manual cut at midday, 10% trailing GTC on any new entry, never move a stop down. Watch GOOGL for a discretionary partial trim only if it spikes back toward +15% and stalls again.
+- July catalysts remaining: FOMC Jul 28-29 — no new risk into the decision; re-engage after. Watch whether the tech→defensive rotation persists (XLP the relative winner) or cyclicals (XLI/XLB) find a bid.
+
+### Overall Grade: B-
+
+A disciplined week that actually beat the S&P (+0.07%, up to +0.77% on the alt print) — the first benchmark-beating week in three — on a spotless risk book: stops active/ratcheting, deployment in-band, no forced trades. But the outperformance was again the defensive-cushion mechanism working in a down tape, not repeatable deployed alpha, and GOOGL round-tripped a +10% intraweek run back to +2.85%. Above a C because it beat the benchmark with clean execution and XLP's defensive diversifier proved its worth; short of a B+ because it was a second straight zero-trade week with a static, correlated book and no independent alpha engine. No strategy rule changes: the rules performed exactly as designed, and this week the defensive tilt was an asset, not a liability — legislating it away would remove the cushion that just helped. The sole remaining deficit is discretionary (source a low-correlation leader), thrice-flagged now; act on it before the GOOGL Q2 print reshapes the book.
