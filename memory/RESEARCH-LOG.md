@@ -1456,3 +1456,58 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 XLP popped +2.46% intraday to $85.525 (new 52-week-high territory) with no discrete single-name or index-rebalance catalyst. Perplexity check: move attributed to a multi-day defensive rotation out of Tech (AI-scare fatigue), inflation/rate-path uncertainty, and consumer-staples earnings strength (10/12 names beat). Consistent with existing sector-momentum thesis, not a break — no action. GOOGL still ~3.1% below the +15% tighten trigger ($386.81); no other position near a trigger. No trades; see TRADE-LOG Jul 16 Midday Scan for full detail.
 
 ---
+
+## 2026-07-17 — Pre-market Research
+
+### Account
+- Equity: $107,140.39
+- Cash: $22,093.09 (20.6%)
+- Buying power: $326,504.80
+- Daytrade count: 0 (not PDT)
+- Deployed: $85,047.30 (79.4% — inside 75-85% band)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop |
+|--------|--------|-----------|---------|----------|-----|------|
+| GOOGL | 62 | $336.36 | $349.00 | +$783.68 (+3.76%) | 20.2% | $337.74291 (10% trail GTC, hwm $375.2699) |
+| XLP | 250 | $83.76 | $86.35 | +$647.50 (+3.09%) | 20.1% | $77.3622 (10% trail GTC, hwm $85.958) |
+| XLB | 412 | $51.07 | $50.90 | -$70.17 (-0.33%) | 19.6% | $46.908 (10% trail GTC, hwm $52.12) |
+| XLI | 116 | $182.16 | $179.75 | -$279.56 (-1.32%) | 19.5% | $167.8005 (10% trail GTC, hwm $186.445) |
+
+All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to stop: **GOOGL ~3.2% above its $337.74291 stop** (closest it's been — faded from $375 high; monitor). Others far from stops (XLP ~10.4%, XLB ~9.3%, XLI ~7.1%).
+
+### Market Context — RISK-OFF, TECH-LED SELLOFF
+- **Indices/VIX:** S&P 500 futures **~7,509 (-0.90%)**; **Nasdaq-100 futures ~28,742 (-1.66%)** — semis leading the drop. **VIX ~17.96 (+7.4%)** off 16.73 — first real uptick in weeks, still moderate. Tape reassessing the AI rally after record highs.
+- **Driver:** **Semiconductor rout** (SanDisk/WDC/Seagate/Micron -4.6% to -6.5% premarket) + **Netflix -9.4%** on soft Q3 guide → **AI-valuation skepticism**. Money rotating **out of semis into banks/value/defensives**. Taiwan -6%, Japan -4% overnight amplified it.
+- **Oil — firm:** WTI **~$79.5** (+~0.7%), Brent **~$84.8** (+~0.7%) — steady, set for a weekly gain on Mideast tension. Tailwind for XLB's hard-asset tilt.
+- **Econ calendar (Fri):** No CPI/PPI/FOMC/jobs. Second-tier US reads: **Housing Starts** & **Industrial Production** 8:30 ET, **Michigan Sentiment (prelim 51.4) + 1yr Inflation Exp (prior 4.6%)** 10:00 ET. EZ final CPI (2.8%) overnight. Low macro-mover odds; watch Michigan inflation exp.
+- **Earnings (none held):** BMO — Darden (DRI), TD SYNNEX (SNX, big beat), Acuity (AYI), Commercial Metals (CMC), Winnebago (WGO). AmEx/Schwab/3M also today. No held name reports.
+
+### Sector Momentum — ROTATION INTACT, ACCELERATING (book aligned)
+- **Leaders (YTD):** Energy **~+21-26%** (#1), Materials **~+10-17%** (XLB ✓), Consumer Staples **~+11-16%** (XLP ✓), Industrials **~+10-14%** (XLI ✓). Value/defensive leadership; today's semi rout is *reinforcing* the value-over-growth rotation our book rides.
+- **Laggards (YTD):** Technology **~-3 to -4%** (AI-disruption fears, software/semi selloff). Book's three sector ETFs are precisely the cohort catching the rotation inflows.
+
+### Held-Name News
+- **GOOGL — DISCRETE ADVERSE CATALYST (monitor):** Fell **-4.43% Thu to $353.81**, now **~$349 premarket** (down further with the tech tape), on TWO real developments: (1) **$180B 2026 CapEx plan** — ~50% above the ~$120B Street forecast, nearly double 2025's $91.4B — feeding the exact "AI spend won't be validated" fear driving the semi rout; (2) reported **Gemini 3.5 Pro delays** (behind schedule on coding perf) raising "losing the AI race to OpenAI" concern. Fwd P/E ~26-28x (above ~25x industry avg). **Q2 print 7/22 AMC (5 days out).** Position still **+3.76%** vs entry, well above -7% cut, ~3.2% above stop $337.74291. Thesis now under genuine scrutiny — no longer near the +15% tighten ($386.81); it faded off that watch. **HOLD, heightened watch** — reassess at midday; a break toward the stop or clear thesis deterioration is the trigger to act.
+- **XLP / XLB / XLI:** No adverse single-name news. All three are the value/defensive leaders catching today's rotation out of tech — tailwind. Oil bid supports XLB. Theses intact, far from stops.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh clean setup)
+1. **GOOGL — HOLD, do NOT add.** Discrete capex/execution overhang + broad AI-valuation reset + own 7/22 print = stacked event risk. Already ~20% weight. Let the 10% trail ($337.74) do its job; manual reassess at midday if it approaches stop.
+2. **Defensive/value tilt is working — no new entry needed.** XLP/XLB/XLI are the rotation beneficiaries; the book is already positioned. Adding more of the same cohort adds concentration, not edge.
+3. **Avoid:** dip-buying semis/AI into the rout (falling knife, valuation reset underway); chasing banks on one day's rotation without a base; adding to GOOGL into stacked event risk; forcing a trade on a red risk-off open (patience > activity).
+
+### Risk Factors
+- **AI-valuation reset broadening:** If the semi/Netflix-led "AI spend unvalidated" narrative deepens, GOOGL (our only growth name, fresh $180B capex headline) is the book's most exposed position into its own 7/22 print. Primary risk.
+- **GOOGL nearest its stop it's ever been (~3.2%):** a continued fade could trip the $337.74 trail — acceptable (locks +0.4% vs entry) but watch for a whipsaw stop-out on a risk-off gap.
+- **Risk-off open / VIX +7%:** broad de-risking day; even leaders can see profit-taking. Defensive book should relatively outperform but isn't immune.
+- **Michigan inflation expectations 10:00 ET:** a hot 1yr print could nudge rate-cut odds and pressure the tape further.
+- **Oil two-way:** any Mideast de-escalation headline drops crude, softening XLB's tailwind.
+
+### Decision
+**HOLD — no orders today.** Risk-off, tech-led selloff; our value/defensive book is on the right side of the rotation. Week 0/3 but **no clean fresh setup** and a red risk-off open is the wrong tape to initiate. Patience > activity.
+- **GOOGL:** HOLD, **heightened watch.** +3.76%, above -7% cut and ~3.2% above its $337.74291 stop. Discrete adverse catalyst ($180B capex + Gemini delay) into a broad AI reset and its own 7/22 print — thesis under scrutiny but not broken; still net green. Do not add. Reassess at midday — a break toward stop or clear thesis deterioration triggers action; otherwise let the trail work.
+- **XLP / XLB / XLI:** HOLD. The rotation's beneficiaries; leading sectors, far from stops, theses intact and reinforced by today's value-over-growth flow. Oil bid a tailwind for XLB. No action.
+- **All 4 trailing stops confirmed active/correct**; none lowered. Deployment 79.4% — inside 75-85%; no rebalancing needed. All weights ≤20.2% (GOOGL/XLP right at cap on appreciation only, no adds).
+- **Do not** dip-buy semis/AI, chase banks, add to GOOGL, or force a trade into a red open. Note: today is Friday — weekly review runs separately this afternoon.
+
+---
