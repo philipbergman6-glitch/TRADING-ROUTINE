@@ -623,3 +623,20 @@ Equity $108,234.59, cash $22,093.09 (20.4%), deployed 79.6% ($86,141.50 mkt valu
 - XLI: $180.195 (-1.08% vs entry) — stop $167.8005/hwm $186.445. Industrials thesis intact; far from stop.
 - XLP: $85.12 (+1.62% vs entry) — stop $77.3622/hwm $85.958. CS thesis intact; pulled back off yesterday's high but far from stop.
 Equity $106,619.71, cash $22,093.09 (20.7%), deployed 79.3% ($84,526.62 mkt value) — inside 75-85% band. Weights: GOOGL 20.2%, XLP 20.0%, XLI 19.6%, XLB 19.6% — all at/under cap (no adds). All four 10% trailing GTC stops confirmed active/correct; none lowered. Week 0/3. No email sent (no action taken).
+
+---
+
+### Jul 17 — EOD Snapshot (Day 58, Friday)
+**Portfolio:** $106,468.17 | **Cash:** $22,093.09 (20.7%) | **Day P&L:** -$927.26 (-0.86%) | **Phase P&L:** +$6,468.17 (+6.47%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $345.93 | -2.41% | +$593.34 (+2.85%) | $337.74291 (10% trail GTC) |
+| XLP | 250 | $83.76 | $85.19 | -0.72% | +$357.50 (+1.71%) | $78.687 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.53 | -0.71% | -$222.61 (-1.06%) | $46.908 (10% trail GTC) |
+| XLI | 116 | $182.16 | $179.41 | -0.41% | -$319.00 (-1.51%) | $167.8005 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Broad red day to close the week — equity -$927.26 to $106,468.17 (Day P&L -0.86%), the weekly low, trimming the phase to +6.47%. Every position finished lower as the risk-off tape (GOOGL capex plan + Gemini 3.5 Pro delay, plus inflation/rate uncertainty) weighed on the whole book. GOOGL led the drag again, -2.41% to $345.93, continuing its fade from Tuesday's $375 high but still +2.85% vs entry (thesis under scrutiny per pre-market/midday notes, not broken; Q2 print confirmed 7/22 AMC; trailing stop untouched at $337.74291/hwm $375.2699, now the closest of the book at ~2.4% above stop). Defensives and cyclicals gave back modestly: XLP -0.72% to $85.19 (+1.71% vs entry, its 10% trail auto-lifted to $78.687 on a fresh hwm of $87.43 earlier this week — stop raised, never lowered), XLB -0.71% (-1.06% vs entry), XLI -0.41% (-1.51% vs entry). All theses intact; no position near its stop (nearest GOOGL ~2.4% above $337.74291). No trades: week 0/3, pre-market Decision was HOLD, midday scan confirmed no action (GOOGL Perplexity catalyst check returned unreliable/uncorroborated output — not treated as new info). 4 positions (≤6): GOOGL 20.1%, XLP 20.0%, XLB 19.6%, XLI 19.6% — GOOGL fractionally over the 20% cap on appreciation only (no add per rule), rest under. Deployment 79.2% ($84,375.08 mkt value / $106,468.17 equity) — inside the 75-85% band; cash 20.7%. All four 10% trailing GTC stops confirmed active and intact (GOOGL $337.74291/hwm $375.2699; XLP $78.687/hwm $87.43; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12); none lowered. Daytrade count 0; not PDT. Week closes flat on activity (0/3 trades) but green on the phase (+6.47%). Next week (Mon): hold and monitor into GOOGL's 7/22 Q2 print — GOOGL is the swing name and now closest to its stop; watch whether the tech-to-defensive rotation persists (XLP the relative winner) and whether cyclicals (XLI/XLB) find a bid; 3 trades available for a fresh leader.
