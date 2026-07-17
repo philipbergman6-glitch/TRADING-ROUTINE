@@ -1511,3 +1511,9 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 - **Do not** dip-buy semis/AI, chase banks, add to GOOGL, or force a trade into a red open. Note: today is Friday — weekly review runs separately this afternoon.
 
 ---
+
+### Jul 17 — Midday Addendum
+
+GOOGL continued to fade intraday (premarket $349 → $346.765, now ~2.6% above its $337.74291 stop, closest yet) on top of the already-flagged capex/Gemini-delay overhang, so ran a Perplexity check for any new discrete catalyst. Response was unreliable: garbled entity names (mangled researcher/company names) and cited sources with mismatched/stale dates (e.g., a "talent departure" story dated 6/22 presented as new, an ambiguous "court ruling" claim with no clear date/citation match). Not treating this as confirmed new information — consistent with prior instances (7/15) where Perplexity output on GOOGL proved unreliable. Conclusion: no verified new discrete catalyst; decline attributed to continuation of the known capex/Gemini overhang plus broad tech risk-off, not a fresh thesis break. GOOGL remains on heightened watch into the 7/22 print; HOLD maintained, no action taken.
+
+---
