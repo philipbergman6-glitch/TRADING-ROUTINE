@@ -1517,3 +1517,56 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 GOOGL continued to fade intraday (premarket $349 → $346.765, now ~2.6% above its $337.74291 stop, closest yet) on top of the already-flagged capex/Gemini-delay overhang, so ran a Perplexity check for any new discrete catalyst. Response was unreliable: garbled entity names (mangled researcher/company names) and cited sources with mismatched/stale dates (e.g., a "talent departure" story dated 6/22 presented as new, an ambiguous "court ruling" claim with no clear date/citation match). Not treating this as confirmed new information — consistent with prior instances (7/15) where Perplexity output on GOOGL proved unreliable. Conclusion: no verified new discrete catalyst; decline attributed to continuation of the known capex/Gemini overhang plus broad tech risk-off, not a fresh thesis break. GOOGL remains on heightened watch into the 7/22 print; HOLD maintained, no action taken.
 
 ---
+
+## 2026-07-20 — Pre-market Research (Monday, Day 59)
+
+### Account
+- Equity: $106,761.32 | Cash: $22,093.09 (20.7%) | Buying power: $325,443 (RegT $128,854)
+- Deployed: $84,668.23 (79.3% — inside 75-85% band)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop |
+|--------|--------|-----------|---------|----------|-----|------|
+| GOOGL | 62 | $336.36 | $348.58 | +$757.64 (+3.63%) | 20.2% | $337.74291 (10% trail GTC, hwm $375.2699) |
+| XLP | 250 | $83.76 | $85.00 | +$310.15 (+1.48%) | 19.9% | $78.687 (10% trail GTC, hwm $87.43) |
+| XLI | 116 | $182.16 | $181.00 | -$134.56 (-0.64%) | 19.7% | $167.8005 (10% trail GTC, hwm $186.445) |
+| XLB | 412 | $51.07 | $50.51 | -$230.85 (-1.10%) | 19.5% | $46.908 (10% trail GTC, hwm $52.12) |
+
+All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to stop: **GOOGL ~3.2% above its $337.74291 stop** (closest of the book — watch into 7/22 print). Others far: XLP ~8.0%, XLI ~7.9%, XLB ~7.7%.
+
+### Market Context — STABILIZING AFTER FRIDAY'S TECH-LED DROP; NEW OIL/GEOPOLITICS CATALYST
+- **Indices/VIX:** S&P 500 futures **~7,496 (+0.02%, ~flat)**; Nasdaq-100 futures **~28,805 (+0.13%)** — modest premarket bid, stabilizing after Friday's sharp close (SPX -1.01%, Nasdaq -1.49%). **VIX ~18.3** (Fri close 18.77, -~2.6% today) — elevated vs the mid-teens of two weeks ago but easing off the spike.
+- **NEW — US–Iran / oil spike:** US launched fresh strikes on Iran after Tehran attacked commercial vessels in the Strait of Hormuz; **oil back above $80** (WTI ~$81.6–$83.5, Brent ~$80+). **XLE +2% premarket.** Geopolitical risk-on for energy/hard assets, inflation-risk overhang for the broad tape. Tailwind for XLB's materials/hard-asset tilt; the book has no direct energy exposure.
+- **Oil — firm/up:** WTI ~$82, Brent ~$80+ on the Iran headlines. Two-way risk: de-escalation/diplomacy headlines would drop crude fast (mean-reversion).
+- **Econ calendar (Mon):** Quiet. Leading Index (June) 10:00 ET only. CPI/PPI/jobs all released last week (June CPI +0.5% MoM / 4.2% YoY, hot; PPI +1.1% MoM). **Fed Chair Warsh semiannual testimony Tue 7/21 (House) & Wed 7/22 (Senate)** — hawkish-risk headlines. **June FOMC minutes Wed 7/22.** Next FOMC decision **7/29**. Rate-hike-before-year-end chatter persists.
+- **Earnings (none held today):** BMO — AMC, Steel Dynamics (STLD), Zions (ZION), WR Berkley. Q2 season ramping; PepsiCo/Delta this week. No held name reports today.
+
+### Sector Momentum — CYCLICAL/DEFENSIVE LEADERSHIP INTACT (book aligned)
+- **Leaders (YTD):** Energy **~24.6%** (#1, oil tailwind), Technology **~20-29%** (recovered on some feeds despite AI-spend wobble), Industrials **~17.9%** (XLI ✓), Materials **~10.8%** (XLB ✓), Consumer Staples **~9.1%** (XLP ✓, "Leading" defensive momentum quadrant, at ATHs).
+- **Read:** Industrials & Materials gaining relative momentum (breadth broadening across the "S&P 493" outside the Mag 7). Energy strongest with the oil bid — the one leadership cohort the book doesn't hold. Staples the defensive relative winner. Book's three ETFs all in the leadership/gaining cohort; theses reinforced.
+
+### Held-Name News
+- **GOOGL — Q2 print Wed 7/22 AMC (2 days out):** Consensus **EPS $2.86 (+23.8% YoY), rev $101.22B**. Overhang unchanged from last week: **$180-190B 2026 capex** (vs ~$120B prior Street est; FCF margin cratered to 9.2% in Q1) + **Gemini launch reportedly months behind schedule** + AI-talent departures — the "AI spend won't be validated" fear. Now ~$348.58, **+3.63% vs entry**, well above -7% cut, ~3.2% above its $337.74291 stop. Thesis under genuine scrutiny but not broken (still net green, Cloud/monetization the swing variable at the print). **HOLD, heightened watch. Do NOT add** into stacked event risk (capex overhang + own print + Warsh testimony 7/22 same day).
+- **XLP / XLB / XLI:** No adverse single-name news. XLB gets a direct tailwind from the oil/hard-asset move. All three are the cyclical/defensive leaders; theses intact, far from stops.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh clean setup)
+1. **GOOGL — HOLD, do NOT add.** Capex/execution overhang + own 7/22 AMC print + Warsh testimony same day = stacked binary event risk. ~20% weight already. Let the 10% trail ($337.74, ~3.2% below) do its job; reassess at midday.
+2. **Energy is the one leadership cohort we don't own (XLE +2% on Iran).** *Watch, don't chase.* Entering a geopolitical oil spike risks buying the top before a de-escalation mean-reversion. No clean base; would need a pullback/consolidation to consider. Not today.
+3. **Avoid:** chasing the oil spike (XLE) into a headline-driven gap; adding to GOOGL into its print; dip-buying beaten AI names; forcing a trade — patience > activity, week 0/3 with no clean setup.
+
+### Risk Factors
+- **GOOGL 7/22 print (2 days):** book's only growth name and nearest its stop (~3.2%). A soft Cloud/capex-justification print could trip the $337.74 trail (would lock ~+0.4% vs entry) — acceptable but watch for a gap-through/whipsaw.
+- **US–Iran escalation / oil:** two-sided — sustained >$80 oil pressures the broad tape via inflation (helps XLB, hurts sentiment); any diplomacy headline drops crude and unwinds the energy trade fast.
+- **Hot June inflation (CPI +0.5% MoM, PPI +1.1%) + Warsh testimony 7/22 + rate-hike chatter:** hawkish surprise risk into FOMC 7/29; would pressure valuations.
+- **AI-spend narrative:** if the "capex unvalidated" fear re-broadens (Netflix/semi-style), GOOGL is the most exposed position into its print.
+- **Elevated VIX ~18:** still a jumpier tape than the mid-teens regime; leaders not immune to profit-taking.
+
+### Decision
+**HOLD — no orders today.** Tape stabilizing after Friday's tech-led drop; the book's cyclical/defensive positioning stays on the right side of the rotation and XLB gets a fresh oil tailwind. Week 0/3 but **no clean fresh setup** and the two clear catalysts (GOOGL's 7/22 print, the Iran/oil spike) are both reasons to wait, not act.
+- **GOOGL:** HOLD, **heightened watch.** +3.63%, above -7% cut and ~3.2% above stop. Do not add into the stacked 7/22 event risk. Reassess at midday; a break toward stop or clear thesis deterioration is the trigger.
+- **XLP / XLB / XLI:** HOLD. Leadership/gaining cohort, far from stops, theses intact (XLB reinforced by the oil bid). No action.
+- **Energy (XLE):** watch-only. Do not chase the geopolitical spike; revisit on a base/pullback.
+- **All 4 trailing stops active/correct**; none lowered. Deployment 79.3% (inside band); all weights ≤20.2% (GOOGL at cap on appreciation only, no add). No rebalancing needed.
+
+---
