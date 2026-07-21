@@ -1570,3 +1570,57 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 - **All 4 trailing stops active/correct**; none lowered. Deployment 79.3% (inside band); all weights ≤20.2% (GOOGL at cap on appreciation only, no add). No rebalancing needed.
 
 ---
+
+## 2026-07-21 — Pre-market Research (Tuesday, Day 60)
+
+### Account
+- Equity: $106,592.64 | Cash: $22,093.09 (20.7%) | Buying power: $324,971 (RegT $128,686)
+- Deployed: $84,499.55 (79.3% — inside 75-85% band)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist above) |
+|--------|--------|-----------|---------|----------|-----|------|
+| GOOGL | 62 | $336.36 | $353.99 | +$1,093.53 (+5.24%) | 20.6% | $337.74291 (10% trail GTC, hwm $375.2699) — ~4.8% |
+| XLP | 250 | $83.76 | $84.59 | +$207.50 (+0.99%) | 19.8% | $78.687 (10% trail GTC, hwm $87.43) — ~7.5% |
+| XLI | 116 | $182.16 | $179.24 | -$338.72 (-1.60%) | 19.5% | $167.8005 (10% trail GTC, hwm $186.445) — ~6.8% |
+| XLB | 412 | $51.07 | $50.03 | -$428.61 (-2.04%) | 19.3% | $46.908 (10% trail GTC, hwm $52.12) — ~6.7% |
+
+All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to stop: **GOOGL ~4.8% above** (still closest — watch into tomorrow's print). Others 6.7-7.5% above.
+
+### Market Context — RISK-ON FLIP: IRAN CEASEFIRE HOPES + AI-CAPEX VALIDATION
+- **Indices/VIX:** S&P 500 futures **~7,527 (+0.57%)**, Nasdaq-100 futures **~29,152 (+1.4%)** — clear risk-on bid, reversing the tech-led drag. **VIX ~17.6** (down -5.7% from Fri/Mon 18.65) — easing back into the mid-teens regime.
+- **Iran de-escalation:** Renewed Middle-East mediation/ceasefire hopes lifted sentiment; **oil eased** (WTI ~$82.5, Brent ~$88.9, both slightly lower) — reverses Monday's geopolitical spike. Two-way risk unwinds toward diplomacy.
+- **AI-capex VALIDATED by peers (key for GOOGL):** Semis leading premarket — **NVDA +6.2%, AVGO +7.8%, MRVL +3.3%** on confirmed cloud capex (AWS +$8.2B). This directly answers the "AI spend won't be validated" fear that has weighed on GOOGL — a **tailwind into its 7/22 print**, though the print itself stays binary.
+- **Econ calendar (Tue):** Quiet. State Employment/Unemployment (June) + Usual Weekly Earnings 10:00 ET. **No CPI/PPI/jobs/Fed testimony today** (CPI 7/14, PPI 7/15, jobs 7/17 all past). **FOMC June minutes tomorrow Wed 7/22 2:00 PM** — same day as GOOGL AMC print (stacked). Next FOMC decision **7/29**. (Correction to prior logs' "Warsh testimony 7/21-22" — not on today's calendar.)
+- **Earnings (none held today):** BMO — GM, MMM, NOC, GPC, EFX; AMC — TXN, LUV, KMI. No held name reports today.
+
+### Sector Momentum — VALUE COHORT LEADS, TECH/AI MOMENTUM REASSERTING
+- **Energy** still #1 YTD (~+21-33%, oil-driven), the one leadership cohort the book doesn't hold — but oil easing today.
+- **Tech** conflicted: price momentum lagged on the rotation, but today's semis bid (AI-capex validation) is reasserting Tech/AI momentum — supportive backdrop for GOOGL.
+- **Industrials (XLI ✓)** ~+10-14%, **Materials (XLB ✓)** ~+11-18%, **Staples (XLP ✓)** ~+11-16% at ATHs — all in the "Leading" value quadrant. Book's three ETFs remain aligned with leadership; theses intact.
+
+### Held-Name News
+- **GOOGL — Q2 print tomorrow Wed 7/22 AMC (1 day out):** Consensus **rev ~$116.8B (+21.1% YoY), EPS $2.86-2.95 (+23.8% YoY)**, Google Cloud ~63% growth the swing variable, op margin ~35.3%. Beat EPS 4 straight quarters. Overhang: **$180-190B 2026 capex** + Gemini competitive/timeline scrutiny + AI-talent retention (stock ~10% off June highs). Now $353.99, **+5.24% vs entry**, ~4.8% above stop. Today's peer AI-capex validation (NVDA/AVGO/AWS) is a genuine tailwind, but the print + same-day FOMC minutes = stacked binary event. **HOLD, heightened watch. Do NOT add into the print.**
+- **XLP / XLB / XLI:** No adverse single-name news. XLB loses a bit of the oil tailwind as crude eases, but materials/value thesis intact. All far from stops.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh clean setup)
+1. **GOOGL — HOLD, do NOT add.** Own print (7/22 AMC) + FOMC minutes same day = stacked binary risk; already ~20.6% weight (at cap). Peer capex-validation is encouraging but not a reason to add into an event. Let the 10% trail ($337.74, ~4.8% below) work. Reassess at midday.
+2. **Energy (XLE) — watch only, do NOT chase.** Still the one leadership cohort unheld, but oil is *easing* today on ceasefire hopes — chasing a fading geopolitical trade is the wrong side. No clean base. Not today.
+3. **Avoid:** adding to GOOGL into its print; chasing the semis/AI gap after a +6-8% peer move; forcing a trade — week 0/3, no clean fresh setup, patience > activity.
+
+### Risk Factors
+- **GOOGL 7/22 print (1 day) + FOMC minutes same day:** book's only growth name and nearest its stop (~4.8%). A soft Cloud/capex-justification print could trip the $337.74 trail (locks ~+0.4% vs entry) — acceptable but watch for a gap-through/whipsaw.
+- **Iran two-sided:** ceasefire hopes are lifting risk today, but any escalation headline re-spikes oil and flips sentiment fast.
+- **FOMC minutes 7/22:** hawkish-lean minutes into the 7/29 decision could pressure valuations; rate-cut timing (Dec per Williams) is the debate.
+- **AI-spend narrative:** today it's validating (semis bid) — but if GOOGL's own print fails to show Cloud monetization inflection, it's the most exposed name to a re-broadening of the "capex unvalidated" fear.
+- **Elevated-but-easing VIX ~17.6:** calmer than last week, but a print-driven single-name gap is still live.
+
+### Decision
+**HOLD — no orders today.** Tape flipped risk-on (Iran ceasefire hopes, VIX easing) and — most relevant — peer AI-capex validation (NVDA/AVGO/AWS) is a tailwind into GOOGL's print. But the two clear catalysts (GOOGL 7/22 AMC + FOMC minutes same day) are reasons to *wait*, not act. Week 0/3 with no clean fresh setup.
+- **GOOGL:** HOLD, **heightened watch.** +5.24%, above -7% cut and ~4.8% above stop. Do NOT add into tomorrow's stacked event. Reassess at midday; a break toward stop or clear thesis deterioration is the trigger.
+- **XLP / XLB / XLI:** HOLD. Leading value cohort, far from stops, theses intact. XLB gives back a little oil tailwind as crude eases — not a thesis break. No action.
+- **Energy (XLE):** watch-only; do not chase a fading oil trade.
+- **All 4 trailing stops active/correct**; none lowered. Deployment 79.3% (inside band); all weights ≤20.6% (GOOGL at cap on appreciation only, no add). No rebalancing needed.
+
+---
