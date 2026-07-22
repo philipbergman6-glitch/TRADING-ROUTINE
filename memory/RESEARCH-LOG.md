@@ -1624,3 +1624,55 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 - **All 4 trailing stops active/correct**; none lowered. Deployment 79.3% (inside band); all weights ≤20.6% (GOOGL at cap on appreciation only, no add). No rebalancing needed.
 
 ---
+
+## 2026-07-22 — Pre-market Research (Wednesday, Day 61)
+
+### Account
+- Equity: $106,242.63 | Cash: $22,093.09 (20.8%) | Buying power: $323,991 (RegT $128,336)
+- Deployed: $84,149.54 (79.2% — inside 75-85% band)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist above) |
+|--------|--------|-----------|---------|----------|-----|------|
+| GOOGL | 62 | $336.36 | $348.484 | +$751.69 (+3.60%) | 20.3% | $337.74291 (10% trail GTC, hwm $375.2699) — ~3.2% |
+| XLP | 250 | $83.76 | $84.26 | +$125.00 (+0.60%) | 19.8% | $78.687 (10% trail GTC, hwm $87.43) — ~7.1% |
+| XLI | 116 | $182.16 | $177.77 | -$509.24 (-2.41%) | 19.4% | $167.8005 (10% trail GTC, hwm $186.445) — ~5.9% |
+| XLB | 412 | $51.07 | $50.6243 | -$183.76 (-0.87%) | 19.6% | $46.908 (10% trail GTC, hwm $52.12) — ~7.9% |
+
+All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to stop: **GOOGL ~3.2% above** (tightening from ~4.8% Tue — closest of the book, watch into TONIGHT's print). Others 5.9-7.9% above.
+
+### Market Context — SOFT INTO BIG-TECH EARNINGS; OIL AT 6-WEEK HIGHS
+- **Indices/VIX:** S&P 500 futures **~7,517-7,528 (-0.2% to -0.4%)**, Nasdaq-100 futures **~29,080 (-0.8%)** — softer, giving back part of Tue's chip-led rally ahead of tonight's Big Tech prints. **VIX ~17.05** (down -8.6% to 7/21 close from 18.65) — calm, mid-teens regime.
+- **Oil UP to 6-week highs (reverses Tue easing):** WTI **~$85.3**, Brent **~$92.2** — Brent +2%+ for a third session on supply/export-route concerns. Constructive for Energy/Materials; a mild margin headwind for transport/manufacturing (XLI) and staples (XLP) input costs.
+- **Econ calendar (Wed):** Quiet. **FOMC June (6/16-17) minutes were already released ~7/8-9** — so **no FOMC minutes today** (correction to prior logs that flagged them for 7/22). No CPI/PPI/jobs today. Fed on hold 3.50-3.75%; next FOMC decision **7/29**.
+- **Earnings — TONIGHT is the big one (AMC):** **GOOGL (held)** + **TSLA, MSFT, CSX, CMG, LVS** all report after close; **AMD Advancing AI 2026** event runs today. Stacked mega-cap AI catalysts = elevated single-name/index gap risk into Thu. No held name reports BMO.
+
+### Sector Momentum — VALUE COHORT STILL LEADS; OIL RE-ASSERTS ENERGY
+- **Energy** #1 YTD (~+21-33%, oil-driven) and re-accelerating today on the crude bid — the one leadership cohort the book doesn't hold.
+- **Materials (XLB ✓)** ~+12-18%, **Industrials (XLI ✓)** ~+9-17%, **Staples (XLP ✓)** ~+10-16% — all remain in the "Leading" value quadrant; theses intact. XLB gets a direct tailwind from the oil/commodity bid (near recent range highs).
+- **Tech** mixed: Tue's semis rally faded slightly premarket into tonight's mega-cap prints; not the dominant momentum leader, but GOOGL's print is the swing event.
+
+### Held-Name News
+- **GOOGL — Q2 print TONIGHT Wed 7/22 AMC (call 4:30pm ET):** Consensus **rev ~$116.5-117B (+21% YoY), EPS ~$2.86-2.88 (+24% YoY)**, Google Cloud ~63% growth the swing variable, op margin ~35.3%. Beat EPS 4 straight quarters (Q1 +95% surprise). Overhang: **$180-190B capex** justification + Gemini competition + AI-talent retention (stock ~10% off June highs). Now $348.48, **+3.60% vs entry**, ~3.2% above stop. Binary event tonight. **HOLD, heightened watch. Do NOT add into the print.**
+- **XLP / XLB / XLI:** No adverse single-name news. Oil at 6-week highs is a net tailwind for XLB, mild margin headwind for XLI/XLP — not a thesis break. All comfortably above stops.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a fresh clean setup)
+1. **GOOGL — HOLD, do NOT add.** Print tonight = binary risk; already ~20.3% weight (at cap on appreciation). Let the 10% trail ($337.74, ~3.2% below → locks ~+0.4% vs entry if tripped) do the risk management. Reassess at midday and after the print.
+2. **Energy (XLE) — watch only, do NOT chase.** Still the one leading cohort unheld and oil is back at 6-week highs, but this is an extended, headline-driven move (supply/export fears) — chasing strength into a binary-heavy tape with no clean base is the wrong entry. Week 0/3, patience.
+3. **Avoid:** adding to GOOGL into its print; chasing the oil/energy move after a 3-session run; forcing a trade with no clean fresh setup.
+
+### Risk Factors
+- **GOOGL print tonight:** book's only growth name and nearest its stop (~3.2%, tighter than Tue). A soft Cloud/capex-justification print could gap through the $337.74 trail (a gap-down skips the stop; fill is wherever it opens) — acceptable given the trail, but the single largest overnight risk in the book.
+- **Stacked mega-cap prints (GOOGL+TSLA+MSFT):** collective AMC reaction sets the index tone into Thu; a broad AI-spend disappointment would pressure valuations market-wide.
+- **Oil at 6-week highs, two-sided:** supportive for XLB now, but a further spike is a margin/inflation headwind and re-arms the geopolitical risk premium; a reversal unwinds the Energy trade.
+- **Softer futures into the prints:** Nasdaq -0.8% shows positioning caution; low-conviction tape amplifies single-name gaps.
+
+### Decision
+**HOLD — no orders today.** Softer tape into tonight's stacked mega-cap prints (GOOGL/TSLA/MSFT) with oil at 6-week highs. GOOGL's Q2 print AMC is the book's binary event — a reason to *wait*, not act. Week 0/3, no clean fresh setup, patience > activity.
+- **GOOGL:** HOLD, **heightened watch.** +3.60%, above -7% cut and ~3.2% above stop. Do NOT add into tonight's print. The 10% trail does the risk work; reassess at midday and post-print.
+- **XLP / XLB / XLI:** HOLD. Leading value cohort, 5.9-7.9% above stops, theses intact. Oil bid a net positive for XLB. No action.
+- **Energy (XLE):** watch-only; do not chase an extended oil move.
+- **All 4 trailing stops active/correct**; none lowered. Deployment 79.2% (inside band); all weights ≤20.3% (no adds). No rebalancing needed.
+
+---
