@@ -694,3 +694,20 @@ Equity $106,347.85, cash $22,093.09 (20.8%), deployed 79.2% ($84,254.76 mkt valu
 **Week trades:** 0/3
 
 **Notes:** Mildly red ahead of the swing catalyst — equity -$382.52 to $106,043.03 (Day P&L -0.36%), phase eases to +6.04%. GOOGL led the drag, -1.17% to $347.89 (still +3.43% vs entry), giving back part of the pre-market pop into tomorrow's Wed 7/22 Q2 print (AMC) — the book's binary event; capex/Gemini overhang unchanged, thesis intact, ~3.0% above its $337.74291 stop (still the closest of the book), well short of the +15% tighten trigger ($386.81). XLP -0.94% to $84.06 (+0.36% vs entry) as the defensive bid softened. Cyclicals firmed slightly: XLI +0.30% to $178.66 (-1.92% vs entry), XLB +0.14% to $50.10 (-1.90% vs entry) — both theses intact, ~6.6-7% above their stops. GOOGL's fade and XLP's dip outweighed the small cyclical gains, netting a modest down day. No trades: week 0/3, midday scan confirmed no action (no -7% cuts, no +15%/+20% tighten triggers, no sharp/unexplained moves). 4 positions (≤6): GOOGL 20.3%, XLP 19.8%, XLI 19.5%, XLB 19.5% — GOOGL fractionally over the 20% cap on appreciation only (no add per rule), rest under. Deployment 79.2% ($83,949.94 mkt value / $106,043.03 equity) — inside the 75-85% band; cash 20.8%. All four 10% trailing GTC stops confirmed active and intact (GOOGL $337.74291/hwm $375.2699; XLP $78.687/hwm $87.43; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12); none lowered. Daytrade count 0; not PDT. Tomorrow (Wed): GOOGL Q2 print AMC is the day's event — hold into it (thesis intact, above stop, trailing stop does the risk management); watch whether cyclicals (XLI/XLB) keep firming and whether the defensive bid (XLP) steadies; 3 trades available for a fresh leader.
+
+---
+
+### Jul 22 — EOD Snapshot (Day 61, Wednesday)
+**Portfolio:** $105,964.35 | **Cash:** $22,093.09 (20.9%) | **Day P&L:** -$78.68 (-0.07%) | **Phase P&L:** +$5,964.35 (+5.96%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GOOGL | 62 | $336.36 | $340.18 | -2.01% | +$236.84 (+1.14%) | $337.74291 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.40 | +0.40% | +$160.00 (+0.76%) | $78.687 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.82 | +1.44% | -$103.13 (-0.49%) | $46.908 (10% trail GTC) |
+| XLI | 116 | $182.16 | $178.85 | +0.11% | -$383.96 (-1.82%) | $167.8005 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Near-flat into the binary — equity -$78.68 to $105,964.35 (Day P&L -0.07%), phase eases to +5.96%. GOOGL Q2 print lands AMC today; the stock faded -2.01% to $340.18 (+1.14% vs entry) ahead of it and is now the tightest name in the book at just ~0.7% above its $337.74291 stop (hwm $375.2699) — the 10% trailing GTC is the risk management, and a soft print could trip it into tomorrow. Rotation showed up underneath: cyclicals and staples held green while tech gave back — XLB +1.44% to $50.82 (-0.49% vs entry), XLP +0.40% to $84.40 (+0.76% vs entry), XLI +0.11% to $178.85 (-1.82% vs entry) — all theses intact and comfortably above their stops (~6-8%). GOOGL's fade roughly offset the three green names, netting a flat tape. No trades: week 0/3; pre-market Decision was HOLD, no midday action. 4 positions (≤6): XLP 19.9%, GOOGL 19.9%, XLB 19.8%, XLI 19.6% — all now at/under the 20% cap (GOOGL slipped back under on its fade), no adds. Deployment 79.2% ($83,871.26 mkt value / $105,964.35 equity) — inside the 75-85% band; cash 20.9%. All four 10% trailing GTC stops confirmed active and intact (GOOGL $337.74291/hwm $375.2699; XLP $78.687/hwm $87.43; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12); none lowered. Daytrade count 0; not PDT. Tomorrow (Thu): react to GOOGL's Q2 print AMC — thesis-check the reaction; if it gaps down and trips the $337.74291 stop, let it fill and evaluate a replacement leader (3 trades available); if it holds/pops, continue holding. Watch whether the tech-to-cyclical/defensive rotation (XLB/XLP the relative winners) persists.
