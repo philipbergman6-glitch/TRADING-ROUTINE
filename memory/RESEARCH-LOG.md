@@ -1676,3 +1676,56 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 - **All 4 trailing stops active/correct**; none lowered. Deployment 79.2% (inside band); all weights ≤20.3% (no adds). No rebalancing needed.
 
 ---
+
+## 2026-07-23 — Pre-market Research (Thursday, Day 62)
+
+### Account
+- Equity: $105,027.71 | Cash: $22,093.09 (21.0%) | Buying power: $22,093.09
+- Deployed: $82,934.62 (79.0% — inside 75-85% band)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| GOOGL | 62 | $336.36 | $325.65 | -$664.18 (-3.19%) | 19.2% | $337.74291 (10% trail GTC, hwm $375.2699) — **price ~3.6% BELOW stop → fires at open** |
+| XLP | 250 | $83.76 | $84.44 | +$171.18 (+0.82%) | 20.1% | $78.687 (10% trail GTC, hwm $87.43) — ~7.3% above |
+| XLB | 412 | $51.07 | $50.70 | -$152.57 (-0.72%) | 19.9% | $46.908 (10% trail GTC, hwm $52.12) — ~8.1% above |
+| XLI | 116 | $182.16 | $178.85 | -$383.96 (-1.82%) | 19.8% | $167.8005 (10% trail GTC, hwm $186.445) — ~6.6% above |
+
+**GOOGL gapped through its stop after last night's Q2 print.** Pre-market ~$325.65 is below the $337.74291 trail; the GTC trailing stop will convert to a market order and **fill at the open (~$325-326)**, exiting the position at ~-3.2% vs entry (locks ~-$660). A gap-down skips the stop level — fill is wherever it opens. No manual action needed; the trail does the risk work. All 4 trailing stops confirmed active/GTC; none lowered. Other three (XLB/XLI/XLP) 6.6-8.1% above stops, theses intact.
+
+### Market Context — AI-CAPEX WORRIES RESURFACE; OIL JUMPS ON MIDEAST
+- **Indices/VIX:** S&P 500 futures **~7,510 (-0.4%)**, Nasdaq-100 futures **~29,046 (-0.46%)** — renewed AI-spending worries after the first Big Tech prints (GOOGL/TSLA). **VIX ~17.4-17.75** (+~5% off 16.64 close) — still mid-teens, calm regime.
+- **Oil JUMPS (Mideast escalation):** WTI **~$86-90**, Brent **~$93-98** — up on the widening Iran conflict (ceasefire cancelled, 6 straight days of U.S. strikes; ~14% WTI run cited). Direct tailwind for Energy/Materials (XLB); margin headwind for XLI/XLP inputs and a re-armed inflation/geopolitical risk premium.
+- **Econ calendar (Thu):** **Initial jobless claims 8:30am ET**, Continuing claims, EIA nat gas inventories. No CPI/PPI/FOMC today. Fed on hold 3.50-3.75%; next decision **7/29**.
+- **Earnings today:** Heavy but **no held name** — BMO/AMC incl. INTC, RTX, LMT, TMUS, CMCSA, FCX, HON, TMO, BX. TSLA (reported AMC 7/22) was weak: EPS $0.33 (-18% YoY) vs $0.54 est, FCF -$1.1B — feeding the AI-capex/growth-disappointment tone.
+
+### Held-Name News
+- **GOOGL — Q2 (reported 7/22 AMC):** rev **$119.8B (+24% YoY)**, op income **$40.8B (+30%)**, op margin ~34%; headline EPS $9.11 inflated by a ~$98B unrealized equity gain. Beat top and bottom line, but **guided elevated capex** — classic "sell the news." Stock ~4%+ lower AH, now ~$325.65 (**below its $337.74 stop**). Position exits at the open via the trail. Thesis (capex-justification overhang) played out to the downside; no reason to re-enter into the AI-spend fear.
+- **XLP / XLB / XLI:** No adverse single-name news. Oil surge is a net tailwind for XLB (materials), mild input-cost headwind for XLI/XLP — not a thesis break. All comfortably above stops, in the leading value cohort.
+
+### Sector Momentum — VALUE COHORT STILL LEADS, TECH LAGS
+- **Energy** #1 YTD (~+21-26%, re-accelerating on the oil jump) — the one leadership cohort the book doesn't hold.
+- **Materials (XLB ✓)** ~+11-18%, **Staples (XLP ✓)** ~+10-16%, **Industrials (XLI ✓)** ~+10-14% — all in the "Leading" quadrant; book's three ETFs aligned with leadership.
+- **Technology lagging** (~-3 to -6% YTD on a sector basis) — GOOGL's capex-driven fade fits the pattern; rotation out of mega-cap tech intact.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a clean setup)
+1. **GOOGL — exiting at open via stop (automatic).** Do NOT re-enter today; the capex overhang materialized and the tape is punishing AI-spend. Let it fill; reassess redeployment at market-open/midday with the freed ~$20k.
+2. **Redeploy after GOOGL fills — patient, at market-open.** Post-exit deployment drops to **~59.7%** (below the 75-85% band), so redeployment into a leadership name is the next real decision — but only on a **clean setup**, not a forced same-day chase. Candidates: add to an existing leader (XLB gets the oil tailwind) or a fresh value/leadership name. **Energy (XLE) is extended** on a 14% geopolitical oil run — watch-only, do NOT chase into the spike.
+3. **Avoid:** re-entering GOOGL; chasing energy/oil after a 6-session geopolitical run; forcing a replacement pre-market. Redeployment is a market-open decision with a clean base.
+
+### Risk Factors
+- **GOOGL gap-through:** exits at the open at ~-3.2%; if the open whipsaws, the fill could be marginally worse/better than $325.65. Book's only growth name gone — leaves an all-value/ETF book.
+- **Deployment falls below band (~59.7%) post-exit:** need a disciplined redeploy soon to get back to 75-85% — but not a panicked one; patience > activity.
+- **Oil/Mideast two-sided:** supportive for XLB now, but a further spike is an inflation/margin headwind and re-arms geopolitical risk; any de-escalation headline unwinds the Energy/oil trade fast.
+- **AI-capex fear broadening:** GOOGL + TSLA prints revived the "capex unvalidated" worry — pressures mega-cap tech and index tone; value/defensive rotation is the beneficiary (book-aligned).
+- **Jobless claims 8:30am:** a hot/cold print can move rates-sensitive and industrial names (XLI).
+
+### Decision
+**HOLD — no new orders pre-market.** The only book change today is **GOOGL exiting automatically at the open** via its 10% trailing stop after a strong-but-capex-heavy Q2 print drove a sell-the-news gap below the stop. That is risk management working, not a new trade. Week 0/3, no clean fresh setup pre-market — patience.
+- **GOOGL:** let the trailing stop fill at the open (~$325.65, ~-3.2% vs entry). Do NOT re-enter into the AI-spend fear. The capex overhang materialized.
+- **XLP / XLB / XLI:** HOLD. Leading value cohort, 6.6-8.1% above stops, theses intact; oil bid a net positive for XLB. No action.
+- **Redeployment:** post-exit deployment ~59.7% (below band) — flag for **market-open**: patiently redeploy the freed ~$20k into a clean leadership setup (do NOT chase extended energy). 3 trades available.
+- **All remaining trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+---
