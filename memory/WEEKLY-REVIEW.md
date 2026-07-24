@@ -381,3 +381,60 @@ A disciplined but flat-to-down holding week: risk rules were spotless (stops act
 ### Overall Grade: B-
 
 A disciplined week that actually beat the S&P (+0.07%, up to +0.77% on the alt print) — the first benchmark-beating week in three — on a spotless risk book: stops active/ratcheting, deployment in-band, no forced trades. But the outperformance was again the defensive-cushion mechanism working in a down tape, not repeatable deployed alpha, and GOOGL round-tripped a +10% intraweek run back to +2.85%. Above a C because it beat the benchmark with clean execution and XLP's defensive diversifier proved its worth; short of a B+ because it was a second straight zero-trade week with a static, correlated book and no independent alpha engine. No strategy rule changes: the rules performed exactly as designed, and this week the defensive tilt was an asset, not a liability — legislating it away would remove the cushion that just helped. The sole remaining deficit is discretionary (source a low-correlation leader), thrice-flagged now; act on it before the GOOGL Q2 print reshapes the book.
+
+---
+
+## Week ending 2026-07-24
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $106,468.17 (Mon Jul 20 AM = Fri Jul 17 close) |
+| Ending portfolio | $105,442.33 (Fri Jul 24 close) |
+| Week return | -$1,025.84 (-0.96%) |
+| S&P 500 week | -0.33% (7,441.68 Jul 17 → 7,417.10 Jul 24; Fri -1.09%, worst session in a month) |
+| Bot vs S&P | -0.63% |
+| Trades | 1 closed (W:0 / L:1) + 3 open carried; 0 new (0/3 weekly) |
+| Win rate | 0% (1 closed, a loss) |
+| Best trade | none closed; XLP +0.38% (open, carried) |
+| Worst trade | GOOGL -3.99% (closed, stop-out) |
+| Profit factor | 0.00 (no closed winners) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| GOOGL | $336.36 | $322.928871 | -$832.73 (-3.99%) | Jul 23 10% trailing GTC stop-out — Q2 beat but elevated 2026 capex guidance drove a sell-the-news gap through the $337.74291 stop at the open. Automatic; per pre-market Decision, no re-entry into AI-capex fear. Completes the round-trip from the +10.55% intraweek high of Jul 15. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLI | $182.16 | $182.66 | +$58.00 (+0.27%) | $167.8005 (10% trail GTC, hwm $186.445) |
+| XLB | $51.07 | $51.26 | +$78.15 (+0.37%) | $46.908 (10% trail GTC, hwm $52.12) |
+| XLP | $83.76 | $84.08 | +$80.00 (+0.38%) | $78.687 (10% trail GTC, hwm $87.43) |
+
+### What Worked
+- GOOGL's 10% trailing GTC did exactly its job: capped the post-Q2 capex-fear gap-down at -3.99% automatically at Thursday's open — no manual intervention, no deeper round-trip. Risk machinery clean.
+- Held into the Q2 binary rather than pre-selling — let the stop resolve the thesis-under-scrutiny question mechanically, then correctly declined to re-enter into the AI-capex fear (the exact fear that gapped the stock).
+- The value cohort held up: all three sector ETFs (XLI/XLB/XLP) finished green on cost and rose together Friday (+0.4-1.9%), each comfortably above its stop (~7-9%).
+- Risk rules spotless for a fourth straight week: all trailing GTC stops active/ratcheting, none lowered, no position near a stop or the -7% cut; zero rule breaches.
+
+### What Didn't Work
+- Lagged the S&P (-0.63%) in a down week — the defensive cushion that helped the prior down week (Jul 17) was overwhelmed this time by the GOOGL stop-out, the week's dominant P&L event (-$832.73 realized).
+- The GOOGL round-trip completed to a realized loss: the +10.55% intraweek run of Jul 15 fully unwound to a -3.99% stop-out. Last week's flagged risk (wide trail on a spiking single-name; watch for a discretionary partial trim) materialized as an actual loss because the trim was flagged, not taken.
+- Deployment fell to 60.1% after the stop-out — back below the 75-85% band, a ~15-25% gap that sat unaddressed Thu and Fri as redeployment was deferred to "market-open, patiently" twice without firing.
+- Third straight zero-new-trade week: the thrice-flagged low-correlation 5th name was never sourced, and losing GOOGL leaves the book 100% correlated sector ETFs — the concentration deficit is now acute, with no single-name engine at all.
+
+### Key Lessons
+- The GOOGL round-trip is the concrete cost of not trimming a high-beta single-name near a stalled +10-15% pop. Flagged last week, not acted on, and it gave the full run back plus a realized loss. That discretionary-trim discipline has to be real next time, not just logged.
+- Losing the only single-name to a stop leaves an all-ETF, all-correlated book — the diversification deficit shifted from "thin" to "no independent driver at all." Sourcing a leader is no longer optional polish; it is the book's missing half.
+- Deferring redeployment to "market-open, patiently" for two straight sessions is how a deployment gap persists — ~$42k idle for two days is cash drag by another name. Next week needs a concrete redeploy plan, not another deferral.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Jul 27. Primary task now doubles up: redeploy ~$42k (close the 60%→~78% gap) AND source at least one fresh leader — the two coincide since the freed cash needs a new 4th name (existing three at/near the 20% cap).
+- FOMC Jul 28-31 (Fed expected on hold 3.50-3.75%): no new risk into the decision. Redeploy window is Mon Jul 27 (pre-FOMC) or after the decision clears — do NOT let FOMC become another reason to sit at 60% all week.
+- Candidate leaders: Energy (XLE) now that oil has cooled off its spike (less chase risk), or a quality single-name outside the XLI/XLB/XLP macro cluster to restore an independent engine. Do NOT add a 4th correlated cyclical ETF.
+- Manage by rules: 10% trailing GTC on every entry, -7% manual cut at midday, never move a stop down. If a new single-name spikes +10-15% and stalls, take the discretionary partial trim this time.
+
+### Overall Grade: C-
+
+A poor-outcome week on a clean process: the GOOGL 10% trail did its job capping the capex-fear gap at -3.99%, and holding into the binary then declining to re-enter was correct discipline — but the realized loss was the week's dominant event, the book lagged the S&P by -0.63% in a down tape, deployment fell to 60.1% and stayed there, and it was a third straight zero-new-trade week. Losing the only single-name leaves an entirely correlated sector-ETF book with no independent engine. No strategy rule changes: the mechanical rules (never move a stop down, tighten only at +15%) performed exactly as designed; the two real deficits are discretionary — the missed high-beta trim and the unsourced low-correlation leader — not rule design. The round-trip loss makes the discretionary-trim flag a two-week pattern now; if a single-name round-trips a +10-15% run again after re-entry, promote it to an explicit rule. Priority for next week is unambiguous: redeploy AND diversify, in the same move.
