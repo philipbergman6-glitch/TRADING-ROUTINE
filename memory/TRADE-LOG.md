@@ -749,3 +749,19 @@ Equity $104,710.33, cash $42,114.68 (40.2%), deployed 59.8% ($62,601.99 mkt valu
 - XLP: $83.95 (+0.23% vs entry) — stop $78.687/hwm $87.43, ~6.3% above stop. Staples thesis intact; mild intraday gain (+0.89%).
 
 Equity $105,270.98, cash $42,114.65 (40.0%), deployed 60.0% ($63,156.33 mkt value) — still **below the 75-85% band**; redeployment remains a market-open decision per pre-market Decision, not a forced midday trade — no action taken now. Weights: XLI 20.2%, XLP 19.9%, XLB 19.9% — all at/under cap. All three 10% trailing GTC stops confirmed active/correct; none lowered. No sharp/unexplained moves beyond the already-flagged tariff-expiry (Section 122) and oil-pullback themes from pre-market — no Perplexity check needed. Week 0/3. No email sent (no action taken).
+
+---
+
+### Jul 24 — EOD Snapshot (Day 63, Friday)
+**Portfolio:** $105,442.33 | **Cash:** $42,114.65 (39.9%) | **Day P&L:** +$700.63 (+0.67%) | **Phase P&L:** +$5,442.33 (+5.44%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLI | 116 | $182.16 | $182.66 | +0.40% | +$58.00 (+0.27%) | $167.8005 (10% trail GTC) |
+| XLB | 412 | $51.07 | $51.26 | +1.93% | +$78.15 (+0.37%) | $46.908 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.08 | +1.05% | +$80.00 (+0.38%) | $78.687 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Green close to end the week — equity +$700.63 to $105,442.33 (Day P&L +0.67%), phase back up to +5.44%. All three sector ETFs finished higher and every position is now marginally in the black on cost: XLB led +1.93% to $51.26 (+0.37% vs entry) as materials firmed despite the flagged oil pullback; XLP +1.05% to $84.08 (+0.38% vs entry) with staples steadying; XLI +0.40% to $182.66 (+0.27% vs entry) holding the industrials bid. All theses intact; comfortably above stops (~7-9%). No trades: week 0/3 — Friday's weekly-review noted the hunt for a fresh leader but no clean setup triggered an entry. 3 positions (≤6): XLI 20.1%, XLB 20.0%, XLP 19.9% — all at/under the 20% cap, no adds. Deployment 60.1% ($63,327.68 mkt value / $105,442.33 equity) — still **below the 75-85% band** after last week's GOOGL stop-out; cash 39.9%. Redeployment remains a pre-market/market-open decision requiring a clean leadership setup, not a forced trade — carried into next week with 3 trades available. All three 10% trailing GTC stops confirmed active and intact (XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12; XLP $78.687/hwm $87.43); none lowered. Daytrade count 0; not PDT. Monday: pre-market hunt for a leader to close the ~15-25% deployment gap (3 trades available); watch whether the cyclical/defensive rotation (XLB/XLI/XLP) holds and whether the oil pullback and Section 122 tariff-expiry themes shift the tape.
