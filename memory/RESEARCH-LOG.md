@@ -1729,3 +1729,51 @@ All 4 trailing stops confirmed active/GTC and intact; none lowered. Nearest to s
 - **All remaining trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
 
 ---
+
+## 2026-07-24 — Pre-market Research (Friday, Day 63)
+
+### Account
+- Equity: $104,858.13 | Cash: $42,114.65 (40.2%) | Buying power (RegT): $146,972.78
+- Deployed: $62,743.48 (59.8% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLI | 116 | $182.16 | $182.75 | +$68.44 (+0.32%) | 20.2% | $167.8005 (10% trail GTC, hwm $186.445) — ~8.2% above |
+| XLP | 250 | $83.76 | $83.30 | -$115.00 (-0.55%) | 19.9% | $78.687 (10% trail GTC, hwm $87.43) — ~5.5% above |
+| XLB | 412 | $51.07 | $50.29 | -$321.49 (-1.53%) | 19.8% | $46.908 (10% trail GTC, hwm $52.12) — ~6.7% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value book after GOOGL's 7/23 stop-out. **Deployment 59.8% — ~15-25% below band; redeploy is the standing open item.** XLI fractionally over 20% cap on appreciation (no add); XLB/XLP just under cap with little room — a meaningful redeploy needs a fresh 4th name, not an add.
+
+### Market Context — RISK-ON TAPE, OIL OFF ITS SPIKE, TARIFF-EXPIRY WILDCARD
+- **Indices/VIX:** S&P 500 futures **~7,571 (+0.56%)** — risk-on. VIX **~18.8 (-3.3%)** — high-teens, easing. Nasdaq mixed as AI-capex-vs-profits scrutiny persists (post GOOGL/TSLA prints).
+- **Oil — pulled back off the mid-July spike:** most current live feeds put **WTI ~$71-72, Brent ~$74-76**, well below last week's ~$86-90 geopolitical highs (feeds conflict; one catalyst source cites Red Sea/Hormuz tension near $100 — treat as stale/two-sided). Net: the oil tailwind for XLB is cooler, but the input-cost headwind on XLI/XLP has also eased. Still headline-two-sided.
+- **Econ calendar (Fri):** S&P Global Flash **Manufacturing/Services PMIs ~9:45am ET**; **New Home Sales (June) 10:00am**. No CPI/PPI/FOMC today. **FOMC July 28-31** (Fed on hold 3.50-3.75%).
+- **Tariff wildcard:** scheduled **expiry of the temporary 10% blanket tariff (Section 122) today 7/24** — a date-specific risk for trade-sensitive/cyclical names (XLI/XLB adjacent). Watch headlines.
+- **Earnings (Fri BMO):** heavy slate — **AXP, VZ, SLB** BMO — **no held name**. AI-spend narrative still the index swing factor.
+
+### Sector Momentum — VALUE COHORT STILL LEADS, TECH LAGS (book-aligned)
+- **Energy** #1 YTD (~+22-27%) — the one leadership cohort the book doesn't hold; oil's pullback cools the near-term chase.
+- **Materials (XLB ✓)** ~+10-18%, **Industrials (XLI ✓)** ~+10-14%, **Staples (XLP ✓)** ~+10-16% — all in the "Leading" value quadrant; book's three ETFs aligned with leadership, theses intact.
+- **Technology** ~-3 to -5% YTD — lagging; rotation out of mega-cap tech intact (fits GOOGL's capex fade).
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a clean fresh setup)
+1. **Redeploy the ~$42k cash / close the 59.8%→~78% gap — market-open decision, patient.** Needs a fresh 4th leadership name (existing three are at/near the 20% cap). Cleanest candidates: a fresh **Materials/Industrials** leader riding the value rotation, or **Energy (XLE)** now that oil has cooled off its spike (less chase risk than last week, but momentum may be fading — not obviously clean). Do NOT force it pre-market into a tariff-expiry/earnings-heavy Friday.
+2. **XLB/XLP small top-ups — low value.** Both under the 20% cap but with only ~$100-300 of room before it — not enough to move deployment; skip.
+3. **Avoid:** chasing energy after its pullback with no base; forcing a redeploy ahead of the Section 122 tariff-expiry headline risk; adding to XLI (over cap).
+
+### Risk Factors
+- **Deployment 59.8% (below band):** the main standing issue — needs a disciplined redeploy soon, but not a panicked one. Patience > activity.
+- **Section 122 tariff expiry today:** binary headline risk for trade-sensitive cyclicals (XLI/XLB adjacent) — a reason to wait for the market-open read, not pre-position.
+- **Oil two-sided:** the pullback eases XLI/XLP input costs but softens XLB's tailwind; a geopolitical re-spike (Red Sea/Hormuz) reverses both fast.
+- **AI-capex scrutiny broadening:** pressures mega-cap tech/index tone; value/defensive rotation is the beneficiary (book-aligned) — but a broad risk-off day still drags the ETFs.
+- **PMIs 9:45 / New Home Sales 10:00:** growth prints can move rates-sensitive and cyclical (XLI) names.
+
+### Decision
+**HOLD — no new orders pre-market.** Risk-on futures and an easing VIX, but a tariff-expiry wildcard and heavy Friday earnings argue for waiting on the market-open tape rather than pre-positioning. Week 0/3, no clean fresh base identified pre-market — patience.
+- **XLI / XLP / XLB:** HOLD. Leading value cohort, 5.5-8.2% above stops, theses intact; oil's pullback is a mild net positive for XLI/XLP inputs, mildly cools XLB's tailwind. No action.
+- **Redeployment (deployment 59.8%, below band):** flag for **market-open** — patiently deploy the freed ~$42k into a clean fresh 4th leadership name (existing three at/near cap). Do NOT chase energy off its pullback or force a trade into the tariff-expiry headline. 3 trades available.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+---
