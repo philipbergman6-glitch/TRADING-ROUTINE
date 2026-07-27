@@ -1777,3 +1777,51 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value bo
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
 
 ---
+
+## 2026-07-27 — Pre-market Research (Monday, Day 64)
+
+### Account
+- Equity: $105,799.29 | Cash: $42,114.65 (39.8%) | Buying power (RegT): $147,913.94
+- Deployed: $63,684.64 (60.2% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLI | 116 | $182.16 | $184.72 | +$296.96 (+1.41%) | 20.3% | $167.8005 (10% trail GTC, hwm $186.445) — ~9.2% above |
+| XLB | 412 | $51.07 | $51.51 | +$181.15 (+0.86%) | 20.1% | $46.908 (10% trail GTC, hwm $52.12) — ~8.9% above |
+| XLP | 250 | $83.76 | $84.14 | +$95.00 (+0.45%) | 19.9% | $78.687 (10% trail GTC, hwm $87.43) — ~6.5% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value book. XLI fractionally over 20% cap on appreciation (no add); XLB at cap, XLP just under — meaningful redeploy needs a fresh 4th name, not an add. **Deployment 60.2% — ~15-25% below band; redeploy remains the standing open item.**
+
+### Market Context — RISK-ON on US-IRAN DE-ESCALATION; FOMC + MEGA-CAP TECH WEEK
+- **Geopolitics — the big shift:** US and Iran announced a **pause in hostilities over the weekend**. Oil sold off sharply; equity futures ripped higher. This is the exact de-escalation the log flagged as the two-sided risk to the oil/cyclical trade.
+- **Indices/VIX:** S&P 500 E-minis **+~65 pts (+0.87%)**, Dow E-minis **+~443 pts (+0.85%)** premarket — clear risk-on bias. VIX feeds noisy (~19-21, some stale ~16); call it high-teens/low-20s, not stressed.
+- **Oil — down on the ceasefire:** WTI **~$70-71**, Brent **~$74-76** (feeds range $70-78) — off the mid-July geopolitical highs. Cools XLB's tailwind but eases XLI/XLP input-cost headwind. Two-sided as always; any re-escalation reverses it fast.
+- **Econ calendar (heavy week):** Mon **Durable Goods Orders + Leading Indicators**; Tue **Consumer Confidence**; **Wed 7/29 FOMC decision** (Fed expected on hold 3.50-3.75%) — the week's key event; **Thu 7/30 Q2 GDP + core PCE + jobless claims**. No CPI/PPI this week.
+- **Earnings — mega-cap tech gauntlet:** **MSFT, META, AAPL, AMZN** all report this week (AI capex/cloud/ad focus) — index swing factor. Today BMO: AZN, SCCO, GTLS — **no held name**.
+
+### Sector Momentum — VALUE COHORT STILL LEADS YTD; RISK-ON TAPE A NEAR-TERM CROSSWIND
+- **Energy** #1 YTD (~+22-27%) — book doesn't hold; oil's ceasefire drop cools the chase further.
+- **Materials (XLB ✓)** ~+13-18%, **Staples (XLP ✓)** ~+11-16%, **Industrials (XLI ✓)** ~+11-14% — all in the leading value quadrant; book aligned with YTD leadership.
+- **Technology** ~negative to flat YTD — the laggard — but a risk-on de-escalation tape can spark a near-term bounce/rotation *back into* growth, a crosswind against the value book (XLP softest in risk-on sessions; XLI strongest on flows/performance).
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a clean fresh setup)
+1. **Redeploy the ~$42k cash / close the 60.2%→~78% gap — still a market-open decision, patient.** Needs a fresh 4th leadership name (existing three at/near the 20% cap). But a risk-on-tech tape into a FOMC + mega-cap-tech-earnings week is a poor moment to force a *value* add — wait for the post-FOMC read. Do NOT chase energy after its ceasefire drop (no base).
+2. **XLB/XLP small top-ups — low value.** At/near the 20% cap; not enough room to move deployment; skip.
+3. **Avoid:** chasing energy on the oil drop; forcing a redeploy ahead of Wed FOMC + mega-cap tech prints; adding to XLI (over cap).
+
+### Risk Factors
+- **FOMC Wed 7/29 + mega-cap tech earnings (MSFT/META/AAPL/AMZN):** binary/vol-heavy week — argues for waiting on redeploy, not pre-positioning.
+- **Risk-on rotation crosswind:** a de-escalation-driven bounce in growth/tech could pressure the value book short-term (esp. XLP); theses are YTD-momentum-based, not broken by one risk-on session.
+- **Oil two-sided:** ceasefire drop eases XLI/XLP inputs but softens XLB's tailwind; a re-escalation headline reverses both.
+- **Deployment 60.2% (below band):** the standing issue — needs a disciplined redeploy, but not into this week's event risk. Patience > activity.
+- **Q2 GDP + core PCE Thu:** growth/inflation prints can move rates-sensitive cyclicals (XLI) and set the post-FOMC tone.
+
+### Decision
+**HOLD — no new orders pre-market.** Risk-on futures on the US-Iran pause, but a FOMC decision Wed and the full mega-cap-tech earnings slate make this a binary, vol-heavy week; and the risk-on tape is a near-term crosswind against the value book. Wrong moment to force a value redeploy. Week 0/3, no clean fresh base pre-market — patience.
+- **XLI / XLB / XLP:** HOLD. Leading value cohort, all green, 6.5-9.2% above stops, theses intact YTD. Oil's ceasefire drop is a mild net positive for XLI/XLP inputs, mildly cools XLB's tailwind — not a thesis break. No action.
+- **Redeployment (60.2%, below band):** flag for **post-FOMC** — patiently deploy the ~$42k into a clean fresh 4th leadership name once the week's event risk clears. Do NOT chase energy or force a trade into Wed's FOMC/earnings. 3 trades available.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+---
