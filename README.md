@@ -1,5 +1,7 @@
 # Trading Bot
 
+**📊 Live dashboard:** https://philipbergman6-glitch.github.io/TRADING-ROUTINE/dashboard/
+
 Autonomous swing-trading agent for a ~$100,000 Alpaca paper account. Stocks only.
 Claude Code is the bot — five cloud routines fire on weekday crons, read
 memory from git, call wrappers for Alpaca/Perplexity/Resend-email, and
