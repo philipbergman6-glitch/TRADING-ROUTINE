@@ -801,3 +801,19 @@ Equity ~$106.8k (est.), deployment still below the 75-85% band per pre-market fl
 - XLP: $87.235 (+4.15% vs entry) — stop $79.902/hwm $88.78, ~8.4% above stop. Staples thesis intact; firm intraday (+2.20%) on KO/Mondelez read-through prints BMO.
 
 Equity $106,782.92, cash $42,114.65 (39.4%), deployed 60.6% ($64,668.27 mkt value) — still **below the 75-85% band** per pre-market flag; redeployment remains a post-FOMC (Wed 7/29) market-open decision, not a forced midday trade — no action taken now. Weights: XLP 20.4%, XLB 20.3%, XLI 19.9% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered. No sharp/unexplained moves beyond the already-flagged FOMC-eve/earnings-read-through themes from pre-market — no Perplexity check needed. Week 0/3. No email sent (no action taken).
+
+### Jul 28 — EOD Snapshot (Day 65, Tuesday)
+**Portfolio:** $106,612.57 | **Cash:** $42,114.65 (39.5%) | **Day P&L:** +$734.04 (+0.69%) | **Phase P&L:** +$6,612.57 (+6.61%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLP | 250 | $83.76 | $87.06 | +1.99% | +$825.00 (+3.94%) | $79.902 (10% trail GTC) |
+| XLB | 412 | $51.07 | $52.34 | +1.85% | +$523.11 (+2.49%) | $47.4975 (10% trail GTC) |
+| XLI | 116 | $182.16 | $182.49 | -0.39% | +$38.28 (+0.18%) | $167.8005 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Strong green day into FOMC-eve — equity +$734.04 to $106,612.57 (Day P&L +0.69%), phase to a new high +6.61%. Two of three ETFs rallied on positive earnings read-through (KO/Mondelez for staples, materials firm). XLP led +1.99% to $87.06 (+3.94% vs entry) on the consumer-staples earnings bid; XLB +1.85% to $52.34 (+2.49% vs entry) as materials held firm with no oil re-escalation headline; XLI lagged -0.39% to $182.49 (+0.18% vs entry), flat-to-soft ahead of Boeing/UPS-type industrial prints. All theses intact; comfortably above stops (~8-9%). Midday tightened trails on XLP ($79.902/hwm $88.78) and XLB ($47.4975/hwm $52.775) as those names made new high-water marks; XLI stop unchanged ($167.8005/hwm $186.445). No trades: week 0/3 — no clean leadership setup triggered an entry into the deployment gap. 3 positions (≤6): XLP 20.4%, XLB 20.2%, XLI 19.9% — all at/under the 20% cap, no adds. Deployment 60.5% ($64,497.92 mkt value / $106,612.57 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.5%. Redeployment remains a market-open decision requiring a clean setup, not a forced trade — carried forward with 3 trades available, now into FOMC (Wed 7/29). All three 10% trailing GTC stops confirmed active and intact; none lowered. Daytrade count 0; not PDT. Tomorrow (Wed): FOMC decision day — pre-market hunt for a leader to close the ~15-25% deployment gap (3 trades available); watch for post-FOMC follow-through and whether the earnings-driven staples/materials bid holds.
+
+---
