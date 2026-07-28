@@ -39,7 +39,8 @@ const EQ = [
 {d:"2026-07-22",v:105964.35,cash:20.9,dp:-0.07,note:"GOOGL 0.7% above its stop into Q2 print"},
 {d:"2026-07-23",v:104741.70,cash:40.2,dp:-1.15,note:"GOOGL gapped through stop: −$832.73 (−3.99%)"},
 {d:"2026-07-24",v:105442.33,cash:39.9,dp:0.67,note:"Weekly review: source a single-name engine"},
-{d:"2026-07-27",v:105878.53,cash:39.8,dp:0.41,note:"All 3 positions green on cost"}
+{d:"2026-07-27",v:105878.53,cash:39.8,dp:0.41,note:"All 3 positions green on cost"},
+{d:"2026-07-28",v:106612.57,cash:39.5,dp:0.69,note:""}
 ];
 
 // weekly reviews, verbatim
@@ -53,10 +54,10 @@ const WEEKS = [
 {w:"07/24", bot:-0.96, spx:-0.33}
 ];
 
-const BOOK = [ // Jul 27 EOD
-{s:"XLP", q:250, in:83.76, pl:400.00, plp:1.91, stop:78.687, w:20.2},
-{s:"XLI", q:116, in:182.16, pl:120.64, plp:0.57, stop:167.80, w:20.1},
-{s:"XLB", q:412, in:51.07, pl:131.71, plp:0.63, stop:46.908, w:20.0}
+const BOOK = [ // Jul 28 EOD
+{s:"XLP", q:250, in:83.76, pl:825.00, plp:3.94, stop:79.902, w:20.4},
+{s:"XLB", q:412, in:51.07, pl:523.11, plp:2.49, stop:47.50, w:20.2},
+{s:"XLI", q:116, in:182.16, pl:38.28, plp:0.18, stop:167.80, w:19.9}
 ];
 
 const TRADES = [
