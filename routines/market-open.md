@@ -22,6 +22,11 @@ IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
   MUST commit and push at STEP 8 if any trades fired.
 
+STEP 0 — SYNC TO LATEST MAIN (mandatory, BEFORE reading any memory file):
+git fetch origin main && git reset --hard FETCH_HEAD
+The sandbox clone is often stale. Skipping this means trading on outdated
+memory. If the fetch fails, STOP, email "SYNC FAILED $DATE", and exit.
+
 STEP 1 — Read memory for today's plan:
 - memory/TRADING-STRATEGY.md
 - TODAY's entry in memory/RESEARCH-LOG.md (if missing, run pre-market
@@ -59,8 +64,16 @@ Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
 
-STEP 8 — COMMIT AND PUSH (mandatory if any trades executed):
+STEP 8 — COMMIT, PUSH, VERIFY (mandatory if any trades executed):
+Skip this step entirely if no trades fired.
 git add memory/TRADE-LOG.md
 git commit -m "market-open trades $DATE"
-git push origin main
-Skip commit if no trades fired. On push failure: rebase and retry.
+git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
+Never force-push.
+
+Then VERIFY the push landed (the proxy rewrites SHAs — compare subjects,
+never SHAs):
+git fetch origin main
+git log --format=%s -3 FETCH_HEAD | grep -qxF "market-open trades $DATE" \
+  && echo "PUSH VERIFIED" \
+  || bash scripts/email.sh "PUSH NOT ON MAIN $DATE — origin/main tip: $(git log -1 --format='%h %s' FETCH_HEAD)"

@@ -24,6 +24,11 @@ IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
   MUST commit and push at STEP 6.
 
+STEP 0 — SYNC TO LATEST MAIN (mandatory, BEFORE reading any memory file):
+git fetch origin main && git reset --hard FETCH_HEAD
+The sandbox clone is often stale. Skipping this means trading on outdated
+memory. If the fetch fails, STOP, email "SYNC FAILED $DATE", and exit.
+
 STEP 1 — Read memory for context:
 - memory/TRADING-STRATEGY.md
 - tail of memory/TRADE-LOG.md
@@ -58,10 +63,15 @@ STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md:
 STEP 5 — Notification: silent unless urgent.
 bash scripts/email.sh "<one line>"
 
-STEP 6 — COMMIT AND PUSH (mandatory):
+STEP 6 — COMMIT, PUSH, VERIFY (mandatory):
 git add memory/RESEARCH-LOG.md
 git commit -m "pre-market research $DATE"
-git push origin main
-
-On push failure: git pull --rebase origin main, then push again.
+git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
 Never force-push.
+
+Then VERIFY the push landed (the proxy rewrites SHAs — compare subjects,
+never SHAs):
+git fetch origin main
+git log --format=%s -3 FETCH_HEAD | grep -qxF "pre-market research $DATE" \
+  && echo "PUSH VERIFIED" \
+  || bash scripts/email.sh "PUSH NOT ON MAIN $DATE — origin/main tip: $(git log -1 --format='%h %s' FETCH_HEAD)"
