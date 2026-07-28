@@ -791,3 +791,13 @@ Equity ~$106.8k (est.), deployment still below the 75-85% band per pre-market fl
 **Week trades:** 0/3
 
 **Notes:** Risk-on start to the week — equity +$436.20 to $105,878.53 (Day P&L +0.41%), phase up to +5.88%. All three sector ETFs closed green and every position is in the black on cost. XLP led +1.46% to $85.36 (+1.91% vs entry) on the Mideast-ceasefire de-escalation/risk-on bid; XLI +0.30% to $183.20 (+0.57% vs entry) held the industrials bid; XLB +0.25% to $51.39 (+0.63% vs entry) firmed despite the oil-ceasefire pullback cooling its materials tailwind. All theses intact; comfortably above stops (~7.6-8.5%). No trades: week 0/3 — no clean leadership setup triggered an entry into the deployment gap. 3 positions (≤6): XLP 20.2%, XLI 20.1%, XLB 20.0% — all at/under the 20% cap, no adds. Deployment 60.2% ($63,763.88 mkt value / $105,878.53 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.8%. Redeployment remains a market-open decision requiring a clean setup, not a forced trade — carried forward with 3 trades available, now post-FOMC. All three 10% trailing GTC stops confirmed active and intact (XLP $78.687/hwm $87.43; XLI $167.8005/hwm $186.445; XLB $46.908/hwm $52.12); none lowered. Daytrade count 0; not PDT. Tomorrow (Tue): pre-market hunt for a leader to close the ~15-25% deployment gap (3 trades available); watch whether the risk-on de-escalation rotation persists and gauge any post-FOMC follow-through.
+
+---
+
+### Jul 28 — Midday Scan
+**No action.** All 3 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.545 (+2.89% vs entry) — stop $47.4975/hwm $52.775, ~9.6% above stop. Materials thesis intact; firm intraday (+2.25%), no re-escalation headline. Not a sharp/unexplained move.
+- XLI: $182.76 (+0.33% vs entry) — stop $167.8005/hwm $186.445, ~8.2% above stop. Industrials thesis intact; flat intraday (-0.24%) ahead of Boeing/UPS read-through prints BMO.
+- XLP: $87.235 (+4.15% vs entry) — stop $79.902/hwm $88.78, ~8.4% above stop. Staples thesis intact; firm intraday (+2.20%) on KO/Mondelez read-through prints BMO.
+
+Equity $106,782.92, cash $42,114.65 (39.4%), deployed 60.6% ($64,668.27 mkt value) — still **below the 75-85% band** per pre-market flag; redeployment remains a post-FOMC (Wed 7/29) market-open decision, not a forced midday trade — no action taken now. Weights: XLP 20.4%, XLB 20.3%, XLI 19.9% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered. No sharp/unexplained moves beyond the already-flagged FOMC-eve/earnings-read-through themes from pre-market — no Perplexity check needed. Week 0/3. No email sent (no action taken).
