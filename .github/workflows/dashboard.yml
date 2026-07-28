@@ -1,0 +1,35 @@
+name: dashboard-data
+
+# Triggered by the EOD routine's ~20:10 push to memory/**. No cron here.
+# Self-retrigger guard: paths filter excludes docs/**, and the bot commit
+# carries [skip ci].
+on:
+  push:
+    branches: [main]
+    paths:
+      - "memory/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate docs/dashboard/data.js (hard-fails on parse mismatch)
+        run: python3 scripts/build_dashboard_data.py
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet docs/dashboard/data.js; then
+            echo "data.js unchanged — nothing to publish"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/dashboard/data.js
+          git commit -m "dashboard data: $(date -u +%F) [skip ci]"
+          git push origin HEAD:main

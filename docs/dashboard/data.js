@@ -107,4 +107,3 @@ const INSIGHTS = [
 {c:"var(--violet)", n:"05", h:"The book is 3 correlated sector ETFs and $42k idle cash.", p:"Since the GOOGL stop-out: XLI + XLB + XLP (one macro bet, as the Jul 24 review admits), deployment 60% vs the 75–85% mandate, and redeployment deferred at every scan since Jul 23 — 'market-open, patiently' three sessions running. FOMC ends Jul 31; <b>Aug 02 arrives with the redeploy decision still open</b>."},
 {c:"var(--cyan)", n:"06", h:"Your local clone lied to you (and to me).", p:"This Mac's copy of TRADING-ROUTINE was <b>97 commits behind</b> — it showed the system dead since Jun 22 when it had run every scheduled day since. The cloud crons push straight to origin/main. Any dashboard, analysis, or meeting demo must read the remote, and a <code>git pull</code> belongs in your routine before touching this repo locally."}
 ];
-
