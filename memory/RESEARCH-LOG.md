@@ -1825,3 +1825,51 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value bo
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
 
 ---
+
+## 2026-07-28 — Pre-market Research (Tuesday, Day 65)
+
+### Account
+- Equity: $106,346.39 | Cash: $42,114.65 (39.6%) | Buying power (RegT): $148,461.04
+- Deployed: $64,231.74 (60.4% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLP | 250 | $83.76 | $86.75 | +$747.50 (+3.57%) | 20.4% | $78.687 (10% trail GTC, hwm $87.43) — ~9.3% above |
+| XLB | 412 | $51.07 | $51.73 | +$271.79 (+1.29%) | 20.0% | $46.908 (10% trail GTC, hwm $52.12) — ~9.3% above |
+| XLI | 116 | $182.16 | $183.03 | +$100.92 (+0.48%) | 20.0% | $167.8005 (10% trail GTC, hwm $186.445) — ~8.3% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value book, all green, 8.3-9.3% above stops — none near +15%/+20% tighten triggers. XLP just over 20% cap on appreciation (no add). **Deployment 60.4% — ~15-25% below band; redeploy remains the standing open item.**
+
+### Market Context — FOMC DECISION-EVE; MEGA-CAP TECH GAUNTLET; VIX BID
+- **FOMC:** Two-day meeting runs **today 7/28 + Wed 7/29**; the **rate decision lands Wed** (Fed expected on hold 3.50-3.75%). The week's key event — argues against pre-positioning today.
+- **Indices/VIX:** S&P 500 E-minis roughly **flat-to-mildly-higher** premarket (feeds split ~-0.15% to +0.56%). **VIX ~21 (+~12%)** — a clear pre-FOMC volatility bid; not stressed but no longer complacent.
+- **Oil — soft:** WTI **~$71**, Brent **~$74.76** — holding near the post-ceasefire lows. Cools XLB's tailwind, eases XLI/XLP input-cost headwind. Two-sided; a re-escalation headline reverses it.
+- **Econ calendar:** **Today** — Consumer Confidence **10:00 ET** (exp **92** vs 91.2 prior) + home-price data. **Wed 7/29** FOMC decision. **Thu 7/30** Q2 GDP + core PCE + jobless claims. No CPI/PPI this week.
+- **Earnings — today BMO:** **KO, Mondelez** (staples → XLP read-through), **Boeing, UPS** (industrials → XLI read-through), **Visa, NXP** — **no held name.** Mega-cap tech: **MSFT after close Wed 7/29**; META/AAPL/AMZN across the week — index swing factor, AI-capex focus.
+
+### Sector Momentum — VALUE COHORT STILL LEADS YTD; RISK OF A GROWTH BOUNCE
+- **Energy** #1 YTD (~+22-27%) — book doesn't hold; oil's softness cools the chase further.
+- **Materials (XLB ✓)** ~+13-18%, **Staples (XLP ✓)** ~+10-16%, **Industrials (XLI ✓)** ~+10-14% — all in the leading value quadrant; book aligned with YTD leadership.
+- **Technology** ~-3% to -6% YTD — the laggard — but a dovish FOMC / strong mega-cap prints could spark a rotation back into growth, a near-term crosswind against the value book (XLP softest in risk-on sessions).
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a clean fresh setup)
+1. **Redeploy the ~$42k cash / close the 60.4%→~78% gap — a POST-FOMC market-open decision, still patient.** Needs a fresh 4th leadership name (existing three at/near the 20% cap). Forcing a value add the day before the FOMC decision + into the mega-cap-tech slate is a poor entry — wait for the Wed post-FOMC read. Do NOT chase energy after its ceasefire drop (no base).
+2. **XLB/XLP/XLI small top-ups — low value.** At/near the 20% cap; not enough room to move deployment; skip.
+3. **Avoid:** chasing energy on the oil drop; forcing a redeploy ahead of Wed FOMC + mega-cap tech prints; adding over the 20% cap.
+
+### Risk Factors
+- **FOMC Wed 7/29 + mega-cap tech (MSFT/META/AAPL/AMZN):** binary/vol-heavy stretch (VIX already bid to ~21) — argues for waiting on redeploy, not pre-positioning.
+- **Growth-rotation crosswind:** a dovish FOMC or hot tech prints could pull flows back into lagging tech, pressuring the value book short-term (esp. XLP); theses are YTD-momentum-based, not broken by one risk-on session.
+- **Oil two-sided:** softness eases XLI/XLP inputs but cools XLB's tailwind; a re-escalation headline reverses both.
+- **Deployment 60.4% (below band):** the standing issue — needs a disciplined redeploy, but not into this week's front-loaded event risk. Patience > activity.
+- **Q2 GDP + core PCE Thu:** growth/inflation prints can move rates-sensitive cyclicals (XLI) and set the post-FOMC tone.
+
+### Decision
+**HOLD — no new orders pre-market.** FOMC decision lands tomorrow and the full mega-cap-tech slate follows; VIX is already bid to ~21. Wrong day to force a value redeploy or pre-position. Week 0/3, no clean fresh base pre-market — patience.
+- **XLP / XLB / XLI:** HOLD. Leading value cohort, all green, 8.3-9.3% above stops, theses intact YTD. Today's KO/Mondelez (staples) + Boeing/UPS (industrials) prints are read-throughs to watch but no held name reports. No action.
+- **Redeployment (60.4%, below band):** flag for **post-FOMC (Wed pm / Thu)** — patiently deploy the ~$42k into a clean fresh 4th leadership name once the decision clears. Do NOT chase energy or force a trade into the FOMC/earnings. 3 trades available.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+---
