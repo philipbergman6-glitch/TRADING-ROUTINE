@@ -1920,3 +1920,8 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value bo
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
 
 ---
+
+### 2026-07-29 — Midday Addendum (1:07pm ET, ~1hr pre-FOMC)
+XLI down a sharp -2.63% intraday (worst of the book) with no obvious held-name catalyst — ran a Perplexity check. Finding: **macro-driven, not industrials-specific**. Industrial earnings scorecard this week is broadly strong (19/22 names beat EPS), no Boeing/UPS/Caterpillar miss surfaced. Cleanest read is pre-FOMC risk reduction in cyclicals ahead of the 2pm decision (~32-38% hike odds still priced), not a thesis break. XLB and XLP intraday moves (-1.40%, +0.66%) are consistent with the same broad pre-FOMC de-risking / defensive-bid pattern — no separate check needed. No action taken; all three positions remain 5.6-9.6% above their stops. Redeployment decision still deferred to post-FOMC/Thursday per pre-market plan.
+
+---
