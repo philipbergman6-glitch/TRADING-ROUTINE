@@ -827,3 +827,19 @@ Equity $106,782.92, cash $42,114.65 (39.4%), deployed 60.6% ($64,668.27 mkt valu
 Equity $105,890.40, cash $42,114.65 (39.8%), deployed 60.2% ($63,775.75 mkt value) — still **below the 75-85% band**; redeployment remains a post-FOMC (today ≥2pm ET) / Thursday market-open decision, not a forced midday trade — no action taken now. Weights: XLP 20.7%, XLB 20.1%, XLI 19.5% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). One Perplexity check run on XLI's sharp intraday drop — macro/pre-FOMC de-risking, not thesis-breaking; no cut. Week 0/3. No email sent (no action taken).
 
 ---
+
+### Jul 29 — EOD Snapshot (Day 66, Wednesday, FOMC decision day)
+**Portfolio:** $105,942.93 | **Cash:** $42,114.65 (39.8%) | **Day P&L:** -$669.64 (-0.63%) | **Phase P&L:** +$5,942.93 (+5.94%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLP | 250 | $83.76 | $87.48 | +0.48% | +$930.00 (+4.44%) | $79.902 (10% trail GTC) |
+| XLB | 412 | $51.07 | $52.09 | -0.48% | +$420.11 (+2.00%) | $47.4975 (10% trail GTC) |
+| XLI | 116 | $182.16 | $176.70 | -3.17% | -$633.36 (-3.00%) | $167.8005 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Modest red day on FOMC decision — equity -$669.64 to $105,942.93 (Day P&L -0.63%), phase eases off Tuesday's high to +5.94%. The drag was entirely XLI, which fell -3.17% to $176.70 (now -3.00% vs entry) on broad pre-/post-FOMC de-risking of cyclicals (macro, not an industrials earnings miss — 19/22 industrial names beat this week per midday Perplexity check); thesis intact, well above the -7% cut and ~5.3% above its stop. Defensives held: XLP led +0.48% to $87.48 (+4.44% vs entry, our best position) on the pre-FOMC defensive bid; XLB slipped -0.48% to $52.09 but stays +2.00% vs entry. All theses intact. No trades: week 0/3 — FOMC day was not the moment to force an entry into the deployment gap. 3 positions (≤6): XLP 20.6%, XLB 20.3%, XLI 19.3% — all at/under the 20% cap, no adds. Deployment 60.2% ($63,828.28 mkt value / $105,942.93 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.8%. All three 10% trailing GTC stops confirmed active and intact (XLP $79.902/hwm $88.78; XLB $47.4975/hwm $52.775; XLI $167.8005/hwm $186.445); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Tomorrow (Thu): pre-market read of the post-FOMC tape — hunt for a leader to close the ~15-25% deployment gap (3 trades available); watch whether XLI's cyclical drop was a one-day de-risk or the start of a rotation, and whether the defensive XLP bid persists.
+
+---
