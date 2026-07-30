@@ -41,6 +41,31 @@ def test_hard_fails_on_malformed_portfolio_line():
         b.parse_trade_log(text)
 
 
+def test_phase_day_parsed_and_monotonic():
+    snaps, _, _ = build()
+    assert snaps[0]["n"] == 0
+    ns = [s["n"] for s in snaps]
+    assert ns == sorted(ns), f"phase day numbers out of order: {ns}"
+    assert snaps[-1]["n"] >= 66
+
+
+def test_hard_fails_on_missing_phase_day():
+    text = b.TRADE_LOG.read_text(encoding="utf-8").replace(
+        "— EOD Snapshot (Day 66,", "— EOD Snapshot (")
+    with pytest.raises(b.ParseError):
+        b.parse_trade_log(text)
+
+
+def test_live_figures_are_not_frozen_in_static_tail():
+    """The curated tail must carry placeholders, never a baked-in number."""
+    assert "__DEPLOYED__" in b.STATIC_TAIL
+    assert "__DAYS__" in b.STATIC_TAIL
+    snaps, weeks, out = build()
+    assert "__" not in out.split("const TRADES")[1], "placeholder left unsubstituted"
+    assert f"now {100 - snaps[-1]['cash']:.1f}%" in out
+    assert f"in {snaps[-1]['n']} days" in out
+
+
 def test_hard_fails_on_missing_week_return():
     text = b.WEEKLY_REVIEW.read_text(encoding="utf-8").replace(
         "| Week return |", "| Wk return |")

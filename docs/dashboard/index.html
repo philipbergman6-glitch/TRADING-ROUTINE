@@ -132,11 +132,11 @@
 
   <div class="topbar">
     <span class="logo"><span class="tick">▲</span> TRADING-ROUTINE <span class="dim">/ portfolio terminal</span></span>
-    <span class="lamp live"><i></i> LIVE · LAST AGENT RUN TODAY 11:34</span>
+    <span class="lamp live" id="lampLive"><i></i> LIVE</span>
     <span class="lamp paper"><i></i> PAPER · ALPACA $100K</span>
     <span class="lamp real"><i></i> REAL-MONEY PHASE AUG 02</span>
     <span class="spacer"></span>
-    <span class="asof">day 64 · APR 28 – JUL 28 2026<br>source: origin/main logs · nothing estimated</span>
+    <span class="asof" id="asof">source: origin/main logs · nothing estimated</span>
   </div>
 
   <div class="kpis" id="kpis"></div>
@@ -145,13 +145,13 @@
 
     <!-- equity -->
     <div class="panel c8" style="--pc: var(--green)">
-      <div class="panel-h"><span class="t">Equity curve</span><span class="sub">38 logged snapshots, TRADE-LOG.md verbatim · hover any point</span></div>
+      <div class="panel-h"><span class="t">Equity curve</span><span class="sub" id="subEq">TRADE-LOG.md verbatim · hover any point</span></div>
       <div class="panel-b"><svg id="eqSvg" width="100%" height="295"></svg></div>
     </div>
 
     <!-- current book -->
     <div class="panel c4" style="--pc: var(--green)">
-      <div class="panel-h"><span class="t">Current book</span><span class="sub">Jul 27 EOD · all green</span></div>
+      <div class="panel-h"><span class="t">Current book</span><span class="sub" id="subBook"></span></div>
       <div class="panel-b" id="book"></div>
       <div class="panel-h" style="border-top:1px solid var(--line-soft)"><span class="t" style="--pc:var(--amber)">Open risk</span></div>
       <div class="panel-b" id="risk" style="padding-top:6px;"></div>
@@ -165,13 +165,13 @@
 
     <!-- weekly vs S&P -->
     <div class="panel c5" style="--pc: var(--violet)">
-      <div class="panel-h"><span class="t">Week vs S&amp;P 500</span><span class="sub">WEEKLY-REVIEW.md, since reviews began Jun 12</span></div>
+      <div class="panel-h"><span class="t">Week vs S&amp;P 500</span><span class="sub" id="subWk">WEEKLY-REVIEW.md</span></div>
       <div class="panel-b"><svg id="wkSvg" width="100%" height="220"></svg></div>
     </div>
 
     <!-- day pnl -->
     <div class="panel c12" style="--pc: var(--violet)">
-      <div class="panel-h"><span class="t">Logged day P&amp;L</span><span class="sub">37 EOD prints · flat stretch = the 100%-cash idle week Jun 17–24</span></div>
+      <div class="panel-h"><span class="t">Logged day P&amp;L</span><span class="sub" id="subPnl">flat stretch = the 100%-cash idle week Jun 17–24</span></div>
       <div class="panel-b"><svg id="pnlSvg" width="100%" height="170"></svg></div>
     </div>
 
@@ -202,7 +202,7 @@
 
   </div>
 
-  <p class="fine"><b>Provenance.</b> All figures verbatim from <b>origin/main</b> of the TRADING-ROUTINE repo, read 2026-07-28 (the local clone was 97 commits stale — always read the remote; the cloud crons push straight to main). Equity, cash %, day P&amp;L, positions, stops: <b>memory/TRADE-LOG.md</b>. Weekly stats &amp; S&amp;P comparison: <b>memory/WEEKLY-REVIEW.md</b>. Decisions: <b>memory/RESEARCH-LOG.md</b>. Rules: <b>CLAUDE.md</b>. Paper Alpaca account — no real capital at risk in this window. Apr–May exits (AMD, PLTR, MU, AVGO) predate the weekly-review era and were never logged; those rows say so rather than guess.</p>
+  <p class="fine"><b>Provenance.</b> All figures verbatim from <b>origin/main</b> of the TRADING-ROUTINE repo, latest log <b id="provDate"></b> (the local clone was 97 commits stale — always read the remote; the cloud crons push straight to main). Equity, cash %, day P&amp;L, positions, stops: <b>memory/TRADE-LOG.md</b>. Weekly stats &amp; S&amp;P comparison: <b>memory/WEEKLY-REVIEW.md</b>. Decisions: <b>memory/RESEARCH-LOG.md</b>. Rules: <b>CLAUDE.md</b>. Paper Alpaca account — no real capital at risk in this window. Apr–May exits (AMD, PLTR, MU, AVGO) predate the weekly-review era and were never logged; those rows say so rather than guess.</p>
 </div>
 
 <script src="data.js"></script>
@@ -215,28 +215,72 @@ const hideTT = ()=> tt.style.display='none';
 const usd = v => (v<0?'−$':'+$') + Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2});
 const usd0 = v => '$' + v.toLocaleString('en-US',{minimumFractionDigits:2});
 const day = d => (new Date(d+'T12:00:00') - new Date('2026-04-27T12:00:00'))/864e5;
-const SPAN = day('2026-07-27');
+
+// ================= DERIVED =================
+// Every date and figure below comes from data.js, which the EOD cron regenerates
+// from memory/. Do not hardcode either here — that is what went stale before.
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dLbl = d => { const [,m,dd] = d.split('-'); return `${MON[+m-1]} ${dd}`; };
+const FIRST = EQ[0], LAST = EQ.at(-1);
+const SPAN = day(LAST.d) || 1;
+const last = LAST.v, peak = Math.max(...EQ.map(p=>p.v)), peakP = EQ.find(p=>p.v===peak);
+const cashUsd = last * LAST.cash / 100;
+const deployed = +(100 - LAST.cash).toFixed(1);
+const phasePL = (last/FIRST.v - 1) * 100;
+const pct = v => (v<0?'−':'+') + Math.abs(v).toFixed(2) + '%';
+const usdR = v => (v<0?'−$':'+$') + Math.abs(Math.round(v)).toLocaleString('en-US');
+const band = deployed < 75 ? 'below band' : deployed > 85 ? 'above band' : 'in band';
+const bandC = band === 'in band' ? 'up' : 'warn';
+
+// worst peak-to-trough on the logged curve
+const DD = (()=>{ let rp = FIRST, w = {dd:0, pk:FIRST, tr:FIRST};
+  for (const p of EQ) { if (p.v > rp.v) rp = p;
+    const dd = (p.v - rp.v)/rp.v*100;
+    if (dd < w.dd) w = {dd, pk:rp, tr:p}; }
+  return w; })();
+
+// realized P&L: only closed rows that actually carry a written exit
+const CLOSED = TRADES.filter(t => t.pl && !t.open);
+const realized = CLOSED.reduce((s,t) => s + Number(t.pl.v.replace(/,/g,'').replace('−','-')), 0);
+const wins = CLOSED.filter(t => t.pl.up).length;
+
+// month gridline ticks — one per calendar month the curve spans
+const MTICKS = (()=>{ const out = [], end = LAST.d.slice(0,7);
+  let [y,m] = FIRST.d.split('-').map(Number);
+  for (let i=0; i<120; i++) { if (++m > 12) { m = 1; y++; }
+    const k = `${y}-${String(m).padStart(2,'0')}`;
+    if (k > end) break;
+    out.push([`${k}-01`, MON[m-1].toUpperCase()]); }
+  return out; })();
+
+$('lampLive').innerHTML = `<i></i> LIVE · LAST LOG ${dLbl(LAST.d).toUpperCase()} EOD`;
+$('asof').innerHTML = `day ${LAST.n} · ${dLbl(FIRST.d).toUpperCase()} – ${dLbl(LAST.d).toUpperCase()} ${LAST.d.slice(0,4)}<br>source: origin/main logs · nothing estimated`;
+$('provDate').textContent = LAST.d;
+$('subEq').textContent = `${EQ.length} logged snapshots, TRADE-LOG.md verbatim · hover any point`;
+$('subBook').textContent = `${dLbl(LAST.d)} EOD · ${BOOK.every(p=>p.pl>=0) ? 'all green' : `${BOOK.filter(p=>p.pl>=0).length}/${BOOK.length} green`}`;
+$('subWk').textContent = `WEEKLY-REVIEW.md, since reviews began ${dLbl('0-'+WEEKS[0].w.replace('/','-'))}`;
+$('subPnl').textContent = `${EQ.length-1} EOD prints · flat stretch = the 100%-cash idle week Jun 17–24`;
 
 // ---- KPIs ----
-const last = EQ.at(-1).v, peak = Math.max(...EQ.map(p=>p.v));
 $('kpis').innerHTML = [
-  {l:"equity · jul 27 eod", v:usd0(last), s:"3 positions · $42.1k cash", c:"var(--txt)", kc:"var(--cyan)"},
-  {l:"phase p&l · day 64", v:"+5.88%", s:usd(last-100000)+" on $100k paper", c:"var(--green)", kc:"var(--green)"},
-  {l:"peak", v:"+10.27%", s:usd0(peak)+" · jun 04", c:"var(--green)", kc:"var(--green)"},
-  {l:"max drawdown", v:"−5.01%", s:"−$5,528 · jun 04 → jul 23", c:"var(--red)", kc:"var(--red)"},
-  {l:"deployment", v:"60.2%", s:"mandate 75–85% · gap since GOOGL stop", c:"var(--amber)", kc:"var(--amber)"},
-  {l:"logged realized p&l", v:"−$5,531", s:"1W / 5L written · apr–may wins never logged", c:"var(--red)", kc:"var(--amber)"}
+  {l:`equity · ${dLbl(LAST.d).toLowerCase()} eod`, v:usd0(last), s:`${BOOK.length} positions · $${(cashUsd/1000).toFixed(1)}k cash`, c:"var(--txt)", kc:"var(--cyan)"},
+  {l:`phase p&l · day ${LAST.n}`, v:pct(phasePL), s:usd(last-FIRST.v)+` on $${(FIRST.v/1000).toFixed(0)}k paper`, c:phasePL>=0?"var(--green)":"var(--red)", kc:phasePL>=0?"var(--green)":"var(--red)"},
+  {l:"peak", v:pct((peak/FIRST.v-1)*100), s:usd0(peak)+" · "+dLbl(peakP.d).toLowerCase(), c:"var(--green)", kc:"var(--green)"},
+  {l:"max drawdown", v:pct(DD.dd), s:`${usdR(DD.tr.v-DD.pk.v)} · ${dLbl(DD.pk.d).toLowerCase()} → ${dLbl(DD.tr.d).toLowerCase()}`, c:"var(--red)", kc:"var(--red)"},
+  {l:"deployment", v:deployed+"%", s:`mandate 75–85% · ${band}`, c:bandC==='up'?"var(--green)":"var(--amber)", kc:bandC==='up'?"var(--green)":"var(--amber)"},
+  {l:"logged realized p&l", v:usdR(realized), s:`${wins}W / ${CLOSED.length-wins}L written · apr–may wins never logged`, c:realized>=0?"var(--green)":"var(--red)", kc:"var(--amber)"}
 ].map(k=>`<div class="kpi" style="--kc:${k.kc}"><div class="l">${k.l}</div><div class="v mono" style="color:${k.c}">${k.v}</div><div class="s">${k.s}</div></div>`).join('');
 
 // ---- Equity chart ----
 (function(){
   const svg = $('eqSvg'), W = svg.clientWidth||860, H=295, L=58, R=16, T=20, B=32;
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  const vmin=99000, vmax=111500;
+  const lo = Math.min(...EQ.map(p=>p.v)), hi = Math.max(...EQ.map(p=>p.v));
+  const vmin = Math.floor((lo-1000)/1000)*1000, vmax = Math.ceil((hi+1000)/1000)*1000;
   const x = d => L + day(d)/SPAN*(W-L-R);
   const y = v => T + (1-(v-vmin)/(vmax-vmin))*(H-T-B);
   let g='';
-  for(let v=100000; v<=110000; v+=2000){
+  for(let v=Math.ceil(vmin/2000)*2000; v<=vmax; v+=2000){
     g+=`<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" stroke="${v===100000?'#2A3550':'#161E30'}" ${v===100000?'stroke-dasharray="4 4"':''}/>`;
     g+=`<text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="10" fill="#454F66">${v/1000}k</text>`;
   }
@@ -252,10 +296,10 @@ $('kpis').innerHTML = [
     g+=`<circle data-e="${i}" cx="${x(p.d)}" cy="${y(p.v)}" r="${p.note?4.5:3}" fill="#0B0E14" stroke="${p.note?'#2BD576':'#1E5B3C'}" stroke-width="${p.note?2:1.5}" style="cursor:pointer"/>`;
   });
   // month ticks
-  [["2026-05-01","MAY"],["2026-06-01","JUN"],["2026-07-01","JUL"]].forEach(([d,l])=>{
+  MTICKS.forEach(([d,l])=>{
     g+=`<text x="${x(d)}" y="${H-10}" font-size="9.5" fill="#454F66">${l}</text>`;
   });
-  g+=`<text x="${x('2026-06-04')}" y="${y(peak)-10}" text-anchor="middle" font-size="10.5" fill="#2BD576">▲ peak +10.27%</text>`;
+  g+=`<text x="${x(peakP.d)}" y="${y(peak)-10}" text-anchor="middle" font-size="10.5" fill="#2BD576">▲ peak ${pct((peak/FIRST.v-1)*100)}</text>`;
   g+=`<text x="${x('2026-06-19')}" y="${y(106111)-12}" text-anchor="middle" font-size="9.5" fill="#38C8E8" opacity="0.85">idle cash wk</text>`;
   g+=`<text x="${x('2026-07-23')}" y="${y(104741.7)+18}" text-anchor="middle" font-size="10" fill="#FF4D5E">GOOGL stop</text>`;
   g+=`<text x="${x('2026-06-30')}" y="${y(107390)+22}" text-anchor="middle" font-size="9.5" fill="#FFB020">band reached</text>`;
@@ -269,20 +313,21 @@ $('kpis').innerHTML = [
 // ---- Current book ----
 $('book').innerHTML = BOOK.map(p=>{
   const cur = p.in * (1+p.plp/100);
-  const range = cur - p.stop, cushion = ((cur-p.stop)/cur*100).toFixed(1);
+  const cushion = (cur-p.stop)/cur*100;
+  const up = p.pl >= 0;
   return `<div class="pos">
     <span class="sym">${p.s}</span>
     <span class="bar-wrap">
-      <span class="meta"><span>stop ${p.stop}</span><span>${p.w}% of book · cushion ${cushion}%</span></span>
-      <span class="track"><span class="fill" style="left:0; width:${Math.min(100,cushion*10)}%; background:linear-gradient(90deg,#FF4D5E22,#2BD576);"></span></span>
+      <span class="meta"><span>stop ${p.stop}</span><span>${p.w}% of book · cushion ${cushion.toFixed(1)}%</span></span>
+      <span class="track"><span class="fill" style="left:0; width:${Math.max(0,Math.min(100,cushion*10))}%; background:linear-gradient(90deg,#FF4D5E22,#2BD576);"></span></span>
     </span>
-    <span class="pl up">+$${p.pl.toFixed(0)}<br><span class="faint" style="font-size:10px">+${p.plp}%</span></span>
+    <span class="pl ${up?'up':'dn'}">${up?'+':'−'}$${Math.abs(p.pl).toFixed(0)}<br><span class="faint" style="font-size:10px">${up?'+':'−'}${Math.abs(p.plp)}%</span></span>
   </div>`;
 }).join('');
 $('risk').innerHTML = `
-  <div class="rule"><span class="rt">Deployed</span><span class="rv warn">60.2% — below band</span></div>
-  <div class="rule"><span class="rt">Idle cash</span><span class="rv">$42,115 (39.8%)</span></div>
-  <div class="rule"><span class="rt">Correlation</span><span class="rv dn">3 sector ETFs, one macro bet</span></div>
+  <div class="rule"><span class="rt">Deployed</span><span class="rv ${bandC}">${deployed}% — ${band}</span></div>
+  <div class="rule"><span class="rt">Idle cash</span><span class="rv">$${Math.round(cashUsd).toLocaleString('en-US')} (${LAST.cash}%)</span></div>
+  <div class="rule"><span class="rt">Correlation</span><span class="rv dn">${BOOK.length}-position book, one macro bet</span></div>
   <div class="rule"><span class="rt">Single-name engine</span><span class="rv dn">none since GOOGL stop</span></div>
   <div class="rule"><span class="rt">Next binary</span><span class="rv">FOMC Jul 28–31 · no new risk</span></div>`;
 
@@ -302,7 +347,7 @@ $('risk').innerHTML = `
   // step-ish line
   g+=`<polyline points="${dep.map(p=>`${x(p.d)},${y(p.v)}`).join(' ')}" fill="none" stroke="#38C8E8" stroke-width="2"/>`;
   dep.forEach((p,i)=>{ g+=`<circle data-d="${i}" cx="${x(p.d)}" cy="${y(p.v)}" r="3.5" fill="#0B0E14" stroke="#38C8E8" stroke-width="1.5" style="cursor:pointer"/>`; });
-  [["2026-05-01","MAY"],["2026-06-01","JUN"],["2026-07-01","JUL"]].forEach(([d,l])=>{
+  MTICKS.forEach(([d,l])=>{
     g+=`<text x="${x(d)}" y="${H-8}" font-size="9.5" fill="#454F66">${l}</text>`;
   });
   g+=`<text x="${x('2026-07-08')}" y="${y(79.5)-9}" text-anchor="middle" font-size="9.5" fill="#2BD576">in band 3½ wks</text>`;
@@ -318,12 +363,14 @@ $('risk').innerHTML = `
 (function(){
   const svg=$('wkSvg'), W=svg.clientWidth||520, H=220, L=44, R=10, T=16, B=30;
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  const vmax=2.6, vmin=-2.6;
+  const vmax = Math.max(1, ...WEEKS.flatMap(w=>[Math.abs(w.bot),Math.abs(w.spx)])) + 0.4;
+  const vmin = -vmax;
   const y=v=>T+(vmax-v)/(vmax-vmin)*(H-T-B);
   const gw=(W-L-R)/WEEKS.length;
   let g=`<line x1="${L}" y1="${y(0)}" x2="${W-R}" y2="${y(0)}" stroke="#2A3550"/>`;
-  [-2,-1,0,1,2].forEach(v=>{ g+=`<text x="${L-7}" y="${y(v)+3.5}" text-anchor="end" font-size="10" fill="#454F66">${v}%</text>`;
-    if(v) g+=`<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" stroke="#141B2B"/>`; });
+  for(let v=-Math.floor(vmax); v<=Math.floor(vmax); v++){
+    g+=`<text x="${L-7}" y="${y(v)+3.5}" text-anchor="end" font-size="10" fill="#454F66">${v}%</text>`;
+    if(v) g+=`<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" stroke="#141B2B"/>`; }
   WEEKS.forEach((w,i)=>{
     const cx=L+gw*i;
     const bw=gw*0.28;
@@ -348,19 +395,21 @@ $('risk').innerHTML = `
   const svg=$('pnlSvg'), W=svg.clientWidth||1200, H=170, L=44, R=10, T=12, B=26;
   svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
   const data = EQ.slice(1); // skip day 0
-  const vmax=1.2, vmin=-3.8;
+  const vmax = Math.ceil(Math.max(1, ...data.map(p=>p.dp)) + 0.2);
+  const vmin = Math.floor(Math.min(-1, ...data.map(p=>p.dp)) - 0.2);
   const y=v=>T+(vmax-v)/(vmax-vmin)*(H-T-B);
   const x=d=>L+day(d)/SPAN*(W-L-R);
   let g=`<line x1="${L}" y1="${y(0)}" x2="${W-R}" y2="${y(0)}" stroke="#2A3550"/>`;
-  [-3,-2,-1,0,1].forEach(v=>{ g+=`<text x="${L-7}" y="${y(v)+3.5}" text-anchor="end" font-size="10" fill="#454F66">${v}%</text>`; });
+  for(let v=vmin; v<=vmax; v++){ g+=`<text x="${L-7}" y="${y(v)+3.5}" text-anchor="end" font-size="10" fill="#454F66">${v}%</text>`; }
   data.forEach((p,i)=>{
     const up=p.dp>=0;
     g+=`<rect data-p="${i}" x="${x(p.d)-4}" y="${up?y(p.dp):y(0)}" width="8" height="${Math.max(1,Math.abs(y(p.dp)-y(0)))}" fill="${up?'#2BD576':'#FF4D5E'}" opacity="0.85" rx="1.5" style="cursor:pointer"/>`;
   });
-  [["2026-05-01","MAY"],["2026-06-01","JUN"],["2026-07-01","JUL"]].forEach(([d,l])=>{
+  MTICKS.forEach(([d,l])=>{
     g+=`<text x="${x(d)}" y="${H-8}" font-size="9.5" fill="#454F66">${l}</text>`;
   });
-  g+=`<text x="${x('2026-06-04')}" y="${y(-3.59)+12}" text-anchor="middle" font-size="9" fill="#FF4D5E">−3.6%</text>`;
+  const worst = data.reduce((a,p)=>p.dp<a.dp?p:a, data[0]);
+  g+=`<text x="${x(worst.d)}" y="${y(worst.dp)+12}" text-anchor="middle" font-size="9" fill="#FF4D5E">${worst.dp.toFixed(1)}%</text>`;
   svg.innerHTML=g;
   svg.onmousemove = e=>{ const t=e.target.closest('rect[data-p]'); if(!t) return hideTT();
     const p=data[+t.dataset.p];

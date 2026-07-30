@@ -82,7 +82,8 @@ def js_str(s):
 # TRADE-LOG.md -> EQ + BOOK
 # --------------------------------------------------------------------------
 
-SNAP_HDR = re.compile(r"^#{2,3}\s+(.+?)\s+—\s+(EOD Snapshot|Midday Cut)\b")
+SNAP_HDR = re.compile(r"^#{2,3}\s+(.+?)\s+—\s+(EOD Snapshot|Midday Cut)\b(.*)$")
+DAY_NO = re.compile(r"\(Day\s+(\d+)\b")
 PORTFOLIO = re.compile(
     r"^\*\*Portfolio:\*\*\s+(\$[\d,]+(?:\.\d+)?)\s+\|\s+"
     r"\*\*Cash:\*\*\s+\$[\d,]+(?:\.\d+)?\s+\(([\d.]+)%\)\s+\|\s+"
@@ -103,6 +104,14 @@ def parse_trade_log(text):
             continue
         d = parse_header_date(m.group(1).split("(")[0])
         kind = m.group(2)
+        # phase day number — "Day 0" baseline carries none, every other header must
+        if m.group(1).strip() == "Day 0":
+            n = 0
+        else:
+            nm = DAY_NO.search(m.group(3))
+            if not nm:
+                fail(f"snapshot '{lines[i].strip()}' has no '(Day N' phase counter")
+            n = int(nm.group(1))
         # the **Portfolio:** line must follow within a few lines
         pm = None
         for j in range(i + 1, min(i + 4, len(lines))):
@@ -112,7 +121,7 @@ def parse_trade_log(text):
         if not pm:
             fail(f"snapshot '{lines[i].strip()}' has no **Portfolio:** line")
         dp = parse_pct(pm.group(4) + "%") if pm.group(4) else 0.0
-        snap = {"d": d, "kind": kind, "v": parse_money(pm.group(1)),
+        snap = {"d": d, "n": n, "kind": kind, "v": parse_money(pm.group(1)),
                 "cash": float(pm.group(2)), "dp": dp, "positions": None}
         # positions table (EOD snapshots)
         for j in range(i + 1, min(i + 8, len(lines))):
@@ -265,15 +274,15 @@ const FEED = [
 {d:"06/30", b:"trade",x:"XLP added — <b>deployment inside the 75–85% band for the first time</b> (79.4%)."},
 {d:"07/23", b:"cut",  x:"GOOGL gaps through stop post-Q2 (capex fear): <b>−3.99%</b>. Pre-market call: no re-entry into the fear. Held."},
 {d:"07/24", b:"sys",  x:"Weekly review: <b>all-ETF book has no independent engine</b> — sourcing a single-name is 'the book's missing half'."},
-{d:"07/28", b:"hold", x:"Pre-market ran 11:34 today. FOMC Jul 28–31: no new risk into the decision."}
+{d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."}
 ];
 
 const RULES = [
 {ok:"✓", c:"up",   t:"10% trailing GTC on every position", v:"'spotless 4 straight weeks' · none lowered"},
-{ok:"✓", c:"up",   t:"Max 3 trades/wk · 20% cap · ≤6 positions", v:"never breached in 64 days"},
+{ok:"✓", c:"up",   t:"Max 3 trades/wk · 20% cap · ≤6 positions", v:"never breached in __DAYS__ days"},
 {ok:"✓", c:"up",   t:"Cut on thesis break, don't wait for −7%", v:"XOM Jun 15 at −5.6%"},
 {ok:"✓", c:"up",   t:"Exit sector after 2 failed trades", v:"tech flagged Jun 09, re-entry gated"},
-{ok:"△", c:"warn", t:"75–85% deployed", v:"reached Jun 30 · lost Jul 23 · now 60.2%"},
+{ok:"△", c:"warn", t:"75–85% deployed", v:"reached Jun 30 · lost Jul 23 · now __DEPLOYED__%"},
 {ok:"✗", c:"dn",   t:"Trim a stalled +10–15% single-name", v:"GOOGL flagged, not trimmed → round-trip"}
 ];
 
@@ -307,8 +316,8 @@ def emit(snaps, weeks):
         dp = "0" if s["dp"] == 0 else fmt(s["dp"], 2)
         note = EQ_NOTES.get(s["d"], "")
         eq_rows.append(
-            f'{{d:{js_str(s["d"])},v:{fmt(s["v"], 2)},cash:{fmt(s["cash"], 1)},'
-            f'dp:{dp},note:{js_str(note)}}}')
+            f'{{d:{js_str(s["d"])},n:{s["n"]},v:{fmt(s["v"], 2)},'
+            f'cash:{fmt(s["cash"], 1)},dp:{dp},note:{js_str(note)}}}')
 
     week_rows = [
         f'{{w:{js_str(w["w"])}, bot:{fmt(w["bot"], 2)}, spx:{fmt(w["spx"], 2)}}}'
@@ -320,17 +329,26 @@ def emit(snaps, weeks):
         f'plp:{fmt(b["plp"], 2)}, stop:{b["stop"]}, w:{fmt(b["w"], 1)}}}'
         for b in book]
 
+    # figures that must track the latest snapshot, not the day the text was written
+    subs = {"__DEPLOYED__": fmt(100 - snaps[-1]["cash"], 1),
+            "__DAYS__": str(snaps[-1]["n"])}
+    static_tail = STATIC_TAIL
+    for token, value in subs.items():
+        if token not in static_tail:
+            fail(f"STATIC_TAIL lost its {token} placeholder")
+        static_tail = static_tail.replace(token, value)
+
     return (
-        "// ================= DATA — origin/main, read 2026-07-28 =================\n"
+        f"// ============ DATA — origin/main, latest log {snaps[-1]['d']} ============\n"
         "\n"
-        "// {d, v: portfolio $, cash: cash %, dp: day P&L %}\n"
+        "// {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}\n"
         "const EQ = [\n" + ",\n".join(eq_rows) + "\n];\n"
         "\n"
         "// weekly reviews, verbatim\n"
         "const WEEKS = [\n" + ",\n".join(week_rows) + "\n];\n"
         "\n"
         f"const BOOK = [ // {book_label} EOD\n" + ",\n".join(book_rows) + "\n];\n"
-        "\n" + STATIC_TAIL
+        "\n" + static_tail
     )
 
 
