@@ -1974,3 +1974,8 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value bo
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
 
 ---
+
+### 2026-07-30 — Midday Addendum
+XLP down a sharp -2.36% intraday (worst of the book, off yesterday's close) with no obvious held-name catalyst — ran a Perplexity check. Finding: **macro-driven, not staples-specific**. No MO/CL/CVS/KO/PG earnings miss, guidance cut, or downgrade surfaced; cleanest read is a broad market move tied to today's Q2 GDP + June core PCE inflation print reducing Fed cut expectations, with staples caught in the broad pullback rather than getting the usual defensive bid. Not a thesis break — no cut. XLI (-2.64% vs entry, up small intraday) and XLB (+0.93% vs entry) show no sharp/unexplained moves — no separate check needed. No action taken; all three positions remain ~5.4-7.9% above their stops. Redeployment decision still deferred per pre-market plan; no clean 4th-leader setup surfaced this scan.
+
+---
