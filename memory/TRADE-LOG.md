@@ -843,3 +843,19 @@ Equity $105,890.40, cash $42,114.65 (39.8%), deployed 60.2% ($63,775.75 mkt valu
 **Notes:** Modest red day on FOMC decision — equity -$669.64 to $105,942.93 (Day P&L -0.63%), phase eases off Tuesday's high to +5.94%. The drag was entirely XLI, which fell -3.17% to $176.70 (now -3.00% vs entry) on broad pre-/post-FOMC de-risking of cyclicals (macro, not an industrials earnings miss — 19/22 industrial names beat this week per midday Perplexity check); thesis intact, well above the -7% cut and ~5.3% above its stop. Defensives held: XLP led +0.48% to $87.48 (+4.44% vs entry, our best position) on the pre-FOMC defensive bid; XLB slipped -0.48% to $52.09 but stays +2.00% vs entry. All theses intact. No trades: week 0/3 — FOMC day was not the moment to force an entry into the deployment gap. 3 positions (≤6): XLP 20.6%, XLB 20.3%, XLI 19.3% — all at/under the 20% cap, no adds. Deployment 60.2% ($63,828.28 mkt value / $105,942.93 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.8%. All three 10% trailing GTC stops confirmed active and intact (XLP $79.902/hwm $88.78; XLB $47.4975/hwm $52.775; XLI $167.8005/hwm $186.445); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Tomorrow (Thu): pre-market read of the post-FOMC tape — hunt for a leader to close the ~15-25% deployment gap (3 trades available); watch whether XLI's cyclical drop was a one-day de-risk or the start of a rotation, and whether the defensive XLP bid persists.
 
 ---
+
+### Jul 30 — EOD Snapshot (Day 67, Thursday)
+**Portfolio:** $105,456.07 | **Cash:** $42,114.65 (39.9%) | **Day P&L:** -$486.86 (-0.46%) | **Phase P&L:** +$5,456.07 (+5.46%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLP | 250 | $83.76 | $85.49 | -2.14% | +$432.50 (+2.07%) | $79.902 (10% trail GTC) |
+| XLB | 412 | $51.07 | $51.64 | -0.19% | +$234.71 (+1.12%) | $47.4975 (10% trail GTC) |
+| XLI | 116 | $182.16 | $178.39 | +0.98% | -$437.32 (-2.07%) | $167.8005 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Mild red day — equity -$486.86 to $105,456.07 (Day P&L -0.46%), phase eases to +5.46%. A rotation day: the post-FOMC bid reversed the prior sector leadership. XLI, Wednesday's laggard, bounced +0.98% to $178.39 (still -2.07% vs entry) as cyclicals firmed post-FOMC; XLB slipped -0.19% to $51.64 (+1.12% vs entry) on the softer materials tape. The drag was XLP, which gave back -2.14% to $85.49 (still our best position at +2.07% vs entry) as the defensive bid unwound into the risk-on post-FOMC follow-through — a rotation out of defensives, not a thesis break; well above the -7% cut and ~7% above stop. All theses intact. No trades: week 0/3 — post-FOMC tape did not offer a clean leadership setup to force an entry into the deployment gap. 3 positions (<=6): XLP 20.3%, XLB 20.2%, XLI 19.6% — all at/under the 20% cap, no adds. Deployment 60.1% ($63,341.42 mkt value / $105,456.07 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.9%. All three 10% trailing GTC stops confirmed active and intact (XLP $79.902/hwm $88.78; XLB $47.4975/hwm $52.775; XLI $167.8005/hwm $186.445); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Tomorrow (Fri): weekly-review day — grade the week and reassess; pre-market read of whether the post-FOMC risk-on rotation (cyclicals up, defensives softening) has legs, and hunt for a leader to close the ~15-25% deployment gap (3 trades available).
+
+---
