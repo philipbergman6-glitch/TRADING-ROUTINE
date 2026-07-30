@@ -1925,3 +1925,52 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value bo
 XLI down a sharp -2.63% intraday (worst of the book) with no obvious held-name catalyst — ran a Perplexity check. Finding: **macro-driven, not industrials-specific**. Industrial earnings scorecard this week is broadly strong (19/22 names beat EPS), no Boeing/UPS/Caterpillar miss surfaced. Cleanest read is pre-FOMC risk reduction in cyclicals ahead of the 2pm decision (~32-38% hike odds still priced), not a thesis break. XLB and XLP intraday moves (-1.40%, +0.66%) are consistent with the same broad pre-FOMC de-risking / defensive-bid pattern — no separate check needed. No action taken; all three positions remain 5.6-9.6% above their stops. Redeployment decision still deferred to post-FOMC/Thursday per pre-market plan.
 
 ---
+
+## 2026-07-30 — Pre-market Research (Thursday, Day 67) — POST-FOMC (Fed held); Q2 GDP + PCE 8:30am; AAPL/AMZN AMC
+
+### Account
+- Equity: $105,781.83 | Cash: $42,114.65 (39.8%) | Buying power (RegT): $147,896.48
+- Deployed: $63,667.18 (60.2% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLP | 250 | $83.76 | $86.57 | +$702.50 (+3.36%) | 20.5% | $79.902 (10% trail GTC, hwm $88.78) — ~7.7% above |
+| XLB | 412 | $51.07 | $51.75 | +$280.03 (+1.33%) | 20.2% | $47.4975 (10% trail GTC, hwm $52.775) — ~8.2% above |
+| XLI | 116 | $182.16 | $178.48 | -$426.88 (-2.02%) | 19.6% | $167.8005 (10% trail GTC, hwm $186.445) — ~6.0% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value book; XLP/XLB green, XLI still -2.02% vs entry on Wed's cyclical de-risk but well above the -7% cut and ~6% above stop. None near +15%/+20% tighten triggers. **Deployment 60.2% — ~15-25% below band; redeploy is the standing open item, now post-FOMC and actionable at open after the 8:30 data.**
+
+### Market Context — FED HELD; GROWTH SPLIT (MSFT beat / META miss); Q2 GDP + JUNE PCE TODAY
+- **FOMC (Wed):** Fed **held rates steady** — the binary event cleared. Now a data-driven tape.
+- **Today 8:30am ET:** **advance Q2 GDP + June core PCE + weekly jobless claims** — high-impact growth/inflation prints that can move rates-sensitive cyclicals (XLI) and set the post-FOMC tone. **AAPL + AMZN report after close** — overnight index swing factor.
+- **Mega-cap read-through:** **MSFT beat** (Azure ARR >$100B); **META missed** with weaker guidance. Split growth signal — supports a selective AI-software bid but not a clean broad tech rotation; laggard tech still -3 to -6% YTD.
+- **Indices/VIX:** S&P E-minis modestly higher premarket (~7,477 mini, +12.5 / impl. open ~flat). **VIX ~20-21** — bid but not stressed; easing off the FOMC.
+- **Oil:** WTI **~$71**, Brent **~$74.76** — range-bound near post-ceasefire lows, noisy/two-sided feeds. Mild net positive for XLI/XLP input costs; cools XLB's materials tailwind — no thesis change.
+- **BMO earnings (read-throughs, no held name):** staples MO/CL/CVS (→XLP), materials LIN (→XLB), industrials ETN/PWR (→XLI), energy CVX/VLO/SHEL. Watch for confirming sector prints.
+
+### Sector Momentum — VALUE COHORT STILL LEADS; ENERGY #1 (book doesn't hold)
+- **Energy** #1 YTD (~+22-26%) — no position; noisy oil tape near ceasefire lows = no clean base to chase.
+- **Materials (XLB ✓)** ~+16-18%, **Staples (XLP ✓)** ~+16%, **Industrials (XLI ✓)** ~+12-14% — all in the leading value quadrant. Book aligned with YTD leadership.
+- **Technology** ~-3 to -6% YTD — laggard; MSFT/META split means no clean growth-rotation trigger yet.
+
+### Trade Ideas (week 0/3 — up to 3 available; default HOLD without a clean fresh setup)
+1. **Redeploy ~$42k cash / close the 60.2%→~78% gap — now a POST-FOMC, at-OPEN decision after the 8:30 data.** Needs a fresh 4th leadership name (existing three at/near 20% cap). Catalyst: post-FOMC + GDP/PCE read; Entry: on a clean fresh leader base once the 8:30 prints clear; Stop: 10% trail on entry; Target: min 2:1 R:R. Do NOT pre-position ahead of the 8:30 data.
+2. **XLB/XLP/XLI top-ups — low value.** At/near the 20% cap; not enough room to move deployment; skip.
+3. **Avoid:** chasing energy on the noisy oil tape (no base); forcing a redeploy ahead of the 8:30 GDP/PCE; adding over the 20% cap; chasing tech on a split MSFT/META signal.
+
+### Risk Factors
+- **8:30am Q2 GDP + June core PCE:** the day's swing — a hot PCE trims cut odds and pressures rates-sensitive cyclicals (XLI already soft); a cool print supports the tape. Argues against pre-positioning; wait for the read.
+- **AAPL + AMZN after close:** overnight gap risk for the broad index / mega-cap complex.
+- **Growth split (MSFT beat / META miss):** two-sided tech signal; a strong AAPL/AMZN could still spark a rotation crosswind vs the value book (esp. XLP).
+- **Oil two-sided/noisy:** eases XLI/XLP inputs but cools XLB tailwind; a re-escalation headline reverses fast.
+- **Deployment 60.2% (below band):** the standing issue — needs a disciplined redeploy into a fresh leader, not a forced trade. Patience > activity.
+
+### Decision
+**HOLD — no new orders pre-market.** FOMC cleared (Fed held), but Q2 GDP + June core PCE land at 8:30am ET and AAPL/AMZN report after close; VIX still bid ~20-21. Redeploy is now actionable but belongs at the open AFTER the 8:30 data, not pre-positioned. Week 0/3, no clean fresh base pre-market — patience.
+- **XLP / XLB / XLI:** HOLD. Leading value cohort; XLP/XLB green, XLI -2.02% but ~6% above stop and thesis intact (Wed drop was macro de-risk, not industrials-specific). No held name reports today. No action.
+- **Redeployment (60.2%, below band):** flag for **today's market open (post-8:30 data)** — patiently deploy ~$42k into a clean fresh 4th leadership name if a base sets up. Do NOT chase energy or force a trade. 3 trades available.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+---
