@@ -1974,3 +1974,51 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. All-ETF value bo
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
 
 ---
+
+## 2026-07-31 — Pre-market Research (Friday, Day 68) — MONTH-END + WEEKLY-REVIEW DAY; OIL RE-SPIKE ~+$10; 8:30 ECI; risk-on (AMZN beat)
+
+### Account
+- Equity: $105,655.65 | Cash: $42,114.65 (39.9%) | Buying power (RegT): $147,770.30
+- Deployed: $63,541 (60.1% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLP | 250 | $83.76 | $85.30 | +$385.00 (+1.84%) | 20.2% | $79.902 (10% trail GTC, hwm $88.78) — ~6.3% above |
+| XLB | 412 | $51.07 | $51.64 | +$234.71 (+1.12%) | 20.1% | $47.4975 (10% trail GTC, hwm $52.775) — ~8.0% above |
+| XLI | 116 | $182.16 | $180.52 | -$190.24 (-0.90%) | 19.8% | $167.8005 (10% trail GTC, hwm $186.445) — ~7.0% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered. XLP/XLB green, XLI near-flat (recovered off Wed's cyclical de-risk, +0.98% Thu, +1.19% premarket read). None near +15%/+20% tighten triggers. **Deployment 60.1% — ~15-25% below band; redeploy is the standing open item, actionable at open after the 8:30 ECI.**
+
+### Market Context — RISK-ON (AMZN beat / AAPL soft); OIL RE-SPIKED; 8:30 ECI + Chicago PMI + UMich final
+- **Indices/VIX:** S&P futures **+0.5%**, Nasdaq-100 **+1.1%**, Dow **+0.5%** premarket — risk-on. **VIX ~17** (Jul 30 close 17.09, easing from ~19-20) — calm, post-FOMC de-stress continues.
+- **Mega-cap read-through:** **AMZN beat** (premarket surge, lifting Nasdaq); **AAPL soft/disappointed** — net supportive tech sentiment but stock-specific. Not a clean broad rotation; tech still -3 to -6% YTD.
+- **Oil:** WTI **~$82-84** (front-month $82-84.60), Brent **~$85-88** — **re-spiked ~+$10 from the ~$71 post-ceasefire lows** of last week. Reinforces Energy's #1 YTD leadership and is a **fresh tailwind for XLB (materials)**; a mild input-cost crosswind for XLI/XLP but not thesis-changing at this level.
+- **Today 8:30am ET:** **Employment Cost Index (Q2)** — wage/inflation read that feeds Fed expectations; **Chicago PMI** + **final UMich sentiment/inflation-expectations** later. High-impact for rates-sensitive cyclicals (XLI).
+- **BMO earnings (read-throughs, no held name):** energy **CVX/XOM** (→energy/oil tape); materials **LIN** (→XLB); staples **CL** (→XLP); also ABBV, MRNA, CBOE, DominionEnergy. Watch CVX/XOM guidance + LIN/CL for confirming sector prints.
+
+### Sector Momentum — VALUE/CYCLICAL COHORT STILL LEADS; ENERGY #1 (book doesn't hold)
+- **Energy** #1 YTD (~+25-38%) — no position; oil re-spike strengthens it but the tape is a fresh spike, not a clean pullback base to chase.
+- **Industrials (XLI ✓)** ~+14-26%, **Materials (XLB ✓)** ~+9-18%, **Staples (XLP ✓)** ~+11-16% — all in the leading value quadrant; book aligned with YTD leadership. Oil re-spike is an incremental XLB tailwind.
+- **Technology** ~-3 to -6% YTD — laggard; AMZN beat / AAPL soft = no clean growth-rotation trigger yet.
+
+### Trade Ideas (new week — up to 3 available; default HOLD without a clean fresh setup)
+1. **Redeploy ~$42k cash / close the 60.1%→~78% gap — actionable at OPEN after the 8:30 ECI.** Needs a fresh 4th leadership name (existing three at/near 20% cap). Catalyst: oil re-spike + risk-on tape + post-ECI read; Entry: on a clean fresh leader base once the 8:30 print clears; Stop: 10% trail on entry; Target: min 2:1 R:R. Do NOT pre-position ahead of the 8:30 data.
+2. **Energy exposure (oil re-spike, #1 YTD)** — the cleanest thematic gap in the book, but a fresh ~+$10 spike is a chase, not a base; wait for a pullback/base or a clean energy-leader setup rather than buying the spike top. Watch CVX/XOM prints.
+3. **Avoid:** chasing the oil/energy spike top; forcing a redeploy ahead of the 8:30 ECI; adding over the 20% cap on XLB/XLP/XLI; chasing tech on a split AMZN/AAPL signal.
+
+### Risk Factors
+- **8:30am ECI (+ Chicago PMI/UMich):** the day's swing — a hot wage/inflation print trims cut odds and pressures rates-sensitive cyclicals (XLI); a cool print supports the tape. Argues against pre-positioning.
+- **Oil re-spike two-sided:** boosts Energy/XLB but is a mild cost crosswind for XLI/XLP; a further escalation or a sharp reversal both move fast.
+- **Month-end + Friday:** rebalancing flows and weekly-review day; low-conviction window to force a new trade.
+- **Split mega-cap tech (AMZN beat / AAPL soft):** two-sided; a risk-on Nasdaq day can be a short-term crosswind vs the value book (esp. XLP).
+- **Deployment 60.1% (below band):** the standing issue — needs a disciplined redeploy into a fresh leader, not a forced trade. Patience > activity.
+
+### Decision
+**HOLD — no new orders pre-market.** Risk-on tape (AMZN beat, VIX ~17) but the 8:30 ECI + Chicago PMI/UMich land pre-open into open, oil just re-spiked ~+$10 (a chase, not a base), and it's month-end/Friday weekly-review day. Redeploy is actionable at the open AFTER the 8:30 data, not pre-positioned. No clean fresh base pre-market — patience.
+- **XLP / XLB / XLI:** HOLD. Leading value/cyclical cohort; XLP/XLB green, XLI near-flat and recovered off Wed's de-risk; all ~6-8% above stops, theses intact YTD. No held name reports today (oil re-spike is an incremental XLB tailwind). No action.
+- **Redeployment (60.1%, below band):** flag for **today's market open (post-8:30 ECI)** — patiently deploy ~$42k into a clean fresh 4th leadership name if a base sets up (energy is the cleanest thematic gap but don't chase the spike). 3 trades available.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+---
