@@ -2022,3 +2022,10 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. XLP/XLB green, X
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
 
 ---
+
+### Jul 31 — Midday Addendum (Perplexity check on XLB)
+**Trigger:** XLB down ~2.1% intraday, diverging from XLI (+0.9%) despite the pre-market oil re-spike flagged as an XLB tailwind.
+**Finding:** Sector- and holdings-specific, not broad market or thesis-related. Mixed Q2 earnings from top XLB holdings — Air Products posted a surprise ~$2.1B operating loss (project charges), Martin Marietta flagged weaker pricing/margins — outweighed strong prints from Vulcan/Nucor and the oil tailwind. Broader risk-off/higher-yields backdrop a mild secondary drag.
+**Conclusion:** Earnings-season noise in individual holdings, not a break in the materials/cyclical momentum thesis. No cut — position still ~6.1% above its stop and well inside the -7% threshold.
+
+---
