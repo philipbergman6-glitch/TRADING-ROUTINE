@@ -869,3 +869,19 @@ Equity $105,890.40, cash $42,114.65 (39.8%), deployed 60.2% ($63,775.75 mkt valu
 Equity $105,154.94, cash $42,114.65 (40.1%), deployed 59.9% ($63,040.29 mkt value) — still **below the 75-85% band**; redeployment remains a market-open decision requiring a clean leadership setup (already flagged pre-market for post-8:30 ECI), not a forced midday trade — no action taken now. Weights: XLP 20.3%, XLI 19.9%, XLB 19.8% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). One Perplexity check run on XLB's sharp intraday drop — earnings-specific, not thesis-breaking; no cut. Week 0/3. No email sent (no action taken).
 
 ---
+
+### Jul 31 — EOD Snapshot (Day 68, Friday, month-end)
+**Portfolio:** $105,015.75 | **Cash:** $42,114.65 (40.1%) | **Day P&L:** -$440.32 (-0.42%) | **Phase P&L:** +$5,015.75 (+5.02%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLP | 250 | $83.76 | $85.05 | -0.49% | +$322.50 (+1.54%) | $79.902 (10% trail GTC) |
+| XLB | 412 | $51.07 | $50.43 | -2.34% | -$263.81 (-1.25%) | $47.4975 (10% trail GTC) |
+| XLI | 116 | $182.16 | $179.84 | +0.81% | -$269.12 (-1.27%) | $167.8005 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Mild red day to close July and the week — equity -$440.32 to $105,015.75 (Day P&L -0.42%), phase eases to +5.02%. The drag was XLB, which fell -2.34% to $50.43 (now -1.25% vs entry, our only red position vs entry) on holdings-specific Q2 earnings weakness (Air Products operating loss, Martin Marietta pricing/margin concerns per midday Perplexity check) outweighing the oil tailwind — an earnings read, not a materials-thesis break; well above the -7% cut and ~6.2% above stop. XLI firmed +0.81% to $179.84 (-1.27% vs entry) as cyclicals held the post-FOMC bid; XLP eased -0.49% to $85.05 but stays our best at +1.54% vs entry. All theses intact. No trades: week 0/3 — month-end/weekly-review Friday offered no clean leadership setup to force an entry into the deployment gap. 3 positions (<=6): XLP 20.2%, XLI 19.9%, XLB 19.8% — all at/under the 20% cap, no adds. Deployment 59.9% ($62,901.10 mkt value / $105,015.75 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 40.1%. All three 10% trailing GTC stops confirmed active and intact (XLP $79.902/hwm $88.78; XLB $47.4975/hwm $52.775; XLI $167.8005/hwm $186.445); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. July closes at +5.02% phase. Next week (Mon): fresh 3-trade budget — pre-market hunt for a leader to close the persistent ~15-25% deployment gap; watch whether the post-FOMC risk-on rotation (cyclicals firm, defensives softening) continues and whether XLB's earnings-driven softness stabilizes or breaks lower.
+
+---
