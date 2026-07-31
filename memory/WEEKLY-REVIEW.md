@@ -438,3 +438,60 @@ A disciplined week that actually beat the S&P (+0.07%, up to +0.77% on the alt p
 ### Overall Grade: C-
 
 A poor-outcome week on a clean process: the GOOGL 10% trail did its job capping the capex-fear gap at -3.99%, and holding into the binary then declining to re-enter was correct discipline — but the realized loss was the week's dominant event, the book lagged the S&P by -0.63% in a down tape, deployment fell to 60.1% and stayed there, and it was a third straight zero-new-trade week. Losing the only single-name leaves an entirely correlated sector-ETF book with no independent engine. No strategy rule changes: the mechanical rules (never move a stop down, tighten only at +15%) performed exactly as designed; the two real deficits are discretionary — the missed high-beta trim and the unsourced low-correlation leader — not rule design. The round-trip loss makes the discretionary-trim flag a two-week pattern now; if a single-name round-trips a +10-15% run again after re-entry, promote it to an explicit rule. Priority for next week is unambiguous: redeploy AND diversify, in the same move.
+
+## Week ending 2026-07-31
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $105,442.33 (Mon Jul 27 AM = Fri Jul 24 close) |
+| Ending portfolio | $105,015.75 (Fri Jul 31 close) |
+| Week return | -$426.58 (-0.40%) |
+| S&P 500 week | +0.35% (7,411.98 Jul 24 → 7,437.63 Jul 31) |
+| Bot vs S&P | -0.75% |
+| Trades | 0 new (0/3 weekly) + 3 open carried; 0 closed |
+| Win rate | n/a (0 closed trades) |
+| Best trade | XLP +1.54% (open, carried) |
+| Worst trade | XLB -1.25% (open, carried) |
+| Profit factor | n/a (0 closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No trades closed this week. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLP | $83.76 | $85.05 | +$322.50 (+1.54%) | $79.902 (10% trail GTC, hwm $88.78) |
+| XLB | $51.07 | $50.43 | -$263.81 (-1.25%) | $47.4975 (10% trail GTC, hwm $52.775) |
+| XLI | $182.16 | $179.84 | -$269.12 (-1.27%) | $167.8005 (10% trail GTC, hwm $186.445) |
+
+### What Worked
+- Risk book spotless for a fifth straight week: all three 10% trailing GTC stops active/intact, none lowered, no position near a stop or the -7% cut; every daily sharp move (XLI Wed pre-FOMC de-risk, XLB Fri earnings drop) was Perplexity-checked and confirmed macro/holdings-specific, not a thesis break — correctly no forced cut.
+- Correctly declined to force a value redeploy into the week's binary event stack (FOMC Wed, MSFT/META/AAPL/AMZN earnings, Q2 GDP/PCE, ECI) — patience over activity into a vol-heavy, headline-driven tape was the right call day by day.
+- XLP defensive diversifier again the book's best (+1.54%), holding green through the post-FOMC risk-on rotation that softened it — the cushion earns its slot.
+- Small drawdown well contained (-0.40% on the week) despite an all-correlated book and zero fresh alpha — no capital destroyed, phase held at +5.02%.
+
+### What Didn't Work
+- Lagged the S&P by -0.75% in an UP week (+0.35%) — same mechanism as the Jul 10 up-week lag: the value/cyclical book has no independent engine to capture a rising tape, so it tracks-with-a-drag when the market rises and only "wins" on defensive cushion in down weeks. Market-tracker with a defensive tilt, confirmed again.
+- FOURTH straight zero-new-trade week. The book has been static since the Jun 29 XLP entry — a full month with 3 open trade slots every week and no new idea sourced.
+- Deployment stuck at ~60% (59.9% Fri) for the ENTIRE week — now 6+ straight sessions ~15-25% below the 75-85% mandate. The redeploy was deferred every single day ("post-FOMC," "post-8:30 data," "at the open after ECI") and never once fired. This is no longer a flag; it is sustained non-compliance with the deployment rule.
+- The thrice-then-four-times-flagged low-correlation leader was again not sourced. With GOOGL stopped out last week, the book is 100% correlated sector ETFs (XLI/XLB/XLP) — no single-name, no independent driver at all.
+
+### Key Lessons
+- "Wait for the catalyst to clear" became "wait forever." Every day this week had a legitimate reason to defer (FOMC, mega-cap earnings, GDP/PCE, ECI, month-end/Friday) — but stacking legitimate one-day deferrals across a full week is how ~$42k sits idle for a month. The deferral logic needs a hard backstop: a specific day the redeploy executes regardless, or it never happens.
+- The up-week lag (-0.75%) plus the down-week cushion is now a fully characterized two-way pattern: this book cannot beat a rising S&P. Beating the benchmark over the challenge window REQUIRES adding an independent alpha leg; managing the existing three ETFs cleanly is necessary but structurally insufficient.
+- Clean risk management with no deployed alpha is a C-grade equilibrium, not a virtue. Five weeks of spotless stops have coincided with a static, under-deployed, benchmark-lagging book. Process discipline on the DEFENSE is not the same as executing the OFFENSE the strategy calls for (75-85% deployed, sector leadership).
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Aug 3. **Redeploy the ~$42k is now a hard action item with a deadline, not a daily deferral.** Execute a fresh 4th (and ideally 5th) leadership entry by Wednesday Aug 5 at the latest unless a genuine market-wide risk event (not routine data) intervenes. Close the 60%→~78% gap.
+- Source at least one LOW-CORRELATION leader outside the XLI/XLB/XLP macro cluster to restore an independent engine — the primary deficit for a month running. Candidates: a quality single-name in a leading non-cyclical sector, or Energy exposure (XLE) on a pullback/base now that oil re-spiked ~+$10 to ~$82-84 (do NOT chase the spike top — wait for a base). Do NOT add a 4th correlated cyclical ETF.
+- Aug catalysts: July jobs report (early Aug) is the near-term binary — one legitimate deferral window, but redeploy immediately after, not "next week" again.
+- Manage by rules: 10% trailing GTC on every new entry, -7% manual cut at midday, never move a stop down. On any new single-name that spikes +10-15% and stalls, take the discretionary partial trim (two-week GOOGL lesson still standing).
+
+### Overall Grade: C-
+
+A clean-process, no-progress week. The risk machinery was flawless for a fifth straight week — stops active and correct, every sharp move checked and correctly held, no forced trades into a genuinely binary event stack — and the drawdown was tiny (-0.40%). But this was an UP week and the book LAGGED the S&P by -0.75%, confirming for the third time that a fully correlated value/cyclical ETF book with no independent engine cannot beat a rising benchmark. The deeper problem crystallized this week: deployment sat at ~60% for six-plus straight sessions, the whole-week redeploy plan was deferred every single day and never executed, and it was a fourth straight zero-trade week with the diversification deficit now a full month old. That is sustained non-compliance with the deployment mandate dressed up as patience. No strategy rule change — the rules are sound and were followed on defense; the failure is on execution of the offense the strategy already prescribes (75-85% deployed, source a leader). Held at C- rather than lower only because no capital was lost and the risk book stayed spotless; short of a C because the core mandate — deploy and diversify — went unexecuted for a fourth straight week. Next week's priority is unambiguous and now carries a deadline: redeploy AND source a low-correlation leader, by mid-week, not "after the next catalyst."
+
+---
