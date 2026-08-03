@@ -2029,3 +2029,51 @@ All 3 trailing GTC stops confirmed active/intact; none lowered. XLP/XLB green, X
 **Conclusion:** Earnings-season noise in individual holdings, not a break in the materials/cyclical momentum thesis. No cut — position still ~6.1% above its stop and well inside the -7% threshold.
 
 ---
+
+---
+
+## 2026-08-03 (Mon) — Pre-Market Research (Day 69, new week)
+
+### Account Snapshot
+- Equity: $105,275.23 | Cash: $42,114.65 (40.0%) | Buying power: $345,308.22
+- Deployed: $63,160.58 (60.0% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT) | Week trades: 0/3 (fresh budget)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLP | 250 | $83.76 | $85.35 | +$397.50 (+1.90%) | 20.3% | $79.902 (10% trail GTC, hwm $88.78) — ~6.4% above |
+| XLI | 116 | $182.16 | $180.72 | -$167.04 (-0.79%) | 19.9% | $167.8005 (10% trail GTC, hwm $186.445) — ~7.1% above |
+| XLB | 412 | $51.07 | $50.63 | -$181.41 (-0.86%) | 19.8% | $47.4975 (10% trail GTC, hwm $52.775) — ~6.2% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+20% tighten triggers. XLP green; XLI/XLB near-flat (small premarket green). **Deployment 60.0% — ~15-25% below band; redeploy is the standing open item, actionable at open (no clean fresh base pre-market).**
+
+### Market Context — RISK-ON; OIL RETRACED ~$10; ISM MFG 10AM; FRIDAY PAYROLLS is the week's swing
+- **Indices/VIX:** S&P futures **+0.5%**, Nasdaq-100 **+0.5-1.0%**, Dow **+0.7%** premarket (Barron's Aug 3) — risk-on. **VIX ~16** (Jul 31 close 17.09, easing) — calm.
+- **Oil:** WTI **~$72**, Brent **~$75** — **RETRACED ~$10 from Fri's $82-84 spike** on geopolitical de-escalation ("Trump/Iran hope"). **Removes the fresh oil tailwind for XLB** flagged Friday; mild input-cost relief for XLI/XLP. Not thesis-changing.
+- **Today's data:** S&P Global Mfg PMI final **9:45am ET**; **ISM Manufacturing PMI 10:00am** (day's key print for cyclicals/XLI); Construction Spending 10:00am. **No FOMC** (next Sep 15-16); CPI Aug 12.
+- **Earnings:** Tyson (TSN) BMO; **Palantir (PLTR) AMC** — AI/semis in focus this week (AMD, PLTR). No held name reports.
+- **Week's swing:** **Fri Aug 7 Nonfarm Payrolls / unemployment** — dominates risk sentiment; argues against forcing a redeploy early-week ahead of it.
+
+### Sector Momentum — VALUE/CYCLICAL COHORT LEADS; ENERGY #1; TECH RECOVERING
+- **Energy** #1 YTD (~+25%) — no position; oil retrace = a possible base setup rather than a spike-chase, but no clean entry yet. Cleanest thematic gap in the book.
+- **Industrials (XLI ✓)** ~+14-17%, **Materials (XLB ✓)** ~+13-15%, **Staples (XLP ✓)** ~+10-16% — all in the leading value quadrant; book aligned with YTD leadership.
+- **Technology** — mixed reads now show **~+17-23% YTD** (rebounded from the -3 to -6% laggard read of last week); AI/semis (AMD/PLTR) the week's focus. A firming growth cohort to watch, but split and pre-Palantir — no clean rotation trigger yet.
+
+### Trade Ideas (fresh week — up to 3 available; default HOLD without a clean fresh setup)
+1. **Redeploy ~$42k cash / close the 60%→~78% gap** — actionable at OPEN, but patience favored early-week ahead of Fri payrolls. Needs a fresh 4th leadership name (existing three at/near 20% cap). Catalyst: risk-on tape + post-ISM read; Entry: on a clean fresh leader base after 10am ISM; Stop: 10% trail; Target: min 2:1 R:R. Do NOT force ahead of the data.
+2. **Energy (oil retraced to ~$72, #1 YTD)** — the oil pullback turns last week's "spike-chase" concern into a potential base; the cleanest thematic gap. Wait for a clean energy-leader base to form rather than catching the falling knife. Watch FANG/WMB/OKE prints today.
+3. **Avoid:** forcing a redeploy ahead of the 10am ISM and Fri payrolls; adding over the 20% cap on XLP/XLI/XLB; chasing tech into the Palantir print.
+
+### Risk Factors
+- **10am ISM Manufacturing** — day's swing for rates-sensitive cyclicals (XLI); a soft print pressures the tape, a firm print supports risk-on.
+- **Fri Aug 7 payrolls** — the week's dominant macro event; low conviction to deploy fresh capital early-week ahead of it.
+- **Oil retrace two-sided** — relieves XLI/XLP input costs but removes the XLB tailwind; a sharp reversal (re-escalation) also moves fast.
+- **Split growth signal** — tech firming (AMD/PLTR focus) can be a short-term crosswind vs the value book (esp. XLP); Palantir AMC print is a two-sided event risk.
+- **Deployment 60% (below band)** — the standing issue; needs a disciplined redeploy into a fresh leader, not a forced trade. Patience > activity.
+
+### Decision
+**HOLD — no new orders pre-market.** Risk-on tape (VIX ~16) but the day's ISM lands at 10am, oil just retraced ~$10 (removing the XLB tailwind), and Friday payrolls dominates the week — no clean fresh base pre-market and low conviction to deploy early. Redeploy actionable at the open after the 10am ISM if a clean 4th-leader base sets up.
+- **XLP / XLB / XLI:** HOLD. Leading value/cyclical cohort; all ~6-7% above stops, theses intact YTD; no held name reports today. No action.
+- **Redeployment (60.0%, below band):** flag for market open (post-10am ISM) — patiently deploy ~$42k into a clean fresh 4th leader if a base sets up; energy (oil retrace) is the cleanest thematic gap. 3 trades available; patience favored ahead of Fri payrolls.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
