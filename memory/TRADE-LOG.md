@@ -919,3 +919,19 @@ Equity $105,273.71, cash $42,114.65 (40.0%), deployed 60.0% ($63,159.06 mkt valu
 - XLP: $84.93 (+1.40% vs entry) — stop $79.902/hwm $88.78, ~6.2% above stop. Staples thesis intact; flat intraday (+0.08%).
 
 Equity $106,326.20, cash $42,114.65 (39.6%), deployed 60.4% ($64,211.55 mkt value) — still **below the 75-85% band**; redeployment remains a market-open decision requiring a clean fresh leadership setup, not a forced midday trade — no action taken now, patience favored ahead of Fri NFP per pre-market note. Weights: XLI 20.3%, XLB 20.1%, XLP 20.0% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). No sharp/unexplained moves — no Perplexity check needed. Week 0/3. No email sent (no action taken).
+
+---
+
+### Aug 4 — EOD Snapshot (Day 70, Tuesday)
+**Portfolio:** $106,553.93 | **Cash:** $42,114.65 (39.5%) | **Day P&L:** +$934.92 (+0.89%) | **Phase P&L:** +$6,553.93 (+6.55%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLI | 116 | $182.16 | $186.62 | +1.89% | +$517.36 (+2.45%) | $168.183 (10% trail GTC) |
+| XLP | 250 | $83.76 | $85.42 | +0.66% | +$415.00 (+1.98%) | $79.902 (10% trail GTC) |
+| XLB | 412 | $51.07 | $52.03 | +2.00% | +$395.39 (+1.88%) | $47.4975 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Strong green day and a fresh phase high — equity +$934.92 to $106,553.93 (Day P&L +0.89%), phase up to +6.55%. Broad-based advance with all three names green and now all positive vs entry for the first time in a while: XLI led +1.89% to $186.62 (+2.45% vs entry, our best) as cyclicals kept the bid; XLB +2.00% to $52.03 (+1.88% vs entry) firmed despite the oil de-escalation retrace removing the fresh materials tailwind; XLP +0.66% to $85.42 (+1.98% vs entry) held its steady defensive gain. All theses intact; every name well above the -7% cut. No trades: week 0/3 — patience favored ahead of Friday NFP per pre-market note; no clean fresh leadership setup to force an entry into the deployment gap. 3 positions (≤6): XLI 20.3%, XLB 20.1%, XLP 20.0% — all at/under the 20% cap, no adds. Deployment 60.5% ($64,439.28 mkt value / $106,553.93 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.5%. All three 10% trailing GTC stops confirmed active and intact; XLI's trail auto-advanced up to $168.183 (hwm $186.87) as it made new highs; none lowered, none tightened manually (no name crossed +15%/+20%). Daytrade count 0; not PDT. Tomorrow (Wed): pre-market read of whether the cyclical-led bid (XLI/XLB firm) has legs into the back half of payrolls week; continue the hunt for a leader to close the persistent ~15-25% deployment gap (fresh 3-trade budget).
