@@ -945,3 +945,19 @@ Equity $106,788.66, cash $42,114.65 (39.4%), deployed 60.6% ($64,674.01 mkt valu
 **Week trades:** 0/3
 
 **Notes:** Strong green day and a fresh phase high — equity +$934.92 to $106,553.93 (Day P&L +0.89%), phase up to +6.55%. Broad-based advance with all three names green and now all positive vs entry for the first time in a while: XLI led +1.89% to $186.62 (+2.45% vs entry, our best) as cyclicals kept the bid; XLB +2.00% to $52.03 (+1.88% vs entry) firmed despite the oil de-escalation retrace removing the fresh materials tailwind; XLP +0.66% to $85.42 (+1.98% vs entry) held its steady defensive gain. All theses intact; every name well above the -7% cut. No trades: week 0/3 — patience favored ahead of Friday NFP per pre-market note; no clean fresh leadership setup to force an entry into the deployment gap. 3 positions (≤6): XLI 20.3%, XLB 20.1%, XLP 20.0% — all at/under the 20% cap, no adds. Deployment 60.5% ($64,439.28 mkt value / $106,553.93 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.5%. All three 10% trailing GTC stops confirmed active and intact; XLI's trail auto-advanced up to $168.183 (hwm $186.87) as it made new highs; none lowered, none tightened manually (no name crossed +15%/+20%). Daytrade count 0; not PDT. Tomorrow (Wed): pre-market read of whether the cyclical-led bid (XLI/XLB firm) has legs into the back half of payrolls week; continue the hunt for a leader to close the persistent ~15-25% deployment gap (fresh 3-trade budget).
+
+---
+
+### Aug 5 — EOD Snapshot (Day 71, Wednesday)
+**Portfolio:** $106,751.43 | **Cash:** $42,114.65 (39.5%) | **Day P&L:** +$197.50 (+0.19%) | **Phase P&L:** +$6,751.43 (+6.75%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.64 | +1.23% | +$646.71 (+3.07%) | $47.664 (10% trail GTC) |
+| XLI | 116 | $182.16 | $186.35 | -0.03% | +$486.04 (+2.30%) | $169.3665 (10% trail GTC) |
+| XLP | 250 | $83.76 | $85.33 | -0.05% | +$392.50 (+1.87%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Quiet green day and another fresh phase high — equity +$197.50 to $106,751.43 (Day P&L +0.19%), phase up to +6.75%. Materials did the work: XLB +1.23% to $52.64 (+3.07% vs entry, our best name) kept leading; XLI (-0.03% to $186.35, +2.30% vs entry) and XLP (-0.05% to $85.33, +1.87% vs entry) both essentially flat as the tape drifted. All three theses intact; every name well above the -7% cut. No trades: week 0/3 — patience held into Friday NFP per pre-market note; no clean fresh leadership setup to force an entry into the deployment gap. 3 positions (≤6): XLB 20.3%, XLI 20.2%, XLP 20.0% — all at/under the 20% cap, no adds. Deployment 60.5% ($64,636.78 mkt value / $106,751.43 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.5%. All three 10% trailing GTC stops confirmed active and intact (XLB $47.664/hwm $52.96; XLI $169.3665/hwm $188.185; XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Tomorrow (Thu): pre-market read of cyclical leadership (XLB firm) into the final session before Friday payrolls; continue hunt for a leader to close the persistent ~15-25% deployment gap (fresh 3-trade budget).
