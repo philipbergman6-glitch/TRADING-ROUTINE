@@ -922,6 +922,16 @@ Equity $106,326.20, cash $42,114.65 (39.6%), deployed 60.4% ($64,211.55 mkt valu
 
 ---
 
+### Aug 5 — Midday Scan (Day 71, Wednesday)
+**No action.** All 3 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.64 (+3.07% vs entry) — stop $47.664/hwm $52.96, ~9.4% above stop. Materials thesis intact; firm intraday (+1.23%).
+- XLI: $186.83 (+2.56% vs entry) — stop $169.3665/hwm $188.185, ~9.3% above stop. Industrials thesis intact; mild intraday gain (+0.23%), near 52-wk highs.
+- XLP: $85.26 (+1.79% vs entry) — stop $79.902/hwm $88.78, ~6.3% above stop. Staples thesis intact; flat-to-mild intraday softness (-0.13%).
+
+Equity $106,788.66, cash $42,114.65 (39.4%), deployed 60.6% ($64,674.01 mkt value) — still **below the 75-85% band**; redeployment remains a market-open decision requiring a clean leadership setup, not a forced midday trade — no action taken now. Weights: XLB 20.3%, XLI 20.3%, XLP 20.0% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct (auto-advanced with new highs: XLB hwm $52.96, XLI hwm $188.185); none lowered, none tightened (no name crossed +15%/+20%). No sharp/unexplained moves — no Perplexity check needed. Week 0/3. No email sent (no action taken).
+
+---
+
 ### Aug 4 — EOD Snapshot (Day 70, Tuesday)
 **Portfolio:** $106,553.93 | **Cash:** $42,114.65 (39.5%) | **Day P&L:** +$934.92 (+0.89%) | **Phase P&L:** +$6,553.93 (+6.55%)
 
