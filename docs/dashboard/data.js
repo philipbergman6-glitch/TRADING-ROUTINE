@@ -1,4 +1,4 @@
-// ============ DATA — origin/main, latest log 2026-08-06 ============
+// ============ DATA — origin/main, latest log 2026-08-07 ============
 
 // {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}
 const EQ = [
@@ -47,7 +47,8 @@ const EQ = [
 {d:"2026-08-03",n:69,v:105619.01,cash:39.9,dp:0.57,note:""},
 {d:"2026-08-04",n:70,v:106553.93,cash:39.5,dp:0.89,note:""},
 {d:"2026-08-05",n:71,v:106751.43,cash:39.5,dp:0.19,note:""},
-{d:"2026-08-06",n:72,v:106318.35,cash:39.6,dp:-0.41,note:""}
+{d:"2026-08-06",n:72,v:106318.35,cash:39.6,dp:-0.41,note:""},
+{d:"2026-08-07",n:73,v:106626.35,cash:39.5,dp:0.29,note:""}
 ];
 
 // weekly reviews, verbatim
@@ -62,10 +63,10 @@ const WEEKS = [
 {w:"07/31", bot:-0.40, spx:0.35}
 ];
 
-const BOOK = [ // Aug 6 EOD
-{s:"XLB", q:412, in:51.07, pl:453.07, plp:2.15, stop:47.664, w:20.2},
-{s:"XLI", q:116, in:182.16, pl:301.60, plp:1.43, stop:169.37, w:20.2},
-{s:"XLP", q:250, in:83.76, pl:337.50, plp:1.61, stop:79.902, w:20.0}
+const BOOK = [ // Aug 7 EOD
+{s:"XLB", q:412, in:51.07, pl:737.35, plp:3.50, stop:47.664, w:20.4},
+{s:"XLI", q:116, in:182.16, pl:350.32, plp:1.66, stop:169.37, w:20.1},
+{s:"XLP", q:250, in:83.76, pl:312.50, plp:1.49, stop:79.902, w:19.9}
 ];
 
 const TRADES = [
@@ -100,10 +101,10 @@ const FEED = [
 
 const RULES = [
 {ok:"✓", c:"up",   t:"10% trailing GTC on every position", v:"'spotless 4 straight weeks' · none lowered"},
-{ok:"✓", c:"up",   t:"Max 3 trades/wk · 20% cap · ≤6 positions", v:"never breached in 72 days"},
+{ok:"✓", c:"up",   t:"Max 3 trades/wk · 20% cap · ≤6 positions", v:"never breached in 73 days"},
 {ok:"✓", c:"up",   t:"Cut on thesis break, don't wait for −7%", v:"XOM Jun 15 at −5.6%"},
 {ok:"✓", c:"up",   t:"Exit sector after 2 failed trades", v:"tech flagged Jun 09, re-entry gated"},
-{ok:"△", c:"warn", t:"75–85% deployed", v:"reached Jun 30 · lost Jul 23 · now 60.4%"},
+{ok:"△", c:"warn", t:"75–85% deployed", v:"reached Jun 30 · lost Jul 23 · now 60.5%"},
 {ok:"✗", c:"dn",   t:"Trim a stalled +10–15% single-name", v:"GOOGL flagged, not trimmed → round-trip"}
 ];
 
