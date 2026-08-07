@@ -2217,3 +2217,49 @@ All 3 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+
 - **XLB / XLP / XLI:** HOLD. Leading value/cyclical cohort; all three green vs entry (+2.6-3.7%), ~7.1-10.0% above stops, theses intact YTD; no held name reports today. No action.
 - **Redeployment (60.7%, below band):** flag for market open — patiently deploy ~$42k into a clean fresh 4th leader if a base sets up; energy is the cleanest thematic gap but is basing/dipping, not leading. 3 trades available; patience favored ahead of Fri NFP.
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+## 2026-08-07 (Fri) — Pre-Market Research (Day 73)
+
+### Account Snapshot
+- Equity: $106,550.43 | Cash: $42,114.65 (39.5%) | Buying power: $348,878.78
+- Deployed: $64,435.78 (60.5% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT) | Week trades: 0/3
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $52.64 | +$646.71 (+3.07%) | 20.4% | $47.664 (10% trail GTC, hwm $52.96) — ~9.5% above |
+| XLI | 116 | $182.16 | $185.35 | +$370.04 (+1.75%) | 20.2% | $169.3665 (10% trail GTC, hwm $188.185) — ~8.6% above |
+| XLP | 250 | $83.76 | $84.99 | +$307.50 (+1.47%) | 19.9% | $79.902 (10% trail GTC, hwm $88.78) — ~6.0% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+20% tighten triggers (all only +1.5-3.1% vs entry). XLB the leader (+3.07%), XLI firm (+1.75%), XLP steady (+1.47%). **Deployment 60.5% — ~15-25% below band; redeploy remains the standing open item, actionable at open post-NFP, not pre-positioned.**
+
+### Market Context — NFP DAY: THE WEEK'S SWING; FUTURES FLAT/SLIGHTLY HIGHER; VIX ~18; OIL SOFT
+- **The event:** **July Nonfarm Payrolls, 8:30am ET** — the week's dominant macro print. Consensus ~**88k jobs** (vs 57k June), unemployment ~**4.2%**. Weak print → boosts Sep-cut odds, supportive for equities/bonds; hot print → higher-for-longer, pressures the record rally. Dominates rate/risk sentiment.
+- **Indices/VIX:** S&P E-minis **+0.1-0.16%** (~7,477), **Nasdaq futures +0.3-0.45%** (Microchip/Atlassian software strength), Dow slightly softer — little changed, wait-and-see into 8:30am. **VIX ~18** — calm but firmer than mid-week.
+- **Oil:** WTI **~$72**, Brent **~$78** — soft/basing low on Hormuz de-escalation (Bessent flagged a possible US-Iran deal). No fresh XLB oil tailwind; mild input-cost relief for XLI/XLP. Not thesis-changing.
+- **Earnings BMO:** VST, TTWO among Friday reporters. **No held name reports** (XLI/XLB/XLP are sector ETFs). None XLB/XLI/XLP-thesis-driving.
+- **No CPI/PPI/FOMC** today (CPI Aug 12; PPI Aug 13; FOMC Sep 15-16).
+
+### Sector Momentum — ENERGY #1; TECH RE-ASSERTING; BOOK STILL IN LEADING VALUE/CYCLICAL COHORT
+- **Energy** #1 YTD (~+27%) — no position; cleanest thematic gap, but oil basing low (no clean leader base — don't chase).
+- **Technology** re-asserting (~+21% total return, per one Aug snapshot the only sector ahead of Energy) — a rotation risk to monitor vs the value book, but AMD/chip-wobble crosswinds keep it two-sided; no clean rotation trigger yet.
+- **Industrials (XLI ✓)** ~+13-17%, **Materials (XLB ✓)** ~+13%, **Staples (XLP ✓)** ~+10% — all still positive and in the leading value/cyclical quadrant (momentum-map framework: XLP/XLI/XLB + XLE "Leading"). Book aligned with YTD leadership.
+
+### Trade Ideas (up to 3 available; default HOLD without a clean fresh setup)
+1. **Redeploy ~$42k cash / close the 60.5%→~78% gap** — actionable AT OPEN **after** the 8:30am NFP print sets the tape, not pre-positioned into it. Needs a fresh 4th leadership name (existing three at/near 20% cap). Catalyst: post-NFP risk direction; Entry: on a clean fresh leader base once the print is digested; Stop: 10% trail; Target: min 2:1 R:R. Do NOT force ahead of / into the number.
+2. **Energy (oil ~$72, #1 YTD)** — standing thematic gap; oil basing low on de-escalation rather than spiking. Wait for a clean energy-leader base (watch XLE/COP/FANG) rather than catching a flat/soft tape.
+3. **Avoid:** trading into the 8:30am print; adding over the 20% cap on XLB/XLI/XLP; chasing tech into the AMD/chip crosswind; chasing the oil/energy dip.
+
+### Risk Factors
+- **8:30am NFP** — the week's dominant event; a hot/cold surprise swings rates and the cyclical tape hard and fast. Low conviction to deploy into it.
+- **Record-rally extension** — market on track for strongest week since April; leadership can crack fast on a hot print. Two-sided into the data.
+- **Tech re-asserting** — if the print favors growth, a tech-led rotation could pressure the value book's relative leadership; monitor XLK vs XLB/XLI.
+- **Oil basing low (de-escalation)** — relieves XLI/XLP input costs but removes any XLB tailwind; sharp Hormuz re-escalation reverses fast and two-sided.
+- **Deployment 60.5% (below band)** — the standing issue since the GOOGL stop-out; needs a disciplined post-NFP redeploy into a fresh leader, not a forced trade. Patience > activity.
+
+### Decision
+**HOLD — no new orders pre-market.** Futures flat/slightly higher (VIX ~18) but **July NFP lands 8:30am** and dominates the tape — no clean fresh base pre-market and no conviction to deploy into the print. Redeploy is actionable at the open **after** the number is digested, if a clean 4th-leader base sets up.
+- **XLB / XLI / XLP:** HOLD. Leading value/cyclical cohort; all three green vs entry (+1.5-3.1%), ~6.0-9.5% above stops, theses intact YTD; no held name reports today. No action.
+- **Redeployment (60.5%, below band):** flag for market open (post-NFP) — patiently deploy ~$42k into a clean fresh 4th leader if a base sets up; energy is the cleanest thematic gap but is basing low, not leading. 3 trades available; patience favored into the print.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
