@@ -21,6 +21,12 @@ Beat the S&P 500 over the challenge window. Stocks only — no options, ever.
 9. Follow sector momentum
 10. Exit a sector after 2 consecutive failed trades
 11. Patience > activity
+12. Deployment backstop: if deployed capital is below the 75-85% band for 3
+    consecutive sessions, the next market-open routine MUST add at least one
+    leadership position toward the band. Patience does not override the
+    deployment mandate beyond 3 sessions absent a market-wide risk event (not
+    routine data/earnings). Added 2026-08-07 after 6+ weeks of under-deployment
+    and a blown soft deadline; "patience" was masking non-compliance.
 
 ## Entry Checklist
 - Specific catalyst?

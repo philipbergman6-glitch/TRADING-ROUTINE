@@ -495,3 +495,61 @@ A poor-outcome week on a clean process: the GOOGL 10% trail did its job capping 
 A clean-process, no-progress week. The risk machinery was flawless for a fifth straight week — stops active and correct, every sharp move checked and correctly held, no forced trades into a genuinely binary event stack — and the drawdown was tiny (-0.40%). But this was an UP week and the book LAGGED the S&P by -0.75%, confirming for the third time that a fully correlated value/cyclical ETF book with no independent engine cannot beat a rising benchmark. The deeper problem crystallized this week: deployment sat at ~60% for six-plus straight sessions, the whole-week redeploy plan was deferred every single day and never executed, and it was a fourth straight zero-trade week with the diversification deficit now a full month old. That is sustained non-compliance with the deployment mandate dressed up as patience. No strategy rule change — the rules are sound and were followed on defense; the failure is on execution of the offense the strategy already prescribes (75-85% deployed, source a leader). Held at C- rather than lower only because no capital was lost and the risk book stayed spotless; short of a C because the core mandate — deploy and diversify — went unexecuted for a fourth straight week. Next week's priority is unambiguous and now carries a deadline: redeploy AND source a low-correlation leader, by mid-week, not "after the next catalyst."
 
 ---
+
+## Week ending 2026-08-07
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $105,015.75 (Mon Aug 03 AM = Fri Jul 31 close) |
+| Ending portfolio | $106,626.35 (Fri Aug 07 close) |
+| Week return | +$1,610.60 (+1.53%) |
+| S&P 500 week | +3.58% (7,489.72 Jul 31 → 7,757.64 Aug 07; record rally on dovish jobs shock) |
+| Bot vs S&P | -2.05% |
+| Trades | 0 new (0/3 weekly) + 3 open carried; 0 closed |
+| Win rate | n/a (0 closed trades) |
+| Best trade | XLB +3.50% (open, carried) |
+| Worst trade | XLP +1.49% (open, carried — least strong; all three green) |
+| Profit factor | n/a (0 closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No trades closed this week. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLB | $51.07 | $52.86 | +$737.35 (+3.50%) | $47.664 (10% trail GTC, hwm $52.96) |
+| XLI | $182.16 | $185.18 | +$350.32 (+1.66%) | $169.3665 (10% trail GTC, hwm $188.185) |
+| XLP | $83.76 | $85.01 | +$312.50 (+1.49%) | $79.902 (10% trail GTC, hwm $88.78) |
+
+### What Worked
+- Positive absolute week (+1.53%) and a fresh phase high ($106,626.35, +6.63% phase) — all three names finished green vs entry (XLB +3.50%, XLI +1.66%, XLP +1.49%), the value/cyclical cohort held its YTD-leadership bid through NFP day.
+- XLB the standout again: the hard-asset/materials leadership regime held through the payrolls print, closing the week's best name at +3.50% with its trail auto-lifted to $47.664 (hwm $52.96).
+- Risk book spotless for a SIXTH straight week: all three 10% trailing GTC stops active/intact, none lowered, no position near a stop or the -7% cut; stops auto-advanced on new highs (XLB, XLI), none tightened (no name reached +15%/+20%).
+- Correctly declined to trade INTO the 8:30am NFP binary — no forced position pre-positioned into the week's dominant print; that specific one-day patience call was right.
+
+### What Didn't Work
+- Worst relative week in the phase: lagged the S&P by -2.05% in a BIG up week (+3.58%). The July NFP printed -23k (vs +110k consensus), triggering a bad-news-is-good-news dovish surge (Sep-cut odds up, record close) — and the under-deployed, correlated value book captured barely a third of it. The up-week-lag pattern, but amplified.
+- The 60%→~78% redeploy carried an EXPLICIT hard deadline from last week — "execute by Wednesday Aug 05 at the latest" — and it was BLOWN. Deployment sat at 60.0-60.6% every single session Mon→Fri; the deadline came and went with no action.
+- FIFTH straight zero-new-trade week. The book has been static since the Jun 29 XLP entry — six-plus weeks, 3 open trade slots every week, no new idea sourced.
+- The low-correlation leader was again not sourced (a full month-plus now). Book remains 100% correlated sector ETFs (XLI/XLB/XLP) — no single-name, no independent engine — the exact structural gap that let the S&P run away this week.
+- ~$42k idle all week during a +3.58% index melt-up: the cash-drag cost of under-deployment showed up in full, ~2% of relative underperformance directly attributable to sitting at 60% instead of 78%.
+
+### Key Lessons
+- Under-deployment is not a neutral "defensive" posture — in a melt-up it is the single largest source of benchmark lag. This week put a number on it: ~$42k idle into a +3.58% tape cost roughly the entire -2.05% relative gap. Cash is a position, and this week it was the wrong one.
+- The hard-deadline experiment FAILED as written. Setting "redeploy by Wednesday" with no mechanical enforcement produced the same daily deferral as every prior week — a soft deadline is just a deferral with a date on it. The backstop has to be a strategy RULE with a trigger, not a note in the review.
+- Declining to trade into the 8:30am print was correct for ONE session — but "no clean base pre-NFP" cannot justify sitting at 60% for the four sessions BEFORE the print too. The binary-avoidance logic was over-applied to cover a whole week of inaction.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Aug 10. **Redeploy is now rule-enforced (see strategy change below), not a dated suggestion.** Add at least one fresh leadership name to move toward the 75-85% band by Tuesday Aug 11 at the latest; the standing 3-session backstop now compels it.
+- Source at least one LOW-CORRELATION leader outside the XLI/XLB/XLP macro cluster — the primary deficit for six weeks. Candidates: Energy (XLE/COP/FANG) if oil bases above ~$72 rather than drifting; a quality single-name in a leading non-cyclical sector to restore an independent engine. Do NOT add a 4th correlated cyclical ETF.
+- Aug catalysts: CPI Tue Aug 12, PPI Wed Aug 13 — one legitimate deferral window around CPI, but the 3-session deployment backstop still governs; do not let CPI become a fifth week of the same excuse. FOMC not until Sep 15-16.
+- Manage by rules: 10% trailing GTC on every new entry, -7% manual cut at midday, never move a stop down. On any new single-name that spikes +15% and stalls, take the discretionary partial trim (standing GOOGL lesson).
+
+### Overall Grade: D+
+
+The worst relative week of the phase, and the first to earn a rule change. The book was up +1.53% and hit a fresh phase high with a spotless risk machinery for a sixth straight week — but it captured barely a third of a +3.58% S&P melt-up, lagging by -2.05%, because it sat at 60% deployed with a fully correlated three-ETF book and no independent engine. The decisive failure: an EXPLICIT hard deadline to redeploy by Wednesday Aug 05 was set last week and blown, producing a fifth straight zero-trade week and a month-plus-old diversification deficit. That is not patience; it is sustained, now-documented non-compliance with the core deployment mandate, and the soft-deadline fix failed. **Strategy rule change made** (deployment backstop — see below): the pattern is proven-failed across 6+ weeks, meeting the "failed badly / proven out for 2+ weeks" bar. Held above an outright D/F only because no capital was lost, the absolute return was positive, and the defense stayed flawless — but a clean defense while the offense goes unexecuted for six weeks is precisely the C-to-D slide, and this week the melt-up made the cost undeniable.
+
+---
