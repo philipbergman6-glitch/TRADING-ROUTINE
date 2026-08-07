@@ -987,3 +987,13 @@ Equity $106,419.18, cash $42,114.65 (39.6%), deployed 60.4% ($64,304.53 mkt valu
 **Week trades:** 0/3
 
 **Notes:** Mild red day ahead of Friday NFP — equity -$433.08 to $106,318.35 (Day P&L -0.41%), phase eases to +6.32% off Wednesday's high. Broad, orderly de-risking into payrolls with all three names softening modestly: XLB -0.89% to $52.17 (+2.15% vs entry, still our best name); XLI -0.85% to $184.76 (+1.43% vs entry) backed off its 52-wk highs; XLP -0.26% to $85.11 (+1.61% vs entry) held up best as defensives outperformed. All three theses intact; every name well above the -7% cut. No trades: week 0/3 — patience held into tomorrow's payrolls; no clean fresh leadership setup to force an entry into the deployment gap. 3 positions (≤6): XLB 20.2%, XLI 20.2%, XLP 20.0% — all at/under the 20% cap, no adds. Deployment 60.4% ($64,203.70 mkt value / $106,318.35 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.6%. All three 10% trailing GTC stops confirmed active and intact (XLB $47.664/hwm $52.96; XLI $169.3665/hwm $188.185; XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Tomorrow (Fri): pre-market read of the 8:30 ET payrolls print — a strong/weak number will set the tape; continue hunt for a leader to close the persistent ~15-25% deployment gap (fresh 3-trade budget), and Friday weekly review due.
+
+---
+
+### Aug 7 — Midday Scan (Day 73, Friday)
+**No action.** All 3 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.815 (+3.42% vs entry) — stop $47.664/hwm $52.96, ~9.8% above stop. Materials thesis intact; firm intraday (+1.24%) post-NFP.
+- XLI: $185.47 (+1.82% vs entry) — stop $169.3665/hwm $188.185, ~8.7% above stop. Industrials thesis intact; mild intraday gain (+0.38%).
+- XLP: $85.035 (+1.52% vs entry) — stop $79.902/hwm $88.78, ~6.0% above stop. Staples thesis intact; flat intraday (-0.09%).
+
+Equity $106,651.18, cash $42,114.65 (39.5%), deployed 60.5% ($64,536.53 mkt value) — still **below the 75-85% band**; redeployment remains a market-open decision requiring a clean leadership setup, not a forced midday trade — no action taken now. Weights: XLB 20.4%, XLI 20.2%, XLP 19.9% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). NFP printed this morning with no disruption to the value/cyclical tape — no sharp/unexplained moves — no Perplexity check needed. Week 0/3. No email sent (no action taken).
