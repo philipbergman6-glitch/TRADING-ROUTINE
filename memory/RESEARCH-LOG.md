@@ -2263,3 +2263,49 @@ All 3 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+
 - **XLB / XLI / XLP:** HOLD. Leading value/cyclical cohort; all three green vs entry (+1.5-3.1%), ~6.0-9.5% above stops, theses intact YTD; no held name reports today. No action.
 - **Redeployment (60.5%, below band):** flag for market open (post-NFP) — patiently deploy ~$42k into a clean fresh 4th leader if a base sets up; energy is the cleanest thematic gap but is basing low, not leading. 3 trades available; patience favored into the print.
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+## 2026-08-10 (Mon) — Pre-Market Research (Day 74)
+
+### Account Snapshot
+- Equity: $106,610.57 | Cash: $42,114.65 (39.5%) | Buying power: $349,047.17
+- Deployed: $64,495.92 (60.5% — **below the 75-85% band**)
+- Daytrade count: 0 (not PDT) | Week trades: 0/3 (fresh budget — new week)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $52.79 | +$709.79 (+3.37%) | 20.4% | $47.664 (10% trail GTC, hwm $52.96) — ~9.7% above |
+| XLI | 116 | $182.16 | $185.26 | +$359.60 (+1.70%) | 20.2% | $169.3665 (10% trail GTC, hwm $188.185) — ~8.6% above |
+| XLP | 250 | $83.76 | $85.02 | +$315.00 (+1.50%) | 19.9% | $79.902 (10% trail GTC, hwm $88.78) — ~6.0% above |
+
+All 3 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+20% tighten triggers (all only +1.5-3.4% vs entry). XLB leader (+3.37%), XLI firm (+1.70%), XLP steady (+1.50%). All three at/near the 20% cap — **no room to add**. **Deployment 60.5% — ~15-25% below band; below band for well beyond 3 consecutive sessions → today's market-open triggers the deployment backstop (see Decision).**
+
+### Market Context — QUIET MONDAY; CPI WEDNESDAY IS THE SWING; VIX CALM ~15; OIL FIRMING ON HORMUZ
+- **Macro today:** Light — no major US data. Fed's Hammack speaks ~8:15am ET. **The week's event is July CPI, Wed Aug 12 8:30am**, then PPI Thu, retail sales Fri. No FOMC, no NFP this week.
+- **Indices/VIX:** S&P E-minis **~7,777 (-0.03%)**, flat-to-slightly-lower; **Nasdaq futures leading higher** (constructive tech tone). **VIX ~14.9** — calm, well down from last week's ~18. Note: Hormuz-deal doubts re-mounting keep it two-sided.
+- **Oil:** WTI **~$78.3**, Brent **~$83.6** — **firming +1.5-1.9%**, up sharply from ~$72 last week as US-Iran/Strait-of-Hormuz de-escalation hopes fade. Mild fresh input-cost headwind for XLI/XLP; modest tailwind returning for XLB/energy. Watch for re-escalation.
+- **Earnings BMO:** MNDY, B (Barrick), FERG, CAMT, AXSM among reporters; SPG/RKLB after close. **No held name reports** (XLB/XLI/XLP are sector ETFs). None thesis-driving.
+
+### Sector Momentum — TECH #1 & RE-ASSERTING; ENERGY #2 CONSOLIDATING; BOOK LAGGING THE LEADERS
+- **Technology** #1 YTD (~+30.6%), 1W **+7.2%**, 1M **+3.6%** — strongest momentum, clearly re-asserting leadership. Book has **no tech** — the cleanest leadership gap and the top rotation risk to a value/defensive book.
+- **Energy** #2 YTD (~+28.6%) but 1W **-3.4%** — consolidating/softening despite today's oil bounce; no clean fresh leader base (don't chase).
+- **Industrials (XLI ✓)** ~+19.4%, 1W +3.0%, 1M +2.6% — positive momentum; SSGA **positive** (AI infra, defense, capex). Best-positioned held name.
+- **Materials (XLB ✓)** ~+16.6%, weakest YTD of the four but strongest recent (1W +4.8%, 1M +5.4%); SSGA upgraded to **positive**. Momentum improving.
+- **Staples (XLP ✓)** ~+10.9% — laggard; SSGA **negative** (margin pressure, stretched valuation). Our defensive ballast, not a leader.
+
+### Trade Ideas (fresh 3-trade budget; market-open deploy now mandated by backstop)
+1. **Deploy ~$21k into a fresh leadership name at open — Technology (XLK) the base case.** Catalyst: tech is the #1 momentum sector (YTD + 1W + 1M) and the book holds none; adding it closes the deployment gap AND cures the book's biggest structural gap. Entry: on a clean early base, not a chase; Stop: 10% trail GTC; Target: min 2:1 R:R. Risk: high-beta tech is most exposed to a **hot CPI Wed** — size the first tranche and keep dry powder rather than force full size into the print.
+2. **Second leg toward band — XLI-adjacent or energy-on-a-base.** XLI is the strongest held thesis but already at the 20% cap (no add). Energy (XLE/COP/FANG) is #2 YTD but consolidating; wait for a base rather than chase today's oil bounce.
+3. **Avoid:** adding over the 20% cap on XLB/XLI/XLP; chasing the oil/energy bounce; deploying full intended size into Wed CPI. Stage the redeploy.
+
+### Risk Factors
+- **CPI Wed 8:30am** — the week's dominant print; a hot number pressures the record rally and hits high-beta tech (idea #1) hardest. Stage deployment; don't put full size on ahead of it.
+- **Tech-led rotation** — the value/defensive book (XLB/XLI/XLP) is lagging the tech leader; continued tech leadership pressures relative performance vs the S&P. Adding XLK is the direct hedge to this.
+- **Hormuz re-escalation / oil** — deal doubts re-mounting pushed oil back to ~$78; sharp re-escalation is two-sided (XLB/energy tailwind, XLI/XLP cost headwind).
+- **Deployment 60.5% (below band, >3 sessions)** — the standing issue since the GOOGL stop-out; per the 2026-08-07 backstop rule, patience no longer overrides the mandate absent a market-wide risk event (routine CPI does not qualify). Today's market-open MUST add ≥1 leader toward the band.
+
+### Decision
+**HOLD pre-market (no orders placed pre-market) — but today's MARKET-OPEN is a MANDATED DEPLOY, not optional.** Deployment has sat ~15-25% below band for well beyond 3 consecutive sessions; VIX ~15, futures flat, no market-wide risk event (CPI is routine data, explicitly excluded by the backstop). Per the 2026-08-07 rule, the market-open routine MUST add **at least one leadership position** toward the 75-85% band today.
+- **Market-open action:** deploy ~$21k (one ~20% slot) into a fresh leader — **Technology (XLK) the base case** (top momentum + cures the book's tech gap), on a clean early base, with a 10% trail GTC. Stage size given CPI Wed; a second leg later in the week if a clean base sets up (2/3 trades still available after).
+- **XLB / XLI / XLP:** HOLD. Leading/positive cohort except XLP (defensive ballast); all green vs entry (+1.5-3.4%), ~6.0-9.7% above stops, theses intact; all at/near 20% cap — no adds. No held name reports today.
+- **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
