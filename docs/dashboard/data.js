@@ -1,4 +1,4 @@
-// ============ DATA — origin/main, latest log 2026-08-07 ============
+// ============ DATA — origin/main, latest log 2026-08-10 ============
 
 // {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}
 const EQ = [
@@ -48,7 +48,8 @@ const EQ = [
 {d:"2026-08-04",n:70,v:106553.93,cash:39.5,dp:0.89,note:""},
 {d:"2026-08-05",n:71,v:106751.43,cash:39.5,dp:0.19,note:""},
 {d:"2026-08-06",n:72,v:106318.35,cash:39.6,dp:-0.41,note:""},
-{d:"2026-08-07",n:73,v:106626.35,cash:39.5,dp:0.29,note:""}
+{d:"2026-08-07",n:73,v:106626.35,cash:39.5,dp:0.29,note:""},
+{d:"2026-08-10",n:74,v:106511.38,cash:19.8,dp:-0.11,note:""}
 ];
 
 // weekly reviews, verbatim
@@ -64,10 +65,11 @@ const WEEKS = [
 {w:"08/07", bot:1.53, spx:3.58}
 ];
 
-const BOOK = [ // Aug 7 EOD
-{s:"XLB", q:412, in:51.07, pl:737.35, plp:3.50, stop:47.664, w:20.4},
-{s:"XLI", q:116, in:182.16, pl:350.32, plp:1.66, stop:169.37, w:20.1},
-{s:"XLP", q:250, in:83.76, pl:312.50, plp:1.49, stop:79.902, w:19.9}
+const BOOK = [ // Aug 10 EOD
+{s:"XLB", q:412, in:51.07, pl:869.19, plp:4.13, stop:47.88, w:20.6},
+{s:"XLI", q:116, in:182.16, pl:283.04, plp:1.34, stop:169.37, w:20.1},
+{s:"XLK", q:112, in:187.85, pl:-164.53, plp:-0.78, stop:169.956, w:19.6},
+{s:"XLP", q:250, in:83.76, pl:297.50, plp:1.42, stop:79.902, w:19.9}
 ];
 
 const TRADES = [
@@ -102,10 +104,10 @@ const FEED = [
 
 const RULES = [
 {ok:"✓", c:"up",   t:"10% trailing GTC on every position", v:"'spotless 4 straight weeks' · none lowered"},
-{ok:"✓", c:"up",   t:"Max 3 trades/wk · 20% cap · ≤6 positions", v:"never breached in 73 days"},
+{ok:"✓", c:"up",   t:"Max 3 trades/wk · 20% cap · ≤6 positions", v:"never breached in 74 days"},
 {ok:"✓", c:"up",   t:"Cut on thesis break, don't wait for −7%", v:"XOM Jun 15 at −5.6%"},
 {ok:"✓", c:"up",   t:"Exit sector after 2 failed trades", v:"tech flagged Jun 09, re-entry gated"},
-{ok:"△", c:"warn", t:"75–85% deployed", v:"reached Jun 30 · lost Jul 23 · now 60.5%"},
+{ok:"△", c:"warn", t:"75–85% deployed", v:"reached Jun 30 · lost Jul 23 · now 80.2%"},
 {ok:"✗", c:"dn",   t:"Trim a stalled +10–15% single-name", v:"GOOGL flagged, not trimmed → round-trip"}
 ];
 
