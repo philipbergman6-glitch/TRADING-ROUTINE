@@ -2309,3 +2309,53 @@ All 3 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+
 - **Market-open action:** deploy ~$21k (one ~20% slot) into a fresh leader — **Technology (XLK) the base case** (top momentum + cures the book's tech gap), on a clean early base, with a 10% trail GTC. Stage size given CPI Wed; a second leg later in the week if a clean base sets up (2/3 trades still available after).
 - **XLB / XLI / XLP:** HOLD. Leading/positive cohort except XLP (defensive ballast); all green vs entry (+1.5-3.4%), ~6.0-9.7% above stops, theses intact; all at/near 20% cap — no adds. No held name reports today.
 - **All 3 trailing stops active/correct; none lowered.** No rebalancing needed pre-market.
+
+## 2026-08-11 (Tue) — Pre-Market Research (Day 75)
+
+### Account Snapshot
+- Equity: $106,606.30 | Cash: $21,075.44 (19.8%) | Buying power: $323,788.17
+- Deployed: $85,530.86 (80.2% — **inside the 75-85% band**)
+- Daytrade count: 0 (not PDT) | Week trades: 1/3 (XLK bought Mon; 2 left)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $53.18 | +$869.19 (+4.13%) | 20.6% | $47.88 (10% trail GTC, hwm $53.20) — ~10.0% above |
+| XLI | 116 | $182.16 | $184.60 | +$283.04 (+1.34%) | 20.1% | $169.3665 (10% trail GTC, hwm $188.185) — ~8.3% above |
+| XLK | 112 | $187.85 | $187.40 | -$50.40 (-0.24%) | 19.7% | $169.956 (10% trail GTC, hwm $188.84) — ~9.3% above |
+| XLP | 250 | $83.76 | $84.87 | +$278.30 (+1.33%) | 19.9% | $79.902 (10% trail GTC, hwm $88.78) — ~5.9% above |
+
+All 4 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+20% tighten triggers (best is XLB +4.13%). XLB leader (+4.13%), XLI/XLP firm (+1.3%), XLK ~flat vs Mon entry (normal drift). All four at/near the 20% cap — **no room to add**. Deployment 80.2% — inside band since Monday's XLK backstop leg; no deployment mandate active.
+
+### Market Context — CPI WEDNESDAY IS THE SWING; VIX CALM ~15.5; OIL SPIKING +2-5% ON IRAN
+- **Macro today (light):** NFIB Small Business Optimism + Existing Home Sales 10:00am ET; 3yr note auction 1pm. **No CPI/PPI/FOMC today.** The week's event is **July CPI, Wed Aug 12 8:30am**, then PPI Thu, FOMC minutes.
+- **Backdrop:** July NFP printed **weak (-23k)** — cut rate-hike odds, supportive for equities/rate-sensitives. Constructive rate tone into CPI.
+- **Indices/VIX:** S&P E-minis **~7,780 (~flat, -0.05% to +0.1%)**; Nasdaq futures modestly leading (+0.4%). **VIX ~15.5** — calm.
+- **Oil:** WTI **~$82-84**, Brent **~$88** — **spiking +2-5%** on fading US-Iran deal hopes / Strait-of-Hormuz risk (up from ~$78 Mon). Tailwind for XLB/energy; input-cost headwind for XLI/XLP. Watch re-escalation.
+- **Earnings this week:** SMCI, Cisco, Applied Materials (AMAT), JD.com — AI/semis in focus. Today BMO: CAH, ARMK, CELH, LITE, LCII, HRB — **no held name** (XLB/XLI/XLK/XLP are sector ETFs). None thesis-driving.
+- **Tech tape:** some semiconductor rotation/weakness noted (NVDA/INTC/AMD, SOX soft) ahead of AMAT/Cisco earnings + CPI; XLK ~45% semis. Watch, not a thesis break — XLK ~flat vs entry.
+
+### Sector Momentum — ENERGY & TECH LEAD; INDUSTRIALS STRONG; MATERIALS POSITIVE; STAPLES LAGS
+- **Energy** #1 YTD (~+32-34%) — clear leader, boosted by today's oil spike; book holds none (thematic gap, but no clean fresh base — don't chase the spike).
+- **Technology (XLK ✓)** #1-2 YTD (~+30-33%) — strong momentum; some near-term semi rotation/CPI jitter. Held via Monday's leg — cures the prior tech gap.
+- **Industrials (XLI ✓)** ~+21-31% YTD — strong; best-positioned cyclical held name.
+- **Materials (XLB ✓)** ~+16-22% YTD — positive & improving; our best P&L name, oil-spike tailwind.
+- **Staples (XLP ✓)** ~+11% — laggard; defensive ballast, not a leader.
+
+### Trade Ideas (2/3 weekly trades left; NO deployment mandate — in band)
+1. **Energy (XLE / COP / FANG) on a base — watch, don't chase.** Catalyst: energy #1 YTD + today's +2-5% oil spike on Iran/Hormuz risk; book holds none. But price is spiking on geopolitics (two-sided/reversible) — wait for a base post-CPI rather than chase a headline pop. The cleanest remaining thematic gap.
+- Entry: on a pullback/base, not the spike; Stop: 10% trail GTC; Target: 2:1.
+2. **Second leg toward top of band — only on a clean fresh leader base.** Deployment already 80.2% (mid-band); no need to force. All four held names at the 20% cap (no adds). A 5th name only if a clean base sets up after CPI.
+3. **Avoid:** chasing the oil/energy spike into a geopolitical headline; adding over the 20% cap on held names; deploying into Wed CPI ahead of the print.
+
+### Risk Factors
+- **CPI Wed 8:30am** — the week's dominant print; a hot number pressures the record rally and hits high-beta tech (XLK, ~45% semis) hardest. No forced trades ahead of it.
+- **Oil spike / Iran-Hormuz** — +2-5% today on fading deal hopes; two-sided (XLB/energy tailwind, XLI/XLP cost headwind). Sharp re-escalation OR de-escalation both possible — don't chase.
+- **Semi rotation** — SOX soft into AMAT/Cisco earnings; XLK heavy semi weight. Monitor; not yet a thesis break (XLK ~flat vs entry, well above -7% cut).
+- **Deployment 80.2% (in band)** — backstop cured Monday; no mandate active. Patience is now permitted (was overridden last week).
+
+### Decision
+**HOLD — no orders placed pre-market; no market-open mandate today.** Deployment is inside the 75-85% band (80.2%) after Monday's XLK backstop leg, so the deployment mandate no longer overrides patience. VIX ~15.5, futures flat, weak-NFP rate tone constructive — but **CPI lands tomorrow 8:30am** and dominates; no clean fresh base to force an entry into the print.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports today.
+- **Watch list:** energy (XLE/COP/FANG) as the cleanest thematic gap — but wait for a base post-CPI, do NOT chase today's oil spike. 2/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
