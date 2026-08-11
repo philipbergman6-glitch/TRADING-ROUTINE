@@ -178,13 +178,23 @@ def approved_order(ledger):
     )
 
 
+def filled_buy(ledger):
+    """An approved buy carried through to `filled` -- the state that needs a stop."""
+    order = approved_order(ledger)
+    ledger.record_submission(order.id, broker_order_id="brk-1", response={})
+    ledger.record_fill(order.id, filled_qty=Decimal("100"), filled_price=Decimal("100"))
+    return order
+
+
 def test_full_lifecycle_builds_an_audit_trail(ledger):
     order = approved_order(ledger)
     ledger.record_submission(
         order.id, broker_order_id="brk-1", response={"id": "brk-1"}, http_status=200
     )
     ledger.record_fill(order.id, filled_qty=Decimal("100"), filled_price=Decimal("100.25"))
-    ledger.record_stop(order.id, response={"id": "brk-2", "type": "trailing_stop"})
+    ledger.record_stop(
+        order.id, response={"id": "brk-2", "type": "trailing_stop"}, http_status=200
+    )
 
     assert [e["event_type"] for e in ledger.audit_trail(order.id)] == [
         "order.validated",
@@ -232,7 +242,67 @@ def test_filled_buy_without_a_stop_is_visible(ledger):
     unprotected = ledger.unprotected_orders()
     assert [o["id"] for o in unprotected] == [order.id]
 
-    ledger.record_stop(order.id, response={"id": "brk-2"})
+    ledger.record_stop(order.id, response={"id": "brk-2"}, http_status=200)
+    assert ledger.unprotected_orders() == []
+
+
+def test_a_stop_the_broker_refused_is_not_protection(ledger):
+    """A 4xx on the stop leg leaves the position genuinely unprotected.
+
+    The response is still recorded verbatim -- the ledger keeps what the broker
+    said either way. What must not happen is the *existence* of that row being
+    read as protection, which would hide the exact state this query exists to
+    surface.
+    """
+    order = filled_buy(ledger)
+    assert [o["id"] for o in ledger.unprotected_orders()] == [order.id]
+
+    ledger.record_stop(
+        order.id,
+        response={"code": 40010001, "message": "stop price too close to current price"},
+        http_status=422,
+    )
+
+    assert [o["id"] for o in ledger.unprotected_orders()] == [order.id]
+
+
+def test_a_refused_stop_is_audited_as_rejected_not_placed(ledger):
+    """The immutable record must not assert an event that never happened."""
+    order = filled_buy(ledger)
+    ledger.record_stop(order.id, response={"code": 40010001}, http_status=422)
+
+    assert [e["event_type"] for e in ledger.audit_trail(order.id)] == [
+        "order.validated",
+        "order.submitted",
+        "order.filled",
+        "stop.rejected",
+    ]
+
+
+def test_recording_a_stop_without_an_http_status_is_refused(ledger):
+    """Protection is never inferred from an absent value.
+
+    A caller that cannot say what the broker answered cannot say whether the
+    position is protected, so the ledger refuses the write rather than storing
+    a row that reads as neither accepted nor refused.
+    """
+    order = filled_buy(ledger)
+    with pytest.raises(ValueError, match="http_status is required"):
+        ledger.record_stop(order.id, response={"id": "brk-2"}, http_status=None)
+
+    assert [o["id"] for o in ledger.unprotected_orders()] == [order.id]
+
+
+def test_a_stop_the_broker_rejected_then_accepted_is_protection(ledger):
+    """A retry that succeeds protects the position, despite the earlier failure.
+
+    Guards the naive repair of counting *no* failed response rather than
+    counting a successful one.
+    """
+    order = filled_buy(ledger)
+    ledger.record_stop(order.id, response={"code": 40010001}, http_status=422)
+    ledger.record_stop(order.id, response={"id": "brk-2"}, http_status=200)
+
     assert ledger.unprotected_orders() == []
 
 

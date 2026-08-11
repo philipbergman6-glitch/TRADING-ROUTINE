@@ -184,16 +184,31 @@ class Ledger:
             )
 
     def record_stop(
-        self, order_id: uuid.UUID, *, response: dict, http_status: int | None = None
+        self, order_id: uuid.UUID, *, response: dict, http_status: int
     ) -> None:
-        """Record the protective stop's broker response.
+        """Record the protective stop's broker response, accepted or refused.
 
         Separate from the buy on purpose: the whole point of tracking it is to
-        make an unprotected position *visible* when this row is missing.
+        make an unprotected position *visible*. The response is kept verbatim
+        either way, but only an accepted one is audited as `stop.placed` -- a
+        refusal that recorded `stop.placed` made the immutable record assert
+        something untrue (#37).
         """
+        if http_status is None:
+            raise ValueError(
+                "http_status is required when recording a protective stop: a "
+                "caller that cannot say what the broker answered cannot say "
+                "whether the position is protected"
+            )
+        placed = http_status < 400
         with self._conn.transaction(), self._conn.cursor() as cur:
             self._record_response(cur, order_id, "stop", response, http_status)
-            self._append_audit(cur, order_id, "stop.placed", {})
+            self._append_audit(
+                cur,
+                order_id,
+                "stop.placed" if placed else "stop.rejected",
+                {} if placed else {"http_status": http_status},
+            )
 
     # -- reads --------------------------------------------------------------
 
@@ -216,11 +231,17 @@ class Ledger:
             return cur.fetchall()
 
     def unprotected_orders(self) -> list[dict]:
-        """Filled buys with no recorded stop response.
+        """Filled buys with no *accepted* protective stop.
 
         This is the query a reconciliation loop would run. The loop itself is
         not built (see ARCHITECTURE.md), but the ledger is shaped so that the
         question is answerable rather than requiring a schema change later.
+
+        Protection requires a stop response the broker *accepted*. Keying off
+        the mere existence of a stop row counted a refusal as protection and
+        hid the position this query exists to surface (#37). `http_status` is
+        NULL only on rows written before it was mandatory; NULL < 400 is not
+        true, so those legacy rows read as unprotected -- the safe direction.
         """
         with self._conn.cursor() as cur:
             cur.execute(
@@ -231,7 +252,9 @@ class Ledger:
                    AND o.status = 'filled'
                    AND NOT EXISTS (
                        SELECT 1 FROM broker_responses r
-                        WHERE r.order_id = o.id AND r.kind = 'stop'
+                        WHERE r.order_id = o.id
+                          AND r.kind = 'stop'
+                          AND r.http_status < 400
                    )
                  ORDER BY o.filled_at
                 """
