@@ -15,6 +15,7 @@ testpaths = ["tests"]
 pythonpath = ["."]
 markers = [
   "integration: exercises a real Postgres; skipped when DATABASE_URL is unset",
+  "golden: asserts committed docs/dashboard/data.js matches a fresh build; only meaningful after the build has run",
 ]
 
 [tool.setuptools.packages.find]
