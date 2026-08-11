@@ -1,0 +1,21 @@
+[project]
+name = "trading-routine"
+version = "0.1.0"
+description = "Risk engine, ledger, and dashboard tooling for the paper trading bot"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+ledger = ["psycopg[binary]>=3.1"]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# So `pytest` and `python -m pytest` behave identically -- CI uses the former.
+pythonpath = ["."]
+markers = [
+  "integration: exercises a real Postgres; skipped when DATABASE_URL is unset",
+]
+
+[tool.setuptools.packages.find]
+include = ["risk_engine*", "ledger*"]

@@ -40,6 +40,8 @@
   .lamp i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
   .lamp.live i { background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
   .lamp.paper i { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+  /* No pulse: a stale-analysis badge must not read as a live one. */
+  .lamp.stale i { background: var(--amber, #FFB020); box-shadow: 0 0 8px var(--amber, #FFB020); }
   .lamp.real i { background: var(--violet); box-shadow: 0 0 8px var(--violet); }
   @keyframes pulse { 50% { opacity: 0.4; } }
   .topbar .spacer { flex: 1; }
@@ -253,8 +255,20 @@ const MTICKS = (()=>{ const out = [], end = LAST.d.slice(0,7);
     out.push([`${k}-01`, MON[m-1].toUpperCase()]); }
   return out; })();
 
-$('lampLive').innerHTML = `<i></i> LIVE · LAST LOG ${dLbl(LAST.d).toUpperCase()} EOD`;
-$('asof').innerHTML = `day ${LAST.n} · ${dLbl(FIRST.d).toUpperCase()} – ${dLbl(LAST.d).toUpperCase()} ${LAST.d.slice(0,4)}<br>source: origin/main logs · nothing estimated`;
+// Two dates, never conflated: the figures regenerate nightly from the logs,
+// the written analysis only moves when a human rewrites it. If the prose is
+// older than the data, the badge says so rather than claiming to be live.
+(function stampFreshness(){
+  const staleDays = Math.round((Date.parse(LOG_ASOF) - Date.parse(ANALYSIS_ASOF)) / 86400000);
+  const lamp = $('lampLive');
+  if (staleDays > 0) {
+    lamp.className = 'lamp stale';
+    lamp.innerHTML = `<i></i> DATA ${dLbl(LOG_ASOF).toUpperCase()} · ANALYSIS ${dLbl(ANALYSIS_ASOF).toUpperCase()} (${staleDays}D OLDER)`;
+  } else {
+    lamp.innerHTML = `<i></i> LIVE · DATA ${dLbl(LOG_ASOF).toUpperCase()} EOD · ANALYSIS ${dLbl(ANALYSIS_ASOF).toUpperCase()}`;
+  }
+})();
+$('asof').innerHTML = `day ${LAST.n} · ${dLbl(FIRST.d).toUpperCase()} – ${dLbl(LAST.d).toUpperCase()} ${LAST.d.slice(0,4)}<br>figures from origin/main logs · nothing estimated · <b>editorial text is curated, dated separately</b>`;
 $('provDate').textContent = LAST.d;
 $('subEq').textContent = `${EQ.length} logged snapshots, TRADE-LOG.md verbatim · hover any point`;
 $('subBook').textContent = `${dLbl(LAST.d)} EOD · ${BOOK.every(p=>p.pl>=0) ? 'all green' : `${BOOK.filter(p=>p.pl>=0).length}/${BOOK.length} green`}`;

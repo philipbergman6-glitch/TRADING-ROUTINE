@@ -1,0 +1,59 @@
+name: tests
+
+# Kept separate from dashboard.yml on purpose: that workflow is a *publish* job
+# triggered by the bot's memory commits, with a self-retrigger guard. Mixing a
+# test job into it would entangle two unrelated triggers.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  risk-engine:
+    # The safety tests are pure -- no services, no network, no database. They
+    # must never be blocked by infrastructure being unavailable.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: Risk engine + dashboard tests
+        run: pytest -v -m "not integration"
+
+  ledger:
+    # Real Postgres, not a mock. A ledger tested against a fake proves nothing
+    # about the constraints and triggers that do the actual work.
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: trading
+          POSTGRES_PASSWORD: trading
+          POSTGRES_DB: trading
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U trading -d trading"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://trading:trading@localhost:5432/trading
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev,ledger]"
+      - name: Ledger integration tests
+        run: pytest -v -m integration
+
+      - name: Fail if the ledger tests silently skipped
+        # A skipped integration suite passes just as quietly as a green one.
+        # This step is what stops "all checks passed" from meaning "nothing ran".
+        run: pytest -m integration --collect-only -q | tail -1 | grep -qv "no tests ran"
