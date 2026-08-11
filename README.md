@@ -37,9 +37,10 @@ its way past them:
 | Never spend more cash than available | ✅ code |
 | Deployment ceiling (85%) | ✅ code |
 | Every buy carries a stop | ✅ code — an unprotected buy is never approved |
-| A stop never moves down | ✅ code |
-| A stop is never within 3% of price | ✅ code |
-| Trail ladder: 10% → 7% at +15% → 5% at +20% | ✅ code |
+| A stop is never within 3% of price | ✅ code — on a proposed buy |
+| A stop never moves down | 🚧 written and tested, **not called** |
+| A stop is never within 3% of price, on a stop *change* | 🚧 written and tested, **not called** |
+| Trail ladder: 10% → 7% at +15% → 5% at +20% | 🚧 written and tested, **not called** |
 | Follow sector momentum | ⚠️ prose — a judgment, left to the operator |
 | Specific catalyst required | ⚠️ prose — presence is checkable, quality is not |
 | Cut losers at −7% | ⚠️ prose — an exit trigger, not a property of a proposed order |
@@ -47,6 +48,17 @@ its way past them:
 
 The ⚠️ rows are not oversights. They are listed in `risk_engine.UNMECHANISED`
 with the reason each was left to human judgment.
+
+The 🚧 rows are a different thing, and the more honest label for them is
+*half-done*. `validate_stop_change` and `required_trail_percent`
+(`risk_engine/engine.py:267`, `:308`) are real, deterministic and covered by
+tests — but they have **zero non-test callers**, and `validate_stop_change`
+never consults the trail ladder at all. Every stop *modification* this bot makes
+is therefore still governed by routine prose (`routines/midday.md:39-49`), not by
+the engine. Wiring them up is [issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32);
+it is harder than it looks, because tightening a trailing stop is a
+cancel-and-replace, so there is no reliable "current stop price" for the caller
+to compare against.
 
 ## What this does not do yet
 
@@ -64,8 +76,25 @@ claims is where trust dies:
   leaves an unprotected position. The engine refuses to approve an unprotected
   buy, but closing the *execution* gap needs idempotency keys and an
   orchestration layer that does not exist yet.
+- **The sell path would be refused by the broker.** Rule 4 puts a full-size
+  trailing stop on every position, and an open sell order reserves its full
+  quantity — so `qty_available` is structurally `0` on every position this bot
+  holds (verified live on all four: XLB, XLI, XLK, XLP). A sell into that is
+  `HTTP 403 / code 40310000`, and `DELETE /v2/positions/{symbol}` returns the
+  same 403 without cancelling the blocking order. The engine checks `qty`, not
+  `qty_available`, so it would *approve* a sell the broker then rejects. Cancel-
+  then-sell is the only viable sequence; deciding whether the engine validates
+  the POST or the whole sequence is
+  [issue #41](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/41).
+  Findings: [`docs/research/0002`](docs/research/0002-alpaca-share-reservation-and-qty-available.md).
+- **Cutting a loser can leave it held *and* unprotected.** `routines/midday.md`
+  closes then cancels; given the reservation above, the close 403s and the cancel
+  succeeds — so the loser stays, minus its stop. Live and armed daily until
+  [#38](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/38) lands.
 - **No reconciliation loop.** Nothing compares local state against broker state,
-  or alerts when a position has no stop.
+  or alerts when a position has no stop — and the query that would power one
+  (`ledger/store.py:218`) currently counts a broker-*rejected* stop as
+  protection ([#37](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/37)).
 - **Markdown is still the operational system of record.** Postgres is an
   additive ledger, not the source of truth.
 - **Single user, paper only.** No multi-tenancy, no auth, no credential
