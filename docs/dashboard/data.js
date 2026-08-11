@@ -45,24 +45,26 @@ const EQ = [
 {d:"2026-07-30",n:67,v:105456.07,cash:39.9,dp:-0.46,note:""},
 {d:"2026-07-31",n:68,v:105015.75,cash:40.1,dp:-0.42,note:""},
 {d:"2026-08-03",n:69,v:105619.01,cash:39.9,dp:0.57,note:""},
-{d:"2026-08-04",n:70,v:106553.93,cash:39.5,dp:0.89,note:""},
+{d:"2026-08-04",n:70,v:106553.93,cash:39.5,dp:0.89,note:"Fresh phase high — all 3 green on cost"},
 {d:"2026-08-05",n:71,v:106751.43,cash:39.5,dp:0.19,note:""},
 {d:"2026-08-06",n:72,v:106318.35,cash:39.6,dp:-0.41,note:""},
-{d:"2026-08-07",n:73,v:106626.35,cash:39.5,dp:0.29,note:""},
-{d:"2026-08-10",n:74,v:106511.38,cash:19.8,dp:-0.11,note:""}
+{d:"2026-08-07",n:73,v:106626.35,cash:39.5,dp:0.29,note:"Rule 12 written: deployment backstop after 3 idle sessions"},
+{d:"2026-08-10",n:74,v:106511.38,cash:19.8,dp:-0.11,note:"Rule 12 fires: XLK bought — 60.4% → 80.2%, back in band"}
 ];
 
-// weekly reviews, verbatim
+// weekly reviews. spx = as logged that week (contemporaneous record);
+// spxc = re-chained from the logged closes so the series is continuous;
+// est:1 = no index levels in the log, spxc falls back to spx.
 const WEEKS = [
-{w:"06/12", bot:-1.65, spx:0.70},
-{w:"06/19", bot:-0.70, spx:0.93},
-{w:"06/26", bot:-0.07, spx:-1.91},
-{w:"07/03", bot:2.24, spx:1.71},
-{w:"07/10", bot:-0.97, spx:0.81},
-{w:"07/17", bot:-0.83, spx:-0.90},
-{w:"07/24", bot:-0.96, spx:-0.33},
-{w:"07/31", bot:-0.40, spx:0.35},
-{w:"08/07", bot:1.53, spx:3.58}
+{w:"06/12", bot:-1.65, spx:0.70, spxc:0.70, est:1},
+{w:"06/19", bot:-0.70, spx:0.93, spxc:0.93, est:1},
+{w:"06/26", bot:-0.07, spx:-1.91, spxc:-1.91, est:0},
+{w:"07/03", bot:2.24, spx:1.71, spxc:1.71, est:0},
+{w:"07/10", bot:-0.97, spx:0.81, spxc:0.81, est:0},
+{w:"07/17", bot:-0.83, spx:-0.90, spxc:-0.90, est:0},
+{w:"07/24", bot:-0.96, spx:-0.33, spxc:-0.78, est:0},
+{w:"07/31", bot:-0.40, spx:0.35, spxc:0.28, est:0},
+{w:"08/07", bot:1.53, spx:3.58, spxc:4.30, est:0}
 ];
 
 const BOOK = [ // Aug 10 EOD
@@ -84,9 +86,10 @@ const TRADES = [
 {d:"Jun 10", s:"XOM",  sec:"enrg", q:142, in:"150.14", out:"141.74 · thesis cut", pl:{v:"−1,193", up:0}, th:"Cut at −5.6%, before −7% rule"},
 {d:"Jun 25", s:"GOOGL",sec:"tech", q:62,  in:"336.36", out:"322.93 · stop Jul 23", pl:{v:"−833", up:0}, th:"+10.55% high given back"},
 {d:"Jun 25", s:"XLF",  sec:"etf",  q:390, in:"53.97",  out:"53.83 · rotation", pl:{v:"−53", up:0}, th:"Financials thesis broke"},
-{d:"Jun 29", s:"XLI",  sec:"etf",  q:116, in:"182.16", out:"OPEN", open:1, pl:{v:"+121 unrl", up:1}, th:"Industrials leader"},
-{d:"Jun 29", s:"XLB",  sec:"etf",  q:412, in:"51.07",  out:"OPEN", open:1, pl:{v:"+132 unrl", up:1}, th:"Materials #2"},
-{d:"Jun 30", s:"XLP",  sec:"etf",  q:250, in:"83.76",  out:"OPEN", open:1, pl:{v:"+400 unrl", up:1}, th:"Defensive diversifier"}
+{d:"Jun 29", s:"XLI",  sec:"etf",  q:116, in:"182.16", out:"OPEN", open:1, pl:null, th:"Industrials leader"},
+{d:"Jun 29", s:"XLB",  sec:"etf",  q:412, in:"51.07",  out:"OPEN", open:1, pl:null, th:"Materials #2"},
+{d:"Jun 30", s:"XLP",  sec:"etf",  q:250, in:"83.76",  out:"OPEN", open:1, pl:null, th:"Defensive diversifier"},
+{d:"Aug 10", s:"XLK",  sec:"etf",  q:112, in:"187.85", out:"OPEN", open:1, pl:null, th:"Rule 12 deployment backstop — first tech since GOOGL"}
 ];
 
 const FEED = [
@@ -99,24 +102,37 @@ const FEED = [
 {d:"06/30", b:"trade",x:"XLP added — <b>deployment inside the 75–85% band for the first time</b> (79.4%)."},
 {d:"07/23", b:"cut",  x:"GOOGL gaps through stop post-Q2 (capex fear): <b>−3.99%</b>. Pre-market call: no re-entry into the fear. Held."},
 {d:"07/24", b:"sys",  x:"Weekly review: <b>all-ETF book has no independent engine</b> — sourcing a single-name is 'the book's missing half'."},
-{d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."}
+{d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."},
+{d:"08/07", b:"sys",  x:"Weekly review writes <b>Rule 12 into the strategy itself</b>: below-band for 3 sessions ⇒ next market-open MUST add. Verbatim: <i>'patience was masking non-compliance.'</i>"},
+{d:"08/10", b:"trade",x:"<b>Rule 12 fires on its own deadline</b> — XLK 112 @ $187.85. Deployment 60.4% → 80.2%, back in band after 12 sessions out; first tech exposure since the GOOGL stop."},
+{d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."}
 ];
 
 const RULES = [
-{ok:"✓", c:"up",   t:"10% trailing GTC on every position", v:"'spotless 4 straight weeks' · none lowered"},
+{ok:"✓", c:"up",   t:"10% trailing GTC on every position", v:"4/4 live · none ever lowered"},
 {ok:"✓", c:"up",   t:"Max 3 trades/wk · 20% cap · ≤6 positions", v:"never breached in 74 days"},
 {ok:"✓", c:"up",   t:"Cut on thesis break, don't wait for −7%", v:"XOM Jun 15 at −5.6%"},
 {ok:"✓", c:"up",   t:"Exit sector after 2 failed trades", v:"tech flagged Jun 09, re-entry gated"},
-{ok:"△", c:"warn", t:"75–85% deployed", v:"reached Jun 30 · lost Jul 23 · now 80.2%"},
+{ok:"✓", c:"up",   t:"75–85% deployed", v:"restored Aug 10 by rule 12 · now 80.2%"},
+{ok:"✓", c:"up",   t:"Rule 12 — deployment backstop (self-written Aug 07)", v:"fired on schedule Aug 10 → XLK"},
 {ok:"✗", c:"dn",   t:"Trim a stalled +10–15% single-name", v:"GOOGL flagged, not trimmed → round-trip"}
 ];
 
-// ---- STATIC SECTION — analysis as of 2026-07-28; not regenerated by build_dashboard_data.py ----
+// Open-risk panel — editorial, dated with INSIGHTS above.
+const RISK = [
+{t:"Correlation", v:"4 sector ETFs, no single-name engine", c:"dn"},
+{t:"Concentration", v:"every position sized 19.6–20.6% — one bad tape hits all", c:"warn"},
+{t:"Next binary", v:"July CPI · Wed Aug 12, 8:30am ET", c:"warn"},
+{t:"Weekly budget", v:"1 of 3 trades used", c:""},
+{t:"Benchmark gap", v:"−7.0pp vs S&P since reviews began", c:"dn"}
+];
+
+// ---- EDITORIAL SECTION — analysis as of 2026-08-11; not derived from the logs ----
 const INSIGHTS = [
-{c:"var(--red)", n:"01", h:"All the profit is 10 weeks old.", p:"Phase P&L is +5.88%, but equity on Jun 12 (first weekly review) was $106,860 — <b>higher than today's $105,879</b>. Since reviews began: 7 weeks, 1 up week, net ≈ −0.9% while the S&P summed ≈ +1.0%. The April–May tech book made all the money; the June–July ETF regime has been paying for discipline lessons. Question for Aug 02: which regime is the real strategy?"},
-{c:"var(--amber)", n:"02", h:"Logged exits: 1 winner, 5 losers, −$5,531 — yet the account is up.", p:"Every written-down exit sums to −$5,531 (XOM +95, MSFT −1,690, NVDA −1,857, XOM −1,193, GOOGL −833, XLF −53). The +$5.9k of phase profit lives in the <b>never-logged Apr–May exits</b> (AMD, PLTR, MU, AVGO) plus today's open positions. Weekly-review 'profit factor 0.00' is a data artifact, not reality — but it means your own retrospectives are computing stats on the losing half of your history."},
-{c:"var(--cyan)", n:"03", h:"The GOOGL round-trip was flagged a week before it happened.", p:"Jul 17 review: 'wide trail on a spiking single-name; watch for a discretionary partial trim.' Not taken. Jul 23: the +10.55% run gapped through the stop to <b>−3.99% realized</b>. The Jul 24 review names it plainly: 'flagged, not taken.' The agent's self-diagnosis loop works — <b>the gap is that flags don't become orders</b>."},
-{c:"var(--green)", n:"04", h:"Risk control is genuinely solved.", p:"64 trading days, zero rule breaches, no stop ever lowered, worst single loss −9.4%, and it's improving: June's exits waited for stops at −8/−9%; by Jun 15 it cut XOM on thesis break at −5.6%, and GOOGL's damage was capped at −4% by the ratcheted trail. <b>Loss size shrank every month.</b> This is the strongest evidence for going live."},
-{c:"var(--violet)", n:"05", h:"The book is 3 correlated sector ETFs and $42k idle cash.", p:"Since the GOOGL stop-out: XLI + XLB + XLP (one macro bet, as the Jul 24 review admits), deployment 60% vs the 75–85% mandate, and redeployment deferred at every scan since Jul 23 — 'market-open, patiently' three sessions running. FOMC ends Jul 31; <b>Aug 02 arrives with the redeploy decision still open</b>."},
-{c:"var(--cyan)", n:"06", h:"Your local clone lied to you (and to me).", p:"This Mac's copy of TRADING-ROUTINE was <b>97 commits behind</b> — it showed the system dead since Jun 22 when it had run every scheduled day since. The cloud crons push straight to origin/main. Any dashboard, analysis, or meeting demo must read the remote, and a <code>git pull</code> belongs in your routine before touching this repo locally."}
+{c:"var(--green)", n:"01", h:"It wrote a rule into its own strategy, then obeyed it on deadline.", p:"For 6 weeks the bot sat below its 75–85% deployment mandate, deferring redeployment every session under 'patience > activity'. On <b>Aug 07 the weekly review amended TRADING-STRATEGY.md itself</b> — Rule 12, deployment backstop — with the reason written in plain text: <i>'patience was masking non-compliance.'</i> On Aug 10 the market-open routine cited that rule and bought XLK, lifting deployment 60.4% → 80.2%. Diagnose → legislate → execute, unattended. This is the thing INSIGHT 03 said was missing: <b>a flag that finally became an order</b>."},
+{c:"var(--red)", n:"02", h:"All the profit is three months old, and the benchmark gap is widening.", p:"Phase P&L reads +6.51%, but equity on Jun 12 (first weekly review) was $106,856 — <b>above today's $106,511</b>. Across the 9 reviewed weeks the bot returned <b>−1.86% against a chained S&P of +5.12%</b>: 2 up weeks out of 9, a ~7pp gap. The April–May tech book made every dollar; the June–August ETF regime has bought discipline, not return. The open question is unchanged and now overdue: <b>which regime is the actual strategy?</b>"},
+{c:"var(--amber)", n:"03", h:"Logged exits: 1 winner, 5 losers, −$5,531 — yet the account is up.", p:"Every written-down exit sums to −$5,531 (XOM +95, MSFT −1,690, NVDA −1,857, XOM −1,193, GOOGL −833, XLF −53). The phase profit lives in the <b>never-logged Apr–May exits</b> (AMD, PLTR, MU, AVGO) plus the open book. Weekly-review 'profit factor 0.00' is a data artifact, not reality — but it means the bot's own retrospectives compute stats on the losing half of its history. <b>The blotter says so rather than guessing.</b>"},
+{c:"var(--cyan)", n:"04", h:"The benchmark — not the bot — was the least rigorous number here.", p:"An Aug 11 audit found the logged S&P series <b>re-fetched its starting level 3 times</b> instead of chaining from the prior week's close (07/24 −34.01 pts, 07/31 −5.12, 08/07 +52.09), so 'beat the S&P' was being scored against a discontinuous series. The chart now plots the re-chained series and the weekly reviews carry an errata section. Note the direction: <b>the corrected benchmark is worse for the bot</b> (+5.12% vs +3.26% as logged). It is used anyway; the build now hard-fails on any new break."},
+{c:"var(--green)", n:"05", h:"Risk control is genuinely solved.", p:"74 trading days, zero rule breaches, no stop ever lowered, worst single loss −9.4%, and improving: June's exits waited for stops at −8/−9%; by Jun 15 it cut XOM on thesis break at −5.6%; GOOGL's damage was capped at −4% by the ratcheted trail. Every open position carries a live GTC trailing stop — <b>reconciled 1:1 against the broker, share for share and stop for stop</b>. Loss size shrank every month. This remains the strongest evidence for going live."},
+{c:"var(--violet)", n:"06", h:"Back in band — but still one macro bet.", p:"The book is XLB + XLI + XLP + XLK at 80.2% deployed, each sized 19.6–20.6%. Rule 12 fixed the <i>quantity</i> of risk; the <i>shape</i> is unchanged — four sector ETFs, no single-name engine, which the Jul 24 review called 'the book's missing half'. XLK at least ends the zero-tech gap against the #1 momentum sector. Next binary: <b>July CPI, Wed Aug 12</b>, with 2 of 3 weekly trades still unused."}
 ];

@@ -4,14 +4,8 @@
 # Exits with code 3 if PERPLEXITY_API_KEY is unset so callers can fall back.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-ENV_FILE="$ROOT/.env"
-if [[ -f "$ENV_FILE" ]]; then
-  set -a
-  # shellcheck disable=SC1090
-  source "$ENV_FILE"
-  set +a
-fi
+# shellcheck source=scripts/_env.sh
+source "$(dirname "$0")/_env.sh"
 
 query="${1:-}"
 if [[ -z "$query" ]]; then

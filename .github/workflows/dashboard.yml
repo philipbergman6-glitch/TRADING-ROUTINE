@@ -19,8 +19,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install test deps
+        run: pip install pytest
+
+      # Order matters. The build runs first: it is what hard-fails on a bad log
+      # (parse mismatch, S&P chain break) and it rewrites data.js. The suite
+      # runs after, so the golden test compares against the freshly built file —
+      # on an EOD push data.js is *expected* to be stale beforehand.
       - name: Regenerate docs/dashboard/data.js (hard-fails on parse mismatch)
         run: python3 scripts/build_dashboard_data.py
+
+      - name: Test (golden + benchmark-chain + paper-only guards)
+        run: python3 -m pytest tests/ -q
 
       - name: Commit and push if changed
         run: |
