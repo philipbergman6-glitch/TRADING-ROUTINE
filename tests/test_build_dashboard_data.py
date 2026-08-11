@@ -159,3 +159,39 @@ def test_env_file_does_not_override_process_env():
     r = subprocess.run(["bash", str(REPO / "scripts" / "alpaca.sh"), "account"],
                        capture_output=True, text=True, env=env, cwd=REPO)
     assert "api.alpaca.markets" in r.stderr and "paper-api" not in r.stderr
+
+
+# --- Freshness stamps: curated prose must never pass as live data -----------
+
+
+def test_emits_both_freshness_dates():
+    """The dashboard needs two independent dates to distinguish generated
+    figures from curated narrative."""
+    snaps, _, out = build()
+    assert f'const LOG_ASOF = "{snaps[-1]["d"]}";' in out
+    assert f'const ANALYSIS_ASOF = "{b.ANALYSIS_ASOF}";' in out
+
+
+def test_analysis_asof_is_an_iso_date():
+    from datetime import date
+
+    assert date.fromisoformat(b.ANALYSIS_ASOF)
+
+
+def test_editorial_header_is_substituted_not_hardcoded():
+    """A hardcoded date in the template is how the header drifted stale before."""
+    assert "__ANALYSIS_ASOF__" in b.STATIC_TAIL, (
+        "editorial header must use the placeholder so ANALYSIS_ASOF stays the "
+        "single source of truth")
+    _, _, out = build()
+    assert "__ANALYSIS_ASOF__" not in out
+    assert f"analysis as of {b.ANALYSIS_ASOF}" in out
+
+
+def test_no_stale_2026_07_28_stamp_survives_anywhere():
+    """Regression guard for the specific drift this fixed: the module docstring
+    claimed 2026-07-28 while the editorial block said 2026-08-11."""
+    source = (REPO / "scripts" / "build_dashboard_data.py").read_text(encoding="utf-8")
+    stale = [ln for ln in source.splitlines()
+             if "2026-07-28" in ln and "analysis" in ln.lower()]
+    assert not stale, f"stale analysis stamp still present: {stale}"

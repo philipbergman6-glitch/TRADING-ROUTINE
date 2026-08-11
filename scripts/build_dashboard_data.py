@@ -8,7 +8,8 @@ Parses:
   - memory/WEEKLY-REVIEW.md -> WEEKS (Stats table of each "## Week ending" section)
 
 TRADES / FEED / RULES / INSIGHTS and per-date chart notes are curated, not
-derivable from the logs — they are frozen below (analysis as of 2026-07-28).
+derivable from the logs — they are curated below and dated by ANALYSIS_ASOF,
+which the dashboard displays alongside the (separate) latest-log date.
 
 HARD-FAILS on any parse mismatch. Never publishes partial or stale data.
 """
@@ -282,7 +283,14 @@ def parse_weekly_review(text):
 
 
 # --------------------------------------------------------------------------
-# Curated content — analysis as of 2026-08-11 (latest log 2026-08-10)
+# Curated content — dated by ANALYSIS_ASOF below, NOT by the latest log.
+#
+# These two dates drift apart on purpose: the logs regenerate nightly, the
+# editorial does not. The dashboard surfaces both so a stale narrative can
+# never sit behind a "LIVE" badge. When you revise the prose below, bump
+# ANALYSIS_ASOF in the same commit.
+ANALYSIS_ASOF = "2026-08-11"
+
 #
 # TRADES / FEED / RULES / RISK / INSIGHTS and the per-date chart notes are
 # editorial: they cannot be derived from the logs, so they are written by hand
@@ -377,7 +385,7 @@ const RISK = [
 {t:"Benchmark gap", v:"−7.0pp vs S&P since reviews began", c:"dn"}
 ];
 
-// ---- EDITORIAL SECTION — analysis as of 2026-08-11; not derived from the logs ----
+// ---- EDITORIAL SECTION — analysis as of __ANALYSIS_ASOF__; not derived from the logs ----
 const INSIGHTS = [
 {c:"var(--green)", n:"01", h:"It wrote a rule into its own strategy, then obeyed it on deadline.", p:"For 6 weeks the bot sat below its 75–85% deployment mandate, deferring redeployment every session under 'patience > activity'. On <b>Aug 07 the weekly review amended TRADING-STRATEGY.md itself</b> — Rule 12, deployment backstop — with the reason written in plain text: <i>'patience was masking non-compliance.'</i> On Aug 10 the market-open routine cited that rule and bought XLK, lifting deployment 60.4% → 80.2%. Diagnose → legislate → execute, unattended. This is the thing INSIGHT 03 said was missing: <b>a flag that finally became an order</b>."},
 {c:"var(--red)", n:"02", h:"All the profit is three months old, and the benchmark gap is widening.", p:"Phase P&L reads +6.51%, but equity on Jun 12 (first weekly review) was $106,856 — <b>above today's $106,511</b>. Across the 9 reviewed weeks the bot returned <b>−1.86% against a chained S&P of +5.12%</b>: 2 up weeks out of 9, a ~7pp gap. The April–May tech book made every dollar; the June–August ETF regime has bought discipline, not return. The open question is unchanged and now overdue: <b>which regime is the actual strategy?</b>"},
@@ -424,7 +432,8 @@ def emit(snaps, weeks):
     # figures that must track the latest snapshot, not the day the text was written
     subs = {"__DEPLOYED__": fmt(100 - snaps[-1]["cash"], 1),
             "__DAYS__": str(snaps[-1]["n"]),
-            "__NPOS__": str(len(book))}
+            "__NPOS__": str(len(book)),
+            "__ANALYSIS_ASOF__": ANALYSIS_ASOF}
     static_tail = STATIC_TAIL
     for token, value in subs.items():
         if token not in static_tail:
@@ -433,6 +442,12 @@ def emit(snaps, weeks):
 
     return (
         f"// ============ DATA — origin/main, latest log {snaps[-1]['d']} ============\n"
+        "\n"
+        "// Two independent dates. LOG_ASOF moves nightly with the trade log;\n"
+        "// ANALYSIS_ASOF only moves when a human rewrites the editorial prose.\n"
+        "// The dashboard shows both, so curated text can never pass as live.\n"
+        f"const LOG_ASOF = {js_str(snaps[-1]['d'])};\n"
+        f"const ANALYSIS_ASOF = {js_str(ANALYSIS_ASOF)};\n"
         "\n"
         "// {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}\n"
         "const EQ = [\n" + ",\n".join(eq_rows) + "\n];\n"

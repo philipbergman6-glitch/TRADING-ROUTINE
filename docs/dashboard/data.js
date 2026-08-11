@@ -1,5 +1,11 @@
 // ============ DATA — origin/main, latest log 2026-08-10 ============
 
+// Two independent dates. LOG_ASOF moves nightly with the trade log;
+// ANALYSIS_ASOF only moves when a human rewrites the editorial prose.
+// The dashboard shows both, so curated text can never pass as live.
+const LOG_ASOF = "2026-08-10";
+const ANALYSIS_ASOF = "2026-08-11";
+
 // {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}
 const EQ = [
 {d:"2026-04-27",n:0,v:100000.00,cash:100.0,dp:0,note:"Day 0 baseline"},
