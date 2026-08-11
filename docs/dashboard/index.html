@@ -259,8 +259,14 @@ const MTICKS = (()=>{ const out = [], end = LAST.d.slice(0,7);
 // the written analysis only moves when a human rewrites it. If the prose is
 // older than the data, the badge says so rather than claiming to be live.
 (function stampFreshness(){
-  const staleDays = Math.round((Date.parse(LOG_ASOF) - Date.parse(ANALYSIS_ASOF)) / 86400000);
   const lamp = $('lampLive');
+  // Degrade, never throw: a browser holding a cached pre-2026-08-11 data.js
+  // has no ANALYSIS_ASOF, and a blank dashboard is far worse than a plain badge.
+  if (typeof LOG_ASOF === 'undefined' || typeof ANALYSIS_ASOF === 'undefined') {
+    lamp.innerHTML = `<i></i> LIVE · LAST LOG ${dLbl(LAST.d).toUpperCase()} EOD`;
+    return;
+  }
+  const staleDays = Math.round((Date.parse(LOG_ASOF) - Date.parse(ANALYSIS_ASOF)) / 86400000);
   if (staleDays > 0) {
     lamp.className = 'lamp stale';
     lamp.innerHTML = `<i></i> DATA ${dLbl(LOG_ASOF).toUpperCase()} · ANALYSIS ${dLbl(ANALYSIS_ASOF).toUpperCase()} (${staleDays}D OLDER)`;
