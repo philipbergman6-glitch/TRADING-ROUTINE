@@ -106,6 +106,9 @@ def read_portfolio(now: datetime, override_trades: int | None) -> PortfolioState
     # engine re-checks rather than trusting that upstream guard held.
     return PortfolioState(
         equity=str(account["equity"]),
+        # Rule 13 is cash-only: this must stay "cash" and never become
+        # "buying_power", which is ~4x equity on a margin account. Missing key
+        # falls back to 0, which fails closed (every buy refused).
         cash=str(account.get("cash", "0")),
         is_paper=_is_paper(),
         positions=tuple(
