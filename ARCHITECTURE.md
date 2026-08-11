@@ -64,12 +64,30 @@ auditable, not a bare `False`.
 
 ## What is enforced in code vs. left to judgment
 
-Enforced (`risk_engine/engine.py`, each with a passing and a failing test):
+Enforced (`risk_engine/engine.py`, each with a passing and a failing test) and
+reached on the `/trade` path:
 
 paper-account-only · stocks-only · max 6 positions · max 20% per position ·
 max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
-stop required on every buy · stop never lowered · stop never within 3% of price ·
-the trail ladder (10% → 7% at +15% → 5% at +20%)
+stop required on every buy · stop never within 3% of price *on a proposed buy*
+
+Written, tested, and **not called** — deterministic code with zero non-test
+callers, which means the behaviour it describes is still governed by routine
+prose:
+
+- **A stop never moves down**, and **never within 3% of price on a stop
+  *change*** — `validate_stop_change` (`risk_engine/engine.py:267`).
+- **The trail ladder** (10% → 7% at +15% → 5% at +20%) —
+  `required_trail_percent` (`risk_engine/engine.py:308`). `validate_stop_change`
+  never consults it.
+
+Every stop *modification* this bot makes therefore runs on
+`routines/midday.md:39-49`, not on the engine. Wiring these up is
+[issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32);
+it is harder than it looks, because tightening a trailing stop is a
+cancel-and-replace, so there is no reliable "current stop price" to compare
+against. A tested function with no caller enforces nothing, and listing it as
+enforced would be the most damaging kind of documentation error.
 
 Deliberately **not** enforced, and named in `risk_engine.UNMECHANISED` rather
 than quietly dropped:
