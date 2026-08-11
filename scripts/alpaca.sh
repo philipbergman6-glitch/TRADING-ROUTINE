@@ -3,20 +3,26 @@
 # Usage: bash scripts/alpaca.sh <subcommand> [args...]
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-ENV_FILE="$ROOT/.env"
-if [[ -f "$ENV_FILE" ]]; then
-  set -a
-  # shellcheck disable=SC1090
-  source "$ENV_FILE"
-  set +a
+# shellcheck source=scripts/_env.sh
+source "$(dirname "$0")/_env.sh"
+
+API="${ALPACA_ENDPOINT:-https://paper-api.alpaca.markets/v2}"
+DATA="${ALPACA_DATA_ENDPOINT:-https://data.alpaca.markets/v2}"
+
+# PAPER-ONLY GUARD — checked before anything else, including credentials, so it
+# holds even in a keyless environment. This bot places orders autonomously with
+# no human in the loop, so an unset or mistyped ALPACA_ENDPOINT must never
+# silently resolve to production. Hard-fail: a silent live order is the worst
+# failure mode this repo has.
+if [[ "$API" != *"paper-api.alpaca.markets"* && "${ALPACA_ALLOW_LIVE:-0}" != "1" ]]; then
+  echo "REFUSING: ALPACA_ENDPOINT is not a paper endpoint ($API)." >&2
+  echo "This bot is paper-only. Export ALPACA_ALLOW_LIVE=1 to override." >&2
+  exit 4
 fi
 
 : "${ALPACA_API_KEY:?ALPACA_API_KEY not set in environment}"
 : "${ALPACA_SECRET_KEY:?ALPACA_SECRET_KEY not set in environment}"
 
-API="${ALPACA_ENDPOINT:-https://api.alpaca.markets/v2}"
-DATA="${ALPACA_DATA_ENDPOINT:-https://data.alpaca.markets/v2}"
 H_KEY="APCA-API-KEY-ID: $ALPACA_API_KEY"
 H_SEC="APCA-API-SECRET-KEY: $ALPACA_SECRET_KEY"
 

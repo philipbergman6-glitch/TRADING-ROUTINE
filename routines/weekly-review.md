@@ -43,6 +43,13 @@ STEP 3 — Compute the week's metrics:
 - Week return ($ and %)
 - S&P 500 week return:
   bash scripts/perplexity.sh "S&P 500 weekly performance week ending $DATE"
+  MANDATORY FORMAT — the row must quote BOTH index levels, and the starting
+  level MUST equal the prior week's logged closing level (read it out of
+  WEEKLY-REVIEW.md; do NOT re-fetch it). Example:
+    | S&P 500 week | +1.71% (7,357.49 Jun 26 → 7,483.24 Jul 2) |
+  Re-fetching the start breaks the benchmark chain and silently misstates
+  "beat the S&P" — see the Benchmark Data Errata section. The dashboard build
+  hard-fails on any new break.
 - Trades taken (W/L/open)
 - Win rate (closed trades only)
 - Best trade, worst trade

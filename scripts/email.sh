@@ -4,16 +4,10 @@
 # If credentials are unset, appends to a local fallback file.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-ENV_FILE="$ROOT/.env"
-FALLBACK="$ROOT/DAILY-SUMMARY.md"
+# shellcheck source=scripts/_env.sh
+source "$(dirname "$0")/_env.sh"
 
-if [[ -f "$ENV_FILE" ]]; then
-  set -a
-  # shellcheck disable=SC1090
-  source "$ENV_FILE"
-  set +a
-fi
+FALLBACK="$ROOT/DAILY-SUMMARY.md"
 
 if [[ $# -gt 0 ]]; then
   msg="$*"

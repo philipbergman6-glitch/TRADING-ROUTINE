@@ -42,6 +42,38 @@ Template for each entry:
 
 ---
 
+## Benchmark Data Errata (added 2026-08-11)
+
+The `S&P 500 week` rows below are the contemporaneous record — each was fetched
+during that Friday's review and is left **unedited**. Three of them re-fetched a
+starting level instead of chaining from the prior week's logged close, so the
+as-logged series is not continuous:
+
+| Week ending | Prior week's logged close | This week's logged start | Δ | Effect |
+|---|---|---|---|---|
+| 2026-07-24 | 7,475.69 | 7,441.68 | −34.01 | S&P week understated: −0.33% logged vs −0.78% chained |
+| 2026-07-31 | 7,417.10 | 7,411.98 | −5.12 | −0.07pp |
+| 2026-08-07 | 7,437.63 | 7,489.72 | +52.09 | S&P week understated: +3.58% logged vs +4.30% chained |
+
+Which level is correct cannot be determined from the logs alone — both come from
+the bot's own Perplexity fetches on different days — so **neither figure is
+overwritten here.** The dashboard plots the *chained* series (`spxc`), the only
+mathematically continuous one, and marks the restated weeks.
+
+Compounded since reviews began (2026-06-12 → 2026-08-07): **bot −1.86% vs S&P
++5.12% chained** (as-logged S&P would read +3.26%). The chained series is the
+less flattering one; it is used anyway.
+
+Weeks ending 06/12 and 06/19 quote no index levels (06/12 quotes a bare `+0.7%`
+with no source), so they cannot be chained and are carried as logged.
+
+**Going forward:** every `S&P 500 week` row must quote both the starting and
+closing level, and the start must equal the prior week's close.
+`scripts/build_dashboard_data.py` now hard-fails the build on any new break;
+the three above are grandfathered in `KNOWN_SPX_CHAIN_BREAKS`.
+
+---
+
 ## Week ending 2026-06-12
 
 ### Stats
