@@ -2,6 +2,12 @@
 
 Friday reviews appended here.
 
+> **Provenance — weeks ending May 01 to Jun 05, 2026 (recovered 2026-08-12).**
+> These six reviews never reached main; they were recovered from the unmerged
+> per-session `claude/*` branches the routine wrote them to. Their stats were
+> computed at the time against the same incomplete trade log, so figures inside
+> them may not reconcile with the now-complete log.
+
 Template for each entry:
 
 ## Week ending YYYY-MM-DD
@@ -71,6 +77,368 @@ with no source), so they cannot be chained and are carried as logged.
 closing level, and the start must equal the prior week's close.
 `scripts/build_dashboard_data.py` now hard-fails the build on any new break;
 the three above are grandfathered in `KNOWN_SPX_CHAIN_BREAKS`.
+
+---
+
+## Week ending 2026-05-01
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $100,000.00 |
+| Ending portfolio | $102,136.31 |
+| Week return | +$2,136.31 (+2.14%) |
+| S&P 500 week | +0.56% (SPX 7,165 → ~7,205) |
+| Bot vs S&P | +1.58% |
+| Trades | 3 (W:0 / L:0 / open:3) |
+| Win rate | N/A (no closed trades) |
+| Best trade | AMD +14.4% (unrealized) |
+| Worst trade | NVDA -4.96% (unrealized) |
+| Profit factor | N/A (no closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No closes this week |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| AMD | $314.97 | $360.38 | +$2,815.57 (+14.4%) | $324.34 (10% trail) |
+| NVDA | $208.64 | $198.30 | -$930.60 (-4.96%) | $193.26 (10% trail) |
+| PLTR | $142.30 | $144.07 | +$251.34 (+1.24%) | $129.66 (10% trail) |
+
+### What Worked
+- AMD entry timing — bought $314.97 on Apr 28 pre-earnings momentum; +14.4% by week end
+- PLTR recovery — held through -3% dip mid-week; closed week green
+- Patience on macro — skipped trades on Apr 30 triple data release (GDP+PCE+ECI), avoided whipsaw
+- Stop discipline — no rule overrides; GTC stops in place on all positions throughout
+
+### What Didn't Work
+- Under-deployed — 59% deployed vs 75-85% target; left ~$16K idle all week
+- NVDA underperforming — -4.96% and within $4 of manual cut level ($194.03); thesis weaker than peers
+- Tech concentration — all 3 positions in AI/tech; no sector diversification
+- Missed energy sector — Energy +26% YTD and #1 sector; scouted XOM/CVX but never entered
+
+### Key Lessons
+- Earnings-week deployment rule: entering 3 positions at 59% deployed is fine when conviction is high, but must add 4th-5th by Wed next week or cash drags returns
+- NVDA vs AMD divergence signals intra-sector rotation; may need to cut NVDA and rotate to energy before earnings gap risk bites
+- PLTR and AMD both report next week (May 4/May 5) — will face binary gap risk; stops may not protect against overnight moves
+
+### Adjustments for Next Week
+- Monday: Add XOM if ISM ≥50 and WTI holds $100+; bring deployment to 75%+
+- Monday pre-open: Review PLTR May 4 earnings — decide hold or cut before open
+- Tuesday pre-open: Review AMD May 5 earnings — stops won't protect vs gap; consider trimming ahead
+- Cut NVDA at $194.03 with no exceptions; do not move stop
+- Target 4-5 positions by Wednesday; max 20% each
+
+### Overall Grade: B+
+First week outperformed S&P by +1.58%. AMD was the standout. Discipline held. Demerits for under-deployment and NVDA drag. Binary events next week (PLTR Mon, AMD Tue) are the primary risk.
+
+---
+
+## Week ending 2026-05-08
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $101,366.81 |
+| Ending portfolio | $106,836.67 |
+| Week return | +$5,469.86 (+5.40%) |
+| S&P 500 week | +1.78% |
+| Bot vs S&P | +3.62% |
+| Trades | 3 (W:1 / L:1 / open:4) |
+| Win rate | 50% (1W / 1L closed) |
+| Best trade | AMD +30% (est.) |
+| Worst trade | PLTR -7% (stop triggered) |
+| Profit factor | 4.12 |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| AMD (orig 62sh) | $314.97 | ~$409 (est.) | +~$5,824 (+30%) | Trailing stop triggered post-earnings run; re-entered 49sh @ $414.16 |
+| PLTR (orig 142sh) | $142.30 | ~$132 (est.) | -~$1,414 (-7%) | Stop triggered on earnings weakness; re-entered 152sh @ $136.96 |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| AMD | $414.16 | $455.55 | +$2,028 (+10.0%) | ~$410 (10% trail) |
+| NVDA | $208.64 | $214.96 | +$569 (+3.0%) | ~$193 (10% trail) |
+| PLTR | $136.96 | $137.45 | +$75 (+0.4%) | ~$124 (10% trail) |
+| XOM | $145.94 | $144.19 | -$245 (-1.2%) | ~$131 (10% trail) |
+
+### What Worked
+- AMD trailing stop captured +30% gain from $314.97 entry before earnings volatility hit
+- XOM energy add executed per plan (scouted May 1, entered May 4) — sector momentum discipline
+- Capital deployment reached 77.5% by week end (in 75-85% target range vs. 59% start)
+- Patience on Apr 30 macro day avoided whipsaw losses on triple data release
+- S&P outperformance: bot +5.40% vs index +1.78%, edge of +3.62%
+
+### What Didn't Work
+- PLTR earnings binary: stop triggered at ~-7%, costly restart at lower basis
+- AMD re-entry at $414 paid up after stop-out; smaller position (49 vs 62 shares) reduces upside
+- Week began severely underdeployed (59%) — too much cash sitting idle early
+- NVDA range-bound since entry; no momentum despite strong thesis
+
+### Key Lessons
+- Trailing stops work: AMD's $94/share gain was locked in cleanly; system is earning its keep
+- Re-entries after stop-outs should be smaller (correct — 49 vs 62 shares on AMD)
+- Earnings binaries hit PLTR and AMD — hold through with stops, not discretionary exits
+- Energy sector (XOM) correctly identified as portfolio diversifier vs. all-tech concentration
+
+### Adjustments for Next Week
+- AMD: tighten stop to 7% trail when +15% ($476.28) is hit
+- NVDA: earnings May 20 is the catalyst — hold; cut if -7% from entry ($194.03) is hit
+- PLTR: re-entered at lower basis; watch for trend recovery above $143 to confirm thesis
+- XOM: energy sector still #1 YTD — hold; add to if oil stays $100+ and position confirms
+- Deployment: maintain 75-85%; no new buys unless existing position stops out and creates room
+
+### Overall Grade: B+
+
+---
+
+## Week ending 2026-05-15
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $106,946.49 |
+| Ending portfolio | $107,515.57 |
+| Week return | +$569.08 (+0.53%) |
+| S&P 500 week | +0.08% |
+| Bot vs S&P | +0.45% |
+| Trades | 0 new (W:0 / L:0 / open:4 held) |
+| Win rate | N/A (no closed trades this week) |
+| Best trade | XOM +3.2% (Fri) |
+| Worst trade | AMD -5.8% (Fri) |
+| Profit factor | N/A (phase: 4.11) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No closes this week |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| AMD | $414.16 | $423.72 | +$468.63 (+2.3%) | 10% GTC trail |
+| NVDA | $208.64 | $225.02 | +$1,474.20 (+7.9%) | 10% GTC trail |
+| PLTR | $136.96 | $133.79 | -$482.17 (-2.3%) | 10% GTC trail |
+| XOM | $145.94 | $157.69 | +$1,645.24 (+8.1%) | 10% GTC trail |
+
+**Deployed:** $83,426.79 / $107,515.57 = 77.6% (within 75-85% target)
+
+### What Worked
+- XOM energy position cushioned Friday tech rout (+3.2% vs tech -4-6%)
+- Sector diversification (tech + energy) kept week solidly positive vs S&P
+- Trailing stops from May 6 captured AMD +29.8% — disciplined exit before re-entry
+- Patience: no forced trades; weekly cap preserved for conviction setups
+- Portfolio deployed at 77.6% — clean alignment with 75-85% rule
+
+### What Didn't Work
+- AMD and NVDA both sold off hard Friday (-5.8%, -4.5%) on tech sector rotation
+- PLTR still underwater at new entry (-2.3%); remains the weak leg
+- Only 4 positions when 5-6 is target — one slot unfilled, limiting upside capture
+- Re-entering PLTR on May 7 right after stop-out is an averaging-down risk
+
+### Key Lessons
+- Energy diversification is real alpha — XOM directly offset tech weakness on Friday
+- Trailing stops work: AMD stop at +29.8% vs manual cut would have left gains on table
+- Sector rotation risk (tech lagging YTD) argues for at least one non-tech position always
+- PLTR pattern (stop-out → immediate re-entry) is a yellow flag — needs 2+ days before re-entry to confirm reversal
+
+### Adjustments for Next Week
+- PLTR: manual cut at -7% from $136.96 = $127.37; watch closely Mon
+- NVDA at +7.9% — approaching but not at +15% tighten threshold ($240.14)
+- XOM at +8.1% — tighten to 7% trail when it hits $167.93 (+15%)
+- Seek 5th position on 8/10+ conviction: energy, industrials, or defensive sector
+- Do NOT re-enter any stopped-out ticker within 2 trading days of stop trigger
+
+### Overall Grade: B
+
+---
+
+## Week ending 2026-05-22
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $107,747 |
+| Ending portfolio | $106,483 |
+| Week return | -$1,264 (-1.17%) |
+| S&P 500 week | +0.50% |
+| Bot vs S&P | -1.67% |
+| Trades | 0 (W:0 / L:0 / open:3) |
+| Win rate | N/A |
+| Best trade | PLTR +0.85% |
+| Worst trade | XOM -3.49% |
+| Profit factor | N/A |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No closed trades this week |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| NVDA | $208.64 | $215.03 | +$575 (+3.06%) | $212.89 (10% trail, HWM $236.54) |
+| PLTR | $136.96 | $136.29 | -$102 (-0.49%) | $126.86 (10% trail, HWM $140.95) |
+| XOM | $145.94 | $154.90 | +$1,255 (+6.14%) | $147.31 (10% trail, HWM $163.68) |
+
+### What Worked
+- Held all positions through weekly volatility — no stops triggered, no rule violations
+- PLTR +0.85% on the week; earnings beat (US rev +104% YoY) thesis intact
+- XOM trailing stop protecting +6.14% unrealized gain from entry despite pullback
+- Cash preserved; patience avoided a forced low-conviction trade
+- Zero strategy violations all week
+
+### What Didn't Work
+- Negative alpha: -1.67% vs S&P this week (market up 0.5%, bot down 1.17%)
+- NVDA fading post-earnings guidance miss — HWM $236.54 → $215.03; stop at $212.89 only $2.14 (1%) away
+- XOM dropped -3.49% on the week ($160.49 → $154.90); energy sector losing momentum off oil highs
+- Deployment stuck at 58.4% — fourth consecutive week below 75-85% target; uninvested cash is drag
+- No new trade ideas cleared 8/10 conviction threshold; scouting coverage was insufficient
+
+### Key Lessons
+- NVDA earnings guidance miss created sustained multi-week pressure; trailing stop is the right mechanism but the proximity ($2.14 cushion) demands close monitoring Monday
+- Chronic under-deployment means cash sits idle while market advances — must research deeper, not lower the conviction bar
+- Energy (XOM) HWM is eroding ($163.68 → $154.90 in one week) — if oil continues sliding, trailing stop will tighten naturally; don't move stop down
+- "Patience" is correct discipline; "no scouting" is not patience, it is neglect
+
+### Adjustments for Next Week
+- Must bring 3+ specific candidates to each pre-market scan until deployed ≥ 70%
+- NVDA: watch Monday open closely — break of $212.89 triggers stop-out; realized P&L would be +$382 (+1.8%)
+- XOM: stop at $147.31, thesis intact while oil holds above $95; sector check Monday
+- PLTR: above entry $136.96 is the key breakout level; no action unless it breaks HWM $140.95 (stop tighten at +15%)
+- Scout Consumer Staples and Industrials — both YTD momentum sectors not yet represented in portfolio
+
+### Overall Grade: C
+
+---
+
+## Week ending 2026-05-29
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | ~$106,500 (est.; last explicit data May 21 = $107,480, adj. for NVDA stop-out) |
+| Ending portfolio | $111,667.05 |
+| Week return | +$5,167 (+4.85%) |
+| S&P 500 week | ~+1.5% (8th straight weekly gain; +0.4% Fri) |
+| Bot vs S&P | +3.35% alpha (week); ~-1.5% behind S&P on phase |
+| Trades | 3 (W:1 / L:0 / open:3) |
+| Win rate | 100% (1 closed trade) |
+| Best trade | PLTR +14.2% open (+17.7% Thu–Fri surge) |
+| Worst trade | XOM +0.5% closed (gave back +7.8% HWM gain) |
+| Profit factor | N/A (no losses this week) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| XOM | $145.94 (May 7) | $146.62 (May 27) | +$95 (+0.5%) | Trailing stop triggered near $147.31; HWM $163.68; held 3 weeks for near-flat result |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| AVGO | $427.95 (May 27) | $445.63 | +$707 (+4.1%) | ~$401 (10% trail, HWM ~$446) |
+| MU | $853.58 (May 26) | $965.45 | +$2,797 (+13.1%) | ~$869 (10% trail, HWM ~$965) |
+| PLTR | $136.96 (Apr 28) | $156.35 | +$2,947 (+14.2%) | ~$141 (10% trail, HWM ~$156) |
+
+### What Worked
+- PLTR: patience through 3 weeks of -1% to -3% drawdown; massive breakout Thu–Fri (+17.7% in 2 days); approaching +15% tighten threshold ($157.50)
+- MU: well-timed entry May 26; +13.1% in 3 days; approaching +15% tighten ($981.62)
+- AI/tech/semi sector focus: sector tailwind confirmed — PLTR, MU, AVGO all positive
+- No stops triggered in a loss; no -7% manual cuts needed
+- XOM exit discipline: stop executed cleanly, no second-guessing
+
+### What Didn't Work
+- XOM: held 3 weeks for +$95 on a position that peaked at +$1,591 (+7.8%); trailing stop at $147.31 executed correctly but the gain was nearly fully surrendered
+- Deployment: 58.9% deployed vs 75-85% target — persistent gap costing ~$2–3k in weekly upside during an 8-week S&P bull run
+- Phase underperformance: bot +11.67% vs S&P ~+13–14% (est.) — deployment gap main culprit
+- AVGO: weak entry (fell -$4 first day); could have waited for better setup
+- Log continuity: no May 22, May 26 EOD snapshots → starting equity for review is estimated
+
+### Key Lessons
+- When S&P is in an extended weekly winning streak, maximum deployment captures compound gains; holding ~$45k cash is dead weight
+- PLTR vindicated: thesis + patience > stop-chasing; reward was 3x what any premature exit would have yielded
+- MU and PLTR both approaching +15% tighten — must tighten stops at the open next week the moment thresholds are crossed
+- Trailing stops on slow-climbing positions (XOM) will give back gains if never hit the tighten threshold; acceptable by rule — just know it going in
+- Profit factor infinity (all wins) is a good problem; ensure it holds next week as stops tighten
+
+### Adjustments for Next Week
+- Tighten PLTR to 7% trail the moment it touches $157.50 (+15% from $136.96)
+- Tighten MU to 7% trail the moment it touches $981.62 (+15% from $853.58)
+- Add 1 position Monday premarket to push deployment toward 75%; scout tech/AI/semi or consumer momentum names
+- Log EOD snapshot every session — needed for accurate weekly review math
+- Do NOT chase AVGO if thesis weakens; full review at Monday open
+
+### Overall Grade: B+
+Strong absolute week (+4.85%) and meaningful alpha (+3.35% over S&P). Phase return +11.67% slightly trails S&P est. +13–14% — deployment gap is the structural issue. All 3 open positions profitable and well-positioned heading into next week. No rule violations.
+
+---
+
+## Week ending 2026-06-05
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $111,880 (May 29 close) |
+| Ending portfolio | $108,456 (Jun 5 latest) |
+| Week return | -$3,424 (-3.06%) |
+| S&P 500 week | -2.35% (7,580→7,402) |
+| Bot vs S&P | -0.71% |
+| Phase P&L | +$8,456 (+8.46%) vs S&P phase ~+11.3% |
+| Trades | 5 (W:2 / L:1 / open:2) |
+| Win rate | 67% (2/3 closed) |
+| Best trade | MU +18.6% |
+| Worst trade | AVGO -4.4% |
+| Profit factor | 8.02 |
+
+### Closed Trades
+| Ticker | Entry | Exit | Shares | P&L | Notes |
+|--------|-------|------|--------|-----|-------|
+| PLTR | $136.96 | ~$150.90 | 152 | +$2,119 (+10.2%) | 7% trail triggered ~Jun 2-3; correct exit |
+| MU | $853.58 | ~$1,012 | 25 | +$3,961 (+18.6%) | Gap-fill stop Jun 4; semi sector sympathy; locked gains |
+| AVGO | $427.95 | ~$409 | 40 | -$758 (-4.4%) | Gap-fill stop Jun 4; AVGO earnings miss, AI forecast cut $62.5B→$55B |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop | Notes |
+|--------|-------|-------|------------|------|-------|
+| MSFT | $436.20 | $414.70 | -$1,032 (-4.9%) | $392.45 | Entered Jun 3; AI/Azure thesis intact |
+| NVDA | $219.64 | $204.90 | -$1,326 (-6.7%) | $199.44 | ⚠️ $0.63 from -7% cut trigger ($204.27); watch Mon open |
+
+**Deployment: $38,347 / $108,456 = 35.4% — far below 75-85% target**
+
+### What Worked
+- Trailing stop system executed automatically on both gap-down opens (MU, AVGO) — no emotion, rules ran cleanly
+- MU locked in +18.6% before sector contagion erased more — 5% trail did its job
+- PLTR trailed up to +10.2% and stopped out; entered at $136.96, exited $150.90
+- Profit factor of 8.02 — winners swamped the one loser
+- No options, no rule violations, no forced trades
+
+### What Didn't Work
+- AVGO held through Q2 earnings (AMC Jun 3); guidance cut -12% on AI forecast → -4.4% loss; earnings risk was identifiable
+- NVDA re-entered Jun 3 just 2 days before NFP — entered into confirmed binary risk event; now -6.7% and barely above -7% cut
+- MSFT also entered Jun 3 pre-NFP; -4.9% loss out of the gate
+- Post-exit deployment crashed to 35.4%; no good setups Friday to rebuild
+- Bot underperforming S&P over full phase: +8.46% vs ~+11.3%
+
+### Key Lessons
+- Never open new positions within 48h of scheduled high-impact macro (NFP, CPI, FOMC) — both Jun 3 entries are now underwater because of Jun 5 NFP
+- Trailing stop system works — let it run; MU (+18.6%) and PLTR (+10.2%) prove this
+- Earnings risk on existing positions: when a position is near stop and has an earnings event, consider tightening to 5% trail 2 days prior
+- Under-deployment after stops is a structural drag; need a playbook to rotate faster into Energy/Staples setups
+
+### Adjustments for Next Week
+- **NVDA critical:** -7% cut trigger at $204.27; current $204.90; cut manually at open Monday if it opens below $204.27
+- Rebuild to 75-85% deployment with 2-3 new positions; prioritize sectors not exposed to semi selloff
+- Energy (XOM/CVX) and diversifiers (META, GOOGL) scouted in Jun 4 pre-market — review after NFP digestion Mon AM
+- Enforce: no new entries Wed-Thu before Friday NFP (or within 48h of any Tier-1 macro event)
+- FOMC Jun 16-17 approaching — factor into trade timing next week
+
+### Overall Grade: C+
+Phase behind benchmark (-2.84%). Week -3.06% vs S&P -2.35%. Risk management working correctly (stops, no rule breaks), but entry timing poor and deployment too low.
 
 ---
 
