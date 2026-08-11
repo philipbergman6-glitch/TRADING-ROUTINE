@@ -1054,3 +1054,20 @@ Equity $106,596.70, cash $21,075.45 (19.8%), deployed 80.2% ($85,521.25 mkt valu
 - XLP: $84.515 (+0.90% vs entry) — stop $79.902/hwm $88.78, ~5.5% above stop. Staples thesis intact; mild intraday softness (-0.51%).
 
 Equity $106,469.35, cash $21,075.44 (19.8%), deployed 80.2% ($85,393.91 mkt value) — inside the 75-85% band. Weights: XLB 20.5%, XLI 20.3%, XLK 19.6%, XLP 19.8% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Oil (Iran/Hormuz) spike continues from pre-market but no sharp/unexplained single-name move — no Perplexity check needed. CPI print tomorrow 8:30am remains the week's swing event; no forced trades ahead of it. Week 1/3. No email sent (no action taken).
+
+---
+
+### Aug 11 — EOD Snapshot (Day 75, Tuesday)
+**Portfolio:** $106,566.02 | **Cash:** $21,075.36 (19.8%) | **Day P&L:** +$54.64 (+0.05%) | **Phase P&L:** +$6,566.02 (+6.57%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $53.24 | +0.11% | +$893.91 (+4.25%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $185.70 | +0.60% | +$410.64 (+1.94%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $186.09 | -0.12% | -$197.12 (-0.94%) | $169.956 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.69 | -0.31% | +$232.50 (+1.11%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 1/3
+
+**Notes:** Flat-to-green close on Day 75 — equity +$54.64 to $106,566.02 (Day P&L +0.05%), phase firms to +6.57%. Quiet holding day ahead of tomorrow's July CPI print (8:30am), the week's swing event. Leadership split as it has all week: XLB remained our best name +0.11% to $53.24 (+4.25% vs entry) with its trailing stop auto-ratcheted up to $48.2355 (hwm $53.595); XLI led on the day +0.60% to $185.70 (+1.94% vs entry); XLP eased -0.31% to $84.69 (+1.11% vs entry) as defensives lagged; XLK -0.12% to $186.09 (-0.94% vs entry), still in normal early drift, well above the -7% cut. 4 positions (≤6): XLB 20.6%, XLI 20.2%, XLK 19.6%, XLP 19.9% — all at/under the 20% cap, no adds. Deployment 80.2% ($85,490.66 mkt value / $106,566.02 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 1/3 — 2 trades left. Oil (Iran/Hormuz) bid persisted intraday but no sharp single-name move. Tomorrow (Wed): July CPI at 8:30am is the swing print — hold into it, watch for a leadership setup but no forced trade ahead of the number.
