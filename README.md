@@ -1,7 +1,8 @@
 # Trading Bot
 
 An autonomous AI trader running a **paper (fake-money) ~$100,000 Alpaca
-account**, with a deterministic risk engine that the AI cannot bypass.
+account**, with a deterministic risk engine that evaluates every mechanisable
+strategy rule in tested code rather than in prose.
 
 **📊 Dashboard:** https://philipbergman6-glitch.github.io/TRADING-ROUTINE/dashboard/
 **🏛 Design rationale:** [ARCHITECTURE.md](ARCHITECTURE.md)
