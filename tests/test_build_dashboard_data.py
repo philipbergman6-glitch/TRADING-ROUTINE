@@ -23,6 +23,7 @@ def build():
     return snaps, weeks, b.emit(snaps, weeks)
 
 
+@pytest.mark.golden
 def test_golden_reproduces_committed_data_js():
     _, _, out = build()
     assert out == b.OUT.read_text(encoding="utf-8"), (
