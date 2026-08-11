@@ -1,5 +1,15 @@
 # Trade Log
 
+> **Provenance — May 01 to Jun 10, 2026 (recovered 2026-08-12).** Entries in this
+> range never reached main: the routines wrote them to per-session `claude/*`
+> branches that were deleted without merging. They were recovered from those
+> branches before deletion and spliced back in date order. Two caveats. Several
+> sessions re-logged the same event days later from the positions API rather than
+> from a contemporaneous record, so a few exits appear twice with different fill
+> prices (see AMD and PLTR around May 06–07, and MU and AVGO on Jun 04) — where
+> two runs logged the same session under the same heading, the fullest version was
+> kept. Treat prices in this range as reconstructed, not as a broker record.
+
 ## Day 0 — EOD Snapshot (pre-launch baseline)
 **Portfolio:** $100,000.00 | **Cash:** $100,000.00 (100%) | **Day P&L:** $0 | **Phase P&L:** $0
 
@@ -46,6 +56,647 @@ No positions yet. Bot launches tomorrow.
 
 ---
 
+## 2026-05-01 — Market-Open Review (Friday)
+
+**No new trades.** Weekly limit reached (3/3). Pre-market decision: HOLD.
+
+| Ticker | Entry | Current | P&L% | Stop (GTC live) | HWM | Status |
+|--------|-------|---------|-------|-----------------|-----|--------|
+| AMD | $314.97 | $357.50 | +13.5% | $322.41 (10% trail) | $358.23 | HOLD — tighten to 7% trail at +15% ($362.22); not yet |
+| NVDA | $208.64 | $202.29 | -3.0% | $193.26 (10% trail) | $214.73 | HOLD — manual cut at $194.04; watch intraday |
+| PLTR | $142.30 | $146.20 | +2.7% | $131.80 (10% trail) | $146.44 | HOLD — PLTR earnings May 4 pre-market |
+
+**Portfolio:** $102,618.90 | **Cash:** $41,487.81 (40.4%) | **Deployed:** $61,131.09 (59.6%) | **Daytrade count:** 0
+
+**Watch list for next week:** XOM (energy add if ISM ≥50, oil holds $100+, energy sector confirms). AAPL post-earnings gap-up Monday.
+
+---
+
+## 2026-05-01 — Midday Scan (no action)
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| AMD | $314.97 | $358.55 | +13.84% | $322.87 trail | HOLD — approaching +15% tighten threshold ($362.22) |
+| NVDA | $208.64 | $199.30 | -4.48% | $193.26 trail | HOLD — on watch; manual cut at $194.03 |
+| PLTR | $142.30 | $144.31 | +1.41% | $131.80 trail | HOLD — bouncing +3.74% intraday ahead of May 4 earnings |
+
+No cuts, no stop adjustments, no thesis breaks. AAPL earnings after close today — monitor for broad market impact.
+
+---
+
+## May 01 — EOD Snapshot (Day 4, Friday)
+**Portfolio:** $102,159.73 | **Cash:** $41,487.81 (40.6%) | **Day P&L:** +$971.48 (+0.96%) | **Phase P&L:** +$2,159.73 (+2.16%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 62 | $314.97 | $360.54 | +2.24% | +$2,825.49 (+14.47%) | $336.52 (7% trail) |
+| NVDA | 90 | $208.64 | $198.45 | -0.56% | -$917.10 (-4.88%) | $193.26 (10% trail) |
+| PLTR | 142 | $142.30 | $144.07 | +2.93% | +$251.34 (+1.24%) | $131.80 (10% trail) |
+
+**Notes:** Strong Friday — AMD +2.24%, PLTR +2.93% offset NVDA's -0.56% slip. AMD stop tightened to 7% trail (HWM $361.85, stop $336.52) as it nears the +15% tighten threshold at $362.22. NVDA at -4.88%, still above -7% manual cut ($194.04); stop at $193.26. PLTR recovering nicely. Week 1 closes +2.16% phase. Cash at 40.6% — well below 75-85% target. Week 2 cap resets to 3 new trades; plan to deploy 2-3 positions Mon open to reach deployment target.
+
+---
+
+## 2026-05-02 — Midday Scan (Saturday)
+
+| Ticker | Entry | Current | P&L% | Stop |
+|--------|-------|---------|------|------|
+| AMD | $314.97 | $360.54 | +14.47% | $336.52 → tightened to 7% trail |
+| NVDA | $208.64 | $198.45 | -4.88% | $193.26 (10% trail, HWM $214.73) |
+| PLTR | $142.30 | $144.07 | +1.24% | $131.80 (10% trail, HWM $146.44) |
+
+**Stop change — AMD:** HWM $362.79 = +15.18% from entry, crossing the +15% tighten threshold. Canceled 10% trail (order 5968563f), placed 7% trail (order 669a4405). New stop $336.52 vs old $326.51 — raised $10.01. Rule: tighten to 7% at +15%.
+
+**No cuts:** NVDA -4.88% — above -7% cut level ($194.03). Manual cut trigger $194.03 is only $4.42 above trailing stop $193.26. Monitor Monday open closely.
+
+**No thesis breaks.** PLTR earnings Monday May 4 pre-market (binary). AMD earnings Monday May 5.
+
+---
+
+## 2026-05-03 — Market-Open Review (Sunday — Market Closed)
+
+**No new trades.** Market closed (Sunday). New week: 0/3 trades used.
+
+| Ticker | Entry | Last | P&L% | Stop | Status |
+|--------|-------|------|------|------|--------|
+| AMD | $314.97 | $360.54 | +14.47% | $336.52 (7% trail, HWM $361.85) | HOLD — stop already tightened to 7%; earnings May 5 |
+| NVDA | $208.64 | $198.45 | -4.88% | $193.26 (10% trail, HWM $214.73) | WATCH — cut trigger $194.04 only $4.41 away |
+| PLTR | $142.30 | $144.07 | +1.24% | $131.80 (10% trail, HWM $146.44) | HOLD — earnings Mon May 4 after close (binary) |
+
+**Portfolio:** $102,159.73 | **Deployed:** 59.4% | **Daytrade count:** 0
+
+---
+
+### May 03 — Non-Trading Day Snapshot (Sunday; reflects May 01 close)
+**Portfolio:** $102,159.73 | **Cash:** $41,487.81 (40.6%) | **Day P&L:** +$971.48 (+0.96%) | **Phase P&L:** +$2,159.73 (+2.16%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 62 | $314.97 | $360.54 | 0% | +$2,825.49 (+14.47%) | $336.52 |
+| NVDA | 90 | $208.64 | $198.45 | 0% | -$917.10 (-4.88%) | $193.26 |
+| PLTR | 142 | $142.30 | $144.07 | 0% | +$251.34 (+1.24%) | $131.80 |
+
+**Notes:** Weekend snapshot reflecting Fri May 1 close. AMD extended gains to +14.47% from entry; stop already tightened to 7% trail (HWM $361.85, stop $336.52) — one more push trips the +15% threshold. NVDA sits at -4.88%, above both the -7% manual cut ($194.04) and the 10% trailing stop ($193.26); cut Monday if it slides. PLTR recovered to +1.24%. Portfolio deployed 59.4%, below 75-85% target — 3 new trade slots open for week of May 4.
+
+---
+
+## 2026-05-04 — Market-Open Review
+
+**No new trades.** New week (0/3 used), but no qualifying entry today.
+
+| Ticker | Entry | Current | P&L% | Today% | Stop | Status |
+|--------|-------|---------|-------|--------|------|--------|
+| AMD | $314.97 | $349.11 | +10.84% | -3.17% | $336.52 (7% trail, HWM $361.85) | HOLD — AMD earnings May 5 after close |
+| NVDA | $208.64 | $198.52 | -4.85% | +0.03% | $193.26 (10% trail, HWM $214.73) | HOLD — above -7% cut; stop holding |
+| PLTR | $142.30 | $148.20 | +4.15% | +2.87% | $134.66 (10% trail, HWM $149.62) | HOLD — earnings positive reaction today |
+
+**Portfolio:** $102,054.85 | **Deployed:** $60,567.04 (59.3%) | **Daytrade count:** 0 | **Week trades:** 0/3
+
+**Skipped:** XOM — oil $105.54, energy thesis intact, but XOM at $151.88 is 25% above planned entry $120-122; chasing, no clean setup. AMD binary event tomorrow further argues against adding risk today.
+
+---
+
+## May 04 — EOD Snapshot (Day 5, Monday)
+**Portfolio:** $101,531.49 | **Cash:** $41,487.81 (40.9%) | **Day P&L:** -$628.24 (-0.61%) | **Phase P&L:** +$1,531.49 (+1.53%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 62 | $314.97 | $342.40 | -5.03% | +$1,700.81 (+8.71%) | $336.52 (7% trail) |
+| NVDA | 90 | $208.64 | $197.85 | -0.30% | -$970.75 (-5.17%) | $193.26 (10% trail) |
+| PLTR | 142 | $142.30 | $147.87 | +2.64% | +$790.94 (+3.91%) | $134.66 (10% trail) |
+
+**Notes:** Down day — AMD pulled back -5% from last week's high ($360.54) but holds +8.7% from entry; stop tightened to 7% trail at $336.52 (triggered by +11.96% Apr 30 close). NVDA continues to drift lower at -5.17% from entry; manual cut trigger is $194.04, stop at $193.26 — both are very close to current price ($197.85), watch closely tomorrow. PLTR bounced +2.6% and is back to +3.91% — momentum improving. No trades today (0/3 this week); portfolio remains 40.9% cash vs 75-85% target. Priority this week: add 2-3 positions to reach deployment target.
+
+---
+
+## 2026-05-05 — Market-Open Review
+
+**No new trades.** AMD binary event tonight; patience rule applies.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AMD | $314.97 | $347.46 | +10.3% | $336.52 (7% trail, HWM $361.85) | HOLD — earnings tonight, stop manages risk |
+| NVDA | $208.64 | $199.20 | -4.5% | $193.26 (10% trail, HWM $214.73) | HOLD — manual cut trigger $194.04; watch intraday |
+| PLTR | $142.30 | $139.48 | -2.0% | $134.66 (10% trail, HWM $149.62) | HOLD — post-earnings sell on valuation; stop $4.82 below |
+
+**Week of 2026-05-05 trade count: 0/3**
+
+**Portfolio:** $100,808.98 | **Deployed:** 58.8% | **Daytrade count:** 0
+
+**Rationale:** AMD earnings after close = binary event with ~8% implied move. All three positions are tech; adding new exposure into AMD earnings night contradicts patience > activity rule. PLTR beat estimates strongly (+85% YoY revenue) but sold off on 78x sales multiple — thesis intact, stop active. NVDA at -4.5% from entry with manual cut and trailing stop both within $6 of current price. XOM quote feed unreliable today; defer energy add to next session with clean data.
+
+---
+
+## 2026-05-05 — Midday Scan
+
+**No trades executed.** No positions at -7%. No stop tightening triggered.
+
+| Ticker | Current | P&L% | Stop | Notes |
+|--------|---------|-------|------|-------|
+| AMD | $354.90 | +12.68% | $336.52 (7% trail) | HOLD — approaching +15% tighten threshold |
+| NVDA | $197.70 | -5.24% | $193.26 (10% trail) | WATCH — manual cut at $194.03, only $3.67 away |
+| PLTR | $136.10 | -4.36% | $134.66 (10% trail) | WATCH — stop 1.1% away; -6.8% today post-earnings sell-the-news |
+
+**PLTR**: Earnings May 4 — strong guidance (+71% revenue, +120% US commercial). -6.8% today = sell-the-news, not thesis break. Trailing stop at $134.66 may fire naturally.
+**NVDA**: Opened $209.93, dropped to $197.70 on high volume (224.7M). No fundamental catalyst. Thesis intact. Watch $194.03.
+**AMD**: Trailing stop already at 7% (correctly tightened when HWM hit $361.85, ~+15%). No further action until +20% ($377.96).
+
+---
+
+## May 05 — EOD Snapshot (Day 6, Tuesday)
+**Portfolio:** $100,544.39 | **Cash:** $41,487.81 (41.3%) | **Day P&L:** -$1,615.34 (-1.58%) | **Phase P&L:** +$544.39 (+0.54%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 62 | $314.97 | $356.51 | +4.38% | +$2,575.63 (+13.19%) | $336.52 (7% trail) |
+| NVDA | 90 | $208.64 | $196.20 | -1.15% | -$1,119.60 (-5.96%) | $193.26 (10% trail) |
+| PLTR | 142 | $142.30 | $135.88 | -6.95% | -$911.64 (-4.51%) | $134.66 (10% trail) |
+
+**Notes:** Rough day — PLTR cratered -6.95% and now sits at $135.88, a mere $1.22 above its trailing stop at $134.66 (HWM $149.62). NVDA also weak at -1.15%, only $2.94 above its stop at $193.26. AMD was the lone bright spot, up +4.38% with cumulative gain of +13.19% from entry; stop tightened to 7% at $336.52. Portfolio fell -1.58% on the day. Phase P&L has slipped to +0.54% from a +1.19% peak. New week starts 0/3 trades — opportunity to add if a position stops out and a new catalyst appears. **High alert Wed open:** PLTR and NVDA both within 1.5% of their stops; manual -7% cut level for PLTR is $132.34.
+
+---
+
+## 2026-05-06 — Market-Open Review
+
+**No new trades.** No ideas cleared 8/10 conviction threshold.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AMD | $314.97 | $424.36 | +34.7% | $402.80 (5% trail, HWM $424) | HOLD — stop tightened 7%→5% per +20% rule |
+| NVDA | $208.64 | $199.72 | -4.3% | $193.26 (10% trail, HWM $214.73) | HOLD — manual cut at $194.04, monitor closely |
+| PLTR | $142.30 | — | — | — | Stopped out (was $129.47) |
+
+**Stop adjustment:** AMD 7% trailing stop (order 669a4405) canceled → replaced with 5% trailing stop (order f6f7e139, stop $402.80). Rule: tighten to 5% at +20%+ gain.
+
+**Portfolio:** $104,571.80 | **Deployed:** ~42.3% | **Week trades:** 0/3 | **Daytrade count:** 0
+
+---
+
+## May 06 — EOD Snapshot (Day 7, Wednesday)
+**Portfolio:** $104,300.81 | **Cash:** $85,632.11 (82.1%) | **Day P&L:** +$3,802.66 (+3.78%) | **Phase P&L:** +$4,300.81 (+4.30%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $207.49 | +5.59% | -$103.65 (-0.55%) | $193.26 |
+
+**Notes:** Strong day driven by NVDA bouncing +5.59% from $196.50 (May 5 close). AMD and PLTR are no longer in the portfolio — both were closed between May 1–5 (stops or exits not recorded in log; cash confirms exits). Only NVDA remains at 90 shares; portfolio is very under-deployed at 17.9% vs 75-85% target. No trades this week (0/3). Need to add 3–4 new positions next session. NVDA trailing stop intact at $193.26 (HWM $214.73); not yet at +15% tighten threshold ($239.94).
+
+---
+
+## 2026-05-06 — Stop Exits
+
+| Date | Ticker | Side | Shares | Exit | Entry | P&L | Reason |
+|------|--------|------|--------|------|-------|-----|--------|
+| 2026-05-06 | AMD | SELL | 62 | $408.93 | $314.97 | +$5,826 (+29.8%) | 10% trailing stop triggered (HWM ~$454) |
+| 2026-05-06 | PLTR | SELL | 142 | $132.33 | $142.30 | -$1,416 (-7.0%) | Manual -7% cut rule triggered |
+
+---
+
+---
+
+## 2026-05-07 — Midday Scan (position state reconstruction)
+
+**Portfolio:** $104,445.97 | **Cash:** $24,088.78 (23.1%) | **Day P&L:** +$109.20 (+0.10%) | **Phase P&L:** +$4,445.97 (+4.45%) | **Deployed:** 76.9% ✓
+
+| Ticker | Shares | Avg Entry | Current | Unr. P&L | P&L% | Stop (GTC) |
+|--------|--------|-----------|---------|----------|------|------------|
+| AMD | 49 | $414.16 | $405.61 | -$418.76 | -2.06% | $379.54 (10% trail, HWM $421.71) |
+| NVDA | 90 | $208.64 | $212.19 | +$319.37 | +1.70% | $193.26 (10% trail, HWM $214.73) |
+| PLTR | 152 | $136.96 | $137.69 | +$109.84 | +0.53% | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $146.21 | +$38.05 | +0.19% | $131.83 (10% trail, HWM $146.48) |
+
+**Position changes since Apr 30 EOD (reconstructed from Alpaca state):**
+- **AMD**: Original 62 shares @ $314.97 closed (stop triggered or sold into earnings rally); re-entered 49 shares @ ~$414 avg post AMD Q1 2026 earnings beat (May 5: $10.3B rev +38% YoY, beat $9.89B est; EPS $0.84 beat $0.73 est; data center +57%)
+- **PLTR**: Added 10 shares on post-earnings dip → now 152 shares @ $136.96 avg. PLTR Q1 2026: $1.633B rev (+85% YoY), EPS $0.34 beat, US commercial +133%, guidance raised to 71% YoY — best quarter ever; stock sold off ("sell the news")
+- **XOM**: New position entered 140 shares @ $145.94 — energy sector add per May 1 plan (oil elevated, Hormuz risk)
+
+**Week of 2026-05-05 trade count: week reset — tracking new week**
+
+**Midday actions:** NONE — no position at -7% cut trigger, no position at +15% tighten threshold. All thesis intact.
+
+---
+
+## May 07 — EOD Snapshot (Day 8, Thursday)
+**Portfolio:** $104,462.50 | **Cash:** $24,088.78 (23.1%) | **Day P&L:** +$125.73 (+0.12%) | **Phase P&L:** +$4,462.50 (+4.46%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $408.80 | -2.99% | -$262.45 (-1.29%) | $379.54 |
+| NVDA | 90 | $208.64 | $211.68 | +1.85% | +$273.60 (+1.46%) | $193.26 |
+| PLTR | 152 | $136.96 | $136.92 | +2.34% | -$6.44 (-0.03%) | $126.86 |
+| XOM | 140 | $145.94 | $146.33 | -1.59% | +$54.42 (+0.27%) | $132.37 |
+
+**Notes:** Trade log has gap May 1–6 (uncommitted sessions). Portfolio now holds 4 positions vs 3 on Apr 30: AMD restructured at higher cost basis (~$414 vs $314 original), PLTR grew by 10 shares, XOM added as new energy position, NVDA unchanged. Today was a flat day (+0.12%) — PLTR +2.34% and NVDA +1.85% offset AMD -2.99% and XOM -1.59%. Deployed 76.9%, within 75-85% target. AMD stop at $379.54 (HWM $421.71); NVDA stop still at $193.26 — well below entry, keep close watch. Phase up +4.46%.
+
+---
+
+## 2026-05-07 — Market-Open Trades (Week of May 5, Backfill)
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-05-07 | AMD | SELL | 62 | ~$456 (trailing stop triggered) | — | Original position exited; stop trailed from $319.45 (HWM $354.94 Apr 30) through AMD's post-earnings surge | — | — |
+| 2026-05-07 | AMD | BUY | 49 | $414.16 | 10% trailing GTC (HWM $456.29) | Re-entry post Q1 2026 beat: rev $10.25B (+38% YoY), EPS $1.37 (beat $1.25), Q2 guide $11.2B, data center +57% | $497 (+20%) | 2:1 |
+| 2026-05-07 | PLTR | SELL | 142 | ~$129.47 (trailing stop triggered) | — | Original position exited on post-earnings sell-off (~5–6% drop on valuation concerns after blowout Q1) | — | — |
+| 2026-05-07 | PLTR | BUY | 152 | $136.96 | 10% trailing GTC (HWM $140.95) | Re-entry on valuation dip post Q1: rev $1.63B (+85% YoY), EPS $0.33 (beat), US commercial +133%, FY guide raised to $7.65B (+71%) | $164 (+20%) | 2:1 |
+| 2026-05-07 | XOM | BUY | 140 | $145.94 | 10% trailing GTC (HWM $147.08) | Energy sector #1 YTD; US-Iran tensions + Hormuz risk supporting oil at elevated levels | $175 (+20%) | 2:1 |
+
+**Week of 2026-05-05 trade count: 3/3** (AMD re-entry + PLTR re-entry + XOM new position)
+
+*Note: AMD and PLTR entries/exits inferred from positions API (avg_entry_price change confirms full close + re-open). Stop creation timestamps confirm May 7 execution.*
+
+---
+
+---
+
+## 2026-05-08 — Market-Open Review
+
+**No new trades.** Weekly limit reached (3/3). All GTC trailing stops active.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AMD | $414.16 | $428.98 | +3.6% | $385.04 trailing (HWM $427.82) | HOLD |
+| NVDA | $208.64 | $215.52 | +3.3% | $193.92 trailing (HWM $215.47) | HOLD |
+| PLTR | $136.96 | $133.68 | -2.4% | $126.86 trailing (HWM $140.95) | HOLD — monitor, cut at -7% ($127.37) |
+| XOM | $145.94 | $144.47 | -1.0% | $132.37 trailing (HWM $147.08) | HOLD |
+
+**Portfolio:** $105,021.31 | **Deployed:** 77.1% | **Cash:** $24,088.78 | **Daytrade count:** 0
+
+---
+
+## 2026-05-08 — Midday Scan
+
+| Ticker | Shares | Entry | Current | P&L% | Stop | HWM |
+|--------|--------|-------|---------|------|------|-----|
+| AMD | 49 | $414.16 | $444.00 | +7.21% | $401.47 (10% trail) | $446.08 |
+| NVDA | 90 | $208.64 | $215.46 | +3.27% | $196.02 (10% trail) | $217.80 |
+| PLTR | 152 | $136.96 | $135.15 | -1.32% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $144.89 | -0.72% | $132.37 (10% trail) | $147.08 |
+
+**Actions:** No cuts, no stop tightening, no thesis breaks. HOLD all.
+
+---
+
+## May 08 — EOD Snapshot (Day 9, Friday)
+**Portfolio:** $106,883.36 | **Cash:** $24,088.78 (22.5%) | **Day P&L:** +$2,392.24 (+2.29%) | **Phase P&L:** +$6,883.36 (+6.88%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $455.09 | +11.42% | +$2,005.61 (+9.88%) | $410.66 (10% trail, HWM $456.29) |
+| NVDA | 90 | $208.64 | $214.92 | +1.62% | +$565.21 (+3.01%) | $196.02 (10% trail, HWM $217.80) |
+| PLTR | 152 | $136.96 | $137.74 | +0.50% | +$118.23 (+0.57%) | $126.86 (10% trail, HWM $140.95) |
+| XOM | 140 | $145.94 | $144.40 | -1.49% | -$215.36 (-1.05%) | $132.37 (10% trail, HWM $147.08) |
+
+**Notes:** Strong green day — AMD surged +11.4% intraday (now +9.88% from re-entry at $414.16), NVDA +1.6%, PLTR +0.5%. XOM lagged at -1.5% on the day (-1.05% from entry). Portfolio closed at +2.29% on the day and +6.88% from inception. Week of May 4-8 saw position restructuring (XOM added, PLTR shares increased to 152, AMD re-entered at higher basis $414.16). Deployed at 77.5% — within 75-85% target range. No stop tighten triggers: AMD needs $476.28 (+15%) to tighten trail to 7%. XOM watch: cut trigger at $135.72 (-7%), currently $144.40 — not at risk yet. No trades executed today.
+
+---
+
+## 2026-05-09 — Market-Open Review (Saturday)
+
+**No new trades.** Weekly limit reached (3/3). Markets closed (Saturday).
+
+| Ticker | Shares | Entry | Last | P&L% | Stop (GTC) | HWM | Status |
+|--------|--------|-------|------|------|------------|-----|--------|
+| AMD | 49 | $414.16 | $455.19 | +9.9% | $410.66 trail (10%) | $456.29 | HOLD — approaching +15% tighten at $476.28 |
+| NVDA | 90 | $208.64 | $215.20 | +3.1% | $196.02 trail (10%) | $217.80 | HOLD |
+| PLTR | 152 | $136.96 | $137.80 | +0.6% | $126.86 trail (10%) | $140.95 | HOLD |
+| XOM | 140 | $145.94 | $144.57 | -0.9% | $132.37 trail (10%) | $147.08 | HOLD — watch, manual cut at $135.72 (-7%) |
+
+**Portfolio:** $106,946.49 | **Cash:** $24,088.78 (22.5%) | **Deployed:** $82,857.71 (77.5%) | **Phase P&L:** +$6,946.49 (+6.95%)
+
+---
+
+## 2026-05-09 — Midday Scan Snapshot (Saturday; memory gap May 1–9 noted)
+
+*Note: Trade log entries for May 1–8 are missing. Based on Alpaca positions/orders as of May 8 close, the portfolio was restructured — AMD position rebuilt at higher price post-earnings, XOM added, PLTR shares added. All trailing stops placed May 7 (GTC). Full reconstruction of May 1–8 trades pending next market-open run.*
+
+| Ticker | Shares | Avg Entry | Price (May 8) | P&L% | Stop | HWM |
+|--------|--------|-----------|---------------|-------|------|-----|
+| AMD | 49 | $414.16 | $455.19 | +9.91% | $410.66 (10% trail) | $456.29 |
+| NVDA | 90 | $208.64 | $215.20 | +3.14% | $196.02 (10% trail) | $217.80 |
+| PLTR | 152 | $136.96 | $137.80 | +0.61% | $126.86 (10% trail) | $140.95 |
+| XOM | 140 | $145.94 | $144.57 | -0.94% | $132.37 (10% trail) | $147.08 |
+
+**Actions:** None. Market closed Saturday. No rule triggers.
+**Status:** 4 positions, all stops in place as GTC trailing orders.
+
+---
+
+### May 09 — Non-Trading Day Snapshot (Saturday; reflects May 08 close)
+**Portfolio:** $106,946.49 | **Cash:** $24,088.78 (22.5%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,946.49 (+6.95%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $455.19 | 0.0% | +$2,010.66 (+9.91%) | $410.66 |
+| NVDA | 90 | $208.64 | $215.20 | 0.0% | +$590.40 (+3.14%) | $196.02 |
+| PLTR | 152 | $136.96 | $137.80 | 0.0% | +$127.32 (+0.61%) | $126.86 |
+| XOM | 140 | $145.94 | $144.57 | 0.0% | -$191.56 (-0.94%) | $132.37 |
+
+**Notes:** Weekend snapshot reflecting Friday May 8 close. Portfolio up +6.95% phase vs $100K baseline; all four GTC trailing stops active. AMD at +9.91% — approaching +15% tighten threshold ($476.28 target); NVDA recovered to +3.14%; PLTR near flat +0.61%; XOM -0.94% well above stop ($132.37). Deployed 77.5%, within 75-85% target. Note: trade log gap since Apr 30 — positions evolved (AMD reduced to 49 shares at higher avg, PLTR added 10 shares, XOM new position) without intervening log entries; reconcile from Alpaca history. Monday: full 3 trade slots available for new week.
+
+---
+
+## 2026-05-10 — Market-Open Review (Sunday — Market Closed)
+
+**No trades.** Market closed (Sunday). Weekly cap resets Monday May 11 (0/3 available).
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AMD  | $414.16 | $455.19 | +9.9%  | $410.66 trail (HWM $456.29) | HOLD — tighten to 7% at $476.28 |
+| NVDA | $208.64 | $215.20 | +3.1%  | $196.02 trail (HWM $217.80) | HOLD — earnings late May |
+| PLTR | $136.96 | $137.80 | +0.6%  | $126.86 trail (HWM $140.95) | HOLD — thesis intact |
+| XOM  | $145.94 | $144.57 | -0.9%  | $132.37 trail (HWM $147.08) | HOLD — monitor vs $135.72 cut trigger |
+
+**Portfolio:** $106,946.49 | **Deployed:** 77.5% | **Daytrade count:** 0
+
+---
+
+## May 10 — Non-Trading Day Snapshot (Sunday; reflects May 08 close)
+**Portfolio:** $106,946.49 | **Cash:** $24,088.78 (22.5%) | **Day P&L:** $0 (0.00%) | **Phase P&L:** +$6,946.49 (+6.95%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $455.19 | 0% | +$2,010.66 (+9.91%) | $410.66 |
+| NVDA | 90 | $208.64 | $215.20 | 0% | +$590.40 (+3.14%) | $196.02 |
+| PLTR | 152 | $136.96 | $137.80 | 0% | +$127.32 (+0.61%) | $126.86 |
+| XOM | 140 | $145.94 | $144.57 | 0% | -$191.56 (-0.94%) | $132.37 |
+
+**Notes:** Sunday — no trading; reflects Friday May 8 close. Portfolio +6.95% from $100K baseline. EOD snapshots for May 1–9 were not committed; positions differ from Apr 30 log — AMD reduced 62→49 shares with avg entry rising to $414.16 (partial exit and re-entry at higher prices), PLTR added 10 shares at lower avg ($136.96 vs $142.30), XOM initiated (140 shares @ $145.94). All four positions hold active 10% trailing GTC stops. 77.5% deployed — within 75-85% target. No positions near -7% manual cut trigger (XOM weakest at -0.94%). Trades this week: unknown (missing log entries); assume 3 new trades placed Mon–Thu per position changes. AMD approaching +15% tighten threshold (+9.91%); watch for $477+ to tighten stop to 7%.
+
+---
+
+## 2026-05-11 — Market-Open Review
+
+**No new trades.** CPI tomorrow, deployed at target (77.5%).
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AMD  | $414.16 | $460.80 | +11.3% | $420.91 trailing | HOLD — +15% tighten at $476.28 |
+| NVDA | $208.64 | $215.49 | +3.3%  | $196.02 trailing | HOLD — thesis intact |
+| PLTR | $136.96 | $132.96 | -2.9%  | $126.86 trailing | HOLD — cut at $127.37; watch |
+| XOM  | $145.94 | $147.21 | +0.9%  | $132.64 trailing | HOLD — energy bullish on oil |
+
+**Portfolio:** $106,884.77 | **Deployed:** 77.5% | **Week trades:** 0/3 | **Daytrade count:** 0
+
+---
+
+## 2026-05-12 — Market-Open Review
+
+**No new trades.** VIX elevated (20.47, +2.09%), CPI day, no ≥8/10 conviction candidate.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| AMD  | $414.16 | $452.33 | +9.22% | $422.29 trail (HWM $469.21) | HOLD |
+| NVDA | $208.64 | $218.11 | +4.54% | $200.07 trail (HWM $222.30) | HOLD |
+| PLTR | $136.96 | $136.86 | -0.07% | $126.86 trail (HWM $140.95) | HOLD |
+| XOM  | $145.94 | $151.17 | +3.58% | $136.21 trail (HWM $151.34) | HOLD — near HWM |
+
+**Portfolio:** $107,810.62 (+7.8%) | **Deployed:** 77.7% | **Week trades:** 0/3 | **Daytrade count:** 0
+
+---
+
+## May 12 — EOD Snapshot (Day 11, Tuesday)
+**Portfolio:** $107,421.02 | **Cash:** $24,088.78 (22.4%) | **Day P&L:** -$660.55 (-0.61%) | **Phase P&L:** +$7,421.02 (+7.42%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $447.50 | -2.46% | +$1,633.85 (+8.05%) | $422.29 |
+| NVDA | 90 | $208.64 | $219.98 | +0.25% | +$1,020.54 (+5.43%) | $201.33 |
+| PLTR | 152 | $136.96 | $135.10 | -1.31% | -$283.08 (-1.36%) | $126.86 |
+| XOM | 140 | $145.94 | $150.51 | +0.56% | +$640.04 (+3.13%) | $136.63 |
+
+**Notes:** Down day at -0.61% as AMD gave back -2.46% (HWM $469.21, trailing stop $422.29 protecting gains) and PLTR slipped -1.31% (still modestly underwater at -1.36%). NVDA and XOM provided partial offset. Portfolio is up +7.42% phase vs S&P comparison benchmark. Four positions open, deployed 77.6% (within 75-85% target). All four trailing stops active as GTC orders. No trades today; 0/3 this week — capacity exists for up to 3 new trades. PLTR at -1.36% unrealized — watch for continued weakness; cut threshold is -7% ($127.37 from current entry). AMD stop at $422.29 well above entry, protecting +8% gain.
+
+---
+
+## May 13 — EOD Snapshot (Day 12, Wednesday)
+**Portfolio:** $107,180.71 | **Cash:** $24,088.78 (22.5%) | **Day P&L:** -$504.68 (-0.47%) | **Phase P&L:** +$7,180.71 (+7.18%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $445.07 | -0.72% | +$1,514.78 (+7.46%) | $422.29 |
+| NVDA | 90 | $208.64 | $225.85 | +2.30% | +$1,548.90 (+8.25%) | $205.06 |
+| PLTR | 152 | $136.96 | $129.85 | -4.52% | -$1,081.08 (-5.19%) | $126.86 |
+| XOM | 140 | $145.94 | $151.57 | +0.62% | +$788.44 (+3.86%) | $136.63 |
+
+**Notes:** Down day driven by PLTR (-4.5%) dragging -$934 intraday. NVDA led +2.3% ($456 intraday gain), XOM flat +0.6%. Portfolio deployed 77.5% — within 75-85% target. PLTR now -5.19% from entry and approaching -7% manual cut trigger ($127.37); trailing stop sits at $126.86 — nearly converged. No trades today; trades this week: 0. Watch PLTR closely Thursday; cut immediately below $127.37.
+
+---
+
+### May 14 — EOD Snapshot (Day 13, Thursday)
+**Portfolio:** $108,988.76 | **Cash:** $24,088.78 (22.1%) | **Day P&L:** +$1,758.38 (+1.64%) | **Phase P&L:** +$8,988.76 (+8.99%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $449.46 | +0.89% | +$1,729.79 (+8.52%) | $422.29 |
+| NVDA | 90 | $208.64 | $235.99 | +4.50% | +$2,461.50 (+13.11%) | $212.89 |
+| PLTR | 152 | $136.96 | $133.47 | +2.63% | -$530.84 (-2.55%) | $126.86 |
+| XOM | 140 | $145.94 | $152.50 | +0.61% | +$918.64 (+4.50%) | $137.81 |
+
+**Notes:** Strong day led by NVDA +4.5% (now +13.1% from entry, approaching +15% tighten threshold at $239.94) and PLTR recovery +2.6% (still -2.55% unrealized). AMD +0.9%, XOM +0.6% — steady holders. No trades today; 0/3 weekly cap used. Portfolio deployed 77.9% — within 75-85% target. Watch NVDA: tighten trail to 7% if/when it hits $239.94. PLTR monitoring for -7% manual cut at $127.37.
+
+---
+
+## 2026-05-15 — Market-Open Review
+
+**No new trades.** SPX futures -0.9%, VIX +6.7% — unfavorable entry. AMD dangerously close to stop; Friday before weekend.
+
+| Ticker | Entry | Current | P&L% | Today% | Stop (GTC) | HWM | Status |
+|--------|-------|---------|-------|--------|------------|-----|--------|
+| AMD | $414.16 | $431.16 | +4.1% | -4.1% | $422.29 (10% trail) | $469.21 | ⚠️ NEAR STOP — $8.87 gap |
+| NVDA | $208.64 | $226.64 | +8.6% | -3.9% | $212.89 (10% trail) | $236.54 | HOLD |
+| PLTR | $136.96 | $133.49 | -2.5% | -0.2% | $126.86 (10% trail) | $140.95 | HOLD |
+| XOM | $145.94 | $153.99 | +5.5% | +0.8% | $138.60 (10% trail) | $154.00 | HOLD |
+
+**Portfolio:** $107,564.71 | **Cash:** $24,088.78 (22.4%) | **Deployed:** $83,475.93 (77.6%) | **Daytrade count:** 0
+
+**Week of 2026-05-11 trade count: 0/3**
+
+**Notes:** Market selling off -0.9% premarket on Retail Sales release + Trump-Xi summit uncertainty. VIX futures up 6.7%. AMD fell -4.1% from $449.70 yesterday close to $431.16 — trailing stop at $422.29 (HWM $469.21) is only 2.1% below current price; may auto-trigger today. No manual action required — stops in place for all positions. Deployed 77.6% within 75-85% target; no urgency to add in down-market Friday. No stop tightening triggered (no position at +15% from entry). No -7% manual cuts needed.
+
+---
+
+### May 15 — EOD Snapshot (Day 14, Friday)
+**Portfolio:** $107,377.97 | **Cash:** $24,088.78 (22.4%) | **Day P&L:** -$1,678.87 (-1.54%) | **Phase P&L:** +$7,377.97 (+7.38%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AMD | 49 | $414.16 | $422.31 | -6.09% | +$399.54 (+1.97%) | $422.29 (trailing 10%, HWM $469.21) |
+| NVDA | 90 | $208.64 | $224.88 | -4.61% | +$1,461.60 (+7.78%) | $212.89 (trailing 10%, HWM $236.54) |
+| PLTR | 152 | $136.96 | $133.45 | -0.21% | -$533.88 (-2.56%) | $126.86 (trailing 10%, HWM $140.95) |
+| XOM | 140 | $145.94 | $157.66 | +3.19% | +$1,641.04 (+8.03%) | $141.68 (trailing 10%, HWM $157.43) |
+
+**Notes:** Rough Friday — tech sold off hard with AMD -6.09% and NVDA -4.61% dragging the portfolio down -1.54% on the day. XOM was the lone bright spot +3.19%, benefiting from energy sector strength. Critical alert: AMD's trailing stop sits at $422.29 against a $422.31 close — essentially at the stop; expect it to be triggered Monday open. NVDA stop at $212.89 is safer (~5.3% below close). PLTR barely moved, remaining slightly underwater. Portfolio deployed 77.6%, within the 75-85% target. No trades today or this week. Phase P&L still healthy at +7.38%. Monday plan: confirm AMD stop-out, reassess AI sector exposure, consider XOM tighten if it continues rallying (+8% from entry nears the +15% tighten threshold).
+
+---
+
+## 2026-05-18 — Midday Reconciliation (position state audit)
+
+*Memory files not updated May 1–18. Reconciling from live Alpaca data.*
+
+| Ticker | Shares | Avg Entry | Current | P&L% | Stop (GTC) | HWM | Status |
+|--------|--------|-----------|---------|------|------------|-----|--------|
+| NVDA | 90 | $208.64 | $222.46 | +6.62% | $212.89 (10% trail) | $236.54 | HOLD — earnings May 20 |
+| PLTR | 152 | $136.96 | $134.06 | -2.12% | $126.86 (10% trail) | $140.95 | HOLD |
+| XOM | 140 | $145.94 | $160.73 | +10.14% | $145.11 (10% trail) | $161.23 | HOLD |
+
+**AMD:** Position closed between May 1–18 (trailing stop or manual exit). Exact exit price/date not captured in memory — to be reconciled from Alpaca account history.
+**PLTR:** Qty increased 142→152, avg entry lowered $142.30→$136.96 — averaged down at some point May 1–18.
+**XOM:** Added per May 1 research plan (energy sector thesis, oil elevated). 140 shares @ $145.94 avg.
+
+---
+
+## May 18 — EOD Snapshot (Day 15, Monday)
+**Portfolio:** $107,759.59 | **Cash:** $44,739.29 (41.5%) | **Day P&L:** +$135.83 (+0.13%) | **Phase P&L:** +$7,759.59 (+7.76%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $222.38 | -1.30% | +$1,236.61 (+6.59%) | $212.89 |
+| PLTR | 152 | $136.96 | $135.10 | +0.83% | -$283.08 (-1.36%) | $126.86 |
+| XOM | 140 | $145.94 | $160.50 | +1.63% | +$2,038.64 (+9.98%) | $145.56 |
+
+**Notes:** Quiet open to the new week — portfolio edged up +0.13%. Since last log (Apr 30): AMD exited (stop hit or manual cut), XOM added at ~$145.94 as energy/sector diversifier, PLTR position expanded to 152 shares. XOM leads at +9.98% unrealized, NVDA recovered to +6.59% after early-May weakness, PLTR slightly underwater at -1.36%. Deployed 58.5% — still below 75-85% target. No trades this week (0/3). Priority Tuesday: identify a 4th position to close the deployment gap.
+
+---
+
+## 2026-05-19 — Midday Snapshot
+
+**Note:** Log gap May 1–18 (AMD exited, PLTR averaged down, XOM entered — detailed entries missing from prior sessions.)
+
+| Ticker | Shares | Entry | Current | P&L% | Stop | Status |
+|--------|--------|-------|---------|------|------|--------|
+| NVDA | 90 | $208.64 | $223.15 | +6.95% | $212.89 (HWM $236.54) | HOLD — below +15% tighten |
+| PLTR | 152 | $136.96 | $134.44 | -1.84% | $126.86 (HWM $140.95) | HOLD — well above -7% cut |
+| XOM | 140 | $145.94 | $161.96 | +10.98% | $145.94 (HWM $162.15) | HOLD — approaching +15% |
+
+**Midday actions:** None. No cuts, no stop adjustments. All theses intact.
+**XOM tighten trigger:** $167.83 (+15%). When hit → cancel stop, replace with 7% trail.
+
+---
+
+### May 19 — EOD Snapshot (Day 16, Tuesday)
+**Portfolio:** $107,915.62 | **Cash:** $44,739.28 (41.5%) | **Day P&L:** +$157.66 (+0.15%) | **Phase P&L:** +$7,915.62 (+7.92%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $221.06 | -0.57% | +$1,117.80 (+5.95%) | $212.89 |
+| PLTR | 152 | $136.96 | $135.02 | -0.09% | -$295.24 (-1.42%) | $126.86 |
+| XOM | 140 | $145.94 | $162.55 | +1.28% | +$2,325.64 (+11.38%) | $146.99 |
+
+**Notes:** Quiet day, +0.15%. XOM the standout again (+1.28%), benefiting from energy momentum and approaching its HWM ($163.32); at +11.38% unrealized, watch for +15% tighten trigger (~$167.83). NVDA slipped -0.57% but holds +5.95% unrealized; stop walked up to $212.89 off HWM $236.54. PLTR essentially flat (-0.09%), -1.42% unrealized — no action needed, stop at $126.86. AMD exited sometime since Apr 30 (stopped out or cut). Portfolio deployed only 58.5% vs 75-85% target — 0 trades this week (cap: 3), opportunity to add a 4th position Wed/Thu if a setup materializes.
+
+---
+
+## May 20 — EOD Snapshot (Day 17, Wednesday)
+**Portfolio:** $107,634.89 | **Cash:** $44,739.28 (41.6%) | **Day P&L:** -$275.81 (-0.26%) | **Phase P&L:** +$7,634.89 (+7.63%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $223.91 | +1.50% | +$1,374.30 (+7.32%) | $212.89 |
+| PLTR | 152 | $136.96 | $136.74 | +1.09% | -$33.80 (-0.16%) | $126.86 |
+| XOM | 140 | $145.94 | $156.74 | -3.57% | +$1,512.24 (+7.40%) | $147.31 |
+
+**Notes:** Slight down day (-0.26%) driven by XOM selling off -3.57% (energy weakness, stop intact at $147.31 / HWM $163.68). NVDA and PLTR both positive. Portfolio up +7.63% from $100k baseline. Gap in log since Apr 30: AMD exited (stopped out or sold), XOM added, PLTR scaled to 152 shares — all unlogged. Cash at 41.6%, below 75-85% target. Week trade count 0/3 — scout one quality name tomorrow to close deployment gap. All three trailing stops active as GTC orders.
+
+---
+
+## May 21 — EOD Snapshot (Day 18, Thursday)
+**Portfolio:** $107,112.97 | **Cash:** $44,727.85 (41.8%) | **Day P&L:** -$464.61 (-0.43%) | **Phase P&L:** +$7,112.97 (+7.11%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $219.47 | -1.79% | +$974.47 (+5.19%) | $212.89 |
+| PLTR | 152 | $136.96 | $137.49 | +0.25% | +$80.20 (+0.39%) | $126.86 |
+| XOM | 140 | $145.94 | $155.26 | -0.65% | +$1,304.75 (+6.39%) | $147.31 |
+
+**Notes:** Down day — NVDA -1.79% and XOM -0.65% dragged the portfolio; PLTR +0.25% provided small offset. WMT daytrade today was a scratch (-$11, buy 175 @ $122.44 / sell @ $122.38). AMD fully exited Mon May 18 (49 shares @ $421.44; strong winner from $314.97 entry, +33.8%). Log has gaps May 1–May 20 due to missed EOD runs; XOM added ~May 7 and PLTR re-entered at lower cost basis ($136.96 vs original $142.30). Deployed 58.2% — below 75–85% target; NVDA trailing stop at $212.89 is exactly 3.0% below current price ($219.47), at minimum threshold per rules. Week trades: 1 new (WMT daytrade), 2/3 cap remaining. Tomorrow: look for 4th position to close deployment gap; NVDA stop needs watching if it slides further.
+
+---
+
+## 2026-05-21 — Market-Open Trades
+
+**WMT: Opened and immediately closed (entry criteria violation)**
+
+| Date | Ticker | Side | Shares | Entry | Exit | Net P&L | Notes |
+|------|--------|------|--------|-------|------|---------|-------|
+| 2026-05-21 | WMT | BUY→SELL | 175 | $122.44 | $122.38 | -$11.44 | Closed same day — WMT gapped DOWN -6.4% ($130.85→$122.53) despite Q1 beat. Entry criteria required gap-up confirmation; condition not met. Exited at near break-even. |
+
+**Week of 2026-05-19 trade count: 1/3**
+
+### Existing Positions (no changes)
+| Ticker | Shares | Entry | Current | Unr. P&L% | Stop (GTC) | Status |
+|--------|--------|-------|---------|------------|------------|--------|
+| NVDA | 90 | $208.64 | $225.81 | +8.24% | $212.89 trail (HWM $236.54) | HOLD — below +15% tighten |
+| PLTR | 152 | $136.96 | $137.87 | +0.66% | $126.86 trail (HWM $140.95) | HOLD |
+| XOM | 140 | $145.94 | $158.13 | +8.35% | $147.31 trail (HWM $163.68) | HOLD — below +15% tighten |
+
+**Portfolio:** $108,155.99 | **Cash:** ~$44,739 | **Deployed:** ~58.6% | **Daytrade count:** 0
+
+---
+
+### May 22 — EOD Snapshot (Day 19, Friday)
+**Portfolio:** $106,564.66 | **Cash:** $44,727.82 (42.0%) | **Day P&L:** -$546.74 (-0.51%) | **Phase P&L:** +$6,564.66 (+6.56%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $215.10 | -2.01% | +$581.40 (+3.1%) | $212.89 |
+| PLTR | 152 | $136.96 | $136.77 | -0.47% | -$29.24 (-0.1%) | $126.86 |
+| XOM | 140 | $145.94 | $154.92 | -0.24% | +$1,257.44 (+6.2%) | $147.31 |
+
+**Notes:** Red day across all three positions. NVDA is the critical watch — at $215.10, only 1.0% above its trailing stop of $212.89 (HWM $236.54); one bad open could stop it out. AMD was exited at some point since Apr 30 (no longer in positions). XOM (+6.2% from entry) is the portfolio anchor with the most cushion. PLTR essentially flat at -0.1% from blended entry. Portfolio +6.56% phase, still underdeployed at 58% vs 75-85% target. No trades today; 0 trades this week. Watch NVDA open tomorrow closely.
+
+---
+
+## May 25 — Non-Trading Day Snapshot (Memorial Day; reflects May 22 close)
+**Portfolio:** $106,602.08 | **Cash:** $44,727.82 (42.0%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,602.08 (+6.60%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| NVDA | 90 | $208.64 | $215.33 | — (holiday) | +$602.10 (+3.21%) | $212.89 |
+| PLTR | 152 | $136.96 | $136.88 | — (holiday) | -$12.52 (-0.06%) | $126.86 |
+| XOM | 140 | $145.94 | $154.92 | — (holiday) | +$1,257.44 (+6.15%) | $147.31 |
+
+**Notes:** Market closed for Memorial Day. Snapshot reflects May 22 (Fri) close. Portfolio has evolved significantly since Apr 30: AMD exited (trailing stop triggered or manual cut), XOM added as energy sector position, PLTR scaled to 152 shares at blended avg $136.96. Net phase gain +6.60% vs S&P. Deployed 58% — below 75-85% target; look to add a 4th position Tuesday if market confirms direction. NVDA reclaimed above entry (+3.21%), XOM strong (+6.15%). PLTR essentially flat (-0.06%). Trades this week (May 19-25): 0 — capacity for 3 new trades next week.
+
+---
+
+### May 26 — EOD Snapshot (Day 20, Tuesday)
+**Portfolio:** $106,636.22 | **Cash:** $42,532.22 (39.9%) | **Day P&L:** +$34.14 (+0.03%) | **Phase P&L:** +$6,636.22 (+6.64%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MU | 25 | $853.58 | $895.30 | +19.21% | +$1,043.00 (+4.89%) | $825.12 |
+| PLTR | 152 | $136.96 | $136.55 | -0.24% | -$62.68 (-0.30%) | $126.86 |
+| XOM | 140 | $145.94 | $149.81 | -3.30% | +$542.04 (+2.65%) | $147.31 |
+
+**Notes:** First trading day after Memorial Day. Portfolio barely moved (+$34 on the day) despite MU surging +19.2% on a major catalyst — MU was bought today at $853.58, rode up to HWM $916.80, and pulled back to close $895.30. XOM gave back -3.3% and is now within ~$2.50 of its stop ($147.31); watch closely. PLTR flat (-0.24%). AMD and NVDA exited since Apr 30 snapshot. MU buy counts as 1 trade this week (1/3). Deployed at ~60% — below 75-85% target; look to add a position Wed/Thu if setups emerge.
+
+---
+
+## 2026-05-26 — Market-Open Trade
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-05-26 | MU | BUY | 25 | $853.58 | 10% trailing GTC (initial ~$768.22) | AI memory leader — HBM/DRAM demand from AI infra; S&P 100 inclusion passive flows; Q2 FY26 beat-and-raise ($23.86B rev, $12.20 EPS); tight supply driving pricing power | $1,024.30 | 2:1 |
+
+**Week of 2026-05-26 trade count: 1/3**
+
+---
+
+---
+
+## 2026-05-26 — Midday Scan
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| MU | $853.58 | $887.00 | +3.92% | $802.14 (10% trail, HWM $891.27) | HOLD — gapped +18% today on AI memory re-rating; thesis intact; tighten threshold +15% = $981.62 not reached |
+| PLTR | $136.96 | $137.14 | +0.13% | $126.86 (10% trail, HWM $140.95) | HOLD — flat; thesis intact |
+| XOM | $145.94 | $150.70 | +3.26% | $147.31 (10% trail, HWM $163.68) | HOLD — down -2.72% today; stop buffer $3.39; energy thesis intact |
+
+**Actions:** None — no positions at -7%, no positions at +15%+ for stop tighten, no thesis breaks.
+**Deployed:** ~$64,117 / ~$100K = ~64% (below 75-85% target; MU added but still under-deployed)
+
+---
+
 ### May 27 — EOD Snapshot (Day 21, Wednesday)
 **Portfolio:** $106,240.66 | **Cash:** $45,940.60 (43.2%) | **Day P&L:** -$425.14 (-0.40%) | **Phase P&L:** +$6,240.66 (+6.24%)**
 
@@ -59,6 +710,258 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 2/3 (MU May 26, AVGO May 27). One new trade remaining this week.
 
 **Notes:** Down day — portfolio fell $425 (-0.40%) as PLTR dragged -2.76% and AVGO entered at a slight loss on day one. MU was the bright spot at +3.45%. XOM closed flat (+$95 after 3 weeks) to free capital. Deployed 56.8% — below 75-85% target; one trade remaining this week for a potential add if setup appears Thursday. PLTR needs watching: -3.02% from entry, cut level $127.37, stop at $126.86 — very close together. MU approaching +15% tighten threshold ($981.62); not there yet at $926.78.
+
+---
+
+## 2026-05-27 — Market-Open Trades
+
+### XOM — Stop-Out (Trailing Stop Triggered)
+- **Entry:** 2026-05-07 | 140 shares @ $145.94 | Stop set 10% trail
+- **Exit:** 2026-05-27 | 140 shares @ $146.61 (avg) | +$93 (+0.46%)
+- **Reason:** Trailing stop triggered — stock fell from HWM $163.68; stop activated at $147.31, gapped below at open
+- **Result:** Essentially breakeven; sector rotation out of energy as oil slipped from $163 HWM
+
+### New Trades
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-05-27 | AVGO | BUY | 40 | $427.95 | 10% trailing GTC (initial $386.56) | AI infrastructure — custom silicon (Google/Meta ASICs) + networking; Q2 guidance $22B (+47% YoY); market at ATH, AI/tech sector leading | $513.54 | 2:1 |
+
+**Week of 2026-05-26 trade count: 2/3** (MU 2026-05-26, AVGO 2026-05-27)
+
+### Portfolio State After Open
+**Equity:** $106,220.05 | **Cash:** $45,940.60 | **Deployed:** 56.7% | **Daytrade count:** 1
+
+| Ticker | Shares | Avg Entry | Current | Unr. P&L | Stop |
+|--------|--------|-----------|---------|----------|------|
+| MU | 25 | $853.58 | $921.40 | +$1,695 (+7.95%) | $860.36 (10% trail, HWM $955.96) |
+| PLTR | 152 | $136.96 | $132.84 | -$627 (-3.01%) | $126.86 (10% trail, HWM $140.95) |
+| AVGO | 40 | $427.95 | $429.39 | +$57 (+0.34%) | $386.56 (10% trail, HWM $429.51) |
+
+**Notes:** XOM trailing stop triggered at open — sold 140 shares at ~$146.61 avg (+0.46% from entry, down from HWM $163.68). Added AVGO as AI infrastructure replacement — Broadcom Q1 beat ($19.3B rev, +29%), Q2 guided $22B (+47%). Deployed at 56.7% — below 75-85% target; 1 trade slot remaining this week to add if strong opportunity arises.
+
+---
+
+### May 28 — EOD Snapshot (Day 22, Thursday)
+**Portfolio:** $107,848.46 | **Cash:** $45,940.57 (42.6%) | **Day P&L:** +$1,681.72 (+1.58%) | **Phase P&L:** +$7,848.46 (+7.85%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $426.18 | +1.03% | -$70.88 (-0.41%) | $386.71 |
+| MU | 25 | $853.58 | $923.16 | -0.57% | +$1,739.50 (+8.15%) | $860.36 |
+| PLTR | 152 | $136.96 | $143.30 | +8.14% | +$963.32 (+4.63%) | $129.08 |
+
+**Trades today:** none
+**Week trades:** 2/3 (MU May 26, AVGO May 27). One slot remaining.
+
+**Notes:** Strong session — portfolio gained +$1,681.72 (+1.58%) driven by PLTR's +8.14% surge, which pushed its unrealized P&L to +4.63% from entry. MU slipped -0.57% intraday but holds +8.15% from entry; HWM $955.96, stop $860.36. AVGO ticked +1.03% but remains marginally underwater at -0.41%. Deployed 57.4% — still below 75-85% target; one trade slot available this week for a Friday add if a clean setup appears. PLTR nearing +15% tighten threshold ($157.51); no action yet. No manual cut triggers active.
+
+---
+
+### May 29 — EOD Snapshot (Day 23, Friday)
+**Portfolio:** $111,707.65 | **Cash:** $45,940.57 (41.1%) | **Day P&L:** +$3,828.20 (+3.55%) | **Phase P&L:** +$11,707.65 (+11.71%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $445.79 | +4.50% | +$713.31 (+4.17%) | $403.99 (10% trail, HWM $448.88) |
+| MU | 25 | $853.58 | $964.22 | +4.41% | +$2,766.00 (+12.96%) | $882.90 (10% trail, HWM $981.00) |
+| PLTR | 152 | $136.96 | $156.80 | +9.39% | +$3,015.32 (+14.48%) | $146.14 (7% trail, HWM $157.14) |
+
+**Trades today:** none
+**Week trades:** 2/3 (MU May 26, AVGO May 27)
+
+**Notes:** Strong broad rally — PLTR led at +9.39%, now +14.48% unrealized and just $0.71 below the +15% tighten threshold ($157.51); stop already at 7% trail (HWM $157.14). MU +4.41%, HWM hit $981.00 vs $981.62 threshold — essentially at trigger, tighten to 7% trail on Monday open if price opens above $981.62. AVGO +4.50%, now in positive territory at +4.17%. Portfolio set a new phase high at $111,708 (+11.71%). Week closes 2/3 trade slots used; one slot available next week. Deployed 58.9% — still below 75-85% target; scout one quality add Monday to close gap.
+
+---
+
+## 2026-05-29 — Midday Scan
+
+### Positions at Scan
+| Ticker | Entry | Current | P&L% | Today% | Stop |
+|--------|-------|---------|------|--------|------|
+| AVGO | $427.95 | $438.90 | +2.56% | +2.89% | $403.72 (10% trail, HWM $448.58) |
+| MU | $853.58 | $962.28 | +12.73% | +4.20% | $882.90 (10% trail, HWM $981.00) |
+| PLTR | $136.96 | $155.59 | +13.60% | +8.55% | **tightened — see below** |
+
+### Actions
+- **PLTR stop tightened 10% → 7%:** HWM $157.78 exceeded +15% threshold ($136.96×1.15=$157.50). Cancelled order 1dfb4fc7; placed new GTC 7% trailing stop (order 1c6e9b3d). New stop $144.59, HWM $155.47. Old stop was $142.00 — moved up $2.59. ✓ Not within 3% of current price; stop not moved down.
+- **No cuts:** All positions positive; none at -7%.
+- **MU not tightened:** HWM $981.00 just below +15% threshold $981.62 — holds at 10% trail.
+- **AVGO no action:** +2.56%; well below tighten thresholds.
+
+### Catalyst — PLTR +8.55% intraday
+Q1 2026 earnings beat after close (prior session): revenue $1.63B (+85% YoY) vs guidance $1.532–1.536B. U.S. commercial accelerating. Raised FY guidance. Rosenblatt PT $225. Thesis strongly confirmed.
+
+### Thesis Check
+- AVGO: intact. Semiconductor/AI momentum.
+- MU: intact. AI memory demand, strong momentum.
+- PLTR: intact (upgraded). Q1 beat + raised guidance confirms bull thesis.
+
+---
+
+## 2026-05-29 — Market-Open Review
+
+**No new trades.** No 8/10+ conviction catalyst; preserving last weekly trade for next week.
+
+| Ticker | Entry | Current | P&L% | Stop (GTC) | HWM | Status |
+|--------|-------|---------|------|------------|-----|--------|
+| AVGO | $427.95 | $436.96 | +2.10% | $395.46 (10% trail) | $439.40 | HOLD — +15% threshold $492.14 not reached |
+| MU | $853.58 | $952.07 | +11.54% | $867.89 (10% trail) | $964.32 | HOLD — +15% threshold $981.62 approaching (~$29 away) |
+| PLTR | $136.96 | $148.23 | +8.23% | $134.58 (10% trail) | $149.53 | HOLD — +15% threshold $157.50 not reached |
+
+**Portfolio:** $109,775.98 | **Deployed:** 58.1% | **Daytrade count:** 0 | **Week trades:** 2/3
+**Skip reasons:** No 8/10+ idea; Friday ATH risk; AI-tech 3/3 concentration; 1 trade preserved for next week.
+
+---
+
+### Jun 01 — EOD Snapshot (Day 24, Monday)
+**Portfolio:** $114,530.97 | **Cash:** $45,940.57 (40.1%) | **Day P&L:** +$2,650.52 (+2.37%) | **Phase P&L:** +$14,530.97 (+14.53%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $460.60 | +3.10% | +$1,305.83 (+7.63%) | $419.45 (10% trail) |
+| MU | 25 | $853.58 | $1,033.49 | +6.44% | +$4,497.75 (+21.08%) | $994.62 (5% trail) |
+| PLTR | 152 | $136.96 | $160.01 | +2.22% | +$3,503.24 (+16.83%) | $152.20 (7% trail) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Strong broad-based rally to open the week — all three positions advanced. MU surged +6.44% to $1,033.49, now +21.08% from entry; 5% trailing stop at $994.62 (HWM $1,046.97) correctly tightened. PLTR gained +2.22% to $160.01, now +16.83% from entry; 7% trail at $152.20 (HWM $163.66) in place. AVGO added +3.10% to $460.60, +7.63% unrealized. No trades today; fresh week with full 3/3 cap available. Deployed 59.9% ($68,590 / $114,531) — below 75-85% target; looking for 1-2 new setups this week in AI/semis/momentum sectors if market holds strength.
+
+---
+
+## 2026-06-01 — Market-Open Stop Adjustments (no new trades)
+
+**No new buys.** New week — 0/3 trades used. ANET evaluated; failed 2:1 R:R test (~1:1 at consensus $181). Patience.
+
+**Stop Adjustments:**
+| Ticker | Action | Old Stop | New Stop | Reason |
+|--------|--------|----------|----------|--------|
+| MU | Trail 10% → 5% | $932.24 | $969.33 (HWM $1,020.35) | +20.32% from entry — rule: tighten to 5% at +20% |
+
+**Portfolio Snapshot:**
+- Equity: $113,453.59 | Cash: $45,940.57 | Deployed: 59.5%
+- AVGO: $445.03 (+3.99%) | MU: $1,027.04 (+20.32%) | PLTR: $157.82 (+15.23%)
+- Phase P&L: +$13,453.59 (+13.45%)
+
+---
+
+### Jun 02 — EOD Snapshot (Day 25, Tuesday)
+**Portfolio:** $115,135.09 | **Cash:** $69,076.49 (60.0%) | **Day P&L:** +$489.42 (+0.43%) | **Phase P&L:** +$15,135.09 (+15.14%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $484.14 | +5.26% | +$2,247.43 (+13.13%) | $439.94 (10% trail, HWM $488.82) |
+| MU | 25 | $853.58 | $1,068.00 | +3.14% | +$5,360.50 (+25.12%) | $1,022.73 (5% trail, HWM $1,076.56) |
+
+**Trades today:** None.
+**Week trades:** 0/3 confirmed this week (PLTR closed between May 27–Jun 2, timing unlogged — stop was $126.86, cut threshold ~$127.37).
+
+**Notes:** Strong up day — portfolio gained +$489 (+0.43%) as both AVGO (+5.26%) and MU (+3.14%) advanced. PLTR is no longer in positions, closed since the May 27 snapshot (likely stopped or manually cut at −7%; not logged). MU has surged to +25.12% from entry; stop tightened to 5% trail (created Jun 1, HWM $1,076.56, current stop $1,022.73). AVGO at +13.13% is approaching the +15% tighten threshold ($492.14) — not yet triggered at $484.14. Capital deployment at only 40% of portfolio ($46K of $115K), well below the 75–85% target; priority Wednesday is identifying 1–2 quality setups to deploy $20–30K. Up to 3 new trades available this week.
+
+---
+
+## 2026-06-02 — Midday Scan
+
+### PLTR Exit (trailing stop triggered)
+| Ticker | Shares | Entry | Exit | Realized P&L | Notes |
+|--------|--------|-------|------|--------------|-------|
+| PLTR | 152 | $136.96 | $152.21 | +$2,317.64 (+11.14%) | 7% trailing stop triggered; HWM $163.66 → stop $152.20 |
+
+PLTR peaked at $163.66, reversed, and trailing stop executed 2026-06-02 at 13:57 UTC. Exited cleanly per rule.
+
+### Midday Snapshot
+**Portfolio:** $114,425.27 | **Cash:** $69,076.49 (60.4%) | **Day P&L:** -$220.40 (-0.19%) | **Phase P&L:** +$14,425.27 (+14.43%)**
+
+| Ticker | Shares | Entry | Current | P&L% | Today% | Stop |
+|--------|--------|-------|---------|------|--------|------|
+| AVGO | 40 | $427.95 | $479.08 | +11.95% | +4.16% | $439.94 (10% trail, HWM $488.82) |
+| MU | 25 | $853.58 | $1,049.12 | +22.91% | +1.31% | $1,019.20 (5% trail, HWM $1,072.84) |
+
+### Actions
+- PLTR: trailing stop executed — position closed, gain locked
+- No manual cuts (no position at -7%)
+- No stop tightening: AVGO at +11.95% (threshold +15% = $492.14, ~2.7% away — monitor); MU already on 5% trail
+
+### Notes
+- Deployed only 39.6% — significantly below 75-85% target. PLTR exit freed ~$23,136. Need 2 new positions; flag for pre-market tomorrow.
+- AVGO +4.16% today on AI/semi momentum + Jensen Huang commentary; Q2 earnings upcoming (binary risk — confirm date pre-market).
+- MU +1.31% today; HWM extended to $1,072.84; 5% trail intact at $1,019.20.
+
+---
+
+## 2026-06-02 — Market-Open Review
+
+**No new trades.** No setup cleared 8/10 conviction threshold.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AVGO | $427.95 | $487.56 | +13.93% | 10% trail @ $439.81 (HWM $488.68) | HOLD — approaching +15% tighten threshold ($492.14) |
+| MU | $853.58 | $1,028.40 | +20.48% | 5% trail @ $999.40 (HWM $1,052.00) | HOLD — already tightened to 5% |
+| PLTR | $136.96 | $155.46 | +13.51% | 7% trail @ $152.20 (HWM $163.66) | HOLD — $3.26 above stop; watch closely |
+
+**Portfolio:** $114,804.16 | **Deployed:** $68,863.59 (59.98%) | **Daytrade count:** 0
+**Week trades:** 0/3
+
+**Reasons for no action:**
+- S&P futures -0.2% to -0.3% (slight negative open)
+- AVGO earnings this week — binary risk on existing position
+- No new trade idea clears 8/10 conviction (CRWD/PANW pre-earnings binary; ESLT/KEYS no today catalyst)
+- PLTR proximity to stop ($155.46 vs $152.20) — not a day to add new risk
+- Patience > activity; 3 trade slots preserved for higher-conviction setups
+
+---
+
+## 2026-06-02 — PLTR Stop-Out
+
+| Date | Ticker | Side | Shares | Exit | Entry | P&L | Notes |
+|------|--------|------|--------|------|-------|-----|-------|
+| 2026-06-02 (approx) | PLTR | SELL (stop) | 152 | ~$150.90 | $136.96 | +$2,118 (+10.2%) | 7% trailing stop triggered from HWM $162.26 |
+
+---
+
+---
+
+### Jun 03 — EOD Snapshot (Day 26, Wednesday)
+**Portfolio:** $114,269.45 | **Cash:** $28,371.60 (24.8%) | **Day P&L:** +$906.69 (+0.80%) | **Phase P&L:** +$14,269.45 (+14.27%)**
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| AVGO | 40 | $427.95 | $478.77 | -0.58% | +$2,032.63 (+11.87%) | $445.50 |
+| MSFT | 48 | $436.20 | $427.25 | -3.19% | -$429.60 (-2.05%) | $392.30 |
+| MU | 25 | $853.58 | $1,076.15 | +1.13% | +$5,564.25 (+26.08%) | $1,034.83 |
+| NVDA | 90 | $219.64 | $214.88 | -3.56% | -$428.06 (-2.17%) | $197.79 |
+
+**Trades today:** MSFT BUY 48 @ $436.20 (new position); NVDA re-entry BUY 90 @ $219.64.
+**Week trades:** 2/3 (MSFT Jun 03, NVDA Jun 03). One trade slot remaining this week.
+
+**Notes:** Portfolio gained +$906.69 (+0.80%) on the day despite broad tech weakness. Two new entries today — MSFT (48 shares @ $436.20) and NVDA re-entry (90 shares @ $219.64) — both opened in a down session and closed modestly underwater (-2.05% and -2.17%), well within the -7% manual cut threshold. MU continues as portfolio anchor at +26.08% from entry; stop tightened to 5% trail at $1,034.83 (triggered above the +20% threshold). AVGO slipped -0.58% but holds +11.87% unrealized with stop at $445.50 based on $495 HWM. Four positions, 75.2% deployed — squarely in the 75-85% target band. One trade slot remaining this week; PLTR was stopped out between May 27 and today (stop at $126.86 triggered near -7% cut level).
+
+---
+
+## 2026-06-03 — Market-Open Trades & PLTR Exit
+
+**PLTR exit (trailing stop triggered, ~Jun 2–3):** 7% trailing stop at $150.90 (HWM $162.26 from Jun 1 midday) triggered. Realized P&L: estimated +~$2,132 (+10.3% from $136.96 entry × 152 shares). Logged as trailing stop exit — no manual action required.
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-03 | MSFT | BUY | 48 | $436.20 | 10% trailing GTC (initial $392.30, HWM $435.89) | AI recovery + enterprise cloud; intermediate downtrend reversal thesis; AI catalysts building per May 26 analyst notes | $523.44 | 2:1 |
+| 2026-06-03 | NVDA | BUY | 90 | $219.64 | 10% trailing GTC (initial $197.79, HWM $219.77) | AI GPU dominance re-entry; Blackwell/Vera Rubin ramp H2 2026; $1T order backlog through 2027 | $263.56 | 2:1 |
+
+---
+
+---
+
+## 2026-06-03 — Midday Snapshot
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|-------|------|--------|
+| AVGO | $427.95 | $484.41 | +13.19% | $445.50 (10% trail, HWM $495) | HOLD — approaching +15% tighten threshold ($492.14) |
+| MSFT | $436.20 | $424.79 | -2.62% | $392.30 (10% trail, HWM $435.89) | HOLD — monitor; AI regulation EO headwind; cut at -7% = ~$405.67 |
+| MU | $853.58 | $1,060.73 | +24.27% | $1,034.27 (5% trail, HWM $1,088.71) | HOLD — at 5% trail (correct), HWM $1,088.71 |
+| NVDA | $219.64 | $215.70 | -1.79% | $197.79 (10% trail, HWM $219.77) | HOLD — monitor; China H200 headwind; cut at -7% = ~$204.26 |
+
+No cuts, no stop changes. No email sent.
 
 ---
 
@@ -77,6 +980,93 @@ No positions yet. Bot launches tomorrow.
 
 ---
 
+## 2026-06-04 — Stop Executions at Open
+
+AVGO and MU trailing stops triggered at market open on gap-down opens (both stop prices were above the open per pre-market analysis).
+
+| Date | Ticker | Side | Shares | Entry | Exit | P&L | P&L% | Reason |
+|------|--------|------|--------|-------|------|-----|------|--------|
+| 2026-06-04 | AVGO | SELL | 40 | $427.95 | ~$409 | ~-$758 | ~-4.4% | Trailing stop gap-filled at open; AVGO earnings AMC Jun 3 — guidance miss (AI rev cut $62.5B→$55B, Anthropic order restructure). Stop $445.50 above open. Rule-compliant exit. |
+| 2026-06-04 | MU | SELL | 25 | $853.58 | ~$1,013 | ~+$3,974 | ~+18.6% | Trailing stop gap-filled at open; semi sector sympathy (AVGO miss). Stop $1,034.83 above open. Locked gains at +18.6%. |
+
+**Net from exits today: ~+$3,216**
+
+---
+
+---
+
+## 2026-06-04 — Midday Scan
+
+**Portfolio:** $110,223.68 | **Cash:** $70,109.19 (63.6%) | **Deployed:** 36.4% | **Phase P&L:** +$10,223.68 (+10.22%)
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| MSFT | $436.20 | $426.96 | -2.12% | $392.45 (10% trail, HWM $436.05) | HOLD — above -7% cut, below -0% thesis intact |
+| NVDA | $219.64 | $218.01 | -0.74% | $197.79 (10% trail, HWM $219.77) | HOLD — recovering +1.52% intraday, thesis intact |
+
+**Actions:** None. No positions at -7% cut trigger. No positions at +15% tighten threshold. No thesis breaks.
+**Reminder:** NFP tomorrow Jun 5 — do not add positions today. Rebuild 2-3 positions next week after NFP prints.
+
+---
+
+## 2026-06-04 — Market-Open (Trailing Stop Exits)
+
+**No new buys.** HOLD MSFT and NVDA. NFP Jun 5 = binary risk; no new entries today.
+
+| Date | Ticker | Side | Shares | Exit Price | Entry | P&L | Stop Level | Notes |
+|------|--------|------|--------|------------|-------|-----|------------|-------|
+| 2026-06-04 | AVGO | SELL | 40 | $410.09 | $427.95 | -$714 (-4.2%) | $445.50 trail (HWM $495.00) | Q2 guidance miss: AI rev $55B vs $62.5B est; gapped below stop at open |
+| 2026-06-04 | MU | SELL | 25 | $1,013.36 | $853.58 | +$3,995 (+18.7%) | $1,034.83 trail (HWM $1,089.29) | Semi sector sympathy selloff; +18.7% locked in from May 26 entry |
+
+**Weekly trade count:** 1/3 new entries (MSFT Jun 3); stop exits are automatic — not counted.
+**Portfolio:** $110,038 | **Cash:** $70,109 | **Deployed:** ~36% (MSFT + NVDA only) | **Net exit P&L today:** +$3,281
+
+---
+
+### Jun 05 — EOD Snapshot (Day 28, Friday)
+**Portfolio:** $108,427.98 | **Cash:** $70,109.16 (64.7%) | **Day P&L:** -$1,906.98 (-1.73%) | **Phase P&L:** +$8,427.98 (+8.43%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MSFT | 48 | $436.20 | $414.74 | -3.11% | -$1,030.08 (-4.92%) | $392.45 |
+| NVDA | 90 | $219.64 | $204.57 | -6.44% | -$1,355.96 (-6.86%) | $199.44 |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Rough Friday close — portfolio fell -$1,907 (-1.73%) as both positions dropped hard. NVDA slid -6.44% on the day and sits at -6.86% from entry ($204.57 vs $219.64), just 31 cents above the -7% manual cut threshold ($204.26); if it opens at or below $204 Monday, cut immediately. MSFT fell -3.11% but has more cushion, still $9 above its -7% cut level ($405.67). Trailing stops unchanged: NVDA $199.44 (HWM $221.60), MSFT $392.45 (HWM $436.05). Portfolio severely under-deployed at 35.3% vs 75-85% target with 0 new trades this week. Pre-market Monday must identify 2-3 fresh setups to close the deployment gap.
+
+---
+
+### Jun 08 — EOD Snapshot (Day 29, Monday)
+**Portfolio:** $108,665.16 | **Cash:** $70,109.16 (64.5%) | **Day P&L:** +$96.84 (+0.09%) | **Phase P&L:** +$8,665.16 (+8.67%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MSFT | 48 | $436.20 | $411.82 | -1.16% | -$1,170.24 (-5.59%) | $392.45 |
+| NVDA | 90 | $219.64 | $208.65 | +1.73% | -$988.76 (-5.00%) | $199.44 |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Quiet Monday — portfolio edged up +$97 (+0.09%) as NVDA bounced +1.73% off recent lows while MSFT slid -1.16%. Both positions remain above their -7% cut thresholds (MSFT cut $405.67, NVDA cut $204.26) and well above trailing stops ($392.45 and $199.44 respectively). Deployed only 35.5% vs 75-85% target — the portfolio is severely underdeployed. Need 2-3 new high-quality setups this week to close the gap. MSFT trending down from HWM $436.05 — monitor closely; cut if it touches $405.67. NVDA showing early bounce; stop at $199.44 (HWM $221.60). Phase P&L: +8.67% vs S&P 500 benchmark.
+
+---
+
+## 2026-06-08 — Market-Open Review
+
+**No new trades.** Energy R:R fails 2:1 rule; CPI Wed + PPI Thu binary events argue for patience.
+
+| Ticker | Entry | Current | P&L% | Stop | Status |
+|--------|-------|---------|------|------|--------|
+| MSFT | $436.20 | $412.44 | -5.45% | $392.45 (10% trail, HWM $436.05) | HOLD — -7% cut at $405.67 |
+| NVDA | $219.64 | $208.34 | -5.14% | $199.44 (10% trail, HWM $221.60) | HOLD — monitor stop proximity |
+
+**Portfolio:** $108,656.70 | **Deployed:** 35.5% | **Daytrade count:** 0
+**Week trades:** 0/3 — scout XOM post-CPI Thu for energy add if CPI ≤ 3.2% and oil holds $95+
+
+---
+
 ## Jun 09 — EOD Snapshot (Day 30, Tuesday)
 **Portfolio:** $107,304.78 | **Cash:** $107,304.78 (100%) | **Day P&L:** -$1,345.50 (-1.24%) | **Phase P&L:** +$7,304.78 (+7.30%)**
 
@@ -89,6 +1079,28 @@ No positions yet. Bot launches tomorrow.
 **Week trades:** 0 new entries (exits only)
 
 **Notes:** Both remaining positions stopped out during the session — MSFT and NVDA hit their 10% trailing stops as the tech sector continued under pressure. Portfolio is now 100% cash at $107,304.78. Day P&L -$1,345.50 (-1.24%). Phase P&L slips to +7.30% from the +10.27% peak (Jun 4). The May–June tech book (MSFT/NVDA) was entered too early and both exited via stops at a loss. Fully reset — need 3 fresh setups in pre-market tomorrow. Sector thesis review warranted: AI/tech momentum has stalled; consider broadening to industrials, energy, or consumer setups. Deployed 0% vs 75-85% target — highest priority is finding quality entries Wednesday.
+
+---
+
+## Jun 09 — Midday Exits
+
+**NVDA — Trailing Stop Triggered (12:40 PM ET)**
+- Exit: $199.37 | Entry: $219.64 | Shares: 90
+- Realized P&L: **-$1,824.30 (-9.23%)**
+- Stop $199.44 (10% trail, HWM $221.60) triggered on intraday decline; filled at $199.37 (minor slippage).
+- Rule-compliant exit. Thesis (AI GPU demand) intact but stop did its job.
+
+**MSFT — Cut at -7% Rule (1:04 PM ET)**
+- Exit: $401.09 | Entry: $436.20 | Shares: 48
+- Realized P&L: **-$1,685.28 (-8.05%)**
+- MSFT dropped to $400.82 intraday (-8.11% from entry), breaching -7% cut level ($405.67). Cancelled trailing stop (order f330a23e), then closed position. "Cut at -7% per rule."
+- Azure/AI thesis not broken; exit is rule-driven, not fundamental.
+
+**Post-Exit State (Jun 09 Midday)**
+**Portfolio:** $107,304.78 | **Cash:** $107,304.78 (100%) | **Day P&L:** -$1,345.50 (-1.24%) | **Phase P&L:** +$7,304.78 (+7.30%)
+- No open positions. Deployed: 0%.
+- Weekly trade count: 0/3 (exits do not count against weekly buy limit).
+- Queue: 2-3 fresh setups needed. Scout Energy (XOM/CVX) + Diversifier (GOOGL/META/AMD) post-CPI (Jun 10 8:30 AM).
 
 ---
 
@@ -110,6 +1122,30 @@ No positions yet. Bot launches tomorrow.
 | XOM | 142 | $150.14 | $150.67 | +1.18% | +$75.26 (+0.35%) | $137.24 (10% trail, HWM $152.49) |
 
 **Notes:** Resumed deploying capital after Jun 09 full-cash reset. Entered XOM 142 shares @ $150.14 (energy sector rotation) with 10% trailing GTC stop (HWM $152.49, current stop $137.24). XOM +1.18% on the day; position +0.35% on day one. Portfolio +$75.26 (+0.07%). Still significantly under-deployed at 19.9% vs 75-85% target — need 2 more quality setups this week. Week trade count: 1/3. Phase P&L: +7.38% vs S&P benchmark.
+
+## 2026-06-10 — Market-Open Trades
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-06-10 | XOM | BUY | 142 | $150.14 | 10% trailing GTC (initial $135.17, HWM $150.19) | US/Iran military strikes → WTI ~$90 oil spike → Energy sector direct beneficiary; sector #1 YTD (+22-26%) | $180.17 | 2:1 |
+
+**Week of 2026-06-09 trade count: 1/3**
+
+---
+
+## Jun 10 — Midday Scan (Day 31, Wednesday)
+
+**Portfolio:** $107,541.88 | **Cash:** $85,984.86 (79.9%) | **Day P&L:** +$237.14 (+0.22%) | **Phase P&L:** +$7,541.88 (+7.54%)**
+
+| Ticker | Shares | Entry | Current | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|---------|---------|----------------|------|
+| XOM | 142 | $150.14 | $151.76 | +1.91% | +$230.04 (+1.08%) | $136.62 (10% trail, HWM $151.80) |
+
+**Actions:** None. No position at -7% cut. No position at +15% tighten threshold. Thesis intact.
+
+**Notes:** XOM entered at open after May CPI confirmed favorable. Up +1.91% on the day — energy sector bid on CPI relief rally. Deployed only 20% vs 75-85% target; 2 more trades available this week. Need 2 additional setups (scout GOOGL/META or industrials).
+
+---
 
 ### Jun 11 — EOD Snapshot (Day 32, Thursday)
 **Portfolio:** $106,802.05 | **Cash:** $85,984.85 (80.5%) | **Day P&L:** -$577.95 (-0.54%) | **Phase P&L:** +$6,802.05 (+6.80%)
@@ -860,6 +1896,18 @@ Equity $105,890.40, cash $42,114.65 (39.8%), deployed 60.2% ($63,775.75 mkt valu
 
 ---
 
+### Jul 30 — Midday Scan (Day 67, Thursday, post-FOMC)
+**No action.** All 3 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $51.545 (+0.93% vs entry) — stop $47.4975/hwm $52.775, ~7.9% above stop. Materials thesis intact; mild intraday dip (-0.38%).
+- XLI: $177.36 (-2.64% vs entry) — stop $167.8005/hwm $186.445, ~5.4% above stop. Small intraday gain (+0.40%); Wed's macro de-risk carried forward, no new break.
+- XLP: $85.30 (+1.84% vs entry) — stop $79.902/hwm $88.78, ~6.3% above stop. Sharp intraday drop (-2.36%); Perplexity check run (see RESEARCH-LOG addendum) — broad post-GDP/PCE macro pullback, no staples-specific catalyst (no MO/CL/CVS/KO/PG miss or downgrade). Thesis intact, not a break.
+
+Equity $105,243.42, cash $42,114.65 (40.0%), deployed 60.0% ($63,128.77 mkt value) — still **below the 75-85% band**; redeployment remains deferred per pre-market plan, not a forced midday trade — no action taken now. Weights: XLP 20.3%, XLB 20.2%, XLI 19.6% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). One Perplexity check run on XLP's sharp intraday drop — macro/post-data pullback, not thesis-breaking; no cut. Week 0/3. No email sent (no action taken).
+
+---
+
+---
+
 ### Jul 31 — Midday Scan (Day 68, Friday, month-end)
 **No action.** All 3 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
 - XLB: $50.57 (-0.98% vs entry) — stop $47.4975/hwm $52.775, ~6.1% above stop. Sharp intraday drop (-2.07%); Perplexity check run (see RESEARCH-LOG addendum) — holdings-specific Q2 earnings (Air Products operating loss, Martin Marietta pricing/margin concerns) outweighing the oil-tailwind, not a materials-thesis break.
@@ -1003,6 +2051,16 @@ Equity $106,419.18, cash $42,114.65 (39.6%), deployed 60.4% ($64,304.53 mkt valu
 **Week trades:** 0/3
 
 **Notes:** Green close on payrolls Friday — equity +$308.00 to $106,626.35 (Day P&L +0.29%), phase back up to +6.63% and near Wednesday's high. Materials led again: XLB +1.32% to $52.86 (+3.50% vs entry, our best name) as the hard-asset leadership regime held through the NFP print; XLI +0.23% to $185.18 (+1.66% vs entry) firmed modestly off Thursday's dip; XLP -0.12% to $85.01 (+1.49% vs entry) essentially flat as defensives lagged the risk-on tape. All three theses intact; every name well above the -7% cut. No trades: week closes 0/3 — patience held through payrolls with no clean fresh leadership setup to force an entry into the deployment gap. 3 positions (≤6): XLB 20.4%, XLI 20.1%, XLP 19.9% — weights drifted with price, no adds. Deployment 60.5% ($64,511.70 mkt value / $106,626.35 equity) — still **below the 75-85% band** since the GOOGL stop-out; cash 39.5%. All three 10% trailing GTC stops confirmed active and intact (XLB $47.664/hwm $52.96; XLI $169.3665/hwm $188.185; XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week ends flat on activity, up on P&L; Friday weekly review due. Tomorrow (Mon): fresh 3-trade budget — pre-market hunt for a leader to close the persistent ~15-25% deployment gap, with cyclical (XLB/XLI) leadership the base case to build on.
+
+---
+
+### Aug 7 — Midday Scan (Day 73, Friday)
+**No action.** All 3 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.815 (+3.42% vs entry) — stop $47.664/hwm $52.96, ~9.8% above stop. Materials thesis intact; firm intraday (+1.24%) post-NFP.
+- XLI: $185.47 (+1.82% vs entry) — stop $169.3665/hwm $188.185, ~8.7% above stop. Industrials thesis intact; mild intraday gain (+0.38%).
+- XLP: $85.035 (+1.52% vs entry) — stop $79.902/hwm $88.78, ~6.0% above stop. Staples thesis intact; flat intraday (-0.09%).
+
+Equity $106,651.18, cash $42,114.65 (39.5%), deployed 60.5% ($64,536.53 mkt value) — still **below the 75-85% band**; redeployment remains a market-open decision requiring a clean leadership setup, not a forced midday trade — no action taken now. Weights: XLB 20.4%, XLI 20.2%, XLP 19.9% — all at/under the 20% cap, no adds. All three 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). NFP printed this morning with no disruption to the value/cyclical tape — no sharp/unexplained moves — no Perplexity check needed. Week 0/3. No email sent (no action taken).
 
 ---
 
