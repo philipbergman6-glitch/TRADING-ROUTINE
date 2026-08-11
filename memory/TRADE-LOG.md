@@ -138,7 +138,7 @@ No positions yet. Bot launches tomorrow.
 ---
 
 ### Jun 15 — Midday Cut (Day 34, Monday)
-**Portfolio:** $106,111.93 | **Cash:** $106,111.93 (100%) | **Day P&L:** -$748.34 (-0.70%) | **Phase P&L:** +$6,111.93 (+6.11%)**
+**Portfolio:** $106,111.93 | **Cash:** $106,111.93 (100%) | **Day P&L:** -$748.34 (-0.70%) | **Phase P&L:** +$6,111.93 (+6.11%)
 
 | Ticker | Shares | Entry | Exit | Realized P&L | Notes |
 |--------|--------|-------|------|--------------|-------|

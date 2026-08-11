@@ -69,6 +69,56 @@ def test_live_figures_are_not_frozen_in_static_tail():
     assert f"in {snaps[-1]['n']} days" in out
 
 
+# ---- EQ is a daily-close series -----------------------------------------
+# Every point must be measured at the same time of day, or the curve, the
+# day-P&L bars and max drawdown compare unlike things.
+
+def test_eq_contains_only_eod_closes():
+    snaps, _, _ = build()
+    kinds = {s["kind"] for s in snaps}
+    assert kinds == {"EOD Snapshot"}, f"EQ carries non-close points: {kinds}"
+
+
+def test_eq_has_one_point_per_date():
+    snaps, _, _ = build()
+    dates = [s["d"] for s in snaps]
+    assert len(dates) == len(set(dates)), "two EQ points share a date"
+    assert dates == sorted(dates), "EQ dates out of order"
+
+
+def test_midday_entries_are_not_parsed():
+    """The log carries Midday Scan/Cut headers; none may reach EQ."""
+    text = b.TRADE_LOG.read_text(encoding="utf-8")
+    assert re.search(r"^#{2,3} .+ — Midday ", text, re.M), (
+        "fixture drift: TRADE-LOG.md no longer has midday headers to exclude")
+    snaps = b.parse_trade_log(text)
+    assert "2026-06-15" not in {s["d"] for s in snaps}, (
+        "Jun 15 Midday Cut is intraday and must not appear on the curve")
+
+
+def test_hard_fails_on_intraday_snapshot_kind():
+    """Widening SNAP_HDR without giving midday its own series must fail."""
+    patched = re.compile(r"^#{2,3}\s+(.+?)\s+—\s+(EOD Snapshot|Midday Cut)\b(.*)$")
+    orig, b.SNAP_HDR = b.SNAP_HDR, patched
+    try:
+        with pytest.raises(b.ParseError):
+            b.parse_trade_log(b.TRADE_LOG.read_text(encoding="utf-8"))
+    finally:
+        b.SNAP_HDR = orig
+
+
+def test_hard_fails_on_orphaned_eq_note():
+    snaps, weeks, _ = build()
+    orig = dict(b.EQ_NOTES)
+    b.EQ_NOTES["1999-01-01"] = "note for a date with no snapshot"
+    try:
+        with pytest.raises(b.ParseError):
+            b.emit(snaps, weeks)
+    finally:
+        b.EQ_NOTES.clear()
+        b.EQ_NOTES.update(orig)
+
+
 def test_hard_fails_on_missing_week_return():
     text = b.WEEKLY_REVIEW.read_text(encoding="utf-8").replace(
         "| Week return |", "| Wk return |")

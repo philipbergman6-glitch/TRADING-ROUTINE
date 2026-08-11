@@ -2,8 +2,9 @@
 """Regenerate docs/dashboard/data.js from memory/ logs. Deterministic, no LLM.
 
 Parses:
-  - memory/TRADE-LOG.md   -> EQ  (every "EOD Snapshot" / "Midday Cut" header +
-                                  its **Portfolio:** line)
+  - memory/TRADE-LOG.md   -> EQ  (every "EOD Snapshot" header + its
+                                  **Portfolio:** line — daily closes ONLY;
+                                  midday entries are prose-only audit trail)
                           -> BOOK (positions table of the latest EOD snapshot)
   - memory/WEEKLY-REVIEW.md -> WEEKS (Stats table of each "## Week ending" section)
 
@@ -83,7 +84,12 @@ def js_str(s):
 # TRADE-LOG.md -> EQ + BOOK
 # --------------------------------------------------------------------------
 
-SNAP_HDR = re.compile(r"^#{2,3}\s+(.+?)\s+—\s+(EOD Snapshot|Midday Cut)\b(.*)$")
+# EQ is a daily-close series: ONLY "EOD Snapshot" headers feed it. Midday
+# headers ("Midday Scan", and the one-off "Midday Cut" of Jun 15) are measured
+# at a different time of day, so plotting them alongside closes would corrupt
+# the curve, the day-P&L bars and max drawdown. Do not widen this alternation
+# without giving midday its own series — see the assert in parse_trade_log.
+SNAP_HDR = re.compile(r"^#{2,3}\s+(.+?)\s+—\s+(EOD Snapshot)\b(.*)$")
 DAY_NO = re.compile(r"\(Day\s+(\d+)\b")
 PORTFOLIO = re.compile(
     r"^\*\*Portfolio:\*\*\s+(\$[\d,]+(?:\.\d+)?)\s+\|\s+"
@@ -105,6 +111,9 @@ def parse_trade_log(text):
             continue
         d = parse_header_date(m.group(1).split("(")[0])
         kind = m.group(2)
+        if kind != "EOD Snapshot":
+            fail(f"EQ is a daily-close series but '{lines[i].strip()}' is a "
+                 f"{kind}; intraday observations need their own series")
         # phase day number — "Day 0" baseline carries none, every other header must
         if m.group(1).strip() == "Day 0":
             n = 0
@@ -141,7 +150,7 @@ def parse_trade_log(text):
         snaps.append(snap)
         i += 1
     if not snaps:
-        fail("no EOD Snapshot / Midday Cut headers found in TRADE-LOG.md")
+        fail("no EOD Snapshot headers found in TRADE-LOG.md")
     dates = [s["d"] for s in snaps]
     if dates != sorted(dates):
         fail(f"snapshot dates out of order: {dates}")
@@ -309,7 +318,6 @@ EQ_NOTES = {
     "2026-06-09": "MSFT & NVDA stops fired — full reset",
     "2026-06-10": "Redeployed into XOM",
     "2026-06-12": "First weekly review written",
-    "2026-06-15": "XOM thesis-break cut at −5.6% — before the −7% trigger",
     "2026-06-17": "100% cash — FOMC hold",
     "2026-06-18": "100% cash",
     "2026-06-19": "100% cash",
@@ -409,6 +417,12 @@ def js_num(v, nd):
 
 def emit(snaps, weeks):
     book = build_book(snaps[-1])
+
+    # a note keyed to a date that carries no EOD snapshot is a silent typo —
+    # it would never render, so refuse to publish rather than drop it quietly
+    orphans = sorted(set(EQ_NOTES) - {s["d"] for s in snaps})
+    if orphans:
+        fail(f"EQ_NOTES entries match no EOD snapshot date: {orphans}")
 
     eq_rows = []
     for s in snaps:
