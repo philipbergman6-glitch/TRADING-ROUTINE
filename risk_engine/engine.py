@@ -191,7 +191,9 @@ def _validate_buy(
             )
         )
 
-    # Cash: never spend money the account does not have.
+    # Rule 13: cash only, never margin. portfolio.cash is settled cash, not
+    # buying_power -- the account is a margin account, so buying_power runs
+    # several times equity and would silently permit a leveraged buy.
     if notional > portfolio.cash:
         violations.append(
             Violation(
