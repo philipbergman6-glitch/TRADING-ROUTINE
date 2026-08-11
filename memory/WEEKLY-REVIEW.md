@@ -325,7 +325,7 @@ First week outperformed S&P by +1.58%. AMD was the standout. Discipline held. De
 | Starting portfolio | ~$106,500 (est.; last explicit data May 21 = $107,480, adj. for NVDA stop-out) |
 | Ending portfolio | $111,667.05 |
 | Week return | +$5,167 (+4.85%) |
-| S&P 500 week | ~+1.5% (8th straight weekly gain; +0.4% Fri) |
+| S&P 500 week | +1.5% (approximate as logged; 8th straight weekly gain; +0.4% Fri) |
 | Bot vs S&P | +3.35% alpha (week); ~-1.5% behind S&P on phase |
 | Trades | 3 (W:1 / L:0 / open:3) |
 | Win rate | 100% (1 closed trade) |

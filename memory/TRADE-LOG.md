@@ -127,7 +127,7 @@ No cuts, no stop adjustments, no thesis breaks. AAPL earnings after close today 
 
 ---
 
-### May 03 — EOD Snapshot (Day 6, Sunday)
+### May 03 — Non-Trading Day Snapshot (Sunday; reflects May 01 close)
 **Portfolio:** $102,159.73 | **Cash:** $41,487.81 (40.6%) | **Day P&L:** +$971.48 (+0.96%) | **Phase P&L:** +$2,159.73 (+2.16%)**
 
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
@@ -381,7 +381,7 @@ No cuts, no stop adjustments, no thesis breaks. AAPL earnings after close today 
 
 ---
 
-### May 09 — EOD Snapshot (Day 9, Saturday)
+### May 09 — Non-Trading Day Snapshot (Saturday; reflects May 08 close)
 **Portfolio:** $106,946.49 | **Cash:** $24,088.78 (22.5%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,946.49 (+6.95%)
 
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
@@ -410,7 +410,7 @@ No cuts, no stop adjustments, no thesis breaks. AAPL earnings after close today 
 
 ---
 
-## May 10 — EOD Snapshot (Day 10, Sunday — non-trading)
+## May 10 — Non-Trading Day Snapshot (Sunday; reflects May 08 close)
 **Portfolio:** $106,946.49 | **Cash:** $24,088.78 (22.5%) | **Day P&L:** $0 (0.00%) | **Phase P&L:** +$6,946.49 (+6.95%)**
 
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
@@ -646,7 +646,7 @@ No cuts, no stop adjustments, no thesis breaks. AAPL earnings after close today 
 
 ---
 
-## May 25 — EOD Snapshot (Holiday — Memorial Day; reflects May 22 close)
+## May 25 — Non-Trading Day Snapshot (Memorial Day; reflects May 22 close)
 **Portfolio:** $106,602.08 | **Cash:** $44,727.82 (42.0%) | **Day P&L:** $0.00 (0.00%) | **Phase P&L:** +$6,602.08 (+6.60%)
 
 | Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
