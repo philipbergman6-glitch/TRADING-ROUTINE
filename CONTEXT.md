@@ -22,6 +22,13 @@ The lightweight first pass that surfaces candidate trade ideas (3) from a quick
 market sweep. Generates candidates; does not vet them.
 _Avoid_: research (reserve that for the deep, citing pass)
 
+_Overloaded_: the log headers `### <date> — Midday Scan` mean something else —
+the midday **routine's** position review (cut losers at −7%, tighten stops,
+re-check theses). It generates no candidates. The two senses are kept apart by
+the `Midday` qualifier; bare "Scan" always means idea generation. Midday
+entries are prose-only audit trail and never feed the equity curve, which is a
+daily-close series built from `EOD Snapshot` headers alone.
+
 **Verification**:
 The deep, citing pass that adversarially vets each candidate — confirms a cited
 catalyst and tries to refute the bear case. A candidate survives only if its

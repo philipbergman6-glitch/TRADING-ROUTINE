@@ -16,7 +16,6 @@ const EQ = [
 {d:"2026-06-10",n:31,v:107380.00,cash:80.1,dp:0.07,note:"Redeployed into XOM"},
 {d:"2026-06-11",n:32,v:106802.05,cash:80.5,dp:-0.54,note:""},
 {d:"2026-06-12",n:33,v:106860.27,cash:80.5,dp:0.05,note:"First weekly review written"},
-{d:"2026-06-15",n:34,v:106111.93,cash:100.0,dp:-0.70,note:"XOM thesis-break cut at −5.6% — before the −7% trigger"},
 {d:"2026-06-17",n:36,v:106111.89,cash:100.0,dp:0,note:"100% cash — FOMC hold"},
 {d:"2026-06-18",n:37,v:106111.89,cash:100.0,dp:0,note:"100% cash"},
 {d:"2026-06-19",n:38,v:106111.89,cash:100.0,dp:0,note:"100% cash"},
