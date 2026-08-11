@@ -9,8 +9,7 @@ from the instant it exists, and converges on a trailing stop shortly after.
 Resolves Wayfinder ticket
 [#36](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/36).
 Rests on the empirical findings in
-[`docs/research/0001-alpaca-atomic-entry-plus-protective-stop.md`](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/blob/research/alpaca-atomic-bracket/docs/research/0001-alpaca-atomic-entry-plus-protective-stop.md)
-(branch `research/alpaca-atomic-bracket`).
+[`docs/research/0001-alpaca-atomic-entry-plus-protective-stop.md`](../research/0001-alpaca-atomic-entry-plus-protective-stop.md).
 
 ## The constraint
 
