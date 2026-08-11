@@ -13,7 +13,13 @@ Beat the S&P 500 over the challenge window. Stocks only — no options, ever.
 1. NO OPTIONS — ever
 2. 75-85% deployed
 3. 5-6 positions at a time, max 20% each
-4. 10% trailing stop on every position as a real GTC order
+4. Protection at all times: every open position carries a live GTC protective
+   stop at the 10% distance. A 10% trailing stop is the required mechanism; a
+   fixed stop 9.5-10.5% below entry is permitted only as the transient leg of an
+   atomic entry, pending conversion to trailing. No stop is always a violation.
+   Amended 2026-08-11 (ADR 0002): Alpaca cannot place a trailing stop as the
+   protective leg of an atomic entry, so "trailing at all times" read literally
+   was unimplementable and therefore unenforceable by the risk engine.
 5. Cut losers at -7% manually
 6. Tighten trail: 7% at +15%, 5% at +20%
 7. Never within 3% of current price; never move a stop down

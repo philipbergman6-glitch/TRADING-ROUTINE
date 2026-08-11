@@ -44,3 +44,27 @@ _Avoid_: rating, signal
 The ranked set of surviving TRADE candidates that the decision skill outputs.
 It is *advice*, not an order — execution happens separately via /trade.
 _Avoid_: order, trade (a trade is the executed thing)
+
+### Protection
+
+**Protection**:
+The invariant that an open position always has a live protective stop capping
+its downside at the rule-4 distance. This is what strategy rule 4 guarantees;
+trailing is the mechanism, not the guarantee.
+_Avoid_: stop-loss, risk management (both name a mechanism or a discipline, not
+the invariant)
+
+**Protective stop**:
+The order that satisfies protection for one position. It is addressable — it has
+a broker id — and it is either trailing or fixed. Both kinds protect; only a
+trailing one ratchets.
+_Avoid_: the stop, trailing stop (a trailing stop is one kind of protective
+stop, not a synonym for it)
+
+**Unprotected window**:
+An interval in which an open position has no live protective stop. Some are
+deliberate and bounded — converting a fixed stop to a trailing one, or the
+cancel-then-sell that a fully reserved position requires. An unbounded or
+undetected one is an incident.
+_Avoid_: naked position, the buy/stop gap (each names one instance of a general
+state)

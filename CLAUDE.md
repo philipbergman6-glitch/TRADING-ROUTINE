@@ -27,7 +27,8 @@ runs per trading day plus two ad-hoc helpers.
 - Max 20% per position.
 - Max 3 new trades per week.
 - 75-85% capital deployed.
-- 10% trailing stop on every position as a real GTC order.
+- Protection at all times: live GTC protective stop on every position at the
+  10% distance. 10% trailing is the mechanism; a fixed stop is transient only.
 - Cut losers at -7% manually.
 - Tighten trail to 7% at +15%, to 5% at +20%.
 - Never within 3% of current price. Never move a stop down.
