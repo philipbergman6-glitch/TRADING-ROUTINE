@@ -92,9 +92,12 @@ claims is where trust dies:
   succeeds — so the loser stays, minus its stop. Live and armed daily until
   [#38](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/38) lands.
 - **No reconciliation loop.** Nothing compares local state against broker state,
-  or alerts when a position has no stop — and the query that would power one
-  (`ledger/store.py:218`) currently counts a broker-*rejected* stop as
-  protection ([#37](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/37)).
+  or alerts when a position has no stop. The *query* such a loop would run
+  (`Ledger.unprotected_orders`) is built and now requires an accepted stop
+  rather than merely a recorded one — but nothing calls it on a schedule, and it
+  still cannot see a stop that was placed and later cancelled at the broker,
+  which needs the protective leg addressable by broker id
+  ([#28](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/28)).
 - **Markdown is still the operational system of record.** Postgres is an
   additive ledger, not the source of truth.
 - **Single user, paper only.** No multi-tenancy, no auth, no credential
