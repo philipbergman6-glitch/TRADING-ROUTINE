@@ -2140,3 +2140,20 @@ Equity $106,469.35, cash $21,075.44 (19.8%), deployed 80.2% ($85,393.91 mkt valu
 - XLP: $85.09 (+1.59% vs entry) — stop $79.902/hwm $88.78, ~6.5% above stop. Staples thesis intact; mild intraday gain (+0.47%).
 
 Equity $106,855.94, cash $21,075.33 (19.7%), deployed 80.3% ($85,780.61 mkt value) — inside the 75-85% band. Weights: XLB 20.3%, XLI 20.2%, XLK 19.8%, XLP 19.9% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). July CPI printed 8:30am with no thesis-breaking single-name move — XLK firmest (+1.71%) on a benign print, no sharp/unexplained moves — no Perplexity check needed. Week 1/3. No email sent (no action taken).
+
+---
+
+### Aug 12 — EOD Snapshot (Day 76, Wednesday, CPI Day)
+**Portfolio:** $106,722.69 | **Cash:** $21,075.33 (19.7%) | **Day P&L:** +$156.67 (+0.15%) | **Phase P&L:** +$6,722.69 (+6.72%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.58 | -1.24% | +$621.99 (+2.96%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $185.88 | +0.10% | +$431.52 (+2.04%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $188.86 | +1.49% | +$113.12 (+0.54%) | $170.631 (10% trail GTC) |
+| XLP | 250 | $83.76 | $85.08 | +0.46% | +$330.00 (+1.58%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 1/3
+
+**Notes:** Green close on CPI Day 76 — equity +$156.67 to $106,722.69 (Day P&L +0.15%), phase firms to a new high +6.72%. July CPI printed benign at 8:30am and the tape rewarded risk over defense: XLK led the book +1.49% to $188.86 (+0.54% vs entry) as tech firmed on the print, and its trailing stop auto-ratcheted up to $170.631 (hwm $189.59); XLI +0.10% to $185.88 (+2.04% vs entry); XLP +0.46% to $85.08 (+1.58% vs entry). Lone laggard was XLB -1.24% to $52.58 (+2.96% vs entry) as materials gave back some of its lead, still our #2 name and well above its $48.2355 stop. 4 positions (≤6): XLB 20.3%, XLI 20.2%, XLK 19.8%, XLP 19.9% — all at/under the 20% cap, no adds. Deployment 80.3% ($85,647.36 mkt value / $106,722.69 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 1/3 — 2 trades left. Benign CPI clears the week's swing event with no thesis-breaking single-name move. Tomorrow (Thu): hold; watch for a clean leadership setup for a possible second leg but no forced trade.
