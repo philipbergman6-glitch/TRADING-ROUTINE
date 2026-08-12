@@ -5872,3 +5872,52 @@ All 4 trailing GTC stops confirmed active/intact; none lowered, none near +15%/+
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports today.
 - **Watch list:** energy (XLE/COP/FANG) as the cleanest thematic gap — but wait for a base post-CPI, do NOT chase today's oil spike. 2/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+## 2026-08-12 (Wed) — Pre-Market Research (Day 76) — CPI DAY
+
+### Account Snapshot
+- Equity: $106,763.59 | Cash: $21,075.33 (19.7%) | Buying power: $324,228 (margin — not an input)
+- Deployed: $85,688.26 (80.3% — **inside the 75-85% band**)
+- Daytrade count: N/A (PDT abolished) | Week trades: 1/3 (XLK bought Mon; 2 left)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $53.29 | +$914.51 (+4.35%) | 20.6% | $48.2355 (10% trail GTC, hwm $53.595) — ~10.5% above |
+| XLI | 116 | $182.16 | $186.06 | +$452.40 (+2.14%) | 20.2% | $169.3665 (10% trail GTC, hwm $188.185) — ~9.0% above |
+| XLK | 112 | $187.85 | $187.61 | -$26.88 (-0.13%) | 19.7% | $169.956 (10% trail GTC, hwm $188.84) — ~9.4% above |
+| XLP | 250 | $83.76 | $84.55 | +$197.50 (+0.94%) | 19.8% | $79.902 (10% trail GTC, hwm $88.78) — ~5.5% above |
+
+All 4 trailing GTC stops confirmed active/intact (verified via orders); none lowered, none near +15%/+20% tighten triggers (best is XLB +4.35%). XLB still the leader; XLI firm; XLK ~flat vs Mon entry (normal drift, +0.82% intraday premkt); XLP mild. All four at/near the 20% cap — **no room to add**. Deployment 80.3% — inside band; no deployment mandate active.
+
+### Market Context — JULY CPI 8:30AM IS THE SWING; VIX CALM ~15.5; OIL ELEVATED ~$84/$90
+- **THE event: July CPI, today 8:30am ET.** Consensus headline **+0.1% m/m / +3.4% y/y**, core **+0.2% m/m / +2.5% y/y**. Market positioned for a tame print (prediction markets low odds of a hot surprise); a moderate number further cuts rate-hike odds (constructive). A hot core is the tail risk — hits high-beta tech (XLK ~45% semis) hardest.
+- **Also today:** EIA crude inventories (10:30am). PPI Thu, FOMC minutes later this week.
+- **Indices/VIX:** S&P E-minis **~7,760-7,790 (+0.25%)**, Nasdaq 100 futures leading **+0.65%** — modest risk-on into the print. **VIX ~15.5** — calm.
+- **Oil:** WTI **~$83.7-84.3**, Brent **~$89.6-90.0** — elevated (+~1-2% on day), Iran/Hormuz risk premium persists. Tailwind for XLB/energy; input-cost headwind for XLI/XLP.
+- **Earnings:** BMO today = NBIS, AMCR, EAT, EYE, GLBE, KTB + others; CSCO after the close. **No held name** (XLB/XLI/XLK/XLP are sector ETFs). None thesis-driving.
+
+### Sector Momentum — ENERGY #1, TECH #2, INDUSTRIALS #3; MATERIALS POSITIVE; STAPLES LAGS
+- **Energy** #1 YTD (~+32-36%) — clear leader, oil-supported; book holds none (thematic gap, no clean base).
+- **Technology (XLK ✓)** #2 (~+22-29%) — strong; some semi/CPI jitter. Held.
+- **Industrials (XLI ✓)** #3 (~+20-21%) — strong cyclical; held.
+- **Materials (XLB ✓)** ~+17% — positive, oil-spike tailwind; our best P&L name.
+- **Staples (XLP ✓)** ~+9% — laggard; defensive ballast.
+
+### Trade Ideas (2/3 weekly trades left; NO deployment mandate — in band)
+1. **Energy (XLE / COP / FANG) on a post-CPI base — watch, don't chase.** Catalyst: energy #1 YTD + persistent oil bid on Iran/Hormuz; book holds none. Price elevated on geopolitics (two-sided) — wait for a base after the CPI print rather than chase. Cleanest remaining thematic gap. Entry: on a base, not a spike; Stop: 10% trail GTC; Target: 2:1.
+2. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 80.3% (mid-band); no need to force. All four held names at the 20% cap (no adds). A 5th name only on a clean base post-CPI.
+3. **Avoid:** deploying into the CPI print; chasing the oil/energy spike on a geopolitical headline; adding over the 20% cap on held names.
+
+### Risk Factors
+- **CPI 8:30am** — dominant print. Hot core pressures the record rally and high-beta tech (XLK) hardest; tame print is constructive. No forced trades ahead of it.
+- **Oil / Iran-Hormuz** — elevated ~$84/$90; two-sided (XLB tailwind, XLI/XLP cost headwind). Sharp re-escalation OR de-escalation both possible — don't chase.
+- **Semi/AI volatility** — AI-trade rotation continues (Micron/SK Hynix/Samsung headlines); XLK heavy semi weight. Monitor; not a thesis break (XLK ~flat vs entry, well above -7% cut).
+- **Long-end yields** — elevated 30yr noted as a rate-sensitive headwind; watch post-CPI.
+- **Deployment 80.3% (in band)** — backstop cured Monday; no mandate active. Patience permitted.
+
+### Decision
+**HOLD — no orders placed pre-market; no market-open mandate today.** Deployment 80.3% (in band); the deployment mandate no longer overrides patience. VIX ~15.5, futures modestly green — but **July CPI lands 8:30am and dominates the tape**; no clean fresh base to force an entry into the print.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports today (all sector ETFs).
+- **Watch list:** energy (XLE/COP/FANG) as the cleanest thematic gap — wait for a base post-CPI, do NOT chase the oil bid. 2/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
