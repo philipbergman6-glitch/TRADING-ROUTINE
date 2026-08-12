@@ -2129,3 +2129,14 @@ Equity $106,469.35, cash $21,075.44 (19.8%), deployed 80.2% ($85,393.91 mkt valu
 **Week trades:** 1/3
 
 **Notes:** Flat-to-green close on Day 75 — equity +$54.64 to $106,566.02 (Day P&L +0.05%), phase firms to +6.57%. Quiet holding day ahead of tomorrow's July CPI print (8:30am), the week's swing event. Leadership split as it has all week: XLB remained our best name +0.11% to $53.24 (+4.25% vs entry) with its trailing stop auto-ratcheted up to $48.2355 (hwm $53.595); XLI led on the day +0.60% to $185.70 (+1.94% vs entry); XLP eased -0.31% to $84.69 (+1.11% vs entry) as defensives lagged; XLK -0.12% to $186.09 (-0.94% vs entry), still in normal early drift, well above the -7% cut. 4 positions (≤6): XLB 20.6%, XLI 20.2%, XLK 19.6%, XLP 19.9% — all at/under the 20% cap, no adds. Deployment 80.2% ($85,490.66 mkt value / $106,566.02 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 1/3 — 2 trades left. Oil (Iran/Hormuz) bid persisted intraday but no sharp single-name move. Tomorrow (Wed): July CPI at 8:30am is the swing print — hold into it, watch for a leadership setup but no forced trade ahead of the number.
+
+---
+
+### Aug 12 — Midday Scan (Day 76, Wednesday, CPI Day)
+**No action.** All 4 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.70 (+3.19% vs entry) — stop $48.2355/hwm $53.595, ~9.3% above stop. Materials thesis intact; mild intraday softness (-1.01%) post-CPI.
+- XLI: $186.245 (+2.24% vs entry) — stop $169.3665/hwm $188.185, ~10.0% above stop. Industrials thesis intact; mild intraday gain (+0.29%).
+- XLK: $189.265 (+0.75% vs entry) — stop $170.631/hwm $189.59, ~10.9% above stop. Tech thesis intact; firm intraday gain (+1.71%) post-CPI.
+- XLP: $85.09 (+1.59% vs entry) — stop $79.902/hwm $88.78, ~6.5% above stop. Staples thesis intact; mild intraday gain (+0.47%).
+
+Equity $106,855.94, cash $21,075.33 (19.7%), deployed 80.3% ($85,780.61 mkt value) — inside the 75-85% band. Weights: XLB 20.3%, XLI 20.2%, XLK 19.8%, XLP 19.9% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). July CPI printed 8:30am with no thesis-breaking single-name move — XLK firmest (+1.71%) on a benign print, no sharp/unexplained moves — no Perplexity check needed. Week 1/3. No email sent (no action taken).
