@@ -5921,3 +5921,50 @@ All 4 trailing GTC stops confirmed active/intact (verified via orders); none low
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports today (all sector ETFs).
 - **Watch list:** energy (XLE/COP/FANG) as the cleanest thematic gap — wait for a base post-CPI, do NOT chase the oil bid. 2/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+## 2026-08-13 (Thu) — Pre-Market Research (Day 77) — PPI DAY
+
+### Account Snapshot
+- Equity: $106,752.17 | Cash: $21,075.33 (19.7%) | Buying power: $324,196 (margin — not an input)
+- Deployed: $85,676.84 (80.3% — **inside the 75-85% band**)
+- Daytrade count: N/A (PDT abolished) | Week trades: 1/3 (XLK bought Mon; 2 left)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $52.58 | +$621.99 (+2.96%) | 20.3% | $48.2355 (10% trail GTC, hwm $53.595) — ~8.3% above |
+| XLI | 116 | $182.16 | $185.88 | +$431.52 (+2.04%) | 20.2% | $169.3665 (10% trail GTC, hwm $188.185) — ~8.9% above |
+| XLK | 112 | $187.85 | $188.90 | +$117.60 (+0.56%) | 19.8% | $170.631 (10% trail GTC, hwm $189.59) — ~9.7% above |
+| XLP | 250 | $83.76 | $85.18 | +$355.00 (+1.70%) | 20.0% | $79.902 (10% trail GTC, hwm $88.78) — ~6.2% above |
+
+All 4 trailing GTC stops confirmed active/intact (verified via orders); none lowered, none near +15%/+20% tighten (best is XLB +2.96%, all above the -7% cut). XLB still the leader; XLI firm; XLK ~flat vs Mon entry (normal drift); XLP mild. All four at/near the 20% cap — **no room to add**. Deployment 80.3% — inside band; no deployment mandate active.
+
+### Market Context — PPI 8:30AM; VIX CALM ~14.8; OIL EASING ~$82/$88; AI TAPE FIRM
+- **THE event: July PPI + initial jobless claims, today 8:30am ET.** PPI consensus **+0.2% m/m / +4.9% y/y** (from +5.5%), core **+0.3% m/m / +4.2% y/y**. Claims **202k vs 199k** prior. Wed's July CPI printed benign (core eased ~2.5% y/y), cutting Sept hike odds to ~35% from >60% — constructive backdrop. Hot PPI is the tail risk; benign confirms the disinflation read.
+- **Also today:** Fed Hammack speech 12:15pm ET (secondary). EIA nat-gas inventories.
+- **Indices/VIX:** S&P E-minis **~7,780-7,784 (+0.2-0.4%)**, chasing a record (~71pt gap); Nasdaq futures roughly flat/leading. **VIX ~14.7-15.0** — calm.
+- **Oil:** WTI **~$81.5-82.1**, Brent **~$87.5-88.7** — **easing ~1.5-2% on day** off the Iran/Hormuz-driven highs. Slight fade of the XLB/energy tailwind; modest cost relief for XLI/XLP.
+- **AI/semis:** Strong beats from CoreWeave (CRWV) + Super Micro (SMCI) Wed leading a Wall St rally; Asian AI names followed. **AMAT reports after the close today** (fiscal Q3, ~$9.0B rev / ~$3.39 EPS est) — a key test of the AI capex cycle; XLK ~45% semis so an after-hours surprise is Friday-relevant. No held name reports BMO.
+
+### Sector Momentum — ENERGY #1 (SLOWING), TECH #2 (STRONG), INDUSTRIALS/MATERIALS POSITIVE; STAPLES LAGS
+- **Energy** #1 YTD (~+20-36% depending on window) — still the leader but momentum slowing as oil trends lower; book holds none (thematic gap, no clean base — and the oil bid is fading, not basing).
+- **Technology (XLK ✓)** #2 — strongest momentum composite (SSGA scorecard); AI-earnings tailwind. Held.
+- **Industrials (XLI ✓)** — positive cyclical; held. **Materials (XLB ✓)** — positive, our best P&L name; oil-tailwind fading. **Staples (XLP ✓)** — laggard, defensive ballast.
+
+### Trade Ideas (2/3 weekly trades left; NO deployment mandate — in band)
+1. **Energy (XLE / COP / FANG) — watch, do NOT chase; thesis weakening.** Cleanest thematic gap, but oil is now *easing* (−1.5-2%) and energy momentum is slowing — no clean base, and chasing a fading move is worse than chasing a spike. Stand down unless a genuine base forms.
+2. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 80.3% (mid-band); no need to force. All four held names at the 20% cap (no adds). A 5th name only on a clean base — nothing qualifies pre-market into the PPI print.
+3. **Avoid:** deploying into the 8:30am PPI print; chasing fading oil/energy; adding over the 20% cap on held names.
+
+### Risk Factors
+- **PPI 8:30am** — today's swing print. Benign CPI Wed sets a constructive tone; a hot PPI surprise would revive rate-hike worry and pressure the record chase (tech hardest). No forced trades ahead of it.
+- **AMAT after the close** — AI-capex bellwether; XLK heavy semi weight. Not a same-day held-name risk (after-hours), but shapes Friday's tech tape.
+- **Oil easing** — the XLB tailwind is fading; not a thesis break (XLB +2.96%, ~8.3% above stop), but the materials edge is thinning.
+- **Record-chase / thin August tape** — indices near highs on light volume; complacent VIX ~14.8 leaves little cushion for a hot print.
+- **Deployment 80.3% (in band)** — backstop cured Mon; no mandate active. Patience permitted.
+
+### Decision
+**HOLD — no orders placed pre-market; no market-open mandate today.** Deployment 80.3% (in band); the deployment mandate no longer overrides patience. VIX ~14.8, futures modestly green, disinflation read constructive after benign CPI — but **July PPI lands 8:30am and dominates**; no clean fresh base to force an entry into the print, and the one thematic gap (energy) is now fading, not basing.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports BMO (all sector ETFs).
+- **Watch list:** AMAT after the close (Friday tech read); energy only on a genuine base — do NOT chase fading oil. 2/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
