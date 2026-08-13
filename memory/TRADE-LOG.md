@@ -2168,3 +2168,20 @@ Equity $106,855.94, cash $21,075.33 (19.7%), deployed 80.3% ($85,780.61 mkt valu
 - XLP: $85.76 (+2.39% vs entry) — stop $79.902/hwm $88.78, ~6.8% above stop. Staples thesis intact; mild intraday gain (+0.80%).
 
 Equity $107,084.51, cash $21,075.33 (19.7%), deployed 80.3% ($86,009.18 mkt value) — inside the 75-85% band. Weights: XLB 20.1%, XLI 20.1%, XLK 20.0%, XLP 20.0% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct (XLK auto-ratcheted to $172.566 on today's gain); none lowered, none tightened (no name crossed +15%/+20%). PPI/jobless claims printed 8:30am with no thesis-breaking single-name move; XLK's gain tracks the AI/semis rally (CRWV/SMCI beats, AMAT reports after today's close) — explained, no Perplexity check needed. Week 1/3. No email sent (no action taken).
+
+---
+
+### Aug 13 — EOD Snapshot (Day 77, Thursday, PPI Day)
+**Portfolio:** $107,045.71 | **Cash:** $21,075.33 (19.7%) | **Day P&L:** +$323.02 (+0.30%) | **Phase P&L:** +$7,045.71 (+7.05%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.31 | -0.51% | +$510.75 (+2.43%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $185.79 | -0.05% | +$421.08 (+1.99%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $190.78 | +1.02% | +$327.82 (+1.56%) | $172.566 (10% trail GTC) |
+| XLP | 250 | $83.76 | $86.00 | +1.08% | +$560.00 (+2.67%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 1/3
+
+**Notes:** New phase high on Day 77 — equity +$323.02 to $107,045.71 (Day P&L +0.30%), phase firms to a fresh high +7.05%. Benign PPI/jobless claims cleared 8:30am and the tape kept rewarding risk over defense, though staples led on the day: XLP +1.08% to $86.00 (+2.67% vs entry, now our best name by unrealized $); XLK +1.02% to $190.78 (+1.56% vs entry) on the AI/semis rally into AMAT earnings tonight — its trailing stop held at $172.566 (hwm ratcheted to $191.74 on the intraday high, close just under). Materials/industrials eased with oil softer: XLB -0.51% to $52.31 (+2.43% vs entry, stop $48.2355/hwm $53.595); XLI -0.05% to $185.79 (+1.99% vs entry). 4 positions (≤6): XLB 20.1%, XLI 20.1%, XLK 20.0%, XLP 20.1% — all at the 20% cap, no adds. Deployment 80.3% ($85,970.38 mkt value / $107,045.71 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 1/3 — 2 trades left. Tomorrow (Fri): weekly-review day — run stats/grade; hold book, watch AMAT reaction in XLK and any clean leadership setup, but no forced trade.
