@@ -2196,3 +2196,20 @@ Equity $107,084.51, cash $21,075.33 (19.7%), deployed 80.3% ($86,009.18 mkt valu
 - XLP: $86.095 (+2.79% vs entry) — stop $79.902/hwm $88.78, ~7.2% above stop. Staples thesis intact; flat intraday (+0.11%).
 
 Equity $107,108.78, cash $21,075.33 (19.7%), deployed 80.3% ($86,033.45 mkt value) — inside the 75-85% band. Weights: XLB 20.2%, XLI 20.2%, XLK 19.8%, XLP 20.1% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). July retail sales/import prices printed 8:30am with no thesis-breaking single-name move; no sharp/unexplained single-name moves — no Perplexity check needed. Week 1/3. No email sent (no action taken).
+
+---
+
+### Aug 14 — EOD Snapshot (Day 78, Friday, Retail Sales Day)
+**Portfolio:** $107,073.85 | **Cash:** $21,075.33 (19.7%) | **Day P&L:** +$28.14 (+0.03%) | **Phase P&L:** +$7,073.85 (+7.07%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.45 | +0.27% | +$568.43 (+2.70%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $186.31 | +0.28% | +$481.40 (+2.28%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $189.93 | -0.44% | +$232.96 (+1.11%) | $172.566 (10% trail GTC) |
+| XLP | 250 | $83.76 | $86.02 | +0.02% | +$565.00 (+2.70%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 1/3
+
+**Notes:** Quiet green close to the week on Day 78 — equity +$28.14 to $107,073.85 (Day P&L +0.03%), phase edges to a fresh high +7.07%. July retail sales/import prices cleared 8:30am benign and the tape drifted sideways into the weekend: the two economically-sensitive names led modestly, XLI +0.28% to $186.31 (+2.28% vs entry) and XLB +0.27% to $52.45 (+2.70% vs entry, tied for best name by unrealized $); XLP flat +0.02% to $86.02 (+2.70% vs entry). Lone decliner was XLK -0.44% to $189.93 (+1.11% vs entry), normal drift off Thursday's AMAT-earnings pop — not a thesis break. 4 positions (≤6): XLB 20.2%, XLI 20.2%, XLK 19.9%, XLP 20.1% — all at/under the 20% cap, no adds. Deployment 80.3% ($85,998.52 mkt value / $107,073.85 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 1/3 — 2 trades left, none forced. Weekly review runs this afternoon. Next week (Mon): hold book; watch for a clean leadership setup for a possible second leg, but no forced trade.
