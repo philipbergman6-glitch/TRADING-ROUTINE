@@ -2213,3 +2213,14 @@ Equity $107,108.78, cash $21,075.33 (19.7%), deployed 80.3% ($86,033.45 mkt valu
 **Week trades:** 1/3
 
 **Notes:** Quiet green close to the week on Day 78 — equity +$28.14 to $107,073.85 (Day P&L +0.03%), phase edges to a fresh high +7.07%. July retail sales/import prices cleared 8:30am benign and the tape drifted sideways into the weekend: the two economically-sensitive names led modestly, XLI +0.28% to $186.31 (+2.28% vs entry) and XLB +0.27% to $52.45 (+2.70% vs entry, tied for best name by unrealized $); XLP flat +0.02% to $86.02 (+2.70% vs entry). Lone decliner was XLK -0.44% to $189.93 (+1.11% vs entry), normal drift off Thursday's AMAT-earnings pop — not a thesis break. 4 positions (≤6): XLB 20.2%, XLI 20.2%, XLK 19.9%, XLP 20.1% — all at/under the 20% cap, no adds. Deployment 80.3% ($85,998.52 mkt value / $107,073.85 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 1/3 — 2 trades left, none forced. Weekly review runs this afternoon. Next week (Mon): hold book; watch for a clean leadership setup for a possible second leg, but no forced trade.
+
+---
+
+### Aug 17 — Midday Scan (Day 79, Monday, FOMC Minutes Wed)
+**No action.** All 4 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.305 (+2.42% vs entry) — stop $48.2355/hwm $53.595, ~7.8% above stop. Materials thesis intact; mild intraday softness (-0.45%).
+- XLI: $187.385 (+2.87% vs entry) — stop $169.3665/hwm $188.185, ~9.6% above stop. Industrials thesis intact; firm intraday gain (+0.47%).
+- XLK: $191.05 (+1.70% vs entry) — stop $172.575/hwm $191.75, ~9.7% above stop. Tech thesis intact; firm intraday gain (+0.55%).
+- XLP: $84.86 (+1.31% vs entry) — stop $79.902/hwm $88.78, ~5.8% above stop. Staples thesis intact; softer intraday (-1.43%), normal drift, not a thesis break.
+
+Equity $106,975.24, cash $21,075.33 (19.7%), deployed 80.3% ($85,899.91 mkt value) — inside the 75-85% band. Weights: XLB 20.1%, XLI 20.3%, XLK 20.0%, XLP 19.8% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; XLP's intraday softness is normal drift ahead of Wed FOMC minutes, not sector momentum loss — no Perplexity check needed. Week 0/3 (new week). No email sent (no action taken).
