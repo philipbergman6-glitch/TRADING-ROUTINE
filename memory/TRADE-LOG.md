@@ -2224,3 +2224,20 @@ Equity $107,108.78, cash $21,075.33 (19.7%), deployed 80.3% ($86,033.45 mkt valu
 - XLP: $84.86 (+1.31% vs entry) — stop $79.902/hwm $88.78, ~5.8% above stop. Staples thesis intact; softer intraday (-1.43%), normal drift, not a thesis break.
 
 Equity $106,975.24, cash $21,075.33 (19.7%), deployed 80.3% ($85,899.91 mkt value) — inside the 75-85% band. Weights: XLB 20.1%, XLI 20.3%, XLK 20.0%, XLP 19.8% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; XLP's intraday softness is normal drift ahead of Wed FOMC minutes, not sector momentum loss — no Perplexity check needed. Week 0/3 (new week). No email sent (no action taken).
+
+---
+
+### Aug 17 — EOD Snapshot (Day 79, Monday, FOMC Minutes Wed)
+**Portfolio:** $106,707.17 | **Cash:** $21,075.33 (19.8%) | **Day P&L:** -$366.68 (-0.34%) | **Phase P&L:** +$6,707.17 (+6.71%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.24 | -0.57% | +$481.91 (+2.29%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $186.32 | -0.10% | +$482.56 (+2.28%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $190.32 | +0.16% | +$276.64 (+1.32%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.72 | -1.59% | +$240.00 (+1.15%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Soft red start to the week on Day 79 — equity -$366.68 to $106,707.17 (Day P&L -0.34%), phase eases off Friday's high to +6.71%. Broad, shallow pullback across the book ahead of Wed FOMC minutes: staples led the decline with XLP -1.59% to $84.72 (still +1.15% vs entry), normal drift and our thinnest cushion at ~5.7% above stop; XLB -0.57% to $52.24 (+2.29% vs entry) and XLI -0.10% to $186.32 (+2.28% vs entry) gave back small amounts. Lone gainer XLK +0.16% to $190.32 (+1.32% vs entry) on continued AI/semis firmness. 4 positions (≤6): XLB 20.2%, XLI 20.3%, XLK 20.0%, XLP 19.9% — all at/under the 20% cap, no adds. Deployment 80.3% ($85,631.84 mkt value / $106,707.17 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Tomorrow (Tue): hold book; watch XLP's cushion and position ahead of Wed FOMC minutes, no forced trade.
