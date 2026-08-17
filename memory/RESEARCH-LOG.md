@@ -6014,3 +6014,51 @@ All 4 trailing GTC stops confirmed active/intact (verified via orders); none low
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports BMO (all sector ETFs).
 - **Watch list:** energy only on a genuine base — do NOT chase fading oil. 2/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+## 2026-08-17 (Mon) — Pre-Market Research (Day 79) — NEW WEEK; FED MINUTES WED
+
+### Account Snapshot
+- Equity: $107,215.96 | Cash: $21,075.33 (19.7%) | Buying power: $325,495 (margin — not an input)
+- Deployed: $86,140.63 (80.3% — **inside the 75-85% band**)
+- Daytrade count: N/A (PDT abolished) | Week trades: 0/3 (new week — full budget)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $52.53 | +$601.39 (+2.86%) | 20.2% | $48.2355 (10% trail GTC, hwm $53.595) — ~8.2% above |
+| XLI | 116 | $182.16 | $186.51 | +$504.60 (+2.39%) | 20.2% | $169.3665 (10% trail GTC, hwm $188.185) — ~9.2% above |
+| XLK | 112 | $187.85 | $191.23 | +$378.91 (+1.80%) | 20.0% | $172.566 (10% trail GTC, hwm $191.74) — ~9.7% above |
+| XLP | 250 | $83.76 | $85.78 | +$505.00 (+2.41%) | 20.0% | $79.902 (10% trail GTC, hwm $88.78) — ~6.8% above |
+
+All 4 trailing GTC stops confirmed active/intact (verified via orders); none lowered, none near +15%/+20% tighten (best is XLB +2.86%, all above the -7% cut). XLB leads by unrealized $; XLI/XLP firm; XLK ~flat-to-firm (+0.64% intraday). All four at/near the 20% cap — **no room to add**. Deployment 80.3% — inside band; no deployment mandate active.
+
+### Market Context — FED MINUTES WED; VIX CALM ~14.9; OIL FIRM ~$82.5/$88.8; FUTURES WOBBLY
+- **THE event this week: FOMC July 28-29 minutes, Wed 2:00pm ET.** Most important scheduled Fed event; reads the 9-3 hold (3.50-3.75%, most divided since 2016) for cut/hike timing. Softer CPI/PPI last week pushed indices to record highs and pushed the next hike into 2027 pricing — constructive backdrop.
+- **Today (Mon):** Empire State Manufacturing Index + NAHB Housing Market Index (both minor, AM); TIC flows. Empire State is the only directional macro open-driver, low weight.
+- **Earnings:** **No noteworthy reports BMO Monday** (confirmed, multiple calendars). This week: **Home Depot Tue, Walmart Thu** — retail read; no held name reports (all sector ETFs).
+- **Indices/VIX:** S&P E-minis **~7,805 (-0.22%)** — wobbly/modestly red as investors balance Fed uncertainty vs earnings slate. **VIX ~14.9** (spot); last close 14.25 — calm/complacent.
+- **Oil:** WTI **~$82.4-82.9**, Brent **~$88.5-89.3** — **firm/slightly up** on the day, stabilizing off recent easing. Mild support returns to the XLB/materials tailwind.
+
+### Sector Momentum — TECH #1, INDUSTRIALS STRONG; MATERIALS/STAPLES SOFTER
+- **Technology (XLK ✓)** — leader, ~32-33% YTD; semis/AI demand (Nvidia/Broadcom/Micron), new 52-wk high, record July sector ETF inflows led by tech. Held.
+- **Industrials (XLI ✓)** — ~20% YTD; AI data-center buildout, aerospace, defense. Held.
+- **Materials (XLB ✓)** — positive, our best P&L name; oil firming again is a mild tailwind. Held.
+- **Consumer Staples (XLP ✓)** — defensive ballast, no fresh catalyst; laggard by momentum but firm P&L. Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band)
+1. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 80.3% (mid-band); no need to force. All four held names at the 20% cap (no adds). A 5th name (tech/industrials leadership) only on a clean base — nothing qualifies pre-market into a wobbly, Fed-minutes week.
+2. **Energy — watch, do NOT chase.** Oil firming modestly but no clean base; still a thematic gap. Entry only on a base above a rising 20-day, 8-10% stop, 2:1 R:R.
+3. **Avoid:** forcing a trade into a directionless Monday ahead of Wed FOMC minutes; adding over the 20% cap on held names; chasing without a base.
+
+### Risk Factors
+- **FOMC minutes Wed 2pm** — the week's swing event; a hawkish tone revives rate worry and pressures the record chase (tech hardest). No forced trades ahead of it.
+- **Record-chase / thin August tape** — indices near highs on light volume; complacent VIX ~14.9 leaves little cushion.
+- **Retail earnings (HD Tue / WMT Thu)** — consumer read; indirect for XLP/XLI, not a held-name event.
+- **Oil two-sided** — firming helps XLB but any sharp reversal thins the materials edge (XLB +2.86%, ~8.2% above stop — not a thesis risk).
+- **Deployment 80.3% (in band)** — no mandate active. Patience permitted.
+
+### Decision
+**HOLD — no orders placed pre-market; no market-open mandate today.** Deployment 80.3% (in band); the mandate does not override patience. VIX ~14.9, futures modestly red, disinflation backdrop constructive — but the tape is directionless into **Wed FOMC minutes**, and no clean fresh leader base justifies forcing a 5th name on the week's first session.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports this week.
+- **Watch list:** clean tech/industrials leadership base for a possible second leg; energy only on a genuine base. 3/3 weekly trades available (new week).
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
