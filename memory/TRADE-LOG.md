@@ -2227,6 +2227,17 @@ Equity $106,975.24, cash $21,075.33 (19.7%), deployed 80.3% ($85,899.91 mkt valu
 
 ---
 
+### Aug 18 — Midday Scan (Day 80, Tuesday, FOMC Minutes Wed)
+**No action.** All 4 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $51.955 (+1.73% vs entry) — stop $48.2355/hwm $53.595, ~7.2% above stop. Materials thesis intact; mild intraday softness (-0.55%).
+- XLI: $184.02 (+1.02% vs entry) — stop $169.3665/hwm $188.185, ~8.7% above stop. Industrials thesis intact; intraday pullback (-1.23%), tracking the broad market dip.
+- XLK: $185.40 (-1.30% vs entry) — stop $172.575/hwm $191.75, ~7.4% above stop. Sharpest mover: -2.59% intraday. Checked via Perplexity: broad tech/Nasdaq selloff on rising Treasury yields ahead of Wed FOMC minutes, no XLK-specific catalyst — explained, sector-wide, not a thesis break.
+- XLP: $85.86 (+2.51% vs entry) — stop $79.902/hwm $88.78, ~7.5% above stop. Staples thesis intact; firm intraday gain (+1.39%) as defensives outperform the dip.
+
+Equity $106,069.78, cash $21,075.33 (19.9%), deployed 80.1% ($84,994.45 mkt value) — inside the 75-85% band. Weights: XLB 20.2%, XLI 20.1%, XLK 19.6%, XLP 20.2% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Broad market red day (rates-driven tech pullback) ahead of tomorrow's FOMC minutes; no single-name thesis break. Week 0/3. No email sent (no action taken).
+
+---
+
 ### Aug 17 — EOD Snapshot (Day 79, Monday, FOMC Minutes Wed)
 **Portfolio:** $106,707.17 | **Cash:** $21,075.33 (19.8%) | **Day P&L:** -$366.68 (-0.34%) | **Phase P&L:** +$6,707.17 (+6.71%)
 

@@ -6062,3 +6062,8 @@ All 4 trailing GTC stops confirmed active/intact (verified via orders); none low
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports this week.
 - **Watch list:** clean tech/industrials leadership base for a possible second leg; energy only on a genuine base. 3/3 weekly trades available (new week).
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+---
+
+### Aug 18 — Midday Addendum (Day 80, Tuesday, FOMC Minutes Wed)
+No pre-market entry logged today. Market red broadly (Dow/S&P/Nasdaq all down, VIX up) into tomorrow's FOMC minutes. XLK was the sharpest mover in the book (-2.59% intraday) — ran a Perplexity check: broad tech selloff tied to rising Treasury yields and a weaker Nasdaq, no XLK-specific or held-name catalyst, technicals show XLK already near oversold. Explained as sector-wide/rate-driven, not a thesis break. No other held name showed unexplained sharp moves. See TRADE-LOG Aug 18 midday scan for full position detail. No action taken.
