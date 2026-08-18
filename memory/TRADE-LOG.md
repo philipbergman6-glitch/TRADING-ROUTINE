@@ -2252,3 +2252,20 @@ Equity $106,069.78, cash $21,075.33 (19.9%), deployed 80.1% ($84,994.45 mkt valu
 **Week trades:** 0/3
 
 **Notes:** Soft red start to the week on Day 79 — equity -$366.68 to $106,707.17 (Day P&L -0.34%), phase eases off Friday's high to +6.71%. Broad, shallow pullback across the book ahead of Wed FOMC minutes: staples led the decline with XLP -1.59% to $84.72 (still +1.15% vs entry), normal drift and our thinnest cushion at ~5.7% above stop; XLB -0.57% to $52.24 (+2.29% vs entry) and XLI -0.10% to $186.32 (+2.28% vs entry) gave back small amounts. Lone gainer XLK +0.16% to $190.32 (+1.32% vs entry) on continued AI/semis firmness. 4 positions (≤6): XLB 20.2%, XLI 20.3%, XLK 20.0%, XLP 19.9% — all at/under the 20% cap, no adds. Deployment 80.3% ($85,631.84 mkt value / $106,707.17 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct; none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Tomorrow (Tue): hold book; watch XLP's cushion and position ahead of Wed FOMC minutes, no forced trade.
+
+---
+
+### Aug 18 — EOD Snapshot (Day 80, Tuesday, FOMC Minutes Wed)
+**Portfolio:** $105,887.25 | **Cash:** $21,075.33 (19.9%) | **Day P&L:** -$819.92 (-0.77%) | **Phase P&L:** +$5,887.25 (+5.89%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $51.78 | -0.88% | +$292.39 (+1.39%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $183.57 | -1.48% | +$163.56 (+0.77%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $185.62 | -2.47% | -$249.76 (-1.19%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $85.58 | +1.06% | +$455.00 (+2.17%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Broad red day on Day 80 — equity -$819.92 to $105,887.25 (Day P&L -0.77%), phase eases to +5.89%. Rates-driven risk-off ahead of Wed FOMC minutes pressured cyclicals and tech: XLK led the decline -2.47% to $185.62, flipping to a small unrealized loss (-1.19% vs entry) on the broad Nasdaq/semis selloff (no XLK-specific catalyst — confirmed sector-wide at midday); XLI -1.48% to $183.57 (+0.77% vs entry) and XLB -0.88% to $51.78 (+1.39% vs entry) gave back cyclical gains. Lone gainer was defensive XLP +1.06% to $85.58 (+2.17% vs entry, best name) as staples outperformed the dip. 4 positions (≤6): XLB 20.1%, XLI 20.1%, XLK 19.6%, XLP 20.2% — all at/under the 20% cap, no adds. Deployment 80.1% ($84,811.92 mkt value / $105,887.25 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.2355/hwm $53.595, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Tomorrow (Wed): hold book into 2pm FOMC minutes; watch XLK's cushion (~7.0% above stop) and thesis, no forced trade.
