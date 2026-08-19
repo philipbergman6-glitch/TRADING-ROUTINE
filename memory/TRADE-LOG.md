@@ -2280,3 +2280,20 @@ Equity $106,069.78, cash $21,075.33 (19.9%), deployed 80.1% ($84,994.45 mkt valu
 - XLP: $86.54 (+3.32% vs entry) — stop $79.902/hwm $88.78, ~8.1% above stop. Staples thesis intact; firm intraday gain (+1.12%) as defensives lead into the print.
 
 Equity $106,228.10, cash $21,075.33 (19.8%), deployed $85,152.77 (80.2%) — inside the 75-85% band. Weights: XLB 20.5%, XLI 19.9%, XLK 19.4%, XLP 20.4% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct (XLB $48.2355/hwm $53.595, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; book holding steady ahead of the 2pm print. Week 0/3. No email sent (no action taken).
+
+---
+
+### Aug 19 — EOD Snapshot (Day 81, Wednesday, FOMC Minutes 2pm)
+**Portfolio:** $106,022.45 | **Cash:** $21,075.33 (19.9%) | **Day P&L:** +$135.20 (+0.13%) | **Phase P&L:** +$6,022.45 (+6.02%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.52 | +1.43% | +$597.27 (+2.84%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $181.95 | -0.88% | -$24.36 (-0.12%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $183.64 | -1.07% | -$471.52 (-2.24%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $86.54 | +1.12% | +$695.00 (+3.32%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Flat-to-green close on Day 81 through the 2pm FOMC minutes — equity +$135.20 to $106,022.45 (Day P&L +0.13%), phase firms to +6.02%. The book split defensive/cyclical vs tech: staples led with XLP +1.12% to $86.54 (best name, +3.32% vs entry) and materials XLB +1.43% to $52.52 (+2.84% vs entry, firm oil) as defensives and commodities held; industrials XLI -0.88% to $181.95 slipped just below entry (-0.12%); XLK -1.07% to $183.64 (-2.24% vs entry, sole loser) on continued rate-driven tech softness — no XLK-specific catalyst, sector-wide, not a thesis break. Minutes landed without a market-moving surprise. 4 positions (≤6): XLB 20.4%, XLI 19.9%, XLK 19.4%, XLP 20.4% — all at/under the 20% cap, no adds. Deployment 80.1% ($84,947.12 mkt value / $106,022.45 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.2355/hwm $53.595, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Tomorrow (Thu): hold book; watch XLK's cushion (~6.4% above stop) and thesis, no forced trade.
