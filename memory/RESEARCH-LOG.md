@@ -6067,3 +6067,51 @@ All 4 trailing GTC stops confirmed active/intact (verified via orders); none low
 
 ### Aug 18 — Midday Addendum (Day 80, Tuesday, FOMC Minutes Wed)
 No pre-market entry logged today. Market red broadly (Dow/S&P/Nasdaq all down, VIX up) into tomorrow's FOMC minutes. XLK was the sharpest mover in the book (-2.59% intraday) — ran a Perplexity check: broad tech selloff tied to rising Treasury yields and a weaker Nasdaq, no XLK-specific or held-name catalyst, technicals show XLK already near oversold. Explained as sector-wide/rate-driven, not a thesis break. No other held name showed unexplained sharp moves. See TRADE-LOG Aug 18 midday scan for full position detail. No action taken.
+
+## 2026-08-19 (Wed) — Pre-Market Research (Day 81) — FOMC MINUTES 2PM TODAY
+
+### Account Snapshot
+- Equity: $105,914.01 | Cash: $21,075.33 (19.9%) | Buying power: $321,850 (margin — not an input)
+- Deployed: $84,838.68 (80.1% — **inside the 75-85% band**)
+- Daytrade count: N/A (PDT abolished) | Week trades: 0/3 (full budget)
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $51.78 | +$292.39 (+1.39%) | 20.1% | $48.2355 (10% trail GTC, hwm $53.595) — ~6.8% above |
+| XLI | 116 | $182.16 | $183.79 | +$189.08 (+0.90%) | 20.1% | $169.3665 (10% trail GTC, hwm $188.185) — ~7.8% above |
+| XLK | 112 | $187.85 | $185.14 | -$303.52 (-1.44%) | 19.6% | $172.575 (10% trail GTC, hwm $191.75) — ~6.8% above |
+| XLP | 250 | $83.76 | $85.80 | +$510.00 (+2.44%) | 20.3% | $79.902 (10% trail GTC, hwm $88.78) — ~6.9% above |
+
+All 4 trailing GTC stops confirmed active/intact (verified via orders); none lowered, none near +15%/+20% tighten (best is XLP +2.44%, all above the -7% cut). XLP leads by unrealized $ (defensives outperforming the rates-driven dip); XLB/XLI firm; XLK sole loser (-1.44%, rate-driven, not thesis break — see below). All four at/near the 20% cap — **no room to add**. Deployment 80.1% — in band; no mandate active.
+
+### Market Context — FOMC MINUTES 2PM; VIX ~15.9 (rising); OIL FIRM ~$85/$91.5; YIELDS THE STORY
+- **THE event today: FOMC July 28-29 minutes, 2:00pm ET.** Reads the 9-3 hold for cut/hike timing. (One calendar source also tagged a "July CPI" at 2pm today — treated as a calendar artifact; July CPI already printed benign ~Aug 12 per prior logs. The real 2pm driver is the minutes.)
+- **Rising long-end yields = the actual market driver.** 30-yr Treasury yield reportedly highest since 2007; duration-sensitive tech under pressure as investors rotate out of high-multiple growth. This is the headwind on XLK, not a sector-specific break.
+- **Earnings:** No held name reports (all sector ETFs). BMO reporters: Target, Lowe's, TJX, Analog Devices, Estée Lauder — retail/consumer + one semi (ADI), indirect reads for XLP/XLK, not held-name events.
+- **Indices/VIX:** S&P E-minis ~7,478 (+0.1%) — modestly green premarket. **VIX ~15.86** (spot, 9:29am) — up from mid-14s last week; complacency easing into the minutes.
+- **Oil:** WTI **~$84.9-85.6**, Brent **~$91.3-91.6** — **firm/up** on the day. Continued mild XLB/materials tailwind.
+
+### Sector Momentum — TECH #1 BUT WOBBLING ON YIELDS; INDUSTRIALS STRONG; MATERIALS FIRM
+- **Technology (XLK ✓)** — still #1 YTD (~+22%) but the weakest relative-strength area *today* on the yield spike (SMH -4% area, NVDA soft); semis are ~46% of XLK so Nvidia weakness has outsized ETF impact. Sector-wide/rate-driven, not a held-name catalyst. Held.
+- **Industrials (XLI ✓)** — ~+20% YTD; AI data-center/aerospace/defense. Held.
+- **Materials (XLB ✓)** — ~+14% YTD; firm oil a mild tailwind, our steadiest cyclical. Held.
+- **Consumer Staples (XLP ✓)** — ~+10% YTD; defensive ballast, outperforming today's dip (best P&L name). Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band)
+1. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 80.1% (mid-band); no need to force. All four held names at the 20% cap (no adds). A 5th name only on a clean base — nothing qualifies pre-market into a rising-yield, FOMC-minutes session.
+2. **Energy — watch, do NOT chase.** Oil firm (WTI ~$85) but still no clean base; thematic gap. Entry only on a base above a rising 20-day, 8-10% stop, 2:1 R:R.
+3. **Avoid:** forcing a trade ahead of 2pm FOMC minutes; adding over the 20% cap on held names; chasing tech into a duration-driven selloff.
+
+### Risk Factors
+- **FOMC minutes 2pm** — the day's swing event; a hawkish tone revives rate worry, pressures the record-chase (tech hardest, XLK already softest).
+- **Long-end yields** — 30-yr at post-2007 highs; sustained upside is the primary risk to XLK's cushion (currently ~6.8% above stop, still well above the -7% cut).
+- **Retail earnings (TGT/LOW/TJX BMO)** — consumer read; indirect for XLP, not a held-name event.
+- **Oil two-sided** — firming helps XLB; any sharp reversal thins the materials edge.
+- **Deployment 80.1% (in band)** — no mandate active. Patience permitted.
+
+### Decision
+**HOLD — no orders placed pre-market; no market-open mandate today.** Deployment 80.1% (in band); the mandate does not override patience. Futures ~flat-green, oil firm, but the tape is hostage to **2pm FOMC minutes** amid a rising-yield backdrop; no clean fresh leader base justifies forcing a 5th name into the print.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports today. XLK's -1.44% is rate-driven sector weakness, not a thesis break — watch its ~6.8% cushion post-minutes.
+- **Watch list:** clean tech/industrials leadership base for a possible second leg; energy only on a genuine base. 3/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
