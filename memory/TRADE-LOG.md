@@ -2308,3 +2308,20 @@ Equity $106,228.10, cash $21,075.33 (19.8%), deployed $85,152.77 (80.2%) — ins
 - XLP: $85.89 (+2.54% vs entry) — stop $79.902/hwm $88.78, ~7.5% above stop. Staples thesis intact; mild intraday pullback (-0.75%), normal drift.
 
 Equity $105,729.28, cash $21,075.33 (19.9%), deployed $84,653.95 (80.1%) — inside the 75-85% band. Weights: XLB 20.5%, XLI 19.8%, XLK 19.4%, XLP 20.3% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct (XLB $48.2355/hwm $53.595, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; calm tape, no market-moving data surprise (jobless claims/Philly Fed in line). Week 0/3. No email sent (no action taken).
+
+---
+
+### Aug 20 — EOD Snapshot (Day 82, Thursday)
+**Portfolio:** $105,371.69 | **Cash:** $21,075.33 (20.0%) | **Day P&L:** -$650.76 (-0.61%) | **Phase P&L:** +$5,371.69 (+5.37%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.42 | -0.19% | +$556.07 (+2.64%) | $48.2355 (10% trail GTC) |
+| XLI | 116 | $182.16 | $179.77 | -1.20% | -$277.24 (-1.31%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $183.00 | -0.35% | -$543.20 (-2.58%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $85.40 | -1.32% | +$410.00 (+1.96%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Soft red close on Day 82 — equity -$650.76 to $105,371.69 (Day P&L -0.61%), phase eases to +5.37%. Broad shallow drift lower across the book on a calm tape (jobless claims/Philly Fed in line, no data surprise): rate-sensitive defensive/cyclical names led the give-back with XLP -1.32% to $85.40 (still +1.96% vs entry) and XLI -1.20% to $179.77 (sole net loser at -1.31% vs entry) softest; XLK -0.35% to $183.00 (-2.58% vs entry, biggest cumulative loser) held roughly flat on continued rate-driven tech softness — no XLK-specific catalyst, sector-wide, not a thesis break; materials XLB -0.19% to $52.42 (+2.64% vs entry, best name) nearly flat on firm oil. 4 positions (≤6): XLB 20.5%, XLI 19.8%, XLK 19.5%, XLP 20.3% — all at/under the 20% cap, no adds. Deployment 80.0% ($84,296.36 mkt value / $105,371.69 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.2355/hwm $53.595, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Tomorrow (Fri): weekly review; hold book, watch XLK/XLI cushions (~5.7% above stop), no forced trade.
