@@ -1014,3 +1014,64 @@ The worst relative week of the phase, and the first to earn a rule change. The b
 A clear recovery from last week's D+, and a validation week for the process fix. The single most important failure of the phase — six-plus weeks of under-deployment and a month-old diversification deficit — was corrected on the new deployment-backstop rule's first live test: XLK went on Monday, deployment snapped back to 80.3% inside the band, and the book finally holds the #1 momentum sector it had entirely missed. Risk was spotless for a seventh straight week, the absolute return was positive (+0.42%), the book hit fresh phase highs, and it essentially matched a rising S&P (-0.11%) rather than trailing it structurally. Short of a B/B+ because the win was structural, not alpha: XLK was the week's laggard so the new engine added no P&L yet, only 1 of 3 trades was used, and the book is still four correlated ETF sleeves with no idiosyncratic single-name. No strategy rule change — the rule changed last week did its job this week, so the fix is to keep executing it and now source a genuine leader, not to legislate further.
 
 ---
+
+## Week ending 2026-08-21
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $107,073.85 (Mon Aug 17 AM = Fri Aug 14 close) |
+| Ending portfolio | $106,071.03 (Fri Aug 21 close) |
+| Week return | -$1,002.82 (-0.94%) |
+| S&P 500 week | -1.9% (7,785.76 Aug 14 → ~7,637.8 Aug 21; FRED weekly) |
+| Bot vs S&P | +0.96% (OUTPERFORMED) |
+| Trades | 0 new (W:0 / L:0 / open:4); 0 closed |
+| Win rate | n/a (0 closed trades) |
+| Best trade | XLB +4.84% (open, carried) |
+| Worst trade | XLK -2.42% (open, biggest cumulative loser) |
+| Profit factor | n/a (0 closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No trades closed this week. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLB | $51.07 | $53.54 | +$1,017.51 (+4.84%) | $48.3435 (10% trail GTC, hwm $53.715) |
+| XLI | $182.16 | $180.25 | -$221.56 (-1.05%) | $169.3665 (10% trail GTC, hwm $188.185) |
+| XLK | $187.85 | $183.31 | -$508.48 (-2.42%) | $172.575 (10% trail GTC, hwm $191.75) |
+| XLP | $83.76 | $85.99 | +$557.50 (+2.66%) | $79.902 (10% trail GTC, hwm $88.78) |
+
+**Deployed:** ~$84,996 / $106,071.03 = 80.1% (inside the 75-85% band)
+
+### What Worked
+- **First clear relative WIN of the phase in weeks.** The S&P fell -1.9% (record-week give-back, defensive positioning into Jackson Hole); the book fell only -0.94% and BEAT the index by +0.96%. The in-band, multi-sector book cushioned a risk-off tape instead of trailing it — the exact mirror of the -2.05% melt-up blowout two weeks ago.
+- **Defensive diversification did the cushioning a cash pile used to do badly.** XLP (staples, +2.66% vs entry) and XLB (materials, +4.84% vs entry, firm oil ~$86) stayed green all week and offset the rate-driven XLK/XLI softness. The sector spread protected the downside while the book stayed 80% deployed — downside protection without paying the melt-up cash-drag tax.
+- Risk machinery spotless for an EIGHTH straight week: all four 10% trailing GTC stops active/correct, none lowered, no name near a stop or the -7% cut. XLB's stop auto-ratcheted with new highs ($48.2355 → $48.3435, hwm $53.595 → $53.715) — broker-side mechanism, no manual action.
+- Patience correctly calibrated: zero forced trades into a soft, two-sided Friday tape positioning defensively ahead of next week's Jackson Hole. Deployment already in-band, so no mandate — nothing to force, and nothing forced.
+- Being in-band was validated as the right posture even in a DOWN week: idle cash would have "helped" the absolute number, but the fully-deployed book beat the index anyway — proof the fix works without leaning on cash drag.
+
+### What Didn't Work
+- **XLK is now a two-week drag.** The tech leg added Aug 10 was the week's biggest cumulative loser again (-2.42% vs entry) on persistent rate-driven softness (30-yr ~5.28%). The "new engine" has yet to add a dollar of alpha — structural value only, for a second straight week.
+- Still NO idiosyncratic single-name. This week's outperformance was defensive beta-cushion, not stock-specific alpha. The book remains four broad-sector ETFs (~20% each) — the identified deficit (a genuine leader) persists a third week.
+- Absolute return was negative (-0.94%). A down week is still a down week; beating the index by falling less is a relative win, not money made. Phase eased from the prior high to +6.07%.
+- 0 of 3 weekly trades used. Appropriate given in-band deployment and no clean base, but the top of the band and a 5th leadership slot remain unfilled a second week running.
+
+### Key Lessons
+- The in-band book is now symmetric. Last week it matched a melt-up (-0.11%); this week it beat a sell-off (+0.96%). Fixing deployment didn't just stop the up-tape bleed — it converted the book from a structural laggard into one that tracks up and cushions down. The deployment-backstop rule is validated in both tape directions now.
+- Sector mix is the correct way to be defensive — not idle cash. XLP/XLB ballast let the book fall less than the index while staying 80% deployed, capturing the downside protection that a 40% cash pile used to buy badly (and at a huge melt-up cost). Diversification, not deferral, is the defensive tool.
+- The remaining edge is alpha, not structure. Two weeks of XLK dragging confirms that adding a sector sleeve is not the same as adding a leader. Cushioning a sell-off by +0.96% is repeatable but modest; a genuine high-conviction single-name is what would turn a relative win into a decisive one.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Aug 24. Deployment in-band (80.1%), so NO forced trade. **Jackson Hole Aug 27-29 (Powell/Warsh keynote ~Fri Aug 28) is the week's swing event; NVIDIA earnings also next week.** One legitimate deferral window around Jackson Hole — but do not let it become a full week of the inaction excuse.
+- If a clean base sets up (better post-Jackson Hole, once the rate signal is known), favor a 5th LEADERSHIP SINGLE-NAME (idiosyncratic engine) over a fifth correlated ETF — the standing third-week priority to restore stock-specific alpha.
+- Watch XLK's thesis: two weeks as the book laggard on rate-driven softness. NOT a thesis break (sector-wide, still #1 momentum sector ~+32% YTD), but a hawkish Jackson Hole that backs the long end up further makes XLK (~5.9% above stop, thinnest cushion) the first stress point — manage by the stop, do not pre-empt.
+- Manage by rules: 10% trailing GTC on every entry, -7% manual cut at midday, never move a stop down. On any single-name that spikes +15% and stalls, take the discretionary partial trim (standing GOOGL lesson).
+
+### Overall Grade: B
+
+The best week of the recovery and the first with a clean, positive relative result. In a -1.9% S&P sell-off the book fell only -0.94% and beat the index by +0.96% — the direct mirror of the -2.05% melt-up blowout two weeks ago, and proof the deployment fix now works in both directions. The multi-sector spread (XLP +2.66%, XLB +4.84%) did the cushioning that a bloated cash pile used to do badly, and did it while staying 80% deployed. Risk was spotless for an eighth straight week and patience was correctly held into a soft pre-Jackson Hole tape with no clean base. Held short of a B+/A- by two things: the return was still negative in absolute terms (a relative win, not money made), and the book remains four broad-sector ETFs with no idiosyncratic single-name — XLK has now dragged for two weeks, so the structure is validated but the alpha engine is still missing. No strategy rule change: the deployment-backstop rule is now proven in both tape directions and needs no amendment; the work is to keep executing it and finally source a genuine leader.
+
+---
