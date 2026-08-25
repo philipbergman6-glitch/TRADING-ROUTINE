@@ -6314,3 +6314,14 @@ All 4 trailing GTC stops confirmed active/intact (verified via orders); none low
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLK/XLI softness is rate-driven, not a thesis break — watch XLK's thin ~5.2% cushion into NVDA tomorrow.
 - **Watch list:** clean tech/industrials leadership base for a possible second leg; energy off the table. 3/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+---
+
+### Aug 25 — Midday Scan (Day 85, Tuesday, NVDA Earnings Tomorrow)
+**No action.** All 4 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $53.37 (+4.50% vs entry) — stop $48.771/hwm $54.19, ~8.6% above stop. Materials thesis intact; mild intraday pullback (-0.39%), normal drift.
+- XLI: $178.61 (-1.95% vs entry) — stop $169.3665/hwm $188.185, ~5.2% above stop. Industrials thesis intact; flat intraday (-0.22%), continuation of rate-driven softness flagged pre-market. Not a thesis break.
+- XLK: $181.33 (-3.47% vs entry) — stop $172.575/hwm $191.75, ~4.8% above stop. Firm intraday bounce (+0.71%) ahead of tomorrow's NVDA print; no fresh sharp/unexplained move — no Perplexity check needed. Not a thesis break.
+- XLP: $86.37 (+3.12% vs entry) — stop $79.902/hwm $88.78, ~7.5% above stop. Staples thesis intact; mild intraday pullback (-1.24%), normal drift.
+
+Equity $105,678.58, cash $21,075.33 (19.9%), deployed $84,603.25 (80.1%) — inside the 75-85% band. Weights: XLB 20.8%, XLI 19.6%, XLK 19.2%, XLP 20.4% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; calm tape one day ahead of NVDA earnings (Wed) and into Jackson Hole (Aug 27-29), both already flagged pre-market. Week 0/3. No email sent (no action taken).
