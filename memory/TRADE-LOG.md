@@ -2381,3 +2381,20 @@ Equity $105,814.23, cash $21,075.33 (19.9%), deployed $84,738.90 (80.1%) — ins
 **Week trades:** 0/3
 
 **Notes:** Near-flat red close to open the week on Day 84 — equity -$118.52 to $105,952.51 (Day P&L -0.11%), phase eases to +5.95%. Two-sided tape as defensives outperformed rate-sensitive cyclicals/tech into NVDA earnings and Jackson Hole (Aug 27-29): XLP +1.70% to $87.45 (best name, +4.41% vs entry) and XLB +0.13% to $53.61 (+4.97% vs entry, biggest cumulative winner) held firm, while XLK -1.79% to $180.03 (-4.16% vs entry, biggest cumulative loser) led the give-back on continued rate-driven tech softness — sector-wide, no XLK-specific catalyst, not a thesis break — and XLI -0.69% to $179.00 (-1.74% vs entry). 4 positions (≤6): XLB 20.8%, XLI 19.6%, XLK 19.0%, XLP 20.6% — all at/under the 20% cap, no adds. Deployment 80.1% ($84,877.18 mkt value / $105,952.51 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. XLK cushion tightest at ~4.3% above stop; watch NVDA earnings (Wed) and Jackson Hole for tech direction. Tomorrow (Tue): hold book, no forced trade.
+
+---
+
+### Aug 25 — EOD Snapshot (Day 85, Tuesday)
+**Portfolio:** $105,829.57 | **Cash:** $21,075.33 (19.9%) | **Day P&L:** -$122.94 (-0.12%) | **Phase P&L:** +$5,829.57 (+5.83%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $53.58 | +0.00% | +$1,033.99 (+4.91%) | $48.771 (10% trail GTC) |
+| XLI | 116 | $182.16 | $178.40 | -0.34% | -$436.16 (-2.06%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $181.74 | +0.94% | -$684.32 (-3.25%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $86.52 | -1.06% | +$690.00 (+3.30%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Near-flat red close on Day 85 — equity -$122.94 to $105,829.57 (Day P&L -0.12%), phase eases to +5.83%. Two-sided rotation continued into NVDA earnings (Wed) and Jackson Hole (Aug 27-29): XLK +0.94% to $181.74 (-3.25% vs entry, biggest cumulative loser) bounced off recent softness as tech firmed; XLB flat at $53.58 (+4.91% vs entry, biggest cumulative winner) held on firm oil, while defensives gave back — XLP -1.06% to $86.52 (+3.30% vs entry) and XLI -0.34% to $178.40 (-2.06% vs entry) softest. No thesis-breaking single-name moves; broad rotation, not a break. 4 positions (≤6): XLB 20.9%, XLI 19.6%, XLK 19.2%, XLP 20.4% — XLB nudged just over 20% on appreciation only (no add); all others under cap. Deployment 80.1% ($84,754.24 mkt value / $105,829.57 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Cushions: XLK/XLI tightest at ~5.0% above stop, XLP ~7.7%, XLB ~9.0%. Tomorrow (Wed): hold book, watch NVDA earnings for XLK direction, no forced trade.
