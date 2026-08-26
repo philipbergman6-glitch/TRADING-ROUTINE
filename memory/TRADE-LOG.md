@@ -2409,3 +2409,20 @@ Equity $105,814.23, cash $21,075.33 (19.9%), deployed $84,738.90 (80.1%) — ins
 - XLP: $86.405 (+3.16% vs entry) — stop $79.902/hwm $88.78, ~7.5% above stop. Staples thesis intact; mild intraday pullback (-0.13%), normal drift.
 
 Equity $106,107.80, cash $21,075.33 (19.9%), deployed $85,032.47 (80.1%) — inside the 75-85% band. Weights: XLB 20.9%, XLI 19.7%, XLK 19.2%, XLP 20.4% — XLB nudged just over 20% on appreciation only (no add); all others under cap. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; calm tape post-NVDA print, Jackson Hole (Aug 27-29) still ahead. Week 0/3. No email sent (no action taken).
+
+---
+
+### Aug 26 — EOD Snapshot (Day 86, Wednesday)
+**Portfolio:** $106,248.71 | **Cash:** $21,075.33 (19.8%) | **Day P&L:** +$419.14 (+0.40%) | **Phase P&L:** +$6,248.71 (+6.25%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $53.67 | +0.17% | +$1,071.07 (+5.09%) | $48.771 (10% trail GTC) |
+| XLI | 116 | $182.16 | $180.34 | +1.09% | -$211.12 (-1.00%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $183.70 | +1.08% | -$464.80 (-2.21%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $86.27 | -0.29% | +$627.50 (+3.00%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Green close on Day 86 — equity +$419.14 to $106,248.71 (Day P&L +0.40%), phase firms to +6.25% (a phase high). Rotation reversed toward rate-sensitive cyclicals/tech post-NVDA print (AMC Tue) and into Jackson Hole (Aug 27-29): XLI +1.09% to $180.34 (-1.00% vs entry) and XLK +1.08% to $183.70 (-2.21% vs entry, still biggest cumulative loser but cushion rebuilt) led the bounce as tech/industrials firmed; XLB +0.17% to $53.67 (+5.09% vs entry, biggest cumulative winner) held on firm oil; defensives gave back modestly — XLP -0.29% to $86.27 (+3.00% vs entry). No thesis-breaking single-name moves; broad two-sided rotation, not a break. 4 positions (≤6): XLB 20.8%, XLI 19.7%, XLK 19.4%, XLP 20.3% — all at/under the 20% cap, no adds. Deployment 80.2% ($85,173.38 mkt value / $106,248.71 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Cushions: XLK/XLI tightest at ~6.0% above stop, XLP ~8.0%, XLB ~10.0%. Tomorrow (Thu): hold book, watch Jackson Hole (Powell) for rate-path/tech direction, no forced trade.
