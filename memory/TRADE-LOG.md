@@ -2398,3 +2398,14 @@ Equity $105,814.23, cash $21,075.33 (19.9%), deployed $84,738.90 (80.1%) — ins
 **Week trades:** 0/3
 
 **Notes:** Near-flat red close on Day 85 — equity -$122.94 to $105,829.57 (Day P&L -0.12%), phase eases to +5.83%. Two-sided rotation continued into NVDA earnings (Wed) and Jackson Hole (Aug 27-29): XLK +0.94% to $181.74 (-3.25% vs entry, biggest cumulative loser) bounced off recent softness as tech firmed; XLB flat at $53.58 (+4.91% vs entry, biggest cumulative winner) held on firm oil, while defensives gave back — XLP -1.06% to $86.52 (+3.30% vs entry) and XLI -0.34% to $178.40 (-2.06% vs entry) softest. No thesis-breaking single-name moves; broad rotation, not a break. 4 positions (≤6): XLB 20.9%, XLI 19.6%, XLK 19.2%, XLP 20.4% — XLB nudged just over 20% on appreciation only (no add); all others under cap. Deployment 80.1% ($84,754.24 mkt value / $105,829.57 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Daytrade count 0; not PDT. Week 0/3 — 3 trades available, none forced. Cushions: XLK/XLI tightest at ~5.0% above stop, XLP ~7.7%, XLB ~9.0%. Tomorrow (Wed): hold book, watch NVDA earnings for XLK direction, no forced trade.
+
+---
+
+### Aug 26 — Midday Scan (Day 86, Wednesday)
+**No action.** All 4 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $53.725 (+5.20% vs entry) — stop $48.771/hwm $54.19, ~9.2% above stop. Materials thesis intact; firm intraday gain (+0.27%), oil pressure from pre-market not derailing.
+- XLI: $180.165 (-1.10% vs entry) — stop $169.3665/hwm $188.185, ~6.0% above stop. Industrials thesis intact; firm intraday gain (+0.99%).
+- XLK: $182.10 (-3.06% vs entry) — stop $172.575/hwm $191.75, ~5.2% above stop. Post-NVDA-earnings (AMC last night) reaction muted so far, flat intraday (+0.20%), no sharp/unexplained move — no Perplexity check needed. Not a thesis break.
+- XLP: $86.405 (+3.16% vs entry) — stop $79.902/hwm $88.78, ~7.5% above stop. Staples thesis intact; mild intraday pullback (-0.13%), normal drift.
+
+Equity $106,107.80, cash $21,075.33 (19.9%), deployed $85,032.47 (80.1%) — inside the 75-85% band. Weights: XLB 20.9%, XLI 19.7%, XLK 19.2%, XLP 20.4% — XLB nudged just over 20% on appreciation only (no add); all others under cap. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; calm tape post-NVDA print, Jackson Hole (Aug 27-29) still ahead. Week 0/3. No email sent (no action taken).
