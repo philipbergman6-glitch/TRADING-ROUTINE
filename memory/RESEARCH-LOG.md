@@ -6325,3 +6325,57 @@ All 4 trailing GTC stops confirmed active/intact (verified via orders); none low
 - XLP: $86.37 (+3.12% vs entry) — stop $79.902/hwm $88.78, ~7.5% above stop. Staples thesis intact; mild intraday pullback (-1.24%), normal drift.
 
 Equity $105,678.58, cash $21,075.33 (19.9%), deployed $84,603.25 (80.1%) — inside the 75-85% band. Weights: XLB 20.8%, XLI 19.6%, XLK 19.2%, XLP 20.4% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; calm tape one day ahead of NVDA earnings (Wed) and into Jackson Hole (Aug 27-29), both already flagged pre-market. Week 0/3. No email sent (no action taken).
+
+---
+
+## 2026-08-26 (Wed) — Pre-Market Research (Day 86)
+
+### Account Snapshot
+- Equity: $105,663.70 | Cash: $21,075.33 (19.9%) | Buying power: $321,149 (margin — not an input)
+- Deployed: $84,588.37 (80.1% — **inside the 75-85% band**)
+- Daytrade count: N/A (PDT abolished) | Week trades: 0/3 (full budget)
+
+### Positions (prices = live pre-open)
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist above) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $53.35 | +$940 (+4.47%) | 20.8% | $48.771 (10% trail GTC, hwm $54.19) — ~8.6% |
+| XLI | 116 | $182.16 | $178.40 | -$436 (-2.06%) | 19.6% | $169.3665 (10% trail GTC, hwm $188.185) — ~5.1% |
+| XLK | 112 | $187.85 | $181.37 | -$726 (-3.45%) | 19.2% | $172.575 (10% trail GTC, hwm $191.75) — ~4.9% |
+| XLP | 250 | $83.76 | $86.40 | +$660 (+3.15%) | 20.4% | $79.902 (10% trail GTC, hwm $88.78) — ~7.5% |
+
+All 4 trailing GTC stops confirmed active/intact (verified via orders); none lowered, none near +15%/+20% tighten (best XLB +4.47%; all well above the -7% cut). XLB/XLP green, XLI/XLK modest losers (rate-driven, not thesis breaks). All four at/near the 20% cap — **no room to add**. Deployment 80.1% — in band; no mandate active.
+
+### Market Context — FUTURES FLAT; OIL DOWN SHARPLY; VIX LOW ~15.6; NVDA EARNINGS TONIGHT (AMC)
+- **Futures:** S&P E-minis ~**7,680** premarket, **~flat/-0.1%** — cautious tone into NVDA + macro.
+- **VIX ~15.5-15.7** — low/complacent. Thin cushion for a surprise.
+- **Oil:** WTI **~$80** (**-3%**), Brent **~$86** (-2.5%) — **sharp sell-off** on profit-taking; near-term headwind for XLB at the margin (still best-cushioned).
+- **Today's calendar (Wed):** **8:30 ET — GDP 2nd estimate + Personal Income/Outlays (Core PCE inflation)** — highest-impact macro window (Fed's preferred gauge, shapes Sep cut path). No CPI/PPI/FOMC today (next CPI Sep 11).
+- **Earnings (AMC):** **NVDA fiscal Q2'27 after close** — AI/tech bellwether; consensus ~$93-95B rev (~+96% YoY); guidance is the swing. Also CRM, CRWD, SNPS, OKTA — no held name (all sector ETFs).
+- **Swing events:** **NVDA tonight** (direct XLK read-through) + **Jackson Hole Aug 27-29** (keynote ~Fri Aug 28). Both keep tape defensively positioned; an NVDA miss/soft guide or hawkish Fed read pressures XLK/duration most.
+
+### Sector Momentum (YTD) — ALL FOUR HELD SECTORS LEADERSHIP/TOP TIER; ENERGY #1
+- **Energy** — **#1 YTD (~+38-43%)** but **oil -3% today**, no clean pre-market base. Not held; off the table into event window.
+- **Technology (XLK ✓)** — **~+25% YTD**, top tier but near-term laggard on yields; NVDA tonight is the swing. Held.
+- **Materials (XLB ✓)** — **~+19% YTD**, #2 cyclical. Best cushion (~8.6%); oil pullback a mild margin headwind. Held.
+- **Industrials (XLI ✓)** — **~+16% YTD**, leading quadrant. Soft on rates. Held.
+- **Consumer Staples (XLP ✓)** — **~+14% YTD**, leading/defensive ballast; low-beta anchor into the risk events. Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band)
+1. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 80.1% (mid-band); no need to force. All four held names at the 20% cap (no adds). A 5th name only on a clean base — nothing qualifies pre-market into NVDA tonight + Jackson Hole.
+2. **Energy — #1 YTD but off the table today.** Oil -3%, no clean base; thematic gap. Revisit only on a base above a rising 20-day, 8-10% stop, 2:1 R:R.
+3. **Avoid:** forcing a trade the day of NVDA earnings + into Jackson Hole; adding over the 20% cap on held names; chasing XLK on rate/chip noise into its own bellwether print.
+
+### Risk Factors
+- **NVDA earnings tonight (AMC)** — a miss/soft guide pressures XLK (thinnest cushion ~4.9% above stop) hardest; gap risk into Thu open.
+- **8:30 ET Core PCE + GDP** — Fed's preferred inflation gauge; a hot print jolts a low-VIX tape and pressures duration (XLK/XLI).
+- **Jackson Hole Aug 27-29** — keynote ~Fri; the week's macro swing. A hawkish read pressures duration/tech.
+- **Yields** — 30-yr elevated; duration-sensitive XLK (~4.9%) and XLI (~5.1%) the primary risk if the long end backs up.
+- **Oil -3%** — thins the materials edge at the margin (XLB still best-cushioned ~8.6%).
+- **VIX ~15.6 (low)** — complacency; thin cushion for a surprise on a binary-event day.
+- **Deployment 80.1% (in band)** — no mandate active. Patience permitted.
+
+### Decision
+**HOLD — no orders placed pre-market; no market-open mandate today.** Deployment 80.1% (in band); the mandate does not override patience. Futures flat and the market is positioning defensively into NVDA earnings (tonight) + Core PCE (8:30) + Jackson Hole (Aug 27-29) — no clean fresh leader base to justify forcing a 5th name into a binary event window.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLK/XLI softness is rate-driven, not a thesis break — watch XLK's thin ~4.9% cushion into NVDA tonight.
+- **Watch list:** clean tech/industrials leadership base for a possible second leg; energy #1 YTD but off the table on the oil sell-off. 3/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
