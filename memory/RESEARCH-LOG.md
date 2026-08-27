@@ -6379,3 +6379,53 @@ All 4 trailing GTC stops confirmed active/intact (verified via orders); none low
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above the -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLK/XLI softness is rate-driven, not a thesis break — watch XLK's thin ~4.9% cushion into NVDA tonight.
 - **Watch list:** clean tech/industrials leadership base for a possible second leg; energy #1 YTD but off the table on the oil sell-off. 3/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+## 2026-08-27 (Thu) — Pre-Market Research (Day 87)
+
+### Account Snapshot (pre-open)
+- **Equity:** $106,395.17 | **Cash:** $21,075.33 (19.8%) | **Buying power:** $323,196.87 (margin — NOT a sizing input; cash-only rule)
+- **Deployed:** $85,319.84 long mkt value / equity = **80.2%** — inside 75-85% band (no mandate)
+- Daytrade count: n/a (PDT abolished 2026-07-06). Week trades: **0/3**.
+
+### Positions (prices = live pre-open)
+| Ticker | Shares | Entry | Price | Unreal P&L | Weight | Stop (10% trail GTC, hwm) — cushion |
+|--------|--------|-------|-------|------------|--------|-------------------------------------|
+| XLB | 412 | $51.07 | $53.50 | +$1,001 (+4.76%) | 20.7% | $48.771 (hwm $54.19) — ~8.8% |
+| XLI | 116 | $182.16 | $180.53 | -$189 (-0.90%) | 19.7% | $169.3665 (hwm $188.185) — ~6.2% |
+| XLK | 112 | $187.85 | $186.53 | -$148 (-0.70%) | 19.6% | $172.575 (hwm $191.75) — ~7.5% |
+| XLP | 250 | $83.76 | $85.78 | +$505 (+2.41%) | 20.2% | $79.902 (hwm $88.78) — ~6.9% |
+
+All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none near +15%/+20% tighten (best XLB +4.76%); all well above -7% cut. XLB just over 20% on appreciation only (no add). XLK firming in extended hours (~$185-186 post-NVDA print) — cushion rebuilt.
+
+### Market Context — FUTURES +0.5%; OIL REBOUNDED; VIX LOW ~15.5; JACKSON HOLE UNDERWAY (Powell ~Fri)
+- **Futures:** S&P E-minis **~7,726, +0.5%** premarket — modestly risk-on, post-NVDA relief.
+- **VIX ~15.4-15.6** — low/complacent; thin cushion for a surprise.
+- **Oil:** WTI **~$82** / Brent **~$87** — **rebounded** off yesterday's -3% sell-off; mild tailwind for XLB.
+- **Today's calendar (Thu):** **8:30 ET — Initial Jobless Claims** (key macro read on labor/rate path) + advance economic indicators (trade/retail/wholesale). **NO CPI/PPI/FOMC** today (next CPI Sep 11).
+- **Earnings:** BMO — BBY, DG, DLTR, HRL, BURL; AMC — MRVL, WDAY, ADSK, AFRM. **No held name** (all sector ETFs).
+- **Swing event:** **Jackson Hole Symposium Aug 27-29** — Powell keynote ~Fri Aug 28; the week's macro swing. A hawkish read pressures duration/tech (XLK/XLI) most.
+
+### Sector Momentum (YTD) — ALL FOUR HELD SECTORS LEADERSHIP/TOP TIER
+- **Technology (XLK ✓)** — **~+25-27% YTD**, strongest single sector; firming post-NVDA. Held.
+- **Energy** — **#1 YTD (~+26%+)**, but not held; oil rebound noted, no clean fresh base pre-open into event window. Off the table today.
+- **Industrials (XLI ✓)** — **~+12% YTD**, leading quadrant; soft on rates. Held.
+- **Materials (XLB ✓)** — **~+12% YTD**, #2 cyclical; best cushion (~8.8%), oil rebound a mild tailwind. Held.
+- **Consumer Staples (XLP ✓)** — leading/defensive ballast; low-beta anchor into event risk. Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band)
+1. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 80.2% (mid-band); no need to force. All four held names at/near the 20% cap (no adds). A 5th name only on a clean base — nothing qualifies pre-market into Jackson Hole (Powell Fri).
+2. **Energy — #1 YTD, oil rebounded — but off the table today.** No clean base above a rising 20-day pre-open; revisit on a base with 8-10% stop, 2:1 R:R.
+3. **Avoid:** forcing a 5th name into the Jackson Hole window; adding over the 20% cap on held names; chasing XLK on the post-NVDA pop into a hawkish-Powell tail risk.
+
+### Risk Factors
+- **Jackson Hole Aug 27-29** — Powell keynote ~Fri; the week's macro swing. Hawkish read pressures duration/tech (XLK/XLI) most.
+- **8:30 ET Jobless Claims** — a hot/cold labor read jolts a low-VIX tape and rate expectations.
+- **Yields** — duration-sensitive XLK (~7.5%) and XLI (~6.2%) the primary risk if the long end backs up.
+- **VIX ~15.5 (low)** — complacency; thin cushion for a surprise into the Powell window.
+- **XLK post-NVDA pop** — extended-hours firming could fade if Powell reads hawkish; watch the ~7.5% cushion.
+
+### Decision
+**HOLD — no orders pre-market; no market-open mandate today.** Deployment 80.2% (in band); mandate does not override patience. Futures modestly green, oil rebounded, VIX low — but Jackson Hole (Powell ~Fri) is the week's binary macro swing and no clean fresh leader base justifies forcing a 5th name into it.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI/XLK softness is rate-driven, not a thesis break.
+- **Watch list:** clean tech/industrials/energy leadership base for a possible second leg. 3/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
