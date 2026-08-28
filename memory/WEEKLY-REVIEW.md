@@ -1075,3 +1075,63 @@ A clear recovery from last week's D+, and a validation week for the process fix.
 The best week of the recovery and the first with a clean, positive relative result. In a -1.9% S&P sell-off the book fell only -0.94% and beat the index by +0.96% — the direct mirror of the -2.05% melt-up blowout two weeks ago, and proof the deployment fix now works in both directions. The multi-sector spread (XLP +2.66%, XLB +4.84%) did the cushioning that a bloated cash pile used to do badly, and did it while staying 80% deployed. Risk was spotless for an eighth straight week and patience was correctly held into a soft pre-Jackson Hole tape with no clean base. Held short of a B+/A- by two things: the return was still negative in absolute terms (a relative win, not money made), and the book remains four broad-sector ETFs with no idiosyncratic single-name — XLK has now dragged for two weeks, so the structure is validated but the alpha engine is still missing. No strategy rule change: the deployment-backstop rule is now proven in both tape directions and needs no amendment; the work is to keep executing it and finally source a genuine leader.
 
 ---
+
+## Week ending 2026-08-28
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $106,071.03 (Mon Aug 24 AM = Fri Aug 21 close) |
+| Ending portfolio | $105,684.55 (Fri Aug 28 close) |
+| Week return | -$386.48 (-0.36%) |
+| S&P 500 week | +0.64% (7,674.37 Aug 21 → 7,723.62 Aug 28) |
+| Bot vs S&P | -1.00% (UNDERPERFORMED) |
+| Trades | 0 new (W:0 / L:0 / open:4); 0 closed |
+| Win rate | n/a (0 closed trades) |
+| Best trade | XLB +4.13% (open, carried) |
+| Worst trade | XLI -2.76% (open, biggest cumulative loser) |
+| Profit factor | n/a (0 closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No trades closed this week. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLB | $51.07 | $53.18 | +$869.19 (+4.13%) | $48.771 (10% trail GTC, hwm $54.19) |
+| XLI | $182.16 | $177.14 | -$582.32 (-2.76%) | $169.3665 (10% trail GTC, hwm $188.185) |
+| XLK | $187.85 | $185.61 | -$250.88 (-1.19%) | $172.575 (10% trail GTC, hwm $191.75) |
+| XLP | $83.76 | $85.45 | +$422.50 (+2.02%) | $79.902 (10% trail GTC, hwm $88.78) |
+
+**Deployed:** ~$84,609 / $105,684.55 = 80.1% (inside the 75-85% band)
+
+### What Worked
+- **Risk machinery spotless for a NINTH straight week.** All four 10% trailing GTC stops active/correct all week, none lowered, none tightened, no name hit the -7% cut or the +15%/+20% tighten triggers. XLK swung from -4.16% (Mon) to +0.40% (Thu) on the post-NVDA bounce and back to -1.19% (Fri) without ever threatening its stop — the mechanism absorbed a volatile, two-sided, binary-event week with zero manual intervention.
+- **Defensive ballast did its job again.** XLP (+2.02%) and XLB (+4.13%) stayed green all week and cushioned the rate-driven softness in XLI/XLK, exactly as designed — the multi-sector spread kept the absolute drawdown tiny (-0.36%) through NVDA earnings and a hawkish-leaning Jackson Hole.
+- **Patience correctly held into a double binary-event week.** NVDA earnings (Wed AMC) + Jackson Hole/Powell keynote (Fri) framed the week; deployment was already in-band (80.1%), so there was no mandate and no clean fresh-leader base — forcing a 5th name into that window would have been undisciplined. Zero forced trades was the right call.
+- **XLK thesis survived its stress test.** Two weeks as the book laggard, then NVDA's print and the sector-wide post-earnings follow-through pulled it back to roughly flat on cost (+0.40% Thu) before the Friday rate give-back — confirming the softness was sector/rate-driven, not an XLK-specific thesis break. Managed by the stop, not pre-empted.
+
+### What Didn't Work
+- **Lagged an UP tape by a full point (-1.00%).** The S&P eked out +0.64% on the week; the book fell -0.36%. This breaks the "symmetric book" story of the prior two weeks (matched a melt-up -0.11%, beat a sell-off +0.96%) — here it did neither, giving back in a week the index gained. The cause was composition: the book's rate-sensitive cyclical/tech sleeves (XLI, XLK) were the exact sectors Powell's hawkish Jackson Hole read pressured on Friday, while the broader mega-cap-growth-weighted index still closed up.
+- **Friday's Jackson Hole give-back (-0.43%) erased a positive week.** The book was green on the week through Wednesday's phase high ($106,248.71); the Powell keynote pressured duration and cyclicals/tech into the close and turned a small gain into a small loss. Event-driven, not a thesis break, but it cost the relative result.
+- **Still NO idiosyncratic single-name — fourth week running.** The book remains four broad-sector ETFs (~20% each). This week's shortfall is precisely the flip side of the missing alpha engine: with no mega-cap growth leader in the book, the days the index is carried by that cohort (this week) are days the book can't keep up. The identified deficit is now the direct cause of a relative loss, not just a missed upside.
+- **0 of 3 weekly trades used — third straight week.** In-band deployment and no clean base justified restraint, but the top of the band and a 5th leadership slot have now sat empty for three weeks; the standing priority to source a genuine leader keeps deferring.
+
+### Key Lessons
+- The "symmetric book" claim was incomplete. The prior two weeks proved deployment fixes the *level* of correlation (in-band tracks up, cushions down on average). This week shows *composition* still drives the residual: a book tilted to rate-sensitive cyclicals/materials/staples with no mega-cap growth will lag on days the index is led by mega-cap growth — even at correct deployment. Matching the S&P is not automatic from being in-band; it also depends on owning the sectors doing the work.
+- Sector rotation is now the live risk, not deployment or cash drag. Three weeks of in-band, spotless-risk operation have retired the deployment/discipline problem. What's left is that the specific four-sector mix can diverge from the index by ±1% in a week purely on which cohort leads. That's the argument for the idiosyncratic leader: it's the only lever left that adds sector-independent alpha.
+- Binary-event weeks reward doing nothing. NVDA + Jackson Hole made this a two-sided, headline-driven week; the disciplined hold protected capital (-0.36% absolute in a volatile week) and let the stops do the work. The lag was structural composition, not a process error — the process was clean.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Aug 31. Deployment in-band (80.1%), so NO forced trade. With Jackson Hole and NVDA now behind us and the rate signal known, the fresh-leader window is more open than it was — **if a clean base sets up, favor a 5th LEADERSHIP SINGLE-NAME (idiosyncratic engine, ideally a mega-cap growth/AI leader) over a fifth correlated ETF.** This is now the fourth-week standing priority and the direct fix for this week's lag.
+- Watch XLI: biggest cumulative loser (-2.76%), tightest cushion (~4.4% above stop Fri) on rate-driven pressure. NOT a thesis break (sector-wide, rate-driven), but it is the first stress point if the long end backs up further post-Jackson Hole. Manage by the stop; do not pre-empt.
+- Let winners run: XLB (+4.13%) and XLP (+2.02%) nowhere near the +15% tighten. Manage by rules; do not tighten early.
+- Manage by rules: 10% trailing GTC on every entry, -7% manual cut at midday, never move a stop down. On any single-name that spikes +15% and stalls, take the discretionary partial trim (standing GOOGL lesson).
+
+### Overall Grade: C+
+
+A clean process week with a poor relative result. The book lagged a mildly positive S&P (+0.64%) by a full point (-1.00%), giving back -0.36% in a week the index gained — the first clear relative miss since the deployment fix, and a break from the prior two weeks' "symmetric book." The cause was not deployment (in-band at 80.1% all week) or discipline (risk spotless for a ninth straight week, zero forced trades into an NVDA + Jackson Hole binary-event window) but composition: the book's rate-sensitive cyclical/tech sleeves were the exact sectors Powell's hawkish Friday keynote pressured, while the mega-cap-growth-weighted index still closed up. Held to C+ rather than lower because the process was faultless — the drawdown was tiny, capital was protected through a two-sided event week, and patience was correctly held with no clean base. Held to C+ rather than higher because it was a relative loss with the same root cause flagged for four weeks running: no idiosyncratic single-name / mega-cap growth leader, so the book cannot keep up on days that cohort leads. No strategy rule change — this is not a rule failure but the standing, unaddressed structural deficit; the fix is to finally source a genuine leader when a clean base presents, not to legislate further.
+
+---
