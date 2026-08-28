@@ -6429,3 +6429,52 @@ All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none 
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI/XLK softness is rate-driven, not a thesis break.
 - **Watch list:** clean tech/industrials/energy leadership base for a possible second leg. 3/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+## 2026-08-28 (Fri) — Pre-Market Research (Day 88)
+
+### Account Snapshot (pre-open)
+- **Equity:** $106,380.72 | **Cash:** $21,075.33 (19.8%) | **Buying power:** $323,156.41 (margin — NOT a sizing input; cash-only rule)
+- **Deployed:** $85,305.39 long mkt value / equity = **80.2%** — inside 75-85% band (no mandate)
+- Daytrade count: n/a (PDT abolished 2026-07-06). Week trades: **0/3**.
+
+### Positions (prices = live pre-open)
+| Ticker | Shares | Entry | Price | Unreal P&L | Weight | Stop (10% trail GTC, hwm) — cushion |
+|--------|--------|-------|-------|------------|--------|-------------------------------------|
+| XLB | 412 | $51.07 | $53.83 | +$1,137 (+5.40%) | 20.8% | $48.771 (hwm $54.19) — ~9.4% |
+| XLI | 116 | $182.16 | $178.80 | -$390 (-1.84%) | 19.5% | $169.3665 (hwm $188.185) — ~5.3% |
+| XLK | 112 | $187.85 | $187.78 | -$8 (-0.04%) | 19.8% | $172.575 (hwm $191.75) — ~8.1% |
+| XLP | 250 | $83.76 | $85.42 | +$415 (+1.98%) | 20.1% | $79.902 (hwm $88.78) — ~6.5% |
+
+All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none near +15%/+20% tighten (best XLB +5.40%); all well above -7% cut. XLB just over 20% on appreciation only (no add).
+
+### Market Context — FUTURES FLAT/+0.65%; OIL FIRM; VIX LOW ~14.5; POWELL JACKSON HOLE KEYNOTE TODAY
+- **Futures:** S&P E-minis **~7,740, flat to +0.65%** premarket — steady into the day's binary events.
+- **VIX ~14.5** — low/complacent; thin cushion for a hawkish surprise.
+- **Oil:** WTI **~$83** / Brent **~$89** — firm; mild tailwind for XLB.
+- **Today's calendar (Fri):** **12:30 ET — July Core PCE** (Fed's preferred inflation gauge; cons ~0.2% m/m core / 0.1% headline) + **Chicago PMI**, **final UMich sentiment**. **NO CPI/PPI/FOMC** today (next CPI Sep 11, PPI Sep 10).
+- **SWING EVENT — Powell Jackson Hole keynote TODAY:** the week's macro swing. Hawkish read pressures duration/tech (XLK/XLI) most; dovish read supports the whole book.
+- **Earnings:** BMO — shippers/small caps (MNSO, FRO, HAFN, BWLP, JFIN). **No held name** (all sector ETFs).
+
+### Sector Momentum (YTD) — ALL FOUR HELD SECTORS LEADERSHIP/TOP TIER
+- **Technology (XLK ✓)** — **~+24-32% YTD**, strongest engine of the market; firming post-NVDA. Held.
+- **Energy** — **top/near-top YTD (~+21-26%)**, but not held; oil firm, no clean fresh base pre-open into event window. Off the table today.
+- **Industrials (XLI ✓)** — **~+12-21% YTD**, strengthening; soft on rates. Held.
+- **Materials (XLB ✓)** — **~+11-19% YTD**, #2 cyclical; best cushion (~9.4%), oil firm a mild tailwind. Held.
+- **Consumer Staples (XLP ✓)** — **~+11-16% YTD**, leading/defensive ballast; low-beta anchor into event risk. Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band)
+1. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 80.2% (mid-band); no need to force. All four held names at/near the 20% cap (no adds). A 5th name only on a clean base — nothing qualifies pre-open into a Powell keynote day. Entry on a base above a rising 20-day, 8-10% stop, 2:1 R:R.
+2. **Energy — top-tier YTD, oil firm — but off the table today.** No clean base above a rising 20-day pre-open into the binary event; revisit post-Powell on a base with 8-10% stop, 2:1 R:R.
+3. **Avoid:** forcing a 5th name into the Powell/PCE window; adding over the 20% cap on held names; chasing XLK/XLI into a hawkish-Powell tail risk.
+
+### Risk Factors
+- **Powell Jackson Hole keynote (today)** — the week's binary macro swing. Hawkish read pressures duration/tech (XLK/XLI) most.
+- **12:30 ET July Core PCE** — a hot print on top of a hawkish Powell compounds pressure on a low-VIX tape and rate expectations.
+- **Yields** — duration-sensitive XLI (~5.3% cushion, tightest) and XLK (~8.1%) the primary risk if the long end backs up.
+- **VIX ~14.5 (low)** — complacency; thin cushion for a surprise into the Powell/PCE window.
+
+### Decision
+**HOLD — no orders pre-market; no market-open mandate today.** Deployment 80.2% (in band); the mandate does not override patience. Futures steady, oil firm, VIX low — but the Powell Jackson Hole keynote + Core PCE (12:30) are today's binary macro swings and no clean fresh leader base justifies forcing a 5th name into that window.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI/XLK softness is rate-driven, not a thesis break — watch XLI's tightest ~5.3% cushion into Powell.
+- **Watch list:** clean tech/industrials/energy leadership base for a second leg, best assessed post-Powell. 3/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market. Weekly review due today (Fri).
