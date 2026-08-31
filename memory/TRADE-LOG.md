@@ -2482,3 +2482,14 @@ Equity $105,559.68, cash $21,075.33 (20.0%), deployed $84,484.35 (80.0%) — ins
 **Week trades:** 0/3
 
 **Notes:** Red close on Day 88 into the Jackson Hole Powell keynote — equity -$456.66 to $105,684.55 (Day P&L -0.43%), phase eases to +5.68%. Rate-sensitive cyclicals/tech led the give-back as Powell's remarks pressured duration: XLI -0.93% to $177.14 (-2.76% vs entry, biggest cumulative loser), XLK -1.59% to $185.61 (-1.19% vs entry). Defensives held as ballast: XLP +0.44% to $85.45 (+2.02% vs entry), XLB -0.09% to $53.18 (+4.13% vs entry, biggest cumulative winner). No thesis-breaking single-name moves; broad rate-driven softness around the keynote, not a break. 4 positions (≤6): XLB 20.7%, XLI 19.4%, XLK 19.7%, XLP 20.2% — all at/under the 20% cap (XLB just over on appreciation only, no add). Deployment 80.1% ($84,609.22 mkt value / $105,684.55 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Week 0/3 — 3 trades available, none forced. Cushions: XLI tightest at ~4.4% above stop, XLP ~6.5%, XLK ~7.0%, XLB ~8.3%. Tomorrow (Mon): hold book, digest Jackson Hole/rate-path readthrough, weekly review was due Fri; no forced trade.
+
+---
+
+### Aug 31 — Midday Scan (Day 89, Monday)
+**No action.** All 4 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.675 (+3.14% vs entry) — stop $48.771/hwm $54.19, ~7.4% above stop. Materials thesis intact; mild intraday pullback (-0.95%), consistent with pre-market-flagged rate pressure.
+- XLI: $175.025 (-3.92% vs entry) — stop $169.3665/hwm $188.185, ~3.2% above stop (tightest cushion). Industrials thesis intact; intraday softness (-1.19%) is continuation of rate-driven pressure flagged pre-market, no XLI-specific catalyst — not sharp/unexplained, no Perplexity check needed. Not a thesis break; cushion now tightest, watch into tomorrow's JOLTS.
+- XLK: $185.859 (-1.06% vs entry) — stop $172.575/hwm $191.75, ~7.2% above stop. Tech thesis intact; flat intraday (+0.09%).
+- XLP: $84.935 (+1.40% vs entry) — stop $79.902/hwm $88.78, ~5.9% above stop. Staples thesis intact; mild intraday pullback (-0.60%).
+
+Equity $105,126.11, cash $21,075.33 (20.1%), deployed $84,050.78 (80.0%) — inside the 75-85% band. Weights: XLB 20.6%, XLI 19.3%, XLK 19.8%, XLP 20.2% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; broad rate-driven softness continuing from Friday's Powell keynote, already flagged pre-market — JOLTS (Tue) and NFP (Thu) still ahead. Week 0/3. No email sent (no action taken).
