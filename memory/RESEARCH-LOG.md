@@ -6527,3 +6527,52 @@ All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none 
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI softness is rate-driven, not a thesis break — watch XLI's tightest ~4.1% cushion into the jobs data.
 - **Watch list:** Energy (#1 YTD, oil firm) for a clean base post-NFP; tech/industrials leadership base for a second leg. 3/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
+
+## 2026-09-01 (Tue) — Pre-Market Research (Day 90)
+
+### Account Snapshot (pre-open)
+- **Equity:** $104,795.11 | **Cash:** $21,075.33 (20.1%) | **Buying power:** $318,716.70 (margin — NOT a sizing input; cash-only rule)
+- **Deployed:** $83,719.78 long mkt value / equity = **79.9%** — inside 75-85% band (no mandate)
+- PDT abolished 2026-07-06 (no daytrade count). **Week trades: 0/3.**
+
+### Positions (prices = live pre-open)
+| Ticker | Shares | Entry | Price | Unreal P&L | Weight | Stop (10% trail GTC, hwm) — cushion |
+|--------|--------|-------|-------|------------|--------|-------------------------------------|
+| XLB | 412 | $51.07 | $52.37 | +$534 (+2.54%) | 20.6% | $48.771 (hwm $54.19) — ~6.9% |
+| XLI | 116 | $182.16 | $174.39 | -$901 (-4.27%) | 19.3% | $169.3665 (hwm $188.185) — ~2.9% |
+| XLK | 112 | $187.85 | $184.00 | -$431 (-2.05%) | 19.7% | $172.575 (hwm $191.75) — ~6.2% |
+| XLP | 250 | $83.76 | $85.23 | +$367 (+1.75%) | 20.3% | $79.902 (hwm $88.78) — ~6.3% |
+
+All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none near +15%/+20% tighten (best XLB +2.54%); all above -7% cut. XLI tightest cushion (~2.9%) and biggest cumulative loser (-4.27%) — watch into today's data.
+
+### Market Context — FUTURES SOFT (-0.45%); OIL FIRM ON GEOPOLITICS (+2.5%); VIX TICKING UP ~15.2-15.9; JOLTS + ISM MFG TODAY 10:00 ET; NFP THU
+- **Futures:** S&P E-minis **~7,685, -0.45%** premarket — mild give-back ahead of data.
+- **VIX ~15.2-15.9** (14.92 prior close), **+~5%** — low but rising on geopolitical risk.
+- **Oil:** WTI **~$86-87** / Brent **~$91**, both **+~2.5%** — firm on renewed U.S.-Iran / Strait of Hormuz tensions (repricing geopolitical premium); mild XLB tailwind, energy leadership.
+- **Today's calendar (Tue):** **JOLTS Job Openings (Jul) 10:00 ET** + **ISM Manufacturing PMI (Aug) 10:00 ET** — both rate-path catalysts. No CPI/PPI/FOMC today.
+- **WEEK AHEAD:** **NFP Thu Sep 4 (8:30)** — the week's binary macro swing; then PPI Sep 10, CPI Sep 11, FOMC Sep 15-16. (Labor Day was Mon Sep 7 in prior note — correction: Labor Day is Mon Sep 7; full trading week.)
+- **Earnings:** BMO — MDT, NIO, SSL, YEXT et al. **No held name** (all sector ETFs).
+- **Tech tone:** Micron/Qualcomm upbeat guidance supporting the AI trade — mild XLK tailwind.
+
+### Sector Momentum (YTD) — ALL FOUR HELD SECTORS LEADERSHIP/TOP TIER
+- **Energy** — **#1 ~+38-45% YTD**, oil firm on geopolitics — top leadership but **not held**; no clean fresh base pre-open into data window. Watch.
+- **Technology (XLK ✓)** — strong engine, AI trade firm post-Micron/Qualcomm. Held.
+- **Materials (XLB ✓)** — **~+16% YTD**, #2/3, best cushion (~6.9%), oil a mild tailwind. Held.
+- **Industrials (XLI ✓)** — **~+13% YTD**; soft on rates, tightest cushion (~2.9%). Held.
+- **Consumer Staples (XLP ✓)** — **~+10-15% YTD**, defensive ballast/low-beta anchor into event risk. Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band)
+1. **Energy — #1 YTD, oil firm on geopolitics — top watch, off the table today.** No clean base pre-open into JOLTS/ISM/NFP window; revisit post-NFP on a base above a rising 20-day, 8-10% stop, 2:1 R:R.
+2. **Second leg toward top of band — only on a clean fresh leader base.** Deployment 79.9% (mid-band); no need to force. Four held names at/near the 20% cap (no adds). A 5th name only on a clean base — nothing qualifies pre-open into the data window.
+3. **Avoid:** forcing a 5th name into the JOLTS/ISM/NFP window; adding over the 20% cap on held names; chasing XLI into a rate/jobs tail risk on its ~2.9% cushion.
+
+### Risk Factors
+- **Data-heavy day (JOLTS + ISM Mfg 10:00 ET) into NFP Thu** — hot/cold prints move rate-sensitive XLI/XLK most; XLI's ~2.9% cushion is the primary watch.
+- **Geopolitics** — U.S.-Iran / Strait of Hormuz flare-up lifting oil and VIX; a sharp escalation is a broad risk-off tail, a de-escalation removes the XLB oil tailwind.
+- **VIX rising (~5%)** off low base — complacency thinning into event risk.
+
+### Decision
+**HOLD — no orders pre-market; no market-open mandate today.** Deployment 79.9% (in band); the mandate does not override patience. Futures soft, oil firm on geopolitics, VIX ticking up — JOLTS + ISM today and NFP Thu are the binary swings; no clean fresh leader base justifies forcing a 5th name into that window.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all leadership/top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI softness is rate-driven, not a thesis break — watch XLI's tightest ~2.9% cushion into today's data.
+- **Watch list:** Energy (#1 YTD, oil firm) for a clean base post-NFP; tech/materials leadership base for a second leg. 3/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
