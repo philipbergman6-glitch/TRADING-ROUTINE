@@ -2605,3 +2605,20 @@ Equity $105,191.42, cash $21,075.33 (20.0%), deployed $84,116.09 (80.0%) — ins
 - XLP: $84.90 (+1.36% vs entry) — stop $79.902/hwm $88.78, ~5.9% above stop. Staples thesis intact; mild intraday pullback (-0.42%) as risk-on tilt favors cyclicals/tech post-NFP.
 
 Equity $105,249.47, cash $21,075.33 (20.0%), deployed $84,174.14 (80.0%) — inside the 75-85% band. Weights: XLB 20.6%, XLI 19.3%, XLK 19.9%, XLP 20.2% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). NFP (8:30 ET) landed without a sharp/unexplained single-name reaction — all four names moved in line with the broad post-print tape, not a thesis break; no Perplexity check needed. Week 0/3. No email sent (no action taken).
+
+---
+
+### Sep 4 — EOD Snapshot (Day 93, Friday)
+**Portfolio:** $105,132.29 | **Cash:** $21,075.33 (20.0%) | **Day P&L:** -$37.12 (-0.04%) | **Phase P&L:** +$5,132.29 (+5.13%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $52.44 | -0.34% | +$564.31 (+2.68%) | $48.771 (10% trail GTC) |
+| XLI | 116 | $182.16 | $175.27 | +0.41% | -$799.24 (-3.78%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $187.28 | +0.70% | -$63.84 (-0.30%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.58 | -0.80% | +$205.00 (+0.98%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Flat close on Day 93 (Fri) — equity -$37.12 to $105,132.29 (Day P&L -0.04%), phase holds near its high at +5.13% after NFP passed without incident. Post-NFP tape favored rate-sensitives: XLK +0.70% to $187.28 (-0.30% vs entry, nearly back to breakeven) and XLI +0.41% to $175.27 (-3.78% vs entry, biggest cumulative loser but continuing to heal off lows). Defensives gave back into the risk-on tilt: XLP -0.80% to $84.58 (+0.98% vs entry), XLB -0.34% to $52.44 (+2.68% vs entry, still biggest cumulative winner). No thesis-breaking single-name moves; the four names moved in line with the broad post-NFP tape. 4 positions (≤6): XLB 20.6%, XLI 19.3%, XLK 20.0%, XLP 20.1% — XLB just over 20% on appreciation only (no add); all others at/under cap. Deployment 79.95% ($84,056.96 mkt value / $105,132.29 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Week 0/3 — full new-trade budget carries into next week. Cushions: XLI tightest at ~3.5% above stop (-3.78% unrealized but above -7% cut — let the trail work, no manual cut), XLP ~5.8%, XLK ~8.5%, XLB ~7.5%. Note: XLP GTC stop expires 2026-09-28 and XLB/XLI expire 2026-09-25 — refresh before expiry to keep protection continuous. Monday plan: hold book; no forced action, watch XLI cushion — a natural stop trigger is acceptable.
