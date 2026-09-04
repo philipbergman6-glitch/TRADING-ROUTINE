@@ -1135,3 +1135,64 @@ The best week of the recovery and the first with a clean, positive relative resu
 A clean process week with a poor relative result. The book lagged a mildly positive S&P (+0.64%) by a full point (-1.00%), giving back -0.36% in a week the index gained — the first clear relative miss since the deployment fix, and a break from the prior two weeks' "symmetric book." The cause was not deployment (in-band at 80.1% all week) or discipline (risk spotless for a ninth straight week, zero forced trades into an NVDA + Jackson Hole binary-event window) but composition: the book's rate-sensitive cyclical/tech sleeves were the exact sectors Powell's hawkish Friday keynote pressured, while the mega-cap-growth-weighted index still closed up. Held to C+ rather than lower because the process was faultless — the drawdown was tiny, capital was protected through a two-sided event week, and patience was correctly held with no clean base. Held to C+ rather than higher because it was a relative loss with the same root cause flagged for four weeks running: no idiosyncratic single-name / mega-cap growth leader, so the book cannot keep up on days that cohort leads. No strategy rule change — this is not a rule failure but the standing, unaddressed structural deficit; the fix is to finally source a genuine leader when a clean base presents, not to legislate further.
 
 ---
+
+## Week ending 2026-09-04
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $105,684.55 (Mon Aug 31 AM = Fri Aug 28 close) |
+| Ending portfolio | $105,132.29 (Fri Sep 4 close) |
+| Week return | -$552.26 (-0.52%) |
+| S&P 500 week | +0.03% (7,723.62 Aug 28 → 7,726.14 Sep 4; chained from prior week's logged close per errata rule. As-actual Fri-Fri 7,711.76 → 7,726.14 = +0.19%) |
+| Bot vs S&P | -0.56% (UNDERPERFORMED; -0.71% on as-actual S&P) |
+| Trades | 0 new (W:0 / L:0 / open:4); 0 closed |
+| Win rate | n/a (0 closed trades) |
+| Best trade | XLB +2.68% (open, carried) |
+| Worst trade | XLI -3.78% (open, biggest cumulative loser) |
+| Profit factor | n/a (0 closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No trades closed this week. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLB | $51.07 | $52.44 | +$564.31 (+2.68%) | $48.771 (10% trail GTC, hwm $54.19) |
+| XLI | $182.16 | $175.27 | -$799.24 (-3.78%) | $169.3665 (10% trail GTC, hwm $188.185) |
+| XLK | $187.85 | $187.28 | -$63.84 (-0.30%) | $172.575 (10% trail GTC, hwm $191.75) |
+| XLP | $83.76 | $84.58 | +$205.00 (+0.98%) | $79.902 (10% trail GTC, hwm $88.78) |
+
+**Deployed:** ~$84,057 / $105,132.29 = 79.95% (inside the 75-85% band)
+
+### What Worked
+- **Risk machinery spotless for a TENTH straight week.** All four 10% trailing GTC stops active/correct through a data-heavy week (JOLTS, ISM Mfg, ADP, ISM Services, jobless claims, and NFP), none lowered, none tightened, no name hit the -7% cut or the +15%/+20% tighten triggers. XLI drilled to a ~1.7% cushion above its stop (Tue midday, -5.45% intraday) and healed back to ~3.5% by Friday without ever tripping — the mechanism absorbed the tightest stress of the phase with zero manual intervention.
+- **Defensive ballast cushioned the rate-driven drawdown again.** XLP (+0.98%) and XLB (+2.68%) stayed green all week and offset the rate-sensitive softness in XLI/XLK through the JOLTS/ISM data pulses — the multi-sector spread kept the absolute drawdown tiny (-0.52%) across five macro prints.
+- **Patience correctly held into a full data slate.** Deployment was already in-band (80.0%), so no mandate; no clean fresh-leader base set up pre-NFP. Zero forced trades into the JOLTS→NFP gauntlet was the right call — forcing a 5th name into that window would have been undisciplined.
+- **XLK healed back to breakeven post-NFP.** The tech leg swung from -2.44% (Wed midday) to -0.30% (Fri close) as ISM Services/jobless claims landed benign and NFP passed without a rate shock — confirming the softness was rate-driven, not an XLK thesis break. Managed by the stop, not pre-empted.
+
+### What Didn't Work
+- **Second straight relative loss (-0.56%).** The S&P was roughly flat-to-up (~+0.03% chained, +0.19% as-actual) while the book fell -0.52% — the same composition problem flagged last week: the book's rate-sensitive cyclical/tech sleeves (XLI, XLK) were pressured through the front half of the week on JOLTS/ISM rate-path reads, and the recovery on Thu/Fri only clawed most of it back, not all.
+- **XLI remains the persistent drag.** Biggest cumulative loser all week (-3.78% vs entry, hit -5.45% intraday Tue), tightest cushion throughout (down to ~1.7% above its stop). Rate/yield pressure on industrials has now dragged the book for three-plus weeks; NOT a thesis break (sector-wide, #3-tier momentum still), but the thinnest-cushion watch every session.
+- **Still NO idiosyncratic single-name — FIFTH week running.** The book remains four broad-sector ETFs (~20% each). The relative miss is again the direct flip side of the missing alpha engine: with no mega-cap growth/AI leader, the book can't pull ahead on a flat-to-up index week — it can only cushion or track.
+- **0 of 3 weekly trades used — fourth straight week.** In-band deployment and no clean base justified restraint, but the top of the band and a 5th leadership slot have now sat empty for four weeks; the standing priority to source a genuine leader keeps deferring.
+
+### Key Lessons
+- The composition lesson from last week repeated exactly. Being in-band fixes the *level* of correlation; it does not manufacture alpha. A four-sector cyclical/materials/staples/tech book with no mega-cap growth leader will lag a flat-to-up index that is carried by the growth cohort — for the second week running, that is the entire residual. The only lever left that adds sector-independent alpha is the idiosyncratic leader.
+- Rate-path data weeks pressure the exact sleeves we hold. JOLTS/ISM/NFP all move rate-sensitive XLI/XLK first; the defensive XLP/XLB spread is the correct offset, but it can only cushion, not lead. The book is built to lose less on rate scares and to track — not to win the week outright. That is by design and acceptable, but it caps the upside until a leader is added.
+- Ten weeks of spotless risk execution have fully retired the deployment/discipline problem. The remaining gap is 100% the alpha engine. Continuing to defer the 5th leadership name because "no clean base" is defensible week to week but is now a five-week pattern — the base-hunt needs to convert the next time a genuine leader sets up, not defer a sixth time.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Sep 8. Deployment in-band (~80%), so NO forced trade. **PPI Sep 10, CPI Sep 11, and FOMC Sep 15-16 dominate next week — the rate decision is the swing event.** One legitimate deferral window around CPI/FOMC, but do not let it become another full week of the inaction excuse.
+- **STANDING PRIORITY (5th week): source a 5th LEADERSHIP SINGLE-NAME** (idiosyncratic engine, ideally a mega-cap growth/AI leader — Energy is #1 YTD and on watch) over a fifth correlated ETF, the moment a clean base sets up. This is the direct fix for two straight relative losses. Convert the next clean base; do not defer a sixth time absent a genuine risk event.
+- **Refresh expiring GTC stops before they lapse — protection must stay continuous:** XLB and XLI stops expire 2026-09-25; XLP stop expires 2026-09-28. Re-place at the same (or ratcheted-up, never down) levels well ahead of expiry.
+- Watch XLI: biggest cumulative loser, tightest cushion (~3.5% above stop Fri). NOT a thesis break (sector-wide, rate-driven); a natural stop trigger into a hawkish CPI/FOMC is acceptable — manage by the stop, no manual pre-empt (above -7%).
+- Manage by rules: 10% trailing GTC on every entry, -7% manual cut at midday, never move a stop down. On any single-name that spikes +15% and stalls, take the discretionary partial trim (standing GOOGL lesson).
+
+### Overall Grade: C+
+
+A clean process week with a second straight poor relative result. The book fell -0.52% while the S&P was roughly flat-to-up (~+0.03% chained, +0.19% as-actual), a -0.56% relative miss — the same root cause as last week: composition, not deployment or discipline. The book's rate-sensitive XLI/XLK sleeves were pressured through a data-heavy front half (JOLTS/ISM), and the Thu/Fri benign-data recovery clawed most but not all of it back. Held to C+ because the process was faultless — risk spotless for a tenth straight week (XLI absorbed the tightest cushion of the phase, ~1.7%, without tripping), the defensive XLP/XLB spread cushioned the drawdown to a tiny -0.52% across five macro prints, and patience was correctly held into the JOLTS→NFP gauntlet with no clean base. Not higher because it was a relative loss with the same deficit flagged for five weeks running: no idiosyncratic single-name / mega-cap growth leader, so the book cannot pull ahead on a flat-to-up index week. No strategy rule change — this is the standing structural deficit, not a rule failure; the fix is to finally convert the next clean leadership base, plus the operational task of refreshing the GTC stops that expire Sep 25/28.
+
+---
