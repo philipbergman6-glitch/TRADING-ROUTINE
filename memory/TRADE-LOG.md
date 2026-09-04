@@ -2594,3 +2594,14 @@ Equity $105,191.42, cash $21,075.33 (20.0%), deployed $84,116.09 (80.0%) — ins
 **Week trades:** 0/3
 
 **Notes:** Green close on Day 92 — equity +$290.50 to $105,169.41 (Day P&L +0.28%), phase to a new high +5.17%. Rate-sensitive names led the rebound as ISM Services/jobless claims data landed benign: XLI +1.14% to $174.75 (-4.07% vs entry, biggest cumulative loser but healing off lows), XLK +1.29% to $185.97 (-1.00% vs entry). Defensives gave back mildly into the risk-on tilt: XLP -0.32% to $85.26 (+1.79% vs entry), XLB -0.62% to $52.62 (+3.03% vs entry, still biggest cumulative winner). No thesis-breaking single-name moves; broad tape firm ahead of NFP (Fri, the week's binary risk). 4 positions (≤6): XLB 20.6%, XLI 19.3%, XLK 19.8%, XLP 20.3% — XLB just over 20% on appreciation only (no add); all others under cap. Deployment 80.0% ($84,094.08 mkt value / $105,169.41 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Week 0/3 — 3 trades available, none forced. Cushions: XLI tightest at ~3.1% above stop (-4.07% unrealized but above -7% cut — let the trail work, no manual cut), XLP ~6.3%, XLK ~7.2%, XLB ~7.3%. Tomorrow (Fri): hold book, NFP is the day's binary risk; watch XLI cushion — a natural stop trigger is acceptable, no forced action.
+
+---
+
+### Sep 4 — Midday Scan (Day 93, Friday)
+**No action.** All 4 positions above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $52.57 (+2.94% vs entry) — stop $48.771/hwm $54.19, ~7.2% above stop. Materials thesis intact; flat intraday (-0.10%) post-NFP.
+- XLI: $175.14 (-3.85% vs entry) — stop $169.3665/hwm $188.185, ~3.3% above stop (tightest cushion, improving off yesterday's -4.15% pre-market read). Industrials thesis intact; mild intraday gain (+0.33%) post-NFP, no deterioration.
+- XLK: $187.23 (-0.33% vs entry) — stop $172.575/hwm $191.75, ~7.8% above stop. Tech thesis intact; intraday gain (+0.68%), AI-semi tone holding.
+- XLP: $84.90 (+1.36% vs entry) — stop $79.902/hwm $88.78, ~5.9% above stop. Staples thesis intact; mild intraday pullback (-0.42%) as risk-on tilt favors cyclicals/tech post-NFP.
+
+Equity $105,249.47, cash $21,075.33 (20.0%), deployed $84,174.14 (80.0%) — inside the 75-85% band. Weights: XLB 20.6%, XLI 19.3%, XLK 19.9%, XLP 20.2% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). NFP (8:30 ET) landed without a sharp/unexplained single-name reaction — all four names moved in line with the broad post-print tape, not a thesis break; no Perplexity check needed. Week 0/3. No email sent (no action taken).
