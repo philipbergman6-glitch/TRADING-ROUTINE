@@ -200,7 +200,7 @@ SPX_LEVEL = re.compile(r"\b([\d,]{5,}\.\d+)\b")
 
 # Known discontinuities in the logged S&P series: each week re-fetched a
 # starting level instead of chaining from the prior week's logged close, so the
-# series is not continuous. These three are grandfathered and documented in the
+# series is not continuous. These five are grandfathered and documented in the
 # 'Benchmark Data Errata' section of WEEKLY-REVIEW.md. Any NEW break, or a
 # grandfathered one that has since been repaired, hard-fails the build.
 #   week ending -> (prior week's logged close, this week's logged start)
@@ -208,6 +208,8 @@ KNOWN_SPX_CHAIN_BREAKS = {
     "2026-07-24": (7475.69, 7441.68),
     "2026-07-31": (7417.10, 7411.98),
     "2026-08-07": (7437.63, 7489.72),
+    "2026-08-21": (7798.99, 7785.76),
+    "2026-08-28": (7637.80, 7674.37),
 }
 
 

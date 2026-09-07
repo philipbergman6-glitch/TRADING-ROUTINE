@@ -151,7 +151,8 @@ def test_known_chain_breaks_are_exactly_the_ones_present():
     """Guards both directions: no undocumented break, no stale grandfather."""
     weeks = b.parse_weekly_review(b.WEEKLY_REVIEW.read_text(encoding="utf-8"))
     assert len(weeks) >= 9
-    assert set(b.KNOWN_SPX_CHAIN_BREAKS) == {"2026-07-24", "2026-07-31", "2026-08-07"}
+    assert set(b.KNOWN_SPX_CHAIN_BREAKS) == {"2026-07-24", "2026-07-31", "2026-08-07",
+                                            "2026-08-21", "2026-08-28"}
 
 
 def test_hard_fails_on_new_chain_break():
