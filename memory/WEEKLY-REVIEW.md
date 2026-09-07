@@ -51,7 +51,7 @@ Template for each entry:
 ## Benchmark Data Errata (added 2026-08-11)
 
 The `S&P 500 week` rows below are the contemporaneous record — each was fetched
-during that Friday's review and is left **unedited**. Three of them re-fetched a
+during that Friday's review and is left **unedited**. Five of them re-fetched a
 starting level instead of chaining from the prior week's logged close, so the
 as-logged series is not continuous:
 
@@ -60,6 +60,8 @@ as-logged series is not continuous:
 | 2026-07-24 | 7,475.69 | 7,441.68 | −34.01 | S&P week understated: −0.33% logged vs −0.78% chained |
 | 2026-07-31 | 7,417.10 | 7,411.98 | −5.12 | −0.07pp |
 | 2026-08-07 | 7,437.63 | 7,489.72 | +52.09 | S&P week understated: +3.58% logged vs +4.30% chained |
+| 2026-08-21 | 7,798.99 | 7,785.76 | −13.23 | S&P week overstated: −1.9% logged vs −2.07% chained (added 2026-09-07) |
+| 2026-08-28 | 7,637.80 | 7,674.37 | +36.57 | S&P week understated: +0.64% logged vs +1.12% chained (added 2026-09-07) |
 
 Which level is correct cannot be determined from the logs alone — both come from
 the bot's own Perplexity fetches on different days — so **neither figure is
@@ -76,7 +78,12 @@ with no source), so they cannot be chained and are carried as logged.
 **Going forward:** every `S&P 500 week` row must quote both the starting and
 closing level, and the start must equal the prior week's close.
 `scripts/build_dashboard_data.py` now hard-fails the build on any new break;
-the three above are grandfathered in `KNOWN_SPX_CHAIN_BREAKS`.
+the five above are grandfathered in `KNOWN_SPX_CHAIN_BREAKS`.
+
+**2026-09-07 addendum:** the 08/21 and 08/28 breaks tripped that hard-fail on
+every push from Aug 24 to Sep 7, so `docs/dashboard/data.js` froze at the
+08/21 log. The two rows are grandfathered here, unedited, per the rule above;
+the 09/04 review is the first to chain correctly on its own.
 
 ---
 
