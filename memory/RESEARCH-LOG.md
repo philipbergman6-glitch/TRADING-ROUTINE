@@ -6819,3 +6819,53 @@ All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none 
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI softness is rate/yield-driven, not a thesis break — **watch XLI's tightest ~3.4% cushion into CPI/FOMC; a natural stop trigger is acceptable, no forced cut.**
 - **Watch list:** Energy (#1 YTD, oil firm) for a clean base post-CPI/FOMC; tech/materials leadership base for a second leg. 3/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** Refresh XLB/XLI/XLP stops before their late-Sep expiries. No rebalancing pre-market.
+
+---
+
+## 2026-09-09 (Wed, Day 96) — Pre-Market Research
+
+### Account Snapshot (pre-open)
+- **Equity:** $104,621.13 | **Cash:** $21,075.33 (20.14%) | **Buying power:** $318,229.56 (margin — NOT capital; sizing reads cash) | **Deployed:** $83,545.80 (79.86%, in 75-85% band)
+- **Positions (4/6):**
+
+| Ticker | Shares | Entry | Price | Unreal P&L | Weight | Stop (10% trail GTC, hwm) — cushion | Expiry |
+|--------|--------|-------|-------|------------|--------|-------------------------------------|--------|
+| XLB | 412 | $51.07 | $52.07 | +$412 (+1.96%) | 20.5% | $48.771 (hwm $54.19) — ~6.3% | 09-25 |
+| XLI | 116 | $182.16 | $173.73 | -$978 (-4.63%) | 19.3% | $169.3665 (hwm $188.185) — ~2.5% | 09-25 |
+| XLK | 112 | $187.85 | $187.19 | -$74 (-0.35%) | 20.0% | $172.575 (hwm $191.75) — ~7.8% | 11-06 |
+| XLP | 250 | $83.76 | $83.90 | +$35 (+0.17%) | 20.0% | $79.902 (hwm $88.78) — ~4.8% | 09-28 |
+
+All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none near +15%/+20% tighten (best XLB +1.96%); all above -7% cut. **XLI tightest cushion (~2.5%, narrowing from ~3.4% pre-Labor-Day) and biggest cumulative loser (-4.63%)** — primary watch. **Stop-expiry watch: XLB & XLI expire 2026-09-25 (~16d), XLP 09-28 — refresh before expiry to keep protection continuous.**
+
+### Market Context — QUIET DATA DAY BEFORE PPI/CPI; FUTURES LOWER; OIL FIRM (SAUDI STRIKES); VIX LOW ~15.7; APPLE EVENT
+- **S&P futures:** E-minis **~7,673–7,696**, down **~0.3% to 0.6%** vs prior close. Modest risk-off, setup session into the inflation prints.
+- **VIX ~15.7** (15.3–15.95 across sources) — low/complacent ahead of the binary macro.
+- **Oil:** WTI **~$94** / Brent **~$98**, +~1.5% on day; **attacks on Saudi energy facilities** pushing crude toward $100. Mild XLB tailwind + energy leadership; higher inflation/yield read is a rate drag on XLI/XLK.
+- **Econ calendar 9/9:** quiet — only **Employer Costs for Employee Compensation (10:00 ET)**. **PPI Thu 9/10 (8:30), CPI Fri 9/11 (8:30), FOMC Sep 15-16.** Today is a setup session.
+- **Catalysts:** **Apple iPhone launch event today** (tech/XLK sentiment); oil/geopolitics lifting inflation/yield fears; 10Y yield the key equity input.
+- **Earnings:** BMO today CHWY, SAIL, SIG, ASO, CNM, KFY, AEO — **no held name reports** (all sector ETFs).
+
+### Sector Momentum (YTD) — ALL FOUR HELD SECTORS TOP-TIER
+- **Energy** — **#1 ~+42% YTD**, oil firm on Saudi strikes — top leadership, **not held**; watch for a clean base.
+- **Materials (XLB ✓)** — **~+15.9% YTD**, #2, oil a mild tailwind, solid cushion (~6.3%). Held.
+- **Industrials (XLI ✓)** — **~+12.6% YTD**, #3, rate-sensitive, tightest cushion (~2.5%). Held.
+- **Consumer Staples (XLP ✓)** — **~+9.6% YTD**, defensive ballast into the data-heavy week. Held.
+- **Technology (XLK ✓)** — top-tier, AI-semi/NVDA leadership firm; Apple event a today catalyst. Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band at 79.86%)
+1. **HOLD all four — no forced action.** Deployment mid-band; mandate does not apply. No clean fresh leader base justifies a 5th name into the CPI/FOMC window.
+2. **Energy (#1 YTD, oil firm on Saudi strikes) — top 5th-name watch** on a clean base above a rising 20-day, 8-10% stop, 2:1 R:R. Deferred past **CPI (9/11) / FOMC (9/16)** — don't force ahead of the binary macro swings; a geopolitical oil spike can reverse fast on de-escalation.
+3. **Avoid:** forcing a 5th name into the CPI/FOMC window; adding over the 20% cap on held names; chasing XLI on its ~2.5% cushion.
+
+### Risk Factors
+- **Heavy inflation week:** PPI (9/10), **CPI (9/11)**, **FOMC (9/15-16)** — hot CPI or hawkish Fed hits rate-sensitive XLI/XLK hardest. **XLI's ~2.5% cushion is the primary watch** — a natural stop trigger is acceptable, no manual cut (-4.63%, above -7%).
+- **Oil/geopolitics:** Saudi-facility strikes + crude near $100 support XLB but are an inflation/yield tail; a sharp escalation is a broad risk-off; a de-escalation removes the XLB tailwind.
+- **VIX low (~15.7):** complacency into the prints; a hot read could reprice rate-sensitives fast.
+- **Apple event:** binary for tech sentiment/XLK; a disappointing event can pressure the AI-semi tape.
+- **Stop expiries approaching:** XLB/XLI (09-25), XLP (09-28) — refresh before expiry.
+
+### Decision
+**HOLD — no orders pre-market; no market-open mandate today.** Deployment 79.86% (in band); mandate does not override patience. Futures lower, oil firm, VIX low, and a binary inflation week (CPI 9/11, FOMC 9/16) plus Apple event ahead — no clean fresh leader base justifies forcing a 5th name into that window.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI softness is rate/yield-driven, not a thesis break — **watch XLI's tightest ~2.5% cushion into CPI/FOMC; a natural stop trigger is acceptable, no forced cut.**
+- **Watch list:** Energy (#1 YTD, oil firm) for a clean base post-CPI/FOMC; XLK for Apple-event follow-through. 3/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** Refresh XLB/XLI/XLP stops before their late-Sep expiries. No rebalancing pre-market.
