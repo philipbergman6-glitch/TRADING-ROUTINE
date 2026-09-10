@@ -2,7 +2,7 @@
 
 Hard gate: scripts/alpaca.sh refuses mutating subcommands unless
 ALPACA_RISK_OK=1. Routines must call validate_order.py before setting that
-flag. Stop-change / trail ladder wiring is T2 (#32) — out of scope here.
+flag. Stop-change / trail ladder wiring is covered by T2 (#32 / test_t2_midday_trail_validators).
 """
 
 from __future__ import annotations
@@ -135,14 +135,14 @@ def test_market_open_checklist_defers_sizing_to_engine() -> None:
     assert "catalyst" in text.lower() or "RESEARCH-LOG" in text
 
 
-def test_midday_does_not_wire_stop_change_validator() -> None:
-    """T1 must not pull in T2 (#32) validate_stop_change / required_trail wiring."""
+def test_midday_still_gates_through_validate_order() -> None:
+    """T1 scope: closes / replacement orders still hit validate_order.
+
+    Trail/stop-change wiring lives in T2 (`tests/test_t2_midday_trail_validators.py`).
+    """
     for path in (
         REPO / "routines" / "midday.md",
         REPO / ".claude" / "commands" / "midday.md",
     ):
         text = path.read_text()
-        assert "validate_stop_change" not in text
-        assert "required_trail_percent" not in text
-        # Still gates closes / replacement orders through validate_order.
         assert "validate_order.py" in text

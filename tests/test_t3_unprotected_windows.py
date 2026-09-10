@@ -1,6 +1,7 @@
 """T3: close unprotected windows — OTO buy (ADR 0002) + cancel-then-act order (#38).
 
-Does NOT wire T2 trail validators (#32) or T4 ledger.record_decision.
+T2 trail validators (#32) are wired on midday separately; T3 must not
+regress them. Does NOT start T4 ledger.record_decision.
 Does NOT claim PATCH closes the trail-tighten naked window — that needs #40.
 """
 
@@ -197,9 +198,9 @@ def test_buy_path_uses_oto_not_naked_market_buy(path: Path) -> None:
     assert "--stop-price" in text or "fixed_stop" in text or "build_oto_order.py oto" in text
     # Conversion to trailing still required after fill.
     assert "trailing_stop" in text or "build_oto_order.py trail" in text
-    # T2 must stay unwired.
-    assert "validate_stop_change" not in text
-    assert "required_trail_percent" not in text
+    # Market-open /trade buy path is not the midday trail CLI (T2).
+    if "midday" not in path.name:
+        assert "validate_stop_change.py" not in text
 
 
 @pytest.mark.parametrize("path", MIDDAY_WORKFLOWS, ids=lambda p: p.name)
@@ -224,8 +225,9 @@ def test_midday_trail_tighten_cancel_before_replace(path: Path) -> None:
     assert verbs[:2] == list(TRAIL_TIGHTEN_STEPS), (
         f"{path.name}: trail tighten must be cancel-then-order, got {verbs}"
     )
-    # Honest: PATCH not claimed; #40 still open.
-    assert "validate_stop_change" not in text
+    # Honest: PATCH not claimed; #40 still open. T2 wires validators; does not PATCH.
+    assert "#40" in step4 or "naked" in step4.lower()
+    assert "validate_stop_change.py" in step4
 
 
 def test_is_leftover_fixed_stop_detects_fixed_sell() -> None:
