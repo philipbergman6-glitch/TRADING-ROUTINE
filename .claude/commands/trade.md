@@ -2,6 +2,35 @@
 description: Manual trade helper with strategy-rule validation. Usage — /trade SYMBOL SHARES buy|sell
 ---
 
+## T4 — ledger on the live path (mandatory)
+
+`validate_order.py` writes every verdict (approved **and** refused) to Postgres.
+`--json` includes `ledger_order_id`. Exit **6** = ledger unavailable → STOP.
+`DATABASE_URL` is required. This records; it does **not** bind validate→submit
+([#19](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/19) still
+open). Markdown remains the operational store
+([#28](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/28)).
+
+Capture after every validate:
+
+```
+VALIDATE_JSON=$(python3 scripts/validate_order.py ... --json)
+# exit 0 or 3 both leave a ledger row; exit 6 → STOP
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c "import sys,json; print(json.load(sys.stdin)["ledger_order_id"])")
+```
+
+After every successful mutating order submit, persist the broker response
+(existing Ledger API — `submit` / `stop` only; no invented cancel writer):
+
+```
+RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$ORDER_JSON")
+python3 scripts/record_broker_response.py \
+    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --response "$RESP"
+```
+
+Trail/protective places that are separate broker orders: `--kind stop`.
+
 Execute a manual trade. The risk engine decides whether it is allowed — you do
 not re-derive the rules yourself, and you do not overrule it.
 
@@ -26,7 +55,7 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
        --price P --json
    ```
 
-   Exit 0 = approved. Exit 3 = refused. Exit 4 = broker state unavailable.
+   Exit 0 = approved. Exit 3 = refused. Exit 4 = broker state unavailable. Exit 6 = ledger fail.
 
 3. **If it exits non-zero, STOP.** Print the violations verbatim and do not
    submit anything. Do not retry with different numbers unless the operator
@@ -45,7 +74,10 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    BUY — one OTO call (entry + fixed protective leg). Never a bare market buy:
    ```
    OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
-   ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON"
+   RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON")
+   python3 scripts/record_broker_response.py \
+       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+       --response "$RESP"
    ```
    Gate before convert: filled_qty known AND filled_qty == qty, AND legs[]
    matches FixedStop (type=stop, trail null). If filled_qty != qty or residual
@@ -70,7 +102,10 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    ```
    ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel LEG_ORDER_ID
    TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-   ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
+   RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+   python3 scripts/record_broker_response.py \
+       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+       --response "$RESP"
    ```
    If conversion fails after cancel: email loudly and retry the trail —
    briefly naked. Query before claiming protected: fixed leg still open =

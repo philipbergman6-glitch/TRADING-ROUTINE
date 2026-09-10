@@ -22,6 +22,35 @@ IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
   MUST commit and push at STEP 8 if any memory files changed.
 
+## T4 — ledger on the live path (mandatory)
+
+`validate_order.py` writes every verdict (approved **and** refused) to Postgres.
+`--json` includes `ledger_order_id`. Exit **6** = ledger unavailable → STOP.
+`DATABASE_URL` is required. This records; it does **not** bind validate→submit
+([#19](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/19) still
+open). Markdown remains the operational store
+([#28](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/28)).
+
+Capture after every validate:
+
+```
+VALIDATE_JSON=$(python3 scripts/validate_order.py ... --json)
+# exit 0 or 3 both leave a ledger row; exit 6 → STOP
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c "import sys,json; print(json.load(sys.stdin)["ledger_order_id"])")
+```
+
+After every successful mutating order submit, persist the broker response
+(existing Ledger API — `submit` / `stop` only; no invented cancel writer):
+
+```
+RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$ORDER_JSON")
+python3 scripts/record_broker_response.py \
+    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --response "$RESP"
+```
+
+Trail/protective places that are separate broker orders: `--kind stop`.
+
 STEP 0 — SYNC TO LATEST MAIN (mandatory, BEFORE reading any memory file):
 git fetch origin main && git reset --hard FETCH_HEAD
 The sandbox clone is often stale. Skipping this means trading on outdated
@@ -47,8 +76,11 @@ python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
 On exit 0:
 ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
 TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
-On exit 3 → log, keep scanning. On exit 4 → STOP. If convert fails after
+RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+python3 scripts/record_broker_response.py \
+    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --response "$RESP"
+On exit 3 → log, keep scanning. On exit 4 → STOP. On exit 6 → STOP (ledger). If convert fails after
 cancel, email loudly and retry the trail place.
 
 STEP 3 — Cut losers immediately. For every position where
@@ -94,8 +126,11 @@ python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
 On exit 0 (TRAIL_TIGHTEN_STEPS = cancel then order — never reverse):
 ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
 TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent T)
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
-On validate_order exit 3 → skip tighten, log. On exit 4 → STOP.
+RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+python3 scripts/record_broker_response.py \
+    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --response "$RESP"
+On validate_order exit 3 → skip tighten, log. On exit 4 → STOP. On exit 6 → STOP (ledger).
 #40 PATCH resize is OPEN — do not invent a patch path; cancel→replace still
 has a brief naked window. T2 validates the stop/trail change; it does not
 close that window.
