@@ -2695,3 +2695,20 @@ Equity $105,005.95, cash $21,075.33 (20.1%), deployed $83,930.62 (79.9%) — ins
 - XLP: $83.28 (-0.57% vs entry) — stop $79.902/hwm $88.78, ~4.1% above stop. Staples thesis intact; slight intraday gain (+0.28%) as defensives held up better into the print.
 
 Equity $103,411.22, cash $21,075.33 (20.4%), deployed $82,335.89 (79.6%) — inside the 75-85% band. Weights: XLB 20.2%, XLI 19.1%, XLK 20.1%, XLP 20.1% — all at/under the 20% cap, no adds. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). No thesis-breaking single-name moves; today's pullback across XLB/XLI/XLK is broad, rate-sensitive drag ahead of/around the 8:30 ET PPI print, consistent with pre-market research flagging PPI as the day's binary risk — not sharp/unexplained single-name action, no Perplexity check needed. XLI's ~0.7% cushion is the primary watch (a natural stop trigger is acceptable, no forced cut — still above -7%). Week 0/3. No email sent (no action taken).
+
+---
+
+### Sep 10 — EOD Snapshot (Day 97, Thursday)
+**Portfolio:** $103,289.39 | **Cash:** $21,075.33 (20.4%) | **Day P&L:** -$709.24 (-0.68%) | **Phase P&L:** +$3,289.39 (+3.29%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $50.76 | -1.23% | -$127.85 (-0.61%) | $48.771 (10% trail GTC) |
+| XLI | 116 | $182.16 | $170.55 | -0.72% | -$1,346.76 (-6.37%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $185.22 | -1.41% | -$294.56 (-1.40%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $83.09 | +0.05% | -$167.50 (-0.80%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Red close on Day 97 (Thu, PPI day) — equity -$709.24 to $103,289.39 (Day P&L -0.68%), phase eases to +3.29%, a fresh phase low for the week. Broad rate-sensitive de-risking on/after the PPI print: XLK -1.41% to $185.22 (-1.40% vs entry, gave back its lone-green status), XLB -1.23% to $50.76 (-0.61% vs entry, flipped to a small cumulative loser as its cushion thinned), XLI -0.72% to $170.55 (-6.37% vs entry, biggest cumulative loser, grinding along the lows just above its stop). XLP essentially flat +0.05% to $83.09 (-0.80% vs entry) as defensives held up best into the print. No thesis-breaking single-name moves; all four tracked the broad PPI-day drag flagged in research, ahead of Fri CPI/next-week FOMC (9/15-16). 4 positions (≤6): XLB 20.2%, XLI 19.2%, XLK 20.1%, XLP 20.1% — at/near the 20% cap on appreciation only, no adds. Deployment 79.6% ($82,214.06 mkt value / $103,289.39 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Week 0/3 — full new-trade budget carries. Cushions vs close: XLI tightest at ~0.7% above stop (-6.37% unrealized, still above -7% cut — let the trail work, no manual cut; a natural stop trigger is acceptable), XLP ~3.8%, XLB ~3.9%, XLK ~6.8%. Stop-expiry watch: XLB/XLI GTC stops expire 2026-09-25 (15 days), XLP 2026-09-28 — refresh before expiry to keep protection continuous (XLK expires 2026-11-06). Tomorrow (Fri, CPI + weekly review): hold book; no forced action, watch XLI closely — a natural stop fill or a bounce, both acceptable; no manual intervention above -7%.
