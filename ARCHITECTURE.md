@@ -37,8 +37,12 @@ scripts/alpaca.sh                ← hard-refuses mutate unless ALPACA_RISK_OK=1
         ↓
 Alpaca paper API
         ↓
-ledger (Postgres)                ← what was proposed, decided, sent, and returned
+ledger (Postgres)                ← mandatory write on validate + post-order record (T4)
 ```
+
+`validate_order.py` persists every verdict via `ledger.live_path`; after
+`alpaca.sh order`, callers record the broker response. Still not a bound
+validate→submit handoff (#19).
 
 The model may propose. On mutating paths, routines instruct
 `scripts/validate_order.py` first, then invoke `alpaca.sh` with
@@ -115,7 +119,17 @@ than one described aspirationally.
 - **Markdown is still the operational store.** Postgres is the ledger, not the
   system of record. Migrating the five routines to SQL is the end state; doing
   it half-way would stop the bot trading and destroy the track record, which is
-  the asset this whole repo exists to build.
+  the asset this whole repo exists to build. **T4 (live path writes):** 
+  `scripts/validate_order.py` mandatorily calls `ledger.live_path.persist_decision`
+  (approved and refused; exit 6 if `DATABASE_URL` missing), and mutating order
+  paths instruct `scripts/record_broker_response.py` (`persist_broker_response` →
+  existing `Ledger.record_submission` / `record_stop`). That makes the ledger
+  *additive and mandatory on the execution path*, not yet *authoritative* —
+  routines still read `memory/*.md` for operational state
+  ([#28](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/28)).
+  Validate↔submit token binding remains
+  [#19](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/19) /
+  [#26](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/26).
 - **OTO entry is wired; on-entry convergence is wired; conversion/sell windows remain.**
   `routines/market-open.md` and `/trade` submit buys as Alpaca `oto` with a fixed
   `stop_price` leg (`risk_engine.protection` / `scripts/build_oto_order.py`,
@@ -162,6 +176,9 @@ one refactor away from being enforced in none.
 - `tests/test_risk_engine.py` — pure, no dependencies, always runs.
 - `tests/test_ledger.py` — integration, against a **real Postgres**, skipped
   cleanly when `DATABASE_URL` is unset.
+- `tests/test_t4_ledger_live_path.py` — seam tests for mandatory
+  `persist_decision` / `persist_broker_response` on the live path (fake Ledger
+  + one integration case when `DATABASE_URL` is set).
 
 Splitting them means a Docker problem costs you the ledger tests and never the
 safety tests.

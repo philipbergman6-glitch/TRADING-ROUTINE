@@ -26,6 +26,29 @@ fi
 H_KEY="APCA-API-KEY-ID: $ALPACA_API_KEY"
 H_SEC="APCA-API-SECRET-KEY: $ALPACA_SECRET_KEY"
 
+# Optional HTTP-status capture for T4 ledger writes. When the caller exports
+# ALPACA_HTTP_STATUS_FILE to a path, write curl's %{http_code} there and keep
+# stdout as the response body only. Unset → real curl -fsS (no recursion).
+_curl() {
+  local status_file="${ALPACA_HTTP_STATUS_FILE:-}"
+  if [[ -z "$status_file" ]]; then
+    curl -fsS "$@"
+    return
+  fi
+  local tmp code
+  tmp=$(mktemp)
+  code=$(curl -sS -o "$tmp" -w "%{http_code}" "$@" || true)
+  printf "%s" "$code" > "$status_file"
+  cat "$tmp"
+  rm -f "$tmp"
+  # Match curl -f: treat HTTP 4xx/5xx as failure.
+  if [[ "$code" =~ ^[45][0-9][0-9]$ ]]; then
+    echo "alpaca.sh: HTTP $code" >&2
+    return 22
+  fi
+}
+
+
 cmd="${1:-}"
 shift || true
 
@@ -46,41 +69,41 @@ esac
 
 case "$cmd" in
   account)
-    curl -fsS -H "$H_KEY" -H "$H_SEC" "$API/account"
+    _curl -H "$H_KEY" -H "$H_SEC" "$API/account"
     ;;
   positions)
-    curl -fsS -H "$H_KEY" -H "$H_SEC" "$API/positions"
+    _curl -H "$H_KEY" -H "$H_SEC" "$API/positions"
     ;;
   position)
     sym="${1:?usage: position SYM}"
-    curl -fsS -H "$H_KEY" -H "$H_SEC" "$API/positions/$sym"
+    _curl -H "$H_KEY" -H "$H_SEC" "$API/positions/$sym"
     ;;
   quote)
     sym="${1:?usage: quote SYM}"
-    curl -fsS -H "$H_KEY" -H "$H_SEC" "$DATA/stocks/$sym/quotes/latest"
+    _curl -H "$H_KEY" -H "$H_SEC" "$DATA/stocks/$sym/quotes/latest"
     ;;
   orders)
     status="${1:-open}"
-    curl -fsS -H "$H_KEY" -H "$H_SEC" "$API/orders?status=$status"
+    _curl -H "$H_KEY" -H "$H_SEC" "$API/orders?status=$status"
     ;;
   order)
     body="${1:?usage: order '<json>'}"
-    curl -fsS -H "$H_KEY" -H "$H_SEC" -H "Content-Type: application/json" \
+    _curl -H "$H_KEY" -H "$H_SEC" -H "Content-Type: application/json" \
       -X POST -d "$body" "$API/orders"
     ;;
   cancel)
     oid="${1:?usage: cancel ORDER_ID}"
-    curl -fsS -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/orders/$oid"
+    _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/orders/$oid"
     ;;
   cancel-all)
-    curl -fsS -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/orders"
+    _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/orders"
     ;;
   close)
     sym="${1:?usage: close SYM}"
-    curl -fsS -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions/$sym"
+    _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions/$sym"
     ;;
   close-all)
-    curl -fsS -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
+    _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
     ;;
   *)
     echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order|cancel|cancel-all|close|close-all> [args]" >&2

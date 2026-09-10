@@ -40,6 +40,9 @@ def _run_alpaca(*args: str, env_extra: dict[str, str] | None = None) -> subproce
     env["ALPACA_SECRET_KEY"] = "test-secret-not-real"
     # Drop any inherited approval so tests control it explicitly.
     env.pop("ALPACA_RISK_OK", None)
+    # Default: exercise unset ALPACA_HTTP_STATUS_FILE (legacy curl -fsS path).
+    # Opt in via env_extra when testing the status-capture branch.
+    env.pop("ALPACA_HTTP_STATUS_FILE", None)
     if env_extra:
         env.update(env_extra)
     return subprocess.run(
@@ -81,6 +84,11 @@ def test_mutating_cmd_passes_gate_with_risk_ok(cmd: str, argv: list[str]) -> Non
         f"{cmd} with ALPACA_RISK_OK=1 must not hit the risk gate\n"
         f"stderr={result.stderr!r}"
     )
+    # Exit 139 = SIGSEGV/stack overflow from _curl recursion — must not greenwash.
+    assert result.returncode != 139, (
+        f"{cmd} with ALPACA_RISK_OK=1 must not stack-overflow (_curl recursion); "
+        f"got {result.returncode}\nstderr={result.stderr!r}"
+    )
     # Exit 5 is reserved for the risk gate; any other failure is curl/API.
 
 
@@ -91,6 +99,31 @@ def test_read_only_cmds_do_not_require_risk_ok(cmd: str) -> None:
     result = _run_alpaca(*argv)
     assert result.returncode != 5, (
         f"read-only {cmd} must not require ALPACA_RISK_OK\nstderr={result.stderr!r}"
+    )
+    assert result.returncode != 139, (
+        f"read-only {cmd} must not stack-overflow when ALPACA_HTTP_STATUS_FILE "
+        f"is unset; got {result.returncode}\nstderr={result.stderr!r}"
+    )
+
+
+def test_unset_http_status_file_does_not_exit_139() -> None:
+    """Unset ALPACA_HTTP_STATUS_FILE must use curl -fsS, never recurse _curl.
+
+    Regression for ship-blocker: empty status-file branch called `_curl "$@"`
+    and overflowed (exit 139). T1 only asserted != 5 and greenwashed it.
+    """
+    result = _run_alpaca("account")  # helper pops ALPACA_HTTP_STATUS_FILE
+    assert result.returncode != 139, (
+        f"unset ALPACA_HTTP_STATUS_FILE must not exit 139 (stack overflow); "
+        f"got {result.returncode}\nstderr={result.stderr!r}"
+    )
+    assert result.returncode != 5, (
+        f"read-only account must not hit risk gate; got {result.returncode}"
+    )
+    # Succeed or fail cleanly via curl — never a fatal signal (>= 128).
+    assert result.returncode < 128, (
+        f"unset path should succeed or fail cleanly via curl, not signal; "
+        f"got {result.returncode}\nstderr={result.stderr!r}"
     )
 
 
