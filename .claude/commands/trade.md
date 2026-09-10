@@ -36,7 +36,14 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    `ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy|sell","type":"market","time_in_force":"day"}'`
 
 7. For BUYs, immediately place the 10% trailing stop GTC. Re-validate the
-   protective sell first, then:
+   protective sell first (position must now exist), then submit:
+
+   ```
+   python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+       --price P --trail-percent 10 --json
+   ```
+
+   On exit 0:
    `ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"10","time_in_force":"gtc"}'`
    If the stop fails to place, say so loudly — the position is unprotected and
    that is an incident, not a footnote.

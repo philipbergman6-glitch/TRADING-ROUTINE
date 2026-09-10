@@ -65,7 +65,7 @@ def test_mutating_cmd_refuses_without_risk_ok(cmd: str, argv: list[str]) -> None
         f"{cmd} without ALPACA_RISK_OK should exit 5, got {result.returncode}\n"
         f"stderr={result.stderr!r}"
     )
-    assert "ALPACA_RISK_OK" in result.stderr or "risk" in result.stderr.lower()
+    assert "ALPACA_RISK_OK" in result.stderr
     # Must not have attempted a real HTTP mutation (curl would mention http / api).
     assert "paper-api.alpaca.markets" not in result.stdout
 
@@ -94,34 +94,31 @@ def test_read_only_cmds_do_not_require_risk_ok(cmd: str) -> None:
     )
 
 
-def _mutating_mentions(text: str) -> list[str]:
-    """Return lines that invoke a mutating alpaca.sh subcommand."""
+def _mutating_line_indexes(text: str) -> list[int]:
+    """0-based line indexes that invoke a mutating alpaca.sh subcommand."""
     pattern = re.compile(
         r"alpaca\.sh\s+(order|close|close-all|cancel|cancel-all)\b"
     )
-    return [line for line in text.splitlines() if pattern.search(line)]
+    return [i for i, line in enumerate(text.splitlines()) if pattern.search(line)]
 
 
 @pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)
 def test_workflow_requires_validate_order_before_mutations(path: Path) -> None:
-    """Every live mutating workflow must instruct validate_order.py."""
+    """Every mutating alpaca line must carry ALPACA_RISK_OK and follow a validate."""
     text = path.read_text()
-    assert "validate_order.py" in text, (
-        f"{path.relative_to(REPO)} mutates orders but never mentions validate_order.py"
-    )
-    # First validate_order mention must appear before first mutating alpaca line.
-    validate_at = text.find("validate_order.py")
-    mutating_lines = _mutating_mentions(text)
-    assert mutating_lines, f"{path.name}: expected at least one mutating alpaca.sh call"
-    first_mutate_at = min(text.find(line) for line in mutating_lines)
-    assert validate_at < first_mutate_at, (
-        f"{path.relative_to(REPO)}: validate_order.py must appear before "
-        f"alpaca.sh mutating calls"
-    )
-    # Mutating invocations must carry the hard-gate flag (or be clearly gated).
-    for line in mutating_lines:
-        assert "ALPACA_RISK_OK" in line or "ALPACA_RISK_OK" in text, (
-            f"{path.relative_to(REPO)}: mutating line lacks ALPACA_RISK_OK context:\n{line}"
+    lines = text.splitlines()
+    mutating_idxs = _mutating_line_indexes(text)
+    assert mutating_idxs, f"{path.name}: expected at least one mutating alpaca.sh call"
+    for i in mutating_idxs:
+        line = lines[i]
+        assert "ALPACA_RISK_OK" in line, (
+            f"{path.relative_to(REPO)}: mutating line must set ALPACA_RISK_OK "
+            f"on the invocation itself:\n{line}"
+        )
+        preceding = "\n".join(lines[:i])
+        assert "validate_order.py" in preceding, (
+            f"{path.relative_to(REPO)}: validate_order.py must appear before "
+            f"this mutating line:\n{line}"
         )
 
 
