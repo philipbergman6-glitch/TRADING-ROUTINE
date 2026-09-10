@@ -29,6 +29,21 @@ H_SEC="APCA-API-SECRET-KEY: $ALPACA_SECRET_KEY"
 cmd="${1:-}"
 shift || true
 
+# RISK-ENGINE GATE — mutating subcommands refuse unless ALPACA_RISK_OK=1.
+# Callers must run scripts/validate_order.py first (exit 0), then re-invoke
+# with ALPACA_RISK_OK=1. Read-only subcommands never need the flag.
+# validate_order.py itself only uses read paths, so there is no recursion.
+case "$cmd" in
+  order|close|close-all|cancel|cancel-all)
+    if [[ "${ALPACA_RISK_OK:-0}" != "1" ]]; then
+      echo "REFUSING: mutating command '$cmd' requires risk-engine approval." >&2
+      echo "Run: python3 scripts/validate_order.py ... (exit 0), then" >&2
+      echo "     ALPACA_RISK_OK=1 bash scripts/alpaca.sh $cmd ..." >&2
+      exit 5
+    fi
+    ;;
+esac
+
 case "$cmd" in
   account)
     curl -fsS -H "$H_KEY" -H "$H_SEC" "$API/account"

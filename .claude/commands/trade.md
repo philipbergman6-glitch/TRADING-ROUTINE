@@ -32,11 +32,12 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
 
 5. Print the order JSON and the validation verdict, then ask "execute? (y/n)".
 
-6. On confirm:
-   `bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy|sell","type":"market","time_in_force":"day"}'`
+6. On confirm (mutating alpaca requires ALPACA_RISK_OK=1 after validation):
+   `ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy|sell","type":"market","time_in_force":"day"}'`
 
-7. For BUYs, immediately place the 10% trailing stop GTC:
-   `bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"10","time_in_force":"gtc"}'`
+7. For BUYs, immediately place the 10% trailing stop GTC. Re-validate the
+   protective sell first, then:
+   `ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"10","time_in_force":"gtc"}'`
    If the stop fails to place, say so loudly — the position is unprotected and
    that is an incident, not a footnote.
 

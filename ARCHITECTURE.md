@@ -65,7 +65,7 @@ auditable, not a bare `False`.
 ## What is enforced in code vs. left to judgment
 
 Enforced (`risk_engine/engine.py`, each with a passing and a failing test) and
-reached on the `/trade` path:
+reached on `/trade`, `market-open`, and `midday` via `scripts/validate_order.py`:
 
 paper-account-only · stocks-only · max 6 positions · max 20% per position ·
 max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
@@ -122,11 +122,12 @@ than one described aspirationally.
   and a reconciliation pass. Not built.
 - **No reconciliation loop.** Nothing yet compares local state against broker
   state or alerts when a position has no stop.
-- **The five routines are unguarded.** Only `/trade` currently calls the risk
-  engine. The scheduled routines still rely on prose instructions. This was a
-  deliberate sequencing choice: staging the risky integration behind the manual
-  path first, rather than changing an unattended flow that trades real orders
-  every morning.
+- **Scheduled routine gates (T1).** `market-open` and `midday` must call
+  `scripts/validate_order.py` before every order-mutating `alpaca.sh` path;
+  `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) unless
+  `ALPACA_RISK_OK=1`. Read-only subcommands stay ungated. Stop-change / trail
+  ladder validators remain uncalled (issue #32 / T2). Pre-market, daily-summary,
+  and weekly-review are read-only.
 - **Single user, paper only.** No multi-tenancy, no RBAC, no credential
   encryption, no live trading. There is one user and one paper account;
   building tenancy before a tenant is the expensive mistake.
