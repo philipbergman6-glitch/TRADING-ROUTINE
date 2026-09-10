@@ -77,23 +77,19 @@ paper-account-only · stocks-only · max 6 positions · max 20% per position ·
 max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
 stop required on every buy · stop never within 3% of price *on a proposed buy*
 
-Written, tested, and **not called** — deterministic code with zero non-test
-callers, which means the behaviour it describes is still governed by routine
-prose:
+Enforced on midday trail/stop *changes* via `scripts/validate_stop_change.py`
+(T2 / [issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32)):
 
 - **A stop never moves down**, and **never within 3% of price on a stop
-  *change*** — `validate_stop_change` (`risk_engine/engine.py:267`).
+  *change*** — `validate_stop_change` (`risk_engine/engine.py`).
 - **The trail ladder** (10% → 7% at +15% → 5% at +20%) —
-  `required_trail_percent` (`risk_engine/engine.py:308`). `validate_stop_change`
-  never consults it.
-
-Every stop *modification* this bot makes therefore runs on
-`routines/midday.md:39-49`, not on the engine. Wiring these up is
-[issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32);
-it is harder than it looks, because tightening a trailing stop is a
-cancel-and-replace, so there is no reliable "current stop price" to compare
-against. A tested function with no caller enforces nothing, and listing it as
-enforced would be the most damaging kind of documentation error.
+  `required_trail_percent` (`risk_engine/engine.py`). Midday asks the CLI for
+  the required trail, then validates the proposed change; the CLI composes
+  both functions (ladder floor + implied stop prices at the current mark so
+  Rule 7 still runs). Tightening remains cancel→order
+  (`TRAIL_TIGHTEN_STEPS`); collapsing that naked window needs
+  [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
+  (OPEN — do not invent PATCH).
 
 Deliberately **not** enforced, and named in `risk_engine.UNMECHANISED` rather
 than quietly dropped:
@@ -134,14 +130,15 @@ than one described aspirationally.
   not built.
 - **No reconciliation loop.** Nothing yet compares local state against broker
   state or alerts when a position has no stop.
-- **Scheduled routine gates (T1).** `market-open` and `midday` (and `/trade`)
+- **Scheduled routine gates (T1 + T2).** `market-open` and `midday` (and `/trade`)
   instruct `scripts/validate_order.py` before every order-mutating `alpaca.sh`
   path; `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) with
-  **exit 5** unless `ALPACA_RISK_OK=1`. That is an **env-flag gate plus
-  instructed validate-before-mutate**, not a bound validate→submit handoff
-  (see #19 / #26). Read-only subcommands stay ungated. Stop-change / trail
-  ladder validators remain uncalled (issue #32 / T2). Pre-market, daily-summary,
-  and weekly-review are read-only.
+  **exit 5** unless `ALPACA_RISK_OK=1`. Midday trail/stop *changes* also go
+  through `scripts/validate_stop_change.py` (`required_trail_percent` +
+  `validate_stop_change`, issue #32 / T2) before cancel→replace. That is an
+  **env-flag gate plus instructed validate-before-mutate**, not a bound
+  validate→submit handoff (see #19 / #26). Read-only subcommands stay ungated.
+  Pre-market, daily-summary, and weekly-review are read-only.
 - **Single user, paper only.** No multi-tenancy, no RBAC, no credential
   encryption, no live trading. There is one user and one paper account;
   building tenancy before a tenant is the expensive mistake.
