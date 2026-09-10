@@ -28,11 +28,11 @@ H_SEC="APCA-API-SECRET-KEY: $ALPACA_SECRET_KEY"
 
 # Optional HTTP-status capture for T4 ledger writes. When the caller exports
 # ALPACA_HTTP_STATUS_FILE to a path, write curl's %{http_code} there and keep
-# stdout as the response body only. Unset → legacy _curl (no status file).
+# stdout as the response body only. Unset → real curl -fsS (no recursion).
 _curl() {
   local status_file="${ALPACA_HTTP_STATUS_FILE:-}"
   if [[ -z "$status_file" ]]; then
-    _curl "$@"
+    curl -fsS "$@"
     return
   fi
   local tmp code
