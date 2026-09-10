@@ -47,7 +47,10 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
    ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON"
    ```
-   Read legs[] back: type must be "stop", trail fields null.
+   Gate before convert: filled_qty known AND filled_qty == qty, AND legs[]
+   matches FixedStop (type=stop, trail null). If filled_qty != qty or residual
+   shares uncovered: INCIDENT — hard-fail. Email/log; do NOT convert or assume
+   protected (ADR 0002 / quant seal).
 
    SELL of a protected position — cancel-then-close (#38), never close-then-cancel:
    ```
@@ -55,8 +58,8 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    ALPACA_RISK_OK=1 bash scripts/alpaca.sh close SYM
    ```
 
-7. For BUYs, convert the fixed OTO leg to a 10% trailing stop GTC after fill
-   (cancel leg, then place trailing — CONVERT_FIXED_TO_TRAIL_STEPS):
+7. For BUYs, convert ONLY after the fill+leg gate above (cancel leg, confirm
+   cancel, then place trailing — CONVERT_FIXED_TO_TRAIL_STEPS):
 
    ```
    python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
@@ -69,8 +72,9 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
    ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
    ```
-   If conversion fails after cancel, say so loudly and retry — briefly naked.
-   If the OTO leg still exists, the position is protected (fixed, queryable).
+   If conversion fails after cancel: email loudly and retry the trail —
+   briefly naked. Query before claiming protected: fixed leg still open =
+   protected (queryable); neither fixed nor trail = incident. #40 still OPEN.
 
 8. Log to memory/TRADE-LOG.md with full thesis, entry, stop, target, R:R.
 

@@ -36,6 +36,21 @@ STEP 2 — Pull current state:
 bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 
+STEP 2b — On-entry ADR 0002 convergence (leftover fixed legs).
+Scan open orders from STEP 2 for leftover fixed protective sells —
+`side=sell`, `type=stop` (NOT `trailing_stop`), trail fields null/absent —
+covering a held position. Convert each via CONVERT_FIXED_TO_TRAIL_STEPS
+(cancel then order). Do NOT leave convergence as wishful "next routine" prose.
+
+python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+    --price P --trail-percent 10 --json
+On exit 0:
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
+TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
+On exit 3 → log, keep scanning. On exit 4 → STOP. If convert fails after
+cancel, email loudly and retry the trail place.
+
 STEP 3 — Cut losers immediately. For every position where
 unrealized_plpc <= -0.07, validate the sell through the risk engine first
 (paper + position coherence). Do NOT skip validate_order:

@@ -27,6 +27,7 @@ __all__ = [
     "build_oto_entry",
     "build_trailing_stop",
     "assert_leg_matches_fixed",
+    "is_leftover_fixed_stop",
     "CUT_LOSER_STEPS",
     "TRAIL_TIGHTEN_STEPS",
     "CONVERT_FIXED_TO_TRAIL_STEPS",
@@ -175,6 +176,29 @@ def assert_leg_matches_fixed(leg: Mapping[str, Any], expected: FixedStop) -> Non
             raise AssertionError(
                 f"OTO leg has {trail_key}={val!r}; silent downgrade / wrong leg"
             )
+
+
+
+
+def is_leftover_fixed_stop(order: Mapping[str, Any]) -> bool:
+    """True for an open fixed protective sell — ADR 0002 on-entry convergence target.
+
+    A leftover OTO leg is ``type=stop`` (not ``trailing_stop``) with no trail
+    fields set. Routines must scan open orders on entry and convert these via
+    ``CONVERT_FIXED_TO_TRAIL_STEPS`` rather than hoping the next run notices.
+    """
+    if str(order.get("side", "")).lower() != "sell":
+        return False
+    status = str(order.get("status", "")).lower()
+    if status in ("filled", "canceled", "cancelled", "expired", "rejected", "done_for_day"):
+        return False
+    if str(order.get("type", "")).lower() != "stop":
+        return False
+    for trail_key in ("trail_percent", "trail_price"):
+        val = order.get(trail_key)
+        if val is not None and str(val).strip() not in ("", "null", "None"):
+            return False
+    return True
 
 
 # Ordered broker acts. Routines must follow these exactly — #38 was close-then-

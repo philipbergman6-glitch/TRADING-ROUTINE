@@ -120,13 +120,16 @@ than one described aspirationally.
   system of record. Migrating the five routines to SQL is the end state; doing
   it half-way would stop the bot trading and destroy the track record, which is
   the asset this whole repo exists to build.
-- **OTO entry is wired; conversion/sell windows remain.** `routines/market-open.md`
-  and `/trade` submit buys as Alpaca `oto` with a fixed `stop_price` leg
-  (`risk_engine.protection` / `scripts/build_oto_order.py`, ADR 0002), then
-  convert cancel→trailing after fill. That closes the naked-at-entry window.
-  Brief windows remain on fixed→trail conversion and on midday cancel→replace
-  trail tighten / cancel→close exits. Collapsing trail-tighten via `PATCH`
-  needs [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
+- **OTO entry is wired; on-entry convergence is wired; conversion/sell windows remain.**
+  `routines/market-open.md` and `/trade` submit buys as Alpaca `oto` with a fixed
+  `stop_price` leg (`risk_engine.protection` / `scripts/build_oto_order.py`,
+  ADR 0002), then convert cancel→trailing after a *complete* fill
+  (`filled_qty != qty` is an incident / hard-fail). Market-open and midday also
+  **scan open orders on entry** for leftover fixed legs and convert them
+  (CONVERT_FIXED_TO_TRAIL_STEPS) — not wishful "next routine" prose. Brief
+  windows remain on fixed→trail conversion and on midday cancel→replace trail
+  tighten / cancel→close exits. Collapsing trail-tighten via `PATCH` needs
+  [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
   (OPEN research — do not invent). Idempotency keys + reconciliation loop still
   not built.
 - **No reconciliation loop.** Nothing yet compares local state against broker

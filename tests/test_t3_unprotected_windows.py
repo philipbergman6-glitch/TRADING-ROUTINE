@@ -25,6 +25,7 @@ from risk_engine import (
     build_oto_entry,
     build_trailing_stop,
     fixed_stop_at_distance,
+    is_leftover_fixed_stop,
 )
 
 REPO = Path(__file__).resolve().parent.parent
@@ -40,6 +41,22 @@ MIDDAY_WORKFLOWS = (
     REPO / "routines" / "midday.md",
     REPO / ".claude" / "commands" / "midday.md",
 )
+
+# On-entry fixed→trail convergence (ADR 0002) — market-open + midday (not /trade).
+CONVERGENCE_WORKFLOWS = (
+    REPO / "routines" / "market-open.md",
+    REPO / ".claude" / "commands" / "market-open.md",
+    REPO / "routines" / "midday.md",
+    REPO / ".claude" / "commands" / "midday.md",
+)
+
+PARTIAL_FILL_WORKFLOWS = (
+    REPO / "routines" / "market-open.md",
+    REPO / ".claude" / "commands" / "market-open.md",
+    REPO / ".claude" / "commands" / "trade.md",
+)
+
+TRADE_WORKFLOW = REPO / ".claude" / "commands" / "trade.md"
 
 
 def test_oto_stop_loss_has_stop_price_only() -> None:
@@ -209,3 +226,123 @@ def test_midday_trail_tighten_cancel_before_replace(path: Path) -> None:
     )
     # Honest: PATCH not claimed; #40 still open.
     assert "validate_stop_change" not in text
+
+
+def test_is_leftover_fixed_stop_detects_fixed_sell() -> None:
+    assert is_leftover_fixed_stop(
+        {"side": "sell", "type": "stop", "status": "new", "stop_price": "12.57",
+         "trail_percent": None}
+    )
+    assert not is_leftover_fixed_stop(
+        {"side": "sell", "type": "trailing_stop", "status": "new", "trail_percent": "10"}
+    )
+    assert not is_leftover_fixed_stop(
+        {"side": "buy", "type": "stop", "status": "new", "stop_price": "12.57"}
+    )
+    assert not is_leftover_fixed_stop(
+        {"side": "sell", "type": "stop", "status": "canceled", "stop_price": "12.57"}
+    )
+    assert not is_leftover_fixed_stop(
+        {"side": "sell", "type": "stop", "status": "new", "stop_price": "12.57",
+         "trail_percent": "10"}
+    )
+
+
+@pytest.mark.parametrize("path", CONVERGENCE_WORKFLOWS, ids=lambda p: str(p.relative_to(REPO)))
+def test_on_entry_converges_leftover_fixed_stops(path: Path) -> None:
+    """ADR 0002: scan leftover fixed legs and convert — not wishful 'next routine'."""
+    text = path.read_text()
+    assert "leftover" in text.lower() or "converg" in text.lower(), (
+        f"{path}: must name leftover/convergence on entry"
+    )
+    assert "type" in text and "stop" in text
+    # Must instruct cancel→trail conversion for leftovers (not buy-path only).
+    assert "CONVERT_FIXED_TO_TRAIL_STEPS" in text or (
+        "cancel" in text and "build_oto_order.py trail" in text
+    )
+    # Explicit scan of open orders — not only happy-path convert after fill.
+    assert "orders" in text.lower()
+    assert list(CONVERT_FIXED_TO_TRAIL_STEPS) == ["cancel", "order"]
+
+
+@pytest.mark.parametrize("path", PARTIAL_FILL_WORKFLOWS, ids=lambda p: str(p.relative_to(REPO)))
+def test_partial_fill_is_hard_fail_incident(path: Path) -> None:
+    """ADR 0002 / quant: filled_qty != qty is incident BEFORE any convert."""
+    text = path.read_text()
+    assert "filled_qty" in text, f"{path.name}: must check filled_qty"
+    assert "incident" in text.lower(), f"{path.name}: partial fill must be an incident"
+    hard = (
+        "hard-fail" in text.lower()
+        or "hard fail" in text.lower()
+        or "filled_qty != qty" in text
+        or "filled_qty != " in text
+    )
+    assert hard, f"{path.name}: must hard-fail when filled_qty != qty"
+    # Gate before convert: filled_qty known + leg match; no assume-protected.
+    low = text.lower()
+    assert "leg" in low, f"{path.name}: must require leg match before convert"
+    assert "do not convert" in low or "only after" in low or "gate before" in low, (
+        f"{path.name}: must gate convert on fill+leg"
+    )
+    # Ordering inside the buy/OTO path (after entry submit): filled_qty before convert.
+    # Ignore on-entry leftover convergence (STEP 2b), which also names CONVERT_*.
+    buy_idx = text.find("order_class=oto")
+    if buy_idx < 0:
+        buy_idx = text.find("build_oto_order.py oto")
+    assert buy_idx >= 0, f"{path.name}: buy OTO path missing"
+    buy_path = text[buy_idx:]
+    fq = buy_path.find("filled_qty")
+    convert_markers = [
+        i for i in (
+            buy_path.find("STEP 5"),
+            buy_path.find("CONVERT_FIXED_TO_TRAIL_STEPS"),
+            buy_path.lower().find("convert the fixed"),
+            buy_path.lower().find("convert only after"),
+        )
+        if i >= 0
+    ]
+    assert fq >= 0 and convert_markers, f"{path.name}: need filled_qty and convert in buy path"
+    assert fq < min(convert_markers), (
+        f"{path.name}: filled_qty hard-fail must appear BEFORE convert in buy path"
+    )
+    # Residual uncovered / assume-protected forbidden.
+    assert (
+        "residual" in low
+        or "uncovered" in low
+        or "do not assume" in low
+        or "assume protected" in low
+        or "assuming" in low
+    ), f"{path.name}: must forbid assume-protected / residual uncovered"
+
+
+@pytest.mark.parametrize("path", PARTIAL_FILL_WORKFLOWS, ids=lambda p: str(p.relative_to(REPO)))
+def test_convert_keeps_cancel_confirm_retry_query(path: Path) -> None:
+    """Keep cancel-confirm + trail retry + email on fail + query before protected."""
+    text = path.read_text().lower()
+    assert "retry" in text, f"{path.name}: trail retry required"
+    assert "email" in text, f"{path.name}: email on convert fail required"
+    assert "query" in text or "queryable" in text, f"{path.name}: query before protected"
+    # Honesty: #40 still open — windows not fully closed.
+    full = path.read_text()
+    assert "#40" in full and "OPEN" in full, f"{path.name}: #40 must stay OPEN honesty"
+
+
+def test_trade_sell_is_cancel_then_close() -> None:
+    """#38: /trade sell must mirror midday cancel→close (not close-then-cancel)."""
+    text = TRADE_WORKFLOW.read_text()
+    # Isolate the SELL instruction block (before BUY convert / trailing section).
+    sell_idx = text.lower().find("sell of a protected")
+    if sell_idx < 0:
+        sell_idx = text.upper().find("SELL")
+    assert sell_idx >= 0, "trade.md must document SELL of protected position"
+    # Take from SELL mention through the next numbered step that is BUY convert,
+    # or a reasonable window of the sell instructions.
+    chunk = text[sell_idx : sell_idx + 600]
+    verbs = _first_mutating_block(chunk, ("cancel", "close"))
+    assert verbs, "trade.md SELL path must cancel and close"
+    assert verbs.index("cancel") < verbs.index("close"), (
+        f"trade.md sell must be cancel-then-close, got {verbs}"
+    )
+    assert list(CUT_LOSER_STEPS) == ["cancel", "close"]
+    # Honesty: do not claim #40 PATCH closed.
+    assert "#40" in text and "OPEN" in text
