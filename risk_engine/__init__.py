@@ -22,6 +22,17 @@ from .engine import (
     validate_order,
     validate_stop_change,
 )
+from .protection import (
+    CUT_LOSER_STEPS,
+    CONVERT_FIXED_TO_TRAIL_STEPS,
+    TRAIL_TIGHTEN_STEPS,
+    FixedStop,
+    TrailingStop,
+    assert_leg_matches_fixed,
+    build_oto_entry,
+    build_trailing_stop,
+    fixed_stop_at_distance,
+)
 from .models import (
     OrderProposal,
     PortfolioState,
@@ -51,4 +62,13 @@ __all__ = [
     "required_trail_percent",
     "validate_order",
     "validate_stop_change",
+    "FixedStop",
+    "TrailingStop",
+    "fixed_stop_at_distance",
+    "build_oto_entry",
+    "build_trailing_stop",
+    "assert_leg_matches_fixed",
+    "CUT_LOSER_STEPS",
+    "TRAIL_TIGHTEN_STEPS",
+    "CONVERT_FIXED_TO_TRAIL_STEPS",
 ]

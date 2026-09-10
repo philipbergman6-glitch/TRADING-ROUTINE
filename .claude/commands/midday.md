@@ -25,9 +25,11 @@ Exit 0 = approved → proceed.
 Exit 3 = refused → log violations verbatim; do not close.
 Exit 4 = broker state unavailable → STOP, email alert, exit.
 
-On approve (mutating alpaca requires ALPACA_RISK_OK=1):
+On approve (mutating alpaca requires ALPACA_RISK_OK=1).
+Order is mandatory cancel-then-close (#38 / CUT_LOSER_STEPS): close alone
+403s while reserved, and close-then-cancel leaves the loser held AND naked.
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID   # release reserved shares
 ALPACA_RISK_OK=1 bash scripts/alpaca.sh close SYM
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID   # cancel its trailing stop
 Log the exit to TRADE-LOG: exit price, realized P&L, "cut at -7% per rule".
 
 STEP 4 — Tighten trailing stops on winners. For each eligible position,
@@ -40,13 +42,16 @@ Never tighten within 3% of current price. Never move a stop down.
 Before cancel+replace, validate the replacement protective sell:
 python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent T --json
-On exit 0:
+On exit 0 (TRAIL_TIGHTEN_STEPS = cancel then order — never reverse):
 ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"T","time_in_force":"gtc"}'
+TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent T)
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
 On exit 3 → skip tighten, log violations. On exit 4 → STOP.
+#40 PATCH resize is OPEN — do not invent a patch path; cancel→replace still
+has a brief naked window. Do NOT wire T2 / issue #32 stop-change validators.
 
 STEP 5 — Thesis check. If a thesis broke intraday, cut the position even
-if not at -7% yet — same validate_order + ALPACA_RISK_OK close/cancel gate
+if not at -7% yet — same validate_order + ALPACA_RISK_OK cancel-then-close gate
 as STEP 3. Document reasoning in TRADE-LOG.
 
 STEP 6 — Optional intraday research via Perplexity if something is moving

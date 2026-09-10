@@ -11,11 +11,19 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    `bash scripts/alpaca.sh quote SYMBOL`
 
 2. Validate through the risk engine. This is mandatory and it reads live
-   account state itself — do not hand-check the rules:
+   account state itself — do not hand-check the rules.
 
+   For BUYs (ADR 0002 OTO fixed leg — validate with --stop-price, not trail-only):
    ```
    python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-       --price P --trail-percent 10 --json
+       --price P --stop-price STOP --json
+   ```
+   STOP = 10% below P (or let `scripts/build_oto_order.py oto --price P` derive it).
+
+   For SELLs:
+   ```
+   python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+       --price P --json
    ```
 
    Exit 0 = approved. Exit 3 = refused. Exit 4 = broker state unavailable.
@@ -30,13 +38,25 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    RESEARCH-LOG (the engine cannot judge catalyst quality — see
    `risk_engine.UNMECHANISED`).
 
-5. Print the order JSON and the validation verdict, then ask "execute? (y/n)".
+5. Print the OTO/sell JSON and the validation verdict, then ask "execute? (y/n)".
 
 6. On confirm (mutating alpaca requires ALPACA_RISK_OK=1 after validation):
-   `ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy|sell","type":"market","time_in_force":"day"}'`
 
-7. For BUYs, immediately place the 10% trailing stop GTC. Re-validate the
-   protective sell first (position must now exist), then submit:
+   BUY — one OTO call (entry + fixed protective leg). Never a bare market buy:
+   ```
+   OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
+   ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON"
+   ```
+   Read legs[] back: type must be "stop", trail fields null.
+
+   SELL of a protected position — cancel-then-close (#38), never close-then-cancel:
+   ```
+   ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
+   ALPACA_RISK_OK=1 bash scripts/alpaca.sh close SYM
+   ```
+
+7. For BUYs, convert the fixed OTO leg to a 10% trailing stop GTC after fill
+   (cancel leg, then place trailing — CONVERT_FIXED_TO_TRAIL_STEPS):
 
    ```
    python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
@@ -44,13 +64,17 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    ```
 
    On exit 0:
-   `ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"10","time_in_force":"gtc"}'`
-   If the stop fails to place, say so loudly — the position is unprotected and
-   that is an incident, not a footnote.
+   ```
+   ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel LEG_ORDER_ID
+   TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
+   ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
+   ```
+   If conversion fails after cancel, say so loudly and retry — briefly naked.
+   If the OTO leg still exists, the position is protected (fixed, queryable).
 
 8. Log to memory/TRADE-LOG.md with full thesis, entry, stop, target, R:R.
 
 9. `bash scripts/email.sh` with trade details.
 
-Note: steps 6–7 are still two calls, so a partial failure between them leaves an
-unprotected position. That gap is known and tracked — see ARCHITECTURE.md.
+Note: entry is atomic via OTO (ADR 0002). Conversion cancel→trail and sell
+cancel→close still have brief windows; PATCH (#40) is OPEN and not invented here.

@@ -120,12 +120,15 @@ than one described aspirationally.
   system of record. Migrating the five routines to SQL is the end state; doing
   it half-way would stop the bot trading and destroy the track record, which is
   the asset this whole repo exists to build.
-- **The buy/stop gap.** `routines/market-open.md` and `/trade` submit the market
-  buy and the protective stop as two separate calls. A failure between them
-  leaves an unprotected position. The engine now refuses to *approve* an
-  unprotected buy — protection is part of the order's definition — but closing
-  the execution gap properly needs an orchestration layer with idempotency keys
-  and a reconciliation pass. Not built.
+- **OTO entry is wired; conversion/sell windows remain.** `routines/market-open.md`
+  and `/trade` submit buys as Alpaca `oto` with a fixed `stop_price` leg
+  (`risk_engine.protection` / `scripts/build_oto_order.py`, ADR 0002), then
+  convert cancel→trailing after fill. That closes the naked-at-entry window.
+  Brief windows remain on fixed→trail conversion and on midday cancel→replace
+  trail tighten / cancel→close exits. Collapsing trail-tighten via `PATCH`
+  needs [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
+  (OPEN research — do not invent). Idempotency keys + reconciliation loop still
+  not built.
 - **No reconciliation loop.** Nothing yet compares local state against broker
   state or alerts when a position has no stop.
 - **Scheduled routine gates (T1).** `market-open` and `midday` (and `/trade`)
