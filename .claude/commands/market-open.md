@@ -16,13 +16,33 @@ bash scripts/alpaca.sh account
 bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh quote <each planned ticker>
 
+STEP 2b — On-entry ADR 0002 convergence (leftover fixed legs).
+Before any new buys: `bash scripts/alpaca.sh orders` (open). Scan for leftover
+fixed protective sells — `side=sell`, `type=stop` (NOT `trailing_stop`), trail
+fields null/absent — covering a held position. Each is wrong-protection state
+left when a prior convert failed; do NOT leave this to "the next routine".
+
+For every leftover fixed stop, convert via CONVERT_FIXED_TO_TRAIL_STEPS
+(cancel then order — never reverse):
+python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+    --price P --trail-percent 10 --json
+On exit 0:
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
+TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
+On exit 3 → log violations, keep scanning. On exit 4 → STOP, email, exit.
+If convert fails after cancel, email loudly and retry the trail place.
+
 STEP 3 — Validate EVERY buy through the risk engine BEFORE placing it.
 Do NOT hand-check sizing rules — the engine owns them (max positions,
 max 20% size, max 3 trades/week, sufficient cash, 85% deployment ceiling,
-stop required, min stop distance). Matching /trade:
+stop required, min stop distance). Matching /trade.
+
+ADR 0002: buys are OTO with a fixed stop_price leg (not a naked market buy).
+Derive STOP = 10% below P (or use scripts/build_oto_order.py which does it):
 
 python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-    --price P --trail-percent 10 --json
+    --price P --stop-price STOP --json
 
 Exit 0 = approved → proceed.
 Exit 3 = refused → skip this trade, log the violations verbatim to TRADE-LOG.
@@ -31,27 +51,45 @@ Exit 4 = broker state unavailable → STOP, email "VALIDATE STATE UNAVAILABLE $D
 Also confirm a catalyst is documented in today's RESEARCH-LOG (the engine
 cannot judge catalyst quality — see risk_engine.UNMECHANISED).
 
-STEP 4 — Execute the buys only after STEP 3 approved (market, day TIF).
-Mutating alpaca calls REQUIRE ALPACA_RISK_OK=1 (hard gate in alpaca.sh):
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"buy","type":"market","time_in_force":"day"}'
-Wait for fill confirmation before placing the stop.
+STEP 4 — Execute the buy as one OTO (entry + fixed protective leg).
+Mutating alpaca calls REQUIRE ALPACA_RISK_OK=1 (hard gate in alpaca.sh).
+Never submit a bare market buy without order_class=oto:
 
-STEP 5 — Immediately place 10% trailing stop GTC for each new position.
-Re-validate the protective sell (position must now exist), then submit:
+OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON"
+
+Gate before any convert: read filled_qty on the parent AND the
+protective leg. Do NOT convert, and do NOT assume the position is protected,
+until BOTH are true:
+  (a) filled_qty is known and filled_qty == qty (complete fill);
+  (b) legs[] matches FixedStop (type=stop, trail fields null).
+If filled_qty != qty (partial fill) OR residual shares would be uncovered:
+INCIDENT — hard-fail. Email, log to TRADE-LOG, stop the buy path for that
+symbol. Never proceed as full size; never convert on assumed full qty
+(ADR 0002 / quant seal).
+If leg wrong/missing after a complete fill: INCIDENT — email; do not assume
+protection.
+
+STEP 5 — Convert the fixed OTO leg to a 10% trailing stop GTC (ADR 0002).
+ONLY after the STEP 4 gate (filled_qty == qty AND leg matches). Cancel the
+fixed leg first (shares are reserved), confirm cancel (order canceled /
+qty_available freed), then place trailing. Order is mandatory: cancel then
+order (CONVERT_FIXED_TO_TRAIL_STEPS).
+
 python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent 10 --json
 On exit 0:
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"trailing_stop","trail_percent":"10","time_in_force":"gtc"}'
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel LEG_ORDER_ID
+# confirm cancel before claiming shares free / before trail POST
+TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON"
 
-If the trailing stop is rejected, fall back to fixed stop 10% below entry
-(re-validate with --stop-price first):
-python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --stop-price X.XX --json
-On exit 0:
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh order '{"symbol":"SYM","qty":"N","side":"sell","type":"stop","stop_price":"X.XX","time_in_force":"gtc"}'
-
-If also blocked, note the stop in TRADE-LOG as "stop-blocked, set tomorrow AM"
-and email loudly — unprotected position is an incident.
+If conversion fails after cancel, the position is briefly naked — email loudly
+and retry the trailing place. Query open orders/position before claiming
+protected: if the fixed leg still exists, it still protects (queryable state);
+if neither fixed nor trail is present, that is an incident. Do NOT wire T2 /
+issue #32 stop-change or trail-ladder validators. #40 PATCH still OPEN — do
+not claim unprotected windows fully closed.
 
 STEP 6 — Append each trade to memory/TRADE-LOG.md (matching existing format):
 Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.
