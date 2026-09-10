@@ -28,21 +28,27 @@ which makes reconciliation and after-the-fact audit ambiguous.
 ```
 Model proposes a trade
         ↓
-scripts/validate_order.py        ← the enforceable boundary
+scripts/validate_order.py        ← instructed pre-check (routines / commands)
         ↓
 risk_engine.validate_order()     ← deterministic; returns every broken rule
         ↓   (refused → exit 3, nothing is sent)
-        ↓   (approved)
-scripts/alpaca.sh                ← private broker adapter
+        ↓   (approved → caller sets ALPACA_RISK_OK=1)
+scripts/alpaca.sh                ← hard-refuses mutate unless ALPACA_RISK_OK=1 (exit 5)
         ↓
 Alpaca paper API
         ↓
 ledger (Postgres)                ← what was proposed, decided, sent, and returned
 ```
 
-The model may propose. It may not bypass the engine on the paths the engine
-guards. `scripts/alpaca.sh` used to be the public interface; it is now an
-adapter *behind* the safety boundary, not the boundary itself.
+The model may propose. On mutating paths, routines instruct
+`scripts/validate_order.py` first, then invoke `alpaca.sh` with
+`ALPACA_RISK_OK=1`. **Today that gate is the env flag only** — `alpaca.sh`
+does not verify that validate ran, and there is no validated-order token
+binding submit to the verdict. Real validate↔submit coupling remains
+[issue #19](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/19) /
+[issue #26](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/26).
+`scripts/alpaca.sh` is still the broker adapter; the env gate is a procedural
+check, not a non-bypassable boundary.
 
 ## Why the risk engine is a pure module
 
@@ -65,7 +71,7 @@ auditable, not a bare `False`.
 ## What is enforced in code vs. left to judgment
 
 Enforced (`risk_engine/engine.py`, each with a passing and a failing test) and
-reached on the `/trade` path:
+reached on `/trade`, `market-open`, and `midday` via `scripts/validate_order.py`:
 
 paper-account-only · stocks-only · max 6 positions · max 20% per position ·
 max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
@@ -122,11 +128,14 @@ than one described aspirationally.
   and a reconciliation pass. Not built.
 - **No reconciliation loop.** Nothing yet compares local state against broker
   state or alerts when a position has no stop.
-- **The five routines are unguarded.** Only `/trade` currently calls the risk
-  engine. The scheduled routines still rely on prose instructions. This was a
-  deliberate sequencing choice: staging the risky integration behind the manual
-  path first, rather than changing an unattended flow that trades real orders
-  every morning.
+- **Scheduled routine gates (T1).** `market-open` and `midday` (and `/trade`)
+  instruct `scripts/validate_order.py` before every order-mutating `alpaca.sh`
+  path; `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) with
+  **exit 5** unless `ALPACA_RISK_OK=1`. That is an **env-flag gate plus
+  instructed validate-before-mutate**, not a bound validate→submit handoff
+  (see #19 / #26). Read-only subcommands stay ungated. Stop-change / trail
+  ladder validators remain uncalled (issue #32 / T2). Pre-market, daily-summary,
+  and weekly-review are read-only.
 - **Single user, paper only.** No multi-tenancy, no RBAC, no credential
   encryption, no live trading. There is one user and one paper account;
   building tenancy before a tenant is the expensive mistake.
