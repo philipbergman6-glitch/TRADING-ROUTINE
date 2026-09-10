@@ -31,25 +31,31 @@ IMPORTANT — PERSISTENCE:
 open). Markdown remains the operational store
 ([#28](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/28)).
 
-Capture after every validate:
+Capture after every validate (single-quoted `-c` — double quotes NameError on the key):
 
 ```
 VALIDATE_JSON=$(python3 scripts/validate_order.py ... --json)
 # exit 0 or 3 both leave a ledger row; exit 6 → STOP
-LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c "import sys,json; print(json.load(sys.stdin)["ledger_order_id"])")
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 ```
 
 After every successful mutating order submit, persist the broker response
-(existing Ledger API — `submit` / `stop` only; no invented cancel writer):
+(existing Ledger API — `submit` / `stop` only; no invented cancel writer).
+Derive real HTTP status via `ALPACA_HTTP_STATUS_FILE` (alpaca.sh writes curl
+`%{http_code}`; never hardcode 200). Re-assign `LEDGER_ORDER_ID` from **each**
+validate `--json` before the matching `record_broker_response`:
 
 ```
-RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$ORDER_JSON")
+HTTP_STATUS_FILE=$(mktemp)
+RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$ORDER_JSON")
+HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
 python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
     --response "$RESP"
 ```
 
-Trail/protective places that are separate broker orders: `--kind stop`.
+Trail/protective places that are separate broker orders: `--kind stop`
+(Ledger `record_stop` / protection). Parent entry OTO: `--kind submit`.
 
 STEP 0 — SYNC TO LATEST MAIN (mandatory, BEFORE reading any memory file):
 git fetch origin main && git reset --hard FETCH_HEAD
@@ -75,14 +81,17 @@ left when a prior convert failed; do NOT leave this to "the next routine".
 
 For every leftover fixed stop, convert via CONVERT_FIXED_TO_TRAIL_STEPS
 (cancel then order — never reverse):
-python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --trail-percent 10 --json
+VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+    --price P --trail-percent 10 --json)
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 On exit 0:
 ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
 TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+HTTP_STATUS_FILE=$(mktemp)
+RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
 python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
     --response "$RESP"
 On exit 3 → log violations, keep scanning. On exit 4 → STOP, email, exit.
 If convert fails after cancel, email loudly and retry the trail place.
@@ -95,9 +104,9 @@ stop required, min stop distance). Matching /trade.
 ADR 0002: buys are OTO with a fixed stop_price leg (not a naked market buy).
 Derive STOP = 10% below P (or use scripts/build_oto_order.py which does it):
 
-python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-    --price P --stop-price STOP --json
-
+VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
+    --price P --stop-price STOP --json)
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 Exit 0 = approved → proceed.
 Exit 3 = refused → skip this trade, log the violations verbatim to TRADE-LOG.
 Exit 4 = broker state unavailable → STOP, email "VALIDATE STATE UNAVAILABLE $DATE", exit.
@@ -110,9 +119,11 @@ Mutating alpaca calls REQUIRE ALPACA_RISK_OK=1 (hard gate in alpaca.sh).
 Never submit a bare market buy without order_class=oto:
 
 OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
-RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON")
+HTTP_STATUS_FILE=$(mktemp)
+RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON")
+HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
 python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
     --response "$RESP"
 Gate before any convert: read filled_qty on the parent AND the
 protective leg. Do NOT convert, and do NOT assume the position is protected,
@@ -132,15 +143,18 @@ fixed leg first (shares are reserved), confirm cancel (order canceled /
 qty_available freed), then place trailing. Order is mandatory: cancel then
 order (CONVERT_FIXED_TO_TRAIL_STEPS).
 
-python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --trail-percent 10 --json
+VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+    --price P --trail-percent 10 --json)
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 On exit 0:
 ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel LEG_ORDER_ID
 # confirm cancel before claiming shares free / before trail POST
 TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+HTTP_STATUS_FILE=$(mktemp)
+RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
 python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
     --response "$RESP"
 If conversion fails after cancel, the position is briefly naked — email loudly
 and retry the trailing place. Query open orders/position before claiming

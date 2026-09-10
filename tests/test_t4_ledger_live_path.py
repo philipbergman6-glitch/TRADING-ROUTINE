@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import os
 import sys
 import uuid
@@ -403,6 +404,22 @@ def test_record_broker_response_cli_submit(monkeypatch: pytest.MonkeyPatch) -> N
 # --- workflow prose: live path instructs ledger writes ----------------------
 
 
+_BAD_LEDGER_CAPTURE = re.compile(
+    r'python3\s+-c\s+"[^"]*\["ledger_order_id"\]'
+)
+_HTTP_STATUS_HARDCODED = re.compile(r"--http-status\s+200\b")
+_TRAIL_THEN_RECORD_KIND = re.compile(
+    r"build_oto_order\.py\s+trail[\s\S]{0,500}?"
+    r"record_broker_response\.py[\s\S]{0,240}?--kind\s+(?P<kind>submit|stop)",
+    re.MULTILINE,
+)
+_OTO_THEN_RECORD_KIND = re.compile(
+    r"build_oto_order\.py\s+oto[\s\S]{0,500}?"
+    r"record_broker_response\.py[\s\S]{0,240}?--kind\s+(?P<kind>submit|stop)",
+    re.MULTILINE,
+)
+
+
 @pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)
 def test_workflow_instructs_ledger_record_after_order(path: Path) -> None:
     """After mutating order, routines must record broker response to the ledger."""
@@ -412,6 +429,90 @@ def test_workflow_instructs_ledger_record_after_order(path: Path) -> None:
         f"{path.relative_to(REPO)}: must instruct broker-response ledger write"
     )
     assert "ledger_order_id" in text
+    assert text.count("record_broker_response.py") >= 2, (
+        f"{path.name}: expected multiple record_broker_response call sites"
+    )
+
+
+@pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)
+def test_workflow_ledger_order_id_capture_quoting(path: Path) -> None:
+    """Capture must use single-quoted -c so ["ledger_order_id"] is not a NameError."""
+    text = path.read_text()
+    assert not _BAD_LEDGER_CAPTURE.search(text), (
+        f"{path.relative_to(REPO)}: double-quoted python -c with "
+        '["ledger_order_id"] raises NameError under bash — use single quotes'
+    )
+    assert "LEDGER_ORDER_ID=$(printf \"%s\" \"$VALIDATE_JSON\" | python3 -c '" in text, (
+        f"{path.relative_to(REPO)}: missing safe single-quoted LEDGER_ORDER_ID capture"
+    )
+    assert 'json.load(sys.stdin)["ledger_order_id"]' in text
+
+
+@pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)
+def test_workflow_sets_ledger_order_id_before_each_record(path: Path) -> None:
+    """Every record --order-id must follow a validate --json that sets LEDGER_ORDER_ID."""
+    text = path.read_text()
+    lines = text.splitlines()
+    record_idxs = [i for i, line in enumerate(lines) if "record_broker_response.py" in line]
+    assert record_idxs, f"{path.name}: expected record_broker_response call sites"
+    for i in record_idxs:
+        window = "\n".join(lines[max(0, i - 30) : i + 1])
+        assert re.search(r"LEDGER_ORDER_ID=", window), (
+            f"{path.relative_to(REPO)}: LEDGER_ORDER_ID must be assigned near "
+            f"record_broker_response (within ~30 lines above line {i + 1})"
+        )
+        block = "\n".join(lines[i : min(len(lines), i + 6)])
+        assert '"$LEDGER_ORDER_ID"' in block, (
+            f"{path.relative_to(REPO)}: record must pass --order-id \"$LEDGER_ORDER_ID\""
+        )
+        assert "validate_order.py" in window and "--json" in window, (
+            f"{path.relative_to(REPO)}: each record must follow a validate --json "
+            f"that sets LEDGER_ORDER_ID (line {i + 1})"
+        )
+
+
+@pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)
+def test_workflow_trail_uses_kind_stop_parent_uses_submit(path: Path) -> None:
+    """One trail policy matching Ledger: trail/protective → stop; parent OTO → submit."""
+    text = path.read_text()
+    assert "Trail/protective" in text or "trail/protective" in text.lower()
+    assert "--kind stop" in text, (
+        f"{path.relative_to(REPO)}: must document trail/protective --kind stop"
+    )
+    trail_kinds = [m.group("kind") for m in _TRAIL_THEN_RECORD_KIND.finditer(text)]
+    assert trail_kinds, f"{path.name}: expected at least one trail→record pair"
+    for kind in trail_kinds:
+        assert kind == "stop", (
+            f"{path.relative_to(REPO)}: trail place must record --kind stop "
+            f"(Ledger record_stop), got --kind {kind}"
+        )
+    oto_kinds = [m.group("kind") for m in _OTO_THEN_RECORD_KIND.finditer(text)]
+    # trade.md / market-open have OTO parent submits; midday may not.
+    for kind in oto_kinds:
+        assert kind == "submit", (
+            f"{path.relative_to(REPO)}: parent OTO must record --kind submit, "
+            f"got --kind {kind}"
+        )
+
+
+@pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)
+def test_workflow_derives_http_status_not_hardcoded(path: Path) -> None:
+    """record_broker_response must get a derived HTTP status — never hardcoded 200."""
+    text = path.read_text()
+    assert not _HTTP_STATUS_HARDCODED.search(text), (
+        f"{path.relative_to(REPO)}: drop hardcoded --http-status 200; "
+        "derive from alpaca transport (ALPACA_HTTP_STATUS_FILE / $HTTP_STATUS)"
+    )
+    assert "HTTP_STATUS" in text, (
+        f"{path.relative_to(REPO)}: must assign HTTP_STATUS for record_broker_response"
+    )
+    assert '--http-status "$HTTP_STATUS"' in text, (
+        f"{path.relative_to(REPO)}: record must pass --http-status \"$HTTP_STATUS\""
+    )
+    assert "ALPACA_HTTP_STATUS_FILE" in text, (
+        f"{path.relative_to(REPO)}: must wire ALPACA_HTTP_STATUS_FILE so status "
+        "is derived from curl -w, not guessed"
+    )
 
 
 @pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)

@@ -7,10 +7,10 @@ does not bind validate→submit (#19).
 
     python3 scripts/record_broker_response.py \
         --order-id LEDGER_UUID --kind submit --broker-order-id BRK \
-        --http-status 200 --response "$ALPACA_JSON"
+        --http-status "$HTTP_STATUS" --response "$ALPACA_JSON"
 
     python3 scripts/record_broker_response.py \
-        --order-id LEDGER_UUID --kind stop --http-status 200 \
+        --order-id LEDGER_UUID --kind stop --http-status "$HTTP_STATUS" \
         --response "$ALPACA_JSON"
 
 Exit codes:

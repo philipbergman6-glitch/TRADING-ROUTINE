@@ -11,25 +11,31 @@ description: Manual trade helper with strategy-rule validation. Usage — /trade
 open). Markdown remains the operational store
 ([#28](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/28)).
 
-Capture after every validate:
+Capture after every validate (single-quoted `-c` — double quotes NameError on the key):
 
 ```
 VALIDATE_JSON=$(python3 scripts/validate_order.py ... --json)
 # exit 0 or 3 both leave a ledger row; exit 6 → STOP
-LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c "import sys,json; print(json.load(sys.stdin)["ledger_order_id"])")
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 ```
 
 After every successful mutating order submit, persist the broker response
-(existing Ledger API — `submit` / `stop` only; no invented cancel writer):
+(existing Ledger API — `submit` / `stop` only; no invented cancel writer).
+Derive real HTTP status via `ALPACA_HTTP_STATUS_FILE` (alpaca.sh writes curl
+`%{http_code}`; never hardcode 200). Re-assign `LEDGER_ORDER_ID` from **each**
+validate `--json` before the matching `record_broker_response`:
 
 ```
-RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$ORDER_JSON")
+HTTP_STATUS_FILE=$(mktemp)
+RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$ORDER_JSON")
+HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
 python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
     --response "$RESP"
 ```
 
-Trail/protective places that are separate broker orders: `--kind stop`.
+Trail/protective places that are separate broker orders: `--kind stop`
+(Ledger `record_stop` / protection). Parent entry OTO: `--kind submit`.
 
 Execute a manual trade. The risk engine decides whether it is allowed — you do
 not re-derive the rules yourself, and you do not overrule it.
@@ -44,15 +50,17 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
 
    For BUYs (ADR 0002 OTO fixed leg — validate with --stop-price, not trail-only):
    ```
-   python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-       --price P --stop-price STOP --json
+   VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
+       --price P --stop-price STOP --json)
+   LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    ```
    STOP = 10% below P (or let `scripts/build_oto_order.py oto --price P` derive it).
 
    For SELLs:
    ```
-   python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-       --price P --json
+   VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+       --price P --json)
+   LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    ```
 
    Exit 0 = approved. Exit 3 = refused. Exit 4 = broker state unavailable. Exit 6 = ledger fail.
@@ -73,10 +81,14 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
 
    BUY — one OTO call (entry + fixed protective leg). Never a bare market buy:
    ```
+   # LEDGER_ORDER_ID from the buy validate --json above (re-assert before record)
+   LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
-   RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON")
+   HTTP_STATUS_FILE=$(mktemp)
+   RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON")
+   HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
    python3 scripts/record_broker_response.py \
-       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
        --response "$RESP"
    ```
    Gate before convert: filled_qty known AND filled_qty == qty, AND legs[]
@@ -94,17 +106,20 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    cancel, then place trailing — CONVERT_FIXED_TO_TRAIL_STEPS):
 
    ```
-   python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-       --price P --trail-percent 10 --json
+   VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+       --price P --trail-percent 10 --json)
+   LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    ```
 
    On exit 0:
    ```
    ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel LEG_ORDER_ID
    TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-   RESP=$(ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+   HTTP_STATUS_FILE=$(mktemp)
+   RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
+   HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
    python3 scripts/record_broker_response.py \
-       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status 200 \
+       --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
        --response "$RESP"
    ```
    If conversion fails after cancel: email loudly and retry the trail —
