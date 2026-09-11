@@ -6919,3 +6919,52 @@ All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none 
 - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI softness is rate/yield-driven, not a thesis break — **watch XLI's tightest ~1.5% cushion into PPI/CPI/FOMC; a natural stop trigger is acceptable, no forced cut.**
 - **Watch list:** Energy (#1 YTD, oil firm) for a clean base post-CPI/FOMC; XLK for Apple/Adobe/Oracle follow-through. 3/3 weekly trades available.
 - **All 4 trailing stops active/correct; none lowered.** Refresh XLB/XLI/XLP stops before their late-Sep expiries. No rebalancing pre-market.
+
+---
+
+## 2026-09-11 (Fri, Day 98) — Pre-Market Research
+
+### Account Snapshot (pre-open; asof 2026-09-10)
+- **Equity:** $103,674.13 | **Cash:** $21,075.33 (20.33%) | **Buying power:** $315,577.96 (margin — NOT capital; sizing reads cash) | **Deployed:** $82,598.80 (79.67%, in 75-85% band) | **Daytrade count:** n/a (PDT abolished 2026-07-06)
+- **Positions (4/6):**
+
+| Ticker | Shares | Entry | Price | Unreal P&L | Weight | Stop (10% trail GTC, hwm) — cushion | Expiry |
+|--------|--------|-------|-------|------------|--------|-------------------------------------|--------|
+| XLB | 412 | $51.07 | $50.76 | -$128 (-0.61%) | 20.2% | $48.771 (hwm $54.19) — ~3.9% | 09-25 |
+| XLI | 116 | $182.16 | $171.78 | -$1,204 (-5.70%) | 19.2% | $169.3665 (hwm $188.185) — ~1.4% | 09-25 |
+| XLK | 112 | $187.85 | $186.60 | -$140 (-0.67%) | 20.2% | $172.575 (hwm $191.75) — ~7.5% | 11-06 |
+| XLP | 250 | $83.76 | $83.44 | -$80 (-0.38%) | 20.1% | $79.902 (hwm $88.78) — ~4.2% | 09-28 |
+
+All 4 trailing GTC stops confirmed active/intact via orders; none lowered, none near +15%/+20% tighten (best XLB -0.61%); all above -7% cut. **XLI tightest cushion (~1.4%) and biggest cumulative loser (-5.70%)** — primary watch; a natural stop trigger is acceptable, no manual cut. **Stop-expiry watch: XLB & XLI expire 2026-09-25 (~14d), XLP 09-28 — refresh before expiry to keep protection continuous.**
+
+### Market Context — CPI DAY (8:30 ET); FUTURES HIGHER (BOUNCE AFTER 4-DAY SLIDE); OIL ELEVATED (BRENT >$105); VIX ~17.8 UP
+- **S&P futures:** E-minis **~7,626–7,642**, up **~0.37–0.57%** — a bounce after a 4-day slide, into the CPI print.
+- **VIX ~17.8** (17.69–17.84) — up ~7–8%, elevated into the inflation data; less complacent than early-week ~15-16.
+- **Oil:** WTI **~$99–102** / Brent **~$105–108**; WTI surged ~6.7% on 9/10 amid **Saudi/Iran escalation** and inventory draws. Elevated crude = mild XLB tailwind but an inflation/yield tail for rate-sensitive XLI/XLK.
+- **Econ calendar 9/11:** **CPI (Aug) 8:30 ET** — the binary today. Consensus: headline **3.4% y/y held**, **+0.4% m/m** (hottest in 3 months, up from +0.1%); core seen firming. **Actual not out pre-market.** OPEC Monthly Report also due. **FOMC Sep 15-16 next week.**
+- **Catalysts:** CPI the day's binary; **Kroger (KR) earnings BMO**; oil/yields; Fed rate-cut pricing. AI/megacap tech ongoing theme but today is macro-data-driven.
+- **Earnings:** BMO Kroger (KR); Telix (TLX) FDA decision — **no held name reports** (all sector ETFs).
+
+### Sector Momentum (YTD) — ALL FOUR HELD SECTORS TOP-TIER
+- **Energy** — **#1 ~+45% YTD**, oil elevated on Saudi/Iran — top leadership, **not held**; watch for a clean base.
+- **Technology (XLK ✓)** — **#2 ~+28.7% YTD**, AI-semi leadership firm; rebounding today. Held.
+- **Materials (XLB ✓)** — **#3 ~+11.9% YTD**, oil a mild tailwind, cushion ~3.9%. Held.
+- **Industrials (XLI ✓)** — **~+9.95% YTD**, rate-sensitive, tightest cushion (~1.4%). Held.
+- **Consumer Staples (XLP ✓)** — **~+7.0% YTD**, defensive ballast. Held.
+
+### Trade Ideas (3/3 weekly trades available; NO deployment mandate — in band at 79.67%)
+1. **HOLD all four — no forced action.** Deployment mid-band; mandate does not apply. No clean fresh leader base justifies a 5th name into the CPI/FOMC window.
+2. **Energy (#1 YTD, oil elevated) — top 5th-name watch** on a clean base above a rising 20-day, 8-10% stop, 2:1 R:R. Deferred past **CPI (today) / FOMC (9/16)** — don't force ahead of the binary macro; a geopolitical oil spike can reverse fast on de-escalation.
+3. **Avoid:** forcing a 5th name into the CPI/FOMC window; adding over the 20% cap on held names; chasing XLI on its ~1.4% cushion.
+
+### Risk Factors
+- **CPI today (8:30 ET) — the binary.** Consensus +0.4% m/m is the hottest in 3 months; a hot print or hawkish read hits rate-sensitive XLI/XLK hardest into next-week FOMC. **XLI's ~1.4% cushion is the primary watch** — a natural stop trigger is acceptable, no manual cut (-5.70%, above -7%).
+- **Oil/geopolitics:** Saudi/Iran escalation + Brent >$105 support XLB but are an inflation/yield tail; sharp escalation = broad risk-off; de-escalation removes the XLB tailwind.
+- **VIX up (~17.8):** less complacent into the print; a hot CPI could reprice rate-sensitives fast; futures bounce is fragile ahead of 8:30.
+- **Stop expiries approaching:** XLB/XLI (09-25, ~14d), XLP (09-28) — refresh before expiry.
+
+### Decision
+**HOLD — no orders pre-market; no market-open mandate today.** Deployment 79.67% (in band); mandate does not override patience. Futures bounce is fragile ahead of the CPI binary (8:30 ET), oil elevated, VIX up, FOMC next week — no clean fresh leader base justifies forcing a 5th name into that window.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (all top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. XLI softness is rate/yield-driven, not a thesis break — **watch XLI's tightest ~1.4% cushion into CPI/FOMC; a natural stop trigger is acceptable, no forced cut.**
+- **Watch list:** Energy (#1 YTD, oil elevated) for a clean base post-CPI/FOMC; XLK for AI-semi follow-through. 3/3 weekly trades available.
+- **All 4 trailing stops active/correct; none lowered.** Refresh XLB/XLI/XLP stops before their late-Sep expiries. No rebalancing pre-market.
