@@ -1203,3 +1203,65 @@ A clean process week with a poor relative result. The book lagged a mildly posit
 A clean process week with a second straight poor relative result. The book fell -0.52% while the S&P was roughly flat-to-up (~+0.03% chained, +0.19% as-actual), a -0.56% relative miss — the same root cause as last week: composition, not deployment or discipline. The book's rate-sensitive XLI/XLK sleeves were pressured through a data-heavy front half (JOLTS/ISM), and the Thu/Fri benign-data recovery clawed most but not all of it back. Held to C+ because the process was faultless — risk spotless for a tenth straight week (XLI absorbed the tightest cushion of the phase, ~1.7%, without tripping), the defensive XLP/XLB spread cushioned the drawdown to a tiny -0.52% across five macro prints, and patience was correctly held into the JOLTS→NFP gauntlet with no clean base. Not higher because it was a relative loss with the same deficit flagged for five weeks running: no idiosyncratic single-name / mega-cap growth leader, so the book cannot pull ahead on a flat-to-up index week. No strategy rule change — this is the standing structural deficit, not a rule failure; the fix is to finally convert the next clean leadership base, plus the operational task of refreshing the GTC stops that expire Sep 25/28.
 
 ---
+
+## Week ending 2026-09-11
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $105,132.29 (Mon Sep 7 AM = Fri Sep 4 close; Sep 7 Labor Day, market closed) |
+| Ending portfolio | $103,925.69 (Fri Sep 11 close) |
+| Week return | -$1,206.60 (-1.15%) |
+| S&P 500 week | -0.90% (7,726.14 Sep 4 → 7,656.98 Sep 11; chained from prior week's logged close per errata rule. As-actual Fri-Fri 7,718.60 → 7,656.98 = -0.80%) |
+| Bot vs S&P | -0.25% (UNDERPERFORMED; -0.35% on as-actual S&P) |
+| Trades | 0 new (W:0 / L:0 / open:4); 0 closed |
+| Win rate | n/a (0 closed trades) |
+| Best trade | XLK -0.10% (open, least negative — breakeven) |
+| Worst trade | XLI -5.37% (open, biggest cumulative loser) |
+| Profit factor | n/a (0 closed trades) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No trades closed this week. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLB | $51.07 | $50.95 | -$49.57 (-0.24%) | $48.771 (10% trail GTC, hwm $54.19) |
+| XLI | $182.16 | $172.37 | -$1,135.64 (-5.37%) | $169.3665 (10% trail GTC, hwm $188.185) |
+| XLK | $187.85 | $187.67 | -$20.16 (-0.10%) | $172.575 (10% trail GTC, hwm $191.75) |
+| XLP | $83.76 | $83.38 | -$95.00 (-0.45%) | $79.902 (10% trail GTC, hwm $88.78) |
+
+**Deployed:** ~$82,850 / $103,925.69 = 79.7% (inside the 75-85% band)
+
+### What Worked
+- **Stops held through the tightest stress of the phase.** XLI ground to a ~0.7% cushion above its stop on Thursday's PPI print (-6.39% intraday) and healed on Friday's CPI relief without ever tripping — the 10% trailing GTC absorbed the full PPI/CPI inflation gauntlet with zero manual intervention. All four stops active/correct all week, none lowered, none tightened (no name near +15%/+20%).
+- **Patience correctly held into a binary inflation stretch** (PPI Thu, CPI Fri, FOMC-eve). Deployment in-band (79.7%), no mandate, no clean fresh-leader base — zero forced trades into that window was the right call.
+- **Friday's CPI relief bounce (+0.62%, +$636) clawed back the week's low.** The print landed as expected (headline 3.4% y/y, +0.4% m/m); the book firmed across all four names into next-week FOMC, recovering from Thursday's phase low (+3.29%) to close at +3.93% phase.
+- **Discipline clean on the -7% cut.** XLI sat at -5.37% to -6.39% all week but never breached -7%; no manual cut, let the trail work — the correct read on rate-driven (not thesis-break) softness.
+
+### What Didn't Work
+- **Third straight relative loss (-0.25% chained / -0.35% as-actual) — and this time the book fell MORE than the index in a DOWN week.** Bot -1.15% vs S&P -0.90% chained (-0.80% actual). This breaks the "cushions down" story of late August: the rate-sensitive XLI/XLK/XLB sleeves were exactly what the PPI/CPI de-risking hit, while the mega-cap-growth-weighted index gave back less and bounced harder on Friday.
+- **NEW — DATABASE_URL not set in the environment; the mutating-order path was non-functional all week.** validate_order.py / open_live_ledger() hard-fail (exit 6) without it, gating every cut-loser / tighten-stop / convergence order. No order was needed (all names clear of thresholds), so nothing was actually blocked — but this is a latent breach of "Protection at all times": had XLI (~0.7% cushion Thu) breached -7%, the routine could not have validated or submitted the cut. Email alert sent both scans; flagged for operator.
+- **XLI is the persistent drag — four-plus weeks.** Biggest cumulative loser every session (-5.37% close, -6.39% intraday Thu), thinnest cushion throughout (~0.7% Thu). Rate/yield pressure on industrials (oil surged to Brent >$105 on Saudi/Iran escalation, an inflation/yield tail); NOT a thesis break, but the daily thinnest-cushion watch.
+- **Still NO idiosyncratic single-name — sixth week running; 0 of 3 weekly trades used — fifth straight week.** The book remains four broad-sector ETFs (~20% each). The relative miss is again the flip side of the missing alpha engine — and this week the specific rate-sensitive tilt actively hurt on a rate-scare week.
+
+### Key Lessons
+- **The "cushions down" claim is conditional, not general.** Late August the book beat a sell-off (+0.96%) because that sell-off was broad/risk-off; this week's decline was a rate/inflation-driven de-risking that hit precisely the book's rate-sensitive sleeves (XLI/XLK/XLB) while sparing the mega-cap-growth index. Composition determines whether the book cushions or amplifies a down week — being in-band does not guarantee a cushion.
+- **Protection continuity is only as good as the execution path.** Ten weeks of "spotless risk machinery" praised the stops; this week exposed that the mutating-order path itself was down (DATABASE_URL). The broker-side GTC stops stayed live and did the real protecting — but the routine's ability to cut a loser or tighten a stop was compromised. Restoring the env is a hard-rule priority, not an ops nicety.
+- **The structural deficit is now actively costing, not just capping upside.** For six weeks the note has been "no leader = can't pull ahead." This week the rate-sensitive tilt made it "no leader + wrong-sector tilt = fell more than the index on a rate scare." The base-hunt needs to convert into a mega-cap-growth/AI leader that also dilutes the rate-sensitive cyclical concentration.
+
+### Adjustments for Next Week
+- **OPERATOR / HARD-RULE PRIORITY: set DATABASE_URL in the environment before Monday's open.** Until it is set, the routine cannot validate or submit any cut-loser, tighten-stop, or convergence order — a live breach of "Protection at all times." The broker-side GTC stops remain the backstop, but the routine's execution path must be restored.
+- **Refresh expiring GTC stops before they lapse — protection must stay continuous:** XLB & XLI stops expire 2026-09-25 (14d), XLP 2026-09-28. Re-place at the same or ratcheted-up (never down) levels well ahead of expiry. NOTE: refreshing a stop is itself a mutating order — it needs DATABASE_URL set first.
+- Week resets to 0/3 Monday Sep 14. Deployment in-band (79.7%), so NO forced trade. **FOMC Sep 15-16 is the week's swing event** — one legitimate deferral window around the rate decision, but do not let it become another full week of the inaction excuse.
+- **STANDING PRIORITY (6th week): source a 5th LEADERSHIP SINGLE-NAME** (idiosyncratic engine, ideally a mega-cap growth/AI leader) over a fifth correlated ETF the moment a clean base sets up — now the direct fix for THREE straight relative losses and this week's wrong-tilt amplification. Convert the next clean base post-FOMC; do not defer a seventh time absent a genuine risk event.
+- Watch XLI: biggest cumulative loser, thinnest cushion (~1.7% above stop Fri). NOT a thesis break (sector-wide, rate-driven); a natural stop trigger into a hawkish FOMC is acceptable — manage by the stop, no manual pre-empt above -7% (and only possible once DATABASE_URL is restored).
+- Manage by rules: 10% trailing GTC on every entry, -7% manual cut at midday, never move a stop down. On any single-name that spikes +15% and stalls, take the discretionary partial trim (standing GOOGL lesson).
+
+### Overall Grade: C-
+
+A clean-intent process week marred by a real operational gap and a third straight relative loss. The book fell -1.15% while the S&P fell -0.90% chained (-0.80% as-actual), a -0.25% to -0.35% miss — and unlike late August, the book fell MORE than the index in a down week, because the PPI/CPI-driven de-risking hit precisely its rate-sensitive XLI/XLK/XLB sleeves while the mega-cap-growth index gave back less and bounced harder Friday. Two things pull the grade below the prior weeks' C+: (1) the "cushions down" story broke — composition amplified rather than softened this particular decline; and (2) DATABASE_URL was unset all week, leaving the mutating-order path (cut-loser, tighten-stop, stop-refresh) non-functional — a latent breach of "Protection at all times," even though no order was actually needed. Held at C- rather than lower because the broker-side GTC stops stayed live and did the real protecting, XLI absorbed the tightest cushion of the phase (~0.7% Thu) without tripping, patience into the CPI/PPI/FOMC-eve gauntlet was correct, the absolute drawdown was modest, and Friday's CPI relief clawed the week's low back to +3.93% phase. No strategy rule change — the deficit (no single-name / wrong-sector tilt) is structural, not a rule failure, and the DATABASE_URL gap is an operator env task, not a rulebook amendment; the fixes are to restore the execution path immediately, refresh the late-Sep stops, and finally convert a leadership base post-FOMC.
+
+---
