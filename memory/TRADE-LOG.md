@@ -2725,3 +2725,20 @@ Equity $103,411.22, cash $21,075.33 (20.4%), deployed $82,335.89 (79.6%) — ins
 Equity $104,086.16, cash $21,075.33 (20.25%), deployed $83,010.83 (79.75%) — inside the 75-85% band. Weights: XLB 20.2%, XLI 19.2%, XLK 20.2%, XLP 20.1% — all at/under the 20% cap, no adds. No thesis-breaking single-name moves; today's action tracks CPI-day (8:30 ET) positioning per pre-market research — no sharp/unexplained single-name moves, no Perplexity check needed. Week 0/3.
 
 **BLOCKER — DATABASE_URL not set in environment.** `scripts/validate_order.py` / `ledger.live_path.open_live_ledger()` hard-fail (exit 6, "refusing to run the live path without a ledger") without it — this gates every mutating order path (cut-loser, tighten-stop, ADR-0002 convergence) per T4. No action was needed this scan (all positions clear of thresholds), so nothing was blocked today, but if XLI (tightest cushion, ~1.9% above stop) breaches -7% or any position hits +15%/+20% before this is fixed, the routine cannot validate or submit the required order. Email alert sent. Flagging for operator: set `DATABASE_URL` in the environment before the next scheduled run.
+
+---
+
+### Sep 11 — EOD Snapshot (Day 98, Friday, CPI day)
+**Portfolio:** $103,925.69 | **Cash:** $21,075.33 (20.3%) | **Day P&L:** +$636.30 (+0.62%) | **Phase P&L:** +$3,925.69 (+3.93%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $50.95 | +0.37% | -$49.57 (-0.24%) | $48.771 (10% trail GTC) |
+| XLI | 116 | $182.16 | $172.37 | +1.07% | -$1,135.64 (-5.37%) | $169.3665 (10% trail GTC) |
+| XLK | 112 | $187.85 | $187.67 | +1.32% | -$20.16 (-0.10%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $83.38 | +0.35% | -$95.00 (-0.45%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Green close on Day 98 (Fri, CPI day) — equity +$636.30 to $103,925.69 (Day P&L +0.62%), phase recovers to +3.93% off the week's low. Relief bounce after the CPI print landed as expected: XLK +1.32% to $187.67 (-0.10% vs entry, back to breakeven, led on firm AI-semi tone), XLI +1.07% to $172.37 (-5.37% vs entry, biggest cumulative loser but bounced off the lows, cushion widened), XLP +0.35% to $83.38 (-0.45% vs entry) and XLB +0.37% to $50.95 (-0.24% vs entry) both firmed modestly. No thesis-breaking single-name moves; all four rose with the broad post-CPI relief into next-week FOMC (9/15-16). 4 positions (≤6): XLB 20.2%, XLI 19.2%, XLK 20.2%, XLP 20.1% — at/near the 20% cap on appreciation only, no adds. Deployment 79.7% ($82,850.36 mkt value / $103,925.69 equity) — inside the 75-85% band. All four 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLI $169.3665/hwm $188.185, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Week 0/3 — full new-trade budget carries. Cushions vs close: XLI tightest at ~1.7% above stop (-5.37% unrealized, still above -7% cut — let the trail work), XLP ~4.2%, XLB ~4.3%, XLK ~8.0%. Stop-expiry watch: XLB/XLI GTC stops expire 2026-09-25 (14 days), XLP 2026-09-28 — refresh before expiry to keep protection continuous (XLK expires 2026-11-06). **Ops blocker persists:** DATABASE_URL still not set in environment — gates every mutating order path (cut-loser, tighten-stop, ADR-0002 convergence) via validate_order.py/open_live_ledger(); no order was needed this week so nothing was blocked, but XLI (~1.7% cushion) breaching -7% before it's fixed would leave the routine unable to validate/submit. Operator: set DATABASE_URL before next scheduled run. Tomorrow (Mon): hold book; watch XLI cushion and stop-expiry refresh window into FOMC week.
