@@ -2759,3 +2759,19 @@ Equity $103,365.94, cash $40,630.53 (39.3%), deployed $62,735.41 (60.7%) — **b
 **Ops blocker persists:** DATABASE_URL still unset — gates every mutating order path (cut-loser, tighten-stop, ADR-0002 convergence) via validate_order.py/open_live_ledger() (exit 6, fail-closed). Not invoked today (XLI's stop fired automatically at the broker, no order needed; no other position crossed a threshold), but remains a live risk if a manual cut/tighten is needed before Wed's FOMC decision. Operator: set DATABASE_URL.
 
 Email sent: XLI stop-loss exit + deployment now under band.
+
+---
+
+### Sep 14 — EOD Snapshot (Day 99, Monday, FOMC week)
+**Portfolio:** $103,176.77 | **Cash:** $40,630.53 (39.4%) | **Day P&L:** -$748.92 (-0.72%) | **Phase P&L:** +$3,176.77 (+3.18%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $50.49 | -0.90% | -$239.09 (-1.14%) | $48.771 (10% trail GTC) |
+| XLK | 112 | $187.85 | $184.28 | -1.81% | -$399.84 (-1.90%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $84.42 | +1.25% | +$165.00 (+0.79%) | $79.902 (10% trail GTC) |
+
+**Trades today:** XLI stopped out — trailing GTC filled 09:35 ET at $168.579 avg, 116 sh, realized -$1,575.36 (-7.45%). No new trades.
+**Week trades:** 0/3 (XLI exit is a stop-out, not a new entry)
+
+**Notes:** Red close on Day 99 (Mon, FOMC week) — equity -$748.92 to $103,176.77 (Day P&L -0.72%), phase eases to +3.18%. XLI stopped out naturally at the open (09:35 ET, $168.579 avg, realized -$1,575.36 / -7.45%) as the -10% trail had already settled at the -7% cut level; mechanical exit consistent with hawkish FOMC-week rate repricing, not a single-name thesis break — no manual action taken. Remaining book: XLK -1.81% to $184.28 (-1.90% vs entry, AI-slowdown headline drag continuing, thesis intact), XLB -0.90% to $50.49 (-1.14% vs entry, materials thesis intact), XLP +1.25% to $84.42 (+0.79% vs entry, defensive bid held into FOMC). 3 positions (≤6): XLB 20.2%, XLK 20.0%, XLP 20.5% — at/near 20% cap on appreciation only, no adds. **Deployment 60.6% ($62,546.24 mkt value / equity) — below the 75-85% band** (session 1 under band post-XLI exit; 3 consecutive under-band sessions triggers rule-12 mandate to add a leadership position — XLE flagged pre-market, deferred past Wed 9/16 FOMC). Cash 39.4%. All three remaining 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~3.4% above stop, XLP ~5.4%, XLK ~6.4%. Stop-expiry watch: XLB GTC expires 2026-09-25 (11 days), XLP 2026-09-28 (14 days) — refresh before expiry to keep protection continuous (XLK expires 2026-11-06). **Ops blocker persists:** DATABASE_URL still unset — gates every mutating order path (cut-loser, tighten-stop, ADR-0002 convergence) via validate_order.py/open_live_ledger() (exit 6, fail-closed). Not invoked today (XLI stop fired at broker automatically), but a live risk if a manual cut/tighten is needed before Wed's FOMC decision. Operator: set DATABASE_URL. Tomorrow (Tue): hold book into FOMC (decision Wed 9/16); watch XLB cushion (tightest ~3.4%) and the under-band deployment counter; no forced action.
