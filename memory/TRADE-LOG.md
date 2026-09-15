@@ -2787,3 +2787,19 @@ Email sent: XLI stop-loss exit + deployment now under band.
 Equity $103,029.34, cash $40,630.53 (39.4%), deployed $62,398.81 (60.6%) — below the 75-85% band, session 2 under band (rule-12 mandate triggers at 3 consecutive; a market-open action, out of scope for midday). Weights: XLB 20.2%, XLK 20.0%, XLP 20.4% — all at/under cap, no adds. No thesis-breaking single-name moves; intraday drift tracks quiet pre-FOMC positioning (FOMC decision Wed 9/16) per pre-market note — no sharp/unexplained moves, no Perplexity check needed. Week 0/3.
 
 **Ops blocker persists, detail added:** DATABASE_URL still unset. Additionally confirmed today — `validate_order.py` also fails at import (`ModuleNotFoundError: No module named 'psycopg'`) before argument parsing even runs; `psycopg` is declared in `pyproject.toml` but not installed in this container. Setting DATABASE_URL alone will not unblock the live path — the dependency also needs to be installed by the environment's setup step. No order was needed this scan (all positions clear of thresholds), so nothing was blocked today. Not re-emailed (no action attempted to block); flagging for operator alongside the prior DATABASE_URL note.
+
+---
+
+### Sep 15 — EOD Snapshot (Day 100, Tuesday, FOMC Day 1)
+**Portfolio:** $103,071.25 | **Cash:** $40,630.53 (39.4%) | **Day P&L:** -$105.52 (-0.10%) | **Phase P&L:** +$3,071.25 (+3.07%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $50.74 | +0.50% | -$136.09 (-0.65%) | $48.771 (10% trail GTC) |
+| XLK | 112 | $187.85 | $184.07 | -0.11% | -$423.36 (-2.01%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $83.68 | -0.88% | -$20.00 (-0.10%) | $79.902 (10% trail GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Near-flat close on Day 100 (Tue, FOMC Day 1) — equity -$105.52 to $103,071.25 (Day P&L -0.10%), phase eases to +3.07%. Quiet pre-decision drift as expected into Wed's FOMC (9/16): XLB +0.50% to $50.74 (-0.65% vs entry, materials thesis intact, led the tape), XLK -0.11% to $184.07 (-2.01% vs entry, AI-slowdown drag persists but no break), XLP -0.88% to $83.68 (-0.10% vs entry, back to breakeven as defensive bid cooled). No thesis-breaking single-name moves — all consistent with low-conviction FOMC-eve positioning. 3 positions (≤6): XLB 20.3%, XLK 20.0%, XLP 20.3% — at/near 20% cap on appreciation only, no adds. **Deployment 60.6% ($62,440.72 mkt value / equity) — below the 75-85% band** (session 2 under band since the Sep-14 XLI stop-out dropped a leg; 3 consecutive under-band sessions triggers the rule-12 mandate to add a leadership position — XLE flagged pre-market, deferred past Wed's FOMC; deployment restore is a market-open action, out of scope for EOD). Cash 39.4%. All three 10% trailing GTC stops confirmed active/correct via orders (XLB $48.771/hwm $54.19, XLK $172.575/hwm $191.75, XLP $79.902/hwm $88.78); none lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~3.9% above stop (tightest), XLP ~4.5%, XLK ~6.2%. Stop-expiry watch: XLB GTC expires 2026-09-25 (10 days), XLP 2026-09-28 (13 days) — refresh before expiry to keep protection continuous (XLK expires 2026-11-06). **Ops blocker persists:** DATABASE_URL still unset AND `validate_order.py` fails at import (`ModuleNotFoundError: No module named 'psycopg'`, declared in pyproject.toml but not installed) — together these gate every mutating order path (cut-loser, tighten-stop, ADR-0002 convergence) fail-closed. Not invoked today (all positions clear of thresholds; stops rest at broker), but a live risk if a manual cut/tighten is needed around the FOMC decision. Operator: set DATABASE_URL and install psycopg. Tomorrow (Wed): FOMC decision day (2pm ET) — hold book through the print; watch XLB cushion (tightest ~3.9%) and the under-band deployment counter; no forced action pre-decision.
