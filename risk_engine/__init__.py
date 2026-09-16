@@ -25,7 +25,11 @@ from .engine import (
 from .protection import (
     CUT_LOSER_STEPS,
     CONVERT_FIXED_TO_TRAIL_STEPS,
+    RENEW_EXPIRING_STOP_STEPS,
+    RENEWAL_WINDOW_DAYS,
     TRAIL_TIGHTEN_STEPS,
+    build_fixed_stop,
+    expiring_protective_stops,
     FixedStop,
     TrailingStop,
     assert_leg_matches_fixed,
@@ -73,4 +77,8 @@ __all__ = [
     "CUT_LOSER_STEPS",
     "TRAIL_TIGHTEN_STEPS",
     "CONVERT_FIXED_TO_TRAIL_STEPS",
+    "RENEW_EXPIRING_STOP_STEPS",
+    "RENEWAL_WINDOW_DAYS",
+    "build_fixed_stop",
+    "expiring_protective_stops",
 ]

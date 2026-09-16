@@ -56,6 +56,13 @@ Scan open orders from STEP 2 for leftover fixed protective sells —
 covering a held position. Convert each via CONVERT_FIXED_TO_TRAIL_STEPS
 (cancel then order). Do NOT leave convergence as wishful "next routine" prose.
 
+Gate FIRST — conversion must never move the stop down. A new 10% trail starts
+its high-water mark at today's price, so its stop is P × 0.90. S = the fixed
+order's stop_price:
+python3 scripts/validate_stop_change.py --current-stop S --new-stop "$(python3 -c 'import sys; from decimal import Decimal as D; print((D(sys.argv[1])*D("0.90")).quantize(D("0.01")))' P)" --current-price P --json
+Exit 3 with `stop_never_lowered` → HOLD the fixed stop (intended state after an
+expiry renewal, not a failure); log "HOLD fixed SYM @ S" and skip to next order.
+Exit 0 → convert:
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent 10 --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
@@ -70,6 +77,30 @@ python3 scripts/record_broker_response.py \
     --response "$RESP"
 On exit 3 → log, keep scanning. On exit 4 → STOP. On exit 6 → STOP (ledger). If convert fails after
 cancel, email loudly and retry the trail place.
+
+STEP 2c — Renew expiring protective stops (Alpaca GTC expires after ~90 days).
+bash scripts/alpaca.sh orders | python3 scripts/build_oto_order.py expiring
+For each item (renew_stop_price = current stop level rounded UP — never lower),
+follow RENEW_EXPIRING_STOP_STEPS (cancel then order). Replacement is a FIXED
+stop, not a fresh trail — a fresh trail would restart its high-water mark and
+drop the stop. STEP 2b holds it fixed until a 10% trail would sit at/above it.
+
+VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+    --price P --stop-price RENEW_STOP_PRICE --json)
+LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
+On exit 0:
+ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
+STOP_JSON=$(python3 scripts/build_oto_order.py stop --symbol SYM --qty N --stop-price RENEW_STOP_PRICE)
+HTTP_STATUS_FILE=$(mktemp)
+RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$STOP_JSON")
+HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
+python3 scripts/record_broker_response.py \
+    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
+    --response "$RESP"
+Then `bash scripts/alpaca.sh orders` and confirm the new stop is open for SYM.
+If the place fails after cancel, email loudly and retry immediately — the
+position is unprotected. On exit 3 → do NOT cancel; email. On exit 4/6 → STOP.
+Log "Stop renewed SYM: <old type> → fixed @ RENEW_STOP_PRICE (expiry)" to TRADE-LOG.
 
 STEP 3 — Cut losers immediately. For every position where
 unrealized_plpc <= -0.07, validate the sell through the risk engine first
