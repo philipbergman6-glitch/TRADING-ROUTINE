@@ -2827,3 +2827,19 @@ Not emailed — no action taken, ops blocker unchanged from prior scans (already
 - XLK: unchanged — trailing_stop $172.575, expires 11-06.
 
 Both validated via `validate_order.py` (exit 0) before cancel; cancel→place back-to-back, confirmed open via `orders`. **Ops blocker resolved (PR #66):** ledger is now optional — DATABASE_URL unset prints `LEDGER DISABLED`, orders validate normally; exit 6 only if a configured ledger fails. psycopg no longer needed.
+
+---
+
+### Sep 16 — EOD Snapshot (Day 101, Wednesday, FOMC Decision Day)
+**Portfolio:** $102,827.45 | **Cash:** $40,630.53 (39.5%) | **Day P&L:** -$243.80 (-0.24%) | **Phase P&L:** +$2,827.45 (+2.83%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $50.36 | -0.73% | -$292.65 (-1.39%) | $48.78 (fixed GTC) |
+| XLK | 112 | $187.85 | $184.05 | +0.17% | -$425.60 (-2.02%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $83.34 | -0.47% | -$105.00 (-0.50%) | $79.91 (fixed GTC) |
+
+**Trades today:** none (stop renewal was protection maintenance, no position change)
+**Week trades:** 0/3
+
+**Notes:** Modest red close on Day 101 (Wed, FOMC decision day) — equity -$243.80 to $102,827.45 (Day P&L -0.24%), phase eases to +2.83%. Book held through the 2pm ET FOMC decision as planned; muted post-print drift, no thesis-breaking single-name moves: XLB -0.73% to $50.36 (-1.39% vs entry, materials thesis intact, softest of the three today), XLK +0.17% to $184.05 (-2.02% vs entry, tech held green, no AI-slowdown break), XLP -0.47% to $83.34 (-0.50% vs entry, defensive bid eased slightly). 3 positions (≤6): XLB 20.2%, XLK 20.0%, XLP 20.3% — at/near 20% cap on appreciation only, no adds. **Deployment 60.5% ($62,196.92 mkt value / equity) — below the 75-85% band** (EOD session 3 under band since the Sep-14 XLI stop-out dropped a leg; rule-12's 3-consecutive-session add mandate was exempted today by the live FOMC risk event). With the decision now printed, the deferred redeployment (XLE flagged pre-market) is due at the first post-FOMC market-open (Thu 9/17) — a market-open action, out of scope for EOD. Cash 39.5%. All three stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, order b51e2320), XLP fixed $79.91 GTC (exp 12-15, order 1fed8260) — both renewed today from expiring trails at/above the prior stop level (never lowered); XLK trailing $172.575/hwm $191.75 GTC (exp 11-06). None tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~3.1% above stop (tightest), XLP ~4.1%, XLK ~6.2%. Both fixed stops convert back to 10% trail once price clears their prior hwm (XLB ≥ ~$54.20, XLP ≥ ~$88.79). **Ops blocker RESOLVED (PR #66):** ledger is now optional — DATABASE_URL unset prints `LEDGER DISABLED`, orders validate normally (exit 0); psycopg no longer required. Mutating order paths (cut-loser, tighten-stop) are unblocked for the next scan that needs them. Tomorrow (Thu, post-FOMC): market-open should action the deferred XLE redeployment to restore deployment toward band; watch XLB cushion (tightest ~3.1%) and hold XLK/XLP; no forced action beyond the redeployment review.
