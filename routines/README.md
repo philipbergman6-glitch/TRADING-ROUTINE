@@ -1,8 +1,18 @@
 # Cloud Routine Prompts
 
-Paste each of these verbatim into its Claude Code cloud routine. Do not
-paraphrase. The env-var check block and the commit-and-push step are
-load-bearing.
+Each cloud routine carries a THIN prompt (updated 2026-09-17): sync to
+origin/main, then read `routines/<name>.md` and execute it exactly. The files
+here are the single source of truth — edit them, merge, done. Do not paste
+full file contents into the cloud prompt; that copy goes stale (the June
+copies ran without validate_order / OTO / the rule-12 backstop until Sep 17).
+
+Thin prompt template:
+
+    You are the <name> routine of the TRADING-ROUTINE paper trading bot.
+    Stocks only — NEVER options. Ultra-concise.
+    STEP A — Sync: git fetch origin main && git reset --hard FETCH_HEAD
+    (on failure: email "SYNC FAILED <date>", stop).
+    STEP B — Read routines/<name>.md IN FULL, then execute it exactly.
 
 ## Cron schedules (America/Chicago)
 
