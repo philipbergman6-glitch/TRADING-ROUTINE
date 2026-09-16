@@ -79,7 +79,8 @@ UNMECHANISED: dict[str, str] = {
     "min_deployment_backstop": (
         "Rule 12 -- a mandate to ADD risk after 3 under-deployed sessions. "
         "The engine refuses orders; it never compels one. Enforcing this "
-        "belongs in the routines, not the safety layer."
+        "belongs in the routines, not the safety layer: see "
+        "scripts/deployment_status.py (pre-market / market-open STEP 2c)."
     ),
     "cut_losers_at_7pct": (
         "Rule 5 -- an exit trigger evaluated against live prices, not a "

@@ -37,6 +37,8 @@ Beat the S&P 500 over the challenge window. Stocks only — no options, ever.
     deployment mandate beyond 3 sessions absent a market-wide risk event (not
     routine data/earnings). Added 2026-08-07 after 6+ weeks of under-deployment
     and a blown soft deadline; "patience" was masking non-compliance.
+    Computed by scripts/deployment_status.py (EOD snapshots below 75%);
+    one deferral max per under-band streak. Added 2026-09-17.
 13. Cash only, never margin: a buy may never cost more than settled `cash`.
     Margin buying power is not capital. The account is a margin account
     (`multiplier: 4`), so `buying_power` runs far above `equity` — on
