@@ -2817,3 +2817,13 @@ Equity $103,301.53, cash $40,630.53 (39.3%), deployed $62,671.00 (60.67%) — be
 **Ops blocker persists (moot today):** DATABASE_URL still unset in this environment — `validate_order.py`/`ledger.live_path.open_live_ledger()` still gates every mutating order path (cut-loser, tighten-stop, ADR-0002 convergence) fail-closed (exit 6, T4). Not invoked this scan — no position crossed a threshold, no fixed legs to convert. Resting GTC trailing stops at the broker are unaffected; all three positions remain protected through the 2pm decision. Operator: set DATABASE_URL (and confirm psycopg is installed, per Sep-15 note) before a scan that actually needs to mutate an order.
 
 Not emailed — no action taken, ops blocker unchanged from prior scans (already flagged Sep 14/15/16 pre-market).
+
+---
+
+### Sep 16 — Stop Renewal (Day 101, Wednesday, manual ops)
+**Protection maintenance, no position change.** GTC stops approaching Alpaca's ~90-day expiry renewed as FIXED GTC stops at the current stop level (rounded up to the cent — never lower). A fresh 10% trail would restart its high-water mark at today's price and drop the stop (XLB $48.77 → ~$45.81), violating "never move a stop down". Procedure now codified as midday STEP 2c (PR #67); STEP 2b holds a fixed stop until a 10% trail would sit at/above it.
+- XLB: trailing_stop $48.771 (exp 09-25) → **fixed stop $48.78 GTC** (exp 12-15), order b51e2320. Price $50.91, ~4.2% above stop. Converts back to 10% trail once price ≥ ~$54.20.
+- XLP: trailing_stop $79.902 (exp 09-28) → **fixed stop $79.91 GTC** (exp 12-15), order 1fed8260. Price $83.91, ~4.8% above stop. Converts back to 10% trail once price ≥ ~$88.79.
+- XLK: unchanged — trailing_stop $172.575, expires 11-06.
+
+Both validated via `validate_order.py` (exit 0) before cancel; cancel→place back-to-back, confirmed open via `orders`. **Ops blocker resolved (PR #66):** ledger is now optional — DATABASE_URL unset prints `LEDGER DISABLED`, orders validate normally; exit 6 only if a configured ledger fails. psycopg no longer needed.
