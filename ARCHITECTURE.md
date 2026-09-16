@@ -54,7 +54,16 @@ protection. Bulk `cancel-all` and `close-all` are refused.
 
 This closes the old payload-versus-approval gap. It does not isolate credentials
 from the agent, serialize independent routines, reserve cross-process capacity,
-or recover interrupted cancel/replacement. Durable execution remains #19/#26.
+or make cancel→place atomic. Durable execution remains #19/#26.
+
+Stop replacement (trail tighten, fixed→trail conversion, expiry renewal) runs
+only through `scripts/replace_stop.py`: validate the exact replacement while
+the old stop still rests, cancel, confirm `canceled` from broker state, submit
+with `client_order_id=rs-<old id>`, and on failure re-place the old level
+(`rr-<old id>`). Every step is re-derived from the broker, so rerunning the
+same command after a crash resumes without duplicates. The mutation gate reads
+the replaced stop's `stop_price` via that client id (or any same-symbol stop
+canceled in the last 15 minutes), so a canceled stop's floor still binds.
 
 ## Why the risk engine is a pure module
 
@@ -93,8 +102,8 @@ Enforced on midday trail/stop *changes* via `scripts/validate_stop_change.py`
   `required_trail_percent` (`risk_engine/engine.py`). Midday asks the CLI for
   the required trail, then validates the proposed change; the CLI composes
   both functions (ladder floor + replacement stop prices against the actual broker stop_price so
-  the old high-water-mark floor is preserved). Tightening remains cancel→order
-  (`TRAIL_TIGHTEN_STEPS`); collapsing that naked window needs
+  the old high-water-mark floor is preserved). Tightening runs through
+  `scripts/replace_stop.py` (resumable cancel→place); making it atomic needs
   [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
   (OPEN — do not invent PATCH).
 
@@ -141,9 +150,9 @@ than one described aspirationally.
   ADR 0002), then convert cancel→trailing after a *complete* fill
   (`filled_qty != qty` is an incident / hard-fail). Market-open and midday also
   **scan open orders on entry** for leftover fixed legs and convert them
-  (CONVERT_FIXED_TO_TRAIL_STEPS) — not wishful "next routine" prose. Brief
-  windows remain on fixed→trail conversion and on midday cancel→replace trail
-  tighten / cancel→close exits. Collapsing trail-tighten via `PATCH` needs
+  via `scripts/replace_stop.py` — not wishful "next routine" prose. A
+  sub-second, recoverable window remains on replacement; cancel→close exits
+  still have an unrecovered window. Collapsing trail-tighten via `PATCH` needs
   [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
   (OPEN research — do not invent). Idempotency keys + reconciliation loop still
   not built.

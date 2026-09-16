@@ -278,11 +278,13 @@ def test_midday_step4_still_cancel_then_order_no_patch(path: Path) -> None:
 
 @pytest.mark.parametrize("path", MIDDAY_WORKFLOWS, ids=lambda p: p.name)
 def test_midday_step4_keeps_validate_order_and_alpaca_risk_ok(path: Path) -> None:
-    """T1 honesty: replacement sell still goes through validate_order + ALPACA_RISK_OK."""
+    """T1 honesty: replacement sell still goes through validate_order, and the
+    replacement itself through replace_stop.py (which submits via the gated wrapper)."""
     text = path.read_text()
     step4 = text.split("STEP 4", 1)[1].split("STEP 5", 1)[0]
     assert "validate_order.py" in step4
-    assert "ALPACA_RISK_OK" in step4
+    assert "replace_stop.py" in step4
+    assert '"ALPACA_RISK_OK": "1"' in (REPO / "scripts" / "replace_stop.py").read_text()
 
 
 def test_architecture_no_longer_claims_stop_validators_uncalled() -> None:

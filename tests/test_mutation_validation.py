@@ -69,6 +69,7 @@ def test_stale_future_or_naive_quote_refuses(snapshot, timestamp):
 
 def test_actual_resting_stop_is_not_lowered(snapshot):
     snapshot[("orders", "open")] = [{"symbol": "AAPL", "side": "sell", "stop_price": "117"}]
+    snapshot[("orders", "closed", "2026-09-17T13:45:00Z")] = []
     with pytest.raises(ValueError, match="stop_never_lowered"):
         check({"symbol": "AAPL", "qty": "100", "side": "sell", "type": "trailing_stop",
                "time_in_force": "gtc", "trail_percent": "5"}, snapshot,

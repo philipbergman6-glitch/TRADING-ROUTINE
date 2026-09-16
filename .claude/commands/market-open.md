@@ -58,8 +58,8 @@ fixed protective sells — `side=sell`, `type=stop` (NOT `trailing_stop`), trail
 fields null/absent — covering a held position. Each is wrong-protection state
 left when a prior convert failed; do NOT leave this to "the next routine".
 
-For every leftover fixed stop, convert via CONVERT_FIXED_TO_TRAIL_STEPS
-(cancel then order — never reverse):
+For every leftover fixed stop, convert via scripts/replace_stop.py (validates before cancel, confirms cancel,
+resumable on rerun — never a hand-written cancel/order pair):
 Gate FIRST — conversion must never move the stop down. A new 10% trail starts
 its high-water mark at today's price, so its stop is P × 0.90. S = the fixed
 order's stop_price:
@@ -71,16 +71,23 @@ VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side se
     --price P --trail-percent 10 --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 On exit 0:
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
-TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-HTTP_STATUS_FILE=$(mktemp)
-RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
-HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
-    --response "$RESP"
+# One resumable command — never a hand-written cancel/order pair. It validates
+# the replacement against the ACTUAL resting stop before cancel, confirms the
+# cancel, submits client_order_id rs-<id>, restores the old level on failure.
+REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
+# http_status is set only when this run submitted the order (not on resume).
+HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+if [ -n "$HTTP_STATUS" ]; then
+  python3 scripts/record_broker_response.py \
+      --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
+      --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+fi
+REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
+untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
+failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
+8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
+email "UNPROTECTED SYM", log, STOP.
 On exit 3 → log violations, keep scanning. On exit 4 → STOP, email, exit.
-If convert fails after cancel, email loudly and retry the trail place.
 
 STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
 DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
@@ -139,30 +146,35 @@ If leg wrong/missing after a complete fill: INCIDENT — email; do not assume
 protection.
 
 STEP 5 — Convert the fixed OTO leg to a 10% trailing stop GTC (ADR 0002).
-ONLY after the STEP 4 gate (filled_qty == qty AND leg matches). Cancel the
-fixed leg first (shares are reserved), confirm cancel (order canceled /
-qty_available freed), then place trailing. Order is mandatory: cancel then
-order (CONVERT_FIXED_TO_TRAIL_STEPS).
+ONLY after the STEP 4 gate (filled_qty == qty AND leg matches). Use scripts/replace_stop.py on
+the fixed leg: it validates first, cancels (shares are reserved), confirms
+the cancel, then places the trail — resumable, never a hand-written pair.
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent 10 --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 On exit 0:
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel LEG_ORDER_ID
-# confirm cancel before claiming shares free / before trail POST
-TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-HTTP_STATUS_FILE=$(mktemp)
-RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
-HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
-    --response "$RESP"
-If conversion fails after cancel, the position is briefly naked — email loudly
-and retry the trailing place. Query open orders/position before claiming
-protected: if the fixed leg still exists, it still protects (queryable state);
-if neither fixed nor trail is present, that is an incident. Do NOT wire T2 /
+# One resumable command — never a hand-written cancel/order pair. It validates
+# the replacement against the ACTUAL resting stop before cancel, confirms the
+# cancel, submits client_order_id rs-<id>, restores the old level on failure.
+REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id LEG_ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
+# http_status is set only when this run submitted the order (not on resume).
+HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+if [ -n "$HTTP_STATUS" ]; then
+  python3 scripts/record_broker_response.py \
+      --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
+      --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+fi
+REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
+untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
+failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
+8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
+email "UNPROTECTED SYM", log, STOP.
+Query open orders/position before claiming protected: if neither the fixed
+leg nor the trail is present, that is an incident. Do NOT wire T2 /
 issue #32 stop-change or trail-ladder validators. #40 PATCH still OPEN — do
-not claim unprotected windows fully closed.
+not claim the sub-second cancel→place window is closed; replace_stop makes it
+recoverable, not atomic.
 
 STEP 6 — Append each trade to memory/TRADE-LOG.md (matching existing format):
 Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.

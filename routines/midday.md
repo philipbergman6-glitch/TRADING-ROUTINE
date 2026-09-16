@@ -75,8 +75,8 @@ bash scripts/alpaca.sh orders
 STEP 2b — On-entry ADR 0002 convergence (leftover fixed legs).
 Scan open orders from STEP 2 for leftover fixed protective sells —
 `side=sell`, `type=stop` (NOT `trailing_stop`), trail fields null/absent —
-covering a held position. Convert each via CONVERT_FIXED_TO_TRAIL_STEPS
-(cancel then order). Do NOT leave convergence as wishful "next routine" prose.
+covering a held position. Convert each via scripts/replace_stop.py
+(never a hand-written cancel/order pair). Do NOT leave convergence as wishful "next routine" prose.
 
 Gate FIRST — conversion must never move the stop down. A new 10% trail starts
 its high-water mark at today's price, so its stop is P × 0.90. S = the fixed
@@ -89,21 +89,28 @@ VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side se
     --price P --trail-percent 10 --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 On exit 0:
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
-TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-HTTP_STATUS_FILE=$(mktemp)
-RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
-HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
-    --response "$RESP"
-On exit 3 → log, keep scanning. On exit 4 → STOP. On exit 6 → STOP (ledger). If convert fails after
-cancel, email loudly and retry the trail place.
+# One resumable command — never a hand-written cancel/order pair. It validates
+# the replacement against the ACTUAL resting stop before cancel, confirms the
+# cancel, submits client_order_id rs-<id>, restores the old level on failure.
+REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
+# http_status is set only when this run submitted the order (not on resume).
+HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+if [ -n "$HTTP_STATUS" ]; then
+  python3 scripts/record_broker_response.py \
+      --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
+      --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+fi
+REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
+untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
+failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
+8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
+email "UNPROTECTED SYM", log, STOP.
+On validate_order exit 3 → log, keep scanning. On exit 4 → STOP. On exit 6 → STOP (ledger).
 
 STEP 2c — Renew expiring protective stops (Alpaca GTC expires after ~90 days).
 bash scripts/alpaca.sh orders | python3 scripts/build_oto_order.py expiring
 For each item (renew_stop_price = current stop level rounded UP — never lower),
-follow RENEW_EXPIRING_STOP_STEPS (cancel then order). Replacement is a FIXED
+renew via scripts/replace_stop.py --stop-price. Replacement is a FIXED
 stop, not a fresh trail — a fresh trail would restart its high-water mark and
 drop the stop. STEP 2b holds it fixed until a 10% trail would sit at/above it.
 
@@ -111,17 +118,17 @@ VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side se
     --price P --stop-price RENEW_STOP_PRICE --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 On exit 0:
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
-STOP_JSON=$(python3 scripts/build_oto_order.py stop --symbol SYM --qty N --stop-price RENEW_STOP_PRICE)
-HTTP_STATUS_FILE=$(mktemp)
-RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$STOP_JSON")
-HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
-    --response "$RESP"
-Then `bash scripts/alpaca.sh orders` and confirm the new stop is open for SYM.
-If the place fails after cancel, email loudly and retry immediately — the
-position is unprotected. On exit 3 → do NOT cancel; email. On exit 4/6 → STOP.
+REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --stop-price RENEW_STOP_PRICE); REPLACE_EXIT=$?
+# http_status is set only when this run submitted the order (not on resume).
+HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+if [ -n "$HTTP_STATUS" ]; then
+  python3 scripts/record_broker_response.py \
+      --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
+      --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+fi
+REPLACE_EXIT handling as in STEP 2b (3 → old stop untouched, email; 7 → email;
+8 → rerun the SAME command, still 8 → email "UNPROTECTED SYM", STOP).
+validate_order exit 3 → do NOT run replace_stop; email. Exit 4/6 → STOP.
 Log "Stop renewed SYM: <old type> → fixed @ RENEW_STOP_PRICE (expiry)" to TRADE-LOG.
 
 STEP 3 — Cut losers immediately. For every position where
@@ -166,18 +173,27 @@ Then validate the replacement protective sell (T1) before mutating:
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent T --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-On exit 0 (TRAIL_TIGHTEN_STEPS = cancel then order — never reverse):
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
-TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent T)
-HTTP_STATUS_FILE=$(mktemp)
-RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
-HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
-    --response "$RESP"
+On exit 0:
+# One resumable command — never a hand-written cancel/order pair. It validates
+# the replacement against the ACTUAL resting stop before cancel, confirms the
+# cancel, submits client_order_id rs-<id>, restores the old level on failure.
+REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --trail-percent T); REPLACE_EXIT=$?
+# http_status is set only when this run submitted the order (not on resume).
+HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+if [ -n "$HTTP_STATUS" ]; then
+  python3 scripts/record_broker_response.py \
+      --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
+      --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+fi
+REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
+untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
+failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
+8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
+email "UNPROTECTED SYM", log, STOP.
 On validate_order exit 3 → skip tighten, log. On exit 4 → STOP. On exit 6 → STOP (ledger).
-#40 PATCH resize is OPEN — do not invent a patch path; cancel→replace still
-has a brief naked window. T2 validates the stop/trail change; it does not
+#40 PATCH resize is OPEN — do not invent a patch path. replace_stop leaves a
+sub-second cancel→place window but validates first, confirms the cancel,
+restores the old level on failure and resumes on rerun. T2 validates the stop/trail change; it does not
 close that window.
 
 STEP 5 — Thesis check. If a thesis broke intraday, cut the position even

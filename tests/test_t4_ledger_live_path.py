@@ -497,7 +497,7 @@ _BAD_LEDGER_CAPTURE = re.compile(
 )
 _HTTP_STATUS_HARDCODED = re.compile(r"--http-status\s+200\b")
 _TRAIL_THEN_RECORD_KIND = re.compile(
-    r"build_oto_order\.py\s+trail[\s\S]{0,500}?"
+    r"(?:build_oto_order\.py\s+trail|replace_stop\.py\s+--order-id\s+\S+\s+--trail-percent)[\s\S]{0,700}?"
     r"record_broker_response\.py[\s\S]{0,240}?--kind\s+(?P<kind>submit|stop)",
     re.MULTILINE,
 )

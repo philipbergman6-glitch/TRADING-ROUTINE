@@ -102,7 +102,12 @@ def trades_this_week(now: datetime) -> int:
     monday = (now - timedelta(days=now.weekday())).replace(
         hour=0, minute=0, second=0, microsecond=0
     )
-    orders = adapter("orders", "closed")
+    # Alpaca's `after` filters on submission time. Start a week earlier so a
+    # buy submitted before Monday but filled after it is still counted; the
+    # filled_at filter below does the real windowing. Unbounded history would
+    # eventually hit the 500-row page cap and refuse every buy forever.
+    window_start = (monday - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    orders = adapter("orders", "closed", window_start)
     if not isinstance(orders, list) or len(orders) >= 500:
         sys.exit(EXIT_NO_STATE)
     count = 0

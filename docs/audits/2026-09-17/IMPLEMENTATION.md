@@ -61,15 +61,16 @@ start the prospective investment experiment.
 ## Still outstanding
 
 Execution still lacks a durable account-wide coordinator, broker idempotency
-and restart-safe cancel/replacement. Validation and HTTP submission are
+and a recovered cancel→close exit. Validation and HTTP submission are
 separate operations: market movement, concurrent routines and ambiguous network
 outcomes remain. Market-order fills can exceed quote-based estimates.
 
-Raw protective cancellation still creates a window requiring the next action.
-The wrapper verifies cancellation identity and held position, but does not
-persist a replacement intent or enforce a recovery deadline. The stop floor
-check in the routine must happen before cancellation; a canceled order is not
-present in the subsequent open-order snapshot.
+Stop replacement is now resumable (`scripts/replace_stop.py`): the replacement
+is validated before cancel, cancellation is confirmed from broker state, the
+replacement carries `rs-<old id>` so reruns cannot duplicate it, a failure
+re-places the old level, and the mutation gate reads a canceled stop's floor.
+The cancel→place window is recoverable, not atomic; cancel→close exits are
+still unrecovered.
 
 The agent still holds credentials and can modify local code. This change is
 an application correctness boundary, not credential isolation. Postgres remains

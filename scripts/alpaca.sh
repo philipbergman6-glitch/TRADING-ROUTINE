@@ -100,7 +100,16 @@ case "$cmd" in
     ;;
   orders)
     status="${1:-open}"
-    _curl -H "$H_KEY" -H "$H_SEC" "$API/orders?status=$status&limit=500"
+    after="${2:-}"
+    [[ "$status" =~ ^(open|closed|all)$ ]] || { echo "usage: orders [open|closed|all] [AFTER_ISO_UTC]" >&2; exit 2; }
+    url="$API/orders?status=$status&limit=500"
+    if [[ -n "$after" ]]; then
+      # Bounded window: an unfiltered closed-order history grows forever and
+      # would eventually hit the 500-row page cap and block every validation.
+      [[ "$after" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$ ]] || { echo "orders: AFTER must be YYYY-MM-DDTHH:MM:SSZ" >&2; exit 2; }
+      url="$url&after=$after"
+    fi
+    _curl -H "$H_KEY" -H "$H_SEC" "$url"
     ;;
   asset)
     sym="${1:?usage: asset SYM}"
@@ -109,6 +118,24 @@ case "$cmd" in
   order-info)
     oid="${1:?usage: order-info ORDER_ID}"
     _curl -H "$H_KEY" -H "$H_SEC" "$API/orders/$oid"
+    ;;
+  order-by-client)
+    # Idempotency probe for resumable stop replacement: 404 means "never
+    # submitted" and prints null; transport failure means unknown and exits 7.
+    cid="${1:?usage: order-by-client CLIENT_ORDER_ID}"
+    [[ "$cid" =~ ^[A-Za-z0-9-]{1,48}$ ]] || { echo "order-by-client: invalid client_order_id" >&2; exit 2; }
+    tmp=$(mktemp)
+    code=$(curl --connect-timeout 10 --max-time 30 -sS -o "$tmp" -w "%{http_code}" \
+      -H "$H_KEY" -H "$H_SEC" "$API/orders:by_client_order_id?client_order_id=$cid") \
+      || { rm -f "$tmp"; echo "alpaca.sh: transport failure; outcome unknown" >&2; exit 7; }
+    if [[ "$code" == "404" ]]; then
+      echo "null"
+    elif [[ "$code" =~ ^2[0-9][0-9]$ ]]; then
+      cat "$tmp"
+    else
+      rm -f "$tmp"; echo "alpaca.sh: HTTP $code" >&2; exit 22
+    fi
+    rm -f "$tmp"
     ;;
   order)
     body="${1:?usage: order '<json>'}"
@@ -130,7 +157,7 @@ case "$cmd" in
     _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
     ;;
   *)
-    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order|cancel|cancel-all|close|close-all> [args]" >&2
+    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order-info|order-by-client|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
     exit 1
     ;;
 esac

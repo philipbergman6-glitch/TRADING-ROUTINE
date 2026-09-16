@@ -8,7 +8,7 @@ cancel/replacement recovery; those require the execution coordinator.
 """
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 import json
 from pathlib import Path
@@ -25,6 +25,54 @@ from scripts.validate_order import adapter, read_portfolio
 def require(condition, message):
     if not condition:
         raise ValueError(message)
+
+
+REPLACE_PREFIX = "rs-"   # replacement of a canceled stop: client_order_id = rs-<old broker id>
+RESTORE_PREFIX = "rr-"   # re-placement of the canceled stop's exact level after a failed replacement
+RECENT_CANCEL_WINDOW = timedelta(minutes=15)
+_STOP_TYPES = ("stop", "trailing_stop")
+
+
+def _check_stop_floor(body, symbol, level, price, read, now):
+    """A new protective level may never sit below the stop it replaces.
+
+    The replaced stop may already be canceled (cancel precedes replacement to
+    release reserved shares), so its floor is read from the broker order named
+    in client_order_id, and any same-symbol stop canceled in the last 15
+    minutes also counts. Resting stops always count.
+    """
+    opens = read("orders", "open")
+    require(isinstance(opens, list) and len(opens) < 500, "open-order snapshot incomplete")
+    live = [o for o in opens if o.get("symbol") == symbol and o.get("side") == "sell"
+            and (o.get("type") in _STOP_TYPES or o.get("stop_price") is not None)]
+    cid = str(body.get("client_order_id", ""))
+    if cid.startswith((REPLACE_PREFIX, RESTORE_PREFIX)):
+        old_id = cid[len(REPLACE_PREFIX):]
+        old = read("order-info", old_id)
+        require(isinstance(old, dict) and old.get("id") == old_id and old.get("symbol") == symbol
+                and old.get("side") == "sell" and old.get("type") in _STOP_TYPES,
+                "client_order_id does not name this symbol's protective stop")
+        require(old.get("status") == "canceled", "replaced stop must be confirmed canceled first")
+        require(not live, "another protective stop is still resting; reconcile before replacing")
+        floor = to_money(old.get("stop_price"), "replaced stop_price")
+        if cid.startswith(RESTORE_PREFIX):
+            # Restoring the exact prior level is not a stop change; the 3%
+            # distance rule would otherwise leave the position naked.
+            require(body.get("type") == "stop" and level == floor,
+                    "restore must be a fixed stop at the canceled stop's exact level")
+            return
+        floors = [floor]
+    else:
+        start = (now - RECENT_CANCEL_WINDOW).strftime("%Y-%m-%dT%H:%M:%SZ")
+        closed = read("orders", "closed", start)
+        require(isinstance(closed, list) and len(closed) < 500, "recent closed-order snapshot incomplete")
+        recent = [o for o in closed if o.get("symbol") == symbol and o.get("side") == "sell"
+                  and o.get("type") in _STOP_TYPES and o.get("status") == "canceled"]
+        floors = [o.get("stop_price") for o in live + recent]
+        require(all(f is not None for f in floors), "protective stop without stop_price; cannot verify floor")
+    for floor in floors:
+        result = validate_stop_change(floor, level, price)
+        require(result.approved, "; ".join(result.reasons()))
 
 
 def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None):
@@ -111,12 +159,7 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
                 require(not (set(body) & {"stop_price", "trail_percent"}), "market sell has stop fields")
                 level = None
             if level is not None:
-                opens = read("orders", "open")
-                require(isinstance(opens, list) and len(opens) < 500, "open-order snapshot incomplete")
-                for order in opens:
-                    if order.get("symbol") == symbol and order.get("side") == "sell" and order.get("stop_price"):
-                        result = validate_stop_change(order["stop_price"], level, price)
-                        require(result.approved, "; ".join(result.reasons()))
+                _check_stop_floor(body, symbol, level, price, read, now or datetime.now(timezone.utc))
     result = validate_order(proposal, state)
     require(result.approved, "; ".join(result.reasons()))
 

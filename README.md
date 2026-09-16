@@ -28,13 +28,15 @@ validator. Buys must be GTC market OTO orders with a fixed protective leg in the
 9.5–10.5% entry-distance band. Asset class and fresh ask are checked at submit;
 pending buys block another buy. Market fills can still differ from the quote.
 Stop-tightening validation requires the broker's actual resting stop price,
-preserving its previous high-water mark across replacement.
+preserving its previous high-water mark across replacement. Stop replacement
+runs through `scripts/replace_stop.py`, which validates before cancelling,
+confirms the cancel, restores the old level on failure and resumes on rerun.
 
 ## Current limits
 
 This remains an experimental paper system. Direct access to broker credentials
 is not isolated from the agent. Cross-process account reservations, stable
-broker idempotency, restart-safe cancel/replacement and an independently
+broker idempotency for buys, a recovered cancel→close exit and an independently
 scheduled protection monitor remain to be implemented. The ledger is optional
 in cloud routines and does not yet capture the complete broker lifecycle.
 
