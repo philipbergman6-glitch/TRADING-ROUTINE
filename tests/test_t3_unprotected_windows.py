@@ -198,9 +198,11 @@ def test_buy_path_uses_oto_not_naked_market_buy(path: Path) -> None:
     assert "--stop-price" in text or "fixed_stop" in text or "build_oto_order.py oto" in text
     # Conversion to trailing still required after fill.
     assert "trailing_stop" in text or "build_oto_order.py trail" in text
-    # Market-open /trade buy path is not the midday trail CLI (T2).
+    # Market-open /trade buy path is not the midday trail-tighten CLI (T2). The
+    # fixed-price path (--current-stop/--new-stop) is allowed: STEP 2b uses it to
+    # refuse a convert that would lower the stop.
     if "midday" not in path.name:
-        assert "validate_stop_change.py" not in text
+        assert "--gain-pct" not in text and "--proposed-trail" not in text
 
 
 @pytest.mark.parametrize("path", MIDDAY_WORKFLOWS, ids=lambda p: p.name)
@@ -348,3 +350,93 @@ def test_trade_sell_is_cancel_then_close() -> None:
     assert list(CUT_LOSER_STEPS) == ["cancel", "close"]
     # Honesty: do not claim #40 PATCH closed.
     assert "#40" in text and "OPEN" in text
+
+
+# --- stop expiry renewal (GTC ~90d) -------------------------------------------
+
+
+def _open_stop(**over: object) -> dict[str, object]:
+    base: dict[str, object] = {
+        "id": "o1", "symbol": "xlb", "qty": "412", "side": "sell",
+        "type": "trailing_stop", "status": "new", "stop_price": "48.771",
+        "trail_percent": "10", "expires_at": "2026-09-25T20:00:00Z",
+    }
+    base.update(over)
+    return base
+
+
+def test_expiring_stops_flags_within_window_and_rounds_level_up() -> None:
+    from datetime import datetime, timezone
+
+    from risk_engine import expiring_protective_stops
+
+    now = datetime(2026, 9, 16, 17, 0, tzinfo=timezone.utc)
+    due = expiring_protective_stops(
+        [
+            _open_stop(),
+            _open_stop(id="o2", symbol="XLK", expires_at="2026-11-06T21:00:00Z"),
+            _open_stop(id="o3", side="buy"),
+            _open_stop(id="o4", status="filled"),
+            _open_stop(id="o5", type="limit"),
+        ],
+        now,
+        10,
+    )
+    assert due == [
+        {
+            "order_id": "o1", "symbol": "XLB", "qty": "412", "type": "trailing_stop",
+            "expires_at": "2026-09-25T20:00:00Z", "renew_stop_price": "48.78",
+        }
+    ]
+
+
+def test_expiring_stops_hard_fails_on_missing_fields() -> None:
+    from datetime import datetime, timezone
+
+    from risk_engine import expiring_protective_stops
+
+    now = datetime(2026, 9, 16, tzinfo=timezone.utc)
+    with pytest.raises(ValueError, match="expires_at"):
+        expiring_protective_stops([_open_stop(expires_at=None)], now)
+    with pytest.raises(ValueError, match="timezone"):
+        expiring_protective_stops([], datetime(2026, 9, 16))
+
+
+def test_build_fixed_stop_payload_has_no_trail_fields() -> None:
+    from risk_engine import build_fixed_stop
+
+    body = build_fixed_stop(symbol="xlb", qty=412, protection=FixedStop(stop_price="48.78"))
+    assert body == {
+        "symbol": "XLB", "qty": "412", "side": "sell", "type": "stop",
+        "time_in_force": "gtc", "stop_price": "48.78",
+    }
+    assert is_leftover_fixed_stop({**body, "status": "new"})
+
+
+def test_renew_steps_are_cancel_then_order() -> None:
+    from risk_engine import RENEW_EXPIRING_STOP_STEPS
+
+    assert RENEW_EXPIRING_STOP_STEPS == ("cancel", "order")
+
+
+@pytest.mark.parametrize(
+    "path",
+    (REPO / "routines" / "midday.md", REPO / ".claude" / "commands" / "midday.md"),
+    ids=lambda p: str(p.relative_to(REPO)),
+)
+def test_midday_renews_expiring_stops_as_fixed(path: Path) -> None:
+    text = path.read_text()
+    assert "build_oto_order.py expiring" in text
+    assert "build_oto_order.py stop" in text
+    renew = text[text.index("STEP 2c"):text.index("STEP 3 — ")]
+    assert renew.index("alpaca.sh cancel") < renew.index('alpaca.sh order "$STOP_JSON"')
+    assert "--kind stop" in renew
+
+
+@pytest.mark.parametrize("path", CONVERGENCE_WORKFLOWS, ids=lambda p: str(p.relative_to(REPO)))
+def test_convergence_gated_so_stop_never_moves_down(path: Path) -> None:
+    text = path.read_text()
+    step = text[text.index("STEP 2b"):text.index("STEP 3 — ")]
+    gate = step.index("validate_stop_change.py --current-stop")
+    assert gate < step.index("alpaca.sh cancel"), "gate must run before the cancel"
+    assert "HOLD" in step and "stop_never_lowered" in step

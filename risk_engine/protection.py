@@ -13,7 +13,8 @@ invert the sequence that left losers unprotected (#38).
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal, ROUND_HALF_UP
+from datetime import datetime, timedelta
+from decimal import ROUND_CEILING, Decimal, ROUND_HALF_UP
 from typing import Any, Literal, Mapping
 
 from .engine import BASE_TRAIL_PCT
@@ -31,6 +32,10 @@ __all__ = [
     "CUT_LOSER_STEPS",
     "TRAIL_TIGHTEN_STEPS",
     "CONVERT_FIXED_TO_TRAIL_STEPS",
+    "RENEW_EXPIRING_STOP_STEPS",
+    "RENEWAL_WINDOW_DAYS",
+    "build_fixed_stop",
+    "expiring_protective_stops",
 ]
 
 
@@ -152,6 +157,35 @@ def build_trailing_stop(
     }
 
 
+def build_fixed_stop(
+    *,
+    symbol: str,
+    qty: object,
+    protection: FixedStop,
+    time_in_force: Literal["day", "gtc"] = "gtc",
+) -> dict[str, Any]:
+    """Standalone GTC fixed stop sell — the renewal target for an expiring stop.
+
+    A fresh trailing stop would restart its high-water mark at today's price and
+    so move the effective stop down; a fixed stop at the old level cannot.
+    """
+    if not isinstance(protection, FixedStop):
+        raise TypeError("build_fixed_stop requires FixedStop")
+    qty_dec = to_money(qty, "qty")
+    if qty_dec <= 0:
+        raise ValueError(f"qty must be positive, got {qty_dec}")
+    if qty_dec != qty_dec.to_integral_value():
+        raise ValueError(f"qty must be whole shares, got {qty_dec}")
+    return {
+        "symbol": _clean_symbol(symbol),
+        "qty": str(int(qty_dec)),
+        "side": "sell",
+        "type": "stop",
+        "time_in_force": time_in_force,
+        "stop_price": _money_str(protection.stop_price),
+    }
+
+
 def assert_leg_matches_fixed(leg: Mapping[str, Any], expected: FixedStop) -> None:
     """Post-submit readback: leg must be a fixed stop with no trail fields set.
 
@@ -207,6 +241,57 @@ def is_leftover_fixed_stop(order: Mapping[str, Any]) -> bool:
 CUT_LOSER_STEPS: tuple[str, ...] = ("cancel", "close")
 TRAIL_TIGHTEN_STEPS: tuple[str, ...] = ("cancel", "order")
 CONVERT_FIXED_TO_TRAIL_STEPS: tuple[str, ...] = ("cancel", "order")
+RENEW_EXPIRING_STOP_STEPS: tuple[str, ...] = ("cancel", "order")
+
+# Alpaca GTC orders expire ~90 days after creation. Renew with this much slack so
+# a skipped midday (holiday, failed run) cannot let protection lapse.
+RENEWAL_WINDOW_DAYS = 10
+
+_OPEN_STATUSES = ("new", "accepted", "held", "pending_new", "partially_filled")
+
+
+def expiring_protective_stops(
+    orders: list[Mapping[str, Any]],
+    now: datetime,
+    window_days: int = RENEWAL_WINDOW_DAYS,
+) -> list[dict[str, str]]:
+    """Open protective sells (stop / trailing_stop) expiring within the window.
+
+    Returns renewal instructions: the replacement is a FixedStop at the order's
+    *current* stop level rounded up to the cent — never lower. Hard-fails on an
+    order missing the fields renewal depends on rather than skipping it.
+    """
+    if now.tzinfo is None:
+        raise ValueError("now must be timezone-aware")
+    cutoff = now + timedelta(days=window_days)
+    due: list[dict[str, str]] = []
+    for order in orders:
+        if str(order.get("side", "")).lower() != "sell":
+            continue
+        if str(order.get("type", "")).lower() not in ("stop", "trailing_stop"):
+            continue
+        if str(order.get("status", "")).lower() not in _OPEN_STATUSES:
+            continue
+        missing = [k for k in ("id", "symbol", "qty", "stop_price", "expires_at") if not order.get(k)]
+        if missing:
+            raise ValueError(f"protective order {order.get('id')!r} missing {missing}")
+        expires = datetime.fromisoformat(str(order["expires_at"]).replace("Z", "+00:00"))
+        if expires > cutoff:
+            continue
+        level = to_money(str(order["stop_price"]), "stop_price").quantize(
+            Decimal("0.01"), rounding=ROUND_CEILING
+        )
+        due.append(
+            {
+                "order_id": str(order["id"]),
+                "symbol": _clean_symbol(str(order["symbol"])),
+                "qty": str(order["qty"]),
+                "type": str(order["type"]),
+                "expires_at": str(order["expires_at"]),
+                "renew_stop_price": _money_str(level),
+            }
+        )
+    return due
 
 
 def _money_str(value: Decimal) -> str:

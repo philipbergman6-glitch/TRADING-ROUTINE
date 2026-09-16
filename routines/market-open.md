@@ -82,6 +82,13 @@ left when a prior convert failed; do NOT leave this to "the next routine".
 
 For every leftover fixed stop, convert via CONVERT_FIXED_TO_TRAIL_STEPS
 (cancel then order — never reverse):
+Gate FIRST — conversion must never move the stop down. A new 10% trail starts
+its high-water mark at today's price, so its stop is P × 0.90. S = the fixed
+order's stop_price:
+python3 scripts/validate_stop_change.py --current-stop S --new-stop "$(python3 -c 'import sys; from decimal import Decimal as D; print((D(sys.argv[1])*D("0.90")).quantize(D("0.01")))' P)" --current-price P --json
+Exit 3 with `stop_never_lowered` → HOLD the fixed stop (intended state after an
+expiry renewal, not a failure); log "HOLD fixed SYM @ S" and skip to next order.
+Exit 0 → convert:
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent 10 --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
