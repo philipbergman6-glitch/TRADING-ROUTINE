@@ -4,9 +4,11 @@
 This is the enforceable boundary. `scripts/alpaca.sh` sits *behind* it as a
 private broker adapter; the engine decides, the adapter executes.
 
-Every verdict — approved or refused — is mandatorily written to the Postgres
-ledger via `ledger.live_path.persist_decision` (T4). No DATABASE_URL → exit 6
-(fail closed). This does not bind validate→submit (#19); it only records.
+When DATABASE_URL is set, every verdict — approved or refused — is written to
+the Postgres ledger via `ledger.live_path.persist_decision` (T4); a failed write
+→ exit 6 (fail closed). When DATABASE_URL is unset the ledger is disabled: a
+LEDGER DISABLED warning goes to stderr, `ledger_order_id` is null, and the
+verdict stands. This does not bind validate→submit (#19); it only records.
 
     python3 scripts/validate_order.py --symbol AAPL --qty 100 --side buy \
         --price 187.85 --trail-percent 10
@@ -16,7 +18,7 @@ Exit codes:
     3  refused  -- one or more rules broken (reasons on stderr; still ledgered)
     2  usage error
     4  could not establish broker state (never assume; refuse to guess)
-    6  ledger unavailable / record failed (mandatory write; fail closed)
+    6  ledger configured but record failed (fail closed)
 
 Nothing here submits an order. Validation and execution stay separate so this
 can be run freely, including as a dry run — but dry-run still records.
@@ -38,6 +40,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from ledger.live_path import (  # noqa: E402
     DEFAULT_STRATEGY_VERSION,
     EXIT_LEDGER,
+    LEDGER_DISABLED_WARNING,
+    ledger_enabled,
     open_live_ledger,
     persist_decision,
 )
@@ -187,19 +191,24 @@ def main() -> int:
     )
     result = validate_order(proposal, state)
 
-    try:
-        ledger = open_live_ledger()
-        recorded = persist_decision(
-            ledger,
-            proposal,
-            result,
-            idempotency_key=args.idempotency_key,
-            strategy_version=args.strategy_version,
-            research_ref=args.research_ref,
-        )
-    except Exception as exc:  # noqa: BLE001 — fail closed; never approve without a record
-        print(f"LEDGER FAIL: {exc}", file=sys.stderr)
-        return EXIT_LEDGER
+    recorded = None
+    if ledger_enabled():
+        try:
+            ledger = open_live_ledger()
+            recorded = persist_decision(
+                ledger,
+                proposal,
+                result,
+                idempotency_key=args.idempotency_key,
+                strategy_version=args.strategy_version,
+                research_ref=args.research_ref,
+            )
+        except Exception as exc:  # noqa: BLE001 — configured ledger: fail closed
+            print(f"LEDGER FAIL: {exc}", file=sys.stderr)
+            return EXIT_LEDGER
+    else:
+        print(LEDGER_DISABLED_WARNING, file=sys.stderr)
+    ledger_ref = str(recorded.id) if recorded else "disabled"
 
     if args.json:
         print(
@@ -209,9 +218,10 @@ def main() -> int:
                     "symbol": proposal.symbol,
                     "qty": str(proposal.qty),
                     "notional": str(proposal.notional),
-                    "ledger_order_id": str(recorded.id),
-                    "idempotency_key": recorded.idempotency_key,
-                    "ledger_status": recorded.status,
+                    "ledger_enabled": recorded is not None,
+                    "ledger_order_id": str(recorded.id) if recorded else None,
+                    "idempotency_key": recorded.idempotency_key if recorded else None,
+                    "ledger_status": recorded.status if recorded else None,
                     "violations": [
                         {"rule": v.rule.value, "detail": v.detail}
                         for v in result.violations
@@ -224,12 +234,12 @@ def main() -> int:
         print(
             f"APPROVED  {proposal.side.value} {proposal.qty} {proposal.symbol} "
             f"@ {proposal.price} (notional {proposal.notional}) "
-            f"ledger_order_id={recorded.id}"
+            f"ledger_order_id={ledger_ref}"
         )
     else:
         print(
             f"REFUSED   {proposal.side.value} {proposal.qty} {proposal.symbol} "
-            f"ledger_order_id={recorded.id}",
+            f"ledger_order_id={ledger_ref}",
             file=sys.stderr,
         )
         for reason in result.reasons():

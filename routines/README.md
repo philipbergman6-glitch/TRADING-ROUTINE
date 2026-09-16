@@ -21,3 +21,5 @@ load-bearing.
    `ALPACA_API_KEY`, `ALPACA_SECRET_KEY`, `ALPACA_ENDPOINT`,
    `ALPACA_DATA_ENDPOINT`, `PERPLEXITY_API_KEY`, `PERPLEXITY_MODEL`,
    `RESEND_API_KEY`, `EMAIL_TO`, `EMAIL_FROM`.
+   Optional: `DATABASE_URL` (hosted Postgres) enables the audit ledger; the
+   routine must then also `pip install -e ".[ledger]"`. Unset = ledger disabled.

@@ -263,6 +263,7 @@ def test_validate_order_module_calls_persist_decision(
     monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
 ) -> None:
     """Seam: after engine verdict, validate_order.main must persist via live_path."""
+    monkeypatch.setenv("DATABASE_URL", "postgresql://fake")
     vo = _load_script("validate_order_t4", VALIDATE)
 
     fake = FakeLedger()
@@ -310,6 +311,7 @@ def test_validate_order_module_calls_persist_decision(
 
 
 def test_validate_order_refused_still_persists(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("DATABASE_URL", "postgresql://fake")
     vo = _load_script("validate_order_t4_refused", VALIDATE)
 
     fake = FakeLedger()
@@ -341,6 +343,7 @@ def test_validate_order_refused_still_persists(monkeypatch: pytest.MonkeyPatch) 
 def test_validate_order_ledger_failure_exits_ledger_code(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
+    monkeypatch.setenv("DATABASE_URL", "postgresql://fake")
     vo = _load_script("validate_order_t4_fail", VALIDATE)
 
     def boom(**_k: object) -> FakeLedger:
@@ -373,6 +376,7 @@ def test_validate_order_ledger_failure_exits_ledger_code(
 
 
 def test_record_broker_response_cli_submit(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("DATABASE_URL", "postgresql://fake")
     mod = _load_script("record_broker_response_t4", RECORD)
 
     fake = FakeLedger()
@@ -399,6 +403,90 @@ def test_record_broker_response_cli_submit(monkeypatch: pytest.MonkeyPatch) -> N
     )
     assert mod.main() == 0
     assert fake.submissions[0]["broker_order_id"] == "brk-99"
+
+
+# --- ledger disabled (DATABASE_URL unset): verdict stands, loud warning -----
+
+
+def test_ledger_package_imports_without_psycopg() -> None:
+    """The risk path must not need the psycopg extra (CI + cloud routines lack it)."""
+    import subprocess
+
+    code = (
+        "import sys; sys.modules['psycopg'] = None\n"
+        "import ledger, ledger.live_path\n"
+        "import importlib.util as u\n"
+        f"spec = u.spec_from_file_location('vo', {str(VALIDATE)!r})\n"
+        "m = u.module_from_spec(spec); spec.loader.exec_module(m)\n"
+        f"spec = u.spec_from_file_location('rb', {str(RECORD)!r})\n"
+        "m = u.module_from_spec(spec); spec.loader.exec_module(m)\n"
+    )
+    proc = subprocess.run(
+        [sys.executable, "-c", code], cwd=REPO, capture_output=True, text=True
+    )
+    assert proc.returncode == 0, proc.stderr
+
+
+def test_validate_order_ledger_disabled_still_returns_verdict(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    vo = _load_script("validate_order_t4_disabled", VALIDATE)
+    monkeypatch.delenv("DATABASE_URL", raising=False)
+
+    def must_not_open(**_k: object) -> FakeLedger:
+        raise AssertionError("ledger opened while disabled")
+
+    monkeypatch.setattr(vo, "open_live_ledger", must_not_open)
+    monkeypatch.setattr(vo, "read_portfolio", lambda _n, _o: portfolio())
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "validate_order.py",
+            "--symbol", "AAPL", "--qty", "10", "--side", "buy",
+            "--price", "100", "--trail-percent", "10", "--json",
+        ],
+    )
+    assert vo.main() == 0
+    captured = capsys.readouterr()
+    out = json.loads(captured.out)
+    assert out["approved"] is True
+    assert out["ledger_enabled"] is False
+    assert out["ledger_order_id"] is None
+    assert "LEDGER DISABLED" in captured.err
+
+
+def test_validate_order_ledger_disabled_refusal_still_exits_refused(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    vo = _load_script("validate_order_t4_disabled_refused", VALIDATE)
+    monkeypatch.delenv("DATABASE_URL", raising=False)
+    monkeypatch.setattr(vo, "read_portfolio", lambda _n, _o: portfolio())
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["validate_order.py", "--symbol", "AAPL", "--qty", "10", "--side", "buy",
+         "--price", "100"],
+    )
+    assert vo.main() == vo.EXIT_REFUSED
+
+
+def test_record_broker_response_ledger_disabled_is_noop(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """Workflows capture ledger_order_id=None when disabled; record must not choke."""
+    mod = _load_script("record_broker_response_t4_disabled", RECORD)
+    monkeypatch.delenv("DATABASE_URL", raising=False)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["record_broker_response.py", "--order-id", "None", "--kind", "submit",
+         "--http-status", "200", "--response", '{"id":"brk-1"}'],
+    )
+    assert mod.main() == 0
+    captured = capsys.readouterr()
+    assert json.loads(captured.out) == {"recorded": False, "ledger_enabled": False}
+    assert "LEDGER DISABLED" in captured.err
 
 
 # --- workflow prose: live path instructs ledger writes ----------------------

@@ -13,10 +13,14 @@ does not bind validate→submit (#19).
         --order-id LEDGER_UUID --kind stop --http-status "$HTTP_STATUS" \
         --response "$ALPACA_JSON"
 
+With DATABASE_URL unset the ledger is disabled: prints LEDGER DISABLED to
+stderr and exits 0 without recording (whatever --order-id the caller captured,
+including "None", is ignored).
+
 Exit codes:
-    0  recorded
+    0  recorded, or ledger disabled
     2  usage error
-    6  ledger unavailable / record failed (fail closed)
+    6  ledger configured but record failed (fail closed)
 """
 
 from __future__ import annotations
@@ -31,6 +35,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from ledger.live_path import (  # noqa: E402
     EXIT_LEDGER,
+    LEDGER_DISABLED_WARNING,
+    ledger_enabled,
     open_live_ledger,
     persist_broker_response,
 )
@@ -63,6 +69,11 @@ def main() -> int:
         help="verbatim broker JSON body (string)",
     )
     args = parser.parse_args()
+
+    if not ledger_enabled():
+        print(LEDGER_DISABLED_WARNING, file=sys.stderr)
+        print(json.dumps({"recorded": False, "ledger_enabled": False}))
+        return 0
 
     try:
         order_id = uuid.UUID(args.order_id)
