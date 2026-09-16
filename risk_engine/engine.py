@@ -57,6 +57,7 @@ _TRAIL_LADDER: tuple[tuple[Decimal, Decimal], ...] = (
 # OCC option symbol, e.g. AAPL260116C00150000. Rule 1 is "NO OPTIONS -- ever",
 # so this is a shape check on the symbol itself, not a lookup.
 _OCC_OPTION = re.compile(r"^[A-Z]{1,6}\d{6}[CP]\d{8}$")
+_EQUITY_SYMBOL = re.compile(r"^[A-Z][A-Z0-9]*(?:[.-][A-Z0-9]+)?$")
 
 UNMECHANISED: dict[str, str] = {
     "sector_momentum": (
@@ -116,11 +117,11 @@ def validate_order(
         )
 
     # Rule 1: NO OPTIONS -- ever.
-    if _OCC_OPTION.match(proposal.symbol):
+    if _OCC_OPTION.match(proposal.symbol) or not _EQUITY_SYMBOL.fullmatch(proposal.symbol):
         violations.append(
             Violation(
                 Rule.STOCKS_ONLY,
-                f"{proposal.symbol} is an option contract symbol; stocks only",
+                f"{proposal.symbol} is not an equity symbol; broker asset verification is also required",
             )
         )
 
@@ -237,6 +238,8 @@ def _validate_protection(proposal: OrderProposal) -> list[Violation]:
         ]
 
     violations: list[Violation] = []
+    if has_stop and has_trail:
+        violations.append(Violation(Rule.STOP_REQUIRED, "specify exactly one protection type"))
     if has_stop:
         # Rule 7: never within MIN_STOP_DISTANCE_PCT of current price.
         distance_pct = _pct(proposal.price - proposal.stop_price, proposal.price)
@@ -254,6 +257,11 @@ def _validate_protection(proposal: OrderProposal) -> list[Violation]:
                     f"stop is {distance_pct:.2f}% below price, minimum is {MIN_STOP_DISTANCE_PCT}%",
                 )
             )
+        if not Decimal("9.5") <= distance_pct <= Decimal("10.5"):
+            violations.append(Violation(
+                Rule.STOP_DISTANCE,
+                f"entry fixed stop must be 9.5–10.5% below entry, got {distance_pct:.2f}%",
+            ))
     if has_trail and proposal.trail_percent < MIN_STOP_DISTANCE_PCT:
         violations.append(
             Violation(
@@ -262,6 +270,10 @@ def _validate_protection(proposal: OrderProposal) -> list[Violation]:
                 f"{MIN_STOP_DISTANCE_PCT}% minimum distance",
             )
         )
+    if has_trail and proposal.trail_percent != BASE_TRAIL_PCT:
+        violations.append(Violation(
+            Rule.STOP_DISTANCE, f"entry trail must be {BASE_TRAIL_PCT}%",
+        ))
     return violations
 
 
@@ -278,6 +290,8 @@ def validate_stop_change(
     price = to_money(current_price, "current_price")
     if price <= 0:
         raise ValueError(f"current_price must be positive, got {price}")
+    if current <= 0 or proposed <= 0:
+        raise ValueError("current_stop and new_stop must be positive")
 
     violations: list[Violation] = []
     if proposed < current:

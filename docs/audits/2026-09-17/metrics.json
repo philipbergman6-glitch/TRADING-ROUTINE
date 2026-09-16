@@ -1,0 +1,173 @@
+{
+  "basis": "Committed markdown; unreconciled with broker; no external-cash-flow adjustment",
+  "first_date": "2026-04-27",
+  "last_date": "2026-09-16",
+  "snapshot_count": 97,
+  "last_phase_day": 101,
+  "initial_equity": 100000.0,
+  "last_equity": 102827.45,
+  "equity_return_pct": 2.827449999999998,
+  "peak_equity": 115135.09,
+  "max_observed_eod_drawdown_pct": -10.689738462878696,
+  "weekly_observations": 20,
+  "last_week": "09/11",
+  "weekly_bot_compounded_pct": 3.9941457608985598,
+  "weekly_benchmark_compounded_pct": 5.8648456181099595,
+  "estimated_benchmark_weeks": 8,
+  "daily_return_discrepancies": [
+    {
+      "date": "2026-04-30",
+      "prior_date": "2026-04-27",
+      "calendar_day_gap": 3,
+      "equity_change_pct": 1.18825,
+      "logged_day_pct": 0.37
+    },
+    {
+      "date": "2026-05-05",
+      "prior_date": "2026-05-04",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -0.972211,
+      "logged_day_pct": -1.58
+    },
+    {
+      "date": "2026-05-06",
+      "prior_date": "2026-05-05",
+      "calendar_day_gap": 1,
+      "equity_change_pct": 3.736081,
+      "logged_day_pct": 3.78
+    },
+    {
+      "date": "2026-05-07",
+      "prior_date": "2026-05-06",
+      "calendar_day_gap": 1,
+      "equity_change_pct": 0.155023,
+      "logged_day_pct": 0.12
+    },
+    {
+      "date": "2026-05-08",
+      "prior_date": "2026-05-07",
+      "calendar_day_gap": 1,
+      "equity_change_pct": 2.317444,
+      "logged_day_pct": 2.29
+    },
+    {
+      "date": "2026-05-12",
+      "prior_date": "2026-05-08",
+      "calendar_day_gap": 4,
+      "equity_change_pct": 0.503034,
+      "logged_day_pct": -0.61
+    },
+    {
+      "date": "2026-05-13",
+      "prior_date": "2026-05-12",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -0.223709,
+      "logged_day_pct": -0.47
+    },
+    {
+      "date": "2026-05-14",
+      "prior_date": "2026-05-13",
+      "calendar_day_gap": 1,
+      "equity_change_pct": 1.686917,
+      "logged_day_pct": 1.64
+    },
+    {
+      "date": "2026-05-15",
+      "prior_date": "2026-05-14",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -1.477941,
+      "logged_day_pct": -1.54
+    },
+    {
+      "date": "2026-05-18",
+      "prior_date": "2026-05-15",
+      "calendar_day_gap": 3,
+      "equity_change_pct": 0.355399,
+      "logged_day_pct": 0.13
+    },
+    {
+      "date": "2026-05-21",
+      "prior_date": "2026-05-20",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -0.484899,
+      "logged_day_pct": -0.43
+    },
+    {
+      "date": "2026-05-26",
+      "prior_date": "2026-05-22",
+      "calendar_day_gap": 4,
+      "equity_change_pct": 0.067152,
+      "logged_day_pct": 0.03
+    },
+    {
+      "date": "2026-05-27",
+      "prior_date": "2026-05-26",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -0.370943,
+      "logged_day_pct": -0.4
+    },
+    {
+      "date": "2026-05-28",
+      "prior_date": "2026-05-27",
+      "calendar_day_gap": 1,
+      "equity_change_pct": 1.513357,
+      "logged_day_pct": 1.58
+    },
+    {
+      "date": "2026-05-29",
+      "prior_date": "2026-05-28",
+      "calendar_day_gap": 1,
+      "equity_change_pct": 3.578345,
+      "logged_day_pct": 3.55
+    },
+    {
+      "date": "2026-06-01",
+      "prior_date": "2026-05-29",
+      "calendar_day_gap": 3,
+      "equity_change_pct": 2.527419,
+      "logged_day_pct": 2.37
+    },
+    {
+      "date": "2026-06-02",
+      "prior_date": "2026-06-01",
+      "calendar_day_gap": 1,
+      "equity_change_pct": 0.527473,
+      "logged_day_pct": 0.43
+    },
+    {
+      "date": "2026-06-03",
+      "prior_date": "2026-06-02",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -0.751847,
+      "logged_day_pct": 0.8
+    },
+    {
+      "date": "2026-06-04",
+      "prior_date": "2026-06-03",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -3.500717,
+      "logged_day_pct": -3.59
+    },
+    {
+      "date": "2026-06-05",
+      "prior_date": "2026-06-04",
+      "calendar_day_gap": 1,
+      "equity_change_pct": -1.66975,
+      "logged_day_pct": -1.73
+    },
+    {
+      "date": "2026-06-08",
+      "prior_date": "2026-06-05",
+      "calendar_day_gap": 3,
+      "equity_change_pct": 0.218744,
+      "logged_day_pct": 0.09
+    },
+    {
+      "date": "2026-06-17",
+      "prior_date": "2026-06-12",
+      "calendar_day_gap": 5,
+      "equity_change_pct": -0.700335,
+      "logged_day_pct": 0.0
+    }
+  ]
+}

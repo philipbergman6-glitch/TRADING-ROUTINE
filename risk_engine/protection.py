@@ -99,7 +99,7 @@ def build_oto_entry(
     symbol: str,
     qty: object,
     protection: FixedStop,
-    time_in_force: Literal["day", "gtc"] = "day",
+    time_in_force: Literal["day", "gtc"] = "gtc",
 ) -> dict[str, Any]:
     """One POST body: market buy + fixed protective leg (`order_class=oto`).
 

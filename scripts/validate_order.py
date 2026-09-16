@@ -65,6 +65,9 @@ def adapter(*args: str) -> object:
     Any failure is fatal: validating against a guess at the portfolio is worse
     than not validating at all, because it looks like it worked.
     """
+    read_env = os.environ.copy()
+    # Nested preflight GETs must never overwrite the outer mutation's status.
+    read_env.pop("ALPACA_HTTP_STATUS_FILE", None)
     try:
         proc = subprocess.run(
             ["bash", str(ADAPTER), *args],
@@ -72,18 +75,22 @@ def adapter(*args: str) -> object:
             text=True,
             check=True,
             timeout=30,
+            env=read_env,
         )
     except subprocess.CalledProcessError as exc:
-        sys.exit(
+        print(
             f"broker adapter failed ({' '.join(args)}): "
-            f"exit {exc.returncode}: {exc.stderr.strip()}"
+            f"exit {exc.returncode}", file=sys.stderr,
         )
+        sys.exit(EXIT_NO_STATE)
     except subprocess.TimeoutExpired:
-        sys.exit(f"broker adapter timed out ({' '.join(args)})")
+        print(f"broker adapter timed out ({' '.join(args)})", file=sys.stderr)
+        sys.exit(EXIT_NO_STATE)
     try:
-        return json.loads(proc.stdout)
+        return json.loads(proc.stdout, parse_float=str)
     except json.JSONDecodeError as exc:
-        sys.exit(f"broker adapter returned non-JSON ({' '.join(args)}): {exc}")
+        print(f"broker adapter returned non-JSON ({' '.join(args)}): {exc}", file=sys.stderr)
+        sys.exit(EXIT_NO_STATE)
 
 
 def trades_this_week(now: datetime) -> int:
@@ -96,7 +103,7 @@ def trades_this_week(now: datetime) -> int:
         hour=0, minute=0, second=0, microsecond=0
     )
     orders = adapter("orders", "closed")
-    if not isinstance(orders, list):
+    if not isinstance(orders, list) or len(orders) >= 500:
         sys.exit(EXIT_NO_STATE)
     count = 0
     for order in orders:
@@ -143,9 +150,9 @@ def read_portfolio(now: datetime, override_trades: int | None) -> PortfolioState
 def _is_paper() -> bool:
     """Alpaca's account payload does not label paper vs live; the endpoint is
     the only signal. Default matches alpaca.sh, which defaults to paper and
-    hard-fails on anything else unless ALPACA_ALLOW_LIVE=1."""
+    hard-fails on anything else; live overrides are not supported."""
     endpoint = os.environ.get("ALPACA_ENDPOINT", "https://paper-api.alpaca.markets/v2")
-    return "paper-api.alpaca.markets" in endpoint
+    return endpoint == "https://paper-api.alpaca.markets/v2"
 
 
 def main() -> int:

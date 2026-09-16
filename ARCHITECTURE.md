@@ -33,26 +33,28 @@ scripts/validate_order.py        ← instructed pre-check (routines / commands)
 risk_engine.validate_order()     ← deterministic; returns every broken rule
         ↓   (refused → exit 3, nothing is sent)
         ↓   (approved → caller sets ALPACA_RISK_OK=1)
-scripts/alpaca.sh                ← hard-refuses mutate unless ALPACA_RISK_OK=1 (exit 5)
+scripts/alpaca.sh                ← caller intent flag (exit 5 if absent)
+        ↓
+scripts/validate_mutation.py     ← re-check exact payload against broker state
         ↓
 Alpaca paper API
         ↓
-ledger (Postgres)                ← mandatory write on validate + post-order record (T4)
+ledger (Postgres)                ← preflight + response record when configured (T4)
 ```
 
-`validate_order.py` persists every verdict via `ledger.live_path`; after
-`alpaca.sh order`, callers record the broker response. Still not a bound
-validate→submit handoff (#19).
+When configured, `validate_order.py` persists every verdict via `ledger.live_path`; after
+`alpaca.sh order`, callers record the broker response. Execution is not yet a durable transaction (#19).
 
-The model may propose. On mutating paths, routines instruct
-`scripts/validate_order.py` first, then invoke `alpaca.sh` with
-`ALPACA_RISK_OK=1`. **Today that gate is the env flag only** — `alpaca.sh`
-does not verify that validate ran, and there is no validated-order token
-binding submit to the verdict. Real validate↔submit coupling remains
-[issue #19](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/19) /
-[issue #26](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/26).
-`scripts/alpaca.sh` is still the broker adapter; the env gate is a procedural
-check, not a non-bypassable boundary.
+The model may propose. Routines retain `validate_order.py` as a preflight and
+ledger decision step. `ALPACA_RISK_OK=1` is only caller intent: `alpaca.sh` also
+runs `scripts/validate_mutation.py` against the exact command/body it will send.
+The mutation gate checks actual broker asset class and current portfolio;
+buys require a fresh ask, no outstanding buy, a GTC OTO and compliant fixed
+protection. Bulk `cancel-all` and `close-all` are refused.
+
+This closes the old payload-versus-approval gap. It does not isolate credentials
+from the agent, serialize independent routines, reserve cross-process capacity,
+or recover interrupted cancel/replacement. Durable execution remains #19/#26.
 
 ## Why the risk engine is a pure module
 
@@ -79,7 +81,8 @@ reached on `/trade`, `market-open`, and `midday` via `scripts/validate_order.py`
 
 paper-account-only · stocks-only · max 6 positions · max 20% per position ·
 max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
-stop required on every buy · stop never within 3% of price *on a proposed buy*
+unambiguous protection on every buy · fixed entry stop 9.5–10.5% below entry
+or exactly 10% entry trail · non-equity symbol formats rejected
 
 Enforced on midday trail/stop *changes* via `scripts/validate_stop_change.py`
 (T2 / [issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32)):
@@ -89,8 +92,8 @@ Enforced on midday trail/stop *changes* via `scripts/validate_stop_change.py`
 - **The trail ladder** (10% → 7% at +15% → 5% at +20%) —
   `required_trail_percent` (`risk_engine/engine.py`). Midday asks the CLI for
   the required trail, then validates the proposed change; the CLI composes
-  both functions (ladder floor + implied stop prices at the current mark so
-  Rule 7 still runs). Tightening remains cancel→order
+  both functions (ladder floor + replacement stop prices against the actual broker stop_price so
+  the old high-water-mark floor is preserved). Tightening remains cancel→order
   (`TRAIL_TIGHTEN_STEPS`); collapsing that naked window needs
   [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
   (OPEN — do not invent PATCH).
@@ -144,16 +147,17 @@ than one described aspirationally.
   [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
   (OPEN research — do not invent). Idempotency keys + reconciliation loop still
   not built.
-- **No reconciliation loop.** Nothing yet compares local state against broker
-  state or alerts when a position has no stop.
+- **Read-only reconciliation, not a scheduled loop.** `scripts/doctor.py --broker`
+  compares held quantities against current, unexpired GTC protective orders via
+  `risk_engine.reconciliation`. It flags missing, excess and ambiguous coverage.
+  Independent scheduling, incident delivery and automatic recovery remain open.
 - **Scheduled routine gates (T1 + T2).** `market-open` and `midday` (and `/trade`)
   instruct `scripts/validate_order.py` before every order-mutating `alpaca.sh`
   path; `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) with
   **exit 5** unless `ALPACA_RISK_OK=1`. Midday trail/stop *changes* also go
   through `scripts/validate_stop_change.py` (`required_trail_percent` +
-  `validate_stop_change`, issue #32 / T2) before cancel→replace. That is an
-  **env-flag gate plus instructed validate-before-mutate**, not a bound
-  validate→submit handoff (see #19 / #26). Read-only subcommands stay ungated.
+  `validate_stop_change`, issue #32 / T2) before cancel→replace. The wrapper additionally revalidates the exact mutation.
+  A durable execution coordinator remains open (see #19 / #26). Read-only subcommands stay ungated.
   Pre-market, daily-summary, and weekly-review are read-only.
 - **Single user, paper only.** No multi-tenancy, no RBAC, no credential
   encryption, no live trading. There is one user and one paper account;
@@ -164,8 +168,8 @@ than one described aspirationally.
 Two independent guards:
 
 1. `scripts/alpaca.sh` defaults to the paper endpoint and **hard-fails** if
-   `ALPACA_ENDPOINT` is anything else, unless `ALPACA_ALLOW_LIVE=1` is set
-   explicitly.
+   `ALPACA_ENDPOINT` is anything else. No live override exists; the market-data
+   endpoint is also exactly allowlisted.
 2. `risk_engine` re-checks account mode itself rather than trusting that the
    upstream guard held, and refuses every order — buy *and* sell — on a
    non-paper account.

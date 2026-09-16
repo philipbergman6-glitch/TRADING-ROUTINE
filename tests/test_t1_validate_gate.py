@@ -10,6 +10,7 @@ from __future__ import annotations
 import os
 import re
 import subprocess
+import tempfile
 from pathlib import Path
 
 import pytest
@@ -45,13 +46,16 @@ def _run_alpaca(*args: str, env_extra: dict[str, str] | None = None) -> subproce
     env.pop("ALPACA_HTTP_STATUS_FILE", None)
     if env_extra:
         env.update(env_extra)
-    return subprocess.run(
-        ["bash", str(ALPACA), *args],
-        capture_output=True,
-        text=True,
-        env=env,
-        timeout=15,
-    )
+    with tempfile.TemporaryDirectory() as directory:
+        fake = Path(directory) / "curl"
+        fake.write_text("#!/bin/sh\nprintf '%s\\n' '{}'\n")
+        fake.chmod(0o700)
+        env["PATH"] = directory + os.pathsep + env["PATH"]
+        return subprocess.run(
+            ["bash", str(ALPACA), *args], capture_output=True, text=True,
+            env=env, timeout=15,
+        )
+
 
 
 @pytest.mark.parametrize("cmd,argv", [
@@ -77,13 +81,14 @@ def test_mutating_cmd_refuses_without_risk_ok(cmd: str, argv: list[str]) -> None
     ("order", ["order", "{}"]),
     ("close", ["close", "AAPL"]),
 ])
-def test_mutating_cmd_passes_gate_with_risk_ok(cmd: str, argv: list[str]) -> None:
-    """With ALPACA_RISK_OK=1 the mutation gate is satisfied (curl may still fail)."""
+def test_flagged_mutation_still_requires_valid_payload_and_state(cmd: str, argv: list[str]) -> None:
+    """The flag clears caller-intent checks but never approves invalid mutations."""
     result = _run_alpaca(*argv, env_extra={"ALPACA_RISK_OK": "1"})
     assert result.returncode != 5, (
         f"{cmd} with ALPACA_RISK_OK=1 must not hit the risk gate\n"
         f"stderr={result.stderr!r}"
     )
+    assert result.returncode in (2, 3, 4), result.stderr
     # Exit 139 = SIGSEGV/stack overflow from _curl recursion — must not greenwash.
     assert result.returncode != 139, (
         f"{cmd} with ALPACA_RISK_OK=1 must not stack-overflow (_curl recursion); "

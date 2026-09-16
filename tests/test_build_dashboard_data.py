@@ -60,14 +60,18 @@ def test_hard_fails_on_missing_phase_day():
         b.parse_trade_log(text)
 
 
-def test_live_figures_are_not_frozen_in_static_tail():
-    """The curated tail must carry placeholders, never a baked-in number."""
-    assert "__DEPLOYED__" in b.STATIC_TAIL
-    assert "__DAYS__" in b.STATIC_TAIL
+def test_current_safety_observations_come_from_latest_snapshot():
     snaps, weeks, out = build()
-    assert "__" not in out.split("const TRADES")[1], "placeholder left unsubstituted"
-    assert f"now {100 - snaps[-1]['cash']:.1f}%" in out
-    assert f"in {snaps[-1]['n']} days" in out
+    assert "zero rule breaches" not in out
+    assert "none ever lowered" not in out
+    assert "Risk control is genuinely solved" not in out
+    book = b.build_book(snaps[-1])
+    trailing = sum(p["protection"] == "trailing" for p in book)
+    fixed = sum(p["protection"] == "fixed" for p in book)
+    assert f"{trailing} trailing / {fixed} fixed; broker status unverified" in out
+    assert "historical rule compliance" in out.lower()
+    assert "__RULES_JSON__" not in out
+    assert f"{100 - snaps[-1]['cash']:.1f}% as of {snaps[-1]['d']}" in out
 
 
 # ---- EQ is a daily-close series -----------------------------------------
@@ -194,14 +198,14 @@ def test_alpaca_wrapper_refuses_live_endpoint():
     assert "REFUSING" in r.stderr
 
 
-def test_alpaca_wrapper_allows_live_with_explicit_override():
+def test_alpaca_wrapper_refuses_live_even_with_old_override():
     """The override must be reachable — but only when deliberately set."""
     env = {"PATH": os.environ["PATH"], "HOME": os.environ.get("HOME", "/tmp"),
            "ALPACA_ENDPOINT": "https://api.alpaca.markets/v2",
            "ALPACA_ALLOW_LIVE": "1", "ALPACA_API_KEY": "x", "ALPACA_SECRET_KEY": "y"}
     r = subprocess.run(["bash", str(REPO / "scripts" / "alpaca.sh"), "account"],
                        capture_output=True, text=True, env=env, cwd=REPO)
-    assert r.returncode != 4 and "REFUSING" not in r.stderr
+    assert r.returncode == 4 and "REFUSING" in r.stderr
 
 
 def test_env_file_does_not_override_process_env():
@@ -237,7 +241,7 @@ def test_editorial_header_is_substituted_not_hardcoded():
         "single source of truth")
     _, _, out = build()
     assert "__ANALYSIS_ASOF__" not in out
-    assert f"analysis as of {b.ANALYSIS_ASOF}" in out
+    assert f"Commentary as of {b.ANALYSIS_ASOF}" in out
 
 
 def test_no_stale_2026_07_28_stamp_survives_anywhere():

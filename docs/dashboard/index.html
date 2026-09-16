@@ -262,25 +262,16 @@ const MTICKS = (()=>{ const out = [], end = LAST.d.slice(0,7);
   const lamp = $('lampLive');
   // Degrade, never throw: a browser holding a cached pre-2026-08-11 data.js
   // has no ANALYSIS_ASOF, and a blank dashboard is far worse than a plain badge.
-  if (typeof LOG_ASOF === 'undefined' || typeof ANALYSIS_ASOF === 'undefined') {
-    lamp.innerHTML = `<i></i> LIVE · LAST LOG ${dLbl(LAST.d).toUpperCase()} EOD`;
-    return;
-  }
-  const staleDays = Math.round((Date.parse(LOG_ASOF) - Date.parse(ANALYSIS_ASOF)) / 86400000);
-  if (staleDays > 0) {
-    lamp.className = 'lamp stale';
-    lamp.innerHTML = `<i></i> DATA ${dLbl(LOG_ASOF).toUpperCase()} · ANALYSIS ${dLbl(ANALYSIS_ASOF).toUpperCase()} (${staleDays}D OLDER)`;
-  } else {
-    lamp.innerHTML = `<i></i> LIVE · DATA ${dLbl(LOG_ASOF).toUpperCase()} EOD · ANALYSIS ${dLbl(ANALYSIS_ASOF).toUpperCase()}`;
-  }
+  const ageDays = Math.max(0, Math.floor((Date.now() - Date.parse(LOG_ASOF + 'T00:00:00Z')) / 86400000));
+  lamp.innerHTML = `<i></i> PAPER · LOG ${LOG_ASOF} · ${ageDays} CALENDAR DAYS OLD · BROKER UNVERIFIED`;
 })();
-$('asof').innerHTML = `day ${LAST.n} · ${dLbl(FIRST.d).toUpperCase()} – ${dLbl(LAST.d).toUpperCase()} ${LAST.d.slice(0,4)}<br>figures from origin/main logs · nothing estimated · <b>editorial text is curated, dated separately</b>`;
+$('asof').innerHTML = `day ${LAST.n} · ${dLbl(FIRST.d).toUpperCase()} – ${dLbl(LAST.d).toUpperCase()} ${LAST.d.slice(0,4)}<br>log-derived figures · reconstructed history and estimated benchmark weeks · <b>editorial text is curated, dated separately</b>`;
 $('provDate').textContent = LAST.d;
 $('subEq').textContent = `${EQ.length} logged snapshots, TRADE-LOG.md verbatim · hover any point`;
 $('subBook').textContent = `${dLbl(LAST.d)} EOD · ${BOOK.every(p=>p.pl>=0) ? 'all green' : `${BOOK.filter(p=>p.pl>=0).length}/${BOOK.length} green`}`;
-$('subWk').textContent = `${WEEKS.length} reviews · S&P re-chained from logged closes`;
+$('subWk').textContent = `${WEEKS.length} reviews · ${WEEKS.filter(w=>w.est).length} estimated benchmark weeks · through ${WEEKS.at(-1).w}`;
 $('subDep').textContent = `75–85% band · ${deployed}% now, ${band}`;
-$('subIns').textContent = `editorial, ${LAST.d} · figures re-derived from the logs at build time`;
+$('subIns').textContent = `commentary as of ${ANALYSIS_ASOF} · historical observations are not live verification`;
 $('subPnl').textContent = `${EQ.length-1} EOD prints · flat stretch = the 100%-cash idle week Jun 17–24`;
 
 // ---- KPIs ----
@@ -290,7 +281,7 @@ $('kpis').innerHTML = [
   {l:"peak", v:pct((peak/FIRST.v-1)*100), s:usd0(peak)+" · "+dLbl(peakP.d).toLowerCase(), c:"var(--green)", kc:"var(--green)"},
   {l:"max drawdown", v:pct(DD.dd), s:`${usdR(DD.tr.v-DD.pk.v)} · ${dLbl(DD.pk.d).toLowerCase()} → ${dLbl(DD.tr.d).toLowerCase()}`, c:"var(--red)", kc:"var(--red)"},
   {l:"deployment", v:deployed+"%", s:`mandate 75–85% · ${band}`, c:bandC==='up'?"var(--green)":"var(--amber)", kc:bandC==='up'?"var(--green)":"var(--amber)"},
-  {l:"logged realized p&l", v:usdR(realized), s:`${wins}W / ${CLOSED.length-wins}L written · apr–may wins never logged`, c:realized>=0?"var(--green)":"var(--red)", kc:"var(--amber)"}
+  {l:"historical blotter", v:"INCOMPLETE", s:"Realized P&L and win rate withheld pending reconciliation", c:realized>=0?"var(--green)":"var(--red)", kc:"var(--amber)"}
 ].map(k=>`<div class="kpi" style="--kc:${k.kc}"><div class="l">${k.l}</div><div class="v mono" style="color:${k.c}">${k.v}</div><div class="s">${k.s}</div></div>`).join('');
 
 // ---- Equity chart ----
@@ -340,7 +331,7 @@ $('book').innerHTML = BOOK.map(p=>{
   return `<div class="pos">
     <span class="sym">${p.s}</span>
     <span class="bar-wrap">
-      <span class="meta"><span>stop ${p.stop}</span><span>${p.w}% of book · cushion ${cushion.toFixed(1)}%</span></span>
+      <span class="meta"><span>${p.protection} stop ${p.stop} · logged</span><span>${p.w}% of book · cushion ${cushion.toFixed(1)}%</span></span>
       <span class="track"><span class="fill" style="left:0; width:${Math.max(0,Math.min(100,cushion*10))}%; background:linear-gradient(90deg,#FF4D5E22,#2BD576);"></span></span>
     </span>
     <span class="pl ${up?'up':'dn'}">${up?'+':'−'}$${Math.abs(p.pl).toFixed(0)}<br><span class="faint" style="font-size:10px">${up?'+':'−'}${Math.abs(p.plp)}%</span></span>
@@ -451,7 +442,7 @@ $('blotter').innerHTML = TRADES.map(t=>`
   <tr>
     <td class="dim">${t.d}</td>
     <td class="sym">${t.s}</td>
-    <td><span class="chip ${t.open?'open':t.sec}">${t.open?'OPEN':t.sec==='tech'?'TECH':t.sec==='enrg'?'ENRG':'ETF'}</span></td>
+    <td><span class="chip ${t.open?'open':t.sec}">${t.open?(BOOK.some(p=>p.s===t.s)?'IN LATEST BOOK':'UNRECONCILED'):t.sec==='tech'?'TECH':t.sec==='enrg'?'ENRG':'ETF'}</span></td>
     <td class="r">${t.q}</td>
     <td class="r">${t.in}</td>
     <td class="r ${t.gap?'gap':''}">${t.out ?? t.gap}</td>

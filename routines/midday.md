@@ -149,15 +149,16 @@ hand-compute 15%/20% thresholds in prose.
 For each position with a resting trailing stop:
   G = unrealized_plpc * 100          # e.g. 0.16 → 16
   C = current trail_percent on the open sell order
+  S = actual stop_price on the resting broker order (preserves its high-water mark)
   P = current mark price
 
 Ask the engine for the widest trail still permitted, then validate the change:
 T=$(python3 scripts/validate_stop_change.py --gain-pct G --print-required)
 # Skip if already at or tighter than required (nothing to tighten).
 python3 scripts/validate_stop_change.py --gain-pct G --proposed-trail T \
-    --current-trail C --current-price P --json
+    --current-trail C --current-stop S --current-price P --json
 Exit 0 = approved trail/stop change (wires required_trail_percent +
-validate_stop_change on implied stops).
+validate_stop_change against the actual broker stop).
 Exit 3 = refused → skip tighten, log violations verbatim.
 Exit 2 = usage → STOP, fix inputs.
 

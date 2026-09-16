@@ -212,9 +212,9 @@ def test_unprotected_buy_is_refused():
 # --- Rule 7: stop distance ---------------------------------------------------
 
 
-def test_stop_outside_3pct_is_allowed():
+def test_fixed_entry_stop_must_also_match_rule_four():
     order = buy(trail_percent=None, stop_price=Decimal("96"))  # 4% away
-    assert not validate_order(order, portfolio()).broke(Rule.STOP_DISTANCE)
+    assert validate_order(order, portfolio()).broke(Rule.STOP_DISTANCE)
 
 
 def test_stop_inside_3pct_is_refused():
