@@ -7068,3 +7068,50 @@ All 3 trailing GTC stops confirmed active/intact via orders; none lowered, none 
 - **All 3 held names (XLB/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. **XLK** is the primary rate/headline-risk watch into Wed.
 - **Watch list:** Energy (XLE, #1 YTD) for a clean base to rebuild toward the band **post-FOMC (Thu/Fri)**; XLK for AI-semi stabilization. 3/3 weekly trades available.
 - **All 3 trailing stops active/correct; none lowered.** Refresh XLB (09-25) & XLP (09-28) stops before expiry. No rebalancing pre-market.
+
+---
+
+## 2026-09-16 (Wed, Day 101) — Pre-Market Research — FOMC DECISION DAY
+
+### Account Snapshot (live; asof 2026-09-15)
+- **Equity:** $103,194.39 | **Cash:** $40,630.53 (39.37%) | **Buying power:** $337,700.93 (margin — NOT capital; sizing reads cash) | **Deployed:** $62,563.86 (60.63%, **BELOW 75-85% band — session 3**) | **Daytrade count:** n/a (PDT abolished 2026-07-06)
+- **Positions (3/6):**
+
+| Ticker | Shares | Entry | Price | Unreal P&L | Weight | Stop (10% trail GTC, hwm) — cushion | Expiry |
+|--------|--------|-------|-------|------------|--------|-------------------------------------|--------|
+| XLB | 412 | $51.07 | $50.78 | -$120 (-0.57%) | 20.3% | $48.771 (hwm $54.19) — ~4.1% | 09-25 |
+| XLK | 112 | $187.85 | $185.00 | -$319 (-1.52%) | 20.1% | $172.575 (hwm $191.75) — ~6.7% | 11-06 |
+| XLP | 250 | $83.76 | $83.69 | -$18 (-0.08%) | 20.3% | $79.902 (hwm $88.78) — ~4.5% | 09-28 |
+
+All 3 trailing GTC stops confirmed active/intact via orders; none lowered, none near +15%/+20% tighten (best XLP -0.08%); all above -7% cut. **Stop-expiry watch: XLB 2026-09-25 (~9d), XLP 2026-09-28 (~12d) — refresh before expiry to keep protection continuous (XLK 11-06).**
+
+### Market Context — FOMC DECISION DAY (2:00 ET decision, 2:30 ET presser); FUTURES ~FLAT/GREEN; VIX EASING; OIL ELEVATED
+- **S&P futures:** E-minis **~7,667**, **~+0.15%** — modest green into the Fed (cash SPX closed 7,585.73, -0.45% Tue). Quiet, waiting on 2pm.
+- **VIX ~16.9-17.2**, easing premarket (~-0.8%) off Mon/Tue spike above 18 — still elevated but calming into the print.
+- **Oil:** WTI **~$103-105** / Brent **~$108** — remains elevated on US–Iran/Saudi tension. Mild XLB tailwind; inflation/yield tail for rate-sensitive XLK.
+- **Econ calendar (today):** **THE BINARY — FOMC decision 2:00 ET + updated SEP/dot plot; Powell presser 2:30 ET.** CME FedWatch leans **~92-93% for a 25bp HIKE** (one source ~50/50, slight hike tilt) — hawkish-tilted, but a volatility event, not fully priced. A hike/hawkish dots hits rate-sensitive **XLK** hardest; a dovish surprise (hold + soft dots) is the upside tail.
+- **Earnings:** ISPR, LUXE (BMO); TCOM, LEN (AMC) — **no held name reports** (all sector ETFs).
+
+### Sector Momentum (YTD) — HELD SECTORS INTACT
+- **Energy (XLE)** — **#1 ~+41-42% YTD**, oil elevated — top leadership, **not held**; flagged redeployment candidate post-FOMC.
+- **Technology (XLK ✓)** — **~+22-27% YTD**, AI-semi leadership but the primary rate/headline-risk name into 2pm. Held.
+- **Materials (XLB ✓)** — **~+12-16% YTD**, oil a mild tailwind. Held.
+- **Consumer Staples (XLP ✓)** — **~+5-10% YTD**, defensive ballast — best-positioned into the decision. Held.
+
+### Trade Ideas (3/3 weekly trades available; deployment BELOW band 60.63%, session 3)
+1. **HOLD all three — no forced action pre-market.** Rule-12 deployment mandate is now at its 3-session trigger (Sep 14 / 15 / 16), BUT the rule explicitly exempts a **market-wide risk event** — today's live FOMC decision is exactly that. Do NOT force a leadership add into a 2pm rate-decision window. Deferral is rule-compliant, not a blown deadline.
+2. **Energy (XLE, #1 YTD, oil elevated) — the mandated 5th-name / redeployment add**, to be actioned at the **Thu/Fri market-open routine once the FOMC clears** (the first non-risk-event market-open). Clean base above a rising 20-day, 8-10% stop, 2:1 R:R. **Requires the ops blocker fixed first (see Risk).**
+3. **Avoid:** forcing any name pre-decision; adding over the 20% cap on held names; margin (cash-only, $40.6k cash sizes any add).
+
+### Risk Factors
+- **FOMC 2:00 ET — the binary, hawkish-tilted (~92-93% hike odds).** Hike/hawkish dots → rate-sensitive **XLK** hit hardest; dovish hold → upside tail. All three held stops are the backstop — none unprotected through the print.
+- **Under-band deployment (60.63%, session 3):** the next NON-risk-event market-open (Thu, post-FOMC) becomes the mandated leadership add — XLE is the flagged candidate. Today's market-open is exempt (FOMC).
+- **Oil/geopolitics:** Brent >$108 supports XLB but feeds the inflation/yield tail; de-escalation removes the XLB tailwind.
+- **Stop expiries approaching:** XLB (09-25, ~9d), XLP (09-28, ~12d) — refresh before expiry.
+- **Ops blocker persists (re-verified today):** `DATABASE_URL` still MISSING in env AND `validate_order.py` fails at import (`ModuleNotFoundError: No module named 'psycopg'` — declared in pyproject.toml, not installed). Together they gate every mutating order path (manual cut, tighten-stop, ADR-0002 convergence, the mandated XLE add) fail-closed. Resting GTC stops at Alpaca are unaffected (protection continuous), so no held name is unprotected. **Operator: set DATABASE_URL and install psycopg BEFORE Thu's market-open — the redeployment add cannot validate/submit otherwise.**
+
+### Decision
+**HOLD — no orders pre-market; no market-open mandate today (FOMC exemption).** Below-band deployment (60.63%, session 3) does NOT compel action today: today is a market-wide risk event where rule-12 patience explicitly applies. Futures ~flat-green, VIX easing, oil elevated, no reason to force a name ahead of the 2pm binary.
+- **All 3 held names (XLB/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. **XLK** is the primary rate/headline-risk watch into 2pm.
+- **Watch list:** Energy (XLE, #1 YTD) — the mandated redeployment add for **Thu/Fri market-open post-FOMC**; XLK for AI-semi stabilization after the print. 3/3 weekly trades available.
+- **All 3 trailing stops active/correct; none lowered.** Refresh XLB (09-25) & XLP (09-28) before expiry. **Operator action required: fix DATABASE_URL + psycopg before Thu.** No rebalancing pre-market.
