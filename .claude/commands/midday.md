@@ -2,11 +2,12 @@
 description: Midday scan — cut losers at -7%, tighten stops on winners, thesis check
 ---
 
-## T4 — ledger on the live path (mandatory)
+## T4 — ledger on the live path (optional; mandatory when configured)
 
-`validate_order.py` writes every verdict (approved **and** refused) to Postgres.
-`--json` includes `ledger_order_id`. Exit **6** = ledger unavailable → STOP.
-`DATABASE_URL` is required. This records; it does **not** bind validate→submit
+`validate_order.py` writes every verdict (approved **and** refused) to Postgres when `DATABASE_URL` is set.
+`--json` includes `ledger_order_id`. Ledger is **optional**: `DATABASE_URL` unset →
+stderr `LEDGER DISABLED`, `ledger_order_id` null, verdict still valid — proceed
+(record_broker_response no-ops). Exit **6** = ledger configured but failed → STOP. This records; it does **not** bind validate→submit
 ([#19](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/19) still
 open). Markdown remains the operational store
 ([#28](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/28)).
@@ -15,7 +16,7 @@ Capture after every validate (single-quoted `-c` — double quotes NameError on 
 
 ```
 VALIDATE_JSON=$(python3 scripts/validate_order.py ... --json)
-# exit 0 or 3 both leave a ledger row; exit 6 → STOP
+# exit 0 or 3 = verdict (ledger row if DATABASE_URL set); exit 6 → STOP
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 ```
 

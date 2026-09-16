@@ -121,7 +121,9 @@ than one described aspirationally.
   it half-way would stop the bot trading and destroy the track record, which is
   the asset this whole repo exists to build. **T4 (live path writes):** 
   `scripts/validate_order.py` mandatorily calls `ledger.live_path.persist_decision`
-  (approved and refused; exit 6 if `DATABASE_URL` missing), and mutating order
+  (approved and refused; exit 6 if a configured ledger write fails; with
+  `DATABASE_URL` unset the ledger is disabled and reported, not fatal — the cloud
+  routines have no database), and mutating order
   paths instruct `scripts/record_broker_response.py` (`persist_broker_response` →
   existing `Ledger.record_submission` / `record_stop`). That makes the ledger
   *additive and mandatory on the execution path*, not yet *authoritative* —

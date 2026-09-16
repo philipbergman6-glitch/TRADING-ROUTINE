@@ -14,14 +14,17 @@ from __future__ import annotations
 
 import os
 import uuid
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from risk_engine import OrderProposal, ValidationResult
 
-from .store import Ledger, LedgerOrder, connect, migrate
+if TYPE_CHECKING:  # psycopg is an optional extra; import it only when a ledger opens
+    from .store import Ledger, LedgerOrder
 
 __all__ = [
     "EXIT_LEDGER",
+    "LEDGER_DISABLED_WARNING",
+    "ledger_enabled",
     "DEFAULT_STRATEGY_VERSION",
     "open_live_ledger",
     "persist_decision",
@@ -33,6 +36,20 @@ EXIT_LEDGER = 6
 
 DEFAULT_STRATEGY_VERSION = "TRADING-STRATEGY"
 
+LEDGER_DISABLED_WARNING = (
+    "LEDGER DISABLED: DATABASE_URL unset -- decision NOT recorded to Postgres. "
+    "Markdown logs remain the record."
+)
+
+
+def ledger_enabled() -> bool:
+    """The ledger is opt-in: on iff DATABASE_URL is set.
+
+    Unset is an explicit, loudly-reported configuration (no database exists for
+    the cloud routines), not a failure. Set-but-broken still fails closed.
+    """
+    return bool(os.environ.get("DATABASE_URL"))
+
 
 def open_live_ledger(*, dsn: str | None = None, run_migrate: bool = True) -> Ledger:
     """Open the ledger for a live write. Hard-fails if DATABASE_URL is unset."""
@@ -41,6 +58,8 @@ def open_live_ledger(*, dsn: str | None = None, run_migrate: bool = True) -> Led
         raise RuntimeError(
             "DATABASE_URL is not set; refusing to run the live path without a ledger"
         )
+    from .store import Ledger, connect, migrate
+
     conn = connect(resolved)
     if run_migrate:
         migrate(conn)

@@ -166,7 +166,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--gain-pct",
-        help="unrealized gain percent (e.g. 15 for +15%); trail path",
+        help="unrealized gain percent (e.g. 15 for +15%%); trail path",
     )
     parser.add_argument("--proposed-trail", help="proposed trail_percent")
     parser.add_argument(
