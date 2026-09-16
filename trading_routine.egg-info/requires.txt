@@ -1,6 +1,0 @@
-
-[dev]
-pytest>=8.0
-
-[ledger]
-psycopg[binary]>=3.1
