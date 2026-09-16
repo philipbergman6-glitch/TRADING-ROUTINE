@@ -82,6 +82,21 @@ python3 scripts/record_broker_response.py \
 On exit 3 → log violations, keep scanning. On exit 4 → STOP, email, exit.
 If convert fails after cancel, email loudly and retry the trail place.
 
+STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
+DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
+- Exit 4 → STOP, email "DEPLOYMENT STATE UNAVAILABLE $DATE", exit.
+- Exit 0 → no mandate; proceed with today's research plan only.
+- Exit 5 → MANDATE DUE. The buy list MUST include one leadership add: the
+  "Deployment mandate" name from today's RESEARCH-LOG, or, if absent, the
+  top-momentum sector ETF not already held. Size: shares = floor(
+  target_notional / live price). It goes through STEP 3-5 like any buy.
+  Skip it ONLY if (a) today's RESEARCH-LOG recorded a valid deferral
+  (exemption_allowed true + named market-wide risk event today), or
+  (b) the risk engine refuses it (exit 3). Either way: log the reason to
+  TRADE-LOG under "## $DATE — Market-Open (Deployment Backstop)", email
+  "BACKSTOP ADD SKIPPED $DATE: <reason>", and commit the log.
+  "Patience" is not a reason.
+
 STEP 3 — Validate EVERY buy through the risk engine BEFORE placing it.
 Do NOT hand-check sizing rules — the engine owns them (max positions,
 max 20% size, max 3 trades/week, sufficient cash, 85% deployment ceiling,

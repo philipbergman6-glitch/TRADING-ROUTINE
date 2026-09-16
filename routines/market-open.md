@@ -20,7 +20,8 @@ IMPORTANT — ENVIRONMENT VARIABLES:
 
 IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
-  MUST commit and push at STEP 8 if any trades fired.
+  MUST commit and push at STEP 8 if any trades fired or a backstop add
+  was skipped.
 
 ## T4 — ledger on the live path (optional; mandatory when configured)
 
@@ -104,6 +105,21 @@ python3 scripts/record_broker_response.py \
 On exit 3 → log violations, keep scanning. On exit 4 → STOP, email, exit.
 If convert fails after cancel, email loudly and retry the trail place.
 
+STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
+DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
+- Exit 4 → STOP, email "DEPLOYMENT STATE UNAVAILABLE $DATE", exit.
+- Exit 0 → no mandate; proceed with today's research plan only.
+- Exit 5 → MANDATE DUE. The buy list MUST include one leadership add: the
+  "Deployment mandate" name from today's RESEARCH-LOG, or, if absent, the
+  top-momentum sector ETF not already held. Size: shares = floor(
+  target_notional / live price). It goes through STEP 3-5 like any buy.
+  Skip it ONLY if (a) today's RESEARCH-LOG recorded a valid deferral
+  (exemption_allowed true + named market-wide risk event today), or
+  (b) the risk engine refuses it (exit 3). Either way: log the reason to
+  TRADE-LOG under "## $DATE — Market-Open (Deployment Backstop)", email
+  "BACKSTOP ADD SKIPPED $DATE: <reason>", and commit at STEP 8.
+  "Patience" is not a reason.
+
 STEP 3 — Validate EVERY buy through the risk engine BEFORE placing it.
 Do NOT hand-check sizing rules — the engine owns them (max positions,
 max 20% size, max 3 trades/week, sufficient cash, 85% deployment ceiling,
@@ -177,8 +193,9 @@ Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
 
-STEP 8 — COMMIT, PUSH, VERIFY (mandatory if any trades executed):
-Skip this step entirely if no trades fired.
+STEP 8 — COMMIT, PUSH, VERIFY (mandatory if any trades executed or a
+backstop add was skipped at STEP 2c):
+Skip this step only if no trades fired AND no backstop skip was logged.
 git add memory/TRADE-LOG.md
 git commit -m "market-open trades $DATE"
 git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
