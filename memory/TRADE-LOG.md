@@ -2872,3 +2872,20 @@ Both validated via `validate_order.py` (exit 0) before cancel; cancel→place ba
 Equity $103,591.47, cash $20,750.86 (20.0%), deployed $82,840.61 (80.0%) — inside the 75-85% band (XLE add restored it as planned). Weights: XLB 20.2%, XLE 19.3%, XLK 20.3%, XLP 20.1% — XLK marginally over 20% on appreciation only (no add, no trim required for drift). 4 positions (≤6). No thesis-breaking single-name moves. Week 1/3 (XLE add this morning).
 
 Not emailed — no action taken this scan.
+
+---
+
+### Sep 17 — EOD Snapshot (Day 102, Thursday, post-FOMC)
+**Portfolio:** $103,631.88 | **Cash:** $20,750.86 (20.0%) | **Day P&L:** +$804.43 (+0.78%) | **Phase P&L:** +$3,631.88 (+3.63%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $50.71 | +0.70% | -$148.45 (-0.71%) | $48.78 (fixed GTC) |
+| XLE | 311 | $63.92 | $64.48 | +0.70% | +$173.61 (+0.87%) | $58.068 (10% trail GTC) |
+| XLK | 112 | $187.85 | $188.06 | +2.25% | +$23.52 (+0.11%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $83.49 | +0.19% | -$67.50 (-0.32%) | $79.91 (fixed GTC) |
+
+**Trades today:** XLE BUY 311 @ $63.9218 (rule-12 deployment backstop, market-open)
+**Week trades:** 1/3
+
+**Notes:** Green close on Day 102 (Thu, first post-FOMC session) — equity +$804.43 to $103,631.88 (Day P&L +0.78%), best day of the phase in a while; phase advances to +3.63%. Broad-based lift led by tech: XLK +2.25% to $188.06 (+0.11% vs entry, back to green on post-FOMC AI-semi resilience), XLB +0.70% to $50.71 (-0.71% vs entry, materials thesis intact), XLE +0.70% to $64.48 (+0.87% vs entry, energy #1 momentum leg working from this morning's add), XLP +0.19% to $83.49 (-0.32% vs entry, staples quiet). No thesis-breaking single-name moves. 4 positions (≤6): XLB 20.2%, XLE 19.4%, XLK 20.3%, XLP 20.1% — XLK marginally over 20% on appreciation only (no trim for drift), rest at/near cap on appreciation, no adds. **Deployment 80.0% ($82,881.02 mkt value / equity) — inside the 75-85% band** (restored today by the mandated XLE add; under-band streak cleared). Cash 20.0%. All four stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260) — both resting renewed fixed stops, HELD not converted (a fresh 10% trail would sit below: XLB→~$45.6, XLP→~$75.1; exit 3 stop_never_lowered); XLE trailing $58.068/hwm $64.52 GTC (exp 12-16, cac3cefd, first stop-follow off today's new high); XLK trailing $172.575/hwm $191.75 GTC (exp 11-06). None lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~3.8% above stop (tightest), XLP ~4.3%, XLK ~8.2%, XLE ~9.9%. No stops in the ~90-day expiry window. Week 1/3 after the XLE add. Tomorrow (Fri, 9/18): weekly-review day — hold book, watch XLB cushion (tightest ~3.8%) and let XLK/XLE winners run under their trails; no forced action.
