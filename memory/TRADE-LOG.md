@@ -2855,3 +2855,20 @@ Both validated via `validate_order.py` (exit 0) before cancel; cancel→place ba
 **Week of 2026-09-15 trade count: 1/3**
 
 **Notes:** Rule-12 backstop add executed at post-FOMC market-open (`deployment_status.py` exit 5, sessions_under_band 3, target_notional $19,949; exemption unavailable — the one FOMC-day deferral for this streak was consumed 9/16 and today's calendar is routine data only). Sized 311 sh = floor(19949/63.95) at the live ask; validated exit 0 (LEDGER DISABLED — DATABASE_URL unset, markdown remains the record). OTO entry (parent 3390f741) filled complete 311/311 @ $63.9218, fixed $57.56 protective leg activated; STEP-4 gate satisfied (filled_qty==qty, leg=FixedStop). Converted per ADR-0002: canceled fixed leg cddad3ad (confirmed canceled, qty_available 311 freed), placed 10% trailing GTC (cac3cefd, stop $57.51/hwm $63.87). Restores deployment to ~79.9% (mid-band); 4 positions (≤6), XLE weight ~19.2% (<20% cap). Cash-only: ~$19.9k cost well under $40.6k settled cash. **STEP 2b:** XLB fixed $48.78 and XLP fixed $79.91 left in place — `validate_stop_change.py` exit 3 `stop_never_lowered` (a fresh 10% trail would sit below the renewed fixed stop: XLB→$45.77, XLP→$75.25), intended post-renewal state, HELD not converted. XLK trailing $172.575 unchanged. All 4 positions protected; no stop lowered.
+
+---
+
+### Sep 17 — Midday Scan (Day 102, Thursday, post-FOMC)
+**No trading action.** All 4 positions well above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $50.79 (-0.55% vs entry) — fixed stop $48.78 GTC, ~4.0% above stop. Materials thesis intact.
+- XLE: $64.25 (+0.51% vs entry) — stop $57.8565 (10% trail, hwm $64.285), ~9.9% above stop. Energy thesis intact — mandated add from this morning's market-open, first scan since entry.
+- XLK: $188.18 (+0.18% vs entry) — stop $172.575 (10% trail, hwm $191.75), ~8.3% above stop. Tech thesis intact; +2.31% intraday on post-FOMC AI-semi resilience per pre-market note — expected relief, not a break, no Perplexity check needed.
+- XLP: $83.40 (-0.43% vs entry) — fixed stop $79.91 GTC, ~4.2% above stop. Staples thesis intact.
+
+**STEP 2b (fixed-leg convergence):** XLB and XLP both still resting fixed GTC stops (renewed 9/16). Gate checked via `validate_stop_change.py`: XLB current-stop $48.78 vs price-driven new-stop $45.71 → exit 3 `stop_never_lowered`; XLP current-stop $79.91 vs new-stop $75.06 → exit 3 `stop_never_lowered`. Both HELD fixed, not converted (intended state — price hasn't cleared the prior trailing hwm: XLB needs ≥~$54.20, XLP ≥~$88.79). XLE/XLK already `trailing_stop`, no fixed legs to convert.
+
+**STEP 2c:** No stops within ~90-day expiry window (`build_oto_order.py expiring` → empty).
+
+Equity $103,591.47, cash $20,750.86 (20.0%), deployed $82,840.61 (80.0%) — inside the 75-85% band (XLE add restored it as planned). Weights: XLB 20.2%, XLE 19.3%, XLK 20.3%, XLP 20.1% — XLK marginally over 20% on appreciation only (no add, no trim required for drift). 4 positions (≤6). No thesis-breaking single-name moves. Week 1/3 (XLE add this morning).
+
+Not emailed — no action taken this scan.
