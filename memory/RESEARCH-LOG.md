@@ -7115,3 +7115,59 @@ All 3 trailing GTC stops confirmed active/intact via orders; none lowered, none 
 - **All 3 held names (XLB/XLK/XLP): HOLD.** All above -7% cut, all at/near the 20% cap (no adds), theses intact (top-tier momentum sectors); none near +15%/+20% tighten. No held name reports today. **XLK** is the primary rate/headline-risk watch into 2pm.
 - **Watch list:** Energy (XLE, #1 YTD) — the mandated redeployment add for **Thu/Fri market-open post-FOMC**; XLK for AI-semi stabilization after the print. 3/3 weekly trades available.
 - **All 3 trailing stops active/correct; none lowered.** Refresh XLB (09-25) & XLP (09-28) before expiry. **Operator action required: fix DATABASE_URL + psycopg before Thu.** No rebalancing pre-market.
+
+---
+
+## 2026-09-17 (Thu, Day 102) — Pre-Market Research — POST-FOMC / DEPLOYMENT MANDATE DUE
+
+### Account Snapshot (live; asof 2026-09-16)
+- **Equity:** $103,267.82 | **Cash:** $40,630.53 (39.3%) | **Buying power:** $337,906.53 (margin — NOT capital; sizing reads cash) | **Deployed:** $62,637.29 (60.66%, **BELOW 75-85% band — session 3, MANDATE DUE**) | **Daytrade count:** n/a (PDT abolished 2026-07-06)
+- **Positions (3/6):**
+
+| Ticker | Shares | Entry | Price | Unreal P&L | Weight | Stop (GTC) — cushion | Expiry |
+|--------|--------|-------|-------|------------|--------|----------------------|--------|
+| XLB | 412 | $51.07 | $50.71 | -$148 (-0.71%) | 20.2% | $48.78 fixed — ~3.9% | 12-15 |
+| XLK | 112 | $187.85 | $186.46 | -$156 (-0.74%) | 20.2% | $172.575 10% trail (hwm $191.75) — ~7.4% | 11-06 |
+| XLP | 250 | $83.76 | $83.445 | -$79 (-0.38%) | 20.2% | $79.91 fixed — ~4.2% | 12-15 |
+
+All 3 stops confirmed active/intact via `orders`; none lowered; none near +15%/+20% tighten (best XLK -0.74%); all above -7% cut. XLB/XLP fixed stops (renewed 9/16) convert back to 10% trail once price clears prior hwm (XLB ≥ ~$54.20, XLP ≥ ~$88.79).
+
+### Market Context — POST-FOMC (25bp HIKE printed, hawkish); FUTURES GREEN; VIX EASING; OIL ELEVATED
+- **S&P futures:** E-minis **~7,675-7,688**, **+0.25% to +0.86%** — modestly-to-firmly GREEN, relief bounce after the FOMC hike cleared. Not sharply lower.
+- **VIX ~15.96** (Cboe spot, 7:34 ET) — easing off the ~17.7 prior close; calming now the binary is done.
+- **Oil:** WTI **~$101.85** / Brent **~$105.25** — remains elevated on US–Iran/Saudi tension. Mild XLB tailwind; note one tape read flagged energy soft intraday, but the direct crude quote is still elevated and XLE premarket is flat-to-green ($64.13 vs $64.03 prior close).
+- **Econ calendar (today):** 8:30 ET Initial Jobless Claims (fcst 207K / prev 206K), Housing Starts + Building Permits; 10:00 ET Pending Home Sales. **All routine data — NOT a market-wide risk event.** FOMC (the binary) is DONE. Next jobs report Oct 2.
+- **Post-FOMC tone:** hawkish 25bp hike, negative/hawkish repricing digesting; 10Y yield the live driver (pulling back from ~5%). Semis/AI (SMH) relatively resilient; financials (XLF/KRE) weakest post-Fed.
+- **Earnings:** GIS/LEN/CBRL and housing names — **no held name reports** (all held are sector ETFs).
+
+### Sector Momentum (YTD) — ENERGY CLEAR LEADER, NOT HELD
+- **Energy (XLE)** — **#1 ~+42% YTD**, oil elevated — top leadership, **NOT held → the mandated redeployment add.**
+- **Technology (XLK ✓)** — **~+28% YTD**, AI-semi leadership, relatively resilient post-Fed. Held.
+- **Materials (XLB ✓)** — **~+11-16% YTD**, oil a mild tailwind. Held.
+- **Consumer Staples (XLP ✓)** — **~+10-16% YTD**, defensive ballast. Held.
+- Industrials (XLI) — exited 9/14 (stopped -7.45%), not held. Financials weakest post-Fed — avoid.
+
+### Deployment
+- **deployed_pct: 60.66%** (backstop-computed, `deployment_status.py` exit 5) | **sessions_under_band: 3** | band 75-85% | last_eod 2026-09-16 | target_notional $19,976
+- **MANDATE DUE.** Exemption NOT available: the one FOMC-day deferral for this under-band streak was already used (RESEARCH-LOG 9/16), and no market-wide risk event is scheduled today (routine claims/housing data do not count). Today's market-open MUST action the leadership add below.
+
+### Deployment Mandate (rule 12) — Energy add, actionable at market-open
+- **Sector:** Energy — #1 YTD momentum (~+42%), not currently held.
+- **Ticker:** XLE (Energy Select Sector SPDR).
+- **Shares:** **310** — at premarket $64.13, cost **$19,880.30 ≤ target_notional $19,976** (small cushion for premarket drift). Validated `validate_order.py` exit 0 (APPROVED, LEDGER DISABLED). Cash-only: $19.9k cost well under $40.6k settled cash. Brings deployment to ~$82.5k / ~79.9% — mid-band. Weight ~19.3% (< 20% cap). 4th position (≤6).
+- **Catalyst:** #1 momentum sector; oil elevated (WTI ~$102 / Brent ~$105) on sustained US–Iran/Saudi tension; FOMC binary now cleared, futures green + VIX easing — the deferred redeployment window is open.
+- **Stop:** **$57.72** (10% below $64.13; >3% from price, correct direction — passes validate). Enter as 10% trailing at market-open (or fixed 10% leg pending conversion per ADR-0002).
+- **Market-open note:** re-size to the live premarket/open price so cost stays ≤ target_notional; confirm XLE is basing (not gapping/breaking) before entry. If XLE gaps materially, size down to hold cost ≤ target.
+
+### Risk Factors
+- **Hawkish-Fed digestion:** post-hike repricing ongoing; 10Y yield the live driver — pressures rate-sensitive names; XLK the primary held watch (still resilient premarket).
+- **Energy intraday cross-current:** one tape read flagged energy soft even as crude sits elevated — market-open must confirm XLE base before the mandated entry; the mandate names the sector, execution confirms the entry.
+- **Oil/geopolitics:** Brent ~$105 supports XLB/XLE but feeds the inflation/yield tail; de-escalation removes the tailwind.
+- **Stop expiries:** XLB/XLP renewed to 12-15 (fixed GTC); XLK trail 11-06 — all comfortably out.
+- **Ops blocker RESOLVED (PR #66):** ledger optional — DATABASE_URL unset prints `LEDGER DISABLED`, orders validate normally (confirmed today, XLE dry-validate exit 0). Mutating paths unblocked; the mandated add can submit at market-open.
+
+### Decision
+**HOLD the 3 held names; EXECUTE the mandated Energy add (XLE) at market-open.** NOT a plain HOLD — rule-12 mandate is due (session 3 under band, deferral exhausted, no risk event today).
+- **XLB / XLK / XLP: HOLD.** All above -7% cut, at/near 20% cap (no adds), theses intact, none near +15%/+20% tighten. No held name reports. XLK the rate-risk watch.
+- **XLE: MANDATED ADD at market-open** — 310 sh @ ~$64.13 (cost ~$19,880 ≤ $19,976 target), stop $57.72 (10%), re-size to live price, confirm base first. Restores deployment to ~79.9% (mid-band). Week 0/3 → 1/3 after fill.
+- **All stops active/correct; none lowered.** No rebalancing pre-market.
