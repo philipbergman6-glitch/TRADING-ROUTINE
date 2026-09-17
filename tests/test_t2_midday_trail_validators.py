@@ -84,6 +84,8 @@ def test_cli_approves_ladder_tighten_at_15() -> None:
         "15",
         "--proposed-trail",
         "7",
+        "--current-stop",
+        "100",
         "--current-trail",
         "10",
         "--current-price",
@@ -107,6 +109,8 @@ def test_cli_refuses_trail_wider_than_ladder() -> None:
         "20",
         "--proposed-trail",
         "7",
+        "--current-stop",
+        "100",
         "--current-trail",
         "10",
         "--current-price",
@@ -126,6 +130,8 @@ def test_cli_refuses_widening_trail() -> None:
         "16",
         "--proposed-trail",
         "10",
+        "--current-stop",
+        "100",
         "--current-trail",
         "7",
         "--current-price",
@@ -146,6 +152,8 @@ def test_cli_refuses_trail_inside_min_distance() -> None:
         "50",
         "--proposed-trail",
         "2",
+        "--current-stop",
+        "100",
         "--current-trail",
         "5",
         "--current-price",
@@ -166,6 +174,8 @@ def test_cli_tighter_than_required_is_allowed_floor() -> None:
         "16",
         "--proposed-trail",
         "5",
+        "--current-stop",
+        "100",
         "--current-trail",
         "10",
         "--current-price",
@@ -184,6 +194,8 @@ def test_cli_hold_at_required_is_allowed() -> None:
         "15",
         "--proposed-trail",
         "7",
+        "--current-stop",
+        "100",
         "--current-trail",
         "7",
         "--current-price",
@@ -266,11 +278,13 @@ def test_midday_step4_still_cancel_then_order_no_patch(path: Path) -> None:
 
 @pytest.mark.parametrize("path", MIDDAY_WORKFLOWS, ids=lambda p: p.name)
 def test_midday_step4_keeps_validate_order_and_alpaca_risk_ok(path: Path) -> None:
-    """T1 honesty: replacement sell still goes through validate_order + ALPACA_RISK_OK."""
+    """T1 honesty: replacement sell still goes through validate_order, and the
+    replacement itself through replace_stop.py (which submits via the gated wrapper)."""
     text = path.read_text()
     step4 = text.split("STEP 4", 1)[1].split("STEP 5", 1)[0]
     assert "validate_order.py" in step4
-    assert "ALPACA_RISK_OK" in step4
+    assert "replace_stop.py" in step4
+    assert '"ALPACA_RISK_OK": "1"' in (REPO / "scripts" / "replace_stop.py").read_text()
 
 
 def test_architecture_no_longer_claims_stop_validators_uncalled() -> None:

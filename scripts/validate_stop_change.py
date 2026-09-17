@@ -7,7 +7,7 @@ Two paths — both call existing engine functions (no broker I/O):
     python3 scripts/validate_stop_change.py --gain-pct 16 --print-required
     python3 scripts/validate_stop_change.py \\
         --gain-pct 16 --proposed-trail 7 --current-trail 10 \\
-        --current-price 116 --json
+        --current-stop 104.40 --current-price 116 --json
 
   Fixed stop price:
     python3 scripts/validate_stop_change.py \\
@@ -17,8 +17,8 @@ Trail path composition:
   1. required_trail_percent(gain) — ladder floor (widest still permitted)
   2. refuse if proposed > required (too wide) or proposed < MIN_STOP_DISTANCE
   3. refuse if proposed > current_trail (widening = effective stop down)
-  4. validate_stop_change on implied stops at current_price
-     (price * (1 - trail/100)) so Rule 7 price checks still run
+  4. compare the replacement stop against the broker current_stop, preserving
+     the old high-water-mark floor across cancel/replacement
 
 Exit codes:
     0  approved (or --print-required succeeded)
@@ -56,13 +56,10 @@ EXIT_USAGE = 2
 def _implied_stop(price: Decimal, trail_percent: Decimal) -> Decimal:
     """Stop price implied by a trail % if the high-water mark is current price.
 
-    Trailing resting prices move with the HWM; this is the tightest the trail
-    can sit relative to *current* price, which is what Rule 7's 3% floor cares
-    about for a proposed trail change.
+    This models a fresh replacement at the current mark. It must never be
+    used to infer the old stop: its historical HWM may be much higher.
     """
-    return (price * (Decimal(100) - trail_percent) / Decimal(100)).quantize(
-        Decimal("0.0001")
-    )
+    return price * (Decimal(100) - trail_percent) / Decimal(100)
 
 
 def validate_trail_path(
@@ -71,6 +68,7 @@ def validate_trail_path(
     proposed_trail: object,
     current_trail: object | None,
     current_price: object,
+    current_stop: object | None = None,
 ) -> tuple[ValidationResult, Decimal, list[str]]:
     """Compose required_trail_percent + validate_stop_change for a trail change."""
     gain = to_money(gain_pct, "gain_pct")
@@ -116,14 +114,16 @@ def validate_trail_path(
                 )
             )
 
-    # Price-level Rule 7 via implied stops at current mark. Missing current
-    # trail → distance-check only (hold current_stop == new_stop) so
-    # validate_stop_change still runs on this path.
+    # Cancel/replacement resets the HWM. The old floor must come from the
+    # broker's resting stop_price, never from today's mark and old trail %.
     new_stop = _implied_stop(price, proposed)
-    if current is None:
-        old_stop = new_stop
-    else:
-        old_stop = _implied_stop(price, current)
+    if current_stop is None:
+        violations.append(Violation(
+            Rule.STOP_NEVER_LOWERED,
+            "broker current_stop is required; the old high-water mark cannot be inferred",
+        ))
+        return ValidationResult(tuple(violations)), required, engine_calls
+    old_stop = to_money(current_stop, "current_stop")
     engine_calls.append("validate_stop_change")
     price_result = validate_stop_change(old_stop, new_stop, price)
     violations.extend(price_result.violations)
@@ -173,7 +173,7 @@ def main() -> int:
         "--current-trail",
         help="current trail_percent on the resting order (trail path)",
     )
-    parser.add_argument("--current-stop", help="current stop price (price path)")
+    parser.add_argument("--current-stop", help="actual broker stop_price (required for price and trail validation)")
     parser.add_argument("--new-stop", help="proposed stop price (price path)")
     parser.add_argument(
         "--current-price",
@@ -195,7 +195,7 @@ def main() -> int:
             args.print_required,
         ]
     )
-    price_intent = args.current_stop is not None or args.new_stop is not None
+    price_intent = args.new_stop is not None or (args.current_stop is not None and not trail_intent)
 
     if trail_intent and price_intent:
         print(
@@ -258,7 +258,7 @@ def main() -> int:
     if args.gain_pct is None or args.proposed_trail is None or args.current_price is None:
         print(
             "trail path requires --gain-pct --proposed-trail --current-price "
-            "(optional --current-trail); or use --print-required",
+            "and --current-stop (optional --current-trail); or use --print-required",
             file=sys.stderr,
         )
         return EXIT_USAGE
@@ -269,6 +269,7 @@ def main() -> int:
             proposed_trail=args.proposed_trail,
             current_trail=args.current_trail,
             current_price=args.current_price,
+            current_stop=args.current_stop,
         )
     except (TypeError, ValueError) as exc:
         print(f"usage: {exc}", file=sys.stderr)

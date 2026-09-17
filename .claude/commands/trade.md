@@ -103,8 +103,8 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    ALPACA_RISK_OK=1 bash scripts/alpaca.sh close SYM
    ```
 
-7. For BUYs, convert ONLY after the fill+leg gate above (cancel leg, confirm
-   cancel, then place trailing — CONVERT_FIXED_TO_TRAIL_STEPS):
+7. For BUYs, convert ONLY after the fill+leg gate above (scripts/replace_stop.py —
+   validates first, confirms cancel, resumable):
 
    ```
    VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
@@ -114,22 +114,29 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
 
    On exit 0:
    ```
-   ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel LEG_ORDER_ID
-   TRAIL_JSON=$(python3 scripts/build_oto_order.py trail --symbol SYM --qty N --trail-percent 10)
-   HTTP_STATUS_FILE=$(mktemp)
-   RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$TRAIL_JSON")
-   HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-   python3 scripts/record_broker_response.py \
-       --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
-       --response "$RESP"
+   # One resumable command — never a hand-written cancel/order pair. It validates
+   # the replacement against the ACTUAL resting stop before cancel, confirms the
+   # cancel, submits client_order_id rs-<id>, restores the old level on failure.
+   REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id LEG_ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
+   # http_status is set only when this run submitted the order (not on resume).
+   HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+   if [ -n "$HTTP_STATUS" ]; then
+     python3 scripts/record_broker_response.py \
+         --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
+         --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+   fi
+   REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
+   untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
+   failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
+   8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
+   email "UNPROTECTED SYM", log, STOP.
    ```
-   If conversion fails after cancel: email loudly and retry the trail —
-   briefly naked. Query before claiming protected: fixed leg still open =
-   protected (queryable); neither fixed nor trail = incident. #40 still OPEN.
+   Query before claiming protected: neither fixed leg nor trail = incident.
+   #40 still OPEN.
 
 8. Log to memory/TRADE-LOG.md with full thesis, entry, stop, target, R:R.
 
 9. `bash scripts/email.sh` with trade details.
 
-Note: entry is atomic via OTO (ADR 0002). Conversion cancel→trail and sell
+Note: entry is atomic via OTO (ADR 0002). Conversion (replace_stop) and sell
 cancel→close still have brief windows; PATCH (#40) is OPEN and not invented here.

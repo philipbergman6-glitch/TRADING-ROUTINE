@@ -63,9 +63,16 @@ jobs:
           python-version: "3.12"
       - run: pip install -e ".[dev,ledger]"
       - name: Ledger integration tests
-        run: pytest -v -m integration
+        run: pytest -v -m integration --junitxml=ledger-results.xml
 
       - name: Fail if the ledger tests silently skipped
         # A skipped integration suite passes just as quietly as a green one.
         # This step is what stops "all checks passed" from meaning "nothing ran".
-        run: pytest -m integration --collect-only -q | tail -1 | grep -qv "no tests ran"
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          cases = ET.parse('ledger-results.xml').findall('.//testcase')
+          assert cases, 'No integration tests executed'
+          assert not any(c.find('skipped') is not None for c in cases), 'Integration test skipped'
+          assert not any(c.find('failure') is not None or c.find('error') is not None for c in cases)
+          PY

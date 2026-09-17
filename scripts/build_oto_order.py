@@ -51,7 +51,7 @@ def main() -> int:
         default=str(BASE_TRAIL_PCT),
         help=f"percent below entry for derived stop (default {BASE_TRAIL_PCT})",
     )
-    oto.add_argument("--tif", default="day", choices=("day", "gtc"))
+    oto.add_argument("--tif", default="gtc", choices=("day", "gtc"))
 
     trail = sub.add_parser("trail", help="standalone trailing_stop sell")
     trail.add_argument("--symbol", required=True)

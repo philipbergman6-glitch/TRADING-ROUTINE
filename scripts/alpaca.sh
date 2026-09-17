@@ -14,9 +14,13 @@ DATA="${ALPACA_DATA_ENDPOINT:-https://data.alpaca.markets/v2}"
 # no human in the loop, so an unset or mistyped ALPACA_ENDPOINT must never
 # silently resolve to production. Hard-fail: a silent live order is the worst
 # failure mode this repo has.
-if [[ "$API" != *"paper-api.alpaca.markets"* && "${ALPACA_ALLOW_LIVE:-0}" != "1" ]]; then
+if [[ "$API" != "https://paper-api.alpaca.markets/v2" ]]; then
   echo "REFUSING: ALPACA_ENDPOINT is not a paper endpoint ($API)." >&2
-  echo "This bot is paper-only. Export ALPACA_ALLOW_LIVE=1 to override." >&2
+  echo "This deployment is paper-only; no live override is supported." >&2
+  exit 4
+fi
+if [[ "$DATA" != "https://data.alpaca.markets/v2" ]]; then
+  echo "REFUSING: unrecognized ALPACA_DATA_ENDPOINT." >&2
   exit 4
 fi
 
@@ -32,17 +36,21 @@ H_SEC="APCA-API-SECRET-KEY: $ALPACA_SECRET_KEY"
 _curl() {
   local status_file="${ALPACA_HTTP_STATUS_FILE:-}"
   if [[ -z "$status_file" ]]; then
-    curl -fsS "$@"
+    curl --connect-timeout 10 --max-time 30 -fsS "$@"
     return
   fi
-  local tmp code
+  local tmp code transport=0
   tmp=$(mktemp)
-  code=$(curl -sS -o "$tmp" -w "%{http_code}" "$@" || true)
+  code=$(curl --connect-timeout 10 --max-time 30 -sS -o "$tmp" -w "%{http_code}" "$@") || transport=$?
   printf "%s" "$code" > "$status_file"
   cat "$tmp"
   rm -f "$tmp"
   # Match curl -f: treat HTTP 4xx/5xx as failure.
-  if [[ "$code" =~ ^[45][0-9][0-9]$ ]]; then
+  if [[ "$transport" != 0 ]]; then
+    echo "alpaca.sh: transport failure ($transport); outcome unknown, reconcile before retry." >&2
+    return "$transport"
+  fi
+  if [[ ! "$code" =~ ^2[0-9][0-9]$ ]]; then
     echo "alpaca.sh: HTTP $code" >&2
     return 22
   fi
@@ -58,12 +66,20 @@ shift || true
 # validate_order.py itself only uses read paths, so there is no recursion.
 case "$cmd" in
   order|close|close-all|cancel|cancel-all)
+    # A refusal before HTTP is not a broker success. Clear a reused capture
+    # file so callers cannot accidentally ledger an earlier request's 200.
+    if [[ -n "${ALPACA_HTTP_STATUS_FILE:-}" ]]; then
+      printf "000" > "$ALPACA_HTTP_STATUS_FILE"
+    fi
     if [[ "${ALPACA_RISK_OK:-0}" != "1" ]]; then
       echo "REFUSING: mutating command '$cmd' requires risk-engine approval." >&2
       echo "Run: python3 scripts/validate_order.py ... (exit 0), then" >&2
       echo "     ALPACA_RISK_OK=1 bash scripts/alpaca.sh $cmd ..." >&2
       exit 5
     fi
+    # Validate this exact command/body against broker state. The env flag is
+    # only caller intent; it is never proof of a previous validation.
+    python3 "$(dirname "$0")/validate_mutation.py" "$cmd" "${1:-}" >&2
     ;;
 esac
 
@@ -84,7 +100,42 @@ case "$cmd" in
     ;;
   orders)
     status="${1:-open}"
-    _curl -H "$H_KEY" -H "$H_SEC" "$API/orders?status=$status"
+    after="${2:-}"
+    [[ "$status" =~ ^(open|closed|all)$ ]] || { echo "usage: orders [open|closed|all] [AFTER_ISO_UTC]" >&2; exit 2; }
+    url="$API/orders?status=$status&limit=500"
+    if [[ -n "$after" ]]; then
+      # Bounded window: an unfiltered closed-order history grows forever and
+      # would eventually hit the 500-row page cap and block every validation.
+      [[ "$after" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$ ]] || { echo "orders: AFTER must be YYYY-MM-DDTHH:MM:SSZ" >&2; exit 2; }
+      url="$url&after=$after"
+    fi
+    _curl -H "$H_KEY" -H "$H_SEC" "$url"
+    ;;
+  asset)
+    sym="${1:?usage: asset SYM}"
+    _curl -H "$H_KEY" -H "$H_SEC" "$API/assets/$sym"
+    ;;
+  order-info)
+    oid="${1:?usage: order-info ORDER_ID}"
+    _curl -H "$H_KEY" -H "$H_SEC" "$API/orders/$oid"
+    ;;
+  order-by-client)
+    # Idempotency probe for resumable stop replacement: 404 means "never
+    # submitted" and prints null; transport failure means unknown and exits 7.
+    cid="${1:?usage: order-by-client CLIENT_ORDER_ID}"
+    [[ "$cid" =~ ^[A-Za-z0-9-]{1,48}$ ]] || { echo "order-by-client: invalid client_order_id" >&2; exit 2; }
+    tmp=$(mktemp)
+    code=$(curl --connect-timeout 10 --max-time 30 -sS -o "$tmp" -w "%{http_code}" \
+      -H "$H_KEY" -H "$H_SEC" "$API/orders:by_client_order_id?client_order_id=$cid") \
+      || { rm -f "$tmp"; echo "alpaca.sh: transport failure; outcome unknown" >&2; exit 7; }
+    if [[ "$code" == "404" ]]; then
+      echo "null"
+    elif [[ "$code" =~ ^2[0-9][0-9]$ ]]; then
+      cat "$tmp"
+    else
+      rm -f "$tmp"; echo "alpaca.sh: HTTP $code" >&2; exit 22
+    fi
+    rm -f "$tmp"
     ;;
   order)
     body="${1:?usage: order '<json>'}"
@@ -106,7 +157,7 @@ case "$cmd" in
     _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
     ;;
   *)
-    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order|cancel|cancel-all|close|close-all> [args]" >&2
+    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order-info|order-by-client|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
     exit 1
     ;;
 esac
