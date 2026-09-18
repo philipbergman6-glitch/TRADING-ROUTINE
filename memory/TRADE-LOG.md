@@ -2889,3 +2889,20 @@ Not emailed — no action taken this scan.
 **Week trades:** 1/3
 
 **Notes:** Green close on Day 102 (Thu, first post-FOMC session) — equity +$804.43 to $103,631.88 (Day P&L +0.78%), best day of the phase in a while; phase advances to +3.63%. Broad-based lift led by tech: XLK +2.25% to $188.06 (+0.11% vs entry, back to green on post-FOMC AI-semi resilience), XLB +0.70% to $50.71 (-0.71% vs entry, materials thesis intact), XLE +0.70% to $64.48 (+0.87% vs entry, energy #1 momentum leg working from this morning's add), XLP +0.19% to $83.49 (-0.32% vs entry, staples quiet). No thesis-breaking single-name moves. 4 positions (≤6): XLB 20.2%, XLE 19.4%, XLK 20.3%, XLP 20.1% — XLK marginally over 20% on appreciation only (no trim for drift), rest at/near cap on appreciation, no adds. **Deployment 80.0% ($82,881.02 mkt value / equity) — inside the 75-85% band** (restored today by the mandated XLE add; under-band streak cleared). Cash 20.0%. All four stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260) — both resting renewed fixed stops, HELD not converted (a fresh 10% trail would sit below: XLB→~$45.6, XLP→~$75.1; exit 3 stop_never_lowered); XLE trailing $58.068/hwm $64.52 GTC (exp 12-16, cac3cefd, first stop-follow off today's new high); XLK trailing $172.575/hwm $191.75 GTC (exp 11-06). None lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~3.8% above stop (tightest), XLP ~4.3%, XLK ~8.2%, XLE ~9.9%. No stops in the ~90-day expiry window. Week 1/3 after the XLE add. Tomorrow (Fri, 9/18): weekly-review day — hold book, watch XLB cushion (tightest ~3.8%) and let XLK/XLE winners run under their trails; no forced action.
+
+---
+
+### Sep 18 — Midday Scan (Day 103, Friday, TRIPLE WITCHING / weekly-review day)
+**No trading action.** All 4 positions well above -7% cut threshold; none at +15%/+20% tighten triggers.
+- XLB: $50.075 (-1.95% vs entry) — fixed stop $48.78 GTC, ~2.6% above stop (tightest). Materials thesis intact; softest leg today (-1.25% intraday), no break.
+- XLE: $64.35 (+0.67% vs entry) — trailing stop $58.275 (10% trail, hwm $64.75), ~9.4% above stop. Energy thesis intact.
+- XLK: $188.00 (+0.08% vs entry) — trailing stop $172.575 (10% trail, hwm $191.75), ~8.2% above stop. Tech thesis intact.
+- XLP: $83.14 (-0.74% vs entry) — fixed stop $79.91 GTC, ~3.9% above stop. Staples thesis intact.
+
+**STEP 2b (fixed-leg convergence):** XLB and XLP still resting fixed GTC stops (renewed 9/16). Gate checked via `validate_stop_change.py`: XLB current-stop $48.78 vs price-driven new-stop $43.90 → exit 3 `stop_never_lowered`; XLP current-stop $79.91 vs new-stop $71.92 → exit 3 `stop_never_lowered`. Both HELD fixed, not converted (intended state — price hasn't cleared the prior trailing hwm: XLB needs ≥~$54.20, XLP ≥~$88.79). XLE/XLK already `trailing_stop`, no fixed legs to convert.
+
+**STEP 2c:** No stops within ~90-day expiry window (`build_oto_order.py expiring` → empty).
+
+Equity $103,247.44, cash $20,750.86 (20.1%), deployed $82,496.58 (79.9%) — inside the 75-85% band. Weights: XLB 20.0%, XLE 19.4%, XLK 20.4%, XLP 20.1% — at/near cap on appreciation only, no adds. No thesis-breaking single-name moves; today's softness (XLB/XLP mild red, XLE/XLK flat-to-green) tracks routine triple-witching/quad-witching expiration noise per pre-market note (industrial production + state employment data only, no CPI/FOMC) — not sharp/unexplained, no Perplexity check needed. Week 1/3 (unchanged, no new trade).
+
+Not emailed — no action taken this scan.
