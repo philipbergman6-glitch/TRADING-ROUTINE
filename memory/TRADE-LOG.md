@@ -2906,3 +2906,20 @@ Not emailed — no action taken this scan.
 Equity $103,247.44, cash $20,750.86 (20.1%), deployed $82,496.58 (79.9%) — inside the 75-85% band. Weights: XLB 20.0%, XLE 19.4%, XLK 20.4%, XLP 20.1% — at/near cap on appreciation only, no adds. No thesis-breaking single-name moves; today's softness (XLB/XLP mild red, XLE/XLK flat-to-green) tracks routine triple-witching/quad-witching expiration noise per pre-market note (industrial production + state employment data only, no CPI/FOMC) — not sharp/unexplained, no Perplexity check needed. Week 1/3 (unchanged, no new trade).
 
 Not emailed — no action taken this scan.
+
+---
+
+### Sep 18 — EOD Snapshot (Day 103, Friday, TRIPLE WITCHING / weekly-review day)
+**Portfolio:** $103,282.35 | **Cash:** $20,750.86 (20.1%) | **Day P&L:** -$349.53 (-0.34%) | **Phase P&L:** +$3,282.35 (+3.28%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $49.99 | -1.42% | -$445.09 (-2.12%) | $48.78 (fixed GTC) |
+| XLE | 311 | $63.92 | $64.31 | -0.26% | +$120.74 (+0.61%) | $58.275 (10% trail GTC) |
+| XLK | 112 | $187.85 | $189.60 | +0.82% | +$196.00 (+0.93%) | $172.575 (10% trail GTC) |
+| XLP | 250 | $83.76 | $82.80 | -0.83% | -$240.00 (-1.15%) | $79.91 (fixed GTC) |
+
+**Trades today:** none
+**Week trades:** 1/3
+
+**Notes:** Modest red close on Day 103 (Fri, triple-witching expiration + weekly-review day) — equity -$349.53 to $103,282.35 (Day P&L -0.34%), giving back part of Thursday's post-FOMC pop; phase eases to +3.28%. Mixed tape under quad-witching noise (industrial production + state employment data only, no CPI/FOMC): XLK +0.82% to $189.60 (+0.93% vs entry, tech leg firmest, held green), XLE -0.26% to $64.31 (+0.61% vs entry, energy quiet), XLP -0.83% to $82.80 (-1.15% vs entry, staples softest), XLB -1.42% to $49.99 (-2.12% vs entry, materials weakest leg and only name now below $50). No thesis-breaking single-name moves — softness tracks expiration mechanics per pre-market note, not sharp/unexplained. 4 positions (≤6): XLB 19.9%, XLE 19.4%, XLK 20.6%, XLP 20.0% — at/near 20% cap on appreciation only, XLK marginally over on drift (no trim), no adds. **Deployment 79.9% ($82,531.49 mkt value / equity) — inside the 75-85% band.** Cash 20.1%. All four stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260) — both resting renewed fixed stops, HELD not converted (a fresh 10% trail sits below: exit 3 stop_never_lowered; price hasn't cleared prior trailing hwm — XLB needs ≥~$54.20, XLP ≥~$88.79); XLE trailing $58.275/hwm $64.75 GTC (exp 12-16, cac3cefd); XLK trailing $172.575/hwm $191.75 GTC (exp 11-06). None lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~2.4% above stop (tightest), XLP ~3.5%, XLK ~9.0%, XLE ~9.4%. No stops in the ~90-day expiry window. Week 1/3 (no new trade today). Weekly review runs separately this afternoon. Tomorrow is Saturday — no session; next action Monday pre-market. Watch XLB cushion (tightest ~2.4%, only leg approaching its stop) into next week; hold XLK/XLE winners under their trails.
