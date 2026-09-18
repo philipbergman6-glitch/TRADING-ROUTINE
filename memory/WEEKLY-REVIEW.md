@@ -1265,3 +1265,64 @@ A clean process week with a second straight poor relative result. The book fell 
 A clean-intent process week marred by a real operational gap and a third straight relative loss. The book fell -1.15% while the S&P fell -0.90% chained (-0.80% as-actual), a -0.25% to -0.35% miss — and unlike late August, the book fell MORE than the index in a down week, because the PPI/CPI-driven de-risking hit precisely its rate-sensitive XLI/XLK/XLB sleeves while the mega-cap-growth index gave back less and bounced harder Friday. Two things pull the grade below the prior weeks' C+: (1) the "cushions down" story broke — composition amplified rather than softened this particular decline; and (2) DATABASE_URL was unset all week, leaving the mutating-order path (cut-loser, tighten-stop, stop-refresh) non-functional — a latent breach of "Protection at all times," even though no order was actually needed. Held at C- rather than lower because the broker-side GTC stops stayed live and did the real protecting, XLI absorbed the tightest cushion of the phase (~0.7% Thu) without tripping, patience into the CPI/PPI/FOMC-eve gauntlet was correct, the absolute drawdown was modest, and Friday's CPI relief clawed the week's low back to +3.93% phase. No strategy rule change — the deficit (no single-name / wrong-sector tilt) is structural, not a rule failure, and the DATABASE_URL gap is an operator env task, not a rulebook amendment; the fixes are to restore the execution path immediately, refresh the late-Sep stops, and finally convert a leadership base post-FOMC.
 
 ---
+
+## Week ending 2026-09-18
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $103,925.69 (Mon Sep 14 AM = Fri Sep 11 close) |
+| Ending portfolio | $103,282.35 (Fri Sep 18 close) |
+| Week return | -$643.34 (-0.62%) |
+| S&P 500 week | -0.38% (7,656.98 Sep 11 → 7,628.19 Sep 18; chained from prior week's logged close per errata rule) |
+| Bot vs S&P | -0.24% (UNDERPERFORMED) |
+| Trades | 1 new / 1 closed (W:0 / L:1 / open:4) |
+| Win rate | 0% (0W / 1L closed) |
+| Best trade | XLK +0.93% (open, unrealized; no closed winners) |
+| Worst trade | XLI -7.45% (closed, trailing stop-out) |
+| Profit factor | 0.00 (no closed winners) |
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| XLI | $182.16 | $168.579 | -$1,575.36 (-7.45%) | Trailing GTC filled 09:35 ET Mon Sep 14; the 10% trail had already settled at the -7% cut level. Mechanical exit on hawkish FOMC-week rate repricing, not a single-name thesis break; four-plus weeks the book's persistent drag, exited by the stop with no manual pre-empt. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLB | $51.07 | $49.99 | -$445.09 (-2.12%) | $48.78 (fixed GTC, exp 12-15) |
+| XLE | $63.92 | $64.31 | +$120.74 (+0.61%) | $58.275 (10% trail GTC, hwm $64.75) |
+| XLK | $187.85 | $189.60 | +$196.00 (+0.93%) | $172.575 (10% trail GTC, hwm $191.75) |
+| XLP | $83.76 | $82.80 | -$240.00 (-1.15%) | $79.91 (fixed GTC, exp 12-15) |
+
+**Deployed:** ~$82,531 / $103,282.35 = 79.9% (inside the 75-85% band). Weights: XLB 19.9%, XLE 19.4%, XLK 20.6%, XLP 20.0%.
+
+### What Worked
+- **The rule-12 deployment backstop fired and worked as designed.** The XLI stop-out (Mon) dropped the book to 60.6% deployed; three under-band sessions triggered the mandate, the one FOMC-day deferral was spent Sep 16, and the market-open routine added XLE (311 sh @ $63.92, Energy #1 YTD momentum) Thu Sep 17 — restoring deployment to ~80% (mid-band) the first post-FOMC session. First clean test of the backstop rule since it was codified; plan-to-execution gap did NOT recur.
+- **Ops blocker RESOLVED (PR #66) — the latent "Protection at all times" breach flagged last week is closed.** The ledger is now optional: DATABASE_URL unset prints `LEDGER DISABLED` and orders validate normally (exit 0); psycopg is no longer required. The mutating-order path (cut-loser, tighten-stop, convergence, stop-refresh) is functional again — proven live by the XLE OTO entry + ADR-0002 trailing conversion the same day.
+- **Stop protection stayed continuous through the late-Sep expiry cliff.** XLB (exp 9-25) and XLP (exp 9-28) trailing GTC stops were renewed Sep 16 as FIXED GTC stops at/above the prior stop level (never lowered — a fresh 10% trail would have dropped them to ~$45.8/~$75.3), exp 12-15, codified as midday STEP 2c (PR #67). All four positions protected every session; no stop lowered all week.
+- **Held the book cleanly through the FOMC decision (Wed Sep 16).** Zero forced action into the binary; the post-decision session (Thu) was the best day of the phase in a while (+0.78%), led by XLK (+2.25%) on AI-semi resilience. Risk discipline: no name breached +15%/+20% tighten, no manual cut needed.
+
+### What Didn't Work
+- **Fourth straight relative loss (-0.24%).** Bot -0.62% vs S&P -0.38% chained. The XLI stop-out realized a -7.45% loss and the surviving rate-sensitive sleeves (XLB, XLP) drifted red on Friday's triple-witching + rising-yield tape, while the mega-cap-growth-weighted index gave back less. Same composition story: a cyclical/materials/staples/tech ETF book with no mega-cap-growth leader cannot pull ahead on a flat-to-down index week — it tracks or lags.
+- **XLI exited at -7.45%, past the -7% manual-cut line.** The trailing stop fired at the open before any midday cut could act, because the 10% trail had already settled at the cut level — mechanically correct and consistent with rate-driven (not thesis-break) softness, but the realized loss was ~0.45pp wider than a clean -7% cut would have been. The recurring lesson: on a name grinding toward its stop, the trail and the -7% line converge and the trail wins on a gap open.
+- **XLE add restored the deployment level, not the alpha engine.** The mandated add was a FIFTH broad-sector ETF (~19% Energy), not the idiosyncratic mega-cap-growth/AI leadership single-name that has been the standing priority for six-plus weeks. Deployment is fixed; the composition deficit that drives the relative lag is not.
+- **0 discretionary new trades; the only entry was rule-mandated.** The week's single new position was forced by the backstop, not sourced from a conviction leadership base. The base-hunt still hasn't converted — seventh week of the same standing note.
+
+### Key Lessons
+- **The deployment backstop is now proven in execution, not just on paper.** Its first real trigger (XLI stop-out → 3 under-band sessions → forced XLE add post-FOMC) ran cleanly with the one-deferral logic respected. That retires any remaining doubt that "patience" will mask under-deployment — the rule mechanically re-band the book. The remaining gap is entirely the *quality* of the mandated add (correlated ETF vs. leadership single-name), not whether the add happens.
+- **Protection continuity is a two-part problem and both parts are now handled.** Last week exposed that spotless broker-side stops don't help if the routine's own mutating path is down (DATABASE_URL); PR #66 made the ledger optional and PR #67 codified pre-expiry stop renewal as a fixed GTC at/above the prior level. The risk engine can now both refresh expiring stops and submit a cut/tighten without the ledger — the execution path matches the "Protection at all times" rule again.
+- **Converging trail + -7% cut resolves to the trail on a gap.** XLI is the clean case study: when a losing position's 10% trail ratchets down to the -7% cut level, a gap-down open fills the resting stop before a discretionary midday cut can fire, and the realized loss runs slightly past -7%. Acceptable by rule (the stop is the backstop and it worked), but it means the -7% "manual cut" is only ever tighter than the trail intraday, before the trail catches up — not on the open.
+
+### Adjustments for Next Week
+- Week resets to 0/3 Monday Sep 21. Deployment in-band (~80%), so NO forced trade. **STANDING PRIORITY (7th week): source a leadership SINGLE-NAME** (idiosyncratic engine, ideally a mega-cap growth/AI leader; Energy is already represented via XLE) over a sixth correlated ETF the moment a clean base sets up — the direct fix for four straight relative losses. Convert the next clean base; do not defer absent a genuine risk event.
+- **Watch XLB — tightest cushion in the book (~2.4% above its $48.78 fixed stop at Friday's close), only leg below $50.** Materials thesis intact (sector-wide rate pressure, not a break); manage by the stop, no manual pre-empt above -7%. If it clears ~$54.20 the fixed stop converts back to a 10% trail (STEP 2b); until then it rides the renewed fixed GTC.
+- **Stop maintenance is current — no expiries in the ~90-day window.** XLB/XLP fixed GTC exp 12-15, XLE trail exp 12-16, XLK trail exp 11-06. Keep the STEP 2c expiry check each midday; refresh at/above the prior level, never down.
+- Manage by rules: 10% trailing GTC on every entry, -7% manual cut at midday, never move a stop down. On any single-name that spikes +15% and stalls, take the discretionary partial trim (standing GOOGL lesson).
+- Post-FOMC regime: the Fed hiked Sep 16 (hawkish); rate-sensitive cyclicals (XLI already gone, XLB thinnest) stay the pressure point. Favor a leadership name that also dilutes the rate-sensitive tilt when the base-hunt converts.
+
+### Overall Grade: C+
+
+A clean process week with real operational wins offsetting a fourth straight relative loss. The book fell -0.62% vs the S&P's -0.38% (chained), a -0.24% miss — the persistent composition story: an all-ETF book with no mega-cap-growth leader tracks or lags a growth-carried index, and this week the XLI stop-out (-7.45% realized) plus Friday's rate-driven softness in XLB/XLP did the damage. Held to C+ rather than lower because the process was not just clean but productive: the rule-12 deployment backstop fired for the first time and worked (XLI exit → 3 under-band sessions → mandated XLE add post-FOMC restored deployment to ~80% with the one-deferral logic respected); the DATABASE_URL ops blocker that was last week's latent "Protection at all times" breach was RESOLVED (PR #66, ledger now optional); and the XLB/XLP stops were renewed ahead of their 9-25/9-28 expiry as fixed GTC at/above the prior level (never lowered, PR #67). Held to C+ rather than higher because it was still a relative loss with a realized -7.45% exit, and the only new entry was rule-forced — the seventh week running with no idiosyncratic leadership single-name, the standing structural deficit. No strategy rule change: the deployment backstop is now proven in live execution and needs no amendment, the ops gap was an engineering fix not a rulebook one, and the remaining deficit (no leader) is a sourcing task, not a rule failure — convert the next clean leadership base.
+
+---
