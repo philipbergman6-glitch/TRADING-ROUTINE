@@ -71,6 +71,10 @@ STEP 1 — Read memory so you know what's open and why:
 STEP 2 — Pull current state:
 bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
+python3 scripts/blotter.py --check   # fill-based FIFO book must match positions
+The protection monitor (.github/workflows/protection-monitor.yml) runs every
+30 min without Claude or the ledger and may already have renewed, converted
+or tightened stops; read broker state, never assume what it did.
 
 STEP 2b — On-entry ADR 0002 convergence (leftover fixed legs).
 Scan open orders from STEP 2 for leftover fixed protective sells —
@@ -142,12 +146,27 @@ Exit 0 = approved → proceed.
 Exit 3 = refused → log violations verbatim; do not close.
 Exit 4 = broker state unavailable → STOP, email alert, exit.
 
-On approve (mutating alpaca requires ALPACA_RISK_OK=1).
-Order is mandatory cancel-then-close (#38 / CUT_LOSER_STEPS): close alone
-403s while reserved, and close-then-cancel leaves the loser held AND naked.
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID   # release reserved shares
-ALPACA_RISK_OK=1 bash scripts/alpaca.sh close SYM
-Log the exit to TRADE-LOG: exit price, realized P&L, "cut at -7% per rule".
+On approve, close through scripts/close_position.py — the ONLY sanctioned
+exit path. It performs the mandatory cancel-then-close (#38 / CUT_LOSER_STEPS)
+with every step confirmed from broker state: preflights the sell while the
+stop still rests, cancels the stop and polls until `canceled`, confirms the
+position, submits the market sell with client_order_id cl-<YYYYMMDD>-<SYM>
+and confirms it. A rerun resumes; it never sells twice and never leaves the
+position naked silently. Never hand-write the cancel/close pair.
+
+CLOSE_JSON=$(python3 scripts/close_position.py --symbol SYM --reason "cut at -7% per rule"); CLOSE_EXIT=$?
+HTTP_STATUS=$(printf "%s" "$CLOSE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+if [ -n "$HTTP_STATUS" ]; then
+  python3 scripts/record_broker_response.py \
+      --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
+      --response "$(printf "%s" "$CLOSE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+fi
+CLOSE_EXIT: 0 close submitted / already closing / stop filled (position gone)
+· 3 refused, stop still protects → log, HOLD · 4 broker unavailable → STOP ·
+8 NAKED (stop canceled, sell not confirmed) → rerun the SAME command now;
+still 8 → email "UNPROTECTED SYM", STOP.
+Log the exit to TRADE-LOG: exit price, realized P&L (from
+`python3 scripts/blotter.py --markdown`, fill-based), "cut at -7% per rule".
 
 STEP 4 — Tighten trailing stops on winners. Ladder is owned by the engine
 (`required_trail_percent` via `scripts/validate_stop_change.py`) — do NOT
@@ -197,8 +216,8 @@ restores the old level on failure and resumes on rerun. T2 validates the stop/tr
 close that window.
 
 STEP 5 — Thesis check. If a thesis broke intraday, cut the position even
-if not at -7% yet — same validate_order + ALPACA_RISK_OK cancel-then-close gate
-as STEP 3. Document reasoning in TRADE-LOG.
+if not at -7% yet — same validate_order + scripts/close_position.py gate as
+STEP 3. Document reasoning in TRADE-LOG.
 
 STEP 6 — Optional intraday research via Perplexity if something is moving
 sharply with no obvious cause. Append afternoon addendum to RESEARCH-LOG.

@@ -181,10 +181,13 @@ def _first_mutating_block(text: str, verbs: tuple[str, ...]) -> list[str]:
 @pytest.mark.parametrize("path", MARKET_OPEN_WORKFLOWS, ids=lambda p: p.name)
 def test_buy_path_uses_oto_not_naked_market_buy(path: Path) -> None:
     text = path.read_text()
-    assert "order_class" in text or "build_oto_order.py oto" in text, (
+    assert "order_class" in text or "build_oto_order.py oto" in text or "submit_entry.py" in text, (
         f"{path.name}: buy path must use OTO (ADR 0002)"
     )
     assert "build_oto_order.py" in text
+    # Buys go through the idempotent entry script, never a hand-written order call.
+    assert "submit_entry.py --symbol SYM --qty N --price P" in text
+    assert "alpaca.sh order \"$OTO_JSON\"" not in text
     # Must not instruct a bare two-call market buy without OTO.
     bare = re.search(
         r"alpaca\.sh order '\{[^']*\"side\":\"buy\"[^']*\}'",
@@ -210,12 +213,14 @@ def test_midday_cut_is_cancel_then_close(path: Path) -> None:
     text = path.read_text()
     # Focus on STEP 3 cut block: first close/cancel pair in the cut section.
     step3 = text.split("STEP 4")[0]
-    verbs = _first_mutating_block(step3, ("cancel", "close"))
-    assert verbs, f"{path.name}: STEP 3 must cancel and close"
-    # First cancel must precede first close (#38).
-    assert verbs.index("cancel") < verbs.index("close"), (
-        f"{path.name}: cut losers must be cancel-then-close, got {verbs}"
+    # cancel→close (CUT_LOSER_STEPS) happens inside close_position.py with
+    # each step confirmed from broker state; a hand-written pair would lose
+    # preflight, cancel confirmation and resume.
+    assert _first_mutating_block(step3, ("cancel", "close")) == [], (
+        f"{path.name}: STEP 3 must not hand-write cancel/close"
     )
+    assert "close_position.py --symbol SYM" in step3, f"{path.name}: STEP 3 must use close_position.py"
+    assert "cancel-then-close" in step3
     assert list(CUT_LOSER_STEPS) == ["cancel", "close"]
 
 
@@ -292,6 +297,8 @@ def test_partial_fill_is_hard_fail_incident(path: Path) -> None:
     buy_idx = text.find("order_class=oto")
     if buy_idx < 0:
         buy_idx = text.find("build_oto_order.py oto")
+    if buy_idx < 0:
+        buy_idx = text.find("submit_entry.py --symbol")
     assert buy_idx >= 0, f"{path.name}: buy OTO path missing"
     buy_path = text[buy_idx:]
     fq = buy_path.find("filled_qty")
@@ -341,11 +348,11 @@ def test_trade_sell_is_cancel_then_close() -> None:
     # Take from SELL mention through the next numbered step that is BUY convert,
     # or a reasonable window of the sell instructions.
     chunk = text[sell_idx : sell_idx + 600]
-    verbs = _first_mutating_block(chunk, ("cancel", "close"))
-    assert verbs, "trade.md SELL path must cancel and close"
-    assert verbs.index("cancel") < verbs.index("close"), (
-        f"trade.md sell must be cancel-then-close, got {verbs}"
-    )
+    # The pair lives inside close_position.py (confirmed cancel, then sell);
+    # a hand-written pair in the prompt would lose confirmation and resume.
+    assert _first_mutating_block(chunk, ("cancel", "close")) == [], "trade.md must not hand-write cancel/close"
+    assert "close_position.py --symbol SYM" in chunk, "trade.md SELL path must use close_position.py"
+    assert "cancel-then-close" in chunk
     assert list(CUT_LOSER_STEPS) == ["cancel", "close"]
     # Honesty: do not claim #40 PATCH closed.
     assert "#40" in text and "OPEN" in text

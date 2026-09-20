@@ -1,9 +1,9 @@
 # Engineering handoff
 
-Updated: **2026-09-19**. Local `main` is synchronized to verified GitHub main
-**`07603ef`**. Nine commits since the original inspection at `1d2d267` update
-trading/research/weekly logs and dashboard data through September 18; execution
-code and routine instructions are unchanged. GitHub issue status was not checked.
+Updated: **2026-09-20**. Baseline for this session: verified GitHub main
+**`8de4a1b`** (PR #82, the versioned strategy spec). This session's work is on
+branch `exec/controls-v2` and lands as one squash-merged PR. GitHub issue
+status was not checked.
 
 ## Where the project stands
 
@@ -24,30 +24,61 @@ bounded order-history queries, and resumable stop replacement/restoration.
 
 ## Next engineering milestone
 
-Complete durable execution and independent reconciliation while continuing the
-existing paper trial, then apply the [versioned evaluation](PAPER-EXPERIMENT.md).
-The owner now wants a path to testing with real money; recommendations are in
-[LIVE-READINESS.md](LIVE-READINESS.md). No live capability has been enabled.
-The owner specified $10,000 initial capital and $4,000 maximum acceptable loss
-(40%) on 2026-09-19. The readiness plan records that tolerance and a proposed
-earlier review threshold; these are not implemented trading controls.
-The documented remaining work is:
+The execution controls in [STRATEGY-SPEC.md](STRATEGY-SPEC.md) section 6 now
+exist in code with offline tests (see the status column there). Remaining
+before the 30-session $10,000 v2 paper run:
 
-1. An account-wide execution coordinator: durable intent, cross-process
-   reservations, stable buy idempotency, and recovery after ambiguous outcomes.
-2. Recovered cancel-to-close exits and independently scheduled protection
-   monitoring. Stop replacement is recoverable, but its cancel/place window
-   is not atomic.
-3. Complete broker lifecycle recording and accounting reconciliation. The
-   optional ledger currently records only part of the lifecycle; historical
-   markdown is evidence, not independently reconciled accounting.
-4. Verify actual scheduler prompts/configuration and runtime version reporting;
-   then establish the experiment's versioned inputs and proof gates
-   ([STRATEGY-SPEC.md](STRATEGY-SPEC.md) now defines the inputs).
+1. **Owner configuration.** Add repository secrets `ALPACA_API_KEY`,
+   `ALPACA_SECRET_KEY`, `RESEND_API_KEY`, `EMAIL_TO`, `EMAIL_FROM` and the
+   variable `STRATEGY_VERSION` (`v2` for the run; unset means `v1`), then
+   trigger `protection-monitor` by `workflow_dispatch` with `dry_run=true` and
+   read the report. The workflow has not been observed running.
+2. **Owner decisions** in spec section 7 (review threshold definition; rule 15
+   trim vs delete). Rule 15 has no script until decided.
+3. **Sector data.** `memory/SECTORS.json` holds the symbols traded so far; each
+   v2 candidate needs its GICS sector recorded before `validate_order.py`
+   accepts the buy.
+4. **Segment start.** Move test orders out of the scored account, record the
+   model ID per run, run the segment-start checklist in spec section 5.
+5. Still open by design: cross-process reservations / durable intent store
+   (#19, #26); the cancel→place window is recoverable, not atomic (#40).
 
-These are existing documented priorities, not work completed by the onboarding
-changes. Detailed scope and limitations remain in the implementation status
-and [architecture](../ARCHITECTURE.md).
+## Latest session: execution controls for v2 (2026-09-20)
+
+- `risk_engine/versions.py`: `StrategyParams` with `V1` (frozen) and `V2`;
+  `STRATEGY_VERSION` read once per CLI (`validate_order`, `validate_mutation`,
+  `validate_stop_change`, `build_oto_order`, monitor, entry). Engine functions
+  take `params`; v2 adds sector cap, sector-ETF exclusion, re-entry cooldown,
+  7% entry band, conversion only at +5%, ladder 7% at +15%.
+- `risk_engine/blotter.py` + `scripts/blotter.py`: FIFO round trips from
+  `/account/activities/FILL` (`alpaca.sh activities`), `--check` against
+  positions, `--cooldown`, `--sector-streaks`. Cooldown in `validate_order.py`
+  comes from fills, not markdown.
+- `risk_engine/monitor.py` + `scripts/protection_monitor.py` +
+  `.github/workflows/protection-monitor.yml`: every 30 min on weekdays, no
+  Claude, no ledger; renew, convert (v2: only at +5%), tighten per ladder;
+  HOLD/STANDING reported; exit 5/7/8 emailed. Acts only via `replace_stop`.
+- `scripts/submit_entry.py` (`en-<day>-<sym>`, lookup before submit) and
+  `scripts/close_position.py` (`cl-<day>-<sym>`, cancel confirmed, sell
+  confirmed, exit 8 if naked). Both wired into `routines/market-open.md`,
+  `routines/midday.md` and the `.claude/commands` copies as the only buy and
+  exit paths. `memory/SECTORS.json` added. ADR 0003 records the design.
+- Not done: routine wiring for rule 15; secrets for the workflow; any broker
+  call, email, order or push from this session (all tests are offline).
+
+## Verification on 2026-09-20
+
+| Check | Result |
+|---|---|
+| `env -u DATABASE_URL .venv/bin/python -m pytest -q -m 'not integration'` | 358 passed; 21 integration tests deselected |
+| `.venv/bin/python scripts/doctor.py` | ok; last log 2026-09-18; dashboard current; ledger not configured; broker not verified |
+| `.venv/bin/python scripts/build_dashboard_data.py --check` | Committed generated data reproduced |
+| `git diff --check` | Clean |
+
+The Postgres integration suite, the broker, the email path and the GitHub
+Actions workflow were not exercised. `STRATEGY_VERSION` is unset in every
+cloud routine until the owner sets the repository variable, so cloud runs
+stay on v1.
 
 ## Latest session: paper results audit (2026-09-19)
 

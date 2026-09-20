@@ -65,6 +65,23 @@ same command after a crash resumes without duplicates. The mutation gate reads
 the replaced stop's `stop_price` via that client id (or any same-symbol stop
 canceled in the last 15 minutes), so a canceled stop's floor still binds.
 
+Entries and exits follow the same resume-by-client-id pattern (ADR 0003).
+`scripts/submit_entry.py` stamps `en-<YYYYMMDD>-<SYM>` on the OTO buy, looks
+it up before submitting and confirms it after, so a rerun never buys twice.
+`scripts/close_position.py` performs cancel→close with the sell stamped
+`cl-<YYYYMMDD>-<SYM>`: preflight while the stop rests, cancel and poll to
+`canceled`, confirm the position, sell, confirm; a rerun resumes and an
+unconfirmed sell after a confirmed cancel is exit 8 (naked incident).
+
+Strategy constants are versioned in `risk_engine/versions.py` (`V1` frozen,
+`V2`); `STRATEGY_VERSION` selects at each CLI boundary. Protection also runs
+without any Claude session: `.github/workflows/protection-monitor.yml` runs
+`scripts/protection_monitor.py` every 30 minutes, which plans with the pure
+`risk_engine/monitor.py` (coverage, renew, convert, tighten, standing holds)
+and acts only through `scripts/replace_stop.py`. It never reads the ledger.
+Round trips, cooldown and sector streaks come from broker fills via
+`risk_engine/blotter.py`, not from markdown.
+
 ## Why the risk engine is a pure module
 
 `risk_engine/` performs no I/O: no network, no database, no clock. Consequences:
@@ -151,15 +168,17 @@ than one described aspirationally.
   (`filled_qty != qty` is an incident / hard-fail). Market-open and midday also
   **scan open orders on entry** for leftover fixed legs and convert them
   via `scripts/replace_stop.py` — not wishful "next routine" prose. A
-  sub-second, recoverable window remains on replacement; cancel→close exits
-  still have an unrecovered window. Collapsing trail-tighten via `PATCH` needs
+  sub-second, recoverable window remains on replacement and on
+  `scripts/close_position.py` (cancel→close). Collapsing trail-tighten via `PATCH` needs
   [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
-  (OPEN research — do not invent). Idempotency keys + reconciliation loop still
-  not built.
+  (OPEN research — do not invent). Idempotency is per deterministic client id
+  (`en-`, `cl-`, `rs-`, `rr-`), not a durable intent store.
 - **Read-only reconciliation, not a scheduled loop.** `scripts/doctor.py --broker`
   compares held quantities against current, unexpired GTC protective orders via
   `risk_engine.reconciliation`. It flags missing, excess and ambiguous coverage.
-  Independent scheduling, incident delivery and automatic recovery remain open.
+  `scripts/protection_monitor.py` on the `protection-monitor` workflow adds
+  the scheduled loop with renew/convert/tighten and email on any issue; it
+  needs repository secrets and has not yet been observed running.
 - **Scheduled routine gates (T1 + T2).** `market-open` and `midday` (and `/trade`)
   instruct `scripts/validate_order.py` before every order-mutating `alpaca.sh`
   path; `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) with

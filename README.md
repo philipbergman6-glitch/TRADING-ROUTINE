@@ -21,15 +21,22 @@ through `CLAUDE.md`.
 | `risk_engine/` | Pure rules, order/protection payloads, snapshot coverage checks |
 | `scripts/validate_order.py` | Proposed-order preflight and optional Postgres decision record |
 | `scripts/validate_mutation.py` | Validate the exact broker mutation against current account and asset data |
+| `scripts/submit_entry.py`, `scripts/close_position.py`, `scripts/replace_stop.py` | Idempotent buy, recovered exit, resumable stop replacement |
+| `scripts/protection_monitor.py` | Scheduled protection check and actions without Claude or the ledger |
+| `scripts/blotter.py` | Fill-based round trips, cooldown and sector streaks |
 | `scripts/alpaca.sh` | Exact paper endpoint, mutation gate, bounded transport and HTTP status |
 | `ledger/` | Postgres decisions, broker responses and append-only audit events |
 | `memory/` | Agent context and historical observations; not independently reconciled accounting |
 | `routines/` | Scheduled research, execution instructions and reporting |
 | `docs/dashboard/` | Generated log observations plus explicitly dated commentary |
 
+Strategy constants are versioned (`risk_engine/versions.py`): `STRATEGY_VERSION`
+selects `v1` (frozen baseline) or `v2`; unset means `v1`, unknown is a hard error.
 `ALPACA_RISK_OK=1` expresses caller intent. It does not bypass the mutation
-validator. Buys must be GTC market OTO orders with a fixed protective leg in the
-9.5–10.5% entry-distance band. Asset class and fresh ask are checked at submit;
+validator. Buys must be GTC market OTO orders with a fixed protective leg at the
+version's entry distance (v1 10%, v2 7%, ±0.5%). Under v2 a buy also needs a GICS
+sector in `memory/SECTORS.json`, at most two positions per sector, no sector ETFs,
+and no re-entry within ten sessions of the last exit (from broker fills). Asset class and fresh ask are checked at submit;
 pending buys block another buy. Market fills can still differ from the quote.
 Stop-tightening validation requires the broker's actual resting stop price,
 preserving its previous high-water mark across replacement. Stop replacement
@@ -39,10 +46,11 @@ confirms the cancel, restores the old level on failure and resumes on rerun.
 ## Current limits
 
 This remains an experimental paper system. Direct access to broker credentials
-is not isolated from the agent. Cross-process account reservations, stable
-broker idempotency for buys, a recovered cancel→close exit and an independently
-scheduled protection monitor remain to be implemented. The ledger is optional
-in cloud routines and does not yet capture the complete broker lifecycle.
+is not isolated from the agent. Cross-process account reservations remain
+unimplemented; idempotency is per client ID, not a durable intent store. The
+protection monitor workflow needs repository secrets and has not yet been observed
+running. The ledger is optional in cloud routines; the fill-based blotter, not the
+ledger, is the accounting record.
 
 The latest committed equity snapshot and benchmark periods are displayed on
 the dashboard. They are log-derived, with reconstructed history and estimated

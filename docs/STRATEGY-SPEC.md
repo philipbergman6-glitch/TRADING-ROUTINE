@@ -196,13 +196,16 @@ segment:
 v2 cannot start before these exist and are tested; they are the engineering
 milestone in `docs/PROJECT-STATUS.md`.
 
-| Control | Why v2 needs it |
-|---|---|
-| Idempotent buys (stable client order ID, durable intent before submit) | Rule 8 and rule 14 counts are meaningless if a retry double-submits |
-| Recovered cancel-to-close exits | Rule 15 trim and any thesis-break close must complete after process death |
-| Full broker lifecycle recording, blotter rebuilt from fills | Rules 10 and 14 are computed from fills, not from markdown |
-| Protection monitor that runs without Claude and without the ledger | Rules 5, 6, 7 (standing) and 15 are triggered actions; the Sep 8–16 outage showed protection must not depend on the ledger |
-| Version-parameterised engine constants (stop band, trail ladder, sector cap, cooldown) | v1 shadow and v2 are validated by the same engine under different parameters |
+| Control | Why v2 needs it | Status (2026-09-20) |
+|---|---|---|
+| Idempotent buys (stable client order ID, durable intent before submit) | Rule 8 and rule 14 counts are meaningless if a retry double-submits | `scripts/submit_entry.py`: client ID `en-<YYYYMMDD>-<SYM>`, lookup before submit, confirm by ID. Intent is the ID itself, not a durable store. |
+| Recovered cancel-to-close exits | Rule 15 trim and any thesis-break close must complete after process death | `scripts/close_position.py`: cancel confirmed by poll, sell `cl-<YYYYMMDD>-<SYM>`, resumes on rerun, exit 8 if naked. |
+| Full broker lifecycle recording, blotter rebuilt from fills | Rules 10 and 14 are computed from fills, not from markdown | `risk_engine/blotter.py` + `scripts/blotter.py`: FIFO round trips from `/account/activities/FILL`; cooldown and sector streaks derived from it. |
+| Protection monitor that runs without Claude and without the ledger | Rules 5, 6, 7 (standing) and 15 are triggered actions; the Sep 8–16 outage showed protection must not depend on the ledger | `risk_engine/monitor.py` + `scripts/protection_monitor.py` + `.github/workflows/protection-monitor.yml` (30-min cron, paper endpoints hardcoded). Repo secrets not yet configured; not yet observed running. |
+| Version-parameterised engine constants (stop band, trail ladder, sector cap, cooldown) | v1 shadow and v2 are validated by the same engine under different parameters | `risk_engine/versions.py`: `V1`, `V2`, `STRATEGY_VERSION` env selects at every CLI boundary. |
+
+Rule 15 (trim at target) has no script yet; it waits on the owner decision in
+section 7.
 
 ## 7. Open decisions for the owner
 
