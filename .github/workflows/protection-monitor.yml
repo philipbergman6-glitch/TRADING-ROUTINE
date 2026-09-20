@@ -1,0 +1,53 @@
+name: protection-monitor
+
+# Independent of the Claude routines and of the ledger (docs/STRATEGY-SPEC.md
+# section 6). Verifies every paper position is covered and performs due
+# protection work (renew, convert, tighten) through scripts/replace_stop.py.
+# Repository secrets must be configured by the owner; the workflow refuses a
+# non-paper endpoint through scripts/alpaca.sh before any request.
+
+on:
+  schedule:
+    # Every 30 minutes, 09:00-16:30 ET on weekdays (13:00-20:30 UTC in EDT;
+    # one hour later in EST — the extra pre-open runs are harmless reads).
+    - cron: "0,30 13-20 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Plan only; no broker mutation"
+        type: boolean
+        default: true
+
+concurrency:
+  group: protection-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      ALPACA_ENDPOINT: https://paper-api.alpaca.markets/v2
+      ALPACA_DATA_ENDPOINT: https://data.alpaca.markets/v2
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+      STRATEGY_VERSION: ${{ vars.STRATEGY_VERSION }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refuse to run without broker credentials
+        run: |
+          test -n "$ALPACA_API_KEY" && test -n "$ALPACA_SECRET_KEY" \
+            || { echo "ALPACA secrets are not configured; nothing verified" >&2; exit 4; }
+      - name: Protection monitor
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            python3 scripts/protection_monitor.py --dry-run --email
+          else
+            python3 scripts/protection_monitor.py --email
+          fi
