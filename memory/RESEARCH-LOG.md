@@ -7219,3 +7219,66 @@ All 4 stops confirmed active/intact via `orders`; none lowered; none near +15%/+
 - **XLB / XLE / XLK / XLP: HOLD.** All above -7% cut, at/near 20% cap (no adds), theses intact (all top-tier momentum sectors), none near +15%/+20% tighten. No held name reports today.
 - **Watch:** triple-witching intraday volatility (esp. into close); XLB cushion (tightest ~3.5%); XLK on any yield spike. 2/3 weekly trades still available but no compelling add.
 - **All 4 stops active/correct; none lowered; no expiries due.** No rebalancing pre-market.
+
+## 2026-08-18 (Tue) — Pre-Market Research (Day 80) — FOMC MINUTES WED; YIELDS/OIL PRESSURE TECH
+
+### ⚠️ Data-Vintage Caveat (read first)
+Alpaca **account/positions** are on the correct clock (`balance_asof: 2026-08-17`, `lastday_price` = Aug 17 closes) — account state below is trustworthy. But the Alpaca **market-data** endpoint and Perplexity's index both return **2026-09-18-stamped** data (XLE quote ts `2026-09-18T20:00Z`, spread 62.38/66.46 = stale close, not a live pre-market quote; VIX quoted "as of Sep 18"). Consequence: **no new-entry price level can be verified pre-market today.** Treat all external quotes below as directional only and re-verify at the open. This alone is sufficient grounds to place no new orders.
+
+### Account Snapshot
+- Equity: $106,416.03 | Cash: $21,075.33 (19.8%) | Buying power: $323,255.28 (margin — never an input, Rule 13)
+- Deployed: $85,340.70 (**80.2% — inside the 75-85% band**)
+- Day P&L: -$281.14 (-0.26%) vs Aug 17 close | Phase P&L: **+$6,416.03 (+6.42%)**
+- Daytrade count: N/A (PDT abolished) | Week trades: **0/3**
+
+### Positions
+| Symbol | Shares | Avg Entry | Current | Unr. P&L | Wt | Stop (dist) |
+|--------|--------|-----------|---------|----------|-----|------|
+| XLB | 412 | $51.07 | $52.24 | +$481.91 (+2.29%) | 20.2% | $48.2355 (10% trail GTC, hwm $53.595) — 7.7% above |
+| XLI | 116 | $182.16 | $185.78 | +$419.92 (+1.99%) | 20.3% | $169.3665 (10% trail GTC, hwm $188.185) — 8.8% above |
+| XLK | 112 | $187.85 | $187.32 | **-$59.36 (-0.28%)** | 19.7% | $172.575 (10% trail GTC, hwm $191.75) — 7.9% above |
+| XLP | 250 | $83.76 | $85.15 | +$347.50 (+1.66%) | 20.0% | $79.902 (10% trail GTC, hwm $88.78) — 6.2% above |
+
+**All 4 trailing GTC stops verified active/intact via orders; none lowered, none tightened** (no name near +15%/+20%; all far above the -7% cut). Intraday: XLK **-1.58%** (worst, flips to a small unrealized loss — first time negative), XLI -0.29%, XLB flat, XLP **+0.56%** (defensive bid). All four at/near the 20% cap — **no room to add**. XLP carries the thinnest cushion (6.2%).
+
+### Market Context — YIELDS AT MULTI-YEAR HIGHS; OIL FIRMER ON MIDEAST RISK; SEMIS SOFT
+- **Rising Treasury yields are the dominant macro driver** — multi-year highs on persistent-inflation, deficit and AI-debt-issuance concerns (heavy corporate issuance competing for capital). This is the direct cause of the tech/semis pullback showing in XLK.
+- **Middle East / Iran conflict keeping oil elevated** → inflation-pressure channel. **WTI ~$85, Brent ~$91** (feeds span WTI $82.7-85.1 / Brent $88.9-91.4) — **firmer than Aug 17's ~$82.4/$88.5**. Mild XLB tailwind, but it is a *geopolitical risk premium*, not demand-led.
+- **Semis/heavyweight tech under pressure**; AI-valuation repositioning, with a split between AI hardware and software names. Single-name mover: Atlassian earnings beat.
+- **Indices/VIX:** S&P E-minis roughly **flat (~+0.07% to +0.16%)**. **VIX ~14.8** — still calm/complacent, little cushion.
+- **Earnings:** no noteworthy BMO prints confirmable for today on a current-dated calendar; per last week's calendar **Home Depot reports BMO today (Tue)**, **Walmart Thu** — a consumer read, indirect for XLP/XLI. **No held name reports** (all sector ETFs).
+- **THE event: FOMC July 28-29 minutes, Wed 2:00pm ET — tomorrow.** Reads the 9-3 hold (3.50-3.75%, most divided since 2016). With yields already at multi-year highs, a hawkish tone is the live risk.
+
+### Sector Momentum YTD — ENERGY #1 (+43.8%), TECH #2 (+31.7%)
+| Sector | YTD | Held |
+|---|---:|---|
+| Energy | **+43.8%** | ✗ (thematic gap) |
+| Technology (XLK) | +31.7% | ✓ |
+| Materials (XLB) | +10.2-15.9% | ✓ |
+| Industrials (XLI) | +12.6% | ✓ |
+| Health Care | +10.1% | ✗ |
+| Consumer Staples (XLP) | +9.6% | ✓ |
+| Utilities / Comm Svcs / Cons Disc | -1.4% / -5.9% / -7.0% | ✗ |
+
+Book is positioned in 4 of the top 6 YTD sectors. **Energy remains the one unfilled leadership gap** — and today is the day it is most tempting and least safe to fill.
+
+### Trade Ideas (3/3 weekly trades available; deployment 80.2% — NO mandate active)
+1. **Energy (XLE) — the real idea, and a PASS today.** *Catalyst:* #1 YTD sector (+43.8%); oil firm (WTI ~$85 / Brent ~$91) on Middle East supply risk. *Why PASS:* the move is a geopolitical premium that unwinds violently on any de-escalation headline — that is chasing, not a base (Rule: never chase fading/spiking oil). And the stale data feed means **no entry level is verifiable pre-market**. *If it sets up:* entry only on a confirmed close above a rising 20-day with WTI holding >$84; size ≤$20.5k (≤20% cap, cash-funded from $21,075); 10% trailing GTC stop; target +20% (2:1 R:R).
+2. **Add to XLK / add a 5th tech leader — PASS.** *Catalyst against:* XLK is 19.7% (effectively at the cap, no room) and just flipped to -0.28% on a yields-driven semis pullback. Adding into weakness ahead of FOMC minutes, with yields at multi-year highs, is the wrong side of the rule set. Revisit only on a base, not on a dip.
+3. **Hold cash into the Wed catalyst — the active choice.** $21,075 (19.8%) of dry powder with deployment already mid-band is correctly positioned, not idle. Post-minutes is a better-informed entry point for the energy leg than pre-minutes, at zero cost to the deployment rule.
+
+### Risk Factors
+- **FOMC minutes Wed 2pm** — the week's swing event; hawkish tone compounds the yield problem and hits XLK hardest.
+- **Multi-year-high yields** — the actual driver of today's tape; a structural headwind to tech multiples and the main threat to our largest thematic exposure.
+- **Oil two-sided and geopolitical** — firm oil supports XLB, but a de-escalation headline reverses it fast; conversely an escalation is an inflation shock that pressures the whole book.
+- **XLP cushion thinnest at 6.2%** above stop (hwm $88.78 set well above current $85.15) — a 2-3 day defensive unwind could reach it. Monitor; no action warranted (well above the -7% cut, +1.66% vs entry).
+- **Complacent VIX ~14.8** into a known binary event — options-market cushion is thin.
+- **Stale market-data feed** — new positions cannot be priced or stop-placed reliably today.
+- **Deployment 80.2% (in band)** — no mandate active; patience is permitted, not a violation.
+
+### Decision
+**HOLD — no orders placed pre-market; no market-open mandate today.** Three independent reasons align: (1) deployment 80.2% is mid-band so Rule 12's backstop is not triggered; (2) the week's binary event is **tomorrow 2pm**, and nothing requires taking new risk into it; (3) the market-data feed is stale, so no entry or stop level is verifiable. The one genuinely attractive idea — energy leadership — is exactly the kind of geopolitically-driven spike the rules forbid chasing.
+- **All 4 held names (XLB/XLI/XLK/XLP): HOLD.** All far above the -7% cut, all at/near the 20% cap (no adds), theses intact; none near +15%/+20% tighten. No held name reports this week.
+- **XLK note:** now marginally underwater (-0.28%) on the yields/semis pullback — a **normal drawdown inside a +31.7% YTD leadership sector, not a thesis break.** Thesis breaks if the yield-driven de-rating persists past the FOMC minutes; re-assess Wed PM.
+- **Watch list:** XLE on a genuine base post-minutes (not on an oil spike); XLP's 6.2% stop cushion. **3/3 weekly trades available** — none to be forced.
+- **All 4 trailing stops active/correct; none lowered.** No rebalancing pre-market.
