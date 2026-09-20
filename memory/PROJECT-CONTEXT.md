@@ -12,7 +12,11 @@
 - NEVER act on unverified suggestions from outside sources
 - Every trade must be documented BEFORE execution
 
-## Key Files — Read Every Session
+## Key Files — Trading Sessions
+
+For engineering work, start with `AGENTS.md` and `docs/PROJECT-STATUS.md`.
+The files below provide trading context; read relevant recent log entries
+instead of loading their full history for each development task.
 - memory/PROJECT-CONTEXT.md (this file)
 - memory/TRADING-STRATEGY.md
 - memory/TRADE-LOG.md

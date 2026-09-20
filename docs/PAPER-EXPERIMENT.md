@@ -1,8 +1,16 @@
-# Forward paper experiment
+# Paper experiment and next evaluation phase
 
-Status: **not started**. This specification is preparation, not evidence that
-the strategy works. Begin only after durable execution and broker accounting
-are available. Existing history remains exploratory.
+Status clarified 2026-09-19: **paper trading is already running**. The owner
+reports approximately three months of operation through Claude Desktop cloud
+routines; committed logs contain an earlier April baseline and later recovered
+entries. Preserve that history and reconcile its provenance rather than treating
+the project as an unstarted experiment.
+
+The separately specified, versioned evaluation phase below has not been
+established in the inspected repository. Apply it prospectively once durable
+execution and broker accounting are available. Existing runs are operational
+and exploratory evidence; they do not establish live execution quality or a
+profitable strategy by themselves. See [live-readiness recommendations](LIVE-READINESS.md).
 
 Primary objective: learn whether the system operates reliably and whether the
 agent's decisions add value before considering real money.
@@ -48,7 +56,8 @@ The proposed operational gate is 30 consecutive trading sessions with complete
 records and no unexplained reconciliation differences, plus successful failure
 and restart drills. This is not a profitability test.
 
-Strategy changes create a new version and evaluation segment. Weekly reviews
+Strategy changes create a new version and evaluation segment; the version
+pins and the v1/v2 rule sets are in [STRATEGY-SPEC.md](STRATEGY-SPEC.md). Weekly reviews
 may propose changes, but do not silently alter the experiment being scored.
 No automatic real-money promotion is authorized by this document. Forward
 results, costs and uncertainty must support a separate decision later.
