@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from decimal import Decimal
@@ -25,7 +26,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine import (  # noqa: E402
-    BASE_TRAIL_PCT,
     FixedStop,
     TrailingStop,
     RENEWAL_WINDOW_DAYS,
@@ -34,10 +34,12 @@ from risk_engine import (  # noqa: E402
     build_trailing_stop,
     expiring_protective_stops,
     fixed_stop_at_distance,
+    params_from_env,
 )
 
 
 def main() -> int:
+    params = params_from_env(os.environ)
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="cmd", required=True)
 
@@ -48,15 +50,15 @@ def main() -> int:
     oto.add_argument("--stop-price", help="explicit fixed stop_price (skips derivation)")
     oto.add_argument(
         "--distance-pct",
-        default=str(BASE_TRAIL_PCT),
-        help=f"percent below entry for derived stop (default {BASE_TRAIL_PCT})",
+        default=str(params.entry_stop_pct),
+        help=f"percent below entry for derived stop (default {params.entry_stop_pct} for {params.name})",
     )
     oto.add_argument("--tif", default="gtc", choices=("day", "gtc"))
 
     trail = sub.add_parser("trail", help="standalone trailing_stop sell")
     trail.add_argument("--symbol", required=True)
     trail.add_argument("--qty", required=True)
-    trail.add_argument("--trail-percent", default=str(BASE_TRAIL_PCT))
+    trail.add_argument("--trail-percent", default=str(params.base_trail_pct))
     trail.add_argument("--tif", default="gtc", choices=("day", "gtc"))
 
     stop = sub.add_parser("stop", help="standalone fixed stop sell (expiry renewal)")

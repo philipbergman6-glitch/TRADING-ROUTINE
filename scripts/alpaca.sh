@@ -111,6 +111,22 @@ case "$cmd" in
     fi
     _curl -H "$H_KEY" -H "$H_SEC" "$url"
     ;;
+  activities)
+    # Read-only fill history for the blotter. Alpaca pages by id: pass the last
+    # id of the previous page as PAGE_TOKEN. AFTER bounds the window.
+    after="${1:-}"
+    token="${2:-}"
+    url="$API/account/activities/FILL?direction=asc&page_size=100"
+    if [[ -n "$after" ]]; then
+      [[ "$after" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$ ]] || { echo "activities: AFTER must be YYYY-MM-DDTHH:MM:SSZ" >&2; exit 2; }
+      url="$url&after=$after"
+    fi
+    if [[ -n "$token" ]]; then
+      [[ "$token" =~ ^[A-Za-z0-9:_-]{1,80}$ ]] || { echo "activities: invalid PAGE_TOKEN" >&2; exit 2; }
+      url="$url&page_token=$token"
+    fi
+    _curl -H "$H_KEY" -H "$H_SEC" "$url"
+    ;;
   asset)
     sym="${1:?usage: asset SYM}"
     _curl -H "$H_KEY" -H "$H_SEC" "$API/assets/$sym"
@@ -157,7 +173,7 @@ case "$cmd" in
     _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
     ;;
   *)
-    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order-info|order-by-client|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
+    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order-info|order-by-client|activities|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
     exit 1
     ;;
 esac

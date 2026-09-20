@@ -38,6 +38,16 @@ from .protection import (
     build_trailing_stop,
     fixed_stop_at_distance,
 )
+from .versions import (
+    SECTOR_ETFS,
+    STRATEGY_VERSION_ENV,
+    V1,
+    V2,
+    VERSIONS,
+    StrategyParams,
+    params_for,
+    params_from_env,
+)
 from .models import (
     OrderProposal,
     PortfolioState,
@@ -56,6 +66,14 @@ __all__ = [
     "MAX_TRADES_PER_WEEK",
     "MIN_STOP_DISTANCE_PCT",
     "UNMECHANISED",
+    "SECTOR_ETFS",
+    "STRATEGY_VERSION_ENV",
+    "V1",
+    "V2",
+    "VERSIONS",
+    "StrategyParams",
+    "params_for",
+    "params_from_env",
     "OrderProposal",
     "PortfolioState",
     "Position",
