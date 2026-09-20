@@ -278,7 +278,7 @@ def test_validate_order_module_calls_persist_decision(
 
     monkeypatch.setattr(vo, "open_live_ledger", fake_open)
     monkeypatch.setattr(vo, "persist_decision", fake_persist)
-    monkeypatch.setattr(vo, "read_portfolio", lambda _now, _override: portfolio())
+    monkeypatch.setattr(vo, "read_portfolio", lambda *_a, **_k: portfolio())
     monkeypatch.setattr(
         sys,
         "argv",
@@ -317,7 +317,7 @@ def test_validate_order_refused_still_persists(monkeypatch: pytest.MonkeyPatch) 
     fake = FakeLedger()
     monkeypatch.setattr(vo, "open_live_ledger", lambda **_k: fake)
     monkeypatch.setattr(vo, "persist_decision", persist_decision)
-    monkeypatch.setattr(vo, "read_portfolio", lambda _n, _o: portfolio())
+    monkeypatch.setattr(vo, "read_portfolio", lambda *_a, **_k: portfolio())
     monkeypatch.setattr(
         sys,
         "argv",
@@ -350,7 +350,7 @@ def test_validate_order_ledger_failure_exits_ledger_code(
         raise RuntimeError("DATABASE_URL is not set")
 
     monkeypatch.setattr(vo, "open_live_ledger", boom)
-    monkeypatch.setattr(vo, "read_portfolio", lambda _n, _o: portfolio())
+    monkeypatch.setattr(vo, "read_portfolio", lambda *_a, **_k: portfolio())
     monkeypatch.setattr(
         sys,
         "argv",
@@ -437,7 +437,7 @@ def test_validate_order_ledger_disabled_still_returns_verdict(
         raise AssertionError("ledger opened while disabled")
 
     monkeypatch.setattr(vo, "open_live_ledger", must_not_open)
-    monkeypatch.setattr(vo, "read_portfolio", lambda _n, _o: portfolio())
+    monkeypatch.setattr(vo, "read_portfolio", lambda *_a, **_k: portfolio())
     monkeypatch.setattr(
         sys,
         "argv",
@@ -461,7 +461,7 @@ def test_validate_order_ledger_disabled_refusal_still_exits_refused(
 ) -> None:
     vo = _load_script("validate_order_t4_disabled_refused", VALIDATE)
     monkeypatch.delenv("DATABASE_URL", raising=False)
-    monkeypatch.setattr(vo, "read_portfolio", lambda _n, _o: portfolio())
+    monkeypatch.setattr(vo, "read_portfolio", lambda *_a, **_k: portfolio())
     monkeypatch.setattr(
         sys,
         "argv",

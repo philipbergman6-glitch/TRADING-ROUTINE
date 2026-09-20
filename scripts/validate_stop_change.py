@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from decimal import Decimal
 from pathlib import Path
@@ -40,10 +41,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine import (  # noqa: E402
-    MIN_STOP_DISTANCE_PCT,
+    V1,
     Rule,
+    StrategyParams,
     ValidationResult,
     Violation,
+    params_from_env,
     required_trail_percent,
     validate_stop_change,
 )
@@ -69,6 +72,7 @@ def validate_trail_path(
     current_trail: object | None,
     current_price: object,
     current_stop: object | None = None,
+    params: StrategyParams = V1,
 ) -> tuple[ValidationResult, Decimal, list[str]]:
     """Compose required_trail_percent + validate_stop_change for a trail change."""
     gain = to_money(gain_pct, "gain_pct")
@@ -80,7 +84,7 @@ def validate_trail_path(
         raise ValueError(f"proposed_trail must be positive, got {proposed}")
 
     engine_calls = ["required_trail_percent"]
-    required = required_trail_percent(gain)
+    required = required_trail_percent(gain, params)
     violations: list[Violation] = []
 
     if proposed > required:
@@ -91,12 +95,12 @@ def validate_trail_path(
                 f"at gain {gain}% (ladder floor)",
             )
         )
-    if proposed < MIN_STOP_DISTANCE_PCT:
+    if proposed < params.min_stop_distance_pct:
         violations.append(
             Violation(
                 Rule.STOP_DISTANCE,
                 f"trail of {proposed}% is inside the "
-                f"{MIN_STOP_DISTANCE_PCT}% minimum distance",
+                f"{params.min_stop_distance_pct}% minimum distance",
             )
         )
 
@@ -125,7 +129,7 @@ def validate_trail_path(
         return ValidationResult(tuple(violations)), required, engine_calls
     old_stop = to_money(current_stop, "current_stop")
     engine_calls.append("validate_stop_change")
-    price_result = validate_stop_change(old_stop, new_stop, price)
+    price_result = validate_stop_change(old_stop, new_stop, price, params)
     violations.extend(price_result.violations)
 
     return ValidationResult(tuple(violations)), required, engine_calls
@@ -186,6 +190,9 @@ def main() -> int:
     )
     parser.add_argument("--json", action="store_true", help="machine-readable verdict")
     args = parser.parse_args()
+    # Version is a deployment setting (STRATEGY_VERSION), never a CLI flag: a
+    # routine cannot pick a looser ladder per call.
+    params = params_from_env(os.environ)
 
     trail_intent = any(
         [
@@ -210,7 +217,7 @@ def main() -> int:
             print("--print-required requires --gain-pct", file=sys.stderr)
             return EXIT_USAGE
         try:
-            required = required_trail_percent(args.gain_pct)
+            required = required_trail_percent(args.gain_pct, params)
         except (TypeError, ValueError) as exc:
             print(f"usage: {exc}", file=sys.stderr)
             return EXIT_USAGE
@@ -220,6 +227,7 @@ def main() -> int:
                     {
                         "gain_pct": str(to_money(args.gain_pct, "gain_pct")),
                         "required_trail_percent": str(required),
+                        "strategy_version": params.name,
                         "engine_calls": ["required_trail_percent"],
                     },
                     indent=2,
@@ -238,7 +246,7 @@ def main() -> int:
             return EXIT_USAGE
         try:
             result = validate_stop_change(
-                args.current_stop, args.new_stop, args.current_price
+                args.current_stop, args.new_stop, args.current_price, params
             )
         except (TypeError, ValueError) as exc:
             print(f"usage: {exc}", file=sys.stderr)
@@ -249,6 +257,7 @@ def main() -> int:
             as_json=args.json,
             extra={
                 "engine_calls": ["validate_stop_change"],
+                "strategy_version": params.name,
                 "current_stop": str(to_money(args.current_stop, "current_stop")),
                 "new_stop": str(to_money(args.new_stop, "new_stop")),
                 "current_price": str(to_money(args.current_price, "current_price")),
@@ -270,6 +279,7 @@ def main() -> int:
             current_trail=args.current_trail,
             current_price=args.current_price,
             current_stop=args.current_stop,
+            params=params,
         )
     except (TypeError, ValueError) as exc:
         print(f"usage: {exc}", file=sys.stderr)
@@ -281,6 +291,7 @@ def main() -> int:
         as_json=args.json,
         extra={
             "engine_calls": engine_calls,
+            "strategy_version": params.name,
             "required_trail_percent": str(required),
             "gain_pct": str(to_money(args.gain_pct, "gain_pct")),
             "proposed_trail": str(to_money(args.proposed_trail, "proposed_trail")),

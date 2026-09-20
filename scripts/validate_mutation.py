@@ -11,15 +11,16 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 import json
+import os
 from pathlib import Path
 import re
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from risk_engine import OrderProposal, Side, validate_order, validate_stop_change
+from risk_engine import OrderProposal, Side, params_from_env, validate_order, validate_stop_change
 from risk_engine.models import to_money
-from scripts.validate_order import adapter, read_portfolio
+from scripts.validate_order import adapter, load_sectors, read_portfolio
 
 
 def require(condition, message):
@@ -33,7 +34,7 @@ RECENT_CANCEL_WINDOW = timedelta(minutes=15)
 _STOP_TYPES = ("stop", "trailing_stop")
 
 
-def _check_stop_floor(body, symbol, level, price, read, now):
+def _check_stop_floor(body, symbol, level, price, read, now, params):
     """A new protective level may never sit below the stop it replaces.
 
     The replaced stop may already be canceled (cancel precedes replacement to
@@ -71,12 +72,13 @@ def _check_stop_floor(body, symbol, level, price, read, now):
         floors = [o.get("stop_price") for o in live + recent]
         require(all(f is not None for f in floors), "protective stop without stop_price; cannot verify floor")
     for floor in floors:
-        result = validate_stop_change(floor, level, price)
+        result = validate_stop_change(floor, level, price, params)
         require(result.approved, "; ".join(result.reasons()))
 
 
-def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None):
+def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None, params=None):
     """Raise on unsafe/unsupported input; injectable reads keep tests offline."""
+    params = params or params_from_env(os.environ)
     require(command in ("order", "close", "cancel"), "bulk mutations are disabled")
     if command == "order":
         body = json.loads(argument, parse_float=str)
@@ -103,7 +105,7 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
 
     # Fetching account data through read_portfolio is deliberately not optional
     # on the CLI. Tests inject the snapshot to avoid network access.
-    state = portfolio if portfolio is not None else read_portfolio(now or datetime.now(timezone.utc), None)
+    state = portfolio if portfolio is not None else read_portfolio(now or datetime.now(timezone.utc), None, params)
     require(state.is_paper, "paper account required")
     if command == "cancel":
         if body.get("side") == "sell":
@@ -137,7 +139,8 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
                     "quote must be no more than 60 seconds old")
             price = to_money(quote.get("ap"), "ask")
             proposal = OrderProposal(symbol=symbol, qty=body.get("qty"), side=side,
-                                     price=price, stop_price=stop["stop_price"])
+                                     price=price, stop_price=stop["stop_price"],
+                                     sector=load_sectors().get(symbol))
         else:
             require(body.get("order_class", "simple") == "simple", "unsupported sell order class")
             require(body.get("type") in ("market", "stop", "trailing_stop"), "unsupported sell type")
@@ -153,14 +156,15 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
             elif body["type"] == "trailing_stop":
                 require("stop_price" not in body, "ambiguous stop fields")
                 trail = to_money(body.get("trail_percent"), "trail_percent")
-                require(Decimal("3") <= trail <= Decimal("10"), "protective trail must be 3–10%")
+                require(params.min_stop_distance_pct <= trail <= params.base_trail_pct,
+                        f"protective trail must be {params.min_stop_distance_pct}–{params.base_trail_pct}%")
                 level = price * (1 - trail / 100)
             else:
                 require(not (set(body) & {"stop_price", "trail_percent"}), "market sell has stop fields")
                 level = None
             if level is not None:
-                _check_stop_floor(body, symbol, level, price, read, now or datetime.now(timezone.utc))
-    result = validate_order(proposal, state)
+                _check_stop_floor(body, symbol, level, price, read, now or datetime.now(timezone.utc), params)
+    result = validate_order(proposal, state, params)
     require(result.approved, "; ".join(result.reasons()))
 
 

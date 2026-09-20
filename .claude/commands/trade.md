@@ -84,23 +84,25 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    ```
    # LEDGER_ORDER_ID from the buy validate --json above (re-assert before record)
    LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-   OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
-   HTTP_STATUS_FILE=$(mktemp)
-   RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON")
-   HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-   python3 scripts/record_broker_response.py \
-       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
-       --response "$RESP"
+   # submit_entry.py: OTO via build_oto_order.py, client id en-<YYYYMMDD>-<SYM>, lookup before submit; exit 8 → rerun same command
+   ENTRY_JSON=$(python3 scripts/submit_entry.py --symbol SYM --qty N --price P); ENTRY_EXIT=$?
+   HTTP_STATUS=$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+   if [ -n "$HTTP_STATUS" ]; then
+     python3 scripts/record_broker_response.py \
+         --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
+         --response "$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+   fi
    ```
    Gate before convert: filled_qty known AND filled_qty == qty, AND legs[]
    matches FixedStop (type=stop, trail null). If filled_qty != qty or residual
    shares uncovered: INCIDENT — hard-fail. Email/log; do NOT convert or assume
    protected (ADR 0002 / quant seal).
 
-   SELL of a protected position — cancel-then-close (#38), never close-then-cancel:
+   SELL of a protected position — cancel-then-close (#38) through the
+   resumable script (cancel confirmed, sell stamped cl-<YYYYMMDD>-<SYM>,
+   exit 8 = naked → rerun the same command):
    ```
-   ALPACA_RISK_OK=1 bash scripts/alpaca.sh cancel ORDER_ID
-   ALPACA_RISK_OK=1 bash scripts/alpaca.sh close SYM
+   CLOSE_JSON=$(python3 scripts/close_position.py --symbol SYM --reason "<why>"); CLOSE_EXIT=$?
    ```
 
 7. For BUYs, convert ONLY after the fill+leg gate above (scripts/replace_stop.py —

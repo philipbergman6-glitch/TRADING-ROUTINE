@@ -41,6 +41,9 @@ class Rule(str, Enum):
     STOP_REQUIRED = "stop_required"
     STOP_NEVER_LOWERED = "stop_never_lowered"
     STOP_DISTANCE = "stop_distance"
+    MAX_SECTOR_POSITIONS = "max_sector_positions"  # v2 rule 3: sector concentration cap
+    REENTRY_COOLDOWN = "reentry_cooldown"  # v2 rule 14: no re-entry after a stop-out
+    UNIVERSE = "universe"  # v2 rule 9: sector ETFs are not active positions
 
 
 class Side(str, Enum):
@@ -107,9 +110,13 @@ class Position:
     symbol: str
     qty: Decimal
     market_value: Decimal
+    # GICS sector as recorded in the decision record. Optional under v1; a
+    # version with a sector cap refuses to count a position that lacks it.
+    sector: str | None = None
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "symbol", _clean_symbol(self.symbol))
+        object.__setattr__(self, "sector", _clean_sector(self.sector))
         object.__setattr__(self, "qty", to_money(self.qty, "Position.qty"))
         object.__setattr__(
             self, "market_value", to_money(self.market_value, "Position.market_value")
@@ -129,6 +136,9 @@ class PortfolioState:
     is_paper: bool
     positions: tuple[Position, ...] = ()
     trades_this_week: int = 0
+    # Symbols inside a re-entry cooldown (v2 rule 14), computed by the caller
+    # from the fill-based blotter with the active version's window.
+    cooldown_symbols: frozenset[str] = frozenset()
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "equity", to_money(self.equity, "PortfolioState.equity"))
@@ -140,6 +150,9 @@ class PortfolioState:
         if not isinstance(self.trades_this_week, int) or self.trades_this_week < 0:
             raise ValueError("PortfolioState.trades_this_week must be a non-negative int")
         object.__setattr__(self, "positions", tuple(self.positions))
+        object.__setattr__(
+            self, "cooldown_symbols", frozenset(_clean_symbol(s) for s in self.cooldown_symbols)
+        )
 
     def position_for(self, symbol: str) -> Position | None:
         target = _clean_symbol(symbol)
@@ -160,10 +173,12 @@ class OrderProposal:
     price: Decimal
     stop_price: Decimal | None = None
     trail_percent: Decimal | None = None
+    sector: str | None = None
     metadata: dict = field(default_factory=dict, compare=False)
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "symbol", _clean_symbol(self.symbol))
+        object.__setattr__(self, "sector", _clean_sector(self.sector))
         object.__setattr__(self, "side", Side(self.side))
         object.__setattr__(self, "qty", to_money(self.qty, "OrderProposal.qty"))
         object.__setattr__(self, "price", to_money(self.price, "OrderProposal.price"))
@@ -195,4 +210,15 @@ def _clean_symbol(symbol: object) -> str:
     cleaned = symbol.strip().upper()
     if not cleaned:
         raise ValueError("symbol must not be empty")
+    return cleaned
+
+
+def _clean_sector(sector: object) -> str | None:
+    if sector is None:
+        return None
+    if not isinstance(sector, str):
+        raise TypeError(f"sector must be a string or None, got {type(sector).__name__}")
+    cleaned = sector.strip()
+    if not cleaned:
+        raise ValueError("sector must not be empty; use None when unknown")
     return cleaned

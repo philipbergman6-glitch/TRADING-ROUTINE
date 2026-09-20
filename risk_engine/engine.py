@@ -24,6 +24,7 @@ from .models import (
     Violation,
     to_money,
 )
+from .versions import SECTOR_ETFS, V1, StrategyParams
 
 __all__ = [
     "MAX_POSITIONS",
@@ -39,20 +40,17 @@ __all__ = [
     "max_affordable_shares",
 ]
 
-# --- Limits, straight from memory/TRADING-STRATEGY.md -----------------------
+# --- Limits ------------------------------------------------------------------
+# The numbers live in risk_engine/versions.py, one record per strategy
+# version. These module constants are the v1 baseline, kept so existing
+# callers and tests read unchanged; every function below takes `params`.
 
-MAX_POSITIONS = 6  # rule 3: "5-6 positions at a time"
-MAX_POSITION_PCT = Decimal("20")  # rule 3: "max 20% each"
-MAX_TRADES_PER_WEEK = 3  # rule 8: "Max 3 new trades per week"
-MAX_DEPLOYMENT_PCT = Decimal("85")  # rule 2: "75-85% deployed" (upper bound)
-MIN_STOP_DISTANCE_PCT = Decimal("3")  # rule 7: "never within 3% of current price"
-BASE_TRAIL_PCT = Decimal("10")  # rule 4: "10% trailing stop on every position"
-
-# Rule 6 ladder: tighten trail to 7% at +15%, to 5% at +20%.
-_TRAIL_LADDER: tuple[tuple[Decimal, Decimal], ...] = (
-    (Decimal("20"), Decimal("5")),
-    (Decimal("15"), Decimal("7")),
-)
+MAX_POSITIONS = V1.max_positions  # rule 3: "5-6 positions at a time"
+MAX_POSITION_PCT = V1.max_position_pct  # rule 3: "max 20% each"
+MAX_TRADES_PER_WEEK = V1.max_trades_per_week  # rule 8: "Max 3 new trades per week"
+MAX_DEPLOYMENT_PCT = V1.max_deployment_pct  # rule 2: "75-85% deployed" (upper bound)
+MIN_STOP_DISTANCE_PCT = V1.min_stop_distance_pct  # rule 7: "never within 3% of current price"
+BASE_TRAIL_PCT = V1.base_trail_pct  # rule 4: "10% trailing stop on every position"
 
 # OCC option symbol, e.g. AAPL260116C00150000. Rule 1 is "NO OPTIONS -- ever",
 # so this is a shape check on the symbol itself, not a lookup.
@@ -92,9 +90,9 @@ UNMECHANISED: dict[str, str] = {
 
 
 def validate_order(
-    proposal: OrderProposal, portfolio: PortfolioState
+    proposal: OrderProposal, portfolio: PortfolioState, params: StrategyParams = V1
 ) -> ValidationResult:
-    """Judge a proposed order against every mechanised rule.
+    """Judge a proposed order against every mechanised rule of one version.
 
     Returns every violation, not just the first: a caller fixing one problem
     should not have to re-run to discover the next.
@@ -103,6 +101,8 @@ def validate_order(
         raise TypeError("proposal must be an OrderProposal")
     if not isinstance(portfolio, PortfolioState):
         raise TypeError("portfolio must be a PortfolioState")
+    if not isinstance(params, StrategyParams):
+        raise TypeError("params must be a StrategyParams")
 
     violations: list[Violation] = []
 
@@ -129,7 +129,7 @@ def validate_order(
         violations.extend(_validate_sell(proposal, portfolio))
         return ValidationResult(tuple(violations))
 
-    violations.extend(_validate_buy(proposal, portfolio))
+    violations.extend(_validate_buy(proposal, portfolio, params))
     return ValidationResult(tuple(violations))
 
 
@@ -156,40 +156,68 @@ def _validate_sell(
 
 
 def _validate_buy(
-    proposal: OrderProposal, portfolio: PortfolioState
+    proposal: OrderProposal, portfolio: PortfolioState, params: StrategyParams
 ) -> list[Violation]:
     violations: list[Violation] = []
     notional = proposal.notional
     existing = portfolio.position_for(proposal.symbol)
+    fallback = params.is_fallback(proposal.symbol)
+    # The fallback (v2 rule 12) is not an active position: it is exempt from
+    # the slot count, the sector cap and the weekly count, never from sizing.
+    active = [p for p in portfolio.positions if not params.is_fallback(p.symbol)]
 
-    # Rule 3a: at most MAX_POSITIONS open. Adding to an existing position does
+    # Rule 3a: at most max_positions open. Adding to an existing position does
     # not open a new slot.
-    if existing is None and len(portfolio.positions) + 1 > MAX_POSITIONS:
+    if not fallback and existing is None and len(active) + 1 > params.max_positions:
         violations.append(
             Violation(
                 Rule.MAX_POSITIONS,
-                f"would open position {len(portfolio.positions) + 1}, max is {MAX_POSITIONS}",
+                f"would open position {len(active) + 1}, max is {params.max_positions}",
             )
         )
 
-    # Rule 3b: no position may exceed MAX_POSITION_PCT of equity. Measured on
+    # Rule 3b: no position may exceed max_position_pct of equity. Measured on
     # the resulting position, so topping up a large holding is caught too.
     resulting_value = notional + (existing.market_value if existing else Decimal(0))
     position_pct = _pct(resulting_value, portfolio.equity)
-    if position_pct > MAX_POSITION_PCT:
+    if not fallback and position_pct > params.max_position_pct:
         violations.append(
             Violation(
                 Rule.MAX_POSITION_PCT,
-                f"{proposal.symbol} would be {position_pct:.2f}% of equity, max is {MAX_POSITION_PCT}%",
+                f"{proposal.symbol} would be {position_pct:.2f}% of equity, max is {params.max_position_pct}%",
             )
         )
 
-    # Rule 8: at most MAX_TRADES_PER_WEEK new trades per week.
-    if portfolio.trades_this_week + 1 > MAX_TRADES_PER_WEEK:
+    # v2 rule 3: sector concentration cap. Counting requires every active
+    # position to carry a sector; an unknown sector is refused, not skipped.
+    if params.max_sector_positions is not None and not fallback and existing is None:
+        violations.extend(_validate_sector_cap(proposal, active, params))
+
+    # v2 rule 9: sector ETFs are not active positions.
+    if not params.sector_etfs_allowed and proposal.symbol in SECTOR_ETFS:
+        violations.append(
+            Violation(
+                Rule.UNIVERSE,
+                f"{proposal.symbol} is a sector ETF; not eligible as an active position under {params.name}",
+            )
+        )
+
+    # v2 rule 14: re-entry cooldown after a stop-out in the same name.
+    if (params.reentry_cooldown_sessions > 0 and not fallback
+            and proposal.symbol in portfolio.cooldown_symbols):
+        violations.append(
+            Violation(
+                Rule.REENTRY_COOLDOWN,
+                f"{proposal.symbol} exited within the last {params.reentry_cooldown_sessions} sessions",
+            )
+        )
+
+    # Rule 8: at most max_trades_per_week new trades per week.
+    if not fallback and portfolio.trades_this_week + 1 > params.max_trades_per_week:
         violations.append(
             Violation(
                 Rule.MAX_TRADES_PER_WEEK,
-                f"would be trade {portfolio.trades_this_week + 1} this week, max is {MAX_TRADES_PER_WEEK}",
+                f"would be trade {portfolio.trades_this_week + 1} this week, max is {params.max_trades_per_week}",
             )
         )
 
@@ -207,19 +235,48 @@ def _validate_buy(
     # Rule 2: deployment band upper bound. The lower bound is a mandate to add
     # risk, not a reason to refuse -- see UNMECHANISED.
     deployment_pct = _pct(portfolio.deployed_value + notional, portfolio.equity)
-    if deployment_pct > MAX_DEPLOYMENT_PCT:
+    if deployment_pct > params.max_deployment_pct:
         violations.append(
             Violation(
                 Rule.MAX_DEPLOYMENT_PCT,
-                f"would deploy {deployment_pct:.2f}% of equity, max is {MAX_DEPLOYMENT_PCT}%",
+                f"would deploy {deployment_pct:.2f}% of equity, max is {params.max_deployment_pct}%",
             )
         )
 
-    violations.extend(_validate_protection(proposal))
+    violations.extend(_validate_protection(proposal, params))
     return violations
 
 
-def _validate_protection(proposal: OrderProposal) -> list[Violation]:
+def _validate_sector_cap(
+    proposal: OrderProposal, active: list, params: StrategyParams
+) -> list[Violation]:
+    if proposal.sector is None:
+        return [
+            Violation(
+                Rule.MAX_SECTOR_POSITIONS,
+                f"{params.name} caps positions per sector; the proposal must state its sector",
+            )
+        ]
+    unknown = [p.symbol for p in active if p.sector is None]
+    if unknown:
+        return [
+            Violation(
+                Rule.MAX_SECTOR_POSITIONS,
+                f"cannot count sector exposure: no sector recorded for {', '.join(unknown)}",
+            )
+        ]
+    same = [p.symbol for p in active if p.sector == proposal.sector]
+    if len(same) + 1 > params.max_sector_positions:
+        return [
+            Violation(
+                Rule.MAX_SECTOR_POSITIONS,
+                f"{proposal.sector} already holds {', '.join(same)}; max {params.max_sector_positions} per sector",
+            )
+        ]
+    return []
+
+
+def _validate_protection(proposal: OrderProposal, params: StrategyParams) -> list[Violation]:
     """Rule 4: every buy must carry its protective stop.
 
     The engine refuses to approve an unprotected buy at all, which is the
@@ -240,8 +297,9 @@ def _validate_protection(proposal: OrderProposal) -> list[Violation]:
     violations: list[Violation] = []
     if has_stop and has_trail:
         violations.append(Violation(Rule.STOP_REQUIRED, "specify exactly one protection type"))
+    low, high = params.entry_stop_band
     if has_stop:
-        # Rule 7: never within MIN_STOP_DISTANCE_PCT of current price.
+        # Rule 7: never within min_stop_distance_pct of current price.
         distance_pct = _pct(proposal.price - proposal.stop_price, proposal.price)
         if proposal.stop_price >= proposal.price:
             violations.append(
@@ -250,35 +308,36 @@ def _validate_protection(proposal: OrderProposal) -> list[Violation]:
                     f"stop {proposal.stop_price} is not below entry {proposal.price}",
                 )
             )
-        elif distance_pct < MIN_STOP_DISTANCE_PCT:
+        elif distance_pct < params.min_stop_distance_pct:
             violations.append(
                 Violation(
                     Rule.STOP_DISTANCE,
-                    f"stop is {distance_pct:.2f}% below price, minimum is {MIN_STOP_DISTANCE_PCT}%",
+                    f"stop is {distance_pct:.2f}% below price, minimum is {params.min_stop_distance_pct}%",
                 )
             )
-        if not Decimal("9.5") <= distance_pct <= Decimal("10.5"):
+        if not low <= distance_pct <= high:
             violations.append(Violation(
                 Rule.STOP_DISTANCE,
-                f"entry fixed stop must be 9.5–10.5% below entry, got {distance_pct:.2f}%",
+                f"entry fixed stop must be {low}–{high}% below entry, got {distance_pct:.2f}%",
             ))
-    if has_trail and proposal.trail_percent < MIN_STOP_DISTANCE_PCT:
+    if has_trail and proposal.trail_percent < params.min_stop_distance_pct:
         violations.append(
             Violation(
                 Rule.STOP_DISTANCE,
                 f"trail of {proposal.trail_percent}% is inside the "
-                f"{MIN_STOP_DISTANCE_PCT}% minimum distance",
+                f"{params.min_stop_distance_pct}% minimum distance",
             )
         )
-    if has_trail and proposal.trail_percent != BASE_TRAIL_PCT:
+    if has_trail and proposal.trail_percent != params.base_trail_pct:
         violations.append(Violation(
-            Rule.STOP_DISTANCE, f"entry trail must be {BASE_TRAIL_PCT}%",
+            Rule.STOP_DISTANCE, f"entry trail must be {params.base_trail_pct}%",
         ))
     return violations
 
 
 def validate_stop_change(
-    current_stop: object, new_stop: object, current_price: object
+    current_stop: object, new_stop: object, current_price: object,
+    params: StrategyParams = V1,
 ) -> ValidationResult:
     """Rule 7: a stop may be raised or held, never lowered, never too close.
 
@@ -310,31 +369,33 @@ def validate_stop_change(
         )
     else:
         distance_pct = _pct(price - proposed, price)
-        if distance_pct < MIN_STOP_DISTANCE_PCT:
+        if distance_pct < params.min_stop_distance_pct:
             violations.append(
                 Violation(
                     Rule.STOP_DISTANCE,
-                    f"stop is {distance_pct:.2f}% below price, minimum is {MIN_STOP_DISTANCE_PCT}%",
+                    f"stop is {distance_pct:.2f}% below price, minimum is {params.min_stop_distance_pct}%",
                 )
             )
     return ValidationResult(tuple(violations))
 
 
-def required_trail_percent(gain_pct: object) -> Decimal:
-    """Rule 6: the trail ladder -- 10% base, 7% at +15%, 5% at +20%.
+def required_trail_percent(gain_pct: object, params: StrategyParams = V1) -> Decimal:
+    """Rule 6: the trail ladder (v1: 10% base, 7% at +15%, 5% at +20%).
 
-    Returns the widest trail still permitted at this gain. Never widens: once
-    a threshold is crossed the tighter trail is required.
+    Returns the tightest trail the ladder requires at this gain. Never widens:
+    once a threshold is crossed the tighter trail is required.
     """
     gain = to_money(gain_pct, "gain_pct")
-    for threshold, trail in _TRAIL_LADDER:
-        if gain >= threshold:
-            return trail
-    return BASE_TRAIL_PCT
+    required = params.base_trail_pct
+    for threshold, trail in params.trail_ladder:
+        if gain >= threshold and trail < required:
+            required = trail
+    return required
 
 
 def max_affordable_shares(
-    portfolio: PortfolioState, price: object, symbol: str | None = None
+    portfolio: PortfolioState, price: object, symbol: str | None = None,
+    params: StrategyParams = V1,
 ) -> int:
     """Largest whole-share buy that violates no sizing rule.
 
@@ -348,9 +409,9 @@ def max_affordable_shares(
     existing = portfolio.position_for(symbol) if symbol else None
     held_value = existing.market_value if existing else Decimal(0)
 
-    position_headroom = (portfolio.equity * MAX_POSITION_PCT / 100) - held_value
+    position_headroom = (portfolio.equity * params.max_position_pct / 100) - held_value
     deployment_headroom = (
-        portfolio.equity * MAX_DEPLOYMENT_PCT / 100
+        portfolio.equity * params.max_deployment_pct / 100
     ) - portfolio.deployed_value
     budget = min(position_headroom, deployment_headroom, portfolio.cash)
     if budget <= 0:

@@ -110,10 +110,14 @@ max 20% size, max 3 trades/week, sufficient cash, 85% deployment ceiling,
 stop required, min stop distance). Matching /trade.
 
 ADR 0002: buys are OTO with a fixed stop_price leg (not a naked market buy).
-Derive STOP = 10% below P (or use scripts/build_oto_order.py which does it):
+STOP is the active version's entry distance below P (STRATEGY_VERSION: v1 =
+10%, v2 = 7%); scripts/build_oto_order.py and scripts/submit_entry.py derive it.
+Before validating under v2, the symbol's GICS sector MUST be recorded in
+memory/SECTORS.json (commit it with the trade); a buy without a sector is
+refused. Pass --sector to validate_order to mirror it.
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-    --price P --stop-price STOP --json)
+    --price P --stop-price STOP --sector "GICS Sector" --json)
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 Exit 0 = approved → proceed.
 Exit 3 = refused → skip this trade, log the violations verbatim to TRADE-LOG.
@@ -122,17 +126,25 @@ Exit 4 = broker state unavailable → STOP, email "VALIDATE STATE UNAVAILABLE $D
 Also confirm a catalyst is documented in today's RESEARCH-LOG (the engine
 cannot judge catalyst quality — see risk_engine.UNMECHANISED).
 
-STEP 4 — Execute the buy as one OTO (entry + fixed protective leg).
-Mutating alpaca calls REQUIRE ALPACA_RISK_OK=1 (hard gate in alpaca.sh).
-Never submit a bare market buy without order_class=oto:
+STEP 4 — Execute the buy as one OTO (entry + fixed protective leg) through
+scripts/submit_entry.py — the ONLY sanctioned buy path. It builds the OTO,
+stamps client_order_id en-<YYYYMMDD>-<SYM>, looks that id up BEFORE
+submitting (a rerun after a crash/timeout never buys twice), submits through
+alpaca.sh (which re-validates the exact body with ALPACA_RISK_OK=1), and
+confirms by client id. Never hand-write a raw order call for a buy.
 
-OTO_JSON=$(python3 scripts/build_oto_order.py oto --symbol SYM --qty N --price P)
-HTTP_STATUS_FILE=$(mktemp)
-RESP=$(ALPACA_HTTP_STATUS_FILE="$HTTP_STATUS_FILE" ALPACA_RISK_OK=1 bash scripts/alpaca.sh order "$OTO_JSON")
-HTTP_STATUS=$(cat "$HTTP_STATUS_FILE"); rm -f "$HTTP_STATUS_FILE"
-python3 scripts/record_broker_response.py \
-    --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
-    --response "$RESP"
+ENTRY_JSON=$(python3 scripts/submit_entry.py --symbol SYM --qty N --price P); ENTRY_EXIT=$?
+# http_status is set only when THIS run submitted (not on already_submitted).
+HTTP_STATUS=$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
+if [ -n "$HTTP_STATUS" ]; then
+  python3 scripts/record_broker_response.py \
+      --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
+      --response "$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
+fi
+ENTRY_EXIT: 0 submitted / already_submitted (use the returned order id) · 3
+refused or broker_rejected → log verbatim, skip · 4 broker unavailable →
+STOP · 8 outcome unknown → rerun the SAME command now (it resumes); still 8 →
+email "ENTRY OUTCOME UNKNOWN SYM", STOP the buy path for that symbol.
 Gate before any convert: read filled_qty on the parent AND the
 protective leg. Do NOT convert, and do NOT assume the position is protected,
 until BOTH are true:
@@ -145,7 +157,12 @@ symbol. Never proceed as full size; never convert on assumed full qty
 If leg wrong/missing after a complete fill: INCIDENT — email; do not assume
 protection.
 
-STEP 5 — Convert the fixed OTO leg to a 10% trailing stop GTC (ADR 0002).
+STEP 5 — Convert the fixed OTO leg to the trailing stop GTC (ADR 0002).
+Under v1 convert immediately after the fill; under v2 (rule 4) the fixed
+leg stays until the position is up +5% — the protection monitor
+(.github/workflows/protection-monitor.yml, runs every 30 min without Claude
+or the ledger) converts it then. Under v2, SKIP this step unless the
+monitor's last report shows a HOLD you are asked to resolve.
 ONLY after the STEP 4 gate (filled_qty == qty AND leg matches). Use scripts/replace_stop.py on
 the fixed leg: it validates first, cancels (shares are reserved), confirms
 the cancel, then places the trail — resumable, never a hand-written pair.

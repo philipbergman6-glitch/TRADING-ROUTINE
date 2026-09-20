@@ -132,12 +132,16 @@ def test_unset_http_status_file_does_not_exit_139() -> None:
     )
 
 
+_RAW_MUTATION = re.compile(r"alpaca\.sh\s+(order|close|close-all|cancel|cancel-all)\b")
+# Sanctioned scripts that mutate through alpaca.sh internally (they set
+# ALPACA_RISK_OK themselves and the wrapper still revalidates the exact body).
+_SCRIPTED_MUTATION = re.compile(r"(submit_entry|close_position|replace_stop)\.py\s+--")
+
+
 def _mutating_line_indexes(text: str) -> list[int]:
-    """0-based line indexes that invoke a mutating alpaca.sh subcommand."""
-    pattern = re.compile(
-        r"alpaca\.sh\s+(order|close|close-all|cancel|cancel-all)\b"
-    )
-    return [i for i, line in enumerate(text.splitlines()) if pattern.search(line)]
+    """0-based line indexes that invoke a mutating alpaca.sh subcommand or script."""
+    return [i for i, line in enumerate(text.splitlines())
+            if _RAW_MUTATION.search(line) or _SCRIPTED_MUTATION.search(line)]
 
 
 @pytest.mark.parametrize("path", LIVE_MUTATING_WORKFLOWS, ids=lambda p: p.name)
@@ -149,10 +153,11 @@ def test_workflow_requires_validate_order_before_mutations(path: Path) -> None:
     assert mutating_idxs, f"{path.name}: expected at least one mutating alpaca.sh call"
     for i in mutating_idxs:
         line = lines[i]
-        assert "ALPACA_RISK_OK" in line, (
-            f"{path.relative_to(REPO)}: mutating line must set ALPACA_RISK_OK "
-            f"on the invocation itself:\n{line}"
-        )
+        if _RAW_MUTATION.search(line):
+            assert "ALPACA_RISK_OK" in line, (
+                f"{path.relative_to(REPO)}: mutating line must set ALPACA_RISK_OK "
+                f"on the invocation itself:\n{line}"
+            )
         preceding = "\n".join(lines[:i])
         assert "validate_order.py" in preceding, (
             f"{path.relative_to(REPO)}: validate_order.py must appear before "

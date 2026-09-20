@@ -1,0 +1,19 @@
+{
+  "_note": "GICS sector per traded symbol, recorded by the routine before entry. Sector ETFs carry their own sector. Required by v2 rules 3 and 10; a symbol missing here is refused, not guessed.",
+  "AMD": "Information Technology",
+  "AVGO": "Information Technology",
+  "F": "Consumer Discretionary",
+  "GOOGL": "Communication Services",
+  "MSFT": "Information Technology",
+  "MU": "Information Technology",
+  "NVDA": "Information Technology",
+  "PLTR": "Information Technology",
+  "WMT": "Consumer Staples",
+  "XOM": "Energy",
+  "XLB": "Materials",
+  "XLE": "Energy",
+  "XLF": "Financials",
+  "XLI": "Industrials",
+  "XLK": "Information Technology",
+  "XLP": "Consumer Staples"
+}

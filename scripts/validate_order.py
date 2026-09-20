@@ -50,13 +50,47 @@ from risk_engine import (  # noqa: E402
     PortfolioState,
     Position,
     Side,
+    StrategyParams,
+    V1,
     max_affordable_shares,
+    params_from_env,
     validate_order,
 )
 
 ADAPTER = Path(__file__).resolve().parent / "alpaca.sh"
+SECTORS_FILE = Path(__file__).resolve().parent.parent / "memory" / "SECTORS.json"
 EXIT_REFUSED = 3
 EXIT_NO_STATE = 4
+
+
+def load_sectors(path: Path = SECTORS_FILE) -> dict[str, str]:
+    """Symbol -> GICS sector, recorded by the routine before entry (memory/SECTORS.json)."""
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text())
+    if not isinstance(data, dict):
+        raise ValueError(f"{path} must be a JSON object")
+    return {k.upper(): str(v) for k, v in data.items() if not k.startswith("_")}
+
+
+def cooldown_from_fills(now: datetime, params: StrategyParams) -> frozenset[str]:
+    """v2 rule 14 input: names that exited within the version's cooldown window.
+
+    Read from broker fills (scripts/blotter.py), never from the trade log.
+    Under a version with no cooldown this makes no broker call.
+    """
+    if params.reentry_cooldown_sessions <= 0:
+        return frozenset()
+    from risk_engine.blotter import cooldown_symbols  # noqa: E402  (local: keeps import cheap)
+    from scripts.blotter import blotter_from_broker  # noqa: E402
+
+    window_start = (now - timedelta(days=params.reentry_cooldown_sessions * 2 + 14)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        blotter = blotter_from_broker(after=window_start)
+    except (ValueError, TypeError, KeyError) as exc:
+        print(f"cooldown state unavailable: {exc}", file=sys.stderr)
+        sys.exit(EXIT_NO_STATE)
+    return cooldown_symbols(blotter, now.date(), params.reentry_cooldown_sessions)
 
 
 def adapter(*args: str) -> object:
@@ -120,7 +154,9 @@ def trades_this_week(now: datetime) -> int:
     return count
 
 
-def read_portfolio(now: datetime, override_trades: int | None) -> PortfolioState:
+def read_portfolio(
+    now: datetime, override_trades: int | None, params: StrategyParams = V1
+) -> PortfolioState:
     account = adapter("account")
     if not isinstance(account, dict) or "equity" not in account:
         sys.exit(EXIT_NO_STATE)
@@ -128,6 +164,7 @@ def read_portfolio(now: datetime, override_trades: int | None) -> PortfolioState
     raw_positions = adapter("positions")
     if not isinstance(raw_positions, list):
         sys.exit(EXIT_NO_STATE)
+    sectors = load_sectors()
 
     # The adapter refuses non-paper endpoints outright (see alpaca.sh), but the
     # engine re-checks rather than trusting that upstream guard held.
@@ -143,12 +180,14 @@ def read_portfolio(now: datetime, override_trades: int | None) -> PortfolioState
                 symbol=p["symbol"],
                 qty=str(p["qty"]),
                 market_value=str(p["market_value"]),
+                sector=sectors.get(str(p["symbol"]).upper()),
             )
             for p in raw_positions
         ),
         trades_this_week=(
             override_trades if override_trades is not None else trades_this_week(now)
         ),
+        cooldown_symbols=cooldown_from_fills(now, params),
     )
 
 
@@ -181,8 +220,14 @@ def main() -> int:
     )
     parser.add_argument(
         "--strategy-version",
-        default=DEFAULT_STRATEGY_VERSION,
-        help=f"provenance string recorded on the order (default: {DEFAULT_STRATEGY_VERSION})",
+        default=None,
+        help="provenance string recorded on the ledger order (default: the active "
+        f"STRATEGY_VERSION name, else {DEFAULT_STRATEGY_VERSION})",
+    )
+    parser.add_argument(
+        "--sector",
+        default=None,
+        help="GICS sector of the symbol (default: memory/SECTORS.json); required by versions with a sector cap",
     )
     parser.add_argument(
         "--research-ref",
@@ -192,7 +237,8 @@ def main() -> int:
     args = parser.parse_args()
 
     now = datetime.now(timezone.utc)
-    state = read_portfolio(now, args.trades_this_week)
+    params = params_from_env(os.environ)
+    state = read_portfolio(now, args.trades_this_week, params)
     proposal = OrderProposal(
         symbol=args.symbol,
         qty=Decimal(args.qty),
@@ -200,8 +246,12 @@ def main() -> int:
         price=Decimal(args.price),
         stop_price=Decimal(args.stop_price) if args.stop_price else None,
         trail_percent=Decimal(args.trail_percent) if args.trail_percent else None,
+        sector=args.sector or load_sectors().get(args.symbol.upper()),
     )
-    result = validate_order(proposal, state)
+    result = validate_order(proposal, state, params)
+    version_label = args.strategy_version or (
+        params.name if os.environ.get("STRATEGY_VERSION") else DEFAULT_STRATEGY_VERSION
+    )
 
     recorded = None
     if ledger_enabled():
@@ -212,7 +262,7 @@ def main() -> int:
                 proposal,
                 result,
                 idempotency_key=args.idempotency_key,
-                strategy_version=args.strategy_version,
+                strategy_version=version_label,
                 research_ref=args.research_ref,
             )
         except Exception as exc:  # noqa: BLE001 — configured ledger: fail closed
@@ -227,6 +277,7 @@ def main() -> int:
             json.dumps(
                 {
                     "approved": result.approved,
+                    "strategy_version": params.name,
                     "symbol": proposal.symbol,
                     "qty": str(proposal.qty),
                     "notional": str(proposal.notional),
@@ -257,7 +308,7 @@ def main() -> int:
         for reason in result.reasons():
             print(f"  - {reason}", file=sys.stderr)
         if proposal.side is Side.BUY:
-            allowed = max_affordable_shares(state, args.price, proposal.symbol)
+            allowed = max_affordable_shares(state, args.price, proposal.symbol, params)
             print(f"  max shares permitted right now: {allowed}", file=sys.stderr)
 
     return 0 if result.approved else EXIT_REFUSED
