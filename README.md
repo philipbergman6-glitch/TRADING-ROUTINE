@@ -10,6 +10,10 @@ before using real money. There is no live-trading override.
 [September 17 diagnosis](docs/audits/2026-09-17/REPORT.md) ·
 [Implementation status](docs/audits/2026-09-17/IMPLEMENTATION.md)
 
+For development sessions, start with [AGENTS.md](AGENTS.md) and the current
+[engineering handoff](docs/PROJECT-STATUS.md). Claude uses the same instructions
+through `CLAUDE.md`.
+
 ## Components
 
 | Component | Responsibility |
