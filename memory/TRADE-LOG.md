@@ -2923,3 +2923,20 @@ Not emailed — no action taken this scan.
 **Week trades:** 1/3
 
 **Notes:** Modest red close on Day 103 (Fri, triple-witching expiration + weekly-review day) — equity -$349.53 to $103,282.35 (Day P&L -0.34%), giving back part of Thursday's post-FOMC pop; phase eases to +3.28%. Mixed tape under quad-witching noise (industrial production + state employment data only, no CPI/FOMC): XLK +0.82% to $189.60 (+0.93% vs entry, tech leg firmest, held green), XLE -0.26% to $64.31 (+0.61% vs entry, energy quiet), XLP -0.83% to $82.80 (-1.15% vs entry, staples softest), XLB -1.42% to $49.99 (-2.12% vs entry, materials weakest leg and only name now below $50). No thesis-breaking single-name moves — softness tracks expiration mechanics per pre-market note, not sharp/unexplained. 4 positions (≤6): XLB 19.9%, XLE 19.4%, XLK 20.6%, XLP 20.0% — at/near 20% cap on appreciation only, XLK marginally over on drift (no trim), no adds. **Deployment 79.9% ($82,531.49 mkt value / equity) — inside the 75-85% band.** Cash 20.1%. All four stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260) — both resting renewed fixed stops, HELD not converted (a fresh 10% trail sits below: exit 3 stop_never_lowered; price hasn't cleared prior trailing hwm — XLB needs ≥~$54.20, XLP ≥~$88.79); XLE trailing $58.275/hwm $64.75 GTC (exp 12-16, cac3cefd); XLK trailing $172.575/hwm $191.75 GTC (exp 11-06). None lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~2.4% above stop (tightest), XLP ~3.5%, XLK ~9.0%, XLE ~9.4%. No stops in the ~90-day expiry window. Week 1/3 (no new trade today). Weekly review runs separately this afternoon. Tomorrow is Saturday — no session; next action Monday pre-market. Watch XLB cushion (tightest ~2.4%, only leg approaching its stop) into next week; hold XLK/XLE winners under their trails.
+
+---
+
+### Sep 21 — Midday Scan (Day 105, Monday, oil risk-premium unwind)
+**No trading action.** Blotter FIFO book matches broker positions (`blotter.py --check` ok, no issues). All 4 positions well above -7% cut threshold; XLK (only resting trailing-stop winner) at +3.29% gain — engine's required trail at this gain is still 10% (`validate_stop_change.py --print-required` = 10, same as current), nothing to tighten.
+- XLB: $49.91 (-2.27% vs entry) — fixed stop $48.78 GTC, ~2.26% above stop (tightest). Materials thesis intact.
+- XLE: $62.655 (-1.98% vs entry, -2.57% intraday) — trailing stop $58.275 (10% trail, hwm $64.75), ~6.99% above stop. Oil risk-premium unwind (Hormuz de-escalation) continuing to weigh, exactly the thesis-adjacent risk flagged pre-market — not a thesis break, no cause is unknown, no Perplexity check needed.
+- XLK: $194.02 (+3.29% vs entry) — trailing stop $174.6585 (10% trail, hwm $194.065), ~9.98% above stop. Tech thesis intact.
+- XLP: $82.23 (-1.83% vs entry) — fixed stop $79.91 GTC, ~2.82% above stop (second-tightest).
+
+**STEP 2b (fixed-leg convergence):** XLB and XLP still resting fixed GTC stops (renewed 9/16). Gate checked via `validate_stop_change.py`: XLB current-stop $48.78 vs price-driven new-stop $43.90 → exit 3 `stop_never_lowered`; XLP current-stop $79.91 vs new-stop $71.92 → exit 3 `stop_never_lowered`. Both HELD fixed, not converted (intended state — price hasn't cleared the prior trailing hwm: XLB needs ≥~$54.20, XLP ≥~$88.79). XLE/XLK already `trailing_stop`, no fixed legs to convert.
+
+**STEP 2c:** No stops within ~90-day expiry window (`build_oto_order.py expiring` → empty).
+
+Equity $103,090.83, cash $20,750.86 (20.13%), deployed $82,339.97 (79.87%) — inside the 75-85% band. Weights: XLB 19.95%, XLE 18.90%, XLK 21.08%, XLP 19.94% — at/near cap on appreciation only, no adds. No thesis-breaking single-name moves; today's tape (XLE the standout mover on the oil unwind, others quiet-to-mixed) tracks the pre-market note exactly — not sharp/unexplained beyond what was already anticipated, no Perplexity check needed. Week 0/3 (new week, no trade yet).
+
+Not emailed — no action taken this scan.
