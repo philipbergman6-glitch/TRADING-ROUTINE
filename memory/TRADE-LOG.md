@@ -2940,3 +2940,20 @@ Not emailed — no action taken this scan.
 Equity $103,090.83, cash $20,750.86 (20.13%), deployed $82,339.97 (79.87%) — inside the 75-85% band. Weights: XLB 19.95%, XLE 18.90%, XLK 21.08%, XLP 19.94% — at/near cap on appreciation only, no adds. No thesis-breaking single-name moves; today's tape (XLE the standout mover on the oil unwind, others quiet-to-mixed) tracks the pre-market note exactly — not sharp/unexplained beyond what was already anticipated, no Perplexity check needed. Week 0/3 (new week, no trade yet).
 
 Not emailed — no action taken this scan.
+
+---
+
+### Sep 21 — EOD Snapshot (Day 105, Monday, oil risk-premium unwind)
+**Portfolio:** $102,959.64 | **Cash:** $20,750.86 (20.15%) | **Day P&L:** -$322.71 (-0.31%) | **Phase P&L:** +$2,959.64 (+2.96%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $49.71 | -0.56% | -$560.45 (-2.66%) | $48.78 (fixed GTC) |
+| XLE | 311 | $63.92 | $62.46 | -2.88% | -$454.61 (-2.29%) | $58.275 (10% trail GTC) |
+| XLK | 112 | $187.85 | $194.85 | +2.77% | +$784.00 (+3.73%) | $175.581 (10% trail GTC) |
+| XLP | 250 | $83.76 | $81.92 | -1.06% | -$460.00 (-2.20%) | $79.91 (fixed GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Modest red close on Day 105 (Mon) — equity -$322.71 to $102,959.64 (Day P&L -0.31%); phase eases to +2.96%. Split tape driven by the oil risk-premium unwind (Hormuz de-escalation) flagged pre-market: XLE the standout decliner -2.88% to $62.46 (-2.29% vs entry, energy's biggest down day of the phase, thesis-adjacent unwind but not a thesis break — cause known, no Perplexity check needed), XLP -1.06% to $81.92 (-2.20% vs entry, staples soft), XLB -0.56% to $49.71 (-2.66% vs entry, materials weakest name and only leg below $50). Lone winner was XLK +2.77% to $194.85 (+3.73% vs entry, tech leg firmest, made a fresh intraday high $195.09 and its 10% trail followed up to stop $175.581). No thesis-breaking single-name moves. 4 positions (≤6): XLB 19.89%, XLE 18.87%, XLK 21.20%, XLP 19.89% — XLK marginally over 20% on appreciation only (no trim for drift), rest near cap, no adds. **Deployment 79.85% ($82,208.78 mkt value / equity) — inside the 75-85% band.** Cash 20.15%. All four stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260) — both resting renewed fixed stops, HELD not converted (a fresh 10% trail sits below: exit 3 stop_never_lowered; price hasn't cleared prior trailing hwm — XLB needs ≥~$54.20, XLP ≥~$88.79); XLE trailing $58.275/hwm $64.75 GTC (exp 12-16, cac3cefd); XLK trailing $175.581/hwm $195.09 GTC (exp 11-06, 934ca71d — followed to today's new high). None lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~1.9% above stop (tightest), XLP ~2.5%, XLE ~6.7%, XLK ~9.9%. No stops in the ~90-day expiry window. Week 0/3 (new week, no trade). Tomorrow (Tue): hold book; watch XLB cushion (tightest ~1.9%, only leg near its fixed stop) and XLE's oil-unwind drift, let XLK winner run under its trail; no forced action.
