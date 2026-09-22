@@ -2,6 +2,15 @@
 description: Midday scan — cut losers at -7%, tighten stops on winners, thesis check
 ---
 
+## Strategy version gate (run first)
+
+STRATEGY_VERSION selects the rule set and UNSET silently means v1. The declared
+version lives in memory/TRADING-STRATEGY.md ("Active strategy version"). Run:
+    python3 scripts/strategy_version.py || exit 1
+Exit 5 = env and declared version disagree, exit 1 = marker unreadable. STOP on
+either — never trade under a rule set you did not intend. Quote the printed
+"STRATEGY_VERSION: vN" line in the TRADE-LOG entry.
+
 ## T4 — ledger on the live path (optional; mandatory when configured)
 
 `validate_order.py` writes every verdict (approved **and** refused) to Postgres when `DATABASE_URL` is set.

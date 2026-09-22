@@ -7,6 +7,8 @@ Beat the S&P 500 over the challenge window. Stocks only — no options, ever.
 - Starting capital: ~$100,000 (paper)
 - Platform: Alpaca (paper trading)
 - Instruments: Stocks ONLY
+- Active strategy version: v1 (rule set in docs/STRATEGY-SPEC.md; the
+  STRATEGY_VERSION env var MUST match — scripts/strategy_version.py checks)
 - PDT limit: does not exist. Alpaca removed `pattern_day_trader`,
   `daytrade_count`, `daytrading_buying_power` and `pdt_check` on 2026-07-06,
   after FINRA replaced Rule 4210's PDT framework with intraday margin. There is

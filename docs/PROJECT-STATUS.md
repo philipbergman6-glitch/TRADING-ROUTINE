@@ -33,6 +33,11 @@ before the 30-session $10,000 v2 paper run:
    variable `STRATEGY_VERSION` (`v2` for the run; unset means `v1`), then
    trigger `protection-monitor` by `workflow_dispatch` with `dry_run=true` and
    read the report. The workflow has not been observed running.
+   Set `STRATEGY_VERSION=v2` in the cloud routine environment too, and flip
+   `Active strategy version` in `memory/TRADING-STRATEGY.md` to `v2` in the same
+   change: `scripts/strategy_version.py` (run first by market-open, midday,
+   /trade) hard-fails when the two disagree, so an unset variable can no longer
+   trade v1 rules silently.
 2. **Owner decisions** in spec section 7 (review threshold definition; rule 15
    trim vs delete). Rule 15 has no script until decided.
 3. **Sector data.** `memory/SECTORS.json` holds the symbols traded so far; each

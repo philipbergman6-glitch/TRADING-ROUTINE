@@ -17,6 +17,13 @@ IMPORTANT — ENVIRONMENT VARIABLES:
              RESEND_API_KEY EMAIL_TO EMAIL_FROM; do
       [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
     done
+- STRATEGY VERSION (hard gate, right after the loop above): STRATEGY_VERSION
+  selects the rule set and UNSET silently means v1. The declared version lives
+  in memory/TRADING-STRATEGY.md ("Active strategy version"). Run:
+    python3 scripts/strategy_version.py || { bash scripts/email.sh "STRATEGY_VERSION MISMATCH $DATE: $(python3 scripts/strategy_version.py 2>&1)"; exit 1; }
+  Exit 5 = env and declared version disagree, exit 1 = marker unreadable.
+  Either way STOP — never trade under a rule set you did not intend. Quote
+  the printed "STRATEGY_VERSION: vN" line in today's TRADE-LOG entry.
 
 IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
