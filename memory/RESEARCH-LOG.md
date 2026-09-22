@@ -7418,3 +7418,54 @@ Energy's lead has narrowed (was +43.8-47.5% a session ago) as the oil premium un
 - **XLB / XLE / XLK / XLP: HOLD.** No adds (XLK over cap, XLE headroom trivial), no trims (XLK's 21.23% is appreciation drift), no stop changes, no fixed→trailing conversions (both would lower a stop — exit 3).
 - **Watch, in order:** XLB's 1.87% cushion (and the rule-12 clock that arms if it fires); XLP's 2.68%; XLE vs. the oil unwind (hold unless the trail fires); XLK's hwm rollover through $195.09; Wed flash PMIs.
 - **All 4 stops active/correct; none lowered; earliest expiry XLK 11-06 — no refresh due.** No rebalancing.
+
+## 2026-09-22 (Tue, Day 106) — CONVICTION (ad-hoc, advice-only) — SITUATION REVIEW + 3-IDEA VERIFICATION
+
+### Account Snapshot (live, ~10:20 ET)
+- **Equity:** $103,308.76 | **Cash:** $20,750.86 (20.1%) | **Deployed:** $82,557.90 (**79.9%**, in band; `deployment_status.py` exit 0, no mandate)
+- **Positions (4/6):** XLB 412 @ $51.07 → $50.19 (-1.73%, fixed stop $48.78) · XLE 311 @ $63.92 → $62.27 (-2.58%, trail $58.275) · XLK 112 @ $187.85 → $195.33 (+3.98%, trail $176.03) · XLP 250 @ $83.76 → $82.56 (-1.44%, fixed stop $79.91)
+- **Week trades:** 0/3 | **Daytrade count:** n/a (PDT abolished)
+- **Recently stopped-out sector:** Industrials (XLI, 9/14, -7.46%) — one failed trade, not two; sector not burned under rule 10.
+
+### Situation (why "not doing well") — fills are the record (`blotter.py`)
+| Metric | Value |
+|---|---|
+| Phase P&L since 2026-04-28 | +$3,308.76 (**+3.31%**) |
+| S&P 500 same window | 7,138.80 → 7,764.70 (**+8.77%**) — cnbc.com 4/28 close, investing.com 9/21 close |
+| Relative | **-5.46 pp** |
+| Closed round trips | 17: W 6 / L 11, win rate 35%, realized +$3,651, PF 1.39, avg W +$2,159 / avg L -$846 |
+| Single-name trips (13) | **+$5,279** (AMD +$5.8k, MU +$4.0k, PLTR +$2.3k carried it) |
+| Sector-ETF trips (2) | **-$1,628** (XLF, XLI) |
+| Open book (all ETF since 6/29) | unrealized -$342 |
+
+**Diagnosis:** every dollar of realized alpha came from single-name leaders; the all-ETF book held since late June has produced nothing and tracks-minus-fees a growth-led index. This is the 7th-week "standing priority" from WEEKLY-REVIEW, now quantified.
+
+**Structural constraint found today:** at 79.9% deployed the engine's 85% ceiling leaves **~$5.2k of headroom** (`validate_order.py` refused 7 META sh at 85.00%; 6 sh ≈ $4.5k passes). A meaningful (~20%) leadership position is impossible without first exiting one ETF leg. Selling XLB (the weakest, mid-pack Materials) would drop deployment to ~59.9% and open ~$25.9k of headroom.
+
+### Scan (Perplexity, sonar) — 3 candidates
+1. **META** — Meta Connect Sept 23-24; +11.43% on 9/21 (Muse AI agent #1 App Store, Wells/Jefferies PT raises). Comm Services.
+2. **MU** — FQ4 earnings Sept 30 AMC; "estimates revised sharply higher". Info Tech (semis).
+3. **AMD** — crossed $1T at a record 9/21 on the AI/CPU rally. Info Tech.
+
+### Verification (3 parallel adversarial verifiers with citations; /deep-research skill not installed — fallback noted)
+| Ticker | Gate 1: cited dated catalyst | Gate 1: bear case refuted? | Gate 2: sector / R:R / level | Verdict |
+|---|---|---|---|---|
+| **META** | **Y** — Connect 9/23-24 (meta.com/connect/agenda); +11.43% to $741.25 confirmed (Yahoo, CGTN); Wells $796, Jefferies $875 (TipRanks, GuruFocus) | **No** — sell-the-news, capex/FCF (Q2 FCF -91%, cnbc 7/29), chasing an unfilled 11% gap at RSI ~78 all survive | 19-22% above 20/50d SMA; at $750 stop $680 vs target $786 = **0.5:1** | **PASS** (conditional: entry $680-690 gap-fill, stop $635, target $786 ≈ 2.1:1) |
+| **MU** | **Y** — 9/30 AMC (investors.micron.com PR 8/26); but "sharply revised" is **overstated**: consensus $31.16 EPS = June guide, Sept notes are reiterations, Citi cut to $1,150 on 8/7 | **No** — "priced in" survives (post-FQ3: +15.7% day-of then -32% in 30d); binary ±10.3% implied move gaps through any 10% stop | +12%/+16% above 20d/50d after a 3-day +12% breakout; entry $1,045-55 / stop $960 / target $1,250 = 2.2:1 only on a retest | **PASS** pre-print (revisit on the 10/1 reaction) |
+| **AMD** | **N** — IR calendar "no upcoming events"; Q3 earnings ~Nov 3; the $1T print (BigGo, TradingKey, CNBC) is a milestone, not a catalyst | Extended (~23% above 20/50d, +24% in 5 sessions), P/E ~157-211, hawkish Fed — survive | No setup at $605-615; conditional $585 / $540 / $675 = 2.0:1 | **PASS** |
+
+### Risk Factors
+- **XLB 2.8% above its fixed stop, XLP 3.2%** — one -3% tape stops both, deployment → ~40%, rule-12 clock arms.
+- **Wed 9:45 flash PMIs; Thu Trump-Xi summit** — two-sided macro into thin cushions.
+- **All three leaders are extended the same way at the same time** (AI/agent sentiment spike 9/21) — a reversal hits them together; correlated with XLK (21.2% weight).
+- **Fed 3.75-4.00%, 16/18 dots another hike** — multiple compression risk for any high-P/E leader.
+
+### Decision
+**HOLD — no orders today. Zero candidates pass both gates.** Confirmed catalysts exist (META Connect, MU 9/30) but all three names are 12-23% above their 20-day averages after Monday's spike, so no ≥2:1 setup exists at a real stop level, and chasing a gap into a binary is rule 11's textbook violation.
+
+**Standing plan (for /pre-market to agree or disagree with):**
+1. **Rotation is the fix, not an add.** When a leader gives a valid setup, the sequence is: exit XLB (weakest leg, mid-pack sector momentum, thesis "intact" but earning nothing) via `close_position.py`, then buy the leader at ≤20% with a 10% trailing GTC. The 85% ceiling makes this a two-step; do not try to squeeze a $5k token position.
+2. **Alert levels (do not pre-position):** META $680-690 (gap fill, stop $635, target $786) · MU $1,045-1,055 on a retest, or wait for the 10/1 post-earnings reaction · AMD $585 (stop $540, target $675).
+3. XLB / XLE / XLK / XLP: hold; stops unchanged; no conversions (exit 3 stop_never_lowered).
+
+---
