@@ -28,10 +28,20 @@ STEP 3 — Compute the week's metrics:
   Re-fetching the start breaks the benchmark chain and silently misstates
   "beat the S&P" — see the Benchmark Data Errata section. The dashboard build
   hard-fails on any new break.
-- Trades taken (W/L/open)
-- Win rate (closed trades only)
-- Best trade, worst trade
-- Profit factor (sum winners / |sum losers|)
+- Closed-trade stats come from BROKER FILLS, never from TRADE-LOG prose
+  (fills are the record; markdown is the narrative — docs/STRATEGY-SPEC.md):
+    python3 scripts/blotter.py --check    # exit 4 = fills and positions disagree → STOP, email "BLOTTER MISMATCH $DATE"
+    python3 scripts/blotter.py --json     # round_trips[] (exited, pnl, pnl_pct) + open_lots[]
+    python3 scripts/blotter.py --markdown # paste as the Closed trades table (this week's rows)
+  "This week" = round_trips whose `exited` date is Mon..today. Do not pass
+  --after: a trip entered last week and exited this week needs its entry fill.
+  From those rows compute, and show the arithmetic:
+  - Trades taken (W/L/open): W = pnl > 0, L = pnl <= 0, open = open_lots
+  - Win rate (closed trades only)
+  - Best trade, worst trade (by pnl_pct)
+  - Profit factor (sum winners / |sum losers|; "n/a" if no losers)
+  If a TRADE-LOG entry and the blotter disagree, the blotter wins — note the
+  discrepancy under "What didn't work" so it gets fixed, never silently pick one.
 
 STEP 4 — Append full review section to memory/WEEKLY-REVIEW.md:
 - Week stats table
