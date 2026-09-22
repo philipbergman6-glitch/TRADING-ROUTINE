@@ -2957,3 +2957,22 @@ Not emailed — no action taken this scan.
 **Week trades:** 0/3
 
 **Notes:** Modest red close on Day 105 (Mon) — equity -$322.71 to $102,959.64 (Day P&L -0.31%); phase eases to +2.96%. Split tape driven by the oil risk-premium unwind (Hormuz de-escalation) flagged pre-market: XLE the standout decliner -2.88% to $62.46 (-2.29% vs entry, energy's biggest down day of the phase, thesis-adjacent unwind but not a thesis break — cause known, no Perplexity check needed), XLP -1.06% to $81.92 (-2.20% vs entry, staples soft), XLB -0.56% to $49.71 (-2.66% vs entry, materials weakest name and only leg below $50). Lone winner was XLK +2.77% to $194.85 (+3.73% vs entry, tech leg firmest, made a fresh intraday high $195.09 and its 10% trail followed up to stop $175.581). No thesis-breaking single-name moves. 4 positions (≤6): XLB 19.89%, XLE 18.87%, XLK 21.20%, XLP 19.89% — XLK marginally over 20% on appreciation only (no trim for drift), rest near cap, no adds. **Deployment 79.85% ($82,208.78 mkt value / equity) — inside the 75-85% band.** Cash 20.15%. All four stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260) — both resting renewed fixed stops, HELD not converted (a fresh 10% trail sits below: exit 3 stop_never_lowered; price hasn't cleared prior trailing hwm — XLB needs ≥~$54.20, XLP ≥~$88.79); XLE trailing $58.275/hwm $64.75 GTC (exp 12-16, cac3cefd); XLK trailing $175.581/hwm $195.09 GTC (exp 11-06, 934ca71d — followed to today's new high). None lowered, none tightened (no name crossed +15%/+20%). Cushions vs close: XLB ~1.9% above stop (tightest), XLP ~2.5%, XLE ~6.7%, XLK ~9.9%. No stops in the ~90-day expiry window. Week 0/3 (new week, no trade). Tomorrow (Tue): hold book; watch XLB cushion (tightest ~1.9%, only leg near its fixed stop) and XLE's oil-unwind drift, let XLK winner run under its trail; no forced action.
+
+### Sep 22 — Midday Scan (Day 106, Tuesday, broad rebound)
+**No trading action.** STRATEGY_VERSION: v1 (env unset, declared v1). Blotter FIFO book matches broker positions (`blotter.py --check` ok, no issues). All 4 positions well above the -7% cut threshold; no name at a tighten trigger.
+- XLB: $50.295 (-1.52% vs entry, +1.18% intraday) — fixed stop $48.78 GTC, ~3.01% above stop (tightest). Materials thesis intact; best intraday bounce off yesterday's low.
+- XLE: $62.445 (-2.31% vs entry, -0.02% intraday) — trailing stop $58.275 (10% trail, hwm $64.75), ~6.68% above stop. Oil risk-premium unwind has stalled flat — not a thesis break, cause known, no Perplexity check needed.
+- XLK: $195.645 (+4.15% vs entry, +0.41% intraday) — trailing stop $176.103 (10% trail, hwm $195.67, 934ca71d — followed up to a fresh high today from $175.581/hwm $195.09), ~9.99% above stop. Tech thesis intact.
+- XLP: $82.79 (-1.16% vs entry, +1.06% intraday) — fixed stop $79.91 GTC, ~3.48% above stop.
+
+**STEP 2b (fixed-leg convergence):** XLB and XLP still resting fixed GTC stops (renewed 9/16). Gate checked via `validate_stop_change.py`: XLB current-stop $48.78 vs price-driven new-stop $45.27 → exit 3 `stop_never_lowered`; XLP current-stop $79.91 vs new-stop $74.51 → exit 3 `stop_never_lowered`. Both HELD fixed, not converted (intended state — price hasn't cleared the prior trailing hwm: XLB needs ≥~$54.20, XLP ≥~$88.79). XLE/XLK already `trailing_stop`, no fixed legs to convert.
+
+**STEP 2c:** No stops within ~90-day expiry window (`build_oto_order.py expiring` → empty). Earliest expiry XLK 11-06.
+
+**STEP 4 (tighten):** XLK +4.15% and XLE -2.31% are the only resting trailing stops; engine `--print-required` = 10 for both, equal to current trail — nothing to tighten. No name near the +15%/+20% ladder triggers.
+
+Equity $103,499.17 (+$539.53 intraday), cash $20,750.86 (20.05%), deployed $82,748.31 (79.95%) — inside the 75-85% band (`deployment_status.py` exit 0, mandate false, 0 sessions under band). Weights: XLB 20.02%, XLE 18.76%, XLK 21.17%, XLP 20.00% — XLK over 20% on appreciation drift only, no trim, no adds. No thesis-breaking single-name moves; today's tape is a broad rebound (3 of 4 legs green, XLE flat) with no sharp unexplained move — no Perplexity check needed. Week 0/3. Today's conviction run (advice-only) returned HOLD / zero candidates passing both gates — no change to this scan's posture.
+
+Not emailed — no action taken this scan.
+
+---
