@@ -7469,3 +7469,59 @@ Energy's lead has narrowed (was +43.8-47.5% a session ago) as the oil premium un
 3. XLB / XLE / XLK / XLP: hold; stops unchanged; no conversions (exit 3 stop_never_lowered).
 
 ---
+
+## 2026-09-23 (Wed, Day 107) — PRE-MARKET
+
+### Account Snapshot
+- **Equity:** $103,441.78 | **Cash:** $20,750.86 (20.06%) | **Deployed:** $82,690.92 (**79.94%**, in band)
+- **Buying power:** $314,538.02 — *not an input to any rule (rule 13, cash-only sizing)*
+- **Daytrade count:** n/a — PDT abolished 2026-07-06
+- **Positions (4/6):** XLB 412 @ $51.07 → $50.50 (-1.12%) · XLE 311 @ $63.92 → $62.06 (-2.91%) · XLK 112 @ $187.85 → $195.73 (+4.20%) · XLP 250 @ $83.76 → $82.65 (-1.32%)
+- **Weights:** XLB 20.11% · XLE 18.66% · XLK 21.19% · XLP 19.97% (XLK/XLB over 20% on appreciation drift only — no trim)
+- **Stops (all 4 live GTC, verified via orders):** XLB fixed $48.78 (exp 12-15, b51e2320) · XLP fixed $79.91 (exp 12-15, 1fed8260) · XLE trailing 10% $58.275 / hwm $64.75 (exp 12-16, cac3cefd) · XLK trailing 10% $176.8545 / hwm $196.505 (exp 11-06, 934ca71d)
+- **Cushions vs price:** XLP 3.31% (tightest) · XLB 3.41% · XLE 6.10% · XLK 9.64%
+- **No stops in the ~90-day expiry window** (`build_oto_order.py expiring` → `[]`). STRATEGY_VERSION: v1 (env unset, declared v1). Week trades 0/3.
+
+### Market Context
+- **Oil down a third session:** WTI **$89.7–90.0**, Brent **$98.4–99.4** (tradingeconomics/oilprice/investing). WTI was ~$102 on 9/14 — a **~12% slide in a week** as the Hormuz/Iran risk premium keeps unwinding on diplomacy headlines. This is the live driver of XLE's drawdown.
+- **S&P futures flat-to-green:** Dec E-mini **~7,837–7,839.5, +0.05% to +0.08%**.
+- **VIX 14.2–15.0** — complacent; short-dated vol fell sharply while longer-dated stayed elevated.
+- **Today's calendar:** **S&P Global flash September PMIs at 9:45 ET** — Manufacturing consensus **53.5 vs 53.2 prior**, plus flash Services. **No CPI, PPI, FOMC or jobs data.** This is the week's main scheduled macro print.
+- **Earnings BMO:** CTAS, PAYX, **GIS (staples, XLP-relevant, small weight)**, CBRL, MANU — none index-moving.
+- **Meta Connect opens today (9/23-24)** — the AI-trade catalyst; Meta's "Muse" assistant has recharged semis/AI names. **Trump–Xi summit Thursday.** Financials the weakest sector (-2% in one brief) on AI-disruption concerns.
+
+### Sector Momentum (YTD)
+| Sector | YTD | Held |
+|---|---:|---|
+| **Energy (XLE)** | **+42.3% / +44.0%** | ✓ #1 |
+| **Technology (XLK)** | **~+35% YTD (+27.2% trailing 12m)** | ✓ #2 |
+| Materials (XLB) | +15.9% | ✓ |
+| Industrials | +12.6% | ✗ |
+| Health Care | +10.1% | ✗ |
+| Consumer Staples (XLP) | +9.6% | ✓ |
+| Real Estate / Financials | +9.3% / +5.4% | ✗ |
+
+Book holds #1, #2 and #3. **Correction to the 9/22 entry:** Materials (+15.9%) now ranks *above* Industrials (+12.6%), so XLI no longer outranks the XLB leg — the "XLI as XLB replacement" note from yesterday is retired. Only Industrials and Health Care outrank a held leg (Staples), and neither by enough to compel rotation. **Rule 9 satisfied as-is.**
+
+### Trade Ideas (0/3 weekly trades used; deployment 79.94% — NO mandate active)
+1. **XLE — hold, do not cut. Day 3 of the oil unwind.** *Situation:* -2.91% vs entry, worst leg on P&L, with WTI down ~12% in a week on **diplomacy, not a demand break**. Energy remains #1 YTD by ~26pp over the next sector. Cushion **6.10%** to the $58.275 trail; the position sits **4.1pp above the -7% manual cut**. *Action:* **no exit, no add, no stop change** — the trail is the decision mechanism, and cutting the #1-momentum leg mid-unwind is the discretionary override rule 11 exists to block. A cap-legal add of only ~$1.4k exists at 18.66%; that is a token trade into an active unwind with no new catalyst — **pass**. *Entry/stop/target: n/a — hold.*
+2. **XLB / XLP — the PMI is the event; pre-plan, do not pre-empt.** *Situation:* the two tightest legs, **3.41%** and **3.31%** above their fixed stops after Tuesday's bounce restored some cushion. **A weak flash manufacturing print at 9:45 ET hits XLB directly** (materials is the most PMI-sensitive held leg); a broad -3% tape takes out both and drops deployment to ~40%, arming rule 12's clock hard. *Action:* **no pre-emptive exit, no stop lowering (rule 7), no add.** *Contingency if XLB's $48.78 fires:* proceeds ~$20,097, realized ~-$943, deployment falls to ~60% and the rule-12 3-session clock arms — the replacement is then a **leadership name per idea 3**, not XLI (see momentum correction above). **Do not pre-position.**
+3. **META — Connect opens today; alert level unchanged, no action.** *Situation:* yesterday's conviction run passed META conditionally at a **$680-690 gap-fill entry, stop $635, target $786 (≈2.1:1)** — not at $741. Connect opening today is the catalyst *and* the sell-the-news risk in the same session; buying the event at RSI ~78 and 19-22% above the 20/50-day is exactly the chase rule 11 forbids. **Structural block stands:** the 85% ceiling leaves only **~$5.2k** of headroom, so a real (~20%) leadership position is impossible without first exiting an ETF leg. *Action:* **no trade.** **I agree with the conviction run's standing plan** — rotation (exit the weakest ETF leg, then buy the leader at ≤20% with a 10% trailing GTC) is the fix, and it is a two-step that requires a valid setup first. That setup does not exist today. MU 9/30 print and AMD $585 alerts also unchanged.
+
+### Deployment (rule 12 / `deployment_status.py`)
+`{"deployed_pct": 79.94, "band": [75.0, 85.0], "sessions_under_band": 0, "mandate": false, "exemption_allowed": false, "target_notional": 0, "last_eod": "2026-09-22"}` — **exit 0, no mandate.** Mid-band, streak clean. Nothing owed.
+
+### Risk Factors
+- **9:45 ET flash PMIs** — the day's one scheduled catalyst, landing on the two thinnest cushions (XLB 3.41%, XLP 3.31%). A soft manufacturing print is the most likely path to a stop-out today.
+- **Oil down ~12% in a week** — live drag on XLE (and secondarily XLB). Two-sided: the same diplomacy that removed the premium re-adds it on one incident. The 6.10% cushion absorbs the drift; the trail decides.
+- **Two legs within ~3.5% of their stops at once** — one broad -3% session fires both and drops deployment to ~40%, arming rule 12 hard.
+- **Meta Connect sell-the-news** — an AI-sentiment reversal hits XLK (21.19%, the largest weight) alongside the leaders on the alert list; they are all correlated to the same trade.
+- **Thu Trump–Xi summit** — unhedgeable two-sided headline risk; stops are GTC and hold through it.
+- **VIX ~14 into a PMI + summit week** — complacent pricing, thin protection premium.
+- **Fed at 3.75-4.00% and signalling more** — multiple-compression risk for the rate-sensitive XLK leg, which is also the most extended.
+
+### Decision
+**HOLD — no orders today.** Deployment 79.94% is mid-band so rule 12 is dormant (exit 0); all four theses are intact; all four carry live correct GTC stops; none is within 4pp of the -7% cut; none is near the +15%/+20% tighten ladder. The only scheduled catalyst is a 9:45 flash PMI that is a *risk to* the book, not a reason to add to it — and opening a fresh 0/3 week into it would be activity, not edge. Patience > activity.
+- **XLB / XLE / XLK / XLP: HOLD.** No adds (XLK over cap, XLE headroom ~$1.4k and trivial), no trims (drift is not trimmed), no stop changes, no fixed→trailing conversions (both would lower a stop — exit 3 `stop_never_lowered`; XLB needs ≥~$54.20, XLP ≥~$88.79 to clear the prior hwm).
+- **Watch, in order:** the 9:45 PMI against XLP's 3.31% and XLB's 3.41% cushions; XLE vs. the oil unwind (hold unless the trail fires); XLK's hwm rollover through $196.505; META Connect as a *sentiment* read on XLK, not as an entry.
+- **All 4 stops active/correct; none lowered; earliest expiry XLK 11-06 — no refresh due.** No rebalancing.
