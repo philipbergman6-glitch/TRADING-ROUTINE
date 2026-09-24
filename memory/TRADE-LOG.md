@@ -3048,3 +3048,20 @@ Equity $103,196.80 (-$152.07 intraday, -0.15% vs broker `last_equity` $103,348.8
 Not emailed — no action taken this scan.
 
 ---
+
+### Sep 24 — EOD Snapshot (Day 108, Thursday, jobless claims / Trump–Xi summit)
+**Portfolio:** $102,896.62 | **Cash:** $20,750.86 (20.17%) | **Day P&L:** -$443.29 (-0.43%) | **Phase P&L:** +$2,896.62 (+2.90%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| XLB | 412 | $51.07 | $49.68 | -1.19% | -$572.81 (-2.72%) | $48.78 (fixed GTC) |
+| XLE | 311 | $63.92 | $62.60 | +0.37% | -$411.07 (-2.07%) | $58.275 (10% trail GTC) |
+| XLK | 112 | $187.85 | $194.50 | -0.43% | +$744.80 (+3.54%) | $177.012 (10% trail GTC) |
+| XLP | 250 | $83.76 | $81.70 | -0.89% | -$515.00 (-2.46%) | $79.91 (fixed GTC) |
+
+**Trades today:** none
+**Week trades:** 0/3
+
+**Notes:** Red close on Day 108 (Thu, jobless claims / Trump–Xi summit) — equity -$443.29 to $102,896.62 (Day P&L -0.43%), the week's largest down day; phase P&L eases to +2.90%, giving back most of Tuesday's gain. (Broker `last_equity` $103,348.87 vs the $103,339.91 EOD snapshot logged yesterday — a $8.96 marking difference; Day P&L above is computed off the logged snapshot per routine, and would be -$452.25/-0.44% off the broker figure.) XLE was again the only green leg, +0.37% to $62.60 (-2.07% vs entry), as the Hormuz risk-premium re-add (attack reports plus the Saudi East-West pipeline disruption) followed through into the close — the leg that had been the phase's weakest is now improving. The three defensives/cyclicals drifted red: XLB -1.19% to $49.68 (-2.72% vs entry, the day's worst and now back well under $50 after the 8:30 claims print), XLP -0.89% to $81.70 (-2.46% vs entry, soft ahead of COST after the close), XLK -0.43% to $194.50 (+3.54% vs entry, still the only profitable leg; no new high today so its trail stayed at $177.012/hwm $196.68). No sharp unexplained single-name move and no thesis break — the XLB fade is price, not thesis, exactly as pre-market framed it; no Perplexity check needed. 4 positions (≤6): XLB 19.89%, XLE 18.92%, XLK 21.17%, XLP 19.85% — only XLK over 20% on appreciation drift (no trim), no adds. **Deployment 79.83% ($82,145.76 mkt value / equity) — inside the 75-85% band** (`deployment_status.py` exit 0, mandate false, 0 sessions under band). Cash 20.17%. Blotter FIFO book matches broker positions (`blotter.py --check` ok, exit 0, no issues); no fills today, so no round-trips or new lots — week stays 0/3 and TRADE-LOG agrees with the blotter. All four stops confirmed active/correct via orders: XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260) — both resting renewed fixed stops, HELD not converted (a fresh 10% trail sits below: exit 3 stop_never_lowered; price hasn't cleared prior trailing hwm — XLB needs ≥~$54.20, XLP ≥~$88.79); XLE trailing $58.275/hwm $64.75 GTC (exp 12-16, cac3cefd); XLK trailing $177.012/hwm $196.68 GTC (exp 11-06, 934ca71d). None lowered, none tightened (no name crossed +15%/+20%; engine `--print-required` = 10 for both trailing legs, equal to current). Cushions vs close: XLB ~1.81% above stop (tightest in the book and narrowing for a third day), XLP ~2.19%, XLE ~6.91%, XLK ~8.99%. No stops in the ~90-day expiry window (earliest XLK 11-06). Tomorrow (Fri): hold book; XLB is the name to watch — another ~1.8% down day takes it to its $48.78 stop — plus XLP's reaction to COST earnings; let XLK and XLE run under their trails. Weekly review runs Friday; no forced action.
+
+---
