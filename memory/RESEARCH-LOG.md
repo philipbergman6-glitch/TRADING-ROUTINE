@@ -7525,3 +7525,62 @@ Book holds #1, #2 and #3. **Correction to the 9/22 entry:** Materials (+15.9%) n
 - **XLB / XLE / XLK / XLP: HOLD.** No adds (XLK over cap, XLE headroom ~$1.4k and trivial), no trims (drift is not trimmed), no stop changes, no fixed→trailing conversions (both would lower a stop — exit 3 `stop_never_lowered`; XLB needs ≥~$54.20, XLP ≥~$88.79 to clear the prior hwm).
 - **Watch, in order:** the 9:45 PMI against XLP's 3.31% and XLB's 3.41% cushions; XLE vs. the oil unwind (hold unless the trail fires); XLK's hwm rollover through $196.505; META Connect as a *sentiment* read on XLK, not as an entry.
 - **All 4 stops active/correct; none lowered; earliest expiry XLK 11-06 — no refresh due.** No rebalancing.
+
+---
+
+## 2026-09-24 (Thu, Day 108) — PRE-MARKET
+
+### Account Snapshot
+- **Equity:** $103,164.71 | **Cash:** $20,750.86 (20.11%) | **Deployed:** $82,413.85 (**79.89%**, in band)
+- **Buying power:** $313,762.21 — *not an input to any rule (rule 13, cash-only sizing)*
+- **Daytrade count:** n/a — PDT abolished 2026-07-06
+- **Positions (4/6):** XLB 412 @ $51.07 → $49.91 (-2.27%) · XLE 311 @ $63.92 → $62.93 (-1.55%) · XLK 112 @ $187.85 → $193.16 (+2.83%) · XLP 250 @ $83.76 → $82.58 (-1.41%)
+- **Weights:** XLB 19.93% · XLE 18.97% · XLK 20.97% · XLP 20.01% (XLK over 20% on appreciation drift only — no trim)
+- **Stops (all 4 live GTC, verified via orders):** XLB fixed $48.78 (exp 12-15, b51e2320) · XLP fixed $79.91 (exp 12-15, 1fed8260) · XLE trailing 10% $58.275 / hwm $64.75 (exp 12-16, cac3cefd) · XLK trailing 10% $177.012 / hwm $196.68 (exp 11-06, 934ca71d)
+- **Cushions vs price:** XLB **2.26%** (tightest) · XLP 3.23% · XLE 7.40% · XLK 8.36%
+- **No stops in the ~90-day expiry window** (`build_oto_order.py expiring` → `[]`). STRATEGY_VERSION: v1 (env unset, declared v1). Week trades 0/3.
+
+### Market Context
+- **Oil reverses higher — the unwind is over for now:** WTI **$92–94**, Brent **$102–105** on 9/24 feeds (oilprice/investing/onevalor), up ~**+1.7% to +2.2%** after WTI bottomed near $89.8–90.9 yesterday. Driver per Perplexity: **fresh attack reports in/near the Strait of Hormuz** plus **Saudi East-West pipeline disruption** forcing barrels back through Hormuz; flow recovery is partial and well below pre-war levels, so the risk premium is being **re-added**, not removed. Directly supportive of the XLE leg after three sessions of drag.
+- **S&P futures flat:** Dec E-mini **~7,836–7,837**, **+0.05%**. Feeds disagree on stale contracts (BI 7,771.5, Bloomberg 7,743.5 — different timestamps).
+- **VIX 14.2–15.2** — still complacent (14.21 last official close; 14.98–15.18 intraday quotes).
+- **Today's calendar:** **Initial/continuing jobless claims at 8:30 ET** — the only scheduled macro print. **No CPI, PPI or FOMC** (next PPI 10/15). Fed speakers during the session. **Trump–Xi summit today** — the week's flagged two-sided headline risk.
+- **Earnings BMO:** SNX, JBL, DRI, BXMT — none index-moving. **COST after the close** — the one genuinely XLP-relevant print (top-weight staple); its reaction lands in tomorrow's tape, not today's.
+- Rising **10Y yields / stronger DXY** flagged as the main downside risk for growth (XLK). Rotation read: **energy and staples outperforming**, comm services / discretionary / utilities lagging.
+
+### Sector Momentum (YTD)
+| Sector | YTD | Held |
+|---|---:|---|
+| **Energy (XLE)** | **+42.3%** | ✓ #1 |
+| **Technology (XLK)** | ~+35% (prior-session read; absent from today's ranking tables) | ✓ #2 |
+| Materials (XLB) | +15.9% | ✓ #3 |
+| Industrials | +12.6% | ✗ |
+| Health Care | +10.1% | ✗ |
+| Consumer Staples (XLP) | +9.6% | ✓ |
+| Real Estate / Financials | +9.3% / +5.4% | ✗ |
+| Comm Services / Discretionary | -5.6% / -3.0% | ✗ |
+
+Book still holds #1, #2 and #3. Only Industrials and Health Care outrank a held leg (Staples), neither by enough to compel rotation. **Rule 9 satisfied as-is; rule 10 not triggered (no sector at 2 consecutive failed trades).**
+
+### Trade Ideas (0/3 weekly trades used; deployment 79.89% — NO mandate active)
+1. **XLE — hold; the thesis that was drifting is now reversing.** *Situation:* -1.55% vs entry (best it has looked in a week) as crude re-prices the Hormuz premium, +0.90% pre-market. Energy is #1 YTD by ~7pp over the next sector and the highest-momentum thing in the book. Cushion **7.40%** to the $58.275 trail; **5.4pp above the -7% cut**. *Action:* **no exit, no stop change, no add.** The cap-legal add is only **~$1,061 (~16 shares)** at 18.97% — a token trade that buys a 1pp weight change into a two-day-old headline reversal; rule 11 says pass. *Entry/stop/target: n/a — hold; the 10% trail is the decision mechanism.*
+2. **XLB — thinnest cushion in the book (2.26%); pre-plan the stop-out, do not pre-empt it.** *Situation:* $49.91, back under $50 and -2.27% vs entry, with a fixed $48.78 GTC stop just **2.26%** below. Materials remains #3 YTD (+15.9%) so the *sector* thesis is intact; this is price, not thesis. Today's 8:30 claims print and Trump–Xi headlines are the plausible paths to a ~2.5% down-day that fires it. *Action:* **no pre-emptive exit, no stop lowering (rule 7), no add, no fixed→trailing conversion** (a fresh 10% trail sits at ~$44.92, far below — exit 3 `stop_never_lowered`; XLB needs ≥~$54.20 to clear the prior hwm). *Contingency if $48.78 fires:* proceeds **~$20,097**, realized **~-$944**, deployment drops to **~60%** and rule 12's 3-session clock arms — the replacement is then a **leadership name (energy or tech)**, sized ≤20%, with a 10% trailing GTC. **Do not pre-position.**
+3. **META — alert level unchanged, no action.** *Situation:* conviction run's conditional pass stands at a **$680–690 gap-fill entry, stop $635, target $786 (≈2.1:1)** — not at current levels, and Connect's sell-the-news is now in the tape. **Structural block stands:** the 85% ceiling leaves only **~$5,276** of headroom, so a real (~20%) leadership position is impossible without first exiting an ETF leg. *Action:* **no trade.** Rotation (exit the weakest leg, then buy the leader) remains the standing plan and still needs a valid setup that does not exist today. MU (9/30 print) and AMD $585 alerts unchanged.
+
+### Deployment (rule 12 / `deployment_status.py`)
+`{"deployed_pct": 79.89, "band": [75.0, 85.0], "sessions_under_band": 0, "mandate": false, "exemption_allowed": false, "target_notional": 0, "last_eod": "2026-09-23"}` — **exit 0, no mandate.** Mid-band, streak clean. Nothing owed.
+
+### Risk Factors
+- **8:30 ET jobless claims** — the day's only scheduled print, landing on XLB's 2.26% cushion. A hot/cold surprise plus a rate move is the most likely path to a stop-out today.
+- **Trump–Xi summit today** — unhedgeable two-sided headline risk across the whole book; stops are GTC and hold through it.
+- **Oil two-sided, now in the other direction** — the same diplomacy that stripped ~12% off WTI in a week has re-added ~2% in a day on attack reports. Helps XLE today; a de-escalation headline reverses it just as fast.
+- **XLB and XLP within 3.3% of their stops** — a broad -3% session fires both and drops deployment to ~40%, arming rule 12 hard.
+- **Rising 10Y / stronger DXY** — multiple-compression risk for XLK, the largest weight (20.97%) and the most extended leg.
+- **COST after the close** — XLP's top weight reports tonight; the gap risk on the staples leg is tomorrow's, not today's.
+- **VIX ~14–15 into a summit day** — complacent pricing, thin protection premium.
+
+### Decision
+**HOLD — no orders today.** Deployment 79.89% is mid-band so rule 12 is dormant (exit 0); all four theses are intact (XLE's is actively improving); all four carry live, correct GTC stops; none is within 4.7pp of the -7% cut; none is near the +15%/+20% tighten ladder. The only scheduled catalyst is a claims print that is a *risk to* the book, not a reason to add to it, and the one attractive add (XLE) is capped at a token ~$1.1k. Patience > activity.
+- **XLB / XLE / XLK / XLP: HOLD.** No adds (XLK over cap, XLE headroom ~$1.06k and trivial), no trims (drift is not trimmed), no stop changes, no fixed→trailing conversions (both would lower a stop — exit 3 `stop_never_lowered`; XLB needs ≥~$54.20, XLP ≥~$88.79 to clear the prior hwm).
+- **Watch, in order:** XLB's 2.26% cushion through the 8:30 claims print (tightest leg, back under $50); XLE's oil-premium re-add for follow-through; Trump–Xi headlines against the whole book; XLK's hwm $196.68 vs. the yield backdrop; COST AMC as tomorrow's XLP risk.
+- **All 4 stops active/correct; none lowered; earliest expiry XLK 11-06 — no refresh due.** No rebalancing.
