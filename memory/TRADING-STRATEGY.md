@@ -52,6 +52,22 @@ Beat the S&P 500 over the challenge window. Stocks only — no options, ever.
     `buying_power` field would have been an unremarkable refactor rather than a
     violation. Leverage became reachable when PDT was abolished; this is the
     only constraint that regime leaves behind.
+14. Composition mandate — the next new position is a single name. While the
+    book holds ZERO idiosyncratic single-name positions (i.e. every open
+    position is a broad-sector/index ETF), the next new position opened —
+    whether discretionary or mandated by rule 12 — MUST be a single name that
+    passes the full Entry Checklist. A further ETF may be opened only if no
+    single name passes that checklist, and the specific reason must be written
+    into the pre-market RESEARCH-LOG entry for that session. This constrains
+    WHAT is bought, never WHETHER: it does not force a trade, does not override
+    rule 11 (patience > activity), and lapses automatically the moment one
+    single-name position is open. Added 2026-09-25 after eight consecutive
+    weekly reviews named the missing idiosyncratic leader as the cause of the
+    relative lag and five consecutive relative losses followed; the one entry
+    in that span (XLE, 2026-09-17) was rule-12-forced and went to a sixth
+    correlated ETF because nothing in this file said it could not. Same failure
+    mode rule 12 was written to fix, in the composition dimension: a standing
+    intention with no mechanism behind it.
 
 ## Entry Checklist
 - Specific catalyst?

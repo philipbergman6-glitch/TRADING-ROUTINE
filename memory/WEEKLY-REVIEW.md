@@ -1326,3 +1326,90 @@ A clean-intent process week marred by a real operational gap and a third straigh
 A clean process week with real operational wins offsetting a fourth straight relative loss. The book fell -0.62% vs the S&P's -0.38% (chained), a -0.24% miss — the persistent composition story: an all-ETF book with no mega-cap-growth leader tracks or lags a growth-carried index, and this week the XLI stop-out (-7.45% realized) plus Friday's rate-driven softness in XLB/XLP did the damage. Held to C+ rather than lower because the process was not just clean but productive: the rule-12 deployment backstop fired for the first time and worked (XLI exit → 3 under-band sessions → mandated XLE add post-FOMC restored deployment to ~80% with the one-deferral logic respected); the DATABASE_URL ops blocker that was last week's latent "Protection at all times" breach was RESOLVED (PR #66, ledger now optional); and the XLB/XLP stops were renewed ahead of their 9-25/9-28 expiry as fixed GTC at/above the prior level (never lowered, PR #67). Held to C+ rather than higher because it was still a relative loss with a realized -7.45% exit, and the only new entry was rule-forced — the seventh week running with no idiosyncratic leadership single-name, the standing structural deficit. No strategy rule change: the deployment backstop is now proven in live execution and needs no amendment, the ops gap was an engineering fix not a rulebook one, and the remaining deficit (no leader) is a sourcing task, not a rule failure — convert the next clean leadership base.
 
 ---
+
+## Week ending 2026-09-25
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $103,282.35 (Mon Sep 21 AM = Fri Sep 18 close) |
+| Ending portfolio | $103,093.11 (Fri Sep 25 close; broker live equity $103,116.55, a $23.44 marking difference) |
+| Week return | -$189.24 (-0.18%) |
+| S&P 500 week | +1.20% (7,628.19 Sep 18 → 7,719.87 Sep 25; chained from prior week's logged close per errata rule. As-actual Fri-Fri 7,650.50 → 7,719.87 = +0.91%) |
+| Bot vs S&P | -1.38% (UNDERPERFORMED; -1.09% on as-actual S&P) |
+| Trades | 0 new (W:0 / L:0 / open:4); 0 closed |
+| Win rate | n/a (0 closed trades) |
+| Best trade | XLK +4.54% (open, unrealized; no closed trades) |
+| Worst trade | XLE -2.83% (open, unrealized) |
+| Profit factor | n/a (0 closed trades) |
+
+Arithmetic: week return = $103,093.11 - $103,282.35 = -$189.24; -189.24 / 103,282.35 = -0.1832%.
+S&P chained = (7,719.87 - 7,628.19) / 7,628.19 = +1.2019%. As-actual = (7,719.87 - 7,650.50) / 7,650.50 = +0.9067%.
+Relative = -0.18% - 1.20% = -1.38pp chained (-1.09pp as-actual).
+Closed-trade stats from broker fills (`blotter.py --check` exit 0, book matches positions): zero round_trips with an `exited` date Mon Sep 21 - Fri Sep 25, so W/L/win-rate/profit-factor are all n/a and best/worst fall back to open unrealized. TRADE-LOG and blotter agree (0/3 all week, no fills).
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No trades closed this week (no fills of any kind Mon-Fri). |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLB | $51.07 | $49.80 | -$523.37 (-2.49%) | $48.78 (fixed GTC, exp 12-15, b51e2320) |
+| XLE | $63.92 | $62.11 | -$563.46 (-2.83%) | $58.275 (10% trail GTC, hwm $64.75, exp 12-16) |
+| XLK | $187.85 | $196.37 | +$954.24 (+4.54%) | $177.246 (10% trail GTC, hwm $196.94, exp 11-06) |
+| XLP | $83.76 | $82.06 | -$425.00 (-2.03%) | $79.91 (fixed GTC, exp 12-15, 1fed8260) |
+
+**Deployed:** $82,342.25 / $103,093.11 = 79.87% (inside the 75-85% band; `deployment_status.py` exit 0, mandate false, 0 sessions under band). Cash 20.13%. Weights: XLB 19.90%, XLE 18.74%, XLK 21.33%, XLP 19.90% — only XLK over 20% on appreciation drift, no trim. Cushions at the close: XLB ~2.05% (tightest), XLP ~2.62%, XLE ~6.17%, XLK ~9.74%. No stops in the ~90-day expiry window (earliest XLK 11-06).
+
+### What Worked
+- **Risk machinery spotless for a twelfth straight week, through the book's tightest sustained cushion of the phase.** XLB ground from ~3.0% to ~1.81% above its $48.78 fixed stop over three consecutive sessions (Wed→Fri), including a Thursday -1.19% close well under $50, and never fired. All four stops live and correct in every scan, none lowered, none tightened (engine `--print-required` = 10 for both trailing legs, equal to current; no name near the +15%/+20% ladder). XLK's trail ratcheted up twice on fresh highs (Mon $175.581 → Fri $177.246 / hwm $196.94) exactly as designed.
+- **The fixed→trailing convergence gate did its job every session.** STEP 2b ran on XLB and XLP all five days and returned exit 3 `stop_never_lowered` each time (a fresh 10% trail would have dropped XLB to ~$43.90-44.82 and XLP to ~$71.92-74.51). Both HELD fixed — the intended state, and a clean demonstration that the ADR-0002 machinery will not quietly lower a renewed stop.
+- **XLK carried the book as the single profitable leg.** +4.54% vs entry at the close, three fresh highs during the week ($195.09 Mon, $196.505 Tue, $196.68 Wed, $196.94 Fri), and the only position that added P&L. Without it the week would have been a clear absolute loss instead of roughly flat.
+- **Patience was correct on every day's temptation.** Five sessions of two-sided oil headlines (Hormuz de-escalation Mon → risk-premium re-add Thu → give-back Fri), a flash PMI, jobless claims, durable goods, UMich and COST earnings, and the routine placed zero orders — because the only cap-legal add (XLE, ~$1.3k of headroom) was a token and no name crossed a cut or tighten threshold. Tuesday's conviction run returned HOLD / zero candidates passing both gates, independently confirming the posture.
+
+### What Didn't Work
+- **Fifth straight relative loss, and the widest of the run: -1.38pp chained (-1.09pp as-actual).** The book was flat (-0.18%) in a week the index rose +1.20%. Every prior miss in this streak was a fraction of a point in a flat-to-down tape; this one is different in kind — the index made a clean up-move (7,628 → 7,720 chained, a record-territory tape led by the Nasdaq +1.6% through Thursday) and the book did not participate at all. An all-ETF book with no mega-cap-growth leader tracks a growth-carried index down and sideways but not up.
+- **Zero trades — 0/3 used, for the eighth week running with no idiosyncratic single-name.** Every individual HOLD was defensible on its own terms, but the aggregate is now a process failure, not patience: eight consecutive weekly reviews have carried the identical "STANDING PRIORITY: source a leadership single-name" note and the base-hunt has converted exactly once (XLE, Sep 17) — into a sixth correlated broad-sector ETF, under rule-12 duress rather than conviction.
+- **Three of four legs are now cumulative losers and two sit within 2.7% of their stops.** XLB -2.49% (~2.05% cushion), XLP -2.03% (~2.62%), XLE -2.83%. A single broad -2.1% session fires both XLB and XLP together and drops deployment to ~40%, arming rule 12 hard with no pre-sourced replacement — the contingency is documented in Friday's pre-market but no candidate has been worked up.
+- **XLE round-tripped an oil risk premium for nothing.** Entered Sep 17 at $63.92 on Energy's #1 YTD momentum; closed the week at $62.11 (-2.83%) after crude swung ~-12% (Hormuz de-escalation), +2-4% (attack reports, Saudi East-West pipeline), then -1.7% again. The sector thesis is intact and the stop was never threatened (~6.2% cushion), but the position has added volatility without adding return — the "restored deployment, not the alpha engine" criticism from last week, now with a price tag.
+
+### Key Lessons
+- **The composition deficit has a directional signature, and this week completed it.** Late August: the book cushioned a broad risk-off sell-off (+0.96%). Sep 11: it amplified a rate-driven decline (-1.15% vs -0.90%). This week: it failed to participate in a clean rally (-0.18% vs +1.20%). Three different tapes, one conclusion — a five-ETF cyclical/defensive book with no idiosyncratic engine is structurally incapable of beating the index on an up week, and only beats it when the sell-off happens to be broad. "Beat the S&P" cannot be reached from this composition regardless of how clean the risk process is.
+- **A standing priority repeated without a mechanism is not a priority.** Rule 12 exists because "patience" was masking eight weeks of under-deployment and the fix was not exhortation but a counter that mandates action. The leadership-single-name note is in exactly that position now — eight weeks of identical prose, one conversion, and that conversion went to an ETF because nothing in the rulebook said it could not. Writing the note a ninth time is the known-failing intervention.
+- **A tight cushion is information about position quality, not just risk.** XLB has been the book's tightest leg for most of three weeks and is the only name that has spent the phase below its entry with no recovery attempt. The stop is doing its job and there is no thesis break, so there is nothing to *do* under the current rules — but the fact that the rulebook's only response to a persistently dead position is "wait for the stop" is why capital sits in it while the index runs.
+
+### Adjustments for Next Week
+- **STRATEGY CHANGE — rule 14 added to memory/TRADING-STRATEGY.md (see STEP 5 note below).** In short: while the book holds zero idiosyncratic single-name positions, the next new position must be a single name unless none passes the entry checklist, in which case the reason is logged. This constrains *what* the next trade may be; it does not force a trade and does not override rule 11.
+- Week resets to 0/3 Monday Sep 28. Deployment in-band (79.87%), so NO forced trade — but under rule 14 the next entry, whenever it comes, is a single name, not a seventh ETF.
+- **Pre-source the XLB/XLP stop-out contingency before Monday.** Both are within 2.7% of their stops; a joint fire drops deployment to ~40% and arms rule 12 immediately. Have one or two leadership single-name candidates (mega-cap growth / AI, ideally also diluting the rate-sensitive cyclical tilt) researched to the entry-checklist level in the pre-market log so the mandated add is a conviction pick and not whatever ETF is nearest to hand.
+- **Watch XLB (~2.05% cushion, tightest) and XLP (~2.62%).** Both theses intact — price, not thesis. No pre-emptive exit, no stop lowering (rule 7), no fixed→trailing conversion (XLB needs ≥~$54.20, XLP ≥~$88.79 to clear the prior hwm). Manage by the stop; a natural trigger is acceptable.
+- **Let XLK run under its trail** ($177.246 / hwm $196.94) — the book's only engine, +4.54%, still ~10.5pp below the +15% tighten trigger. Rising 10Y / hawkish Fed commentary is the multiple-compression risk on the largest weight.
+- Stop maintenance current — no expiries in the ~90-day window (XLK 11-06, XLB/XLP 12-15, XLE 12-16). Keep the STEP 2c expiry check each midday; refresh at/above the prior level, never down.
+- Manage by rules: 10% trailing GTC on every entry, -7% manual cut at midday, never move a stop down. On any single-name that spikes +15% and stalls, take the discretionary partial trim (standing GOOGL lesson).
+
+### STEP 5 — Strategy Rule Change (rule 14)
+
+**Trigger:** the criterion is "proven out for 2+ weeks, or failed badly." The leadership-single-name deficit has been the named cause of the relative lag in **eight consecutive weekly reviews** (2026-08-07 onward) and has produced **five consecutive relative losses**, culminating this week in a -1.38pp miss on an up week with zero participation. The one conversion in that span (XLE, Sep 17) was rule-12-forced and went to a sixth correlated ETF. That is a failed process, and the failure mode is precisely the one rule 12 was written to fix in the deployment dimension: a standing intention with no mechanism behind it.
+
+**Added to memory/TRADING-STRATEGY.md:**
+
+> 14. Composition mandate — the next new position is a single name. While the
+>     book holds ZERO idiosyncratic single-name positions (i.e. every open
+>     position is a broad-sector/index ETF), the next new position opened —
+>     whether discretionary or mandated by rule 12 — MUST be a single name
+>     that passes the full Entry Checklist. A further ETF may be opened only
+>     if no single name passes that checklist, and the specific reason must
+>     be written into the pre-market RESEARCH-LOG entry for that session.
+>     This constrains WHAT is bought, never WHETHER: it does not force a
+>     trade, does not override rule 11 (patience > activity), and lapses
+>     automatically the moment one single-name position is open.
+
+**Why this shape and not a harder one:** a rule that forced a single-name entry on a deadline would collide with rule 11 and with the three-trades-per-week cap, and would manufacture exactly the low-conviction entry the book does not need. A rule that constrains the *instrument* of the next entry costs nothing when no base sets up (the routine simply keeps holding, as it did all five sessions this week) and binds only at the moment capital is actually being committed — which is the single point where the last eight weeks went wrong.
+
+### Overall Grade: C-
+
+Flawless execution of a strategy that cannot win. Every rule was followed every session: twelve straight weeks of spotless risk machinery, four live and correct stops through the tightest sustained cushion of the phase (XLB ~1.81%, three days narrowing, never fired), the convergence gate correctly refusing to lower a renewed stop five times, XLK's trail ratcheting up on four fresh highs, deployment mid-band all week, blotter reconciled to the broker every session, and zero forced trades across five macro prints and a two-sided oil tape. Graded C- anyway, because the scoreboard is the mission: the book returned -0.18% while the S&P gained +1.20% chained (+0.91% as-actual), a -1.38pp miss — the fifth straight relative loss and the first in which the index simply left the book behind on a clean up week rather than merely edging it in a flat one. That is the eighth consecutive review naming the same cause (no idiosyncratic single-name; an all-ETF book that cannot participate in a growth-led rally) and the eighth week of 0-of-3 trades used, with three of four legs now cumulative losers and two within 2.7% of their stops. Not lower than C- because nothing was lost, nothing was broken, no discipline slipped, and the absolute drawdown was $189 on $103k. Not higher because "clean process, wrong book" has now been written eight times, and repeating the note is the known-failing move. **This week it is a rule instead:** rule 14 requires the next new position — discretionary or rule-12-mandated — to be a single name while the book holds none, with a logged exception if nothing passes the entry checklist. The mechanism, not the intention, is the fix.
+
+---
