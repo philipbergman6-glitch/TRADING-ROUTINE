@@ -3127,3 +3127,25 @@ Not emailed — no action taken this scan.
 **Watch:** XLB's cushion is now **0.41%** above its $48.78 stop at $48.98 — the tightest of the phase and materially tighter than Friday's 2.05%; a -0.5% move fires it. If it stops out, proceeds ~$20,097 drop deployment to ~65% and arm rule 12's clock — but rule 14 is now **satisfied and lapsed** by the MPC entry, so a replacement is unconstrained as to type. Also: MPC's conversion trigger at $396.81; crude follow-through for XLE; XLK's $196.94 hwm into MU earnings Wed 9/30 AMC; 10:30 ET Dallas Fed and three Fed speakers against a thin tape.
 
 ---
+### Sep 28 — Midday Scan (Day 110, Monday, Dallas Fed 10:30 / Fed speakers)
+**No trading action.** STRATEGY_VERSION: v1 (env unset, declared v1). Blotter FIFO book matches broker positions (`blotter.py --check` ok, exit 0, no issues — 5 open lots incl. this morning's MPC). All 5 positions well above the -7% cut threshold (worst XLB -3.11%); no name at a tighten trigger.
+- **MPC: $391.5475 (-1.21% vs $396.33 fill, -0.50% intraday)** — fixed stop $357.13 GTC (exp 12-24, a1aece3c), ~8.79% above stop. Drifting mildly below this morning's fill on an orderly tape; refining-margin/energy-leadership thesis intact and one session old. Conversion to a 10% trail still pending (see STEP 2b).
+- XLB: $49.48 (-3.11% vs entry, -0.64% intraday) — fixed stop $48.78 GTC, **~1.41% above stop (tightest leg in the book)**. Slid back under $49.50 on drift, not on data (no 8:30 print today). Materials thesis intact — price, not thesis, as pre-market framed it.
+- XLE: $62.355 (-2.45% vs entry, **+0.51% intraday**) — trailing stop $58.275 (10% trail, hwm $64.75, cac3cefd), ~6.54% above stop. Day's only meaningful green leg: crude held firm (Hormuz premium did not unwind further), following through on the pre-market read. Cause known, no Perplexity check needed.
+- XLK: $194.585 (+3.58% vs entry, -0.86% intraday) — trailing stop $177.246 (10% trail, hwm $196.94, 934ca71d — unchanged, no new high today), ~8.91% above stop. Day's worst leg on the rising-10Y backdrop flagged pre-market; tech thesis intact, MU Wed AMC is the real test.
+- XLP: $82.26 (-1.79% vs entry, +0.24% intraday) — fixed stop $79.91 GTC, ~2.86% above stop (second-tightest). Quietly firm.
+
+**STEP 2b (fixed-leg convergence):** three fixed legs, all HELD, none converted — `validate_stop_change.py` exit 3 `stop_never_lowered` on each: MPC $357.13 → fresh trail $352.39 at $391.5475; XLB $48.78 → $44.53 at $49.48; XLP $79.91 → $74.03 at $82.26. Intended state, not a failure. Conversion triggers: MPC ≥ ~$396.81, XLB ≥ ~$54.20, XLP ≥ ~$88.79. XLE/XLK already `trailing_stop`, no fixed legs to convert.
+
+**STEP 2c:** No stops within the ~90-day expiry window (`build_oto_order.py expiring` → `[]`). Earliest expiry XLK 11-06.
+
+**STEP 4 (tighten):** XLK +3.58% and XLE -2.45% are the only resting trailing stops; engine `--print-required` = 10 for both, equal to current trail — nothing to tighten. No name near the +15%/+20% ladder triggers.
+
+**STEP 5 (thesis check):** no thesis broken intraday; no pre-emptive cuts.
+
+Equity $102,828.17 (-$231.97 intraday, -0.23% vs broker `last_equity` $103,060.14), cash $15,598.57 (15.17%), deployed $87,229.60 (**84.83%**) — inside the 75-85% band but near its ceiling after this morning's MPC entry (`deployment_status.py` exit 0, mandate false, 0 sessions under band). Weights: MPC 4.95%, XLB 19.83%, XLE 18.86%, XLK 21.19%, XLP 20.00% — XLK over 20% on appreciation drift only, no trim, no adds. Thin, mildly red tape ahead of the 10:30 Dallas Fed and the day's Fed speakers, with the week's real catalysts (ADP + core PCE Wed, MU Wed AMC, jobs Fri) still ahead: XLE green on firm crude, the other four mildly lower. No sharp unexplained single-name move. All five theses intact, all five stops live and correct, none lowered. Week 1/3.
+
+Not emailed — no action taken this scan.
+
+---
+
