@@ -3149,3 +3149,21 @@ Not emailed — no action taken this scan.
 
 ---
 
+
+### Sep 28 — EOD Snapshot (Day 110, Monday, Dallas Fed / Fed speakers)
+**Portfolio:** $102,720.45 | **Cash:** $15,598.57 (15.19%) | **Day P&L:** -$372.66 (-0.36%) | **Phase P&L:** +$2,720.45 (+2.72%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MPC | 13 | $396.33 | $389.44 | -1.04% | -$89.57 (-1.74%) | $357.13 (fixed GTC) |
+| XLB | 412 | $51.07 | $49.47 | -0.66% | -$659.33 (-3.13%) | $48.78 (fixed GTC) |
+| XLE | 311 | $63.92 | $62.12 | +0.13% | -$559.51 (-2.81%) | $58.275 (10% trail GTC) |
+| XLK | 112 | $187.85 | $194.53 | -0.89% | +$748.16 (+3.56%) | $177.246 (10% trail GTC) |
+| XLP | 250 | $83.76 | $82.28 | +0.27% | -$370.00 (-1.77%) | $79.91 (fixed GTC) |
+
+**Trades today:** MPC BUY 13 @ $396.33 (market-open, Rule-14 single-name entry; no sells, no round-trips)
+**Week trades:** 1/3
+
+**Notes:** Red close on Day 110 (Mon, Dallas Fed / Fed speakers) — equity -$372.66 to $102,720.45 (Day P&L -0.36%), giving back Friday's gain and then some; phase P&L eases to +2.72%. (Broker `last_equity` $103,060.14 vs the $103,093.11 EOD snapshot logged Friday — a $32.97 marking difference; Day P&L above is computed off the logged snapshot per routine, and would be -$339.69/-0.33% off the broker figure.) The day's one action was at the open: **MPC BUY 13 @ $396.33**, the book's first single-name position after eight weeks of all-ETF composition (rule 14 now satisfied and lapsed), taken on refining-margin leadership inside the #1 YTD sector with a $357.13 fixed GTC stop via OTO (parent `3a62e256`, protective leg `a1aece3c`, complete fill 13/13). It then drifted lower all session to close $389.44, -1.04% on the day and -1.74% vs fill — one session old, thesis untested, well clear of any cut. Two legs green: XLP +0.27% to $82.28 (-1.77% vs entry) and XLE +0.13% to $62.12 (-2.81% vs entry, the tape's only energy follow-through as crude held its Hormuz premium rather than unwinding further — known cause, no thesis break, no Perplexity check needed). Worst leg was XLK -0.89% to $194.53 (+3.56% vs entry, still the book's only profitable leg and its engine) on the rising-10Y backdrop flagged pre-market — no new high, so its trail stayed at $177.246/hwm $196.94; MU Wed AMC is the real test. XLB -0.66% to $49.47 (-3.13% vs entry) slid on drift, not data. 5 positions (≤6): MPC 4.93%, XLB 19.84%, XLE 18.81%, XLK 21.21%, XLP 20.03% — only XLK over 20% on appreciation drift (no trim), no adds. **Deployment 84.81% ($87,121.88 mkt value / equity) — inside the 75-85% band but hard against its ceiling** after this morning's entry (`deployment_status.py` exit 0, mandate false, 0 sessions under band). Cash 15.19%. Blotter FIFO book matches broker positions (`blotter.py --check` ok, exit 0, no issues, 5 open lots); the only fill today is the MPC lot, so no round-trips — week opens 1/3 and TRADE-LOG agrees with the blotter. All five stops confirmed active/correct via orders: MPC fixed $357.13 GTC (exp 12-24, a1aece3c), XLB fixed $48.78 GTC (exp 12-15, b51e2320), XLP fixed $79.91 GTC (exp 12-15, 1fed8260), XLE trailing 10% $58.275/hwm $64.75 GTC (exp 12-16, cac3cefd), XLK trailing 10% $177.246/hwm $196.94 GTC (exp 11-06, 934ca71d). **None lowered, none tightened** (no name crossed +15%/+20%; engine `--print-required` = 10 for both trailing legs, equal to current). The three fixed legs all remain HELD, not converted — a fresh 10% trail would sit lower on each (`stop_never_lowered`); conversion triggers MPC ≥~$396.81, XLB ≥~$54.20, XLP ≥~$88.79. No stops in the ~90-day expiry window (earliest XLK 11-06). Cushions vs close: **XLB ~1.39% above its stop — tightest of the phase, narrower than Friday's 2.05%, a -1.4% move fires it**; then XLP ~2.88%, XLE ~6.19%, MPC ~8.30%, XLK ~8.89%. Tuesday: hold book, no forced action; XLB is the name to watch into its stop, MPC needs a print ≥$396.81 to convert to a trail, and the week's real catalysts (ADP + core PCE Wed, MU Wed AMC, jobs Fri) start Wednesday.
+
+---
