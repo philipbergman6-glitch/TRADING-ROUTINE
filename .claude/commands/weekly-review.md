@@ -54,8 +54,12 @@ STEP 4 — Append full review section to memory/WEEKLY-REVIEW.md:
 - Overall letter grade (A-F)
 
 STEP 5 — If a rule needs to change (proven out for 2+ weeks, or failed
-badly), also update memory/TRADING-STRATEGY.md and call out the change
-in the review.
+badly), PROPOSE it in the review under a "Proposed rule change" heading:
+the rule text, the evidence, and the version it would start. Do NOT edit
+memory/TRADING-STRATEGY.md — it is hash-pinned (docs/rulebook-pins.json)
+and any edit without an owner-approved version bump halts every routine
+at scripts/strategy_version.py the next session. The owner applies the
+change and bumps the version.
 
 STEP 6 — Send ONE email. <= 15 lines:
 bash scripts/email.sh "Week ending MMM DD
