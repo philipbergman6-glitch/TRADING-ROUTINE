@@ -114,26 +114,34 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
         except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
             raise Outcome(EXIT_REFUSED, "refused", symbol=symbol, reason=str(exc))
         progress["cancel_sent"] = True
-        ok, http, _, err = run("cancel", order_id)
-        if not ok:
+        cancel_ok, http, _, err = run("cancel", order_id)
+        if not cancel_ok:
             # Unknown outcome: fall through to polling rather than assuming either way.
             print(f"cancel reported failure (HTTP {http}): {err}", file=sys.stderr)
     else:
+        cancel_ok = True  # the broker already holds the cancel from an earlier run
         if status not in ("pending_cancel", "canceled"):
             raise Outcome(EXIT_USAGE, "old_stop_not_replaceable", symbol=symbol, status=status)
         progress["cancel_sent"] = True  # resuming an earlier run's cancel
 
-    # 2. Confirm cancellation from broker state.
+    # 2. Confirm cancellation from broker state. A cancel the broker ACCEPTED may
+    #    still complete after we stop looking, so an accepted cancel gets the full
+    #    poll window and, if still open, is an incident (rerun resumes it) rather
+    #    than "still protects". Only a broker-REFUSED cancel may be called rejected
+    #    after a short look.
     for attempt in range(polls):
         old = read("order-info", order_id)
         status = old.get("status") if isinstance(old, dict) else None
-        if status in ("canceled", "filled") or (status in OPEN and attempt >= 3):
+        if status in ("canceled", "filled") or (status in OPEN and not cancel_ok and attempt >= 3):
             break
         sleep(1)
     if status == "filled":
         raise Outcome(EXIT_OK, "old_stop_filled", symbol=symbol)
-    if status in OPEN:
+    if status in OPEN and not cancel_ok:
         raise Outcome(EXIT_REFUSED, "cancel_rejected_old_stop_still_protects", symbol=symbol, status=status)
+    if status in OPEN:
+        raise Outcome(EXIT_UNPROTECTED, "cancel_accepted_but_unconfirmed_rerun", symbol=symbol, status=status,
+                      polled_seconds=polls)
     if status != "canceled":
         raise Outcome(EXIT_UNPROTECTED, "cancel_unconfirmed", symbol=symbol, status=status)
 
