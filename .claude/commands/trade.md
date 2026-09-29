@@ -61,7 +61,7 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    For BUYs (ADR 0002 OTO fixed leg — validate with --stop-price, not trail-only):
    ```
    VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-       --price P --stop-price STOP --json)
+       --price P --stop-price STOP --json); VALIDATE_EXIT=$?
    LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    ```
    STOP = 10% below P (or let `scripts/build_oto_order.py oto --price P` derive it).
@@ -69,11 +69,11 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    For SELLs:
    ```
    VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-       --price P --json)
+       --price P --json); VALIDATE_EXIT=$?
    LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    ```
 
-   Exit 0 = approved. Exit 3 = refused. Exit 4 = broker state unavailable. Exit 6 = ledger fail.
+   Branch on `$VALIDATE_EXIT`, never on reading the JSON: 0 = approved. 3 = refused. 4 = broker state unavailable. 6 = ledger fail.
 
 3. **If it exits non-zero, STOP.** Print the violations verbatim and do not
    submit anything. Do not retry with different numbers unless the operator
@@ -119,7 +119,7 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
 
    ```
    VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-       --price P --trail-percent 10 --json)
+       --price P --trail-percent 10 --json); VALIDATE_EXIT=$?
    LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    ```
 
