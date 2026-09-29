@@ -48,8 +48,8 @@ confirms the cancel, restores the old level on failure and resumes on rerun.
 This remains an experimental paper system. Direct access to broker credentials
 is not isolated from the agent. Cross-process account reservations remain
 unimplemented; idempotency is per client ID, not a durable intent store. The
-protection monitor workflow needs repository secrets and has not yet been observed
-running. The ledger is optional in cloud routines; the fill-based blotter, not the
+protection monitor workflow runs on GitHub but its 30-min cron is throttled to
+about two runs a day, so it is a coverage check, not continuous protection. The ledger is optional in cloud routines; the fill-based blotter, not the
 ledger, is the accounting record.
 
 The latest committed equity snapshot and benchmark periods are displayed on

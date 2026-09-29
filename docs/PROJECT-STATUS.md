@@ -32,7 +32,8 @@ before the 30-session $10,000 v2 paper run:
    `ALPACA_SECRET_KEY`, `RESEND_API_KEY`, `EMAIL_TO`, `EMAIL_FROM` and the
    variable `STRATEGY_VERSION` (`v2` for the run; unset means `v1`), then
    trigger `protection-monitor` by `workflow_dispatch` with `dry_run=true` and
-   read the report. The workflow has not been observed running.
+   read the report. Done 2026-09-29: Alpaca/email secrets set, dry run passed
+   (exit 0, all positions covered). `STRATEGY_VERSION` variable still unset (v1).
    Set `STRATEGY_VERSION=v2` in the cloud routine environment too, and flip
    `Active strategy version` in `memory/TRADING-STRATEGY.md` to `v2` in the same
    change: `scripts/strategy_version.py` (run first by market-open, midday,
@@ -60,7 +61,9 @@ before the 30-session $10,000 v2 paper run:
   positions, `--cooldown`, `--sector-streaks`. Cooldown in `validate_order.py`
   comes from fills, not markdown.
 - `risk_engine/monitor.py` + `scripts/protection_monitor.py` +
-  `.github/workflows/protection-monitor.yml`: every 30 min on weekdays, no
+  `.github/workflows/protection-monitor.yml`: cron every 30 min on weekdays,
+  but GitHub throttles it to ~2 runs/day (observed Sep 21-29: ~17:45Z and
+  ~21:15Z); treat as a twice-daily coverage check, not a 30-min guard. No
   Claude, no ledger; renew, convert (v2: only at +5%), tighten per ladder;
   HOLD/STANDING reported; exit 5/7/8 emailed. Acts only via `replace_stop`.
 - `scripts/submit_entry.py` (`en-<day>-<sym>`, lookup before submit) and
