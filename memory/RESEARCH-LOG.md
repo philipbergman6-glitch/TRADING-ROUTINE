@@ -7706,3 +7706,69 @@ Unchanged from Friday (same Aug-31 snapshot). Book holds #1, #2, #3. Only Indust
 - **Rule 14 / new position: MPC 14 shares (~$5,062, 4.92%) is the named, sized, checklist-clean candidate — flagged for market-open, NOT authorised here.** It is held back for one reason only: there is no usable pre-market price (ask $0.00, bid/Perplexity 9% apart). **Market-open is to re-quote MPC (and PSX as alternate) live after 09:30 and, if the print is above Friday's close without a gap, size off the live price and submit via `validate_order.py` (exit 0) with a 10% stop.** This is discretionary, not mandated — rule 11 still governs and a gap-up or a broken tape is a pass. But "no candidate" and "no capacity" are both now off the table, and that was the eight-week failure.
 - **Watch, in order:** XLB's **1.28%** cushion (tightest leg, no scheduled catalyst — drift risk); MPC/PSX live prints after 09:30 against the rule-14 shortlist; crude's follow-through for XLE; XLK's $196.94 hwm vs the 10Y; the 10:30 Dallas Fed and Fed speakers against a thin tape.
 - **All 4 stops active/correct; none lowered; earliest expiry XLK 11-06 — no refresh due.** No rebalancing. Week 0/3.
+
+## 2026-09-29 (Tue, Day 111) — PRE-MARKET
+
+### Account Snapshot
+- **Equity:** $102,530.07 | **Cash:** $15,598.57 (15.21%) | **Deployed:** $86,931.50 (**84.79%**, in band, hard against the 85% ceiling)
+- **Buying power:** $305,802.47 — *not an input to any rule (rule 13, cash-only sizing)*
+- **Daytrade count:** n/a — PDT abolished 2026-07-06
+- **Positions (5/6):** MPC 13 @ $396.33 → $385.98 (-2.61%) · XLB 412 @ $51.07 → $49.47 (-3.13%) · XLE 311 @ $63.92 → $61.63 (-3.59%) · XLK 112 @ $187.85 → $195.2472 (+3.94%) · XLP 250 @ $83.76 → $81.99 (-2.11%)
+- **Weights:** MPC 4.89% · XLB 19.88% · XLE 18.69% · XLK 21.33% · XLP 19.99% (XLK over 20% on appreciation drift only — no trim)
+- **Stops (all 5 live GTC, verified via orders):** MPC fixed $357.13 (exp 12-24, a1aece3c) · XLB fixed $48.78 (exp 12-15, b51e2320) · XLP fixed $79.91 (exp 12-15, 1fed8260) · XLE trailing 10% $58.275 / hwm $64.75 (exp 12-16, cac3cefd) · XLK trailing 10% $177.246 / hwm $196.94 (exp 11-06, 934ca71d)
+- **Cushions vs price:** XLB **1.41%** (tightest, marginally wider than Monday's 1.39% close) · XLP 2.60% · XLE 5.76% · MPC 8.08% · XLK 10.16%
+- **Band headroom: $219.06** ($87,150.56 ceiling − $86,931.50 deployed) — *no capacity for a new position today; the band, not cash, is binding.* Per-leg 20% cap headroom: XLE $1,339 · XLB $124 · XLP $9 · XLK over cap · MPC $15,488 (blocked by the band, not the cap).
+- **No stops in the ~90-day expiry window** (`build_oto_order.py expiring` → `[]`; earliest XLK 11-06). Blotter FIFO book matches broker (`blotter.py --check` ok, exit 0, no issues, 5 open lots). STRATEGY_VERSION: v1 (env unset, declared v1). Week trades **1/3**.
+- **Broker `last_equity` $102,713.39** vs Monday's logged EOD $102,720.45 — a $7.06 marking difference; intraday -$183.32 (-0.18%) so far.
+- **Pre-market prints (broker feed):** XLE $61.63 (**-0.76%**), MPC $385.98 (**-0.89%**), XLP $81.99 (-0.35%), XLK $195.2472 (**+0.37%**), XLB $49.47 (**no print — current = lastday, change_today 0.00%**).
+
+### Market Context
+- **Crude two-sided and source-conflicted.** WTI ~**$92–94** and Brent ~**$105–107.4** depending on feed and timestamp: oilprice.com's 11-min tape shows both WTI 91.85 (-0.81%) and 93.97 (+1.48%) in different snapshots, Investing.com real-time WTI $91.97 (-0.68%), TradingEconomics Brent $107.41 (+2.03% on the day), Bloomberg CL1 $93.95 (+1.46%). **Call it roughly flat-to-firm around Monday's ~$93.2 / ~$106.1 — no clean directional signal.** Broker feed disagrees: XLE is -0.76% pre-market.
+- **Brent–WTI spread has widened to ~$12–13/bbl**, with the cited read being market concern that **US refiners cut runs**. Two-sided for MPC: a wide spread is normally favourable feedstock economics for a US refiner, but the *reason* cited here is weak US refining demand. **Flagged, not resolved.**
+- **S&P futures roughly flat: ES ~7,743–7,746, -0.05% to -0.01%** on live Sep-29 prints (Investing.com 7,746.25, -0.50). Markets Insider/CNN show 7,760–7,762 (-0.53%) but timestamp Sep 28 14:00 ET — stale. **Unlike Monday, today's futures quote is genuinely live; the signal is "flat", not "up".**
+- **VIX ~16.1** (TradingView 16.12, +0.25%; Cboe-linked 16.07) — **up from Monday's 14.87**, reversing the weekend complacency. Vol is being re-priced into the back-loaded week.
+- **10Y Treasury yield ~5.20–5.23%** (TradingEconomics 5.216%, CNBC 5.232%) vs 5.17% on 9/25 — **still marching higher.** This is the day's named dominant risk factor and the direct headwind to XLK (largest weight) and rate-sensitive materials.
+- **Today's calendar, 10:00 ET double-header:** **JOLTS job openings (Aug)** and **Conference Board consumer confidence (Sep)**, plus **Case-Shiller home prices 9:00** and **Texas services survey 10:30**. **Fed speakers: Bowman 11:00, Barr 12:40, Cook 13:25.** No CPI, no PPI, no FOMC decision.
+- **Earnings BMO:** **CCL (Carnival)** ~$1.35–1.36 EPS / ~$8.39B rev and **KMX (CarMax)** ~$0.72–0.73 / ~$7.0B are the confirmed pre-open names; **THO** and **UEC** appear on some calendars. **None is index-moving and none is held.**
+- **The week stays back-loaded:** ADP + core PCE **Wed 9/30**, **MU earnings Wed 9/30 AMC**, **September jobs report Fri 10/2**. Today is still positioning.
+
+### Sector Momentum (YTD)
+| Sector | YTD | Held |
+|---|---:|---|
+| **Energy (XLE)** | **+42.3%** | ✓ #1 |
+| **Technology (XLK)** | ~+27% (Fidelity, different snapshot window) | ✓ #2 |
+| Materials (XLB) | +15.9% | ✓ #3 |
+| Industrials | +12.6% | ✗ |
+| Health Care | +10.1% | ✗ |
+| Consumer Staples (XLP) | +9.6% | ✓ |
+| Real Estate | +9.3% | ✗ |
+| Financials | +5.4% | ✗ |
+
+Unchanged again — same Aug-31 snapshot as Friday and Monday. Book holds #1, #2, #3. Only Industrials and Health Care outrank a held leg (Staples), neither by enough to compel rotation. **Rule 9 satisfied; rule 10 not triggered (no sector at 2 consecutive failed trades).**
+
+### Composition (rule 14)
+**Rule 14 is SATISFIED and LAPSED.** The MPC entry on 2026-09-28 gave the book its first idiosyncratic single-name position, which discharges the mandate automatically. Any future new position is unconstrained as to type.
+
+### Trade Ideas (1/3 weekly trades used; deployment 84.79% — NO rule-12 mandate; band headroom $219)
+1. **MPC — one session old and red; the thesis got *stronger* overnight. Hold, do not add, do not cut.** *Catalyst check:* September's news flow confirms the entry thesis rather than undercutting it — refining margins have surged on tight gasoline/diesel/jet supply, Q2 R&M printed **$6.7B adjusted EBITDA on a $36.33/bbl refining margin at 94% crude utilisation with 112% margin capture**, and UBS/Morgan Stanley/Goldman raised targets in September into a **$450–472** range against a $385.98 pre-market print. *Situation:* -2.61% vs the $396.33 fill, -0.89% pre-market, cushion **8.08%** above the $357.13 fixed GTC leg and **4.4pp above the -7% cut**. *Action:* **no add** (band headroom $219 — the cap would allow $15,488, the band allows nothing), **no cut** (nowhere near -7%, thesis strengthening), **no stop change.** *Fixed→trailing conversion still refused:* `validate_stop_change.py --current-stop 357.13 --new-stop 347.382 --current-price 385.98` → **exit 3 `stop_never_lowered`**. Converts once MPC prints ≥ **$396.81**; it is $10.83 (2.8%) away. *Entry/stop/target: n/a — hold; $357.13 fixed leg, +20% target ~$475.60 intact and now inside the street's target range.*
+2. **XLB — tightest leg for a fifth session, and today it has a *named* catalyst path. Pre-plan the stop-out, do not pre-empt it.** *Situation:* $49.47 with **no pre-market print at all** (broker `change_today` 0.00%), -3.13% vs entry, fixed $48.78 GTC just **1.41%** below. *New information:* the sector's recent drag is now attributable — **Nucor and Steel Dynamics guided Q3 below elevated expectations**, and the complex is carrying a 10Y above 5.2%. Materials is still **#3 YTD (+15.9%)**, so the *sector* thesis holds; but "price, not thesis" is getting harder to say for a fifth day, and the leg is below its 200-DMA. *Action:* **no pre-emptive exit** (3.87pp above the -7% cut), **no stop lowering** (rule 7), **no add** ($124 of cap headroom, $219 of band headroom — nil), **no fixed→trailing conversion** (refused: $48.78 → $44.523, exit 3 `stop_never_lowered`; XLB needs ≥~$54.20 to clear the prior hwm). *Contingency if $48.78 fires:* proceeds **~$20,097**, realized **~-$944**, deployment drops to **~65.2%** and rule 12's 3-session clock arms. Rule 14 has lapsed, so the replacement is unconstrained as to type — **but a third consecutive rate-sensitive cyclical would be the wrong answer; the pre-vetted shortlist is energy/tech leadership (PSX ~$240–270 as the single-name alternate).** **Do not pre-position.**
+3. **XLK — largest weight, best cushion, and the week's binary lands tomorrow. Hold into MU; do nothing today.** *Situation:* $195.2472 pre-market (**+0.37%**, the book's only green leg), +3.94% vs entry, cushion **10.16%** — the widest in the book — sitting **$1.69 below its $196.94 hwm**, so a print above that auto-lifts the trail off $177.246. **MU reports Wed 9/30 AMC** and remains the single biggest two-way swing factor for the sector. *Countervailing:* the 10Y at ~5.2% is direct multiple-compression pressure on the most extended leg. *Action:* **no add** (21.33% is already over the 20% cap and the band is full), **no trim** (appreciation drift is not trimmed), **no stop change** — engine `--print-required` at +3.94% gain returns **10**, equal to the current trail, and +3.94% is nowhere near the +15%/+20% tighten ladder. *Entry/stop/target: n/a — hold; the 10% trail is the decision mechanism through the print.*
+
+### Deployment (rule 12 / `deployment_status.py`)
+`{"deployed_pct": 84.78, "band": [75.0, 85.0], "sessions_under_band": 0, "mandate": false, "exemption_allowed": false, "target_notional": 0, "last_eod": "2026-09-28"}` — **exit 0, no mandate.** Streak clean at 0. Nothing owed under rule 12. Note the *opposite* constraint now binds: at 84.79% the book is **$219 from the band ceiling**, so no add of any size is available today regardless of conviction.
+
+### Risk Factors
+- **10:00 ET JOLTS + consumer confidence, together** — the day's real event, and the plausible path to the ~1.4% XLB down-move that fires its stop. A soft JOLTS also feeds the yield story in both directions.
+- **XLB at 1.41% above its stop with no pre-market print** — tightest cushion of the phase, now with an identified fundamental drag (Nucor/STLD guidance) rather than pure drift. A -1.4% session fires it.
+- **XLB and XLP both within 2.6% of their stops** — a broad -2.6% session fires both, drops deployment to ~45% and arms rule 12 hard.
+- **10Y at ~5.20–5.23% and still rising** — the day's dominant named risk. Hits XLK (21.33%, largest and most extended) via multiples and XLB via cyclicals simultaneously. The two are correlated to the same factor, which is 41% of the book.
+- **VIX up ~8% off Monday's 14.87 to ~16.1** — vol re-pricing has started ahead of the week's catalysts, so protection is no longer as cheap as it looked Friday.
+- **MU tomorrow AMC** — the largest single unhedged event in the book, landing on the only profitable leg. Stops are GTC and hold through it by design; a gap below $177.246 would fill worse than the stop price.
+- **Oil source quality is degraded** — WTI quotes span $91.85–$95.62 and Brent $98.64–$107.46 across feeds within the same session. XLE's 5.76% cushion absorbs a session; the thesis does not depend on one print. **Do not size or stop anything off this morning's crude figures.**
+- **Three Fed speakers (Bowman 11:00, Barr 12:40, Cook 13:25)** into a yield-led tape — headline risk after the 10:00 data.
+
+### Decision
+**HOLD the existing book — no orders pre-market, and none available.** Deployment 84.79% is in band so rule 12 is dormant (exit 0); rule 14 is satisfied and lapsed; all five theses are intact (MPC's is materially *stronger* on the September margin/target flow); all five carry live, correct GTC stops, none lowered; the worst leg is XLE at -3.59%, still **3.4pp above the -7% cut**; nothing is near the +15%/+20% tighten ladder; no stop is in the expiry window.
+- **MPC / XLB / XLE / XLK / XLP: HOLD.** **No adds — band headroom is $219.06, which is not a position**; the constraint today is the ceiling, not conviction. No trims (XLK's 21.33% is appreciation drift). No stop changes (engine `--print-required` = 10 for both trailing legs, equal to current). **No fixed→trailing conversions — all three refused, exit 3 `stop_never_lowered`** (MPC $357.13 → $347.382; XLB $48.78 → $44.523; XLP $79.91 → $73.791). Conversion triggers: MPC ≥ ~$396.81, XLB ≥ ~$54.20, XLP ≥ ~$88.79.
+- **Watch, in order:** XLB's **1.41%** cushion through the 10:00 JOLTS/confidence double-header (tightest leg, fifth day, now with a named fundamental drag); the 10Y through 5.25%; MPC's $396.81 conversion trigger, $10.83 away; XLK's $196.94 hwm — a print above it lifts the trail automatically, and it is the last chance to do so before MU; crude's direction once the feeds agree, for XLE.
+- **All 5 stops active/correct; none lowered; earliest expiry XLK 11-06 — no refresh due.** No rebalancing. Week 1/3. Patience > activity.
