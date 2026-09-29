@@ -60,6 +60,11 @@ before the 30-session $10,000 v2 paper run:
   `/account/activities/FILL` (`alpaca.sh activities`), `--check` against
   positions, `--cooldown`, `--sector-streaks`. Cooldown in `validate_order.py`
   comes from fills, not markdown.
+- `scripts/heartbeat.py` + `.github/workflows/heartbeat.yml` (added 2026-09-29):
+  daily liveness check after the close — every expected routine commit for a
+  trading day (Alpaca calendar), one monitor success, no dashboard/tests
+  failure — emails on a miss; also emails immediately when a watched workflow
+  fails (`workflow_run`). Closes the "merged but never observed" gap.
 - `risk_engine/monitor.py` + `scripts/protection_monitor.py` +
   `.github/workflows/protection-monitor.yml`: cron every 30 min on weekdays,
   but GitHub throttles it to ~2 runs/day (observed Sep 21-29: ~17:45Z and
