@@ -1,0 +1,15 @@
+{
+  "_comment": "sha256 of memory/TRADING-STRATEGY.md per declared version. scripts/strategy_version.py refuses to run when the file hash differs from the pin for the declared version. Bump the version marker in the rulebook and add a pin here in the same commit; routines never edit the rulebook.",
+  "v1": {
+    "sha256": "84e53ed169eec0265d59317fc60725759d1de9edf834b2552c60a37df46516fa",
+    "commit": "07603ef",
+    "since": "2026-09-18",
+    "until": "2026-09-24",
+    "note": "Frozen baseline. Closed when rule 14 entered unpinned on 2026-09-25 (c92afde)."
+  },
+  "v1.1": {
+    "sha256": "2dad4667f45c59b6a8e6926fdb83b68def8b9c702f2536419e9c6264899dd541",
+    "since": "2026-09-25",
+    "note": "v1 engine parameters plus rule 14 (composition mandate). Marker in the rulebook reads v1.1."
+  }
+}
