@@ -1,0 +1,45 @@
+name: heartbeat
+
+# Did today's routines and workflows actually happen? Emails on any miss.
+# Runs after the EOD (~20:15Z) and Friday weekly review (~21:10Z) pushes, and
+# immediately whenever a watched workflow fails. GitHub throttles cron on
+# quiet repos, so the workflow_run trigger is the reliable half.
+
+on:
+  schedule:
+    - cron: "45 22 * * 1-5"
+  workflow_run:
+    workflows: [protection-monitor, dashboard-data, tests]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    # On workflow_run only act on a failure; the scheduled pass covers the rest.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'failure'
+    timeout-minutes: 10
+    env:
+      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      ALPACA_ENDPOINT: https://paper-api.alpaca.markets/v2
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Email immediately on a failed watched workflow
+        if: github.event_name == 'workflow_run'
+        run: |
+          bash scripts/email.sh "WORKFLOW FAILED: ${{ github.event.workflow_run.name }} ($(date -u +%F)) ${{ github.event.workflow_run.html_url }}"
+      - name: Daily heartbeat
+        if: github.event_name != 'workflow_run'
+        run: python3 scripts/heartbeat.py
