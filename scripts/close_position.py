@@ -146,23 +146,29 @@ def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=va
         oid = str(stop["id"])
         if stop.get("status") != "pending_cancel":
             progress["cancel_sent"] = True
-            ok, http, _, err = run("cancel", oid)
-            if not ok:
+            cancel_ok, http, _, err = run("cancel", oid)
+            if not cancel_ok:
                 print(f"cancel {oid} reported failure (HTTP {http}): {err}", file=sys.stderr)
         else:
             progress["cancel_sent"] = True  # resuming an earlier run's cancel
+            cancel_ok = True
+        # An ACCEPTED cancel may complete after we stop looking: full poll window,
+        # then an incident (rerun resumes). Only a REFUSED cancel is "rejected" early.
         status = None
         for attempt in range(polls):
             current = read("order-info", oid)
             status = current.get("status") if isinstance(current, dict) else None
-            if status in ("canceled", "filled", "expired", "rejected") or (status in OPEN and attempt >= 3):
+            if status in ("canceled", "filled", "expired", "rejected") or (status in OPEN and not cancel_ok and attempt >= 3):
                 break
             sleep(1)
         if status == "filled":
             raise Outcome(EXIT_OK, "stop_filled_position_gone", symbol=symbol, stop_order_id=oid)
-        if status in OPEN:
+        if status in OPEN and not cancel_ok:
             raise Outcome(EXIT_REFUSED, "cancel_rejected_stop_still_protects", symbol=symbol,
                           stop_order_id=oid, status=status)
+        if status in OPEN:
+            raise Outcome(EXIT_UNPROTECTED, "cancel_accepted_but_unconfirmed_rerun", symbol=symbol,
+                          stop_order_id=oid, status=status, polled_seconds=polls)
         if status not in ("canceled", "expired", "rejected"):
             raise Outcome(EXIT_UNPROTECTED, "cancel_unconfirmed", symbol=symbol, stop_order_id=oid, status=status)
 

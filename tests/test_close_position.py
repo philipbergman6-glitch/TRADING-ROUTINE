@@ -16,13 +16,13 @@ CID = "cl-20260921-AMD"
 
 class FakeBroker:
     def __init__(self, held=True, stop_status="new", cancel_to="canceled", close="new", close_http="200",
-                 existing=None, fail_reads_after_cancel=False, refuse=False):
+                 existing=None, fail_reads_after_cancel=False, refuse=False, cancel_ok=True):
         self.positions = [{"symbol": "AMD", "qty": "10", "market_value": "1000"}] if held else []
         self.orders = {STOP: {"id": STOP, "symbol": "AMD", "side": "sell", "type": "trailing_stop",
                               "qty": "10", "filled_qty": "0", "status": stop_status}} if stop_status else {}
         self.by_client = dict(existing or {})
         self.cancel_to, self.close, self.close_http = cancel_to, close, close_http
-        self.fail_reads_after_cancel, self.refuse = fail_reads_after_cancel, refuse
+        self.fail_reads_after_cancel, self.refuse, self.cancel_ok = fail_reads_after_cancel, refuse, cancel_ok
         self.calls = []
 
     def read(self, command, *args):
@@ -41,6 +41,8 @@ class FakeBroker:
     def run(self, command, arg):
         self.calls.append(("run", command, arg))
         if command == "cancel":
+            if not self.cancel_ok:
+                return False, "422", "", "order is not cancelable"
             self.orders[arg]["status"] = self.cancel_to
             if self.cancel_to == "filled":
                 self.positions = []
@@ -99,10 +101,17 @@ def test_stop_that_fills_during_cancel_means_position_gone():
     assert (got.code, got.state) == (EXIT_OK, "stop_filled_position_gone")
 
 
-def test_cancel_rejected_keeps_protection_and_refuses():
-    broker = FakeBroker(cancel_to="new")
+def test_broker_refused_cancel_keeps_protection_and_refuses():
+    broker = FakeBroker(cancel_ok=False)
     got = outcome(broker)
     assert (got.code, got.state) == (EXIT_REFUSED, "cancel_rejected_stop_still_protects") and broker.posted() == []
+
+
+def test_accepted_cancel_still_open_after_full_window_is_an_incident():
+    broker = FakeBroker(cancel_to="new")
+    got = outcome(broker)
+    assert (got.code, got.state) == (EXIT_UNPROTECTED, "cancel_accepted_but_unconfirmed_rerun")
+    assert broker.posted() == [] and got.detail["polled_seconds"] == 20
 
 
 def test_cancel_unconfirmed_is_an_incident():

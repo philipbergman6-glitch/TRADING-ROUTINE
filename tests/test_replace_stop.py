@@ -23,12 +23,12 @@ class FakeBroker:
     """Order state machine. `cancel_to` is what a cancel request turns the old stop into."""
 
     def __init__(self, status="new", stop_price="117", cancel_to="canceled", replacement="new",
-                 restore="new", fail_reads_after_cancel=False):
+                 restore="new", fail_reads_after_cancel=False, cancel_ok=True):
         self.orders = {OLD: {"id": OLD, "symbol": "AAPL", "side": "sell", "type": "trailing_stop",
                              "qty": "100", "filled_qty": "0", "status": status, "stop_price": stop_price}}
         self.by_client = {}
         self.cancel_to, self.replacement, self.restore = cancel_to, replacement, restore
-        self.fail_reads_after_cancel = fail_reads_after_cancel
+        self.fail_reads_after_cancel, self.cancel_ok = fail_reads_after_cancel, cancel_ok
         self.calls = []
 
     def read(self, command, arg):
@@ -43,6 +43,8 @@ class FakeBroker:
     def run(self, command, arg):
         self.calls.append(("run", command, arg))
         if command == "cancel":
+            if not self.cancel_ok:
+                return False, "422", "", "order is not cancelable"
             self.orders[OLD]["status"] = self.cancel_to
             return True, "204", "", ""
         body = json.loads(arg)
@@ -131,10 +133,20 @@ def test_unconfirmed_cancel_never_submits():
     assert b.posted() == []
 
 
-def test_rejected_cancel_reports_old_stop_still_protecting():
-    b = FakeBroker(cancel_to="new")
+def test_broker_refused_cancel_reports_old_stop_still_protecting():
+    b = FakeBroker(cancel_ok=False)
     out = go(b)
     assert (out.code, out.state) == (EXIT_REFUSED, "cancel_rejected_old_stop_still_protects")
+    assert b.posted() == []
+
+
+def test_accepted_cancel_still_open_after_full_window_is_an_incident_not_still_protects():
+    # The broker took the cancel (204) but the order still reads open: it may cancel
+    # a moment after we stop looking. Never report "still protects"; poll the whole
+    # window, then exit 8 so the rerun resumes.
+    b = FakeBroker(cancel_to="new")
+    out = go(b)
+    assert (out.code, out.state) == (EXIT_UNPROTECTED, "cancel_accepted_but_unconfirmed_rerun")
     assert b.posted() == []
 
 
