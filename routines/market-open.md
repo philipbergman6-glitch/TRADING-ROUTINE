@@ -190,9 +190,10 @@ protection.
 STEP 5 — Convert the fixed OTO leg to the trailing stop GTC (ADR 0002).
 Under v1 convert immediately after the fill; under v2 (rule 4) the fixed
 leg stays until the position is up +5% — the protection monitor
-(.github/workflows/protection-monitor.yml, runs every 30 min without Claude
-or the ledger) converts it then. Under v2, SKIP this step unless the
-monitor's last report shows a HOLD you are asked to resolve.
+(.github/workflows/protection-monitor.yml, scheduled for 30 min but GitHub
+fires it only ~2x/day at unpredictable times; no Claude, no ledger)
+converts it when it happens to run. Under v2 convert it yourself here when
+the +5% gate is met; do not defer to the monitor.
 ONLY after the STEP 4 gate (filled_qty == qty AND leg matches). Use scripts/replace_stop.py on
 the fixed leg: it validates first, cancels (shares are reserved), confirms
 the cancel, then places the trail — resumable, never a hand-written pair.

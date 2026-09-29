@@ -79,9 +79,11 @@ STEP 2 — Pull current state:
 bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 python3 scripts/blotter.py --check   # fill-based FIFO book must match positions
-The protection monitor (.github/workflows/protection-monitor.yml) runs every
-30 min without Claude or the ledger and may already have renewed, converted
-or tightened stops; read broker state, never assume what it did.
+The protection monitor (.github/workflows/protection-monitor.yml) is
+scheduled every 30 min but GitHub fires it only ~2x/day at unpredictable
+times. It may have renewed, converted or tightened stops; read broker state,
+never assume what it did, and never write in the log that it acted unless
+its run appears in `gh run list --workflow=protection-monitor.yml`.
 
 STEP 2b — On-entry ADR 0002 convergence (leftover fixed legs).
 Scan open orders from STEP 2 for leftover fixed protective sells —
