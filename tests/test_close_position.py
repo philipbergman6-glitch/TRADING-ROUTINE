@@ -142,3 +142,30 @@ def test_unavailable_state_after_cancel_is_incident_before_is_exit_4():
     broker.read = lambda *_a: (_ for _ in ()).throw(SystemExit(4))
     got = outcome(broker)
     assert (got.code, got.state) == (EXIT_NO_STATE, "broker_state_unavailable")
+
+
+def test_dead_prior_close_is_not_reused_rerun_sells_under_retry_id():
+    # An earlier run's close was recorded by the broker as rejected and the stop is
+    # already gone. Reusing cl-... would be refused as a duplicate forever (naked loop).
+    broker = FakeBroker(stop_status=None, existing={CID: {"id": "close-0", "status": "rejected"}})
+    got = outcome(broker)
+    assert (got.code, got.state) == (EXIT_OK, "close_submitted")
+    assert got.detail["client_order_id"] == CID + "-r1"
+    assert got.detail["dead_attempts"] == [{"client_order_id": CID, "status": "rejected"}]
+    assert broker.posted()[0]["client_order_id"] == CID + "-r1"
+
+
+def test_live_retry_attempt_is_authoritative_over_dead_first_attempt():
+    broker = FakeBroker(stop_status=None, existing={CID: {"id": "c0", "status": "canceled"},
+                                                    CID + "-r1": {"id": "c1", "status": "filled"}})
+    got = outcome(broker)
+    assert (got.code, got.state) == (EXIT_OK, "already_closed") and got.detail["client_order_id"] == CID + "-r1"
+    assert broker.posted() == []
+
+
+def test_all_retry_ids_dead_is_an_incident_not_a_silent_loop():
+    from scripts.close_position import MAX_RETRIES
+    existing = {close_client_id("AMD", NOW.date(), r): {"id": f"c{r}", "status": "rejected"}
+                for r in range(MAX_RETRIES + 1)}
+    got = outcome(FakeBroker(stop_status=None, existing=existing))
+    assert (got.code, got.state) == (EXIT_UNPROTECTED, "close_retries_exhausted_manual_exit_required")

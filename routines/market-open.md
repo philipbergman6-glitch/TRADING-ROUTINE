@@ -98,9 +98,10 @@ Exit 3 with `stop_never_lowered` → HOLD the fixed stop (intended state after a
 expiry renewal, not a failure); log "HOLD fixed SYM @ S" and skip to next order.
 Exit 0 → convert:
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --trail-percent 10 --json)
+    --price P --trail-percent 10 --json); VALIDATE_EXIT=$?
+[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-On exit 0:
+On VALIDATE_EXIT=0:
 # One resumable command — never a hand-written cancel/order pair. It validates
 # the replacement against the ACTUAL resting stop before cancel, confirms the
 # cancel, submits client_order_id rs-<id>, restores the old level on failure.
@@ -117,7 +118,7 @@ untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 
 failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
 8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
 email "UNPROTECTED SYM", log, STOP.
-On exit 3 → log violations, keep scanning. On exit 4 → STOP, email, exit.
+On VALIDATE_EXIT=3 → log violations, keep scanning. On VALIDATE_EXIT=4 → STOP, email, exit.
 
 STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
 DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
@@ -147,7 +148,8 @@ memory/SECTORS.json (commit it with the trade); a buy without a sector is
 refused. Pass --sector to validate_order to mirror it.
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-    --price P --stop-price STOP --sector "GICS Sector" --json)
+    --price P --stop-price STOP --sector "GICS Sector" --json); VALIDATE_EXIT=$?
+[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 Exit 0 = approved → proceed.
 Exit 3 = refused → skip this trade, log the violations verbatim to TRADE-LOG.
@@ -199,9 +201,10 @@ the fixed leg: it validates first, cancels (shares are reserved), confirms
 the cancel, then places the trail — resumable, never a hand-written pair.
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --trail-percent 10 --json)
+    --price P --trail-percent 10 --json); VALIDATE_EXIT=$?
+[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-On exit 0:
+On VALIDATE_EXIT=0:
 # One resumable command — never a hand-written cancel/order pair. It validates
 # the replacement against the ACTUAL resting stop before cancel, confirms the
 # cancel, submits client_order_id rs-<id>, restores the old level on failure.

@@ -79,9 +79,10 @@ Exit 3 with `stop_never_lowered` → HOLD the fixed stop (intended state after a
 expiry renewal, not a failure); log "HOLD fixed SYM @ S" and skip to next order.
 Exit 0 → convert:
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --trail-percent 10 --json)
+    --price P --trail-percent 10 --json); VALIDATE_EXIT=$?
+[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-On exit 0:
+On VALIDATE_EXIT=0:
 # One resumable command — never a hand-written cancel/order pair. It validates
 # the replacement against the ACTUAL resting stop before cancel, confirms the
 # cancel, submits client_order_id rs-<id>, restores the old level on failure.
@@ -108,9 +109,10 @@ stop, not a fresh trail — a fresh trail would restart its high-water mark and
 drop the stop. STEP 2b holds it fixed until a 10% trail would sit at/above it.
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --stop-price RENEW_STOP_PRICE --json)
+    --price P --stop-price RENEW_STOP_PRICE --json); VALIDATE_EXIT=$?
+[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-On exit 0:
+On VALIDATE_EXIT=0:
 REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --stop-price RENEW_STOP_PRICE); REPLACE_EXIT=$?
 # http_status is set only when this run submitted the order (not on resume).
 HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
@@ -129,7 +131,8 @@ unrealized_plpc <= -0.07, validate the sell through the risk engine first
 (paper + position coherence). Do NOT skip validate_order:
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --json)
+    --price P --json); VALIDATE_EXIT=$?
+[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 Exit 0 = approved → proceed.
 Exit 3 = refused → log violations verbatim; do not close.
@@ -179,9 +182,10 @@ Exit 2 = usage → STOP, fix inputs.
 
 Then validate the replacement protective sell (T1) before mutating:
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --trail-percent T --json)
+    --price P --trail-percent T --json); VALIDATE_EXIT=$?
+[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-On exit 0:
+On VALIDATE_EXIT=0:
 # One resumable command — never a hand-written cancel/order pair. It validates
 # the replacement against the ACTUAL resting stop before cancel, confirms the
 # cancel, submits client_order_id rs-<id>, restores the old level on failure.

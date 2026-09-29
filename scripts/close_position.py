@@ -46,13 +46,37 @@ from scripts.validate_mutation import validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
 CLOSE_PREFIX = "cl-"
+DEAD = frozenset({"canceled", "expired", "rejected"})
+MAX_RETRIES = 5
 
 
-def close_client_id(symbol: str, day) -> str:
-    cid = f"{CLOSE_PREFIX}{day:%Y%m%d}-{symbol.upper()}"
+def close_client_id(symbol: str, day, retry: int = 0) -> str:
+    """cl-<day>-<SYM>, then cl-<day>-<SYM>-r1.. once an earlier attempt died at the broker."""
+    cid = f"{CLOSE_PREFIX}{day:%Y%m%d}-{symbol.upper()}" + (f"-r{retry}" if retry else "")
     if not re.fullmatch(r"[A-Za-z0-9-]{1,48}", cid):
         raise ValueError(f"client_order_id {cid!r} is not broker-safe")
     return cid
+
+
+def _resolve_client_id(read, symbol, day):
+    """Walk cl-..., cl-...-r1, ... A live or filled attempt is authoritative; a dead one
+    (rejected/canceled/expired at the broker) must not be reused: the broker refuses a
+    duplicate client id, and with the stops already gone every rerun would end naked."""
+    dead = []
+    for retry in range(MAX_RETRIES + 1):
+        cid = close_client_id(symbol, day, retry)
+        prior = read("order-by-client", cid)
+        if not isinstance(prior, dict):
+            return cid, None, dead
+        status = prior.get("status")
+        if status in OPEN | {"partially_filled", "filled"}:
+            return cid, prior, dead
+        if status in DEAD:
+            dead.append({"client_order_id": cid, "status": status})
+            continue
+        raise ValueError(f"prior close {cid} has unexpected status {status!r}")
+    raise Outcome(EXIT_UNPROTECTED, "close_retries_exhausted_manual_exit_required", symbol=symbol,
+                  dead_attempts=dead)
 
 
 def _held(read, symbol):
@@ -94,10 +118,10 @@ def close_position(symbol: str, now: datetime, **deps) -> None:
 
 def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=validate_mutation,
                     sleep=time.sleep, polls=20):
-    cid = close_client_id(symbol, now.date())
-    # 0. Resume: a close from an earlier run is authoritative.
-    prior = read("order-by-client", cid)
-    if isinstance(prior, dict) and prior.get("status") in OPEN | {"partially_filled", "filled"}:
+    # 0. Resume: a live or filled close from an earlier run is authoritative; a dead
+    #    one is skipped and this run submits under the next retry id.
+    cid, prior, dead = _resolve_client_id(read, symbol, now.date())
+    if prior is not None:
         raise Outcome(EXIT_OK, "already_closing" if prior.get("status") != "filled" else "already_closed",
                       symbol=symbol, client_order_id=cid, order=prior)
 
@@ -154,7 +178,7 @@ def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=va
     placed = read("order-by-client", cid)
     if isinstance(placed, dict) and placed.get("status") in LIVE | {"partially_filled", "filled"}:
         raise Outcome(EXIT_OK, "close_submitted", symbol=symbol, client_order_id=cid, order=placed,
-                      http_status=http, stops_canceled=[str(o["id"]) for o in stops])
+                      http_status=http, stops_canceled=[str(o["id"]) for o in stops], dead_attempts=dead)
     raise Outcome(EXIT_UNPROTECTED, "close_failed_position_naked_rerun", symbol=symbol, client_order_id=cid,
                   http_status=http, reason=err or out, stops_canceled=[str(o["id"]) for o in stops])
 
