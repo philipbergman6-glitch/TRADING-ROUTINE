@@ -3236,3 +3236,30 @@ Not emailed — no action taken this scan.
 **Watch:** **MU AMC tonight** on XLK, the largest weight (21.33%) and the only materially profitable leg — its $177.246 trail is GTC and holds through the print by design; a gap below it fills worse, and that is a pre-priced cost, not a reason to act. **XLB's 0.97% cushion** — the $48.78 stop is the decision already made; do not pre-empt, do not lower. 10Y through ~5.25% against XLK and XLB simultaneously (~41% of the book on one factor). Crude ~$90 WTI / ~$103.5 Brent versus a green XLE — unresolved feed/tape disagreement, 6.10% cushion absorbs a session. Friday's September jobs report still ahead.
 
 ---
+
+### Sep 30 — Midday Scan (Day 112, Wednesday, core PCE + Q2 GDP 3rd est. / MU AMC)
+**No trading action.** STRATEGY_VERSION: v1 (env unset, declared v1.1, rulebook pinned — `strategy_version.py` exit 0). Env check: all six required vars set. LEDGER DISABLED (`DATABASE_URL` unset) — no validate/submit was required this scan, so no ledger rows either way. Blotter FIFO book matches broker positions (`blotter.py --check` ok, exit 0, no issues, 5 open lots). All 5 positions above the -7% cut threshold (worst XLB -3.80%); no name at a tighten trigger. 5 open protective sells, one per position, no duplicate and no orphan.
+
+- **MPC: $399.63 (+0.83% vs $396.33 fill, +1.94% intraday — the day's best leg)** — **trailing 10% $361.809 / hwm $402.01** (exp 12-29, d5bb3c5d), ~9.46% above stop. The morning's fixed→trailing conversion is working as intended: MPC printed a new high at $402.01 and **the trail auto-lifted $2.51 from the $359.3025 it was placed at**, protection rising with price for the first time on this name. Refining-margin / wide Brent–WTI thesis intact and still the strongest of the five.
+- **XLK: $196.54 (+4.63% vs entry, +0.84% intraday)** — **trailing 10% $177.354 / hwm $197.06** (934ca71d), ~9.76% above stop. New high-water mark (up from $196.94), so the trail lifted $0.108 on its own. Still the book's only materially profitable leg and its largest weight. **MU AMC tonight is unchanged as the book's one unhedged binary**; the GTC trail holds through the print by design.
+- **XLE: $61.985 (-3.03% vs entry, +0.86% intraday)** — trailing 10% $58.275 / hwm $64.75 (cac3cefd, unchanged — no new high), ~5.99% above stop. Green again into the ~$90 WTI / ~$103.5 Brent tape flagged pre-market. The feed/tape disagreement is **still unresolved, second session running**, but it is a known flag, not a thesis break — no Perplexity check.
+- **XLB: $49.13 (-3.80% vs entry, +0.06% intraday)** — fixed stop $48.78 GTC (exp 12-15, b51e2320), **~0.71% above stop — still the tightest cushion of the phase**, but *wider* than the 0.41% pre-market read: XLB held flat through the 8:30 core PCE print rather than firing. 3.2pp above the -7% cut. No pre-emptive exit, no stop lowering (rule 7), no add (band headroom nil).
+- **XLP: $81.405 (-2.81% vs entry, -0.54% intraday — the day's only red leg)** — fixed stop $79.91 GTC (exp 12-15, 1fed8260), **~1.84% above stop, in from 2.74% at the open — it has replaced XLB as the name losing ground fastest**. Drift on the yield backdrop, no name-level news.
+
+**STEP 2b (fixed-leg convergence):** two fixed legs remaining (XLB, XLP), both **HELD**, neither converted — `validate_stop_change.py` exit 3 `stop_never_lowered` on each: XLB $48.78 → fresh trail $44.22 at $49.13; XLP $79.91 → $73.26 at $81.405. Intended state, not a failure. Conversion triggers: **XLB ≥ ~$54.20, XLP ≥ ~$88.79.** MPC converted at the open and now carries a live trail; XLE/XLK already `trailing_stop`. **Three of five legs are now trailing, up from two.**
+
+**STEP 2c:** No stops within the ~90-day expiry window (`build_oto_order.py expiring` → `[]`, exit 0). Earliest expiry XLK 11-06.
+
+**STEP 3 (cut losers):** no position at or below -7% (worst XLB -3.80%). No validate, no close.
+
+**STEP 4 (tighten):** three resting trailing stops — MPC +0.83%, XLE -3.03%, XLK +4.63%. Engine `--print-required` = **10** for all three, equal to current trail: nothing to tighten. No name near the +15%/+20% ladder (best leg XLK +4.63%).
+
+**STEP 5 (thesis check):** no thesis broken intraday; no pre-emptive cuts. No sharp unexplained single-name move, so no STEP 6 research.
+
+Equity **$102,676.16** (+$366.56, **+0.36%** vs broker `last_equity` $102,309.60), cash $15,598.57 (15.19%), long market value $87,077.59 → deployment **84.81%** (`deployment_status.py` exit 0, mandate false, 0 sessions under band) — inside the 75-85% band but hard against its ceiling for a third straight session; band headroom ~$197, which is not a position in any name. Weights: MPC 5.06% · XLB 19.71% · XLE 18.78% · XLK 21.44% · XLP 19.82% (XLK over 20% on appreciation drift only — no trim, no adds). All five stops live and correct, **none lowered**; two lifted themselves on new highs (MPC, XLK). Week 1/3.
+
+**Watch:** **MU AMC tonight** on XLK (21.44%, the largest weight and the only materially profitable leg). **XLP's cushion at 1.84% and closing** — it, not XLB, was the leg that gave ground today. XLB steady at 0.71%; the $48.78 stop remains the decision already made. If XLB fires, proceeds ~$20,097, realized ~-$944, deployment drops to ~65% and rule 12's 3-session clock arms; a third rate-sensitive cyclical would be the wrong replacement. Crude ~$90 WTI against a green XLE, unresolved for a second session. Friday's September jobs report still ahead.
+
+Not emailed — no action taken this scan.
+
+---
