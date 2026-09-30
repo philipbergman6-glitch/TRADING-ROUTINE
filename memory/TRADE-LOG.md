@@ -3263,3 +3263,20 @@ Equity **$102,676.16** (+$366.56, **+0.36%** vs broker `last_equity` $102,309.60
 Not emailed — no action taken this scan.
 
 ---
+
+### Sep 30 — EOD Snapshot (Day 112, Wednesday, core PCE + Q2 GDP 3rd est. / MU AMC)
+**Portfolio:** $101,934.29 | **Cash:** $35,691.75 (35.01%) | **Day P&L:** -$394.84 (-0.39%) | **Phase P&L:** +$1,934.29 (+1.93%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| MPC | 13 | $396.33 | $395.32 | +0.84% | -$13.13 (-0.25%) | $363.663 (10% trail GTC, hwm $404.07) |
+| XLE | 311 | $63.92 | $61.39 | -0.24% | -$787.38 (-3.96%) | $58.275 (10% trail GTC, hwm $64.75) |
+| XLK | 112 | $187.85 | $195.30 | +0.41% | +$834.39 (+3.97%) | $177.354 (10% trail GTC, hwm $197.06) |
+| XLP | 250 | $83.76 | $80.55 | -1.59% | -$802.50 (-3.83%) | $79.91 (fixed GTC) |
+
+**Trades today:** **XLB SELL 412 @ $48.7699 — stop fired 19:50 UTC**, realized **-$947.79 (-4.50%)**, order b51e2320 (the $48.78 fixed GTC leg). No buys.
+**Week trades:** 1/3 (MPC 9/28; a stop-out is an exit, not a new position)
+
+**Notes:** **The XLB stop fired.** The 0.71% cushion flagged at midday — the tightest of the phase and carried since Monday — gave way in the afternoon: the $48.78 fixed GTC leg (b51e2320) filled 412 shares at **$48.7699** at 19:50 UTC for a realized **-$947.79 (-4.50%)** on a lot entered 6/29 at $51.0703. This was the decision already made on entry; it executed without intervention, no stop was ever lowered, and the loss landed well inside the -7% cut line. `blotter.py --check` ok (exit 0, no issues, 4 open lots) and the round-trip is on the record. Equity closed **$101,934.29, -$394.84 (-0.39%)** vs Monday's logged $102,329.13 snapshot (-$375.31/-0.37% off broker `last_equity` $102,309.60) — a third straight red close; phase P&L eases to **+1.93%** from +2.33%, the first time under +2% this phase. The book gave back the full midday gain (+0.36% at noon) and more: **XLP -1.59% to $80.55** was the day's worst leg by a wide margin and the driver of the reversal, drifting on the ~5.25% 10Y with no name-level news, and it now sits **0.80% above its $79.91 fixed stop — the tightest cushion in the book, in from 1.84% at midday and 2.74% at the open**. XLE -0.24% to $61.39 faded its green midday print (the ~$90 WTI feed/tape disagreement is now unresolved for a second session — a known flag, not a thesis break). Two green legs: **MPC +0.84% to $395.32** (-0.25% vs fill) held the day's best change and its morning fixed→trailing conversion kept working, the trail auto-lifting to **$363.663 on a $404.07 hwm** — $4.36 above where it was placed; **XLK +0.41% to $195.30** (+3.97%) set another new high at $197.06 and lifted its trail to $177.354. **MU reports AMC tonight** — XLK is 21.46% of the book, its only profitable leg, and the GTC trail holds through the print by design. 4 positions (≤6), all protected, one per position, no duplicate and no orphan: MPC 5.04% · XLE 18.73% · XLK 21.46% · XLP 19.76% (XLK over 20% on appreciation drift only — no trim). Three of four legs now trailing; XLP is the last fixed leg, HELD not converted (`stop_never_lowered`, trigger ≥ ~$88.79). No stop lowered, none tightened (no name near the +15%/+20% ladder — best leg XLK +3.97%). **Deployment dropped to 64.99%** ($66,242.54 / $101,934.29) on the XLB exit — **below the 75-85% band for the first time this phase**; `deployment_status.py` exit 0, `sessions_under_band: 0`, mandate false, target_notional $15,299. **Rule 12's 3-session clock arms tomorrow**; cash is $35,691.75 (35.01%), settled. Rule 14 has lapsed, so a replacement is unconstrained as to type — but a third rate-sensitive cyclical would be the wrong answer, and ~41% of the remaining book (XLK + XLP) already sits on the yield factor. Thursday: hold the book, no forced action — the deployment clock has two more sessions to run, and Friday's September jobs report is the week's last catalyst.
+
+---
