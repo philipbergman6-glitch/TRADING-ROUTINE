@@ -1,7 +1,7 @@
 """Heartbeat: every expected routine commit and workflow outcome for a trading day, nothing on holidays."""
-from datetime import date
+from datetime import date, datetime, timezone
 
-from scripts.heartbeat import EXIT_ISSUES, EXIT_OK, assess
+from scripts.heartbeat import EXIT_ISSUES, EXIT_OK, assess, assessment_date
 
 MON = date(2026, 9, 28)
 FRI = date(2026, 9, 25)
@@ -55,3 +55,9 @@ def test_monitor_needs_one_success_and_failures_of_others_are_flagged():
                       "workflow dashboard-data: 1 failed run(s) today, latest u"]
     runs[0]["conclusion"] = "success"
     assert assess(MON, True, GOOD_COMMITS, runs)["issues"] == ["workflow dashboard-data: 1 failed run(s) today, latest u"]
+
+
+def test_cron_delayed_past_utc_midnight_still_assesses_the_session_day():
+    # 2026-09-30: the 22:45Z cron fired at 01:34Z and assessed a day that had not started.
+    assert assessment_date(datetime(2026, 9, 30, 1, 34, tzinfo=timezone.utc)) == date(2026, 9, 29)
+    assert assessment_date(datetime(2026, 9, 29, 22, 45, tzinfo=timezone.utc)) == date(2026, 9, 29)

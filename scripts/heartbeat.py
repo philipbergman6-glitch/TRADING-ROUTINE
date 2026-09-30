@@ -32,6 +32,7 @@ import subprocess
 import sys
 import urllib.parse
 import urllib.request
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 EMAIL = ROOT / "scripts" / "email.sh"
@@ -46,6 +47,13 @@ EXPECTED_DAILY = {
 EXPECTED_FRIDAY = {"weekly-review": "weekly review"}
 MONITOR = "protection-monitor"
 MUST_NOT_FAIL = ("dashboard-data", "tests")
+EXCHANGE_TZ = ZoneInfo("America/New_York")
+
+
+def assessment_date(now: datetime) -> date:
+    """The session day to assess. GitHub can fire the 22:45Z cron hours late; the
+    exchange's date stays on the session until 04:00Z, the UTC date does not."""
+    return now.astimezone(EXCHANGE_TZ).date()
 
 
 def assess(today: date, trading_day: bool, commit_subjects: list[str], runs: list[dict]) -> dict:
@@ -113,9 +121,9 @@ def runs_today(repo: str, today: date) -> list[dict]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--no-email", action="store_true")
-    parser.add_argument("--date", help="YYYY-MM-DD (UTC) to assess; default today")
+    parser.add_argument("--date", help="YYYY-MM-DD to assess; default today in New York")
     args = parser.parse_args()
-    today = date.fromisoformat(args.date) if args.date else datetime.now(timezone.utc).date()
+    today = date.fromisoformat(args.date) if args.date else assessment_date(datetime.now(timezone.utc))
     repo = os.environ.get("GITHUB_REPOSITORY") or "philipbergman6-glitch/TRADING-ROUTINE"
     try:
         trading = trading_day_from_alpaca(today)
