@@ -7914,3 +7914,15 @@ Unchanged again — same Aug-31 snapshot as Friday and Monday. Book holds #1, #2
 - **All 4 stops active/correct; none lowered; earliest expiry XLK 11-06 — no refresh due.** No rebalancing. Week 1/3. Patience is still the default — but it is now patience with a two-session clock on it.
 
 ---
+
+### 2026-10-01 — AFTERNOON ADDENDUM (midday scan)
+
+**MPC +4.55% intraday to $413.41 — cause confirmed, thesis strengthening, not a policy headline.** Perplexity check (the one sharp unexplained move in the book):
+- Driver is a **repricing of the refining complex on margins, not a company event**: surging refinery crack spreads and tight distillate inventories; management commentary that global refined-product inventories remain **severely depleted** with margin recovery expected to take **six months or more**; **Venezuelan heavy crude imports** improving Gulf Coast yield economics. Analysts raised earnings estimates on the move.
+- **No diesel export ban news today.** No source supports a new announcement — the two-sided policy risk flagged pre-market has not fired in either direction. The "MPC 20% overvalued following diesel export ban review" note from this morning is therefore not what moved the stock, and the move is instead the fundamental case the position was opened on.
+- **Read-through:** MPC's thesis (refining margins / wide Brent–WTI feedstock spread) is intact and better-supported than at entry. It also raises, rather than lowers, the quality of **PSX** as the pre-vetted add: the same crack-spread driver, in the same #1 YTD sector — against the unchanged caveat that PSX would take energy/refining to ~34% of the book across XLE+MPC+PSX.
+- **XLE's decoupling resolved the right way:** +1.25% intraday into a higher barrel, after four sessions of fading it. Direction-only read on crude still applies; feed levels remain unusable.
+
+No other position needed research: XLK (+0.51%) is MU's beat holding, XLP (-0.25%) is the rates/fundamental deterioration already documented pre-market, XLE is above. **No change to the pre-market Decision — HOLD the book; no orders from the midday scan.**
+
+---

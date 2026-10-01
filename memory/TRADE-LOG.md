@@ -3313,3 +3313,31 @@ Not emailed — no action taken this scan.
 **Not emailed — no trade was placed** (routine STEP 7 notifies only on execution; routine STEP 2c owes no alert because no mandate was due).
 
 ---
+
+### Oct 1 — Midday Scan (Day 113, Thursday, jobless claims + ISM Mfg / Sep jobs TOMORROW)
+**No trading action.** STRATEGY_VERSION: v1 (env unset, declared v1.1, rulebook pinned — `strategy_version.py` exit 0). Env check: all six required vars set. LEDGER DISABLED (`DATABASE_URL` unset) — no validate/submit was required this scan, so no ledger rows either way. Blotter FIFO book matches broker positions (`blotter.py --check` ok, exit 0, no issues, 4 open lots). All 4 positions above the -7% cut (worst XLP -4.01%); no name at a tighten trigger. 4 open protective sells, one per position, no duplicate and no orphan.
+
+- **MPC: $413.41 (+4.31% vs $396.33 fill, +4.55% intraday — the book's standout and its best print ever)** — **trailing 10% $374.373 / hwm $415.97** (exp 12-29, d5bb3c5d), ~9.44% above stop. New high-water mark took the hwm from $404.07 to $415.97 and **the trail auto-lifted $10.71** off the $363.663 it carried into today — the second straight session the conversion done 9/30 has raised protection without intervention, and MPC's stop is now **$11.00 above the entry fill, the first leg of the phase to protect a gain rather than cap a loss**.
+- **XLK: $196.75 (+4.74% vs entry, +0.51% intraday)** — **trailing 10% $177.723 / hwm $197.47** (934ca71d), ~9.67% above stop. Another new high (hwm up from $197.20 at the open), trail lifted $0.243 on its own. **MU's beat is holding into the afternoon** — the book's one unhedged binary resolved in our favour and the largest weight is intact.
+- **XLE: $62.27 (-2.58% vs entry, +1.25% intraday)** — trailing 10% $58.275 / hwm $64.75 (cac3cefd, unchanged — no new high), ~6.42% above stop. **The four-session crude/tape decoupling finally resolved the right way**: XLE is green into a higher barrel instead of fading it, and the cushion widened from 5.76% at the open. Thesis intact.
+- **XLP: $80.40 (-4.01% vs entry, -0.25% intraday — the day's only red leg)** — fixed stop $79.91 GTC (exp 12-15, 1fed8260), **~0.61% above stop, the tightest cushion of the phase** (0.50% at the open, 0.67% pre-market). 3.21% above the -7% cut line at $77.90. Red again on a green tape, which is the whole point of this morning's Fundstrat/SSGA read — but **no new intraday information**, so no pre-emptive exit: the $79.91 stop is the decision already made (rule 11), and rule 7 forbids touching it.
+
+**STEP 2b (fixed-leg convergence):** one fixed leg remaining (XLP), **HELD**, not converted — `validate_stop_change.py --current-stop 79.91 --new-stop 72.36 --current-price 80.40` → **exit 3 `stop_never_lowered`** ("stop may never move down: 79.91 -> 72.36"). **HOLD fixed XLP @ $79.91.** Intended post-renewal state, not a failure. Conversion trigger unchanged: **XLP ≥ ~$88.79.** MPC/XLE/XLK already `trailing_stop` — three of four legs trailing.
+
+**STEP 2c:** No stops in the ~90-day expiry window (`build_oto_order.py expiring` → `[]`, exit 0). Earliest expiry XLK 11-06.
+
+**STEP 3 (cut losers):** no position at or below -7% (worst XLP -4.01%, 2.99pp above the line). No validate, no close.
+
+**STEP 4 (tighten):** three resting trailing stops — MPC +4.31%, XLE -2.58%, XLK +4.74%. Engine `--print-required` = **10** for all three, equal to current trail: **nothing to tighten, skipped per routine.** No name near the +15%/+20% ladder (best leg XLK +4.74%, MPC +4.31%).
+
+**STEP 5 (thesis check):** no thesis broken intraday; no pre-emptive cuts. XLP's fundamental deterioration was already named and priced into this morning's decision — nothing new arrived since, so it does not convert a logged HOLD into a cut.
+
+**STEP 6 (intraday research — MPC's +4.55% move):** Perplexity confirms the cause and it is **the documented thesis, strengthening**: surging refinery crack spreads and tight distillate inventories, management commentary that global refined-product inventories are severely depleted with margin recovery running six months or more, and Venezuelan heavy crude imports improving Gulf Coast yield economics; analysts raised estimates. **Explicitly NOT a diesel-export-ban headline** — no source supports one today, so the two-sided policy risk flagged pre-market has not fired in either direction. The refining-margin repricing is the driver, which is exactly what MPC was bought for. Addendum appended to RESEARCH-LOG.
+
+Equity **$102,588.28** (**+$556.00, +0.55%** vs broker `last_equity` $102,032.28 — and +$361.82 on the market-open read), cash $35,691.32 (34.79%), long market value $66,896.96 → deployment **65.21%** (`deployment_status.py` exit 0, `sessions_under_band: 1`, mandate **false**, `exemption_allowed` false, `target_notional` $15,173). Weights: XLK 21.48% · XLP 19.59% · XLE 18.88% · MPC 5.24% (XLK over 20% on appreciation drift only — no trim, no adds). Band floor needs **+$10,044.25**; ceiling allows **$20,303.08**. 4 positions (below the rule-3 5-6 range, second session). All four stops live and correct, **none lowered, none tightened**; two lifted themselves on new highs (MPC +$10.71, XLK +$0.243). Week 1/3.
+
+**Watch:** **XLP's 0.61% cushion** — effectively any red session fires the $79.91 stop; do not pre-empt, do not lower. If it fires: proceeds ~$19,977, realized **~-$962 (-4.6%)**, deployment drops to **~45.7%** and 3 positions, and rule 12's clock accelerates with no deferral available. The pre-commit stands: the replacement is PSX or CAT, **not** a third rate-sensitive defensive. **PSX remains the pre-vetted add and its book is still the only obstacle** — this morning's two attempts died on the mutation gate's `stop_distance` check because the ask oscillated across two venue states; `client_order_id` `en-20261001-PSX` is unused and available for a clean retry on a stable print. **Deployment clock: 1 of 3 under-band sessions** — if today and tomorrow close below 75%, the mandate falls due at the Monday 2026-10-05 market-open. On the morning's evidence the binding constraint is execution quality, not conviction or cash. **September jobs report TOMORROW (10/02)** is the week's labour binary.
+
+Not emailed — no action taken this scan.
+
+---
