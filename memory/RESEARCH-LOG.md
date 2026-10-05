@@ -8033,3 +8033,13 @@ No other position needed research: XLK (+0.51%) is MU's beat holding, XLP (-0.25
 - **All 5 stops active and correct; none lowered, none tightened, none hand-moved. Earliest expiry XLK 11-06 — no refresh due.** No rebalancing.
 
 ---
+### 2026-10-05 — Afternoon Addendum (Day 115, Monday, post-ISM Services)
+
+**Trigger:** MPC +2.98% and PSX +1.97% intraday — a sharp move in the book's refining pair with no cause in the pre-market entry. One Perplexity query (STEP 6), no action taken.
+
+- **Cause identified, and it is thesis-confirming, not idiosyncratic.** **Iran-related refined-product supply disruption has pushed crack spreads to record highs**, with US refiners serving demand previously met from the Persian Gulf. **OPEC+ (JMMC, Sunday 10/04) agreed to keep November production targets steady** — no incremental supply to compress product margins. **No verified 10/05 analyst action on either name** (Friday's TD Cowen $295 / Goldman $274 PSX revisions are the standing flow). So the move is a *refining-margin* repricing, not a crude-price shock — the exact decoupling MPC (9/28) and PSX (10/02) were bought on. **Both theses intact; no STEP 5 cut.**
+- **ISM Services (September) printed 54.9**, below the ~55.0 consensus and down from 55.4 — a soft miss. **It did not relieve the long end: the 10Y is ~5.29%, up from Friday's 5.24% close** (5.277% early, 5.291% at 10:08 ET; October hike odds ~14-20%). Yields near multi-decade highs with services still expanding is the least helpful combination for the book's two rate-sensitive legs, and it shows: **XLP +0.42% and XLK +0.38% are the day's laggards while the cyclicals run.**
+- **Read-across to the holds.** *XLE* finally joined the refiners (+1.23%, vs-entry loss down from -2.21% pre-market to -0.51%) — the first session in six where the ETF tracked the margin story instead of fading it. *XLP* +0.42% after MKC's pre-open staples print; cushion eased 0.86% → 1.19%, moving away from the $79.91 stop rather than into it. *XLK* held below its $201.39 hwm, so no ratchet.
+- **No new trade idea.** Headroom to the 85% ceiling is ~$5,017 — unchanged in substance from the pre-market framing: **sub-scale or nothing until a position is released.** Adding to refining on this print would deepen a 39.19% energy concentration that is already the book's dominant risk, so today's confirmation is a reason to hold the pair, not to size it up. Week 0/3; rule 11 governs.
+
+---
