@@ -1,9 +1,9 @@
-// ============ DATA — origin/main, latest log 2026-10-06 ============
+// ============ DATA — origin/main, latest log 2026-10-07 ============
 
 // Two independent dates. LOG_ASOF moves nightly with the trade log;
 // ANALYSIS_ASOF only moves when a human rewrites the editorial prose.
 // The dashboard shows both, so curated text can never pass as live.
-const LOG_ASOF = "2026-10-06";
+const LOG_ASOF = "2026-10-07";
 const ANALYSIS_ASOF = "2026-09-17";
 
 // {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}
@@ -118,7 +118,8 @@ const EQ = [
 {d:"2026-10-01",n:113,v:102909.79,cash:34.7,dp:0.96,note:""},
 {d:"2026-10-02",n:114,v:103268.31,cash:20.0,dp:0.35,note:""},
 {d:"2026-10-05",n:115,v:104115.94,cash:19.8,dp:0.82,note:""},
-{d:"2026-10-06",n:116,v:104530.87,cash:19.7,dp:0.40,note:""}
+{d:"2026-10-06",n:116,v:104530.87,cash:19.7,dp:0.40,note:""},
+{d:"2026-10-07",n:117,v:104538.19,cash:19.7,dp:0.01,note:""}
 ];
 
 // weekly reviews. spx = as logged that week (contemporaneous record);
@@ -150,12 +151,12 @@ const WEEKS = [
 {w:"10/02", bot:0.17, spx:0.03, spxc:0.03, est:0}
 ];
 
-const BOOK = [ // Oct 6 EOD
-{s:"MPC", q:13, in:396.33, pl:468.39, plp:9.09, stop:393.903, protection:"trailing", w:5.4},
-{s:"PSX", q:57, in:264.20, pl:318.63, plp:2.12, stop:244.638, protection:"trailing", w:14.7},
-{s:"XLE", q:311, in:63.92, pl:-53.42, plp:-0.27, stop:58.275, protection:"trailing", w:19.0},
-{s:"XLK", q:112, in:187.85, pl:1584.80, plp:7.53, stop:182.925, protection:"trailing", w:21.6},
-{s:"XLP", q:250, in:83.76, pl:-490.00, plp:-2.34, stop:79.91, protection:"fixed", w:19.6}
+const BOOK = [ // Oct 7 EOD
+{s:"MPC", q:13, in:396.33, pl:597.09, plp:11.59, stop:400.347, protection:"trailing", w:5.5},
+{s:"PSX", q:57, in:264.20, pl:422.94, plp:2.81, stop:248.22, protection:"trailing", w:14.8},
+{s:"XLE", q:311, in:63.92, pl:-162.27, plp:-0.82, stop:58.275, protection:"trailing", w:18.9},
+{s:"XLK", q:112, in:187.85, pl:1492.96, plp:7.10, stop:182.925, protection:"trailing", w:21.6},
+{s:"XLP", q:250, in:83.76, pl:-515.00, plp:-2.46, stop:79.91, protection:"fixed", w:19.5}
 ];
 
 const TRADES = [
@@ -192,7 +193,7 @@ const FEED = [
 {d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."}
 ];
 
-const RULES = [{"ok": "?", "c": "warn", "t": "Logged protection", "v": "4 trailing / 1 fixed; broker status unverified"}, {"ok": "?", "c": "warn", "t": "Historical rule compliance", "v": "not independently verified"}, {"ok": "✓", "c": "up", "t": "Logged deployment", "v": "80.3% as of 2026-10-06"}];
+const RULES = [{"ok": "?", "c": "warn", "t": "Logged protection", "v": "4 trailing / 1 fixed; broker status unverified"}, {"ok": "?", "c": "warn", "t": "Historical rule compliance", "v": "not independently verified"}, {"ok": "✓", "c": "up", "t": "Logged deployment", "v": "80.3% as of 2026-10-07"}];
 
 const RISK = [
 {t:"Evidence", v:"Markdown snapshots; broker reconciliation outstanding", c:"warn"},
