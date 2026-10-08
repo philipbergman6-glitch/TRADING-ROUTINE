@@ -8229,3 +8229,27 @@ No other position needed research: XLK (+0.51%) is MU's beat holding, XLP (-0.25
 - **All 5 stops active and correct. Earliest expiry XLK 11-06 — no refresh due.** No rebalancing. Next catalysts: **claims + Philly Fed 10/08**, **CPI 10/14**, **PPI 10/15 (or today — calendars conflict)**, **G7 frontloaded diesel release inside ~10/22**, **GEV Q3 10/28**, **PSX Q3 10/28**, **FOMC 10/28**, MPC Q3 11/03.
 
 ---
+### 2026-10-08 — Afternoon Addendum (Day 118, Thursday, midday scan 13:12-13:14 ET)
+
+**Trigger:** two moves the pre-market entry does not explain — **MPC +4.85% to $463.69**, an all-time high clear through every published target, and **XLP UP 2.00% on the very morning its negative catalyst landed.** Two Perplexity queries.
+
+**1. The refiner rally is an analyst-target reset plus a record diesel crack — no new policy event.**
+- **No US policy announcement on 10/08** is behind it. The driver is a rapid sequence of MPC target raises: **Goldman Sachs $376 → $472 (Buy)**, **Mizuho $304 → $457 (Neutral)**, **Morgan Stanley $265 → $453 (Overweight)**, **UBS $321 → $450 (Buy)**, **TD Cowen $375 → $450**.
+- **This retires the specific risk this morning's entry flagged** — "$0.75 through the nearest published target… the upside now has no analyst anchor above it." There are now **three targets above $450, high $472**, i.e. ~1.8% of headroom at the top of the range *after* today's move.
+- **Aggregator caveat:** Barron's shows a **$394.35** average across 22 ratings, MarketBeat **$379.94** across 17 — both far *below* spot. The raises are days old and the means are stale; **the consensus average is not a usable anchor in either direction right now.** Do not quote it as a bear or bull signal.
+- **Diesel economics hit a record.** **NYMEX ULSD closed $4.703/gal (+$0.080) → diesel crack over Brent ~$95.23/bbl**; one report calls a record **~$106/bbl**. Structurally larger: **Goldman raised its 2027 US diesel refining margin forecast to ~$63/bbl from ~$27** (EU $49 vs $19).
+- **This is the counterweight to Wednesday's G7 bear case, and both now stand on the record.** The release still lands inside ~10/22 and still adds inventory; the sell side is nonetheless underwriting extreme cracks *through 2027*, i.e. pricing the release as too small to break the scarcity. The book does not have to pick: MPC is on a **7% trail $34.79 above its fill**, PSX on 10%.
+- **Narrowing, not broadening:** the **3:2:1 crack spread fell $3.49 to $64.03/bbl** the same day the distillate spread set a record. The rally is **distillate-specific**. MPC and PSX are distillate-levered so this favours them, but the thesis is now narrower than "refining margins are strong." **No PSX-specific news or target change on 10/08** — its +3.30% is sector read-through.
+
+**2. The XLP/XLK split is a rates-and-duration rotation, not a staples re-rating.**
+- Claims consensus ~200k vs 197k prior. **The Philadelphia Fed actual was not retrievable — its impact is unverified and must not be asserted.**
+- The named driver is **elevated long-end yields into the 13:00 30Y auction** (judged against a prior **5.308%** high yield / **2.610** bid-to-cover), which pressures long-duration growth and bids defensives.
+- **XLK: rate sensitivity plus profit-taking in richly valued semis.** Semiconductors fell *despite* Samsung's record profit guidance; NVDA and AMD came off record highs; MU and SK Hynix lower; renewed "AI excess" commentary, including calls from prominent AI executives for slower development.
+- **PEP rose ~1.15% to ~$125.15 despite cutting FY core EPS growth to ~1-2% from 4-6%** (Q3 revenue and EPS beat, organic revenue narrowed to ~3%). The guidance cut was already discounted; the beat, international growth, pricing and shareholder returns won the day.
+- **Conclusion: XLP's good day is positioning, not fundamentals.** PEP's margin problem is unresolved, so **the $79.91 fixed stop stays exactly where it is** — the cushion widening from 2.19% to 4.10% is not a reason to move it, and a 10% trail would still sit at $75.00 (refused, `stop_never_lowered`).
+
+**Action taken this scan:** **MPC trailing stop tightened 10% → 7%** (rule 6, +15% rung cleared at +17.00%) — `validate_stop_change` exit 0, `validate_order` exit 0, executed via `replace_stop`/`protection_monitor`, new order **e138322d**, stop **$431.1201**, hwm $463.57, confirmed from broker state, 5/5 coverage intact. **No position opened or closed; week 0/3.** PSX and XLE trails lifted themselves on fresh high-water marks (**XLE's first new high since 9/24**).
+
+**Carry forward:** **MPC's +20% rung is $475.60 (2.57% away), where the required trail drops to 5%** — re-check `--print-required` on a live print, do not assume 7% is terminal. The **30Y auction result** is the day's unresolved item against **40.60% of the book**. Watch whether the distillate-only crack strength broadens or the 3:2:1 decline is the earlier signal.
+
+---
