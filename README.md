@@ -1,79 +1,114 @@
 # Trading Routine
 
-A paper-trading research platform: an agent proposes decisions, a deterministic
-risk engine checks orders, and broker state must be reconciled before the
-results can be trusted. The primary objective is to learn and prove the system
-before using real money. There is no live-trading override.
+An AI-assisted paper-trading system that runs itself every market day. A
+Claude agent researches the market, proposes trades, and writes the reports.
+A deterministic Python risk engine decides whether any order is allowed to
+reach the broker. Nothing trades without passing the engine.
 
-[Dashboard](https://philipbergman6-glitch.github.io/TRADING-ROUTINE/dashboard/) ·
-[Architecture](ARCHITECTURE.md) · [Vocabulary](CONTEXT.md) ·
-[September 17 diagnosis](docs/audits/2026-09-17/REPORT.md) ·
-[Implementation status](docs/audits/2026-09-17/IMPLEMENTATION.md)
+**[Live dashboard](https://philipbergman6-glitch.github.io/TRADING-ROUTINE/dashboard/)** ·
+[Architecture](ARCHITECTURE.md) · [Strategy spec](docs/STRATEGY-SPEC.md) ·
+[Results audit](docs/research/0006-paper-results-reconciliation.md) ·
+[Decision records](docs/adr/)
 
-For development sessions, start with [AGENTS.md](AGENTS.md) and the current
-[engineering handoff](docs/PROJECT-STATUS.md). Claude uses the same instructions
-through `CLAUDE.md`.
+## At a glance
+
+| | |
+|---|---|
+| Running since | 2026-04-27 on an Alpaca paper account ($100,000 start) |
+| Scheduled routines | Four per trading day, every trading day, plus a Friday review |
+| Risk engine | Pure Python, no I/O, every money value a `Decimal` |
+| Tests | 405 (384 offline, 21 against a real Postgres in CI) |
+| Monitoring | Independent protection monitor plus a daily heartbeat that emails on any miss |
+| Broker safety | Paper endpoints only, hard-coded; every mutation re-validated against its exact payload |
+
+## How a trading day runs
+
+Each routine is a markdown instruction file the cloud agent reads fresh on
+every run. The agent proposes. The scripts decide.
+
+1. **Pre-market** (`routines/pre-market.md`): catalysts, macro context, two or
+   three candidate ideas. Default answer is HOLD.
+2. **Market open** (`routines/market-open.md`): each candidate goes through
+   `validate_order.py` and, if accepted, `submit_entry.py`. A buy is always a
+   bracket: market entry plus a fixed protective stop in one atomic order.
+3. **Midday** (`routines/midday.md`): cut losers at the rule threshold, tighten
+   stops on winners through `replace_stop.py`, re-check each thesis.
+4. **End of day** (`routines/daily-summary.md`): P&L, equity snapshot to the
+   trade log, one email.
+5. **Weekly review** (Fridays): statistics, a letter grade, lessons, and any
+   proposed rule change for the next version.
+
+Every run commits its log to `memory/`. The dashboard is rebuilt from those
+logs by GitHub Actions, so what you see on the page is what the agent wrote.
+
+## What keeps it safe
+
+- **Agent is advice-only.** `/conviction` and research routines never place
+  orders. Only `submit_entry.py`, `close_position.py` and `replace_stop.py`
+  touch the broker, and each one validates first.
+- **Risk engine is pure.** `risk_engine/` has no network, database or clock
+  access. It takes a snapshot and a proposal and returns accept or reject with
+  a reason. Float input is rejected at the boundary.
+- **Exact-payload validation.** `scripts/alpaca.sh` refuses any non-paper
+  endpoint before credentials are loaded, and re-runs `validate_mutation.py` on
+  the exact JSON body of every order, cancel or replace.
+- **Stops never go backwards.** Stop replacement validates before cancelling,
+  confirms the cancel, restores the old level on failure, and resumes
+  idempotently on rerun. The broker's actual resting stop price is the floor.
+- **Independent protection monitor.** A separate GitHub Actions job, with no
+  Claude involved, checks that every position has a live protective stop and
+  renews or tightens per the ladder.
+- **Heartbeat.** After each close a job confirms every expected routine
+  committed, the monitor succeeded, and no workflow failed. A miss sends email.
+- **Versioned strategy.** `STRATEGY_VERSION` selects a frozen parameter set in
+  `risk_engine/versions.py`. The rulebook file is sha256-pinned, and
+  `strategy_version.py` hard-fails before any order if version and pin disagree.
 
 ## Components
 
 | Component | Responsibility |
 |---|---|
-| `risk_engine/` | Pure rules, order/protection payloads, snapshot coverage checks |
-| `scripts/validate_order.py` | Proposed-order preflight and optional Postgres decision record |
-| `scripts/validate_mutation.py` | Validate the exact broker mutation against current account and asset data |
-| `scripts/submit_entry.py`, `scripts/close_position.py`, `scripts/replace_stop.py` | Idempotent buy, recovered exit, resumable stop replacement |
-| `scripts/protection_monitor.py` | Scheduled protection check and actions without Claude or the ledger |
-| `scripts/blotter.py` | Fill-based round trips, cooldown and sector streaks |
-| `scripts/alpaca.sh` | Exact paper endpoint, mutation gate, bounded transport and HTTP status |
-| `ledger/` | Postgres decisions, broker responses and append-only audit events |
-| `memory/` | Agent context and historical observations; not independently reconciled accounting |
-| `routines/` | Scheduled research, execution instructions and reporting |
-| `docs/dashboard/` | Generated log observations plus explicitly dated commentary |
+| `risk_engine/` | Rules, sizing, order and protection payloads, coverage checks, fill-based blotter |
+| `scripts/validate_order.py` | Pre-flight for a proposed buy: cash, sizing, sector cap, cooldown, stop distance |
+| `scripts/validate_mutation.py` | Validate the exact broker payload against current account and asset data |
+| `scripts/submit_entry.py` | Idempotent buy with protective leg |
+| `scripts/close_position.py` | Recovered exit: cancel stop, confirm, sell, confirm |
+| `scripts/replace_stop.py` | Resumable stop replacement with restore on failure |
+| `scripts/protection_monitor.py` | Scheduled coverage check and actions without Claude |
+| `scripts/heartbeat.py` | Daily liveness check, emails on a miss |
+| `scripts/blotter.py` | FIFO round trips, cooldowns and sector streaks from broker fills |
+| `scripts/alpaca.sh` | The only broker transport: paper-only, mutation gate, bounded timeouts |
+| `ledger/` | Optional Postgres record of decisions, broker responses and audit events |
+| `memory/` | Strategy rulebook, trade log, research log, weekly reviews |
+| `routines/` | The instruction files the scheduled agent runs |
+| `docs/dashboard/` | Generated dashboard, published through GitHub Pages |
 
-Strategy constants are versioned (`risk_engine/versions.py`): `STRATEGY_VERSION`
-selects `v1` (frozen baseline) or `v2`; unset means `v1`, unknown is a hard error.
-`ALPACA_RISK_OK=1` expresses caller intent. It does not bypass the mutation
-validator. Buys must be GTC market OTO orders with a fixed protective leg at the
-version's entry distance (v1 10%, v2 7%, ±0.5%). Under v2 a buy also needs a GICS
-sector in `memory/SECTORS.json`, at most two positions per sector, no sector ETFs,
-and no re-entry within ten sessions of the last exit (from broker fills). Asset class and fresh ask are checked at submit;
-pending buys block another buy. Market fills can still differ from the quote.
-Stop-tightening validation requires the broker's actual resting stop price,
-preserving its previous high-water mark across replacement. Stop replacement
-runs through `scripts/replace_stop.py`, which validates before cancelling,
-confirms the cancel, restores the old level on failure and resumes on rerun.
+## Results so far
 
-## Current limits
+Equity, benchmark comparison and the open book are on the
+[dashboard](https://philipbergman6-glitch.github.io/TRADING-ROUTINE/dashboard/),
+rebuilt nightly from the logs. The full order, fill and fee history was pulled
+read-only and reconciled to equity exactly in
+[research 0006](docs/research/0006-paper-results-reconciliation.md). The
+[strategy assessment](docs/STRATEGY-ASSESSMENT.md) grades each rule
+keep/modify/discontinue, and [STRATEGY-SPEC.md](docs/STRATEGY-SPEC.md) freezes
+v1 and specifies v2 so that forward results can be scored per version.
 
-This remains an experimental paper system. Direct access to broker credentials
-is not isolated from the agent. Cross-process account reservations remain
-unimplemented; idempotency is per client ID, not a durable intent store. The
-protection monitor workflow runs on GitHub but its 30-min cron is throttled to
-about two runs a day, so it is a coverage check, not continuous protection. The ledger is optional in cloud routines; the fill-based blotter, not the
-ledger, is the accounting record.
-
-The latest committed equity snapshot and benchmark periods are displayed on
-the dashboard. They are log-derived, with reconstructed history and estimated
-benchmark weeks. Historical rule compliance and live protection are not
-certified; incomplete realized P&L/win-rate figures are withheld.
-
-## Local checks
+## Run it locally
 
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -e ".[dev]"
-.venv/bin/python -m pytest -q
+.venv/bin/python -m pytest -q -m 'not integration'
 .venv/bin/python scripts/doctor.py
 .venv/bin/python scripts/build_dashboard_data.py --check
 ```
 
-The doctor command checks local log parsing and dashboard consistency.
-`--broker` additionally reads the paper account's positions and open orders to
-compare remaining protective quantities and expiries. It does not place orders,
-repair protection, or send notifications. Exit 4 means a check failed or state
-was unavailable. Offline success does not imply verified broker protection.
+`doctor.py` checks log parsing and dashboard consistency. Add `--broker` to
+compare the paper account's positions and open orders against expected
+protection (read-only). Configuration names are in `env.template`.
 
-The database tests need the ledger extra and an isolated Postgres database:
+Ledger tests run against an isolated Postgres:
 
 ```bash
 .venv/bin/pip install -e ".[dev,ledger]"
@@ -81,22 +116,16 @@ docker compose up -d
 DATABASE_URL=postgresql://trading:trading@localhost:5433/trading .venv/bin/python -m pytest -q
 ```
 
-Do not point integration tests at a production ledger.
+## Working on the code
 
-## Scheduled routines
+Start with [AGENTS.md](AGENTS.md), which maps each kind of task to the files
+and tests that own it, and the current
+[engineering handoff](docs/PROJECT-STATUS.md). Durable design decisions live in
+[docs/adr/](docs/adr/). Both Codex and Claude follow the same instructions
+through `CLAUDE.md`.
 
-Use the thin prompts in [routines/README.md](routines/README.md). Each cloud
-routine syncs the repository and reads its current instruction file. Full
-prompt copies in the scheduler become stale. Market-open and midday still
-coordinate execution through instructions; their recovery behavior is not yet
-a deterministic state machine.
+## Roadmap
 
-Research and reporting routines must not place orders. The ad-hoc `/conviction`
-command produces advice; `/trade` executes through the same validation path.
-
-## Next milestone
-
-Finish a durable execution coordinator and independent reconciliation, then
-reconcile accounting and run a versioned forward paper experiment against
-simple baselines. See the implementation status for completed changes,
-remaining proof gates and deployment limits.
+- Run the v2 rulebook as a scored 30-session paper segment at $10,000.
+- Durable execution coordinator with cross-process reservations.
+- Replace log tails in routines with a generated state brief.
