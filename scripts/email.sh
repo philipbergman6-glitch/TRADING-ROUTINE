@@ -39,7 +39,7 @@ print(json.dumps({
 }))
 " "$EMAIL_FROM" "$EMAIL_TO" "Trading Brief — $stamp" "$msg")"
 
-curl -fsS -X POST https://api.resend.com/emails \
+curl --connect-timeout 10 --max-time 60 -fsS -X POST https://api.resend.com/emails \
   -H "Authorization: Bearer $RESEND_API_KEY" \
   -H "Content-Type: application/json" \
   -d "$payload"

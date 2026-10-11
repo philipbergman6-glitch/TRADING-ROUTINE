@@ -42,7 +42,9 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:16-alpine
+        # Pulled from the public ECR mirror of the Docker official image: the
+        # Docker Hub anonymous pull limit failed this job on 2026-10-09.
+        image: public.ecr.aws/docker/library/postgres:16-alpine
         env:
           POSTGRES_USER: trading
           POSTGRES_PASSWORD: trading

@@ -31,7 +31,7 @@ print(json.dumps({
 }))
 " "$MODEL" "$query")"
 
-curl -fsS https://api.perplexity.ai/chat/completions \
+curl --connect-timeout 10 --max-time 120 -fsS https://api.perplexity.ai/chat/completions \
   -H "Authorization: Bearer $PERPLEXITY_API_KEY" \
   -H "Content-Type: application/json" \
   -d "$payload"

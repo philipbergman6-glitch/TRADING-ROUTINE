@@ -86,8 +86,8 @@ Round trips, cooldown and sector streaks come from broker fills via
 
 `risk_engine/` performs no I/O: no network, no database, no clock. Consequences:
 
-- Every rule is exhaustively testable, which is why 57 tests cost almost
-  nothing to write and run in 0.03s.
+- Every rule is exhaustively testable, which is why the offline suite (384
+  tests as of 2026-10-11) needs no broker, no database and no network.
 - The rules can be reasoned about without a broker account.
 - The dangerous, untestable part (network calls to a broker) is pushed to the
   edges where it belongs.
@@ -177,8 +177,9 @@ than one described aspirationally.
   compares held quantities against current, unexpired GTC protective orders via
   `risk_engine.reconciliation`. It flags missing, excess and ambiguous coverage.
   `scripts/protection_monitor.py` on the `protection-monitor` workflow adds
-  the scheduled loop with renew/convert/tighten and email on any issue; it
-  needs repository secrets and has not yet been observed running.
+  the scheduled loop with renew/convert/tighten and email on any issue.
+  Secrets were set and the first dry run observed on 2026-09-29; it has run on
+  schedule since, about twice a day because GitHub throttles the cron.
 - **Scheduled routine gates (T1 + T2).** `market-open` and `midday` (and `/trade`)
   instruct `scripts/validate_order.py` before every order-mutating `alpaca.sh`
   path; `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) with

@@ -1,9 +1,61 @@
 # Engineering handoff
 
-Updated: **2026-09-20**. Baseline for this session: verified GitHub main
-**`8de4a1b`** (PR #82, the versioned strategy spec). This session's work is on
-branch `exec/controls-v2` and lands as one squash-merged PR. GitHub issue
-status was not checked.
+Updated: **2026-10-11**. Baseline for this session: GitHub main at
+**`fff4005`** (dashboard data 2026-10-09). Work is on branch
+`ccr-9a90c20f-gs8rvi`. Previous handoff (2026-09-20, baseline `8de4a1b`) is
+preserved below as history.
+
+## Latest session: presentation review and sync (2026-10-11)
+
+Read-only diagnosis of the whole project for presentation accuracy, plus the
+small fixes it turned up. No orders, emails, broker calls or configuration
+changes were made.
+
+- `README.md` rewritten: full-flow Mermaid diagram, the risk-committee
+  questions with the code that answers each, results stated with their
+  measurement dates and sources, enforced-versus-instructed table, deliberate
+  gaps, repository map. Numbers were taken from research 0006, the
+  2026-10-09 EOD snapshot and the dashboard data, not from memory.
+- `ARCHITECTURE.md`: replaced the stale "57 tests in 0.03s" and "monitor not
+  yet observed running" lines. The monitor has 30 scheduled runs since
+  2026-09-29, about two a day.
+- `.github/workflows/tests.yml`: the ledger job now pulls
+  `public.ecr.aws/docker/library/postgres:16-alpine`. On 2026-10-09 the
+  `weekly review` push failed CI on Docker Hub's anonymous pull limit
+  (run 37991483501); the heartbeat caught it and emailed, as designed.
+- `scripts/email.sh` and `scripts/perplexity.sh`: curl now has connect and
+  total timeouts. Both were unbounded. The protection-monitor run on
+  2026-10-05 (run 37373280099) was cancelled at the 15-minute job timeout;
+  its logs have expired so the hang point is unknown, and this removes one
+  candidate. If it recurs, capture the log before it ages out.
+
+Observations not changed in this session, for the owner:
+
+- GitHub has 22 open issues and several describe problems the code has since
+  fixed (#15 engine bypass, #16 command copies without safety steps, #17 PDT,
+  #38 close-then-cancel). An interviewer browsing the tracker will read them
+  as current. Close or annotate them.
+- Market-open commits nothing on a no-trade day (none since 2026-10-02, all
+  five held), so neither git nor the heartbeat can show it ran. A one-line
+  `market-open held <date>` commit, or an email, would close that gap.
+- `STRATEGY_VERSION` is still unset everywhere; the account trades v1.1. The
+  v2 segment in `STRATEGY-SPEC.md` has not started.
+- The 2026-09-20 verification table below is historical; current counts are
+  in the table that follows.
+
+## Verification on 2026-10-11
+
+| Check | Result |
+|---|---|
+| `env -u DATABASE_URL .venv/bin/python -m pytest -q -m 'not integration'` | 384 passed, 1 skipped (ledger module needs psycopg), 1 integration test deselected |
+| `.venv/bin/python scripts/doctor.py` | ok; last log 2026-10-09; dashboard current; ledger not configured; broker not verified |
+| `.venv/bin/python scripts/build_dashboard_data.py --check` | Committed generated data reproduced |
+| `git diff --check` | Clean |
+| `bash -n scripts/email.sh scripts/perplexity.sh` | Clean |
+
+The Postgres integration suite, the broker, the email path and the workflows
+were not exercised from this session; workflow history was read through the
+GitHub API.
 
 ## Where the project stands
 
