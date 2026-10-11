@@ -302,7 +302,7 @@ def parse_weekly_review(text):
 # editorial does not. The dashboard surfaces both so a stale narrative can
 # never sit behind a "LIVE" badge. When you revise the prose below, bump
 # ANALYSIS_ASOF in the same commit.
-ANALYSIS_ASOF = "2026-09-17"
+ANALYSIS_ASOF = "2026-10-11"
 
 #
 # TRADES / FEED / RULES / RISK / INSIGHTS and the per-date chart notes are
@@ -341,6 +341,12 @@ EQ_NOTES = {
     "2026-08-04": "Fresh phase high — all 3 green on cost",
     "2026-08-07": "Rule 12 written: deployment backstop after 3 idle sessions",
     "2026-08-10": "Rule 12 fires: XLK bought — 60.4% → 80.2%, back in band",
+    "2026-09-17": "Rule 12 fires again: XLE — sixth correlated ETF, rule 14 written a week later",
+    "2026-09-18": "Broker reconciliation: +3.28% vs SPY +7.04% on identical dates",
+    "2026-09-28": "MPC — first single name since GOOGL (rule 14 composition mandate)",
+    "2026-09-30": "XLB stop fired: −$947.79 (−4.50%)",
+    "2026-10-02": "PSX added by choice, one session before rule 12 fell due",
+    "2026-10-09": "Phase high +5.78%; best week +2.43% vs S&P +0.91%; zero trades",
 }
 
 STATIC_TAIL = '''\
@@ -357,9 +363,12 @@ const TRADES = [
 {d:"Jun 25", s:"GOOGL",sec:"tech", q:62,  in:"336.36", out:"322.93 · stop Jul 23", pl:{v:"−833", up:0}, th:"+10.55% high given back"},
 {d:"Jun 25", s:"XLF",  sec:"etf",  q:390, in:"53.97",  out:"53.83 · rotation", pl:{v:"−53", up:0}, th:"Financials thesis broke"},
 {d:"Jun 29", s:"XLI",  sec:"etf",  q:116, in:"182.16", out:"168.58 · Sep 14 stop", pl:{v:"−1,575.36", up:0}, th:"Industrials leader; exit recorded Sep 14"},
-{d:"Jun 29", s:"XLB",  sec:"etf",  q:412, in:"51.07",  out:"OPEN", open:1, pl:null, th:"Materials #2"},
-{d:"Jun 30", s:"XLP",  sec:"etf",  q:250, in:"83.76",  out:"OPEN", open:1, pl:null, th:"Defensive diversifier"},
-{d:"Aug 10", s:"XLK",  sec:"etf",  q:112, in:"187.85", out:"OPEN", open:1, pl:null, th:"Rule 12 deployment backstop — first tech since GOOGL"}
+{d:"Jun 29", s:"XLB",  sec:"etf",  q:412, in:"51.07",  out:"48.77 · Sep 30 stop", pl:{v:"−947.79", up:0}, th:"Materials #2; renewed fixed leg fired at −4.50%"},
+{d:"Jun 30", s:"XLP",  sec:"etf",  q:250, in:"83.76",  out:"OPEN", open:1, pl:null, th:"Defensive diversifier; last fixed leg in the book"},
+{d:"Aug 10", s:"XLK",  sec:"etf",  q:112, in:"187.85", out:"OPEN", open:1, pl:null, th:"Rule 12 deployment backstop — first tech since GOOGL"},
+{d:"Sep 17", s:"XLE",  sec:"enrg", q:311, in:"63.92",  out:"OPEN", open:1, pl:null, th:"Rule 12 mandate, session 3 under band; Energy #1 YTD"},
+{d:"Sep 28", s:"MPC",  sec:"enrg", q:13,  in:"396.33", out:"OPEN", open:1, pl:null, th:"Rule 14 single name: crack spreads, distillate draw; ladder fired at +15%"},
+{d:"Oct 02", s:"PSX",  sec:"enrg", q:57,  in:"264.20", out:"OPEN", open:1, pl:null, th:"Discretionary add on jobs day, one session before rule 12 fell due"}
 ];
 
 const FEED = [
@@ -375,22 +384,30 @@ const FEED = [
 {d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."},
 {d:"08/07", b:"sys",  x:"Weekly review writes <b>Rule 12 into the strategy itself</b>: below-band for 3 sessions ⇒ next market-open MUST add. Verbatim: <i>'patience was masking non-compliance.'</i>"},
 {d:"08/10", b:"trade",x:"<b>Rule 12 fires on its own deadline</b> — XLK 112 @ $187.85. Deployment 60.4% → 80.2%, back in band after 12 sessions out; first tech exposure since the GOOGL stop."},
-{d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."}
+{d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."},
+{d:"09/17", b:"sys",  x:"Audit: exact-payload mutation gate, paper-only endpoints with no override, resumable stop replacement. Every broker mutation now re-validates the bytes it sends."},
+{d:"09/19", b:"sys",  x:"<b>Broker reconciliation to the cent.</b> +3.28% vs SPY +7.04% on identical dates, max drawdown −10.3% vs −4.5%. Verdict on record: <i>do not fund the current rulebook</i>; freeze as v1, specify v2."},
+{d:"09/25", b:"sys",  x:"Rule 14 written: the next new position <b>must be a single name</b> while the book is all ETFs. Rulebook sha256-pinned; routines refuse to run on an unpinned edit."},
+{d:"09/29", b:"sys",  x:"<b>Protection monitor live on GitHub Actions</b> — no Claude, no ledger. Heartbeat emails on any missed routine or failed workflow."},
+{d:"09/30", b:"cut",  x:"XLB fixed leg fires at $48.77: <b>−$947.79 (−4.50%)</b>. Stop held since the Sep 18 renewal; never lowered."},
+{d:"10/02", b:"trade",x:"PSX 57 @ $264.20 by choice on jobs day — <b>one session before rule 12 would have compelled it</b>. 5 positions, 80% deployed, back in band."},
+{d:"10/09", b:"sys",  x:"Best week of the phase: <b>+2.43% vs S&amp;P +0.91%</b> with zero trades. Rule 6 ladder fired for the first time on MPC at +15%; trail now locks a gain."},
+{d:"10/11", b:"sys",  x:"<b>Segment 0001 predeclared</b>: rulebook v1.1, prompt and rulebook hashes frozen, model ids recorded, scored from 2026-10-13 on broker closes. CI fails if either hash drifts while the segment is open."}
 ];
 
 const RULES = __RULES_JSON__;
 
 const RISK = [
-{t:"Evidence", v:"Markdown snapshots; broker reconciliation outstanding", c:"warn"},
-{t:"Execution", v:"Recovery across interrupted routines remains unproven", c:"warn"},
-{t:"Benchmark", v:"Some weeks estimated; see comparison labels", c:"warn"}
+{t:"Evidence", v:"Broker-reconciled to the cent through 2026-09-18; sessions since are log-derived until the next reconciliation", c:"warn"},
+{t:"Execution", v:"Entry, exit and stop replacement resume by client id; cancel→place is recoverable, not atomic; no cross-process reservation", c:"warn"},
+{t:"Benchmark", v:"SPY weekly closes; three early weeks estimated, see labels; no scored segment before 2026-10-13", c:"warn"}
 ];
 
 // Commentary as of __ANALYSIS_ASOF__; not a live safety certification.
 const INSIGHTS = [
-{c:"var(--amber)", n:"01", h:"Prove the system before real money.", p:"The current objective is a recoverable paper execution path and independently reconciled performance. A green unit-test suite alone does not establish continuous protection or a profitable strategy."},
-{c:"var(--cyan)", n:"02", h:"Keep the evidence visible.", p:"The equity curve and current book are generated from dated logs. The historical blotter below is incomplete; use it as an archive, not a complete realized-return or win-rate calculation. Benchmark weeks marked estimated remain provisional."},
-{c:"var(--violet)", n:"03", h:"Test whether the decisions add value.", p:"Freeze an experiment specification and compare prospective agent decisions with passive and simple mechanical baselines, on matching dates and after modeled costs. Record predictions before trades and version every strategy change."}
+{c:"var(--amber)", n:"01", h:"The risk machinery works. The selection does not yet.", p:"Reconciled to the broker: +3.28% against SPY +7.04% with twice the drawdown. Two trades made $9,820, thirteen lost $6,169. The protective stops, the mutation gate and the resumable execution scripts have run clean for fourteen weeks. The recommendation on record is to not fund this rulebook."},
+{c:"var(--cyan)", n:"02", h:"Keep the evidence visible.", p:"The equity curve and the book are generated from dated logs and reconciled to broker fills to 2026-09-18. The blotter above is the fill history, not a win-rate claim. Benchmark weeks marked estimated remain provisional. Protection is checked independently of the model about twice a day and on demand by doctor --broker."},
+{c:"var(--violet)", n:"03", h:"Score a predeclared segment, then decide.", p:"Segment 0001 opens 2026-10-13 on rulebook v1.1 with its hashes and model ids frozen in docs/experiments. Returns are scored on broker closes against SPY and an exposure-matched SPY. The v2 rulebook starts its own segment once the two owner decisions in the spec are written down."}
 ];
 '''
 

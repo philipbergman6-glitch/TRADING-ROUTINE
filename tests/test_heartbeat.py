@@ -25,18 +25,21 @@ def test_holiday_expects_nothing():
 def test_missing_midday_and_eod_are_named():
     r = assess(MON, True, ["pre-market research 2026-09-28"], GOOD_RUNS)
     assert r["exit"] == EXIT_ISSUES
-    assert sorted(i.split(":")[0] for i in r["issues"]) == ["routine eod", "routine midday"]
+    assert sorted(i.split(":")[0] for i in r["issues"]) == ["routine eod", "routine market-open", "routine midday"]
 
 
 def test_yesterdays_commit_does_not_count():
     stale = [s.replace("2026-09-28", "2026-09-25") for s in GOOD_COMMITS]
     r = assess(MON, True, stale, GOOD_RUNS)
-    assert len(r["issues"]) == 3
+    assert len(r["issues"]) == 4
 
 
-def test_market_open_is_optional():
-    r = assess(MON, True, [s for s in GOOD_COMMITS if "market-open" not in s], GOOD_RUNS)
-    assert r["issues"] == []
+def test_market_open_must_leave_a_commit_even_when_it_holds():
+    without = [s for s in GOOD_COMMITS if "market-open" not in s]
+    r = assess(MON, True, without, GOOD_RUNS)
+    assert r["issues"] == ["routine market-open: no commit 'market-open trades 2026-09-28' "
+                           "or 'market-open held 2026-09-28' on main"]
+    assert assess(MON, True, without + ["market-open held 2026-09-28"], GOOD_RUNS)["issues"] == []
 
 
 def test_friday_requires_weekly_review():

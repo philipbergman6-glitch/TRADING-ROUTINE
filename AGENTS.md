@@ -57,8 +57,14 @@ Use `.venv/bin/python` when available; setup is in `README.md`.
 env -u DATABASE_URL .venv/bin/python -m pytest -q -m 'not integration'
 .venv/bin/python scripts/doctor.py
 .venv/bin/python scripts/build_dashboard_data.py --check
+.venv/bin/python scripts/segment_record.py --check
 git diff --check
 ```
+
+An open segment in `docs/experiments/` freezes the rulebook and every prompt
+hash. To change a routine, command or the rulebook, close the segment first
+(status `closed`, `end_date`) and open the next one; CI refuses the edit
+otherwise.
 
 Run checks appropriate to the change. Ledger changes also need integration
 tests against an isolated Postgres database (see README and CI); their fixtures

@@ -29,15 +29,38 @@ changes were made.
   its logs have expired so the hang point is unknown, and this removes one
   candidate. If it recurs, capture the log before it ages out.
 
+Second round, same day, after the owner asked for the gaps to be closed:
+
+- `scripts/segment_record.py` + `docs/experiments/0001-v1.1-segment.json`:
+  segment 0001 predeclared, scored from 2026-10-13 on rulebook v1.1. The
+  record freezes the rulebook sha256, every routine and command prompt
+  sha256, the code commit and the model ids seen in routine commit trailers.
+  `--check` (CI step and `tests/test_segment_record.py`) fails if any hash
+  drifts while the segment is open: close it and open the next before
+  editing a prompt or the rulebook. `baseline_equity_usd` is null on purpose
+  and must be filled from the broker close of 2026-10-10.
+- Market-open now logs a one-line `Market-Open HELD` entry and commits
+  `market-open held <date>` when nothing fires; the heartbeat requires one
+  of the two subjects every trading day. Until this merges to main the
+  heartbeat on main is unchanged; after it merges, the first market-open run
+  picks the new instruction up on sync.
+- `tests.yml` regenerates the dashboard before the suite on push and runs the
+  golden test everywhere; the segment check runs in CI.
+- `protection-monitor.yml` runs the monitor under `timeout` so a hang fails
+  the step with logs instead of a cancelled job without them.
+- Dashboard commentary re-dated 2026-10-11: blotter now shows the XLB exit
+  and the XLE, MPC and PSX entries; feed, risk and insight cards reflect the
+  reconciliation, the live monitor and segment 0001.
+
 Observations not changed in this session, for the owner:
 
 - GitHub has 22 open issues and several describe problems the code has since
   fixed (#15 engine bypass, #16 command copies without safety steps, #17 PDT,
   #38 close-then-cancel). An interviewer browsing the tracker will read them
   as current. Close or annotate them.
-- Market-open commits nothing on a no-trade day (none since 2026-10-02, all
-  five held), so neither git nor the heartbeat can show it ran. A one-line
-  `market-open held <date>` commit, or an email, would close that gap.
+- Fill `baseline_equity_usd` in segment 0001 from the broker, and answer the
+  two owner decisions in `STRATEGY-SPEC.md` section 7 so v2 can open its own
+  segment.
 - `STRATEGY_VERSION` is still unset everywhere; the account trades v1.1. The
   v2 segment in `STRATEGY-SPEC.md` has not started.
 - The 2026-09-20 verification table below is historical; current counts are
@@ -47,7 +70,8 @@ Observations not changed in this session, for the owner:
 
 | Check | Result |
 |---|---|
-| `env -u DATABASE_URL .venv/bin/python -m pytest -q -m 'not integration'` | 384 passed, 1 skipped (ledger module needs psycopg), 1 integration test deselected |
+| `env -u DATABASE_URL .venv/bin/python -m pytest -q -m 'not integration'` | 391 passed, 1 skipped (ledger module needs psycopg), 1 integration test deselected |
+| `.venv/bin/python scripts/segment_record.py --check` | open segment 0001 matches the tree |
 | `.venv/bin/python scripts/doctor.py` | ok; last log 2026-10-09; dashboard current; ledger not configured; broker not verified |
 | `.venv/bin/python scripts/build_dashboard_data.py --check` | Committed generated data reproduced |
 | `git diff --check` | Clean |

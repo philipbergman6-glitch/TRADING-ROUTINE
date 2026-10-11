@@ -27,8 +27,10 @@ IMPORTANT — ENVIRONMENT VARIABLES:
 
 IMPORTANT — PERSISTENCE:
 - Fresh clone. File changes VANISH unless committed and pushed.
-  MUST commit and push at STEP 8 if any trades fired or a backstop add
-  was skipped.
+  MUST commit and push at STEP 8 EVERY session: "market-open trades" when
+  anything fired or a backstop add was skipped, "market-open held" otherwise.
+  The heartbeat expects one of the two; a session that leaves no commit is
+  indistinguishable from one that never ran.
 
 ## T4 — ledger on the live path (optional; mandatory when configured)
 
@@ -227,23 +229,29 @@ issue #32 stop-change or trail-ladder validators. #40 PATCH still OPEN — do
 not claim the sub-second cancel→place window is closed; replace_stop makes it
 recoverable, not atomic.
 
-STEP 6 — Append each trade to memory/TRADE-LOG.md (matching existing format):
-Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.
+STEP 6 — Append to memory/TRADE-LOG.md (matching existing format):
+- Each trade: date, ticker, side, shares, entry price, stop level, thesis,
+  target, R:R.
+- If NOTHING fired, append a one-line HELD entry instead, so the session
+  leaves evidence it ran and why it did nothing:
+    ### <YYYY-MM-DD> — Market-Open HELD (Day N, <weekday>): STRATEGY_VERSION: vN · <positions>/<max>, headroom $<x>, <one-line reason: no candidate passed / rule 11 / rule 12 not due>
+  Never put a **Portfolio:** line under it; portfolio lines belong to EOD
+  Snapshot headers only (the dashboard reads those).
 
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
 
-STEP 8 — COMMIT, PUSH, VERIFY (mandatory if any trades executed or a
-backstop add was skipped at STEP 2c):
-Skip this step only if no trades fired AND no backstop skip was logged.
+STEP 8 — COMMIT, PUSH, VERIFY (mandatory EVERY session):
+SUBJECT="market-open held $DATE"; if any trade executed or a backstop add
+was skipped at STEP 2c, SUBJECT="market-open trades $DATE".
 git add memory/TRADE-LOG.md
-git commit -m "market-open trades $DATE"
+git commit -m "$SUBJECT"
 git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
 Never force-push.
 
 Then VERIFY the push landed (the proxy rewrites SHAs — compare subjects,
 never SHAs):
 git fetch origin main
-git log --format=%s -3 FETCH_HEAD | grep -qxF "market-open trades $DATE" \
+git log --format=%s -3 FETCH_HEAD | grep -qxF "$SUBJECT" \
   && echo "PUSH VERIFIED" \
   || bash scripts/email.sh "PUSH NOT ON MAIN $DATE — origin/main tip: $(git log -1 --format='%h %s' FETCH_HEAD)"

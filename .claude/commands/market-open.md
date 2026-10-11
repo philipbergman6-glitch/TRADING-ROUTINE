@@ -206,8 +206,14 @@ issue #32 stop-change or trail-ladder validators. #40 PATCH still OPEN — do
 not claim the sub-second cancel→place window is closed; replace_stop makes it
 recoverable, not atomic.
 
-STEP 6 — Append each trade to memory/TRADE-LOG.md (matching existing format):
-Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.
+STEP 6 — Append to memory/TRADE-LOG.md (matching existing format):
+- Each trade: date, ticker, side, shares, entry price, stop level, thesis,
+  target, R:R.
+- If NOTHING fired, append a one-line HELD entry instead, so the session
+  leaves evidence it ran and why it did nothing:
+    ### <YYYY-MM-DD> — Market-Open HELD (Day N, <weekday>): STRATEGY_VERSION: vN · <positions>/<max>, headroom $<x>, <one-line reason>
+  Never put a **Portfolio:** line under it. Commit as "market-open held $DATE"
+  (or "market-open trades $DATE" when anything fired).
 
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"

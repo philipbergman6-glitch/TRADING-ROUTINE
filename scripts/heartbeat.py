@@ -12,7 +12,8 @@ and never touches the broker beyond the exchange calendar:
   1. Alpaca /v2/calendar          — is today a trading day (holidays excluded)?
   2. git log on the checked-out main — one commit per routine per trading day,
      matched by the subject prefix each routine uses (routines/*.md STEP 7/8).
-     market-open is exempt: on a no-trade day it has nothing to commit.
+     market-open commits "market-open trades" when it acted and
+     "market-open held" when it did not, so a silent no-run is visible.
   3. GitHub Actions runs (gh api)  — protection-monitor must have succeeded at
      least once today; dashboard-data and tests must not have failed today.
 
@@ -40,11 +41,12 @@ EXIT_OK, EXIT_NO_STATE, EXIT_ISSUES = 0, 4, 5
 
 # Routine -> subject prefix of the commit it pushes. Keep in sync with routines/*.md.
 EXPECTED_DAILY = {
-    "pre-market": "pre-market research",
-    "midday": "midday scan",
-    "eod": "EOD snapshot",
+    "pre-market": ("pre-market research",),
+    "market-open": ("market-open trades", "market-open held"),
+    "midday": ("midday scan",),
+    "eod": ("EOD snapshot",),
 }
-EXPECTED_FRIDAY = {"weekly-review": "weekly review"}
+EXPECTED_FRIDAY = {"weekly-review": ("weekly review",)}
 MONITOR = "protection-monitor"
 MUST_NOT_FAIL = ("dashboard-data", "tests")
 EXCHANGE_TZ = ZoneInfo("America/New_York")
@@ -65,9 +67,10 @@ def assess(today: date, trading_day: bool, commit_subjects: list[str], runs: lis
         expected.update(EXPECTED_FRIDAY)
     stamp = str(today)
     issues = []
-    for routine, prefix in expected.items():
-        if not any(s.startswith(prefix) and stamp in s for s in commit_subjects):
-            issues.append(f"routine {routine}: no commit '{prefix} {stamp}' on main")
+    for routine, prefixes in expected.items():
+        if not any(s.startswith(prefixes) and stamp in s for s in commit_subjects):
+            wanted = " or ".join(f"'{p} {stamp}'" for p in prefixes)
+            issues.append(f"routine {routine}: no commit {wanted} on main")
 
     by_workflow: dict[str, list[dict]] = {}
     for r in runs:

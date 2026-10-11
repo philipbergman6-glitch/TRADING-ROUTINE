@@ -45,9 +45,11 @@ jobs:
           test -n "$ALPACA_API_KEY" && test -n "$ALPACA_SECRET_KEY" \
             || { echo "ALPACA secrets are not configured; nothing verified" >&2; exit 4; }
       - name: Protection monitor
+        # `timeout` ends a hang as a failed step whose logs survive; the
+        # 2026-10-05 run was cancelled by the job limit and left no log.
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
-            python3 scripts/protection_monitor.py --dry-run --email
+            timeout --signal=TERM --kill-after=30 600 python3 scripts/protection_monitor.py --dry-run --email
           else
-            python3 scripts/protection_monitor.py --email
+            timeout --signal=TERM --kill-after=30 600 python3 scripts/protection_monitor.py --email
           fi

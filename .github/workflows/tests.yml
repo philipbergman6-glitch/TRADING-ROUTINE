@@ -21,20 +21,19 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
+      # On a push to main this job races dashboard.yml, which rebuilds
+      # docs/dashboard/data.js and commits it in a follow-up commit, so at the
+      # pushed commit the file is legitimately stale. Rebuild first (the build
+      # hard-fails on a parse mismatch or S&P chain break), then run the whole
+      # offline suite including the golden test. On a PR nothing regenerates
+      # the file, so the golden test is a real staleness check there.
+      - name: Regenerate dashboard data (push only)
+        if: github.event_name == 'push'
+        run: python3 scripts/build_dashboard_data.py
       - name: Risk engine + dashboard tests
-        # The golden test is a *staleness* detector for docs/dashboard/data.js.
-        # On a push to main it races dashboard.yml, which rebuilds data.js and
-        # commits it in a follow-up commit -- so at the pushed commit the file is
-        # legitimately stale and the test fails for no reason. dashboard.yml runs
-        # the golden test after rebuilding; that is where it means something.
-        # On a PR nothing regenerates the file, so there it is a real check: a
-        # parser or memory-file change that forgets to commit data.js gets caught.
-        env:
-          MARKERS: >-
-            ${{ github.event_name == 'push'
-                && 'not integration and not golden'
-                || 'not integration' }}
-        run: pytest -v -m "$MARKERS"
+        run: pytest -v -m "not integration"
+      - name: Open experiment segments still match the tree
+        run: python3 scripts/segment_record.py --check
 
   ledger:
     # Real Postgres, not a mock. A ledger tested against a fake proves nothing

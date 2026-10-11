@@ -28,6 +28,7 @@ python3 -m venv .venv && .venv/bin/pip install -q -e ".[dev]"
 env -u DATABASE_URL .venv/bin/python -m pytest -q -m 'not integration'   # 384 pass, offline
 .venv/bin/python scripts/doctor.py                                         # log + dashboard consistency
 .venv/bin/python scripts/build_dashboard_data.py --check                   # committed data reproduces
+.venv/bin/python scripts/segment_record.py --check                         # open segment hashes match the tree
 ```
 
 Then read, in order:
@@ -42,6 +43,9 @@ Then read, in order:
    duplicating.
 4. `docs/research/0006-paper-results-reconciliation.md`: the track record,
    rebuilt from broker fills rather than from the model's own log.
+5. `docs/experiments/`: the open scoring segment, with the rulebook hash,
+   every prompt hash and the model ids frozen at open. CI fails if any of
+   them drift while the segment is open.
 
 ---
 
@@ -225,7 +229,12 @@ the other thirteen lost $6,169. The single-name phase to June 30 beat SPY by
 on record is not to fund the current rulebook, to freeze it as v1, and to run
 a specified v2 against it in paper.
 
-**Log-derived since then, not independently reconciled** (dashboard and
+**Scored segment.** Segment 0001 opens on 2026-10-13 under rulebook v1.1
+([record](docs/experiments/)). Everything before it is exploratory evidence by
+the project's own definition. Returns inside the segment are scored on broker
+closes, not on the log.
+
+**Log-derived since the reconciliation, not independently reconciled** (dashboard and
 `memory/TRADE-LOG.md`, 2026-10-09 close):
 
 | | |
@@ -280,9 +289,6 @@ throughout. The gaps below are tracked, not hidden.
 - **The protection monitor runs about twice a day,** not every 30 minutes,
   because GitHub throttles cron on quiet repositories. Routines must not defer
   protection work to it.
-- **Market-open leaves no trace on a no-trade day.** It commits only when a
-  trade fires or a backstop add is skipped, so the heartbeat exempts it and
-  cannot distinguish "ran and held" from "did not run".
 - **Live trading does not exist.** Both guards reject real-money endpoints. A
   live pilot needs a separately designed execution path, not a config change.
   See [LIVE-READINESS.md](docs/LIVE-READINESS.md).
@@ -301,6 +307,7 @@ throughout. The gaps below are tracked, not hidden.
 | `scripts/protection_monitor.py` | Scheduled coverage check and repairs, no model, no ledger |
 | `scripts/heartbeat.py` | Daily liveness check across routines and workflows |
 | `scripts/blotter.py`, `deployment_status.py`, `strategy_version.py`, `doctor.py` | Round trips from fills, deployment band, rulebook pin check, offline health |
+| `scripts/segment_record.py`, `docs/experiments/` | Predeclared scoring segments: frozen rulebook and prompt hashes, model ids, benchmarks; `--check` fails on drift |
 | `ledger/` | Postgres decisions, broker responses, append-only audit events |
 | `memory/` | Rulebook, trade log, research log, weekly reviews, sector map. Agent context, not the accounting record |
 | `routines/` | The five scheduled instruction files. The cloud scheduler holds only a thin sync-and-run prompt |
@@ -315,7 +322,7 @@ throughout. The gaps below are tracked, not hidden.
 | Routine | Chicago time | Places orders? | Commits |
 |---|---|---|---|
 | Pre-market | 06:30 weekdays | No | `pre-market research <date>` |
-| Market-open | 08:30 weekdays | Yes, through the gate | `market-open trades <date>` when a trade fires |
+| Market-open | 08:30 weekdays | Yes, through the gate | `market-open trades <date>`, or `market-open held <date>` when it did nothing |
 | Midday | 12:00 weekdays | Exits and stop changes only, through the gate | `midday scan <date>` |
 | Daily summary | 15:00 weekdays | No | `EOD snapshot <date>` |
 | Weekly review | 16:00 Fridays | No | `weekly review <date>` |
@@ -351,7 +358,7 @@ Configuration names are in `env.template`. Never commit a `.env`.
 
 ## Next milestone
 
-Run the versioned v2 paper experiment specified in
+Score segment 0001 on broker closes, then run the versioned v2 paper experiment specified in
 [STRATEGY-SPEC.md](docs/STRATEGY-SPEC.md) and
 [PAPER-EXPERIMENT.md](docs/PAPER-EXPERIMENT.md): a $10,000 segment with
 predeclared benchmarks, model id recorded per run, and a funding criterion

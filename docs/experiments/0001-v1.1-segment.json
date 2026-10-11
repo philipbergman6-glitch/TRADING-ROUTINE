@@ -1,0 +1,72 @@
+{
+  "segment_id": "0001",
+  "status": "open",
+  "opened_on": "2026-10-11",
+  "start_date": "2026-10-13",
+  "end_date": null,
+  "strategy_version": "v1.1",
+  "engine_version": "v1",
+  "code_commit": "f72c485a75d6121c394ef0434dc8fe1995e24776",
+  "rulebook": {
+    "path": "memory/TRADING-STRATEGY.md",
+    "sha256": "2dad4667f45c59b6a8e6926fdb83b68def8b9c702f2536419e9c6264899dd541"
+  },
+  "prompts": {
+    "routines/daily-summary.md": "5d469aaaa46c69488c2263704ba65a7dbd124f51b34947f63cbc452e045fc8b6",
+    "routines/market-open.md": "5db551a09e74169fce3034e128adfe1a0d142bb01253bd20b58f20a7ceaf4a53",
+    "routines/midday.md": "a6a49c00388382f9fdbf49defc2572e74a88c5350618da2ee2f68bbc924e0cf7",
+    "routines/pre-market.md": "8fe94fcbe032e86a9ad69daf044316d9ec5e0901ba4112a96773481215ea1944",
+    "routines/weekly-review.md": "c685ca0b9876eb8f5e6bcee4f8196ca5202c3195be8f4deac3f6777341dd010d",
+    ".claude/commands/conviction.md": "55de677c7751fc025bb6aa56eaf993660183eab3ad8acd1079e12dbff0c0f48f",
+    ".claude/commands/daily-summary.md": "39c4421322b0105286bb7c1f58c0d04066efac9ae58c97fe4337a41db1a82fad",
+    ".claude/commands/market-open.md": "12b2d38a1461e5f8ae68881476943eabdaceb17de2bd13594f2cb1898e2c70f1",
+    ".claude/commands/midday.md": "267aad8adb7e0b3ef6ab3ba413a16c9de746ccd5290cf33df420284188467994",
+    ".claude/commands/portfolio.md": "364bb9baf41a3d41b129e233039681b1634de1b84c236a7b1e8ee8c86fa6740a",
+    ".claude/commands/pre-market.md": "b695c3d6acef913f25734b84743c3d8462ec9f29d8baa958d700c9a90fc4af87",
+    ".claude/commands/trade.md": "ffa37ed70b9ec802029265f77e8f7b0893c54269dc59f59a0bc3c89ad0a355bd",
+    ".claude/commands/weekly-review.md": "e00b5ee408bc72231fa45db833a07489c548b3c3cfb8bee6d6b8d944550ed7e3"
+  },
+  "model_ids": {
+    "pre-market": [
+      "Claude Opus 5"
+    ],
+    "market-open": [
+      "Claude Opus 5"
+    ],
+    "midday": [
+      "Claude Opus 5"
+    ],
+    "daily-summary": [
+      "Claude Opus 5"
+    ],
+    "weekly-review": [
+      "Claude Opus 5"
+    ]
+  },
+  "model_id_source": "Co-Authored-By trailer on each routine's commits; cloud routine configuration not inspected",
+  "account": {
+    "environment": "paper",
+    "starting_capital_usd": 100000,
+    "baseline_equity_usd": null,
+    "baseline_rule": "Alpaca last_equity at the close before start_date; fill in by hand, never from the markdown log",
+    "test_orders_present": true,
+    "test_orders_note": "Seven 1-3 share F fills on 2026-08-11 (ADR 0002 engineering tests) remain in this account and are excluded from statistics; see docs/research/0006"
+  },
+  "universe": "US common equities and SPDR Select Sector ETFs, stocks only, no options, no margin (rulebook rules 1 and 13)",
+  "benchmarks": {
+    "primary": "SPY, Alpaca IEX daily close, adjustment=all, identical dates",
+    "secondary": "SPY scaled by the bot's daily invested fraction (exposure-matched)",
+    "mechanical": "sector-momentum policy as specified in docs/PAPER-EXPERIMENT.md, to be fully specified before scoring"
+  },
+  "scoring": {
+    "return": "broker daily closes only; markdown EOD snapshots are narrative",
+    "costs": "paper fees as charged; model, research and hosting spend logged monthly (spec section 5 item 5, not yet started)",
+    "review_threshold": "owner decision pending (spec section 7 item 1); recommended peak-to-trough $1,000 at $10,000 scale",
+    "funding_criterion": "docs/STRATEGY-ASSESSMENT.md section 5 item 5, stated 2026-09-19, applies unchanged"
+  },
+  "invariants": [
+    "rulebook sha256 and every prompt sha256 above must match the tree while status is open (scripts/segment_record.py --check)",
+    "STRATEGY_VERSION in every runner must match engine_version (scripts/strategy_version.py)",
+    "no order outside scripts/alpaca.sh; no bulk mutation; paper endpoint only"
+  ]
+}
