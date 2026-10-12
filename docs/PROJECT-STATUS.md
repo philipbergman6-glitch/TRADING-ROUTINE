@@ -49,6 +49,31 @@ before the 30-session $10,000 v2 paper run:
 5. Still open by design: cross-process reservations / durable intent store
    (#19, #26); the cancel→place window is recoverable, not atomic (#40).
 
+## Session 2026-10-12: committed state store (#115)
+
+Implements ADR 0004's mechanics; nothing calls it yet (wiring is #100, run
+records #108). Baseline `565562d`.
+
+- `scripts/state_store.py`: `fetch` (always `git fetch origin main`, reads
+  `FETCH_HEAD`), `replay` (hard-fails on any line failing the
+  `id`/`kind`/`at`/`writer`/`schema` envelope, a duplicate id, or a torn final
+  line), `new_event`, and `StateStore.commit` — push-as-CAS with subject
+  `state: <writer> <intent> [skip ci]`; on rejection refetch, rebase, re-run
+  the caller's `still_wins` predicate, retry up to the budget; a lost claim
+  appends a `release` line and raises `ClaimLost`. Verified by subject plus
+  event ids, never SHA. All failures are `StoreUnavailable`; the CLI
+  (`replay`, `append`) exits **10** (`EXIT_STORE_UNAVAILABLE`).
+- State file: `state/events.jsonl`. Commits are built with git plumbing on the
+  fetched tip, so the writer's HEAD, index and working tree are never touched.
+  Local mode (`local_store`, CLI `--local`) uses a bare clone at
+  `~/.cache/trading-routine/state.git`, never the development checkout.
+- Provisional, owned by #99: push budget `PUSH_BUDGET = 3` and the `release`
+  kind name.
+- `.gitattributes`: `state/*.jsonl merge=union`. `protection-monitor.yml`:
+  `permissions: contents: write` (no push yet).
+- Checks: `tests/test_state_store.py` (50, offline, local bare repo as origin)
+  plus the commands in AGENTS.md "Verification".
+
 ## Latest session: execution controls for v2 (2026-09-20)
 
 - `risk_engine/versions.py`: `StrategyParams` with `V1` (frozen) and `V2`;
