@@ -27,7 +27,7 @@ def order(**changes):
 def check(body, snapshot, **state):
     validate_mutation("order", json.dumps(body),
                       read=lambda *args: snapshot[args], now=NOW,
-                      portfolio=PortfolioState(equity="100000", cash="100000", is_paper=True, **state))
+                      portfolio=PortfolioState(equity="100000", cash="100000", is_paper=True, reservations=(), **state))
 
 
 def test_exact_valid_oto_is_accepted(snapshot):

@@ -27,13 +27,13 @@ def test_tightening_must_not_lower_actual_resting_stop():
 
 @pytest.mark.parametrize("protection", [{"stop_price": "1"}, {"trail_percent": "99"}])
 def test_entry_protection_must_follow_rule_four(protection):
-    state = PortfolioState(equity="100000", cash="100000", is_paper=True)
+    state = PortfolioState(equity="100000", cash="100000", is_paper=True, reservations=())
     order = OrderProposal(symbol="AAPL", qty="1", side="buy", price="100", **protection)
     assert not validate_order(order, state).approved, "approved 99% downside distance"
 
 
 def test_stocks_only_requires_asset_validation():
-    state = PortfolioState(equity="100000", cash="100000", is_paper=True)
+    state = PortfolioState(equity="100000", cash="100000", is_paper=True, reservations=())
     order = OrderProposal(symbol="BTC/USD", qty="1", side="buy", price="100", trail_percent="10")
     assert not validate_order(order, state).approved, "non-equity symbol approved by stocks-only engine"
 

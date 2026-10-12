@@ -17,6 +17,7 @@ __all__ = [
     "Violation",
     "ValidationResult",
     "Position",
+    "Reservation",
     "PortfolioState",
     "OrderProposal",
     "to_money",
@@ -124,16 +125,56 @@ class Position:
 
 
 @dataclass(frozen=True)
+class Reservation:
+    """Capacity an unfinished entry intent holds until the broker shows it.
+
+    Derived by the caller from a non-terminal entry intent (ADR 0010 §6):
+    `qty` is the still-unfilled quantity and `price` the price that intent was
+    validated at. The engine counts it against rules 2, 3, 8 and 13.
+    """
+
+    intent_id: str
+    symbol: str
+    qty: Decimal
+    price: Decimal
+    sector: str | None = None
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.intent_id, str):
+            raise TypeError(
+                f"Reservation.intent_id must be a string, got {type(self.intent_id).__name__}"
+            )
+        if not self.intent_id.strip():
+            raise ValueError("Reservation.intent_id must not be empty")
+        object.__setattr__(self, "symbol", _clean_symbol(self.symbol))
+        object.__setattr__(self, "sector", _clean_sector(self.sector))
+        object.__setattr__(self, "qty", to_money(self.qty, "Reservation.qty"))
+        object.__setattr__(self, "price", to_money(self.price, "Reservation.price"))
+        if self.qty <= 0 or self.qty != self.qty.to_integral_value():
+            raise ValueError(f"Reservation.qty must be positive whole shares, got {self.qty}")
+        if self.price <= 0:
+            raise ValueError(f"Reservation.price must be positive, got {self.price}")
+
+    @property
+    def notional(self) -> Decimal:
+        return self.qty * self.price
+
+
+@dataclass(frozen=True)
 class PortfolioState:
     """A snapshot of the account, as read from the broker.
 
     `is_paper` is not defaulted on purpose. A caller that forgets to say which
     account this is must fail loudly rather than inherit a convenient default.
+    `reservations` is not defaulted for the same reason: they are the one part
+    that is not broker fact, and a buy decision that forgot them would permit
+    capacity another intent already holds (ADR 0010 §6). Pass () when none.
     """
 
     equity: Decimal
     cash: Decimal
     is_paper: bool
+    reservations: tuple[Reservation, ...]
     positions: tuple[Position, ...] = ()
     trades_this_week: int = 0
     # Symbols inside a re-entry cooldown (v2 rule 14), computed by the caller
@@ -150,6 +191,23 @@ class PortfolioState:
         if not isinstance(self.trades_this_week, int) or self.trades_this_week < 0:
             raise ValueError("PortfolioState.trades_this_week must be a non-negative int")
         object.__setattr__(self, "positions", tuple(self.positions))
+        if isinstance(self.reservations, (str, bytes)) or not hasattr(
+            self.reservations, "__iter__"
+        ):
+            raise TypeError("PortfolioState.reservations must be a tuple of Reservation")
+        reservations = tuple(self.reservations)
+        for r in reservations:
+            if not isinstance(r, Reservation):
+                raise TypeError(
+                    f"PortfolioState.reservations holds a {type(r).__name__}, not a Reservation"
+                )
+        ids = [r.intent_id for r in reservations]
+        duplicates = sorted({i for i in ids if ids.count(i) > 1})
+        if duplicates:
+            raise ValueError(
+                f"PortfolioState.reservations: intent {', '.join(duplicates)} reserves more than once"
+            )
+        object.__setattr__(self, "reservations", reservations)
         object.__setattr__(
             self, "cooldown_symbols", frozenset(_clean_symbol(s) for s in self.cooldown_symbols)
         )

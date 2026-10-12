@@ -175,6 +175,9 @@ def read_portfolio(
         # falls back to 0, which fails closed (every buy refused).
         cash=str(account.get("cash", "0")),
         is_paper=_is_paper(),
+        # No store read yet: the coordinator (#100) supplies the open
+        # reservations of non-terminal entry intents (ADR 0010 §6).
+        reservations=(),
         positions=tuple(
             Position(
                 symbol=p["symbol"],
