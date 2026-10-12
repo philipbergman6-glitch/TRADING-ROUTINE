@@ -49,6 +49,40 @@ before the 30-session $10,000 v2 paper run:
 5. Still open by design: cross-process reservations / durable intent store
    (#19, #26); the cancel→place window is recoverable, not atomic (#40).
 
+## Session 2026-10-12: execution identity (#96)
+
+Implements ADR 0005 (audit defect 1). Baseline `65acb7a`. No broker calls.
+
+- `scripts/execution_identity.py`: the one resolver both helpers use. Intent
+  `<en|cl>-<YYYYMMDD>-<SYM>[-<seq>]`; attempts are the intent id then
+  `-r1`..`-r5`, a new one only after the broker confirms the last dead; an
+  unexpected status hard-fails. Without `--intent` it adopts a live attempt
+  from today or yesterday (UTC midnight rule); terminal ones from yesterday
+  are history. Seq is a `--tag` or the next integer (`-2`..`-9`); tags
+  matching `r<digits>` are rejected.
+- `close_position.py`: `already_closed` removed. Complete only when not held
+  and no buy is live (`close_complete`, `position_gone`,
+  `stop_filled_position_gone`, exit 0). A filled intent with the symbol still
+  held mints a new intent (same-day re-entry). New states:
+  `position_gone_buy_live` (3), `close_resting_without_position` (2),
+  `close_intents_exhausted_manual_exit_required` (8 or 3 by coverage). A
+  filled stop re-reads holdings and sells the remainder.
+- `submit_entry.py`: a dead `en-` attempt is retried as `-r1`.. (no manual
+  `--tag`); `already_filled` vs `already_submitted`; `entry_retries_exhausted`
+  (3, or 8 if held uncovered).
+- Both print `intent` and a `rerun` command carrying `--intent` in the JSON,
+  and the intent/attempt on stderr before each POST (the ADR's interim
+  "recorded" until the state store is wired, #100). Routine text in both
+  copies (#78 open), `trade.md`, `ARCHITECTURE.md`, ADR 0003 status updated.
+- Tests: `tests/test_execution_identity.py`; the audit probe
+  `repro_v1_foundation.py:31` is
+  `test_new_same_day_position_is_not_reported_closed_from_old_exit`, plus
+  repeated close, same-day re-entry, missing stop, rejected recovery and
+  cross-midnight cases in `test_close_position.py` / `test_submit_entry.py`.
+- Not done: the in-process lost-response re-POST within a wait budget (a
+  rerun re-POSTs the same attempt id instead); intent records in `state/`
+  (#100); drills on the isolated account.
+
 ## Session 2026-10-12: committed state store (#115)
 
 Implements ADR 0004's mechanics; nothing calls it yet (wiring is #100, run

@@ -61,9 +61,10 @@ def test_the_caller_never_stamps_the_client_id():
         submit_entry(b, read=FakeBroker().read, run=FakeBroker().run, now=NOW)
 
 
-def test_submits_once_and_confirms_by_client_id():
+def test_submits_once_and_confirms_by_client_id(capsys):
     broker = FakeBroker()
     got = outcome(broker)
+    assert f"intent {CID}: submitting attempt {CID}" in capsys.readouterr().err
     assert (got.code, got.state, got.detail["intent"]) == (EXIT_OK, "submitted", CID)
     assert broker.submitted[0]["client_order_id"] == CID
     assert got.detail["order"]["id"] == "broker-1"

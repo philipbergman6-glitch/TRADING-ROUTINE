@@ -101,6 +101,9 @@ def submit_entry(body: dict, *, intent: str | None = None, tag: str | None = Non
     if res.exhausted:
         raise refusal("entry_retries_exhausted", dead_attempts=res.dead)
     attempt = {**body, "client_order_id": cid}
+    # ADR 0005 section 5: until the state store is wired (#100), "recorded" means printed
+    # before the POST; the broker prefix walk recovers it either way.
+    print(f"intent {res.intent}: submitting attempt {cid}", file=sys.stderr, flush=True)
     ok, http, out, err = run("order", json.dumps(attempt))
     try:
         placed = read("order-by-client", cid)

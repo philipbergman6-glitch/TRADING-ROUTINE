@@ -224,6 +224,9 @@ def _close_position(symbol, now, progress, intent, *, read=adapter, run=mutate, 
         _not_held(symbol, orders, "position_gone")
     body["qty"] = str(Decimal(str(held["qty"])))
     body["client_order_id"] = cid
+    # ADR 0005 section 5: until the state store is wired (#100), "recorded" means printed
+    # before the POST; the broker prefix walk recovers it either way.
+    print(f"intent {progress['intent']}: submitting attempt {cid}", file=sys.stderr, flush=True)
     ok, http, out, err = run("order", json.dumps(body))
 
     # 5. Confirm by client id regardless of what the HTTP layer said.
