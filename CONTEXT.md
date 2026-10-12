@@ -68,3 +68,43 @@ cancel-then-sell that a fully reserved position requires. An unbounded or
 undetected one is an incident.
 _Avoid_: naked position, the buy/stop gap (each names one instance of a general
 state)
+
+### Rule enforcement
+
+**Enforcement class**:
+How a rulebook rule is held to: **Engine** (an order that breaks it is refused
+before any broker mutation), **Script** (a script computes the state and
+reports it; the routine must act), or **Advisory** (routine text only; nothing
+checks it). Every rule has exactly one class.
+_Avoid_: mechanised, hard rule, soft rule
+
+**Broad ETF**:
+A sector or index fund on the repo's maintained list (the SPDR sector funds
+plus the index trackers). Holding one adds factor exposure, not an
+idiosyncratic thesis.
+_Avoid_: ETF (too wide: a single-country or commodity fund is not on the list)
+
+**Single name**:
+Any tradable symbol that is not a broad ETF. The only kind of position that
+satisfies the composition mandate.
+_Avoid_: stock, idiosyncratic position
+
+**Composition mandate**:
+The rule-14 state in which the book holds zero single names (an empty book
+counts), so the next new position must be a single name. It constrains what a
+deployment-mandate add buys, never whether the add happens; the two mandates
+never waive each other.
+_Avoid_: rule 14 (the number; use the name in prose)
+
+**Composition waiver**:
+The recorded reason, written in the pre-market research log, that no single
+name passed the entry checklist today, which alone permits a broad ETF to be
+bought while the composition mandate is active.
+_Avoid_: override, exception
+
+**Sector failure streak**:
+The count of consecutive closed round trips in one sector that ended at a
+loss, computed from broker fills. At two, that sector is closed to new entries
+(including its own broad ETF) for 20 sessions from the second loss; open
+positions in it stay on their stops.
+_Avoid_: sector exit, consecutive losers
