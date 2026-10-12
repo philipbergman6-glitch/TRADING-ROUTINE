@@ -1,10 +1,15 @@
 """Heartbeat: every expected routine commit and workflow outcome for a trading day, nothing on holidays."""
 from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
+import re
 import subprocess
 
 import pytest
 
-from scripts.heartbeat import EXIT_ALERT_FAILED, EXIT_ISSUES, EXIT_OK, assess, assessment_date, exit_code, send_alert
+from scripts.heartbeat import (EXIT_ALERT_FAILED, EXIT_ISSUES, EXIT_OK, MONITOR_DRY, MONITOR_LIVE, assess,
+                               assessment_date, exit_code, send_alert)
+
+MONITOR_YML = Path(__file__).resolve().parent.parent / ".github" / "workflows" / "protection-monitor.yml"
 
 MON = date(2026, 9, 28)
 FRI = date(2026, 9, 25)
@@ -13,8 +18,9 @@ GOOD_COMMITS = ["EOD snapshot 2026-09-28", "midday scan 2026-09-28", "market-ope
 AFTER_CLOSE = datetime(2026, 9, 28, 22, 45, tzinfo=timezone.utc)
 
 
-def monitor_runs(day, *hhmm_utc, conclusion="success"):
-    return [{"name": "protection-monitor", "conclusion": conclusion,
+def monitor_runs(day, *hhmm_utc, conclusion="success", title="protection-monitor live"):
+    # display_title is the workflow's run-name: it carries the dry-run mode, which the run list does not.
+    return [{"name": "protection-monitor", "display_title": title, "conclusion": conclusion,
              "updated_at": f"{day}T{h:02d}:{m:02d}:00Z"} for h, m in hhmm_utc]
 
 
@@ -69,10 +75,9 @@ def test_monitor_needs_one_success_and_failures_of_others_are_flagged():
             {"name": "dashboard-data", "conclusion": "failure", "url": "u"},
             {"name": "tests", "conclusion": "success"}]
     issues = assess(MON, True, GOOD_COMMITS, runs, AFTER_CLOSE)["issues"]
-    assert issues == ["workflow protection-monitor: no successful run today (2 run(s) seen)",
+    assert issues == ["workflow protection-monitor: no successful live run today (2 run(s) seen, 0 dry run(s))",
                       "workflow dashboard-data: 1 failed run(s) today, latest u"]
-    runs[0]["conclusion"] = "success"
-    runs[0]["updated_at"] = "2026-09-28T13:40:00Z"
+    runs[0] = monitor_runs("2026-09-28", (13, 40))[0]
     issues = assess(MON, True, GOOD_COMMITS, runs, AFTER_CLOSE)["issues"]
     assert issues[0].startswith("protection check: stale") and issues[1] == "workflow dashboard-data: 1 failed run(s) today, latest u"
 
@@ -97,8 +102,46 @@ def test_two_afternoon_checks_breach_the_level_and_name_the_windows():
                                                   {"from": "2026-09-28T19:46:00+00:00", "to": "2026-09-28T20:00:00+00:00", "minutes": 14}]}
 
 
+def test_a_day_of_only_dry_runs_has_no_protection_check():
+    # A dry run plans but does no due work, so it is not a protection check (ADR 0007).
+    runs = monitor_runs("2026-09-28", *EVERY_30, title="protection-monitor dry run") + GOOD_RUNS[-2:]
+    r = assess(MON, True, GOOD_COMMITS, runs, AFTER_CLOSE)
+    assert r["exit"] == EXIT_ISSUES
+    assert r["issues"] == ["workflow protection-monitor: no successful live run today (14 run(s) seen, 14 dry run(s))"]
+    assert r["protection_check"]["checks"] == []
+
+
+def test_dry_runs_do_not_fill_the_gaps_between_live_checks():
+    # Live checks at 18:16Z and 22:30Z only; a dry run every 30 minutes changes nothing.
+    dry = monitor_runs("2026-09-28", *EVERY_30, title="protection-monitor dry run")
+    runs = dry + monitor_runs("2026-09-28", (18, 16), (22, 30)) + GOOD_RUNS[-2:]
+    r = assess(MON, True, GOOD_COMMITS, runs, AFTER_CLOSE)
+    assert r["issues"] == ["protection check: stale 300 min of the 390-min session, over the 90-min level: "
+                           "13:30-18:16Z (286 min), 19:46-20:00Z (14 min)"]
+    assert r["protection_check"]["checks"] == ["2026-09-28T18:16:00+00:00", "2026-09-28T22:30:00+00:00"]
+
+
+def test_monitor_workflow_stamps_the_mode_the_step_runs_in():
+    # The run list has no dispatch inputs; run-name is the only observable mode. It must
+    # use the very condition that selects --dry-run, and yield the titles assess() reads.
+    yml = MONITOR_YML.read_text()
+    dry_if = re.search(r'if \[ "\$\{\{ github.event_name \}\}" = "workflow_dispatch" \] && '
+                       r'\[ "\$\{\{ inputs.dry_run \}\}" = "true" \]; then\s*\n\s+python3 scripts/protection_monitor.py --dry-run', yml)
+    assert dry_if, "the dry-run step condition changed; update run-name to match"
+    (run_name,) = re.findall(r"^run-name: (.+)$", yml, re.M)
+    assert run_name == ("${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.dry_run) == 'true' "
+                        f"&& '{MONITOR_DRY}' || '{MONITOR_LIVE}' }}}}")
+
+
+def test_successful_monitor_run_with_unknown_title_is_rejected():
+    # A run-name that drifted (or a run from before it existed) must not be guessed live or dry.
+    runs = monitor_runs("2026-09-28", *EVERY_30) + monitor_runs("2026-09-28", (15, 0), title="protection-monitor")
+    with pytest.raises(ValueError, match="display_title 'protection-monitor'"):
+        assess(MON, True, GOOD_COMMITS, runs + GOOD_RUNS[-2:], AFTER_CLOSE)
+
+
 def test_successful_monitor_run_without_completion_time_is_rejected():
-    runs = [{"name": "protection-monitor", "conclusion": "success"}] + GOOD_RUNS[-2:]
+    runs = [{"name": "protection-monitor", "display_title": "protection-monitor live", "conclusion": "success"}] + GOOD_RUNS[-2:]
     with pytest.raises(ValueError, match="updated_at"):
         assess(MON, True, GOOD_COMMITS, runs, AFTER_CLOSE)
 
