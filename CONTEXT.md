@@ -45,6 +45,25 @@ The ranked set of surviving TRADE candidates that the decision skill outputs.
 It is *advice*, not an order — execution happens separately via /trade.
 _Avoid_: order, trade (a trade is the executed thing)
 
+### Accounts
+
+**Account profile**:
+Which of the bot's paper accounts an invocation talks to: *production* (the
+scored account every routine trades) or *drill*. One invocation holds exactly
+one profile's key pair; holding both is refused.
+_Avoid_: environment, mode (those name paper vs live, which never changes here)
+
+**Drill account**:
+The isolated second paper account reserved for recovery rehearsals and
+destructive tests, with its own keys and its own pinned account number. Nothing
+scored ever happens on it; a reset is a delete-and-recreate that rotates both.
+_Avoid_: test account, sandbox, staging
+
+**Account pin**:
+The committed account number a profile is expected to answer as. Every write
+compares the broker's answer with the pin, because no Alpaca payload otherwise
+says which paper account a key pair belongs to.
+
 ### Protection
 
 **Protection**:

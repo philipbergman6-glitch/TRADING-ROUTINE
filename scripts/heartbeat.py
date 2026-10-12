@@ -87,13 +87,26 @@ def assess(today: date, trading_day: bool, commit_subjects: list[str], runs: lis
 
 # --- sources -----------------------------------------------------------------
 
+def resolve_credentials(environ) -> tuple[str, str]:
+    """Same rules as scripts/alpaca.sh: one profile, one key pair, never both."""
+    profile = environ.get("ALPACA_PROFILE") or "production"
+    if profile not in ("production", "drill"):
+        raise RuntimeError(f"unknown ALPACA_PROFILE {profile!r} (production|drill)")
+    prod = (environ.get("ALPACA_API_KEY"), environ.get("ALPACA_SECRET_KEY"))
+    drill = (environ.get("DRILL_ALPACA_API_KEY"), environ.get("DRILL_ALPACA_SECRET_KEY"))
+    if any(prod) and any(drill):
+        raise RuntimeError("both ALPACA_* and DRILL_ALPACA_* key pairs are present; refusing")
+    key, sec = drill if profile == "drill" else prod
+    if not key or not sec:
+        raise RuntimeError(f"ALPACA credentials for profile {profile} unset")
+    return key, sec
+
+
 def trading_day_from_alpaca(today: date, environ=os.environ) -> bool:
     endpoint = environ.get("ALPACA_ENDPOINT", "")
     if not endpoint.startswith("https://paper-api.alpaca.markets"):
         raise RuntimeError("ALPACA_ENDPOINT is not the paper endpoint; refusing")
-    key, sec = environ.get("ALPACA_API_KEY"), environ.get("ALPACA_SECRET_KEY")
-    if not key or not sec:
-        raise RuntimeError("ALPACA credentials unset")
+    key, sec = resolve_credentials(environ)
     q = urllib.parse.urlencode({"start": str(today), "end": str(today)})
     req = urllib.request.Request(f"{endpoint.rstrip('/')}/calendar?{q}",
                                  headers={"APCA-API-KEY-ID": key, "APCA-API-SECRET-KEY": sec})

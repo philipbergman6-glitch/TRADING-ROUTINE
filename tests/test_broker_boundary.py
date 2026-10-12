@@ -15,6 +15,8 @@ def broker(tmp_path):
     for name in ("scripts", "risk_engine", "ledger"):
         shutil.copytree(ROOT / name, tmp_path / name, ignore=shutil.ignore_patterns("__pycache__"))
     (tmp_path / "scripts" / "_env.sh").write_text(":\n")
+    (tmp_path / "scripts" / "accounts.json").write_text(
+        '{"production": {"account_number": "PATEST000001", "id": null}, "drill": {"account_number": null, "id": null}}')
     curl = tmp_path / "curl"
     curl.write_text(f"#!{sys.executable}\n" + '''
 import json, os, sys
@@ -32,7 +34,7 @@ if "-X" in a:
         f.write(body + "\\n")
     data = {"id": "paper-order", "status": "accepted"}
 elif url.endswith("/account"):
-    data = {"equity": "100000", "cash": "100000"}
+    data = {"account_number": "PATEST000001", "equity": "100000", "cash": "100000"}
 elif url.endswith("/positions") or "/orders?" in url:
     data = []
 elif "/assets/" in url:
