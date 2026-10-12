@@ -9,7 +9,13 @@
 # So .env only fills in variables that are not already set.
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ENV_FILE="$ROOT/.env"
+# The drill profile reads .env.drill instead, so the two key pairs never sit in
+# one process: .env holds ALPACA_*, .env.drill holds DRILL_ALPACA_*.
+if [[ "${ALPACA_PROFILE:-production}" == "drill" ]]; then
+  ENV_FILE="$ROOT/.env.drill"
+else
+  ENV_FILE="$ROOT/.env"
+fi
 
 if [[ -f "$ENV_FILE" ]]; then
   while IFS='=' read -r key value; do

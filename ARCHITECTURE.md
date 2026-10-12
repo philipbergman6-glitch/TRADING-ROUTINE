@@ -37,7 +37,9 @@ scripts/alpaca.sh                ← caller intent flag (exit 5 if absent)
         ↓
 scripts/validate_mutation.py     ← re-check exact payload against broker state
         ↓
-Alpaca paper API
+scripts/account_pin.py check     ← broker account_number == profile pin (exit 8)
+        ↓
+Alpaca paper API                 ← production or drill profile (docs/ACCOUNTS.md)
         ↓
 ledger (Postgres)                ← preflight + response record when configured (T4)
 ```

@@ -108,6 +108,10 @@ python3 -m venv .venv
 compare the paper account's positions and open orders against expected
 protection (read-only). Configuration names are in `env.template`.
 
+Broker calls default to the production paper account; `ALPACA_PROFILE=drill`
+selects the isolated drill account (`docs/ACCOUNTS.md`; provision it with
+`scripts/setup_drill_account.sh`).
+
 Ledger tests run against an isolated Postgres:
 
 ```bash

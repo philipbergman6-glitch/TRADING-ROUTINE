@@ -33,3 +33,7 @@ Thin prompt template:
    `RESEND_API_KEY`, `EMAIL_TO`, `EMAIL_FROM`.
    Optional: `DATABASE_URL` (hosted Postgres) enables the audit ledger; the
    routine must then also `pip install -e ".[ledger]"`. Unset = ledger disabled.
+   Never set `DRILL_ALPACA_API_KEY` / `DRILL_ALPACA_SECRET_KEY` or
+   `ALPACA_PROFILE` on a production routine: `scripts/alpaca.sh` refuses any
+   process holding both key pairs (docs/ACCOUNTS.md). Drill runs get only the
+   `DRILL_*` pair plus `ALPACA_PROFILE=drill`.
