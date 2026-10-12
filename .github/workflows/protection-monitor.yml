@@ -34,6 +34,11 @@ concurrency:
   group: protection-monitor
   cancel-in-progress: false
 
+# ADR 0004 §3: the monitor writes the committed state store (state/) on main.
+# Pushes made with GITHUB_TOKEN do not trigger other workflows.
+permissions:
+  contents: write
+
 jobs:
   monitor:
     runs-on: ubuntu-latest
