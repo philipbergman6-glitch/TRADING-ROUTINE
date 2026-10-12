@@ -7,6 +7,10 @@ Parses:
                                   midday entries are prose-only audit trail)
                           -> BOOK (positions table of the latest EOD snapshot)
   - memory/WEEKLY-REVIEW.md -> WEEKS (Stats table of each "## Week ending" section)
+  - state/events.jsonl     -> RUNS (run records, ADR 0012: machine-written by
+                              every routine and monitor run; runs started
+                              before LOG_ASOF only, so a later record cannot
+                              make the committed data.js stale)
 
 TRADES / FEED / RULES / INSIGHTS and per-date chart notes are curated, not
 derivable from the logs — they are curated below and dated by ANALYSIS_ASOF,
@@ -18,10 +22,15 @@ HARD-FAILS on any parse mismatch. Never publishes partial or stale data.
 import re
 import json
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO))
+from scripts.run_record import MalformedRunRecord, fold  # noqa: E402
+from scripts.state_store import STATE_FILE, CorruptState, replay  # noqa: E402
+
+STATE = REPO / STATE_FILE
 TRADE_LOG = REPO / "memory" / "TRADE-LOG.md"
 WEEKLY_REVIEW = REPO / "memory" / "WEEKLY-REVIEW.md"
 OUT = REPO / "docs" / "dashboard" / "data.js"
@@ -296,6 +305,66 @@ def parse_weekly_review(text):
 
 
 # --------------------------------------------------------------------------
+# state/events.jsonl -> RUNS
+# --------------------------------------------------------------------------
+
+RECENT_RUNS = 12
+
+
+def parse_state(text):
+    try:
+        return replay(text)
+    except CorruptState as exc:
+        fail(str(exc))
+
+
+def read_state():
+    """Events on the checked-out main. The file is created by the first run
+    record; until then there are none."""
+    return parse_state(STATE.read_text(encoding="utf-8") if STATE.exists() else "")
+
+
+def summarize_runs(events, log_asof):
+    """Run records started before `log_asof` (UTC dates), newest first.
+
+    The cutoff is what keeps the golden check honest: data.js is regenerated
+    only when memory/** changes, while the monitor appends run records every
+    30 minutes with a token that triggers no workflow. Every line dated before
+    the latest EOD log was already on main when that log's rebuild ran.
+    Every record is validated, not only the shown ones: one malformed line
+    anywhere hard-fails the build."""
+    try:
+        fold(events)
+        shown = fold([e for e in events if e.get("kind") == "run" and e["at"][:10] < log_asof])
+    except MalformedRunRecord as exc:
+        fail(str(exc))
+    recent = []
+    for run in sorted(shown, key=lambda r: r.started_at, reverse=True)[:RECENT_RUNS]:
+        s = run.start
+        recent.append({
+            "run": run.run, "r": run.routine, "t": run.trigger,
+            "s": run.started_at, "e": run.ended_at, "o": run.outcome or "unfinished",
+            "sha": s["code_sha"][:7], "dirty": s["code_dirty"],
+            "rb": s["rulebook_version"] + ("" if s["rulebook_pinned"] else " UNPINNED"),
+            "m": s["model_id"] or s["model_source"],
+            "n": {"a": len(run.actions), "r": len(run.refusals), "i": len(run.incidents),
+                  "in": len(run.intents)},
+        })
+    outcomes = {}
+    for run in shown:
+        key = run.outcome or "unfinished"
+        outcomes[key] = outcomes.get(key, 0) + 1
+    return {
+        "since": min((r.started_at[:10] for r in shown), default=None),
+        "through": (date.fromisoformat(log_asof) - timedelta(days=1)).isoformat(),
+        "total": len(shown),
+        "unfinished": sum(r.ended_at is None for r in shown),
+        "outcomes": dict(sorted(outcomes.items())),
+        "recent": recent,
+    }
+
+
+# --------------------------------------------------------------------------
 # Curated content — dated by ANALYSIS_ASOF below, NOT by the latest log.
 #
 # These two dates drift apart on purpose: the logs regenerate nightly, the
@@ -405,8 +474,9 @@ def js_num(v, nd):
     return fmt(v, nd)
 
 
-def emit(snaps, weeks):
+def emit(snaps, weeks, events):
     book = build_book(snaps[-1])
+    runs = summarize_runs(events, snaps[-1]["d"])
 
     # a note keyed to a date that carries no EOD snapshot is a silent typo —
     # it would never render, so refuse to publish rather than drop it quietly
@@ -465,6 +535,15 @@ def emit(snaps, weeks):
         "const WEEKS = [\n" + ",\n".join(week_rows) + "\n];\n"
         "\n"
         f"const BOOK = [ // {book_label} EOD\n" + ",\n".join(book_rows) + "\n];\n"
+        "\n"
+        "// Run records (ADR 0012), from state/events.jsonl: machine-written by every\n"
+        "// routine and protection-monitor run, reconciled, never curated. Runs started\n"
+        "// before LOG_ASOF only. Runs before `since` (or all runs, while it is null)\n"
+        "// are unprovenanced: no record of code, rulebook, prompt or model exists and\n"
+        "// none is backfilled.\n"
+        f"const RUNS = {json.dumps(runs, ensure_ascii=False, sort_keys=True)};\n"
+        "\n"
+        "// ============ Curated: hand-written, dated by ANALYSIS_ASOF ============\n"
         "\n" + static_tail
     )
 
@@ -472,7 +551,7 @@ def emit(snaps, weeks):
 def main():
     snaps = parse_trade_log(TRADE_LOG.read_text(encoding="utf-8"))
     weeks = parse_weekly_review(WEEKLY_REVIEW.read_text(encoding="utf-8"))
-    out = emit(snaps, weeks)
+    out = emit(snaps, weeks, read_state())
     check = "--check" in sys.argv
     current = OUT.read_text(encoding="utf-8") if OUT.exists() else None
     if check:

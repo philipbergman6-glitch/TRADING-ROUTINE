@@ -2,6 +2,19 @@
 description: Midday scan — cut losers at -7%, tighten stops on winners, thesis check
 ---
 
+## Run record (first step, ADR 0012)
+
+Local runs write through the dedicated clone (`--local`, ADR 0004 section 3).
+python3 scripts/run_record.py --local start --routine midday --trigger local \
+    --command-file .claude/commands/midday.md --model "<your model id>"
+--model is the exact model ID your own system prompt states; never guess one
+(no environment variable exposes it). If it exits non-zero (10 = store
+unavailable, 2 = usage), email
+"RUN RECORD FAILED midday $DATE: <printed reason>" and STOP: a run that cannot
+be recorded makes no broker mutation (ADR 0004 section 1).
+If the run STOPs anywhere after this point, run the finish step first with
+--incident naming why.
+
 ## Strategy version gate (run first)
 
 The approved version is "active" in docs/rulebook-pins.json (ADR 0011).
@@ -231,3 +244,14 @@ sharply with no obvious cause. Append afternoon addendum to RESEARCH-LOG.
 
 STEP 7 — Notification: only if action was taken.
 bash scripts/email.sh "<action summary>"
+
+LAST STEP — RUN RECORD FINISH (ADR 0012):
+python3 scripts/run_record.py --local finish \
+    [--action "<broker mutation made>"]... [--refusal "<action a rule refused>"]... \
+    [--incident "<what went wrong>"]... [--intent <intent id>]...
+One --action per broker mutation this run made (buy, sell, stop replace or
+renew), one --refusal per action a validator or rule refused, one
+--incident per failure (STOP, push not verified, alert not delivered,
+coverage short), one --intent per intent id a helper printed. No flags =
+no-trade; the outcome is derived. Never invent entries. On a non-zero exit
+email "RUN RECORD FINISH FAILED midday $DATE: <printed reason>".

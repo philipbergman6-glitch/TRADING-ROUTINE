@@ -27,6 +27,7 @@ If they disagree, identify the discrepancy rather than silently changing policy.
 | Accounting reconciliation | `risk_engine/accounting.py`, `scripts/reconcile_equity.py`, `memory/RECONCILIATION-EXCEPTIONS.json`, `docs/adr/0008-equity-reconciles-to-sip-closes-with-recorded-exceptions.md`; `tests/test_accounting.py`, `tests/test_reconcile_equity.py` |
 | Protection payloads / coverage | `risk_engine/protection.py`, `risk_engine/reconciliation.py`, `scripts/validate_stop_change.py`, `scripts/doctor.py`; corresponding tests |
 | Committed state store (durable intent) | `scripts/state_store.py`, `.gitattributes`, `docs/adr/0004-durable-intent-lives-in-a-committed-state-file.md`; `tests/test_state_store.py` |
+| Run records (per-run provenance) | `scripts/run_record.py`, `docs/adr/0012-run-records-live-in-the-state-store.md`; `tests/test_run_record.py` |
 | Ledger / database | `ledger/live_path.py`, `ledger/store.py`, `ledger/migrations/`; `tests/test_ledger.py`, `tests/test_t4_ledger_live_path.py` |
 | Routine or command behavior | Relevant `routines/<name>.md` and `.claude/commands/<name>.md`; `tests/test_t1_*` through `tests/test_t4_*` check their wiring |
 | Dashboard and log parsing | `scripts/build_dashboard_data.py`, `scripts/deployment_status.py`, `docs/dashboard/index.html`; corresponding tests |

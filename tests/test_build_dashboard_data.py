@@ -20,7 +20,7 @@ spec.loader.exec_module(b)
 def build():
     snaps = b.parse_trade_log(b.TRADE_LOG.read_text(encoding="utf-8"))
     weeks = b.parse_weekly_review(b.WEEKLY_REVIEW.read_text(encoding="utf-8"))
-    return snaps, weeks, b.emit(snaps, weeks)
+    return snaps, weeks, b.emit(snaps, weeks, b.read_state())
 
 
 @pytest.mark.golden
@@ -118,7 +118,7 @@ def test_hard_fails_on_orphaned_eq_note():
     b.EQ_NOTES["1999-01-01"] = "note for a date with no snapshot"
     try:
         with pytest.raises(b.ParseError):
-            b.emit(snaps, weeks)
+            b.emit(snaps, weeks, [])
     finally:
         b.EQ_NOTES.clear()
         b.EQ_NOTES.update(orig)
@@ -251,3 +251,72 @@ def test_no_stale_2026_07_28_stamp_survives_anywhere():
     stale = [ln for ln in source.splitlines()
              if "2026-07-28" in ln and "analysis" in ln.lower()]
     assert not stale, f"stale analysis stamp still present: {stale}"
+
+
+# --- run records (ADR 0012): reconciled provenance, kept apart from curation ---
+
+def run_lines(run, start_at, finish_at=None, routine="midday", **finish_fields):
+    from scripts.state_store import validate
+    start = {"id": f"{run}-s", "kind": "run", "at": start_at, "writer": run, "schema": 1,
+             "op": "start", "run": run, "routine": routine, "trigger": "cloud",
+             "code_sha": "1234567" + "0" * 33, "code_subject": "x", "code_dirty": False,
+             "rulebook_version": "v1.1", "rulebook_sha256": "a" * 64, "rulebook_pinned": True,
+             "command_file": f"routines/{routine}.md", "command_sha256": "b" * 64,
+             "model_id": "claude-opus-5", "model_source": "self-reported", "host_ref": None}
+    lines = [validate(start)]
+    if finish_at:
+        fields = {"actions": [], "refusals": [], "incidents": [], "intents": [], **finish_fields}
+        from scripts.run_record import outcome_of
+        lines.append(validate({"id": f"{run}-f", "kind": "run", "at": finish_at, "writer": run,
+                               "schema": 1, "op": "finish", "run": run,
+                               "outcome": outcome_of(**{k: fields[k] for k in ("actions", "refusals", "incidents")}),
+                               **fields}))
+    return lines
+
+
+RUN_A = "midday-20261007T170000Z-aaaaaa"
+RUN_B = "midday-20261008T170000Z-bbbbbb"
+RUN_C = "midday-20261009T170000Z-cccccc"
+
+
+def test_no_run_records_yet_means_every_run_is_unprovenanced():
+    runs = b.summarize_runs([], "2026-10-09")
+    assert runs["since"] is None and runs["total"] == 0 and runs["recent"] == []
+
+
+def test_runs_are_shown_only_before_the_latest_eod_log_date():
+    """A run recorded after the latest EOD log cannot make data.js stale: the
+    monitor's GITHUB_TOKEN pushes never retrigger dashboard.yml."""
+    events = (run_lines(RUN_A, "2026-10-07T17:00:00+00:00", "2026-10-07T17:05:00+00:00",
+                        actions=["tighten MU 7%"])
+              + run_lines(RUN_B, "2026-10-08T17:00:00+00:00")
+              + run_lines(RUN_C, "2026-10-09T17:00:00+00:00", "2026-10-09T17:04:00+00:00"))
+    runs = b.summarize_runs(events, "2026-10-09")
+    assert runs["since"] == "2026-10-07" and runs["through"] == "2026-10-08"
+    assert runs["total"] == 2 and runs["unfinished"] == 1
+    newest, oldest = runs["recent"]
+    assert (newest["run"], newest["o"]) == (RUN_B, "unfinished")
+    assert (oldest["run"], oldest["o"], oldest["sha"], oldest["m"]) == (RUN_A, "actions", "1234567", "claude-opus-5")
+
+
+def test_a_finish_after_the_cutoff_leaves_its_run_unfinished_until_the_next_build():
+    events = run_lines(RUN_B, "2026-10-08T23:59:00+00:00", "2026-10-09T00:01:00+00:00")
+    assert b.summarize_runs(events, "2026-10-09")["recent"][0]["o"] == "unfinished"
+
+
+def test_dashboard_hard_fails_on_a_malformed_run_record():
+    events = run_lines(RUN_A, "2026-10-07T17:00:00+00:00")
+    events.append({**events[0], "id": "dup-start"})
+    with pytest.raises(b.ParseError, match="started twice"):
+        b.summarize_runs(events, "2026-10-09")
+
+
+def test_dashboard_hard_fails_on_a_corrupt_state_file():
+    with pytest.raises(b.ParseError):
+        b.parse_state('{"id": "x"}\n')
+
+
+def test_run_records_are_emitted_apart_from_the_curated_sections():
+    _, _, out = build()
+    assert "const RUNS = " in out
+    assert out.index("const RUNS = ") < out.index("// ============ Curated")

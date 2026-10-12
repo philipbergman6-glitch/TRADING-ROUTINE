@@ -22,8 +22,8 @@ later version.
 |---|---|---|
 | Rulebook hash | `sha256 memory/TRADING-STRATEGY.md`, pinned per version in `docs/rulebook-pins.json`, whose `"active"` key is the one source for the approved version; every mutation path binds to it (see "Version binding" below) | `84e53ed1…516fa` at commit `07603ef` (v1, through 2026-09-24). **v1.1** from 2026-09-25: v1 engine + rule 14 (composition mandate, added by the weekly review in `c92afde` without a bump; MPC 2026-09-28 was the first rule-14 entry). v1 is closed and scored through 2026-09-24. |
 | Prompt hash | `sha256` of `routines/*.md` and `.claude/commands/*.md` concatenated in `ls` order | `a9cbb897…bc12` at `07603ef` |
-| Code commit | Git SHA the routine synced to | `07603ef` (verified GitHub main, 2026-09-18) |
-| Model ID | Cloud routine configuration | **Not recorded anywhere in the repository.** Must be captured per run before a segment is scored |
+| Code commit | Git SHA the routine synced to; per run, the run record's `code_sha` / `code_subject` | `07603ef` (verified GitHub main, 2026-09-18) |
+| Model ID | Cloud routine configuration; per run, the run record's `model_id` / `model_source` (ADR 0012) | Self-reported per run from the first run record on; no environment exposes it. **Runs before run records are unprovenanced** and are never backfilled |
 | Universe | Section 2.2 / 3.2 | v1: undefined in writing; observed universe listed in 2.2 |
 | Capital | Account starting equity | v1: $100,000 paper |
 | Benchmarks | Section 4 | Identical for every version |
