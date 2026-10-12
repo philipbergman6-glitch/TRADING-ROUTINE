@@ -68,7 +68,7 @@ logs by GitHub Actions, so what you see on the page is what the agent wrote.
 
 | Component | Responsibility |
 |---|---|
-| `risk_engine/` | Rules, sizing, order and protection payloads, coverage checks, fill-based blotter |
+| `risk_engine/` | Rules, sizing, order and protection payloads, coverage checks, fill-based blotter, equity accounting |
 | `scripts/validate_order.py` | Pre-flight for a proposed buy: cash, sizing, sector cap, cooldown, stop distance |
 | `scripts/validate_mutation.py` | Validate the exact broker payload against current account and asset data |
 | `scripts/submit_entry.py` | Idempotent buy with protective leg |
@@ -77,6 +77,7 @@ logs by GitHub Actions, so what you see on the page is what the agent wrote.
 | `scripts/protection_monitor.py` | Scheduled coverage check and actions without Claude |
 | `scripts/heartbeat.py` | Daily liveness check, emails on a miss |
 | `scripts/blotter.py` | FIFO round trips, cooldowns and sector streaks from broker fills |
+| `scripts/reconcile_equity.py` | Daily cash, holdings and equity reconciliation against the broker (exit 4 on an unexplained difference) |
 | `scripts/alpaca.sh` | The only broker transport: paper-only, mutation gate, bounded timeouts |
 | `ledger/` | Optional Postgres record of decisions, broker responses and audit events |
 | `memory/` | Strategy rulebook, trade log, research log, weekly reviews |

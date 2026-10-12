@@ -1,0 +1,6 @@
+{
+  "_note": "Past sessions where broker portfolio-history equity differs from the rebuild (scripts/reconcile_equity.py) by more than the tolerance, with the observed diff (rebuilt minus broker) and why. A session is explained only while the live diff still matches the recorded one. Cash and holdings have no exceptions: they must match to the cent, share for share.",
+  "2026-05-04": {"diff": "-896.98", "reason": "broker 1D snapshot marked AMD/NVDA/PLTR below the SIP close; neighbouring sessions reconcile to the cent, so it is a one-day snapshot artefact, not a cash or position gap"},
+  "2026-06-02": {"diff": "1579.00", "reason": "broker 1D snapshot marked MU/AVGO below the SIP close on the PLTR exit day; Jun 1 and Jun 3 reconcile to the cent"},
+  "2026-07-29": {"diff": "-848.48", "reason": "broker 1D snapshot repeated the Jul 28 equity (106612.57) verbatim; Jul 30 reconciles to the cent"}
+}
