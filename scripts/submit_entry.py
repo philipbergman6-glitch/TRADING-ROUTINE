@@ -28,8 +28,10 @@ looks the order up instead of buying twice:
      exit 8 and rerun the printed command (it re-POSTs the same attempt id, so
      a landed order answers 422 and is found by lookup).
 
-The fixed protective leg is derived at the active version's entry distance
-when --price is given. Conversion to the trailing stop is the protection
+The fixed protective leg is derived at the approved version's entry distance
+when --price is given. An entry is never protective restoration: when the run
+is not bound to the approved strategy version (ADR 0011,
+scripts/strategy_version.py) nothing is submitted (version_binding_refused). Conversion to the trailing stop is the protection
 monitor's job (or STEP 5 of market-open); this script never converts.
 
 Exit codes derive from broker coverage, not from what this process did: when
@@ -39,7 +41,8 @@ protective stop is reported as exit 8 rather than hidden behind exit 3.
 
 Exit codes (JSON on stdout):
     0  submitted, or already submitted / filled by an earlier run
-    2  usage (including a malformed --intent or --tag)
+    2  usage (including a malformed --intent or --tag, or rulebook pins that
+       name no approved version)
     3  refused by the mutation gate or the broker, or every attempt of the
        intent is dead (entry_retries_exhausted); nothing submitted, and any
        existing position in the symbol verifiably keeps its stop
@@ -60,10 +63,11 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from risk_engine import FixedStop, build_oto_entry, fixed_stop_at_distance, params_from_env  # noqa: E402
+from risk_engine import FixedStop, build_oto_entry, fixed_stop_at_distance  # noqa: E402
 from scripts.execution_identity import mint_intent, parse_intent, resolve_intent  # noqa: E402
 from scripts.replace_stop import (EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE,  # noqa: E402
                                   Outcome, live_coverage, mutate)
+from scripts.strategy_version import bind  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
 KIND = "en"
@@ -71,7 +75,8 @@ DEAD = {"canceled", "expired", "rejected", "replaced"}
 
 
 def submit_entry(body: dict, *, intent: str | None = None, tag: str | None = None, read=adapter, run=mutate,
-                 now=None) -> None:
+                 now=None, binding=None) -> None:
+    binding = binding or bind(os.environ)
     if "client_order_id" in body:
         raise ValueError("client_order_id is assigned from the intent; pass --intent or --tag instead")
     symbol = str(body["symbol"]).upper()
@@ -98,6 +103,8 @@ def submit_entry(body: dict, *, intent: str | None = None, tag: str | None = Non
                            coverage=coverage, **named, **detail)
         return Outcome(EXIT_REFUSED, state, client_order_id=cid, **named, **detail)
 
+    if binding.error:
+        raise refusal("version_binding_refused", reason=binding.error)
     if res.exhausted:
         raise refusal("entry_retries_exhausted", dead_attempts=res.dead)
     attempt = {**body, "client_order_id": cid}
@@ -140,8 +147,9 @@ def main() -> int:
     identity.add_argument("--tag", help="seq for a deliberate second entry the same day (not r<digits>)")
     identity.add_argument("--intent", help="resolve this entry intent (from an earlier run's output), any day")
     args = parser.parse_args()
-    params = params_from_env(os.environ)
     try:
+        binding = bind(os.environ)
+        params = binding.params
         today = datetime.now(timezone.utc).date()
         if args.intent is not None:
             parse_intent(args.intent, KIND, args.symbol, today)
@@ -150,7 +158,7 @@ def main() -> int:
         protection = (FixedStop(stop_price=Decimal(args.stop_price)) if args.stop_price
                       else fixed_stop_at_distance(args.price, params.entry_stop_pct))
         body = build_oto_entry(symbol=args.symbol, qty=args.qty, protection=protection)
-        submit_entry(body, intent=args.intent, tag=args.tag)
+        submit_entry(body, intent=args.intent, tag=args.tag, binding=binding)
     except (ValueError, TypeError) as exc:
         print(json.dumps({"state": "usage", "exit": EXIT_USAGE, "reason": str(exc)}))
         return EXIT_USAGE

@@ -18,6 +18,15 @@ command after a crash, timeout or lost response resumes instead of duplicating:
   4. If the replacement cannot be confirmed, re-place a fixed stop at the old
      stop's exact level (rr-<old id>) and report an incident.
 
+Version binding (ADR 0011): when the run is not bound to the approved strategy
+version (scripts/strategy_version.py), nothing is canceled. The one operation
+that proceeds is restoration: the old stop is already `canceled` or
+`pending_cancel` (an earlier run's cancel), the symbol is held, and its live
+coverage is not verified -- steps 3 and 4 then place protection under the
+approved version's parameters, the outcome carries `version_exception`, and the
+CLI sends a VERSION BINDING INCIDENT alert through scripts/email.sh. Every
+other call refuses (exit 3, or 8 when the held position is uncovered).
+
 Exit codes derive from broker coverage, not from what this process did: before
 any refusal or read failure is classified, the symbol's live coverage is
 checked through risk_engine.reconciliation (an unexpired GTC stop resting as
@@ -27,7 +36,8 @@ run changed anything.
 
 Exit codes (JSON state always on stdout):
     0  replaced (or already replaced), or old stop filled -- nothing unprotected
-    2  usage / old order is not a replaceable protective stop (and nothing is held)
+    2  usage / old order is not a replaceable protective stop (and nothing is held) /
+       docs/rulebook-pins.json names no approved version
     3  refused in preflight -- the old stop verifiably still protects, untouched
     4  broker state unavailable before any mutation, and no uncovered position
        was observed -- nothing changed, retry later
@@ -51,10 +61,12 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine.reconciliation import reconcile_protection  # noqa: E402
+from scripts.strategy_version import VersionBindingError, bind  # noqa: E402
 from scripts.validate_mutation import REPLACE_PREFIX, RESTORE_PREFIX, validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
 ADAPTER = Path(__file__).resolve().parent / "alpaca.sh"
+EMAIL = Path(__file__).resolve().parent / "email.sh"
 OPEN = {"new", "accepted", "pending_new", "held", "accepted_for_bidding"}
 LIVE = {"new", "accepted", "pending_new"}
 EXIT_OK, EXIT_USAGE, EXIT_REFUSED, EXIT_NO_STATE, EXIT_RESTORED, EXIT_UNPROTECTED = 0, 2, 3, 4, 7, 8
@@ -120,18 +132,48 @@ def mutate(command, argument):
     return proc.returncode == 0, http, proc.stdout.strip(), proc.stderr.strip()
 
 
-def replace_stop(order_id, trail_percent=None, stop_price=None, **deps):
+def replace_stop(order_id, trail_percent=None, stop_price=None, binding=None, **deps):
     if (trail_percent is None) == (stop_price is None):
         raise Outcome(EXIT_USAGE, "exactly_one_of_trail_percent_or_stop_price")
-    progress = {"cancel_sent": False, "coverage": None}
     try:
-        _replace_stop(order_id, trail_percent, stop_price, progress, **deps)
-    except SystemExit as exc:
-        # A broker read failed. Classified from coverage observed so far, not from
-        # this process alone: after cancel a rerun resumes; an uncovered position
-        # seen before cancel is an incident; otherwise nothing changed.
-        raise state_unavailable(progress, "broker_state_unavailable_rerun_to_resume", adapter_exit=exc.code)
+        binding = binding or bind(os.environ)
+    except VersionBindingError as exc:
+        raise Outcome(EXIT_USAGE, "version_binding_unreadable", order_id=order_id, reason=str(exc))
+    progress = {"cancel_sent": False, "coverage": None, "binding": binding, "version_exception": None}
+    try:
+        try:
+            _replace_stop(order_id, trail_percent, stop_price, progress, **deps)
+        except SystemExit as exc:
+            # A broker read failed. Classified from coverage observed so far, not from
+            # this process alone: after cancel a rerun resumes; an uncovered position
+            # seen before cancel is an incident; otherwise nothing changed.
+            raise state_unavailable(progress, "broker_state_unavailable_rerun_to_resume", adapter_exit=exc.code)
+    except Outcome as outcome:
+        if progress["version_exception"]:
+            outcome.detail["version_exception"] = progress["version_exception"]
+        raise
     raise AssertionError("replace_stop must end in an Outcome")
+
+
+def version_refusal(progress, symbol):
+    """An unbound run changes nothing; the code still derives from broker coverage (ADR 0006)."""
+    binding, coverage = progress["binding"], progress["coverage"]
+    if observed_unprotected(progress):
+        return Outcome(EXIT_UNPROTECTED, "version_binding_refused_position_unprotected", symbol=symbol,
+                       reason=binding.error, coverage=coverage)
+    return Outcome(EXIT_REFUSED, "version_binding_refused", symbol=symbol, reason=binding.error)
+
+
+def alert_version_exception(outcome, run=subprocess.run) -> bool:
+    """Email the incident; True only when scripts/email.sh verified delivery."""
+    exc = outcome.detail["version_exception"]
+    text = (f"VERSION BINDING INCIDENT: {outcome.detail.get('symbol')} protective stop restoration ran under "
+            f"approved {exc['approved']} while the run was unbound ({exc['error']}). Result: {outcome.state} "
+            f"(exit {outcome.code}). Fix STRATEGY_VERSION / the rulebook pin before the next routine.")
+    try:
+        return run(["bash", str(EMAIL), text], check=False, timeout=120).returncode == 0
+    except subprocess.TimeoutExpired:
+        return False
 
 
 def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter, run=mutate, check=validate_mutation,
@@ -161,7 +203,10 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
     status = old.get("status")
     if status == "filled":
         raise Outcome(EXIT_OK, "old_stop_filled", symbol=symbol)
+    binding = progress["binding"]
     if status in OPEN:
+        if binding.error:
+            raise version_refusal(progress, symbol)
         # 1. Preflight while the old stop still rests and protects.
         try:
             check("order", json.dumps({k: v for k, v in body.items() if k != "client_order_id"}))
@@ -183,6 +228,12 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
                 raise Outcome(EXIT_UNPROTECTED, "old_stop_gone_position_unprotected", symbol=symbol,
                               status=status, coverage=coverage)
             raise Outcome(EXIT_USAGE, "old_stop_not_replaceable", symbol=symbol, status=status)
+        if binding.error:
+            # Restoration (ADR 0011): an earlier run's cancel left a held position without
+            # verified coverage; place protection under the approved version, cancel nothing.
+            if coverage is None or coverage["ok"]:
+                raise version_refusal(progress, symbol)
+            progress["version_exception"] = {**binding.as_dict(), "operation": "restore_after_confirmed_cancel"}
         progress["cancel_sent"] = True  # resuming an earlier run's cancel
 
     # 2. Confirm cancellation from broker state. A cancel the broker ACCEPTED may
@@ -236,7 +287,8 @@ def main():
     try:
         replace_stop(args.order_id, args.trail_percent, args.stop_price)
     except Outcome as outcome:
-        print(json.dumps({"state": outcome.state, "exit": outcome.code, **outcome.detail}, default=str))
+        alert = {"alert_delivered": alert_version_exception(outcome)} if "version_exception" in outcome.detail else {}
+        print(json.dumps({"state": outcome.state, "exit": outcome.code, **outcome.detail, **alert}, default=str))
         return outcome.code
     raise AssertionError("replace_stop must end in an Outcome")
 

@@ -122,7 +122,7 @@ def test_tag_is_a_deliberate_second_entry_the_same_day():
 def test_main_prints_the_intent_and_a_rerun_that_names_it(monkeypatch, capsys):
     import scripts.submit_entry as se
 
-    def fake(b, intent=None, tag=None):
+    def fake(b, intent=None, tag=None, binding=None):
         raise Outcome(EXIT_UNPROTECTED, "submitted_outcome_unknown_rerun", intent=CID, client_order_id=CID)
     monkeypatch.setattr(se, "submit_entry", fake)
     monkeypatch.setattr("sys.argv", ["submit_entry.py", "--symbol", "AMD", "--qty", "10", "--price", "100"])
@@ -208,3 +208,29 @@ def test_broker_rejected_add_to_an_unprotected_position_is_an_incident():
     broker.positions = [{"symbol": "AMD", "qty": "10", "market_value": "1000"}]
     got = outcome(broker)
     assert (got.code, got.state) == (EXIT_UNPROTECTED, "broker_rejected_position_unprotected")
+
+
+# ---- version binding (ADR 0011): an entry is never restoration -------------------
+
+@pytest.mark.parametrize("version", [None, "", "v1.x", "v2"])
+def test_unbound_runner_never_submits_an_entry(monkeypatch, version):
+    monkeypatch.setenv("STRATEGY_VERSION", version) if version is not None else monkeypatch.delenv("STRATEGY_VERSION")
+    broker = FakeBroker()
+    got = outcome(broker)
+    assert (got.code, got.state) == (EXIT_REFUSED, "version_binding_refused") and broker.submitted == []
+    assert got.detail["intent"] == CID and "STRATEGY_VERSION" in got.detail["reason"]
+
+
+def test_unbound_refusal_on_a_held_uncovered_symbol_is_an_incident(monkeypatch):
+    monkeypatch.delenv("STRATEGY_VERSION")
+    broker = FakeBroker()
+    broker.positions = [{"symbol": "AMD", "qty": "5", "market_value": "500"}]
+    got = outcome(broker)
+    assert (got.code, got.state) == (EXIT_UNPROTECTED, "version_binding_refused_position_unprotected")
+    assert broker.submitted == []
+
+
+def test_unbound_rerun_still_reports_an_earlier_submission(monkeypatch):
+    monkeypatch.delenv("STRATEGY_VERSION")
+    broker = FakeBroker(existing={CID: {"id": "broker-0", "status": "accepted"}})
+    assert outcome(broker).state == "already_submitted"

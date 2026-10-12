@@ -21,7 +21,9 @@ after UTC midnight resolves the same intent.
      lifecycle ended, never that today's holdings are zero. A filled intent
      with the symbol still held means a new lifecycle: a new intent (-2, -3..)
      is minted. A live close attempt is adopted only while the symbol is held.
-  2. Preflight the market sell through validate_mutation while the stop rests.
+  2. Refuse when the run is not bound to the approved strategy version (ADR
+     0011): a close is never protective restoration. Then preflight the
+     market sell through validate_mutation while the stop rests.
   3. Cancel every resting protective stop; poll until the broker confirms
      `canceled`. A stop that filled instead proves nothing about quantity added
      after it was sized: holdings are re-read and any remainder is sold under
@@ -41,8 +43,9 @@ Exit codes (JSON on stdout):
     0  close submitted, a live close attempt adopted while held, or complete
        (close_complete / position_gone / stop_filled_position_gone: the symbol
        is not held and no buy for it is live)
-    2  usage: no such position, malformed --intent, or an anomaly that needs a
-       human (a stop or a close attempt resting with nothing held)
+    2  usage: no such position, malformed --intent, rulebook pins that name no
+       approved version, or an anomaly that needs a human (a stop or a close
+       attempt resting with nothing held)
     3  refused; nothing changed and nothing held is uncovered: a verified
        protective stop still rests, or the symbol is no longer held but a buy
        for it is live (position_gone_buy_live: another writer is re-entering)
@@ -58,6 +61,7 @@ import argparse
 from datetime import datetime, timezone
 from decimal import Decimal
 import json
+import os
 from pathlib import Path
 import shlex
 import sys
@@ -69,6 +73,7 @@ from scripts.execution_identity import Resolution, next_free_intent, parse_inten
 from scripts.replace_stop import (EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE, LIVE,  # noqa: E402
                                   OPEN, Outcome, live_coverage, mutate, observed_unprotected,
                                   state_unavailable)
+from scripts.strategy_version import bind  # noqa: E402
 from scripts.validate_mutation import validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
@@ -99,9 +104,10 @@ def _resting_stops(orders, symbol):
             and o.get("status") in OPEN | {"partially_filled", "pending_cancel"}]
 
 
-def close_position(symbol: str, now: datetime, intent: str | None = None, **deps) -> None:
+def close_position(symbol: str, now: datetime, intent: str | None = None, binding=None, **deps) -> None:
     symbol = symbol.upper()
-    progress = {"cancel_sent": False, "coverage": None, "intent": None}
+    binding = binding or bind(os.environ)  # pins naming no approved version: VersionBindingError (usage)
+    progress = {"cancel_sent": False, "coverage": None, "intent": None, "binding": binding}
     try:
         _close_position(symbol, now, progress, intent, **deps)
     except Outcome as outcome:
@@ -172,7 +178,14 @@ def _close_position(symbol, now, progress, intent, *, read=adapter, run=mutate, 
     qty = str(Decimal(str(held["qty"])))
     body = {"symbol": symbol, "qty": qty, "side": "sell", "type": "market", "time_in_force": "gtc"}
 
-    # 2. Preflight while the stop still rests. A refusal is "still protects" only when
+    # 2. An unbound run changes nothing; the code still derives from coverage (ADR 0006).
+    if progress["binding"].error:
+        if observed_unprotected(progress):
+            raise Outcome(EXIT_UNPROTECTED, "version_binding_refused_position_unprotected", symbol=symbol,
+                          reason=progress["binding"].error, coverage=coverage)
+        raise Outcome(EXIT_REFUSED, "version_binding_refused", symbol=symbol, reason=progress["binding"].error)
+
+    #    Preflight while the stop still rests. A refusal is "still protects" only when
     #    the broker verifiably covers the position; otherwise it is already an incident.
     try:
         check("order", json.dumps(body))
@@ -260,7 +273,7 @@ def main() -> int:
         if args.intent is not None:
             parse_intent(args.intent, KIND, args.symbol, datetime.now(timezone.utc).date())
         close_position(args.symbol, datetime.now(timezone.utc), intent=args.intent)
-    except ValueError as exc:  # raised only by --intent validation; broker reads are classified inside
+    except ValueError as exc:  # --intent validation or unreadable pins; broker reads are classified inside
         print(json.dumps({"state": "usage", "exit": EXIT_USAGE, "reason": str(exc)}))
         return EXIT_USAGE
     except Outcome as outcome:
