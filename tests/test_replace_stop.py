@@ -365,11 +365,17 @@ else:
 '''
 
 
-def run_e2e(tmp_path, old_stop, trail, **env_extra):
+def run_e2e(tmp_path, old_stop, trail, old_status="new", **env_extra):
+    import os
     import shutil
     for name in ("scripts", "risk_engine", "ledger"):
         shutil.copytree(ROOT / name, tmp_path / name, ignore=shutil.ignore_patterns("__pycache__"))
+    for name in ("docs/rulebook-pins.json", "memory/TRADING-STRATEGY.md"):
+        (tmp_path / name).parent.mkdir(exist_ok=True)
+        shutil.copy(ROOT / name, tmp_path / name)
     (tmp_path / "scripts" / "_env.sh").write_text(":\n")
+    # The alert channel: record instead of calling Resend.
+    (tmp_path / "scripts" / "email.sh").write_text(f'printf "%s" "$1" > "{tmp_path}/alert.txt"\n')
     (tmp_path / "scripts" / "accounts.json").write_text(
         '{"production": {"account_number": "PATEST000001", "id": null}, "drill": {"account_number": null, "id": null}}')
     curl = tmp_path / "bin" / "curl"
@@ -379,11 +385,13 @@ def run_e2e(tmp_path, old_stop, trail, **env_extra):
     state = tmp_path / "broker.json"
     state.write_text(json.dumps({"orders": [
         {"id": OLD, "symbol": "AAPL", "side": "sell", "type": "trailing_stop", "qty": "100",
-         "filled_qty": "0", "status": "new", "stop_price": old_stop, "trail_percent": "10",
+         "filled_qty": "0", "status": old_status, "stop_price": old_stop, "trail_percent": "10",
          "time_in_force": "gtc", "expires_at": "2099-01-01T00:00:00Z"}]}))
     env = {"PATH": f"{curl.parent}:{Path(sys.executable).parent}:/usr/bin:/bin",
            "ALPACA_API_KEY": "offline", "ALPACA_SECRET_KEY": "offline",
-           "BROKER_STATE": str(state), "TMPDIR": str(tmp_path), **env_extra}
+           "BROKER_STATE": str(state), "TMPDIR": str(tmp_path),
+           "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"], **env_extra}
+    env = {k: v for k, v in env.items() if v is not None}
     proc = subprocess.run([sys.executable, str(tmp_path / "scripts/replace_stop.py"),
                            "--order-id", OLD, "--trail-percent", trail],
                           env=env, text=True, capture_output=True, timeout=60)
@@ -410,3 +418,121 @@ def test_e2e_rejected_replacement_restores_old_level(tmp_path):
     assert proc.returncode == 7, proc.stdout + proc.stderr
     assert [(o["status"], o["type"], o["stop_price"]) for o in orders] == [
         ("canceled", "trailing_stop", "108"), ("new", "stop", "108")]
+
+
+# ---- version binding (ADR 0011): only restoration proceeds, under the approved version
+
+def unbound(monkeypatch):
+    monkeypatch.delenv("STRATEGY_VERSION")
+
+
+def test_unbound_gate_allows_replacement_after_confirmed_cancel_on_a_naked_position(monkeypatch, capsys):
+    unbound(monkeypatch)
+    snap = snapshot()
+    snap[("order-info", OLD)]["stop_price"] = "110"
+    mutation(trail_body(client_order_id="rs-" + OLD), snap)
+    assert "VERSION BINDING EXCEPTION" in capsys.readouterr().err
+
+
+def test_unbound_gate_allows_exact_restore(monkeypatch):
+    unbound(monkeypatch)
+    mutation(json.dumps({"symbol": "AAPL", "qty": "100", "side": "sell", "type": "stop", "time_in_force": "gtc",
+                         "stop_price": "117", "client_order_id": "rr-" + OLD}), snapshot())
+
+
+def test_unbound_gate_still_applies_the_approved_versions_rules(monkeypatch):
+    unbound(monkeypatch)
+    with pytest.raises(ValueError, match="stop_never_lowered"):
+        mutation(trail_body(client_order_id="rs-" + OLD), snapshot())
+    with pytest.raises(ValueError, match="protective trail"):
+        mutation(trail_body(client_order_id="rs-" + OLD, trail_percent="12"), snapshot())
+
+
+def test_unbound_gate_refuses_restoration_while_another_stop_rests(monkeypatch):
+    unbound(monkeypatch)
+    resting = {"symbol": "AAPL", "side": "sell", "type": "stop", "status": "new", "stop_price": "100"}
+    with pytest.raises(ValueError, match="still resting"):
+        mutation(trail_body(client_order_id="rs-" + OLD), snapshot(opens=[resting]))
+
+
+def test_unbound_gate_refuses_a_stop_without_a_restoration_id(monkeypatch):
+    unbound(monkeypatch)
+    snap = snapshot()
+    snap[("order-info", OLD)]["stop_price"] = "110"
+    with pytest.raises(ValueError, match="version binding"):
+        mutation(trail_body(), snap)
+
+
+@pytest.mark.parametrize("version", [None, "", "v2", "V1"])
+def test_unbound_replace_refuses_before_any_cancel(monkeypatch, version):
+    monkeypatch.setenv("STRATEGY_VERSION", version) if version is not None else unbound(monkeypatch)
+    b = FakeBroker()
+    out = go(b)
+    assert (out.code, out.state) == (EXIT_REFUSED, "version_binding_refused")
+    assert "STRATEGY_VERSION" in out.detail["reason"] and b.calls == []
+
+
+def test_unbound_replace_on_an_uncovered_resting_stop_is_an_incident(monkeypatch):
+    unbound(monkeypatch)
+    b = FakeBroker()
+    b.orders[OLD]["qty"] = "60"  # short: the resting stop does not certify coverage
+    out = go(b)
+    assert (out.code, out.state) == (EXIT_UNPROTECTED, "version_binding_refused_position_unprotected")
+    assert b.calls == []
+
+
+def test_unbound_rerun_after_cancel_restores_protection_under_the_approved_version(monkeypatch):
+    unbound(monkeypatch)
+    b = FakeBroker(status="canceled")  # an earlier run canceled and died: the position is naked
+    out = go(b)
+    assert (out.code, out.state) == (EXIT_OK, "replaced")
+    assert [c[1] for c in b.calls] == ["order"], "never a cancel under a failed binding"
+    exc = out.detail["version_exception"]
+    assert exc["approved"] == "v1.1" and exc["engine"] == "v1" and "unset" in exc["error"]
+
+
+def test_unbound_rerun_falls_back_to_exact_restore(monkeypatch):
+    unbound(monkeypatch)
+    out = go(FakeBroker(status="canceled", replacement=None))
+    assert (out.code, out.state) == (EXIT_RESTORED, "replacement_failed_old_level_restored")
+    assert "version_exception" in out.detail
+
+
+def test_unbound_rerun_with_nothing_held_refuses(monkeypatch):
+    unbound(monkeypatch)
+    b = FakeBroker(status="canceled")
+    b.positions = []
+    out = go(b)
+    assert (out.code, out.state) == (EXIT_REFUSED, "version_binding_refused") and b.calls == []
+
+
+def test_unbound_read_only_resume_still_reports(monkeypatch):
+    unbound(monkeypatch)
+    b = FakeBroker(status="canceled")
+    b.by_client["rs-" + OLD] = {"status": "new"}
+    assert go(b).state == "already_replaced"
+
+
+def test_unreadable_pins_is_a_usage_error_before_broker_reads(monkeypatch, tmp_path):
+    from scripts import strategy_version
+    monkeypatch.setattr(strategy_version, "PINS_FILE", tmp_path / "missing.json")
+    out = go(FakeBroker(), check=lambda *a: pytest.fail("no preflight"))
+    assert (out.code, out.state) == (EXIT_USAGE, "version_binding_unreadable")
+
+
+def test_e2e_unbound_runner_never_cancels(tmp_path):
+    proc, orders = run_e2e(tmp_path, old_stop="108", trail="5", STRATEGY_VERSION=None)
+    assert proc.returncode == 3, proc.stdout + proc.stderr
+    assert json.loads(proc.stdout)["state"] == "version_binding_refused"
+    assert [o["status"] for o in orders] == ["new"]
+    assert not (tmp_path / "alert.txt").exists()
+
+
+def test_e2e_unbound_restoration_proceeds_through_the_gate_and_alerts(tmp_path):
+    proc, orders = run_e2e(tmp_path, old_stop="108", trail="5", old_status="canceled", STRATEGY_VERSION="v2")
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    report = json.loads(proc.stdout)
+    assert report["state"] == "replaced" and report["alert_delivered"] is True
+    assert [(o["status"], o.get("client_order_id")) for o in orders] == [("canceled", None), ("new", "rs-" + OLD)]
+    alert = (tmp_path / "alert.txt").read_text()
+    assert "VERSION BINDING INCIDENT" in alert and "AAPL" in alert and "v1.1" in alert

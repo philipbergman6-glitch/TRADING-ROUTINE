@@ -1,5 +1,6 @@
 """End-to-end wrapper tests: real validation, fake HTTP transport, no secrets."""
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -14,6 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def broker(tmp_path):
     for name in ("scripts", "risk_engine", "ledger"):
         shutil.copytree(ROOT / name, tmp_path / name, ignore=shutil.ignore_patterns("__pycache__"))
+    for name in ("docs/rulebook-pins.json", "memory/TRADING-STRATEGY.md"):  # version binding (ADR 0011)
+        (tmp_path / name).parent.mkdir(exist_ok=True)
+        shutil.copy(ROOT / name, tmp_path / name)
     (tmp_path / "scripts" / "_env.sh").write_text(":\n")
     (tmp_path / "scripts" / "accounts.json").write_text(
         '{"production": {"account_number": "PATEST000001", "id": null}, "drill": {"account_number": null, "id": null}}')
@@ -54,7 +58,8 @@ else:
     env = {"PATH": f"{tmp_path}:{Path(sys.executable).parent}:/usr/bin:/bin",
            "ALPACA_API_KEY": "offline", "ALPACA_SECRET_KEY": "offline",
            "ALPACA_RISK_OK": "1", "POSTS": str(tmp_path / "posts"),
-           "ALPACA_HTTP_STATUS_FILE": str(tmp_path / "status")}
+           "ALPACA_HTTP_STATUS_FILE": str(tmp_path / "status"),
+           "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"]}
     def run(command, body="", **extra):
         return subprocess.run(["/bin/bash", str(tmp_path / "scripts/alpaca.sh"), command, body],
                               env={**env, **extra}, text=True, capture_output=True, timeout=10)

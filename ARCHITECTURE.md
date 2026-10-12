@@ -96,7 +96,15 @@ rests and nothing changed; exit 4 means nothing changed and no uncovered
 position was observed.
 
 Strategy constants are versioned in `risk_engine/versions.py` (`V1` frozen,
-`V2`); `STRATEGY_VERSION` selects at each CLI boundary. Protection also runs
+`V2`). The approved version is `"active"` in `docs/rulebook-pins.json`.
+`scripts/strategy_version.bind()` binds a run to it when `STRATEGY_VERSION`
+(required), the rulebook marker and the rulebook hash all agree. Each of the
+following refuses to mutate when the run is unbound: `submit_entry.py`,
+`close_position.py`, `replace_stop.py`, `validate_mutation.py` and the
+monitor. The one exception is protective-stop restoration: `replace_stop`
+resuming after an earlier run's cancel on a held position without verified
+coverage. It places the `rs-`/`rr-` stop under the approved version, sends no
+cancel, and alerts (ADR 0011). Protection also runs
 without any Claude session: `.github/workflows/protection-monitor.yml` runs
 `scripts/protection_monitor.py` (cron intent every 30 minutes; see
 "Monitoring service level" for what is actually delivered), which plans with

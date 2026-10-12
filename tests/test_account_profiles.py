@@ -6,6 +6,7 @@ wrapper must (1) refuse when both key pairs are present in one invocation,
 account_number with the pinned one before any write.
 """
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -56,6 +57,9 @@ else:
 def wrapper(tmp_path):
     for name in ("scripts", "risk_engine", "ledger"):
         shutil.copytree(ROOT / name, tmp_path / name, ignore=shutil.ignore_patterns("__pycache__"))
+    for name in ("docs/rulebook-pins.json", "memory/TRADING-STRATEGY.md"):  # version binding (ADR 0011)
+        (tmp_path / name).parent.mkdir(exist_ok=True)
+        shutil.copy(ROOT / name, tmp_path / name)
     (tmp_path / "scripts" / "_env.sh").write_text(":\n")
     (tmp_path / "scripts" / "accounts.json").write_text(json.dumps(PINS))
     curl = tmp_path / "curl"
@@ -63,7 +67,7 @@ def wrapper(tmp_path):
     curl.chmod(0o700)
     calls = tmp_path / "calls"
     base = {"PATH": f"{tmp_path}:{Path(sys.executable).parent}:/usr/bin:/bin",
-            "CALLS": str(calls),
+            "CALLS": str(calls), "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"],
             "ACCOUNT_BY_KEY": json.dumps({"prod-key": "PAPROD000001", "drill-key": "PADRILL00001"})}
 
     def run(*argv, **env):

@@ -20,13 +20,37 @@ later version.
 
 | Pin | Where it lives | v1 value |
 |---|---|---|
-| Rulebook hash | `sha256 memory/TRADING-STRATEGY.md`, enforced by `scripts/strategy_version.py` against `docs/rulebook-pins.json` | `84e53ed1…516fa` at commit `07603ef` (v1, through 2026-09-24). **v1.1** from 2026-09-25: v1 engine + rule 14 (composition mandate, added by the weekly review in `c92afde` without a bump; MPC 2026-09-28 was the first rule-14 entry). v1 is closed and scored through 2026-09-24. |
+| Rulebook hash | `sha256 memory/TRADING-STRATEGY.md`, pinned per version in `docs/rulebook-pins.json`, whose `"active"` key is the one source for the approved version; every mutation path binds to it (see "Version binding" below) | `84e53ed1…516fa` at commit `07603ef` (v1, through 2026-09-24). **v1.1** from 2026-09-25: v1 engine + rule 14 (composition mandate, added by the weekly review in `c92afde` without a bump; MPC 2026-09-28 was the first rule-14 entry). v1 is closed and scored through 2026-09-24. |
 | Prompt hash | `sha256` of `routines/*.md` and `.claude/commands/*.md` concatenated in `ls` order | `a9cbb897…bc12` at `07603ef` |
 | Code commit | Git SHA the routine synced to | `07603ef` (verified GitHub main, 2026-09-18) |
 | Model ID | Cloud routine configuration | **Not recorded anywhere in the repository.** Must be captured per run before a segment is scored |
 | Universe | Section 2.2 / 3.2 | v1: undefined in writing; observed universe listed in 2.2 |
 | Capital | Account starting equity | v1: $100,000 paper |
 | Benchmarks | Section 4 | Identical for every version |
+
+### Version binding (ADR 0011)
+
+The approved version is `"active"` in `docs/rulebook-pins.json` (today
+`v1.1`, engine `v1`). `scripts/strategy_version.bind()` binds a run to it when
+three things agree:
+
+- `STRATEGY_VERSION` is set to the approved engine (`v1`) or the full approved
+  version (`v1.1`). Unset, malformed and different values all fail; unset no
+  longer means v1.
+- The rulebook marker equals the approved version.
+- The rulebook's sha256 equals its pin.
+
+| Path | Unbound behaviour |
+|---|---|
+| Routine prose gate (`python3 scripts/strategy_version.py`) | Exit 5 (env, marker or hash disagree) or 1 (pins unreadable); the routine emails and stops |
+| `scripts/submit_entry.py` | Refuses: `version_binding_refused`, exit 3 (exit 8 if the held symbol is uncovered) |
+| `scripts/close_position.py` | Refuses: same states and codes; nothing canceled, nothing sold |
+| `scripts/replace_stop.py` | Refuses before any cancel (exit 3 or 8), **except restoration**: the old stop is already canceled or pending cancel from an earlier run, and the symbol is held without verified coverage. It places the `rs-` replacement or `rr-` exact restore under the approved version and emails a VERSION BINDING INCIDENT |
+| `scripts/validate_mutation.py` (every `alpaca.sh` mutation) | Refuses everything but a sell stop with an `rs-`/`rr-` client id whose named stop is confirmed canceled while nothing protective rests; that one is validated under the approved version |
+| `scripts/protection_monitor.py` | Plans under the approved version; `replace_stop` refuses every action except restoration; exit 6 and an alert on every run. With unreadable pins it verifies coverage and acts on nothing |
+
+Read-only answers (already submitted, already replaced, close complete)
+still work when the run is unbound.
 
 Full v1 hashes:
 
@@ -202,7 +226,7 @@ milestone in `docs/PROJECT-STATUS.md`.
 | Recovered cancel-to-close exits | Rule 15 trim and any thesis-break close must complete after process death | `scripts/close_position.py`: cancel confirmed by poll, sell `cl-<YYYYMMDD>-<SYM>`, resumes on rerun, exit 8 if naked. |
 | Full broker lifecycle recording, blotter rebuilt from fills | Rules 10 and 14 are computed from fills, not from markdown | `risk_engine/blotter.py` + `scripts/blotter.py`: FIFO round trips from `/account/activities/FILL`; cooldown and sector streaks derived from it. |
 | Protection monitor that runs without Claude and without the ledger | Rules 5, 6, 7 (standing) and 15 are triggered actions; the Sep 8–16 outage showed protection must not depend on the ledger | `risk_engine/monitor.py` + `scripts/protection_monitor.py` + `.github/workflows/protection-monitor.yml` (30-min cron, paper endpoints hardcoded). Secrets set and dry run observed 2026-09-29; GitHub throttles the cron to ~2 runs/day, so routines must not defer protection work to it. |
-| Version-parameterised engine constants (stop band, trail ladder, sector cap, cooldown) | v1 shadow and v2 are validated by the same engine under different parameters | `risk_engine/versions.py`: `V1`, `V2`, `STRATEGY_VERSION` env selects at every CLI boundary. |
+| Version-parameterised engine constants (stop band, trail ladder, sector cap, cooldown) | v1 shadow and v2 are validated by the same engine under different parameters | `risk_engine/versions.py`: `V1`, `V2`; the approved version in `docs/rulebook-pins.json` selects them, and `STRATEGY_VERSION` must agree at every mutation path (ADR 0011). |
 
 Rule 15 (trim at target) has no script yet; it waits on the owner decision in
 section 7.
