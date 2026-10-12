@@ -230,9 +230,9 @@ delivery survey in `docs/research/0009`.
 
 | Term | Commitment |
 |---|---|
-| Protection check | One successful run of `scripts/protection_monitor.py` against live broker state (coverage verified, due actions done). |
+| Protection check | One successful run of `scripts/protection_monitor.py` against live broker state (coverage verified, due actions done). A `dry_run=true` dispatch is not one. |
 | Maximum protection-check delay | **90 minutes** while the exchange is open (09:30–16:00 ET, Alpaca trading days). Three cron slots: tolerates two consecutive dropped slots. |
-| Who measures | `scripts/heartbeat.py`, once per session after the close, from the completion time of every successful `protection-monitor` run (GitHub Actions run history). `scripts/protection_sla.py` holds the arithmetic. |
+| Who measures | `scripts/heartbeat.py`, once per session after the close, from the completion time of every successful live `protection-monitor` run (GitHub Actions run history; the workflow's `run-name` puts the mode in `display_title`: `protection-monitor live` or `protection-monitor dry run`). `scripts/protection_sla.py` holds the arithmetic. |
 | Miss | A **stale window**. Reported as one heartbeat issue naming each window and the total stale minutes (exit 5, email). Not a trading refusal: the broker holds the stops. Market-open re-verifies coverage itself (`protection_monitor.py --dry-run`) before any buy and places none while coverage is short. |
 | Alert delivery | `scripts/email.sh` captures the Resend id and reads `last_event` back. Exit 0 only when Resend accepted the message and has not reported a bounce or failure. A lost alert fails the calling job (exit 9) and the heartbeat workflow opens or comments a GitHub issue, the channel independent of Resend. |
 | No-trade record | Market-open commits `market-open trades <date>` or `market-open no-trade <date>` every session, so the heartbeat distinguishes "did not run" from "nothing to do". |
