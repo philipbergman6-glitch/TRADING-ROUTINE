@@ -8312,3 +8312,63 @@ No other position needed research: XLK (+0.51%) is MU's beat holding, XLP (-0.25
 - **All 5 stops active and correct.** No rebalancing. Next catalysts: **UMich + Schmid + DAL 10/09**, **CPI 10/14**, **PPI 10/15**, **G7 frontloaded diesel release inside ~10/22**, **BE Q3 ~10/27**, **GEV Q3 10/28**, **PSX Q3 10/28**, **FOMC 10/27-28**, **CAT Q3 11/03**, MPC Q3 11/03, payrolls 11/06.
 
 ---
+### 2026-10-12 — Pre-Market (Day 120, Monday, Columbus Day — equities open, bond market closed)
+
+**Run 07:35 ET.** STRATEGY_VERSION **v1** (env unset, declared v1.1, rulebook pinned — `strategy_version.py` exit 0). All six required env vars **set**; no `.env` read, written or sourced. LEDGER DISABLED (`DATABASE_URL` unset) — markdown is the record. `blotter.py --check` **exit 0**, no issues, **5 open lots**, FIFO book matches broker. Prices below are pre-market marks, not opens.
+
+### Account snapshot
+- **Equity $106,014.08** | **Cash $20,631.91 (19.46%)** | long MV **$85,382.17** | Day P&L **+$249.78 (+0.24%)** off broker `last_equity` $105,764.30 | **Phase P&L +$6,014.08 (+6.01%)** — a fresh phase high pre-market.
+- **No daytrade count to read** — Alpaca removed `pattern_day_trader`/`daytrade_count` on 2026-07-06; PDT does not exist (strategy file, Capital & Constraints).
+- `buying_power` $321,597.72 against $106,014.08 equity — **margin, not capital. Sizing reads `cash` only (rule 13).**
+- **Deployment 80.54%, mid-band. 5 positions** (rule-3 5-6 range, seventh session). **Headroom to the 85% ceiling $4,729.80** — 4.5% of equity.
+- `protection_monitor.py --dry-run` **exit 0, coverage ok, 5/5 fully covered, `actions` [], `results` [] — zero actions**, one `holds` (XLP fixed $79.91, `stop_never_lowered` $79.91 → $75.15), `standing` empty. **5 open protective sells, one per position, no duplicate, no orphan, no naked leg.** `build_oto_order.py expiring` → `[]`, exit 0; earliest expiry **XLK 11-06**, no renewal due.
+
+| Ticker | Shares | Entry | Pre-mkt | Chg | Gain vs fill | Stop | Cushion | Wt |
+|---|---|---|---|---|---|---|---|---|
+| MPC | 13 | $396.33 | $458.24 | +0.71% | **+15.62%** | $437.099907 (7% trail, hwm $469.9999) | 4.61% | 5.62% |
+| PSX | 57 | $264.20 | $280.00 | +0.65% | +5.98% | $257.9166 (10% trail, hwm $286.574) | 7.89% | 15.05% |
+| XLE | 311 | $63.9218 | $65.55 | +0.72% | +2.55% | $59.2695 (10% trail, hwm $65.855) | 9.58% | 19.23% |
+| XLK | 112 | $187.85 | $198.25 | -0.27% | +5.54% | $182.925 (10% trail, hwm $203.25) | 7.73% | 20.94% |
+| XLP | 250 | $83.76 | $83.50 | +0.08% | -0.31% | **$79.91 (fixed)** | 4.30% | 19.69% |
+
+**The headline is bearish for refining and the refiners are up anyway.** All three energy legs are green pre-market on the morning a US–Russia diesel deal knocked ULSD futures ~5% — a hurricane bid is offsetting it (below). MPC reclaimed the **+15% rung (+15.62%)**, so its required trail is **7** again, exactly what rests. Its stop still sits **$40.77 above the $396.33 fill**, locking **~$530** realized if it trips — the only leg protected above its entry. No hwm has been taken out pre-market; all four trails unchanged from Friday's close.
+
+### Market context
+- **WTI $90.29 (-1.70%), Brent $103.18 (-1.47%)**, Brent-WTI ~$12.89. **The named bear case fired early and bigger than logged.** The G7 release was penciled for ~10/22; instead **Trump announced a US–Russia diesel deal tied to an energy-infrastructure ceasefire**: **>300kt released immediately, 500kt in November, 1mt after**, with **Treasury temporarily authorising Russian diesel cargoes reportedly through April 2027**. **US diesel futures fell ~5%.**
+- **The offset is physical and dated.** **Hurricane Isaias** has shut in **~72% of Gulf of Mexico production (~1.3mb/d)** and threatens **~466-500kb/d of refining capacity** — Chevron Pascagoula, Vertex Mobile, Hunt Tuscaloosa. The track spares the Louisiana/Texas hub, so **MPC and PSX assets are largely out of the path while competitors' are not** — bullish for their cracks, which is why both are green on a bearish-diesel headline.
+- **Also against the deal: Russia's diesel output is down ~30%**, so delivery of the promised volumes is doubtful; analysts called the volumes insufficient for sustained relief. **Both sides of the refining argument stay on the record; nothing here is a thesis break, and all three legs are protected.**
+- **S&P 500 futures ~7,883.50, +23.75 (+0.30%)** (CNN quotes 7,867.00 +0.09% — contract/timestamp differ). **VIX 14.84 (-3.70%)** at Friday's close — no stress bid.
+- **Columbus Day: equities open, bond market and federal offices closed.** Thin liquidity can amplify moves. **No scheduled US data.** One Fed speaker: **Hammack ~12:50 ET**.
+- **Friday's UMich was bad and is the week's live overhang:** **1-yr inflation expectations 4.7%**, **sentiment 46.3** — a stagflation print, and the bond market is shut today so the yield reaction is deferred to Tuesday.
+- **Sector momentum YTD: Energy +48.4% (1st), Info Tech +38.6% (2nd), Health Care +11.7% (3rd)**; Comm Services worst at -5.4%. The book's two largest factor bets remain the two leading sectors. **Rule 9 intact; rule 10 not triggered.**
+- **Held-ticker news.** No MPC-, PSX-, XLE-, XLK- or XLP-specific announcement this morning. **The diesel deal is the only new item and it is sector-wide, not name-specific.** Friday's Mizuho PSX downgrade (Outperform → Neutral, target raised $220 → $300) stands; PSX is +0.65% pre-market, $20 below that target. PEP's unresolved margin problem still makes XLP the weakest thesis.
+
+### Trade ideas (all gated by headroom — see Decision)
+1. **GE Vernova (GEV) — primary, pre-chosen replacement, unchanged.** Pre-market **$998.88 (-0.58%)** at 05:02 ET. Catalyst: **Q3 on 10/28**, FY26 FCF guidance **$11.5-12.5bn**, non-energy AI power "picks-and-shovels" leadership. Targets: avg **$1,165-1,225** across aggregators (range $470-$1,450); recent JPMorgan $1,150, Jefferies $1,185, Evercore $1,350, Baird $1,400. **The GLJ Sell/$470 standing condition is now weighable and resolves against the bear:** it is the sole $470 in a 40-rating distribution whose average is ~$1,200 — a lone outlier, like the Morgan Stanley Underweight discharged 10/08. **Entry ~$999 · stop 10% trail (~$899) · target $1,166 → ~1.7:1 at the conservative target, ~2.3:1 at $1,225.** Non-energy, single name. **Price off a verified live print, never the Alpaca quote feed.**
+2. **Eaton (ETN) — same theme, lower single-stock beta.** Data-center power distribution, grid capex, reshoring. Still needs a live print before entry/stop/target — **not actionable today**; logged as the diversifier if GEV's valuation gap is judged too wide.
+3. **Caterpillar (CAT) — fallback.** **Q3 on 11/03**, ~$72bn backlog, power-gen/data-center demand. Needs a verified live print; the Alpaca feed has been unusable for this name.
+
+### Risk factors
+- **The refining bear case is no longer hypothetical.** A sanctions carve-out through April 2027 is a structural change, not a one-off release, and it lands on **39.90% of the book** (XLE 19.23% + PSX 15.05% + MPC 5.62%). Today it is being outweighed by a hurricane that will pass; the deal will not. **This is the dominant single-factor risk and the next add stays pre-committed non-energy.**
+- **MPC's cushion is 4.61%**, the tightest trailing leg — a -4.61% session trips $437.0999 for a realized **~+$530**. Its +20% rung ($475.60) is **3.79%** away.
+- **XLP: 4.30% cushion above $79.91, 6.69pp above the -7% cut at $77.8968.** Tightest stop, weakest thesis, **outside the rule-7 3% minimum for a sixth reading** — movable in principle, but a 10% trail would sit at $75.15, refused `stop_never_lowered`. Conversion trigger unchanged at **XLP ≥ ~$88.79**.
+- **XLK 20.94%, the largest weight, on appreciation drift only** — at the rule-3 20% line. No trim required (drift is not an added position), but it is the leg most exposed to Friday's inflation-expectations print once the bond market reopens Tuesday.
+- **Thin Columbus Day liquidity with bonds shut** — moves today carry less information than usual and the UMich yield reaction is deferred.
+- **Headroom $4,729.80 — 4.5% of equity. Every idea is gated by an exit, not by research**, for a sixteenth session.
+
+### Deployment
+- `deployment_status.py` **exit 0**: `deployed_pct` **80.54**, band [75, 85], **`sessions_under_band` 0**, `mandate` **false**, `exemption_allowed` **false**, `target_notional` **0**, `last_eod` 2026-10-09.
+- **No rule-12 mandate. Nothing owed.** Rule 14 **lapsed** (MPC and PSX are open single names).
+
+### Decision
+**HOLD the existing book — no orders from this routine.** Rule 12 compels nothing (exit 0, `target_notional` 0); rule 14 is lapsed; `protection_monitor.py` exit 0 with **5/5 coverage, zero actions**; no position at the -7% cut (worst XLP -0.31%, **6.69pp** above its line); no stop in the expiry window; deployment **80.54%, mid-band**; week **0/3**, full budget intact.
+- **MPC / PSX / XLE / XLK / XLP: HOLD.** No adds, no trims, no stop changes — `validate_stop_change.py --print-required` returns **7** for MPC (+15.62, back on the +15% rung) and **10** for PSX (+5.98), XLE (+2.55), XLK (+5.54) and XLP (-0.31), **each equal to the trail already resting, so nothing to tighten and nothing attempted.**
+- **XLP fixed→trailing conversion HELD/REFUSED** — `stop_never_lowered` ($79.91 → $75.15). Intended post-renewal state, not a failure.
+- **No stop was lowered, none hand-moved, and no order was submitted.** The two GEV validations below are sizing probes, logged as research only.
+- **Why not buy GEV today — the arithmetic, not the thesis, for a third session.** `validate_order.py --symbol GEV --qty 17 --price 998.88 --stop-price 898.99` → **exit 0, approved false, `max_deployment_pct`: "would deploy 96.56% of equity, max is 85%"** — full weight is mechanically impossible without an exit. What fits the $4,729.80 headroom is **4 shares ($3,995.52)**, which validates **approved true, violations []** — a **3.77% foothold** that spends the sixth and last slot and forfeits the full-weight entry the slot is being held for. **Rule 11: patience > activity.** The GLJ condition is discharged, so GEV is now unconditionally the replacement — it is waiting on an exit, not on research.
+- **Market-open must re-check, in order:** **whether the energy legs hold their pre-market gains once the diesel deal is traded in cash** — this is the one genuinely new input and it cuts against 39.90% of the book; **MPC's 4.61% cushion and its +20% rung at $475.60 (3.79% away)** — re-check `--print-required` on a live print, do not assume 7% is terminal; **XLP's 4.30% cushion**; then **Hammack ~12:50 ET**.
+- **Hwm ratchets needed:** MPC **$470.00** (+2.57%), PSX **$286.574** (+2.35%), XLE **$65.855** (+0.47%), XLK **$203.25** (+2.52%). XLE is within half a percent; XLK has not set a high since 10/06.
+- **If $79.91 fires:** proceeds ~$19,978, realized **~-$963 (-4.6%)**, deployment falls to ~61% and 4 positions, re-arming rule 12 with `exemption_allowed` already false — replacement **GEV at full weight** (~15-18% of equity, non-energy, single name, 10% stop, re-validated at a verified live print, never the Alpaca quote feed). **No standing condition remains: Morgan Stanley discharged 10/08, GLJ discharged today.**
+- **All 5 stops active and correct.** No rebalancing. Next catalysts: **Hammack 10/12 12:50**, **CPI 10/14**, **PPI 10/15 + retail sales + Empire/Philly**, industrial production 10/16, **Russian diesel cargoes landing through November**, **BE Q3 ~10/27**, **FOMC 10/27-28**, **GEV Q3 10/28**, **PSX Q3 10/28**, **CAT Q3 11/03**, MPC Q3 11/03, payrolls 11/06.
+
+---
