@@ -35,6 +35,13 @@ jobs:
                 && 'not integration and not golden'
                 || 'not integration' }}
         run: pytest -v -m "$MARKERS"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Protection dispatcher tests
+        # The Cloudflare Worker that dispatches protection-monitor (ADR 0009).
+        # Node's built-in runner; no npm install, no network.
+        run: node --test dispatcher/worker.test.js
 
   ledger:
     # Real Postgres, not a mock. A ledger tested against a fake proves nothing
