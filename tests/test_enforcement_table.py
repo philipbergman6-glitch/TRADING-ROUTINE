@@ -61,3 +61,29 @@ def test_each_row_names_a_class_and_an_enforcing_file(key: str, cells: list[str]
 def test_a_rule_without_a_row_is_caught() -> None:
     text = RULEBOOK.read_text().replace("## Entry Checklist", "15. A new rule\n\n## Entry Checklist")
     assert rulebook_rules(text) - {int(k) for k in table_rows(SPEC.read_text()) if k.isdigit()} == {15}
+
+
+BUY_PATHS = (
+    REPO / "routines" / "market-open.md",
+    REPO / ".claude" / "commands" / "market-open.md",
+    REPO / ".claude" / "commands" / "trade.md",
+)
+
+
+@pytest.mark.parametrize("path", BUY_PATHS, ids=lambda p: str(p.relative_to(REPO)))
+def test_buy_paths_check_rules_10_and_14_before_validating(path: Path) -> None:
+    text = path.read_text()
+    validate = text.index("validate_order.py --symbol SYM --qty N --side buy")
+    assert text.index("blotter.py --sector-streaks") < validate, "rule 10 is Script: computed before the buy"
+    assert text.index("Composition waiver") < validate, "rule 14: a broad ETF needs a recorded waiver"
+
+
+@pytest.mark.parametrize(
+    "path",
+    (REPO / "routines" / "pre-market.md", REPO / ".claude" / "commands" / "pre-market.md"),
+    ids=lambda p: str(p.relative_to(REPO)),
+)
+def test_mandate_fallback_is_constrained_by_rule_14(path: Path) -> None:
+    mandate = _section(path.read_text(), "Exit 5 → MANDATE DUE", "\nSTEP 3")
+    assert "single name" in mandate and "Composition waiver" in mandate
+    assert "never a reason to defer or skip the add" in mandate
