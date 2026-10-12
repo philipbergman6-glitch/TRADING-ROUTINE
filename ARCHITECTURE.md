@@ -195,7 +195,7 @@ than one described aspirationally.
 
 ## Monitoring service level
 
-Decided in ADR 0004 from the run history in `docs/research/0008` and the
+Decided in ADR 0007 from the run history in `docs/research/0008` and the
 delivery survey in `docs/research/0009`.
 
 | Term | Commitment |

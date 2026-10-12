@@ -1,5 +1,5 @@
 """Protection-check service level: the newest successful check must never be
-older than MAX_DELAY while the exchange is open (ADR 0004)."""
+older than MAX_DELAY while the exchange is open (ADR 0007)."""
 from datetime import date, datetime, timedelta, timezone
 
 import pytest

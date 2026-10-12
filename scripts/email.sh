@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Delivery-verified notification wrapper around the Resend API (ADR 0004).
+# Delivery-verified notification wrapper around the Resend API (ADR 0007).
 # Usage: bash scripts/email.sh "<message>"        (or the message on stdin)
 #
 # Sends, captures the Resend email id, then reads the email back and checks

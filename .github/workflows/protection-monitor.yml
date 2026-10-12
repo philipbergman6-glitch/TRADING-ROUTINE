@@ -6,7 +6,7 @@ name: protection-monitor
 # Repository secrets must be configured by the owner; the workflow refuses a
 # non-paper endpoint through scripts/alpaca.sh before any request.
 #
-# Service level (ADR 0004, ARCHITECTURE.md "Monitoring service level"): while
+# Service level (ADR 0007, ARCHITECTURE.md "Monitoring service level"): while
 # the exchange is open the newest successful run is never older than 90 min.
 # GitHub's schedule does not meet it (docs/research/0008: ~2 runs a day, the
 # first ~5 h after the open); the heartbeat measures the breach daily. The

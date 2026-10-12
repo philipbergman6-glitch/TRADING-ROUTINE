@@ -2,7 +2,7 @@ name: heartbeat
 
 # Did today's routines and workflows actually happen? Emails on any miss,
 # including a protection-check delay over the 90-minute service level
-# (ADR 0004, measured from the protection-monitor run history). Runs after
+# (ADR 0007, measured from the protection-monitor run history). Runs after
 # the EOD (~20:15Z) and Friday weekly review (~21:10Z) pushes, and immediately
 # whenever a watched workflow fails. GitHub fires the cron 2.7-3.8 h late
 # (docs/research/0008), so the workflow_run trigger is the reliable half.

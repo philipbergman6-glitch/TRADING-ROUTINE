@@ -120,7 +120,7 @@ failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", lo
 email "UNPROTECTED SYM", log, STOP.
 On VALIDATE_EXIT=3 → log violations, keep scanning. On VALIDATE_EXIT=4 → STOP, email, exit.
 
-STEP 2b-ii — Coverage re-verification (ADR 0004). Monitoring may have been
+STEP 2b-ii — Coverage re-verification (ADR 0007). Monitoring may have been
 stale for hours (GitHub fires the monitor ~2x/day); never add to a book you
 have not just verified. Before any buy:
 python3 scripts/protection_monitor.py --dry-run; COVERAGE_EXIT=$?

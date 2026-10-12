@@ -1,6 +1,6 @@
 """scripts/email.sh is delivery-verified: it captures the Resend id, reads the
 email's last_event back, and exits non-zero whenever it cannot prove the
-alert was accepted (ADR 0004). Exercised end to end against a stub Resend."""
+alert was accepted (ADR 0007). Exercised end to end against a stub Resend."""
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os

@@ -16,7 +16,7 @@ The ledger is deliberately not consulted: the Sep 8-16 outage showed protection
 must not depend on an optional component. Version comes from STRATEGY_VERSION.
 
 With --email the report is sent through scripts/email.sh, which verifies
-delivery with Resend; a lost alert must fail the job (ADR 0004), so:
+delivery with Resend; a lost alert must fail the job (ADR 0007), so:
 
 Exit codes (JSON report always on stdout):
     0  all positions covered, every due action done (or nothing due)

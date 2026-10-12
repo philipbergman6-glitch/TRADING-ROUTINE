@@ -15,7 +15,7 @@ and never touches the broker beyond the exchange calendar:
      market-open commits "market-open trades <date>" or "market-open no-trade
      <date>" every session, so "did not run" and "nothing to do" differ.
   3. GitHub Actions runs (gh api)  — protection-monitor must have succeeded at
-     least once today and, per the service level in ADR 0004, the newest
+     least once today and, per the service level in ADR 0007, the newest
      successful check must never have been older than MAX_DELAY (90 min)
      while the exchange was open (scripts/protection_sla.py measures it from
      the runs' completion times); dashboard-data and tests must not have

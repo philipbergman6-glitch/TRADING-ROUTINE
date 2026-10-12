@@ -1,4 +1,4 @@
-"""Protection-check service level (ADR 0004): pure arithmetic, no I/O.
+"""Protection-check service level (ADR 0007): pure arithmetic, no I/O.
 
 A *protection check* is one successful run of scripts/protection_monitor.py
 against live broker state. The service level: while the exchange is open, the
