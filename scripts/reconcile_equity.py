@@ -14,7 +14,7 @@ What reconciles to what:
 
 A past-session difference beyond tolerance is UNEXPLAINED unless
 memory/RECONCILIATION-EXCEPTIONS.json records that date with the same diff and
-a reason (broker snapshot artefacts; see docs/adr/0006). Today's session is
+a reason (broker snapshot artefacts; see docs/adr/0008). Today's session is
 checked through cash and holdings only: SIP closes are not available until the
 session is over. Research 0006 is the hand-made original of this check.
 

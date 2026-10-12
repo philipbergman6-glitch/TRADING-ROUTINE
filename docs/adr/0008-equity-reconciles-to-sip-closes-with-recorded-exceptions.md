@@ -1,4 +1,4 @@
-# 0006. Daily equity reconciles to SIP closes, with recorded exceptions
+# 0008. Daily equity reconciles to SIP closes, with recorded exceptions
 
 Date: 2026-10-12. Status: accepted.
 
