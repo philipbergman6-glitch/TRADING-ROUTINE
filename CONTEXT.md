@@ -194,6 +194,31 @@ minted; once flat it is a blotter *round trip*. A filled close attempt proves
 an earlier lifecycle ended, not that the current one has.
 _Avoid_: position (ambiguous between the holding and the episode), trade
 
+### Coordination
+
+**Coordinator**:
+The single account-wide owner of execution state: it records intents before
+anything reaches the broker, holds reservations, and reconciles every
+unfinished intent against the broker before accepting a new one. Every writer
+that changes the broker goes through it.
+_Avoid_: lock manager, scheduler, order router
+
+**Lease**:
+The exclusive, expiring right to change execution state for the whole account,
+held by one writer for one coordinated action. There is one lease, not one per
+symbol. When a holder dies, its lease is taken over only after it expires, and
+the taker reconciles the dead holder's intents before doing anything else.
+_Avoid_: lock (a lock is held until released; a lease ends by itself), mutex
+
+**Reservation**:
+The capacity an unfinished entry intent holds against position slots, position
+size, deployment, the weekly trade count and cash, until the broker's own
+account state shows it. It belongs to its intent, is taken only once the
+intent passes validation, and ends when the intent fills or dies; it is
+counted by the rules, never subtracted from the broker's figures.
+_Avoid_: hold, pending order (a pending order is a broker object; a reservation
+exists before any order does)
+
 ### Accounting
 
 **Reconciliation**:
