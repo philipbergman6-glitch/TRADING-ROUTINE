@@ -19,7 +19,7 @@ IMPORTANT — ENVIRONMENT VARIABLES:
     done
 - STRATEGY VERSION (hard gate, right after the loop above): the approved
   version is "active" in docs/rulebook-pins.json (ADR 0011); STRATEGY_VERSION
-  must be its engine (v1) or full version (v1.1) — UNSET IS REFUSED — and the
+  must be its engine (v1) or the full version named there — UNSET IS REFUSED — and the
   rulebook marker and hash must match the pin. Run:
     python3 scripts/strategy_version.py || { bash scripts/email.sh "STRATEGY_VERSION MISMATCH $DATE: $(python3 scripts/strategy_version.py 2>&1)"; exit 1; }
   Exit 5 = env, marker or rulebook hash disagree, exit 1 = pins unreadable.

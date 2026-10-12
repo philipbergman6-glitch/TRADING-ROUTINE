@@ -1,5 +1,6 @@
 """Protection monitor: planning is pure and version-aware; execution drives
 replace_stop and never invents a cancel/place pair."""
+import json
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 
@@ -9,10 +10,12 @@ from risk_engine import V1, V2
 from risk_engine.monitor import plan_protection
 from scripts.protection_monitor import EXIT_ISSUES, execute, worst_exit
 from scripts.replace_stop import EXIT_OK, EXIT_REFUSED, EXIT_RESTORED, EXIT_UNPROTECTED, Outcome
+from scripts.strategy_version import PINS_FILE
 
 NOW = datetime(2026, 9, 21, 15, 0, tzinfo=timezone.utc)
 FAR = (NOW + timedelta(days=80)).strftime("%Y-%m-%dT%H:%M:%SZ")
 SOON = (NOW + timedelta(days=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
+APPROVED = json.loads(PINS_FILE.read_text())["active"]  # the live approved version
 
 
 def position(symbol, qty="100", entry="100", price="100"):
@@ -187,7 +190,7 @@ def test_unbound_monitor_plans_under_the_approved_version_and_fails_loudly(monke
     refused = Outcome(EXIT_REFUSED, "version_binding_refused", reason="STRATEGY_VERSION ...")
     report, seen = monitor(monkeypatch, version, outcome=refused)
     assert report["exit"] == EXIT_VERSION_BINDING
-    assert report["strategy_version"] == "v1" and report["version_binding"]["approved"] == "v1.1"
+    assert report["strategy_version"] == "v1" and report["version_binding"]["approved"] == APPROVED
     assert report["version_binding"]["error"] and seen["replace"][0][1].error  # replace_stop decides restoration
     assert seen["sent"], "a binding failure always alerts"
 
@@ -228,6 +231,6 @@ def test_binding_failure_is_in_the_alert_text():
     from scripts.protection_monitor import notify
     sent = []
     report = {"observed_at": "t", "exit": 6, "coverage": {"issues": []}, "results": [], "holds": [],
-              "standing": [], "version_binding": {"approved": "v1.1", "error": "STRATEGY_VERSION is unset"}}
+              "standing": [], "version_binding": {"approved": APPROVED, "error": "STRATEGY_VERSION is unset"}}
     notify(report, run=lambda cmd, **kw: sent.append(cmd[-1]) or subprocess.CompletedProcess(cmd, 0))
     assert "VERSION BINDING" in sent[0] and "unset" in sent[0]

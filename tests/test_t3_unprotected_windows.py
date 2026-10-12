@@ -437,7 +437,13 @@ def test_midday_renews_expiring_stops_as_fixed(path: Path) -> None:
     # Fixed replacement at the rounded-up level, through the resumable replacer.
     assert "replace_stop.py --order-id ORDER_ID --stop-price RENEW_STOP_PRICE" in renew
     assert _first_mutating_block(renew, ("cancel", "order")) == []
-    assert "--kind stop" in renew
+    # Rule 7 (v1.2, ADR 0013): renewal is gated on never-lowered by the
+    # stop-change validator; the entry validator's band and 3% check against
+    # current price would refuse a valid renewal (#104).
+    gate = renew.index("validate_stop_change.py --current-stop S --new-stop RENEW_STOP_PRICE")
+    assert gate < renew.index("replace_stop.py --order-id")
+    assert "validate_order.py" not in renew
+    assert "stop_never_lowered" in renew and "stop_distance" in renew
 
 
 @pytest.mark.parametrize("path", CONVERGENCE_WORKFLOWS, ids=lambda p: str(p.relative_to(REPO)))

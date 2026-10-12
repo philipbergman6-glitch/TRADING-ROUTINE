@@ -18,7 +18,7 @@ If the run STOPs anywhere after this point, run the finish step first with
 ## Strategy version gate (run first)
 
 The approved version is "active" in docs/rulebook-pins.json (ADR 0011).
-STRATEGY_VERSION must be set to its engine (v1) or the full version (v1.1);
+STRATEGY_VERSION must be set to its engine (v1) or the full version named there;
 UNSET IS REFUSED, and the rulebook marker and hash must match the pin. Run:
     python3 scripts/strategy_version.py || exit 1
 Exit 5 = env, marker or rulebook hash disagree, exit 1 = pins unreadable. STOP

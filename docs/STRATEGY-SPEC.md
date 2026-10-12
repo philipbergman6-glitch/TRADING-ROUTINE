@@ -20,7 +20,7 @@ later version.
 
 | Pin | Where it lives | v1 value |
 |---|---|---|
-| Rulebook hash | `sha256 memory/TRADING-STRATEGY.md`, pinned per version in `docs/rulebook-pins.json`, whose `"active"` key is the one source for the approved version; every mutation path binds to it (see "Version binding" below) | `84e53ed1…516fa` at commit `07603ef` (v1, through 2026-09-24). **v1.1** from 2026-09-25: v1 engine + rule 14 (composition mandate, added by the weekly review in `c92afde` without a bump; MPC 2026-09-28 was the first rule-14 entry). v1 is closed and scored through 2026-09-24. |
+| Rulebook hash | `sha256 memory/TRADING-STRATEGY.md`, pinned per version in `docs/rulebook-pins.json`, whose `"active"` key is the one source for the approved version; every mutation path binds to it (see "Version binding" below) | `84e53ed1…516fa` at commit `07603ef` (v1, through 2026-09-24). **v1.1** from 2026-09-25: v1 engine + rule 14 (composition mandate, added by the weekly review in `c92afde` without a bump; MPC 2026-09-28 was the first rule-14 entry). v1 is closed and scored through 2026-09-24. **v1.2** from 2026-10-12: rules 4 and 7 state the standing-stop contract, checklist band 10% (ADR 0013); wording only, v1 engine. |
 | Prompt hash | `sha256` of `routines/*.md` and `.claude/commands/*.md` concatenated in `ls` order | `a9cbb897…bc12` at `07603ef` |
 | Code commit | Git SHA the routine synced to; per run, the run record's `code_sha` / `code_subject` | `07603ef` (verified GitHub main, 2026-09-18) |
 | Model ID | Cloud routine configuration; per run, the run record's `model_id` / `model_source` (ADR 0012) | Self-reported per run from the first run record on; no environment exposes it. **Runs before run records are unprovenanced** and are never backfilled |
@@ -31,11 +31,11 @@ later version.
 ### Version binding (ADR 0011)
 
 The approved version is `"active"` in `docs/rulebook-pins.json` (today
-`v1.1`, engine `v1`). `scripts/strategy_version.bind()` binds a run to it when
+`v1.2`, engine `v1`). `scripts/strategy_version.bind()` binds a run to it when
 three things agree:
 
 - `STRATEGY_VERSION` is set to the approved engine (`v1`) or the full approved
-  version (`v1.1`). Unset, malformed and different values all fail; unset no
+  version (`v1.2`). Unset, malformed and different values all fail; unset no
   longer means v1.
 - The rulebook marker equals the approved version.
 - The rulebook's sha256 equals its pin.
@@ -69,31 +69,42 @@ Enforcement classes used below:
 
 - **Engine**: rejected by `risk_engine` before any broker mutation.
 - **Script**: computed by a script and reported; the routine must act on it.
+- **Monitor**: the scheduled protection monitor (`scripts/protection_monitor.py`,
+  ADR 0009) checks or acts on resting state without Claude.
 - **Advisory**: text the routine is expected to follow; nothing checks it.
 
 ## 2. Strategy v1 (frozen baseline)
 
-Status: **running**. Segment start for scoring: 2026-04-27 close. Rules are
-quoted from `memory/TRADING-STRATEGY.md` at `07603ef`; nothing here amends them.
+Status: **running**. Segment start for scoring: 2026-04-27 close. The rule
+column abbreviates `memory/TRADING-STRATEGY.md` at the active version (v1.2);
+the rulebook's wording governs. "Observed" is the v1 segment record.
 
-### 2.1 Rules and how each is enforced today
+### 2.1 Rules and who enforces each (v1.2)
 
-| # | Rule (as written) | Enforcement | Observed in the v1 segment |
-|---|---|---|---|
-| 1 | No options, ever | Engine (`STOCKS_ONLY`) | Held |
-| 2 | 75–85% deployed | Engine upper bound only (`MAX_DEPLOYMENT_PCT` = 85); lower bound Script (`deployment_status.py`) | Below band 46 of 98 sessions |
-| 3 | 5–6 positions, max 20% each | Engine (`MAX_POSITIONS`, `MAX_POSITION_PCT`) | Held; four 20% sector ETFs was within the rule and was the main loss |
-| 4 | Live GTC protective stop at 10% at all times; OTO fixed leg then convert to trailing (ADR 0002) | Engine (`STOP_REQUIRED`, `STOP_DISTANCE`); coverage check in `protection.py` | Every position covered; worst single loss −9.2% |
-| 5 | Cut losers at −7% manually | Advisory (midday routine) | Fired at −8.1% (MSFT); preempted by the trail at −7.46% (XLI) |
-| 6 | Tighten trail: 7% at +15%, 5% at +20% | Engine validates a proposed change (`required_trail_percent`); nothing triggers it | Helped PLTR, MU; cut AMD's run short; XOM never reached +15% |
-| 7 | Stop never within 3% of price; never lowered | Engine on the change (`STOP_NEVER_LOWERED`, `STOP_DISTANCE`); standing state unchecked | XLB's renewed fixed stop sits 2.4% below the Sep 18 close |
-| 8 | Max 3 new trades per week | Engine (`MAX_TRADES_PER_WEEK`) | Bound in weeks 1–2 only |
-| 9 | Follow sector momentum | Advisory | As a filter (May): +7.5% vs SPY +4.7%. As the holding (ETFs): −3.9% vs +2.3% |
-| 10 | Exit a sector after 2 consecutive failed trades | Advisory; no sector field in the trade log, so not computable | Three tech losers in June; rule not invoked |
-| 11 | Patience > activity | Advisory | Used to justify 0–60% deployment for weeks |
-| 12 | Deployment backstop: forced add after 3 under-band sessions, one deferral max | Script (`deployment_status.py`) | Fired twice (XLK Aug 10, XLE Sep 17); both low-conviction ETF adds |
-| 13 | Cash only, never margin | Engine (`SUFFICIENT_CASH` on `cash`) | Held |
-| — | Entry checklist: catalyst, sector, stop 7–10%, target ≥ 2:1 | Advisory | No trade ever exited at target |
+One row per rulebook rule plus the entry checklist; `tests/test_enforcement_table.py`
+fails when a rule has no row or a row names no enforcing file. A row with
+several clauses lists the class of each. Engine checks run in
+`risk_engine/engine.py` through `scripts/validate_order.py` (buys and sells),
+`scripts/validate_stop_change.py` (stop changes) and, on the exact payload of
+every `alpaca.sh` mutation, `scripts/validate_mutation.py`.
+
+| # | Rule (abbreviated) | Class | Enforced by | Observed in the v1 segment |
+|---|---|---|---|---|
+| 1 | No options, ever | Engine | `risk_engine/engine.py` `STOCKS_ONLY` | Held |
+| 2 | 75–85% deployed | Engine (upper bound); Script (lower bound) | `risk_engine/engine.py` `MAX_DEPLOYMENT_PCT` = 85; `scripts/deployment_status.py` (lower bound, acted on through rule 12) | Below band 46 of 98 sessions |
+| 3 | 5–6 positions, max 20% each | Engine | `risk_engine/engine.py` `MAX_POSITIONS`, `MAX_POSITION_PCT` | Held; four 20% sector ETFs was within the rule and was the main loss |
+| 4 | Live GTC protective stop always; placed at 10% at entry (ADR 0002), converted to a 10% trail once that would not lower it; a held fixed stop is permitted protection (ADR 0013) | Engine (placement at entry); Monitor (coverage, conversion, held stop reported as a hold); routine executes conversion | `risk_engine/engine.py` `STOP_REQUIRED`, `STOP_DISTANCE` band 9.5–10.5%; `risk_engine/reconciliation.py` coverage and `risk_engine/monitor.py` conversion plan, run by `scripts/protection_monitor.py`; conversion in `routines/midday.md` STEP 2b via `scripts/replace_stop.py` | Every position covered; worst single loss −9.2% |
+| 5 | Cut losers at −7% manually | Advisory | `routines/midday.md` STEP 3 (scheduled check, exit via `scripts/close_position.py`) | Fired at −8.1% (MSFT); preempted by the trail at −7.46% (XLI) |
+| 6 | Tighten trail: 7% at +15%, 5% at +20% | Engine (validates the change); Monitor (triggers it) | `risk_engine/engine.py` `required_trail_percent`; `risk_engine/monitor.py` plans the tighten and `scripts/protection_monitor.py` places it; also `routines/midday.md` STEP 4 | Helped PLTR, MU; cut AMD's run short; XOM never reached +15% |
+| 7 | Never place or move a stop within 3% of price; never lower; drift is a recorded hold; renewal at the same or higher level is never a violation | Engine (on every change); Monitor (reports `standing` fixed stops); Advisory (trade-log record) | `risk_engine/engine.py` `validate_stop_change` (`STOP_NEVER_LOWERED`, `STOP_DISTANCE`) via `scripts/validate_stop_change.py` and `scripts/validate_mutation.py`; `risk_engine/monitor.py` `standing`; drift record and renewal gate in `routines/midday.md` STEP 2b/2c. **Gap:** the mutation gate still applies the 3% check to a same-level renewal (#137) | XLB's renewed fixed stop sits 2.4% below the Sep 18 close |
+| 8 | Max 3 new trades per week | Engine | `risk_engine/engine.py` `MAX_TRADES_PER_WEEK` | Bound in weeks 1–2 only |
+| 9 | Follow sector momentum | Advisory | `routines/pre-market.md` research; `risk_engine/engine.py` `UNMECHANISED["sector_momentum"]` | As a filter (May): +7.5% vs SPY +4.7%. As the holding (ETFs): −3.9% vs +2.3% |
+| 10 | Exit a sector after 2 consecutive failed trades | Script (computed; no routine calls it in v1.2) | `scripts/blotter.py --sector-streaks` with `memory/SECTORS.json` | Three tech losers in June; rule not invoked |
+| 11 | Patience > activity | Advisory | `routines/pre-market.md` (HOLD by default); bounded by rule 12 | Used to justify 0–60% deployment for weeks |
+| 12 | Deployment backstop: forced add after 3 under-band sessions, one deferral max | Script | `scripts/deployment_status.py`, acted on in `routines/pre-market.md` and `routines/market-open.md` STEP 2c | Fired twice (XLK Aug 10, XLE Sep 17); both low-conviction ETF adds |
+| 13 | Cash only, never margin | Engine | `risk_engine/engine.py` `SUFFICIENT_CASH` on `cash` | Held |
+| 14 | Composition mandate: next new position is a single name while the book holds none | Advisory (no routine mentions it in v1.2); Engine target (#136) | `memory/TRADING-STRATEGY.md` only | XLE (Sep 17) went to a sixth correlated ETF before the rule existed; MPC (Sep 28) was the first rule-14 entry |
+| checklist | Entry checklist: catalyst, sector, stop 10% (9.5–10.5%), target ≥ 2:1 | Advisory (stop band is Engine via rule 4) | `routines/pre-market.md`; `risk_engine/engine.py` `UNMECHANISED["documented_catalyst"]` | No trade ever exited at target |
 
 ### 2.2 Universe as actually traded
 
@@ -106,15 +117,16 @@ engineering tests and are excluded from the v1 record.
 
 These are frozen with the version. They are inputs to v2, not v1 patches.
 
-- **Standing-state violation of rule 7.** The rule constrains a *change*. When
-  price drifts to within 3% of a fixed stop (XLB, Sep 18), the rulebook gives
-  no instruction, and both available actions (leave it; convert to a wider
-  trail) conflict with some reading of the rule. Until v2, the v1 handling is:
-  leave the stop, record the condition in the trade log each session it
-  persists, do not lower. This is an interpretation note, not a rule change.
+- ~~Standing-state violation of rule 7.~~ Resolved in v1.2 (ADR 0013): drift
+  to within 3% of a resting stop is a recorded hold, not a violation, and
+  renewal at the same or higher level is never a rule-7 violation. The
+  mutation gate does not yet allow such a renewal (#137).
 - Rule 5 cannot fire at −7% because it is a scheduled check, not a resting order.
-- Rule 6 tightening is never triggered automatically.
-- Rule 10 is not computable from the record.
+- Rule 6 tightening is triggered by the protection monitor (`risk_engine/monitor.py`
+  plans it, `scripts/protection_monitor.py` places it) as well as midday STEP 4;
+  its effective delay is the monitor's (ADR 0007, 90 minutes while open).
+- Rule 10 is computed from fills by `scripts/blotter.py --sector-streaks`
+  (sector per symbol from `memory/SECTORS.json`), not from the trade log.
 - The trade log has no sector, catalyst, invalidation, or version field.
 
 ### 2.4 v1 as a shadow
