@@ -118,6 +118,18 @@ at or above it.
 _Avoid_: leftover stop (names the pre-conversion leg right after entry, which is
 transient), legacy stop
 
+**Protection check**:
+One successful verification of protection for every open position against
+live broker state, including any due renewal, conversion or tightening. A
+check that could not read the broker, or that left protection short, is not a
+check.
+_Avoid_: monitor run, cron slot (a run can fail; a slot can produce no run)
+
+**Stale window**:
+An interval while the exchange is open during which the newest protection
+check is older than the maximum protection-check delay. A stale window is a
+monitoring miss, not an unprotected window: the broker still holds the stops.
+_Avoid_: outage, downtime (both suggest nothing was protected)
 ### Rule enforcement
 
 **Enforcement class**:

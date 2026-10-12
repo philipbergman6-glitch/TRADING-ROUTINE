@@ -115,3 +115,34 @@ def test_execute_reruns_unprotected_then_reports_worst_exit():
         raise Outcome(EXIT_UNPROTECTED, "cancel_unconfirmed")
 
     assert worst_exit(plan, execute(plan, replace=never, reruns=2)) == EXIT_UNPROTECTED
+
+
+def test_alert_delivery_failure_fails_an_otherwise_clean_run():
+    import subprocess
+    from scripts.protection_monitor import EXIT_ALERT_FAILED, exit_code, notify
+
+    report = {"observed_at": "2026-10-12T14:00:00+00:00", "exit": 0, "coverage": {"issues": []},
+              "results": [{"kind": "tighten", "symbol": "MPC", "state": "replaced"}], "holds": [], "standing": []}
+    sent = []
+
+    def ok(cmd, **kw):
+        sent.append(cmd[-1])
+        return subprocess.CompletedProcess(cmd, 0)
+
+    def refused(cmd, **kw):
+        return subprocess.CompletedProcess(cmd, 4)
+
+    def hung(cmd, **kw):
+        raise subprocess.TimeoutExpired(cmd, kw.get("timeout"))
+
+    assert notify(report, run=ok) is True and "tighten MPC -> replaced" in sent[0]
+    assert notify(report, run=refused) is False
+    assert notify(report, run=hung) is False
+    # A lost alert on a clean or coverage-issue run becomes exit 9; broker-state
+    # outcomes (7, 8) keep their code since they are the more urgent signal.
+    assert exit_code(0, alert_delivered=False) == EXIT_ALERT_FAILED
+    assert exit_code(EXIT_ISSUES, alert_delivered=False) == EXIT_ALERT_FAILED
+    assert exit_code(EXIT_RESTORED, alert_delivered=False) == EXIT_RESTORED
+    assert exit_code(EXIT_UNPROTECTED, alert_delivered=False) == EXIT_UNPROTECTED
+    assert exit_code(EXIT_ISSUES, alert_delivered=True) == EXIT_ISSUES
+    assert exit_code(0, alert_delivered=None) == 0

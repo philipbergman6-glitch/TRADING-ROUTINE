@@ -122,6 +122,18 @@ expired while uncovered, or mid-replacement) → rerun the SAME command now (res
 up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
 On VALIDATE_EXIT=3 → log violations, keep scanning. On VALIDATE_EXIT=4 → STOP, email, exit.
 
+STEP 2b-ii — Coverage re-verification (ADR 0007). Monitoring may have been
+stale for hours (GitHub fires the monitor ~2x/day); never add to a book you
+have not just verified. Before any buy:
+python3 scripts/protection_monitor.py --dry-run; COVERAGE_EXIT=$?
+- Exit 0 → every position covered; proceed.
+- Exit 5 → coverage short: NO new buys this session. Email
+  "COVERAGE SHORT $DATE: <issues from the JSON>", log it under today's
+  Market-Open entry, and go to STEP 8 (the monitor's next run or midday
+  repairs; market-open never places protective orders for existing legs).
+- Exit 4 → broker state unavailable: STOP, email "BROKER STATE UNAVAILABLE
+  $DATE", exit.
+
 STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
 DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
 - Exit 4 → STOP, email "DEPLOYMENT STATE UNAVAILABLE $DATE", exit.
@@ -233,23 +245,31 @@ issue #32 stop-change or trail-ladder validators. #40 PATCH still OPEN — do
 not claim the sub-second cancel→place window is closed; replace_stop makes it
 recoverable, not atomic.
 
-STEP 6 — Append each trade to memory/TRADE-LOG.md (matching existing format):
-Date, ticker, side, shares, entry price, stop level, thesis, target, R:R.
+STEP 6 — Append today's Market-Open entry to memory/TRADE-LOG.md (matching
+existing format). With trades: date, ticker, side, shares, entry price, stop
+level, thesis, target, R:R per trade. WITHOUT trades: still write the entry,
+headed "### $DATE — Market-Open", opening "**No trades.**" with the reason
+(HOLD plan, coverage short, mandate refused, ...). The heartbeat distinguishes
+"did not run" from "nothing to do" only by this record.
 
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
+email.sh exits non-zero when delivery could not be verified (creds unset,
+Resend rejected, bounced); treat that as "the owner was not told": retry
+once, then note "ALERT NOT DELIVERED" in the TRADE-LOG entry.
 
-STEP 8 — COMMIT, PUSH, VERIFY (mandatory if any trades executed or a
-backstop add was skipped at STEP 2c):
-Skip this step only if no trades fired AND no backstop skip was logged.
+STEP 8 — COMMIT, PUSH, VERIFY (mandatory EVERY trading day — the commit is
+the no-trade outcome record the heartbeat reads):
+SUBJECT="market-open trades $DATE"      # any order submitted or backstop skip logged
+SUBJECT="market-open no-trade $DATE"    # otherwise
 git add memory/TRADE-LOG.md
-git commit -m "market-open trades $DATE"
+git commit -m "$SUBJECT"
 git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }
 Never force-push.
 
 Then VERIFY the push landed (the proxy rewrites SHAs — compare subjects,
 never SHAs):
 git fetch origin main
-git log --format=%s -3 FETCH_HEAD | grep -qxF "market-open trades $DATE" \
+git log --format=%s -3 FETCH_HEAD | grep -qxF "$SUBJECT" \
   && echo "PUSH VERIFIED" \
   || bash scripts/email.sh "PUSH NOT ON MAIN $DATE — origin/main tip: $(git log -1 --format='%h %s' FETCH_HEAD)"

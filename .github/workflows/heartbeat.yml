@@ -1,9 +1,15 @@
 name: heartbeat
 
-# Did today's routines and workflows actually happen? Emails on any miss.
-# Runs after the EOD (~20:15Z) and Friday weekly review (~21:10Z) pushes, and
-# immediately whenever a watched workflow fails. GitHub throttles cron on
-# quiet repos, so the workflow_run trigger is the reliable half.
+# Did today's routines and workflows actually happen? Emails on any miss,
+# including a protection-check delay over the 90-minute service level
+# (ADR 0007, measured from the protection-monitor run history). Runs after
+# the EOD (~20:15Z) and Friday weekly review (~21:10Z) pushes, and immediately
+# whenever a watched workflow fails. GitHub fires the cron 2.7-3.8 h late
+# (docs/research/0008), so the workflow_run trigger is the reliable half.
+#
+# Alert delivery is verified (scripts/email.sh); if the email cannot be sent
+# this job fails and, as the channel independent of Resend, opens a GitHub
+# issue so the miss is visible in the repository itself.
 
 on:
   schedule:
@@ -16,6 +22,7 @@ on:
 permissions:
   contents: read
   actions: read
+  issues: write
 
 jobs:
   check:
@@ -43,3 +50,14 @@ jobs:
       - name: Daily heartbeat
         if: github.event_name != 'workflow_run'
         run: python3 scripts/heartbeat.py
+      - name: Open a GitHub issue when the alert path itself failed
+        if: failure()
+        run: |
+          title="ALERT PATH FAILED $(date -u +%F): heartbeat ${{ github.event_name }}"
+          body="Heartbeat run ${{ github.run_id }} failed, so the email alert may not have reached the owner. Read the run log: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          existing="$(gh issue list -R "$GITHUB_REPOSITORY" --state open --search "\"$title\" in:title" --json number --jq '.[0].number')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" -R "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create -R "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi
