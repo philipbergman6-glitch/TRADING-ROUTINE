@@ -120,6 +120,25 @@ budget is spent.
 1–5 s random backoff. Spent → fail closed with #115's exit code. Unrelated tip
 moves (log and dashboard commits) cost one retry each and never void a claim.
 
+**Fit to the store as built** (`scripts/state_store.py`, #115, PR #124):
+
+- A line's `id` is a per-line uuid and replay refuses duplicates. Intent
+  lines therefore carry the intent ID in an `intent` field, not in `id`; one
+  intent has one line per state it reaches. This refines ADR 0005 §5 ("a line
+  whose id is the intent ID"). A lease is named by its acquire line's `id`,
+  and `prev` and `supersedes` hold such ids.
+- When `still_wins` fails after a rebase, the store pushes the losing lines
+  plus an event that lists their ids, then raises `ClaimLost`. That event
+  withdraws a claim; it is not the end of a lease. Its kind becomes
+  `withdraw` (the provisional `release` would be confused with `lease` /
+  `release`), and replay ignores every line it lists. Replay must also void
+  those lines by the rules above, so the store stays correct even if the
+  withdraw push itself fails.
+- `still_wins` is "my acquire line is valid". A coordinator that catches
+  `ClaimLost` re-enters the wait loop of §1 and does not fail closed straight
+  away.
+- `PUSH_BUDGET` goes from the provisional 3 to 5.
+
 **Two pushes per intent**, so a normal action adds two `state:` commits:
 
 1. `acquire` (with `supersedes` if taking over) + recovery transitions + the
