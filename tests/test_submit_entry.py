@@ -1,14 +1,14 @@
 """Idempotent entry: a rerun looks the buy up by its stable client id instead
 of buying twice, and the outcome is always confirmed from broker state."""
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 import json
 
 import pytest
 
 from scripts.replace_stop import EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, Outcome
-from scripts.submit_entry import entry_client_id, submit_entry
+from scripts.execution_identity import MAX_RETRIES, attempt_id
+from scripts.submit_entry import submit_entry
 
-DAY = date(2026, 9, 21)
 NOW = datetime(2026, 9, 21, 15, 0, tzinfo=timezone.utc)
 
 
@@ -40,43 +40,114 @@ class FakeBroker:
         return True, self.http, "{}", ""
 
 
-def body(cid="en-20260921-AMD"):
+CID = "en-20260921-AMD"
+AFTER_MIDNIGHT = datetime(2026, 9, 22, 0, 10, tzinfo=timezone.utc)
+
+
+def body():
     return {"symbol": "AMD", "qty": "10", "side": "buy", "type": "market", "time_in_force": "gtc",
-            "order_class": "oto", "stop_loss": {"stop_price": "93"}, "client_order_id": cid}
+            "order_class": "oto", "stop_loss": {"stop_price": "93"}}
 
 
-def outcome(broker, b=None):
+def outcome(broker, b=None, now=NOW, **identity):
     with pytest.raises(Outcome) as info:
-        submit_entry(b or body(), read=broker.read, run=broker.run, now=NOW)
+        submit_entry(b or body(), read=broker.read, run=broker.run, now=now, **identity)
     return info.value
 
 
-def test_client_id_is_derived_from_day_and_symbol():
-    assert entry_client_id("amd", DAY) == "en-20260921-AMD"
-    assert entry_client_id("AMD", DAY, "b") == "en-20260921-AMD-b"
-    with pytest.raises(ValueError, match="tag"):
-        entry_client_id("AMD", DAY, "bad tag")
-    with pytest.raises(ValueError, match="broker-safe"):
-        entry_client_id("BRK.B", DAY)
+def test_the_caller_never_stamps_the_client_id():
+    b = {**body(), "client_order_id": CID}
+    with pytest.raises(ValueError, match="intent"):
+        submit_entry(b, read=FakeBroker().read, run=FakeBroker().run, now=NOW)
 
 
 def test_submits_once_and_confirms_by_client_id():
     broker = FakeBroker()
     got = outcome(broker)
-    assert (got.code, got.state) == (EXIT_OK, "submitted")
-    assert broker.submitted[0]["client_order_id"] == "en-20260921-AMD"
+    assert (got.code, got.state, got.detail["intent"]) == (EXIT_OK, "submitted", CID)
+    assert broker.submitted[0]["client_order_id"] == CID
     assert got.detail["order"]["id"] == "broker-1"
 
 
 def test_rerun_finds_the_earlier_buy_and_does_not_submit():
-    broker = FakeBroker(existing={"en-20260921-AMD": {"id": "broker-0", "status": "filled"}})
-    got = outcome(broker)
-    assert (got.code, got.state) == (EXIT_OK, "already_submitted") and broker.submitted == []
+    for status, state in (("accepted", "already_submitted"), ("filled", "already_filled")):
+        broker = FakeBroker(existing={CID: {"id": "broker-0", "status": status}})
+        got = outcome(broker)
+        assert (got.code, got.state, got.detail["intent"]) == (EXIT_OK, state, CID) and broker.submitted == []
 
 
-def test_dead_earlier_order_does_not_block_a_fresh_submit():
-    broker = FakeBroker(existing={"en-20260921-AMD": {"id": "broker-0", "status": "canceled"}})
-    assert outcome(broker).state == "submitted" and len(broker.submitted) == 1
+def test_retry_after_a_dead_attempt_uses_the_next_attempt_id_not_the_same_one():
+    # Alpaca answers a reused client id with 422 forever; a dead attempt is skipped.
+    for dead in ("canceled", "expired", "rejected", "replaced"):
+        broker = FakeBroker(existing={CID: {"id": "broker-0", "status": dead}})
+        got = outcome(broker)
+        assert got.state == "submitted" and broker.submitted[0]["client_order_id"] == CID + "-r1", dead
+        assert got.detail["dead_attempts"] == [{"client_order_id": CID, "status": dead}]
+
+
+def test_rejected_then_canceled_retries_twice_then_exhausts_with_a_hard_failure():
+    broker = FakeBroker(existing={CID: {"id": "b0", "status": "rejected"}, CID + "-r1": {"id": "b1", "status": "canceled"}})
+    assert outcome(broker).detail["client_order_id"] == CID + "-r2"
+    spent = FakeBroker(existing={attempt_id(CID, n): {"id": f"b{n}", "status": "rejected"}
+                                 for n in range(MAX_RETRIES + 1)})
+    got = outcome(spent)
+    assert (got.code, got.state) == (EXIT_REFUSED, "entry_retries_exhausted") and spent.submitted == []
+
+
+def test_live_entry_from_before_midnight_is_found_after_it():
+    broker = FakeBroker(existing={CID: {"id": "broker-0", "status": "new"}})
+    got = outcome(broker, now=AFTER_MIDNIGHT)
+    assert (got.state, got.detail["intent"]) == ("already_submitted", CID) and broker.submitted == []
+
+
+def test_filled_entry_yesterday_does_not_block_a_new_entry_today():
+    broker = FakeBroker(existing={CID: {"id": "broker-0", "status": "filled"}})
+    got = outcome(broker, now=AFTER_MIDNIGHT)
+    assert got.state == "submitted" and broker.submitted[0]["client_order_id"] == "en-20260922-AMD"
+
+
+def test_named_intent_resumes_across_midnight_with_its_next_attempt():
+    broker = FakeBroker(existing={CID: {"id": "broker-0", "status": "rejected"}})
+    got = outcome(broker, now=AFTER_MIDNIGHT, intent=CID)
+    assert got.detail["intent"] == CID and broker.submitted[0]["client_order_id"] == CID + "-r1"
+
+
+def test_tag_is_a_deliberate_second_entry_the_same_day():
+    broker = FakeBroker(existing={CID: {"id": "broker-0", "status": "filled"}})
+    got = outcome(broker, tag="b")
+    assert got.state == "submitted" and broker.submitted[0]["client_order_id"] == CID + "-b"
+
+
+def test_main_prints_the_intent_and_a_rerun_that_names_it(monkeypatch, capsys):
+    import scripts.submit_entry as se
+
+    def fake(b, intent=None, tag=None):
+        raise Outcome(EXIT_UNPROTECTED, "submitted_outcome_unknown_rerun", intent=CID, client_order_id=CID)
+    monkeypatch.setattr(se, "submit_entry", fake)
+    monkeypatch.setattr("sys.argv", ["submit_entry.py", "--symbol", "AMD", "--qty", "10", "--price", "100"])
+    assert se.main() == EXIT_UNPROTECTED
+    printed = json.loads(capsys.readouterr().out)
+    assert printed["intent"] == CID
+    assert printed["rerun"] == f"python3 scripts/submit_entry.py --symbol AMD --qty 10 --price 100 --intent {CID}"
+
+
+@pytest.mark.parametrize("flags", [["--tag", "r1"], ["--tag", "bad tag"], ["--intent", "en-20260921-AMD-r1"],
+                                   ["--intent", "cl-20260921-AMD"], ["--intent", "en-20990101-AMD"]])
+def test_bad_identity_flags_are_usage_errors_before_any_broker_call(monkeypatch, capsys, flags):
+    import scripts.submit_entry as se
+    monkeypatch.setattr(se, "submit_entry", lambda *a, **k: pytest.fail("must not reach the broker"))
+    monkeypatch.setattr("sys.argv", ["submit_entry.py", "--symbol", "AMD", "--qty", "10", "--price", "100", *flags])
+    assert se.main() == 2
+    assert json.loads(capsys.readouterr().out)["state"] == "usage"
+
+
+def test_intent_and_tag_together_are_rejected(monkeypatch):
+    import scripts.submit_entry as se
+    monkeypatch.setattr("sys.argv", ["submit_entry.py", "--symbol", "AMD", "--qty", "10", "--price", "100",
+                                     "--intent", CID, "--tag", "b"])
+    with pytest.raises(SystemExit) as exc:
+        se.main()
+    assert exc.value.code == 2
 
 
 def test_gate_refusal_is_exit_3_with_nothing_submitted_to_the_broker():

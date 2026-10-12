@@ -93,7 +93,7 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    ```
    # LEDGER_ORDER_ID from the buy validate --json above (re-assert before record)
    LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-   # submit_entry.py: OTO via build_oto_order.py, client id en-<YYYYMMDD>-<SYM>, lookup before submit; exit 8 → rerun same command
+   # submit_entry.py: OTO via build_oto_order.py, intent en-<YYYYMMDD>-<SYM> (ADR 0005), lookup before submit; exit 8 → run the JSON `rerun` command
    ENTRY_JSON=$(python3 scripts/submit_entry.py --symbol SYM --qty N --price P); ENTRY_EXIT=$?
    HTTP_STATUS=$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
    if [ -n "$HTTP_STATUS" ]; then
@@ -108,8 +108,9 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    protected (ADR 0002 / quant seal).
 
    SELL of a protected position — cancel-then-close (#38) through the
-   resumable script (cancel confirmed, sell stamped cl-<YYYYMMDD>-<SYM>,
-   exit 8 = naked → rerun the same command):
+   resumable script (cancel confirmed, sell under intent cl-<YYYYMMDD>-<SYM>,
+   complete only when no longer held; exit 8 = naked → run the JSON `rerun`
+   command, which carries --intent):
    ```
    CLOSE_JSON=$(python3 scripts/close_position.py --symbol SYM --reason "<why>"); CLOSE_EXIT=$?
    ```

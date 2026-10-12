@@ -3,22 +3,33 @@
 
     python3 scripts/close_position.py --symbol AMD
     python3 scripts/close_position.py --symbol AMD --reason "cut at -7% per rule"
+    python3 scripts/close_position.py --symbol AMD --intent cl-20261012-AMD   # rerun, any day
 
 Replaces the hand-written `cancel ORDER_ID` + `close SYM` pair in the midday
-cut path (CUT_LOSER_STEPS). Each step is confirmed from broker state, and the
-exit order carries client_order_id cl-<YYYYMMDD>-<SYMBOL> so a rerun after a
-crash or timeout resumes instead of selling twice:
+cut path (CUT_LOSER_STEPS). Each step is confirmed from broker state. The exit
+is one close *intent* (ADR 0005) named cl-<YYYYMMDD>-<SYMBOL>[-<seq>]; each
+sell submitted for it is an *attempt* with client_order_id = the intent id,
+then -r1 .. -r5 after the broker confirms an earlier attempt dead. A rerun
+after a crash or timeout resumes the intent instead of selling twice. The JSON
+output names the intent and a `rerun` command carrying --intent, so a rerun
+after UTC midnight resolves the same intent.
 
-  0. Lookup by client id. A live or filled close from an earlier run is
-     authoritative: exit 0.
-  1. Preflight the market sell through validate_mutation while the stop rests.
-  2. Cancel every resting protective stop; poll until the broker confirms
-     `canceled`. A stop that filled instead means the position is gone: exit 0.
-     A stop that will not cancel still protects: exit 3, nothing sold.
-  3. Confirm the position is still held, then submit the market sell (GTC)
-     through scripts/alpaca.sh, which validates the exact body again.
-  4. Confirm by client id. Not found: the position is now NAKED (stop gone,
-     no exit resting): exit 8, rerun this exact command immediately.
+  0. Resolve the intent (scripts/execution_identity.py): --intent, else a live
+     attempt from today or yesterday, else today's latest intent or a new one.
+  1. Read holdings. A close is complete only when the symbol is not held AND
+     no buy for it is live: a filled close attempt proves an earlier position
+     lifecycle ended, never that today's holdings are zero. A filled intent
+     with the symbol still held means a new lifecycle: a new intent (-2, -3..)
+     is minted. A live close attempt is adopted only while the symbol is held.
+  2. Preflight the market sell through validate_mutation while the stop rests.
+  3. Cancel every resting protective stop; poll until the broker confirms
+     `canceled`. A stop that filled instead proves nothing about quantity added
+     after it was sized: holdings are re-read and any remainder is sold under
+     the same intent. A stop that will not cancel still protects: exit 3.
+  4. Re-read holdings, then submit the market sell (GTC) through
+     scripts/alpaca.sh, which validates the exact body again.
+  5. Confirm by client id. Not found: the position is now NAKED (stop gone,
+     no exit resting): exit 8, rerun the printed command immediately.
 
 Exit codes derive from broker coverage, not from what this process did: the
 symbol's live coverage (risk_engine.reconciliation: an unexpired GTC stop
@@ -27,13 +38,18 @@ every refusal or read failure is classified against it. A rerun after an
 earlier process canceled the stop and died therefore reports 8, never 3.
 
 Exit codes (JSON on stdout):
-    0  close submitted or confirmed, or the position was already gone
-    2  usage (no such position)
-    3  refused; a verified protective stop still rests and nothing changed
+    0  close submitted, a live close attempt adopted while held, or complete
+       (close_complete / position_gone / stop_filled_position_gone: the symbol
+       is not held and no buy for it is live)
+    2  usage: no such position, malformed --intent, or an anomaly that needs a
+       human (a stop or a close attempt resting with nothing held)
+    3  refused; nothing changed and nothing held is uncovered: a verified
+       protective stop still rests, or the symbol is no longer held but a buy
+       for it is live (position_gone_buy_live: another writer is re-entering)
     4  broker state unavailable before any change, with no uncovered position
        observed; retry later
     8  INCIDENT: the position has no verified protective stop (refused or
-       unreadable while uncovered, or mid cancel->close); rerun the same
+       unreadable while uncovered, or mid cancel->close); rerun the printed
        command now, and escalate if it repeats
 """
 from __future__ import annotations
@@ -43,55 +59,36 @@ from datetime import datetime, timezone
 from decimal import Decimal
 import json
 from pathlib import Path
-import re
+import shlex
 import sys
 import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from scripts.execution_identity import Resolution, next_free_intent, parse_intent, resolve_intent  # noqa: E402
 from scripts.replace_stop import (EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE, LIVE,  # noqa: E402
                                   OPEN, Outcome, live_coverage, mutate, observed_unprotected,
                                   state_unavailable)
 from scripts.validate_mutation import validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
-CLOSE_PREFIX = "cl-"
-DEAD = frozenset({"canceled", "expired", "rejected"})
-MAX_RETRIES = 5
+KIND = "cl"
+BUY_LIVE = frozenset({"accepted", "new", "partially_filled", "pending_new", "held"})
 
 
-def close_client_id(symbol: str, day, retry: int = 0) -> str:
-    """cl-<day>-<SYM>, then cl-<day>-<SYM>-r1.. once an earlier attempt died at the broker."""
-    cid = f"{CLOSE_PREFIX}{day:%Y%m%d}-{symbol.upper()}" + (f"-r{retry}" if retry else "")
-    if not re.fullmatch(r"[A-Za-z0-9-]{1,48}", cid):
-        raise ValueError(f"client_order_id {cid!r} is not broker-safe")
-    return cid
+def _live_buys(orders, symbol):
+    return [o for o in orders if isinstance(o, dict) and str(o.get("symbol", "")).upper() == symbol
+            and o.get("side") == "buy" and o.get("status") in BUY_LIVE]
 
 
-def _resolve_client_id(read, symbol, day):
-    """Walk cl-..., cl-...-r1, ... A live or filled attempt is authoritative; a dead one
-    (rejected/canceled/expired at the broker) must not be reused: the broker refuses a
-    duplicate client id, and with the stops already gone every rerun would end naked."""
-    dead = []
-    for retry in range(MAX_RETRIES + 1):
-        cid = close_client_id(symbol, day, retry)
-        prior = read("order-by-client", cid)
-        if not isinstance(prior, dict):
-            return cid, None, dead
-        status = prior.get("status")
-        if status in OPEN | {"partially_filled", "filled"}:
-            return cid, prior, dead
-        if status in DEAD:
-            dead.append({"client_order_id": cid, "status": status})
-            continue
-        raise ValueError(f"prior close {cid} has unexpected status {status!r}")
-    raise Outcome(EXIT_UNPROTECTED, "close_retries_exhausted_manual_exit_required", symbol=symbol,
-                  dead_attempts=dead)
-
-
-def _held(read, symbol):
-    held, _ = live_coverage(read, symbol, datetime.now(timezone.utc))
-    return held
+def _not_held(symbol, orders, state, **detail):
+    """Holdings are zero. The close is complete only if no buy for the symbol is live."""
+    buys = _live_buys(orders, symbol)
+    if buys:
+        raise Outcome(EXIT_REFUSED, "position_gone_buy_live", symbol=symbol,
+                      buy_client_order_ids=[o.get("client_order_id") for o in buys],
+                      buy_order_ids=[str(o.get("id")) for o in buys], **detail)
+    raise Outcome(EXIT_OK, state, symbol=symbol, **detail)
 
 
 def _resting_stops(orders, symbol):
@@ -102,46 +99,80 @@ def _resting_stops(orders, symbol):
             and o.get("status") in OPEN | {"partially_filled", "pending_cancel"}]
 
 
-def close_position(symbol: str, now: datetime, **deps) -> None:
+def close_position(symbol: str, now: datetime, intent: str | None = None, **deps) -> None:
     symbol = symbol.upper()
-    progress = {"cancel_sent": False, "coverage": None}
+    progress = {"cancel_sent": False, "coverage": None, "intent": None}
     try:
-        _close_position(symbol, now, progress, **deps)
+        _close_position(symbol, now, progress, intent, **deps)
+    except Outcome as outcome:
+        if progress["intent"]:
+            outcome.detail.setdefault("intent", progress["intent"])
+        raise
     except SystemExit as exc:
         # Classified from coverage observed so far, not from this process alone.
         raise state_unavailable(progress, "broker_state_unavailable_rerun_to_resume", symbol=symbol,
-                                adapter_exit=exc.code)
+                                adapter_exit=exc.code, **_named(progress))
     except (ValueError, TypeError, KeyError) as exc:
         unreadable = state_unavailable(progress, "unreadable_broker_state_rerun_to_resume", symbol=symbol,
-                                       error=str(exc))
+                                       error=str(exc), **_named(progress))
         if unreadable.state == "broker_state_unavailable":
             unreadable.state = "unreadable_broker_state"
         raise unreadable
     raise AssertionError("close_position must end in an Outcome")
 
 
-def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=validate_mutation,
-                    sleep=time.sleep, polls=20):
-    # 0. Resume: a live or filled close from an earlier run is authoritative; a dead
-    #    one is skipped and this run submits under the next retry id.
-    cid, prior, dead = _resolve_client_id(read, symbol, now.date())
-    if prior is not None:
-        raise Outcome(EXIT_OK, "already_closing" if prior.get("status") != "filled" else "already_closed",
-                      symbol=symbol, client_order_id=cid, order=prior)
+def _named(progress):
+    return {"intent": progress["intent"]} if progress["intent"] else {}
 
+
+def _close_position(symbol, now, progress, intent, *, read=adapter, run=mutate, check=validate_mutation,
+                    sleep=time.sleep, polls=20):
     orders = read("orders", "open")
     held, coverage = live_coverage(read, symbol, now, orders=orders)
     progress["coverage"] = coverage
+    # 0. Resolve the intent. Its attempts are evidence about earlier sells, not holdings.
+    res = resolve_intent(read, KIND, symbol, now, intent=intent)
+    progress["intent"] = res.intent
     stops = _resting_stops(orders, symbol)
+
+    # 1. Not held: complete only when no buy is live; anything resting otherwise is an anomaly.
     if held is None:
+        if res.live:
+            raise Outcome(EXIT_USAGE, "close_resting_without_position", symbol=symbol,
+                          client_order_id=res.client_order_id, order=res.order)
+        if _live_buys(orders, symbol):
+            _not_held(symbol, orders, "position_gone")
         if stops:
             raise Outcome(EXIT_USAGE, "no_position_but_stop_resting", symbol=symbol,
                           stop_order_ids=[str(o.get("id")) for o in stops])
+        if res.filled:
+            _not_held(symbol, orders, "close_complete", client_order_id=res.client_order_id, order=res.order)
         raise Outcome(EXIT_USAGE, "no_position", symbol=symbol)
+
+    # Held: a live close attempt from an earlier run is still working on it.
+    if res.live:
+        raise Outcome(EXIT_OK, "already_closing", symbol=symbol, client_order_id=res.client_order_id,
+                      order=res.order)
+    superseded = {}
+    if res.filled:
+        # That intent's lifecycle ended; this is a new one and gets a new intent.
+        superseded = {"superseded_intent": res.intent, "superseded_order": res.order}
+        nxt = next_free_intent(read, KIND, symbol, now)
+        if nxt is None:
+            raise Outcome(EXIT_UNPROTECTED if observed_unprotected(progress) else EXIT_REFUSED,
+                          "close_intents_exhausted_manual_exit_required", symbol=symbol, coverage=coverage,
+                          **superseded)
+        res = Resolution(nxt, nxt)
+        progress["intent"] = nxt
+    if res.exhausted:
+        raise Outcome(EXIT_UNPROTECTED if observed_unprotected(progress) else EXIT_REFUSED,
+                      "close_retries_exhausted_manual_exit_required", symbol=symbol, dead_attempts=res.dead,
+                      coverage=coverage)
+    cid, dead = res.client_order_id, res.dead
     qty = str(Decimal(str(held["qty"])))
     body = {"symbol": symbol, "qty": qty, "side": "sell", "type": "market", "time_in_force": "gtc"}
 
-    # 1. Preflight while the stop still rests. A refusal is "still protects" only when
+    # 2. Preflight while the stop still rests. A refusal is "still protects" only when
     #    the broker verifiably covers the position; otherwise it is already an incident.
     try:
         check("order", json.dumps(body))
@@ -151,7 +182,8 @@ def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=va
                           coverage=coverage)
         raise Outcome(EXIT_REFUSED, "refused", symbol=symbol, reason=str(exc))
 
-    # 2. Cancel every resting stop; confirm each from broker state.
+    # 3. Cancel every resting stop; confirm each from broker state.
+    stop_filled = None
     for stop in stops:
         oid = str(stop["id"])
         if stop.get("status") != "pending_cancel":
@@ -172,7 +204,8 @@ def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=va
                 break
             sleep(1)
         if status == "filled":
-            raise Outcome(EXIT_OK, "stop_filled_position_gone", symbol=symbol, stop_order_id=oid)
+            stop_filled = oid  # proves nothing about quantity added after it was sized
+            continue
         if status in OPEN and not cancel_ok:
             raise Outcome(EXIT_REFUSED, "cancel_rejected_stop_still_protects", symbol=symbol,
                           stop_order_id=oid, status=status)
@@ -182,33 +215,56 @@ def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=va
         if status not in ("canceled", "expired", "rejected"):
             raise Outcome(EXIT_UNPROTECTED, "cancel_unconfirmed", symbol=symbol, stop_order_id=oid, status=status)
 
-    # 3. The stop is gone. Confirm the position, then sell it.
-    held = _held(read, symbol)
+    # 4. The stops are gone. Re-read holdings, then sell whatever is still held.
+    orders = read("orders", "open")
+    held, _ = live_coverage(read, symbol, now, orders=orders)
     if held is None:
-        raise Outcome(EXIT_OK, "position_gone", symbol=symbol)
+        if stop_filled:
+            _not_held(symbol, orders, "stop_filled_position_gone", stop_order_id=stop_filled)
+        _not_held(symbol, orders, "position_gone")
     body["qty"] = str(Decimal(str(held["qty"])))
     body["client_order_id"] = cid
     ok, http, out, err = run("order", json.dumps(body))
 
-    # 4. Confirm by client id regardless of what the HTTP layer said.
+    # 5. Confirm by client id regardless of what the HTTP layer said.
     placed = read("order-by-client", cid)
     if isinstance(placed, dict) and placed.get("status") in LIVE | {"partially_filled", "filled"}:
         raise Outcome(EXIT_OK, "close_submitted", symbol=symbol, client_order_id=cid, order=placed,
-                      http_status=http, stops_canceled=[str(o["id"]) for o in stops], dead_attempts=dead)
+                      http_status=http, stops_canceled=[str(o["id"]) for o in stops], dead_attempts=dead,
+                      **({"stop_filled": stop_filled} if stop_filled else {}), **superseded)
     raise Outcome(EXIT_UNPROTECTED, "close_failed_position_naked_rerun", symbol=symbol, client_order_id=cid,
                   http_status=http, reason=err or out, stops_canceled=[str(o["id"]) for o in stops])
+
+
+def rerun_command(symbol: str, intent: str | None, reason: str) -> str:
+    """The exact command a human or routine reruns; it names the intent so a rerun on
+    a later UTC day resolves this close rather than minting a new one."""
+    parts = ["python3", "scripts/close_position.py", "--symbol", symbol.upper()]
+    if intent:
+        parts += ["--intent", intent]
+    if reason:
+        parts += ["--reason", reason]
+    return shlex.join(parts)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--symbol", required=True)
     parser.add_argument("--reason", default="", help="recorded in the JSON report only")
+    parser.add_argument("--intent", help="resolve this close intent (from an earlier run's output), any day")
     args = parser.parse_args()
     try:
-        close_position(args.symbol, datetime.now(timezone.utc))
+        if args.intent is not None:
+            parse_intent(args.intent, KIND, args.symbol, datetime.now(timezone.utc).date())
+        close_position(args.symbol, datetime.now(timezone.utc), intent=args.intent)
+    except ValueError as exc:  # raised only by --intent validation; broker reads are classified inside
+        print(json.dumps({"state": "usage", "exit": EXIT_USAGE, "reason": str(exc)}))
+        return EXIT_USAGE
     except Outcome as outcome:
+        intent = outcome.detail.get("intent")
         print(json.dumps({"state": outcome.state, "exit": outcome.code, "reason_given": args.reason,
-                          **outcome.detail}, default=str))
+                          **outcome.detail, "rerun": rerun_command(args.symbol, intent, args.reason)},
+                         default=str))
         return outcome.code
     raise AssertionError("close_position must end in an Outcome")
 
