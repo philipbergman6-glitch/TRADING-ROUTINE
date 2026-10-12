@@ -153,8 +153,9 @@ cannot judge catalyst quality — see risk_engine.UNMECHANISED).
 
 STEP 4 — Execute the buy as one OTO (entry + fixed protective leg) through
 scripts/submit_entry.py — the ONLY sanctioned buy path. It builds the OTO,
-stamps client_order_id en-<YYYYMMDD>-<SYM>, looks that id up BEFORE
-submitting (a rerun after a crash/timeout never buys twice), submits through
+names the entry intent en-<YYYYMMDD>-<SYM> (ADR 0005), looks its attempts up
+BEFORE submitting (a rerun after a crash/timeout never buys twice; a dead
+attempt is retried as -r1.. automatically, no --tag needed), submits through
 alpaca.sh (which re-validates the exact body with ALPACA_RISK_OK=1), and
 confirms by client id. Never hand-write a raw order call for a buy.
 
@@ -166,9 +167,10 @@ if [ -n "$HTTP_STATUS" ]; then
       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
       --response "$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
 fi
-ENTRY_EXIT: 0 submitted / already_submitted (use the returned order id) · 3
-refused or broker_rejected → log verbatim, skip · 4 broker unavailable →
-STOP · 8 outcome unknown → rerun the SAME command now (it resumes); still 8 →
+ENTRY_EXIT: 0 submitted / already_submitted / already_filled (use the returned
+order id) · 3 refused, broker_rejected or entry_retries_exhausted → log
+verbatim, skip · 4 broker unavailable → STOP · 8 outcome unknown → rerun the
+JSON `rerun` command now (it carries --intent and resumes); still 8 →
 email "ENTRY OUTCOME UNKNOWN SYM", STOP the buy path for that symbol. An 8 with
 state *_position_unprotected means the symbol is already held with no verified
 stop: email "UNPROTECTED SYM", STOP.

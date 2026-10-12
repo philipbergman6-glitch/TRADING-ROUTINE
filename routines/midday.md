@@ -165,9 +165,11 @@ On approve, close through scripts/close_position.py — the ONLY sanctioned
 exit path. It performs the mandatory cancel-then-close (#38 / CUT_LOSER_STEPS)
 with every step confirmed from broker state: preflights the sell while the
 stop still rests, cancels the stop and polls until `canceled`, confirms the
-position, submits the market sell with client_order_id cl-<YYYYMMDD>-<SYM>
-and confirms it. A rerun resumes; it never sells twice and never leaves the
-position naked silently. Never hand-write the cancel/close pair.
+position, submits the market sell under close intent cl-<YYYYMMDD>-<SYM>
+(ADR 0005: attempts -r1.. after a dead sell; a same-day re-entry gets -2) and
+confirms it. Done means the symbol is no longer held and no buy is live, never
+merely that an earlier sell filled. A rerun resumes; it never sells twice and
+never leaves the position naked silently. Never hand-write the cancel/close pair.
 
 CLOSE_JSON=$(python3 scripts/close_position.py --symbol SYM --reason "cut at -7% per rule"); CLOSE_EXIT=$?
 HTTP_STATUS=$(printf "%s" "$CLOSE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
@@ -176,11 +178,14 @@ if [ -n "$HTTP_STATUS" ]; then
       --order-id "$LEDGER_ORDER_ID" --kind submit --http-status "$HTTP_STATUS" \
       --response "$(printf "%s" "$CLOSE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
 fi
-CLOSE_EXIT: 0 close submitted / already closing / stop filled (position gone)
-· 3 refused, a verified stop still protects → log, HOLD · 4 broker unavailable,
+CLOSE_EXIT: 0 close submitted / already closing / close_complete or position
+gone (not held, no buy live) · 2 no position, or a stop/sell resting with
+nothing held → log verbatim, email the state · 3 refused, a verified stop still
+protects, or position_gone_buy_live → log, HOLD · 4 broker unavailable,
 no uncovered position seen → STOP · 8 UNPROTECTED — the broker shows no verified
 stop for the position (refused or unreadable while uncovered, or stop canceled
-and sell not confirmed) → rerun the SAME command now; still 8 → email
+and sell not confirmed) → rerun the JSON `rerun` command now (it carries
+--intent, so it resolves this close even after UTC midnight); still 8 → email
 "UNPROTECTED SYM", STOP.
 Log the exit to TRADE-LOG: exit price, realized P&L (from
 `python3 scripts/blotter.py --markdown`, fill-based), "cut at -7% per rule".

@@ -67,13 +67,22 @@ same command after a crash resumes without duplicates. The mutation gate reads
 the replaced stop's `stop_price` via that client id (or any same-symbol stop
 canceled in the last 15 minutes), so a canceled stop's floor still binds.
 
-Entries and exits follow the same resume-by-client-id pattern (ADR 0003).
-`scripts/submit_entry.py` stamps `en-<YYYYMMDD>-<SYM>` on the OTO buy, looks
-it up before submitting and confirms it after, so a rerun never buys twice.
-`scripts/close_position.py` performs cancel→close with the sell stamped
-`cl-<YYYYMMDD>-<SYM>`: preflight while the stop rests, cancel and poll to
-`canceled`, confirm the position, sell, confirm; a rerun resumes and an
-unconfirmed sell after a confirmed cancel is exit 8 (naked incident).
+Entries and exits resume by *intent* (ADR 0005, amending ADR 0003 §3). An
+intent `<en|cl>-<YYYYMMDD>-<SYM>[-<seq>]` names one requested action; each POST
+is an attempt whose client order id is the intent id, then `-r1`..`-r5` once
+the broker confirms the previous attempt dead. One shared resolver,
+`scripts/execution_identity.py`, walks the attempts for both helpers (live or
+filled is authoritative, dead is skipped, anything else hard-fails), adopts a
+live attempt from today or yesterday so a rerun across UTC midnight finds it,
+and honours an explicit `--intent` on any day; both helpers print the intent
+and a `rerun` command carrying it. `scripts/submit_entry.py` submits the OTO
+buy under the next free attempt, so a dead attempt no longer blocks the symbol.
+`scripts/close_position.py` performs cancel→close: preflight while the stop
+rests, cancel and poll to `canceled`, re-read holdings, sell, confirm. A close
+is complete only when the symbol is not held and no buy is live; a filled close
+attempt proves an earlier position lifecycle ended, so a same-day re-entry is
+closed under a new intent (`-2`). An unconfirmed sell after a confirmed cancel
+is exit 8 (naked incident).
 
 All three scripts derive their exit code from **broker coverage, not from the
 mutations this process made**. Before classifying a refusal (exit 3) or a
@@ -185,8 +194,10 @@ than one described aspirationally.
   sub-second, recoverable window remains on replacement and on
   `scripts/close_position.py` (cancel→close). Collapsing trail-tighten via `PATCH` needs
   [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
-  (OPEN research — do not invent). Idempotency is per deterministic client id
-  (`en-`, `cl-`, `rs-`, `rr-`), not a durable intent store.
+  (OPEN research — do not invent). Idempotency is per intent, recoverable from
+  the broker by walking deterministic client ids (`en-`, `cl-` intents with
+  `-rN` attempts; `rs-`, `rr-` keyed on the replaced stop), not yet a durable
+  intent store (ADR 0004, #115).
 - **Read-only reconciliation, not a scheduled loop.** `scripts/doctor.py --broker`
   compares held quantities against current, unexpired GTC protective orders via
   `risk_engine.reconciliation`. It flags missing, excess and ambiguous coverage.

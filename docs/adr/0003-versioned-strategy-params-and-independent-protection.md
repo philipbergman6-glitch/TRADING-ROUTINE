@@ -1,6 +1,7 @@
 # 0003. Versioned strategy parameters and an independent protection monitor
 
-Date: 2026-09-20. Status: accepted.
+Date: 2026-09-20. Status: accepted; §3 amended by ADR 0005 (client order ids
+are attempts of an intent, not the unit of identity).
 
 ## Context
 
