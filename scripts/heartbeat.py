@@ -14,12 +14,13 @@ and never touches the broker beyond the exchange calendar:
      matched by the subject prefix each routine uses (routines/*.md STEP 7/8).
      market-open commits "market-open trades <date>" or "market-open no-trade
      <date>" every session, so "did not run" and "nothing to do" differ.
-  3. GitHub Actions runs (gh api)  — protection-monitor must have succeeded at
-     least once today and, per the service level in ADR 0007, the newest
-     successful check must never have been older than MAX_DELAY (90 min)
-     while the exchange was open (scripts/protection_sla.py measures it from
-     the runs' completion times); dashboard-data and tests must not have
-     failed today.
+  3. GitHub Actions runs (gh api)  — protection-monitor must have succeeded
+     live (not as a dry run) at least once today and, per the service level in
+     ADR 0007, the newest live check must never have been older than MAX_DELAY
+     (90 min) while the exchange was open (scripts/protection_sla.py measures
+     it from the runs' completion times); dashboard-data and tests must not
+     have failed today. The run list carries no dispatch inputs, so the
+     workflow's run-name stamps the mode into display_title.
 
 The alert email is delivery-verified by scripts/email.sh; if it cannot be
 sent the job fails with exit 9 so the workflow itself becomes the signal.
@@ -62,6 +63,8 @@ EXPECTED_DAILY = {
 EXPECTED_LABEL = {"market-open": "market-open <trades|no-trade>"}
 EXPECTED_FRIDAY = {"weekly-review": "weekly review"}
 MONITOR = "protection-monitor"
+# display_title of a monitor run, set by run-name in .github/workflows/protection-monitor.yml.
+MONITOR_LIVE, MONITOR_DRY = "protection-monitor live", "protection-monitor dry run"
 MUST_NOT_FAIL = ("dashboard-data", "tests")
 EXCHANGE_TZ = ZoneInfo("America/New_York")
 
@@ -80,6 +83,15 @@ def _completed_at(run: dict) -> datetime:
     if stamp.tzinfo is None:
         raise ValueError(f"updated_at is not timezone-aware: {raw!r}")
     return stamp.astimezone(timezone.utc)
+
+
+def _is_live(run: dict) -> bool:
+    """A dry run plans but does no due work, so it is not a protection check (ADR 0007)."""
+    title = run.get("display_title")
+    if title not in (MONITOR_LIVE, MONITOR_DRY):
+        raise ValueError(f"successful {MONITOR} run with unknown display_title {title!r} "
+                         f"(expected {MONITOR_LIVE!r} or {MONITOR_DRY!r}): {run!r}")
+    return title == MONITOR_LIVE
 
 
 def protection_check_status(today: date, monitor_ok: list[dict], now: datetime) -> dict:
@@ -119,10 +131,12 @@ def assess(today: date, trading_day: bool, commit_subjects: list[str], runs: lis
     by_workflow: dict[str, list[dict]] = {}
     for r in runs:
         by_workflow.setdefault(str(r.get("name")), []).append(r)
-    monitor_ok = [r for r in by_workflow.get(MONITOR, []) if r.get("conclusion") == "success"]
+    succeeded = [r for r in by_workflow.get(MONITOR, []) if r.get("conclusion") == "success"]
+    monitor_ok = [r for r in succeeded if _is_live(r)]
     if not monitor_ok:
         seen = len(by_workflow.get(MONITOR, []))
-        issues.append(f"workflow {MONITOR}: no successful run today ({seen} run(s) seen)")
+        issues.append(f"workflow {MONITOR}: no successful live run today "
+                      f"({seen} run(s) seen, {len(succeeded)} dry run(s))")
     protection = protection_check_status(today, monitor_ok, now)
     if monitor_ok and protection["breaches"]:
         issues.append(_breach_issue(today, protection, now))
@@ -189,7 +203,7 @@ def commit_subjects_since(midnight_utc: datetime) -> list[str]:
 def runs_today(repo: str, today: date) -> list[dict]:
     out = subprocess.run(
         ["gh", "api", "--paginate", f"repos/{repo}/actions/runs?created={today}&per_page=100",
-         "--jq", ".workflow_runs[] | {name, conclusion, status, url: .html_url, created_at, updated_at}"],
+         "--jq", ".workflow_runs[] | {name, display_title, conclusion, status, url: .html_url, created_at, updated_at}"],
         capture_output=True, text=True, check=True).stdout
     return [json.loads(line) for line in out.splitlines() if line.strip()]
 

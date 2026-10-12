@@ -28,7 +28,7 @@ nothing on a no-trade day, so the heartbeat could not tell "did not run" from
    breaches it every session today, and that breach is now reported rather
    than hidden behind the word "30 minutes".
 2. **Who measures: the heartbeat, from the GitHub Actions run history.** The
-   evidence is the completion time (`updated_at`) of every successful
+   evidence is the completion time (`updated_at`) of every successful live
    `protection-monitor` run on the session day; `scripts/protection_sla.py`
    turns those into stale windows (pure arithmetic), and `scripts/heartbeat.py`
    reports the windows and total stale minutes as one issue. The monitor does
@@ -77,3 +77,13 @@ nothing on a no-trade day, so the heartbeat could not tell "did not run" from
   lands in `DAILY-SUMMARY.md`); routines treat that as "the owner was not
   told".
 - Every market-open run pushes a commit, including no-trade days.
+- **A dry run is not a protection check** (ticket
+  [#131](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/131)).
+  A `workflow_dispatch` with `dry_run=true` reads coverage but does no due
+  work, so it counts for neither coverage nor the level. The Actions run list
+  does not return dispatch inputs, so the workflow's `run-name` stamps the mode
+  into `display_title` (`protection-monitor live` / `protection-monitor dry
+  run`) and the heartbeat counts only the live title. A successful run with
+  any other title (a drifted `run-name`, or a run from before 2026-10-12) is
+  rejected rather than guessed, so the heartbeat fails loudly once on the day
+  this lands.

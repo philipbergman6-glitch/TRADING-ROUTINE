@@ -121,8 +121,8 @@ transient), legacy stop
 **Protection check**:
 One successful verification of protection for every open position against
 live broker state, including any due renewal, conversion or tightening. A
-check that could not read the broker, or that left protection short, is not a
-check.
+check that could not read the broker, that left protection short, or that ran
+as a dry run (planning only), is not a check.
 _Avoid_: monitor run, cron slot (a run can fail; a slot can produce no run)
 
 **Stale window**:

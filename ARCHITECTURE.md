@@ -133,6 +133,20 @@ max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
 unambiguous protection on every buy · fixed entry stop 9.5–10.5% below entry
 or exactly 10% entry trail · non-equity symbol formats rejected
 
+The position-count, position-size, weekly-trade, cash and deployment rules
+(and v2's sector cap) also count **reservations**: the capacity an unfinished
+entry intent holds until the broker shows it ([ADR 0010](docs/adr/0010-account-wide-lease-reservations-and-intent-recovery.md) §6).
+`PortfolioState.reservations` is required, like `is_paper`, so a buy decision
+cannot forget them. The engine counts them rule by rule rather than the caller
+pre-subtracting them: a reserved new symbol takes one slot however many intents
+reserve it; an add to a held name takes no slot; every non-fallback reservation
+is a weekly trade; all reserved notional is deployed and not available cash;
+the fallback is exempt from the counts, never from the money. Refusals name the
+reserving intent ids, and `max_affordable_shares` uses the same view.
+`scripts/validate_order.py` passes none until the coordinator
+([#100](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/100))
+reads them from the state store.
+
 Enforced on midday trail/stop *changes* via `scripts/validate_stop_change.py`
 (T2 / [issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32)):
 
@@ -230,9 +244,9 @@ delivery survey in `docs/research/0009`.
 
 | Term | Commitment |
 |---|---|
-| Protection check | One successful run of `scripts/protection_monitor.py` against live broker state (coverage verified, due actions done). |
+| Protection check | One successful run of `scripts/protection_monitor.py` against live broker state (coverage verified, due actions done). A `dry_run=true` dispatch is not one. |
 | Maximum protection-check delay | **90 minutes** while the exchange is open (09:30–16:00 ET, Alpaca trading days). Three cron slots: tolerates two consecutive dropped slots. |
-| Who measures | `scripts/heartbeat.py`, once per session after the close, from the completion time of every successful `protection-monitor` run (GitHub Actions run history). `scripts/protection_sla.py` holds the arithmetic. |
+| Who measures | `scripts/heartbeat.py`, once per session after the close, from the completion time of every successful live `protection-monitor` run (GitHub Actions run history; the workflow's `run-name` puts the mode in `display_title`: `protection-monitor live` or `protection-monitor dry run`). `scripts/protection_sla.py` holds the arithmetic. |
 | Miss | A **stale window**. Reported as one heartbeat issue naming each window and the total stale minutes (exit 5, email). Not a trading refusal: the broker holds the stops. Market-open re-verifies coverage itself (`protection_monitor.py --dry-run`) before any buy and places none while coverage is short. |
 | Alert delivery | `scripts/email.sh` captures the Resend id and reads `last_event` back. Exit 0 only when Resend accepted the message and has not reported a bounce or failure. A lost alert fails the calling job (exit 9) and the heartbeat workflow opens or comments a GitHub issue, the channel independent of Resend. |
 | No-trade record | Market-open commits `market-open trades <date>` or `market-open no-trade <date>` every session, so the heartbeat distinguishes "did not run" from "nothing to do". |

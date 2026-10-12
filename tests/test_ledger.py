@@ -61,6 +61,7 @@ def portfolio(**overrides) -> PortfolioState:
         equity=Decimal("100000"),
         cash=Decimal("100000"),
         is_paper=True,
+        reservations=(),
         positions=(),
         trades_this_week=0,
     )

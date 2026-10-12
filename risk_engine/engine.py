@@ -18,6 +18,7 @@ from decimal import Decimal
 from .models import (
     OrderProposal,
     PortfolioState,
+    Reservation,
     Rule,
     Side,
     ValidationResult,
@@ -165,33 +166,46 @@ def _validate_buy(
     # The fallback (v2 rule 12) is not an active position: it is exempt from
     # the slot count, the sector cap and the weekly count, never from sizing.
     active = [p for p in portfolio.positions if not params.is_fallback(p.symbol)]
+    # Reserved symbols not held and not the fallback are positions in waiting:
+    # each takes a slot, however many intents reserve it (ADR 0010 §6).
+    pending = _pending_symbols(portfolio, params)
 
-    # Rule 3a: at most max_positions open. Adding to an existing position does
-    # not open a new slot.
-    if not fallback and existing is None and len(active) + 1 > params.max_positions:
+    # Rule 3a: at most max_positions open. Adding to an existing or reserved
+    # position does not open a new slot.
+    opens_slot = not fallback and existing is None and proposal.symbol not in pending
+    open_count = len(active) + len(pending) + 1
+    if opens_slot and open_count > params.max_positions:
         violations.append(
             Violation(
                 Rule.MAX_POSITIONS,
-                f"would open position {len(active) + 1}, max is {params.max_positions}",
+                f"would open position {open_count}, max is {params.max_positions}"
+                + _reserved_by([r for rs in pending.values() for r in rs]),
             )
         )
 
     # Rule 3b: no position may exceed max_position_pct of equity. Measured on
-    # the resulting position, so topping up a large holding is caught too.
-    resulting_value = notional + (existing.market_value if existing else Decimal(0))
+    # the resulting position -- held, reserved and proposed -- so topping up a
+    # large holding is caught too.
+    same_symbol = [r for r in portfolio.reservations if r.symbol == proposal.symbol]
+    resulting_value = (
+        notional
+        + (existing.market_value if existing else Decimal(0))
+        + _notional(same_symbol)
+    )
     position_pct = _pct(resulting_value, portfolio.equity)
     if not fallback and position_pct > params.max_position_pct:
         violations.append(
             Violation(
                 Rule.MAX_POSITION_PCT,
-                f"{proposal.symbol} would be {position_pct:.2f}% of equity, max is {params.max_position_pct}%",
+                f"{proposal.symbol} would be {position_pct:.2f}% of equity, max is {params.max_position_pct}%"
+                + _reserved_by(same_symbol),
             )
         )
 
     # v2 rule 3: sector concentration cap. Counting requires every active
     # position to carry a sector; an unknown sector is refused, not skipped.
-    if params.max_sector_positions is not None and not fallback and existing is None:
-        violations.extend(_validate_sector_cap(proposal, active, params))
+    if params.max_sector_positions is not None and opens_slot:
+        violations.extend(_validate_sector_cap(proposal, active, pending, params))
 
     # v2 rule 9: sector ETFs are not active positions.
     if not params.sector_etfs_allowed and proposal.symbol in SECTOR_ETFS:
@@ -212,34 +226,46 @@ def _validate_buy(
             )
         )
 
-    # Rule 8: at most max_trades_per_week new trades per week.
-    if not fallback and portfolio.trades_this_week + 1 > params.max_trades_per_week:
+    # Rule 8: at most max_trades_per_week new trades per week. trades_this_week
+    # counts filled buys, so every non-fallback reservation -- an add to a held
+    # name included -- is a trade that will be counted once it fills.
+    weekly = [r for r in portfolio.reservations if not params.is_fallback(r.symbol)]
+    trade_number = portfolio.trades_this_week + len(weekly) + 1
+    if not fallback and trade_number > params.max_trades_per_week:
         violations.append(
             Violation(
                 Rule.MAX_TRADES_PER_WEEK,
-                f"would be trade {portfolio.trades_this_week + 1} this week, max is {params.max_trades_per_week}",
+                f"would be trade {trade_number} this week, max is {params.max_trades_per_week}"
+                + _reserved_by(weekly),
             )
         )
 
     # Rule 13: cash only, never margin. portfolio.cash is settled cash, not
     # buying_power -- the account is a margin account, so buying_power runs
-    # several times equity and would silently permit a leveraged buy.
-    if notional > portfolio.cash:
+    # several times equity and would silently permit a leveraged buy. Cash
+    # already promised to a reservation, the fallback's included, is not free.
+    reserved = list(portfolio.reservations)
+    available = portfolio.cash - _notional(reserved)
+    if notional > available:
         violations.append(
             Violation(
                 Rule.SUFFICIENT_CASH,
-                f"costs {notional} but only {portfolio.cash} cash available",
+                f"costs {notional} but only {available} cash available"
+                + _reserved_by(reserved),
             )
         )
 
     # Rule 2: deployment band upper bound. The lower bound is a mandate to add
     # risk, not a reason to refuse -- see UNMECHANISED.
-    deployment_pct = _pct(portfolio.deployed_value + notional, portfolio.equity)
+    deployment_pct = _pct(
+        portfolio.deployed_value + _notional(reserved) + notional, portfolio.equity
+    )
     if deployment_pct > params.max_deployment_pct:
         violations.append(
             Violation(
                 Rule.MAX_DEPLOYMENT_PCT,
-                f"would deploy {deployment_pct:.2f}% of equity, max is {params.max_deployment_pct}%",
+                f"would deploy {deployment_pct:.2f}% of equity, max is {params.max_deployment_pct}%"
+                + _reserved_by(reserved),
             )
         )
 
@@ -247,8 +273,32 @@ def _validate_buy(
     return violations
 
 
+def _pending_symbols(
+    portfolio: PortfolioState, params: StrategyParams
+) -> dict[str, list[Reservation]]:
+    """Reserved symbols that will open a new active position, with their reservations."""
+    held = {p.symbol for p in portfolio.positions}
+    pending: dict[str, list[Reservation]] = {}
+    for r in portfolio.reservations:
+        if r.symbol not in held and not params.is_fallback(r.symbol):
+            pending.setdefault(r.symbol, []).append(r)
+    return pending
+
+
+def _notional(reservations: list[Reservation]) -> Decimal:
+    return sum((r.notional for r in reservations), Decimal(0))
+
+
+def _reserved_by(reservations: list[Reservation]) -> str:
+    """Name the intents behind a refusal, so it can be explained."""
+    if not reservations:
+        return ""
+    return f" (reserved by intent {', '.join(r.intent_id for r in reservations)})"
+
+
 def _validate_sector_cap(
-    proposal: OrderProposal, active: list, params: StrategyParams
+    proposal: OrderProposal, active: list, pending: dict[str, list[Reservation]],
+    params: StrategyParams,
 ) -> list[Violation]:
     if proposal.sector is None:
         return [
@@ -258,19 +308,28 @@ def _validate_sector_cap(
             )
         ]
     unknown = [p.symbol for p in active if p.sector is None]
-    if unknown:
+    unknown_reserved = [r for rs in pending.values() for r in rs if r.sector is None]
+    if unknown or unknown_reserved:
+        names = unknown + sorted({r.symbol for r in unknown_reserved})
         return [
             Violation(
                 Rule.MAX_SECTOR_POSITIONS,
-                f"cannot count sector exposure: no sector recorded for {', '.join(unknown)}",
+                f"cannot count sector exposure: no sector recorded for {', '.join(names)}"
+                + _reserved_by(unknown_reserved),
             )
         ]
     same = [p.symbol for p in active if p.sector == proposal.sector]
-    if len(same) + 1 > params.max_sector_positions:
+    same_reserved = {
+        symbol: rs for symbol, rs in pending.items()
+        if any(r.sector == proposal.sector for r in rs)
+    }
+    if len(same) + len(same_reserved) + 1 > params.max_sector_positions:
         return [
             Violation(
                 Rule.MAX_SECTOR_POSITIONS,
-                f"{proposal.sector} already holds {', '.join(same)}; max {params.max_sector_positions} per sector",
+                f"{proposal.sector} already holds {', '.join(same + sorted(same_reserved))}; "
+                f"max {params.max_sector_positions} per sector"
+                + _reserved_by([r for rs in same_reserved.values() for r in rs]),
             )
         ]
     return []
@@ -408,12 +467,17 @@ def max_affordable_shares(
 
     existing = portfolio.position_for(symbol) if symbol else None
     held_value = existing.market_value if existing else Decimal(0)
+    # Reservations count exactly as validate_order counts them: in the same
+    # name toward its size, all of them toward deployment and against cash.
+    reserved = list(portfolio.reservations)
+    target = symbol.strip().upper() if symbol else None
+    held_value += _notional([r for r in reserved if r.symbol == target])
 
     position_headroom = (portfolio.equity * params.max_position_pct / 100) - held_value
     deployment_headroom = (
         portfolio.equity * params.max_deployment_pct / 100
-    ) - portfolio.deployed_value
-    budget = min(position_headroom, deployment_headroom, portfolio.cash)
+    ) - (portfolio.deployed_value + _notional(reserved))
+    budget = min(position_headroom, deployment_headroom, portfolio.cash - _notional(reserved))
     if budget <= 0:
         return 0
     return int(budget / unit)
