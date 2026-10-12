@@ -1,4 +1,4 @@
-# 0004. Recovery exit codes derive from broker coverage
+# 0006. Recovery exit codes derive from broker coverage
 
 Date: 2026-10-12. Status: accepted.
 
