@@ -96,6 +96,28 @@ undetected one is an incident.
 _Avoid_: naked position, the buy/stop gap (each names one instance of a general
 state)
 
+**Floor**:
+The current level of a position's protective stop. Rule 7 says the floor never
+moves down: a stop may be raised, held, or renewed at the same level, never
+lowered. Converting a fixed stop to a trailing one is only allowed when the
+trail's initial stop sits at or above the floor.
+_Avoid_: stop level, stop price (both name a number; the floor names the
+one-way constraint on it)
+
+**Standing stop**:
+A resting protective stop evaluated as *state* rather than as an *act*. Rule 7's
+3% minimum constrains acts — placing or moving a stop. Price drifting to within
+3% of a standing stop is a hold to record, not a violation to fix.
+_Avoid_: stale stop, violating stop
+
+**Held fixed stop**:
+A fixed protective stop kept past entry, or renewed at expiry, because converting
+it to a trailing stop would lower the floor. It is permitted protection under
+rule 4, not a transient; it converts the first session a trailing stop would sit
+at or above it.
+_Avoid_: leftover stop (names the pre-conversion leg right after entry, which is
+transient), legacy stop
+
 ### Rule enforcement
 
 **Enforcement class**:
