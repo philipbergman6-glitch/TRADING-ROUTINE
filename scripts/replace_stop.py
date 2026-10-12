@@ -18,17 +18,28 @@ command after a crash, timeout or lost response resumes instead of duplicating:
   4. If the replacement cannot be confirmed, re-place a fixed stop at the old
      stop's exact level (rr-<old id>) and report an incident.
 
+Exit codes derive from broker coverage, not from what this process did: before
+any refusal or read failure is classified, the symbol's live coverage is
+checked through risk_engine.reconciliation (an unexpired GTC stop resting as
+`new` for the full held quantity). A held position without that verified
+coverage is exit 8 whichever process removed the stop, and whether or not this
+run changed anything.
+
 Exit codes (JSON state always on stdout):
     0  replaced (or already replaced), or old stop filled -- nothing unprotected
-    2  usage / old order is not a replaceable protective stop
-    3  refused in preflight -- old stop untouched
-    4  broker state unavailable before any mutation -- old stop untouched
+    2  usage / old order is not a replaceable protective stop (and nothing is held)
+    3  refused in preflight -- the old stop verifiably still protects, untouched
+    4  broker state unavailable before any mutation, and no uncovered position
+       was observed -- nothing changed, retry later
     7  INCIDENT: replacement failed, old level restored as a fixed stop; email
-    8  INCIDENT: position may be UNPROTECTED -- rerun this exact command now
+    8  INCIDENT: position has no verified protective stop (refused, expired or
+       unreadable while uncovered, or mid-replacement) -- rerun this exact
+       command now; a repeat 8 needs a human
 """
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 from decimal import Decimal
 import json
 import os
@@ -39,6 +50,7 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from risk_engine.reconciliation import reconcile_protection  # noqa: E402
 from scripts.validate_mutation import REPLACE_PREFIX, RESTORE_PREFIX, validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
@@ -52,6 +64,45 @@ class Outcome(Exception):
     def __init__(self, code, state, **detail):
         super().__init__(state)
         self.code, self.state, self.detail = code, state, detail
+
+
+def live_coverage(read, symbol: str, now: datetime, positions=None, orders=None):
+    """Held-vs-verified-protection for one symbol from current broker snapshots.
+
+    Returns (position, report) or (None, None) when the symbol is not held. The
+    report is risk_engine.reconciliation's: ok only when unexpired GTC stops resting
+    as `new` cover the full held quantity. A stop that is held, pending, expired,
+    short, or malformed does not certify coverage -- nor does a truncated order list.
+    Snapshots already read by the caller may be passed in to avoid a second read.
+    """
+    positions = read("positions") if positions is None else positions
+    orders = read("orders", "open") if orders is None else orders
+    if not isinstance(positions, list):
+        raise ValueError("positions snapshot is not a list")
+    if not isinstance(orders, list):
+        raise ValueError("open-order snapshot is not a list")
+    mine = [p for p in positions if isinstance(p, dict) and str(p.get("symbol", "")).upper() == symbol]
+    if not mine:
+        return None, None
+    return mine[0], reconcile_protection(mine, orders, now)
+
+
+def observed_unprotected(progress: dict) -> bool:
+    """True once this process has seen the symbol held without verified coverage, or has
+    itself begun removing protection. Drives 8-vs-4 for read failures and 8-vs-3 for refusals."""
+    report = progress.get("coverage")
+    return bool(progress.get("cancel_sent")) or (report is not None and not report["ok"])
+
+
+def state_unavailable(progress: dict, state_after_mutation: str, **detail) -> Outcome:
+    """Classify a failed broker read: resume-incident after a mutation, incident when an
+    uncovered position was observed, otherwise exit 4 (nothing changed, nothing observed)."""
+    if progress.get("cancel_sent"):
+        return Outcome(EXIT_UNPROTECTED, state_after_mutation, **detail)
+    if observed_unprotected(progress):
+        return Outcome(EXIT_UNPROTECTED, "broker_state_unavailable_position_unprotected",
+                       coverage=progress["coverage"], **detail)
+    return Outcome(EXIT_NO_STATE, "broker_state_unavailable", **detail)
 
 
 def mutate(command, argument):
@@ -72,24 +123,27 @@ def mutate(command, argument):
 def replace_stop(order_id, trail_percent=None, stop_price=None, **deps):
     if (trail_percent is None) == (stop_price is None):
         raise Outcome(EXIT_USAGE, "exactly_one_of_trail_percent_or_stop_price")
-    progress = {"cancel_sent": False}
+    progress = {"cancel_sent": False, "coverage": None}
     try:
         _replace_stop(order_id, trail_percent, stop_price, progress, **deps)
     except SystemExit as exc:
-        # A broker read failed. Before cancel nothing changed; after it, a rerun resumes.
-        if progress["cancel_sent"]:
-            raise Outcome(EXIT_UNPROTECTED, "broker_state_unavailable_rerun_to_resume", adapter_exit=exc.code)
-        raise Outcome(EXIT_NO_STATE, "broker_state_unavailable", adapter_exit=exc.code)
+        # A broker read failed. Classified from coverage observed so far, not from
+        # this process alone: after cancel a rerun resumes; an uncovered position
+        # seen before cancel is an incident; otherwise nothing changed.
+        raise state_unavailable(progress, "broker_state_unavailable_rerun_to_resume", adapter_exit=exc.code)
     raise AssertionError("replace_stop must end in an Outcome")
 
 
 def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter, run=mutate, check=validate_mutation,
-                  sleep=time.sleep, polls=20):
+                  sleep=time.sleep, polls=20, now=None):
+    now = now or datetime.now(timezone.utc)
     old = read("order-info", order_id)
     if not (isinstance(old, dict) and old.get("id") == order_id and old.get("side") == "sell"
             and old.get("type") in ("stop", "trailing_stop")):
         raise Outcome(EXIT_USAGE, "not_a_protective_stop", order_id=order_id)
     symbol = old["symbol"]
+    held, coverage = live_coverage(read, symbol, now)
+    progress["coverage"] = coverage
     qty = str(Decimal(str(old["qty"])) - Decimal(str(old.get("filled_qty") or 0)))
     rid, restore_id = REPLACE_PREFIX + order_id, RESTORE_PREFIX + order_id
     body = {"symbol": symbol, "qty": qty, "side": "sell", "time_in_force": "gtc", "client_order_id": rid}
@@ -112,6 +166,9 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
         try:
             check("order", json.dumps({k: v for k, v in body.items() if k != "client_order_id"}))
         except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
+            if observed_unprotected(progress):
+                raise Outcome(EXIT_UNPROTECTED, "refused_position_unprotected", symbol=symbol, reason=str(exc),
+                              coverage=coverage)
             raise Outcome(EXIT_REFUSED, "refused", symbol=symbol, reason=str(exc))
         progress["cancel_sent"] = True
         cancel_ok, http, _, err = run("cancel", order_id)
@@ -121,6 +178,10 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
     else:
         cancel_ok = True  # the broker already holds the cancel from an earlier run
         if status not in ("pending_cancel", "canceled"):
+            if held is not None and observed_unprotected(progress):
+                # e.g. the old stop expired: the position is held with nothing verified resting.
+                raise Outcome(EXIT_UNPROTECTED, "old_stop_gone_position_unprotected", symbol=symbol,
+                              status=status, coverage=coverage)
             raise Outcome(EXIT_USAGE, "old_stop_not_replaceable", symbol=symbol, status=status)
         progress["cancel_sent"] = True  # resuming an earlier run's cancel
 

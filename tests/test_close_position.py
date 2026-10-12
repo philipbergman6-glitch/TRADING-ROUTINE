@@ -18,8 +18,11 @@ class FakeBroker:
     def __init__(self, held=True, stop_status="new", cancel_to="canceled", close="new", close_http="200",
                  existing=None, fail_reads_after_cancel=False, refuse=False, cancel_ok=True):
         self.positions = [{"symbol": "AMD", "qty": "10", "market_value": "1000"}] if held else []
+        # Full broker shape: coverage is verified through risk_engine.reconciliation,
+        # which needs an unexpired GTC stop with a price and remaining quantity.
         self.orders = {STOP: {"id": STOP, "symbol": "AMD", "side": "sell", "type": "trailing_stop",
-                              "qty": "10", "filled_qty": "0", "status": stop_status}} if stop_status else {}
+                              "qty": "10", "filled_qty": "0", "status": stop_status, "stop_price": "95",
+                              "time_in_force": "gtc", "expires_at": "2026-12-18T21:00:00Z"}} if stop_status else {}
         self.by_client = dict(existing or {})
         self.cancel_to, self.close, self.close_http = cancel_to, close, close_http
         self.fail_reads_after_cancel, self.refuse, self.cancel_ok = fail_reads_after_cancel, refuse, cancel_ok
@@ -178,3 +181,41 @@ def test_all_retry_ids_dead_is_an_incident_not_a_silent_loop():
                 for r in range(MAX_RETRIES + 1)}
     got = outcome(FakeBroker(stop_status=None, existing=existing))
     assert (got.code, got.state) == (EXIT_UNPROTECTED, "close_retries_exhausted_manual_exit_required")
+
+
+# --- Exit codes derive from broker coverage, not from what this process did (#95) ---
+
+
+def test_resumed_refusal_after_crash_post_cancel_is_still_an_incident():
+    # Audit probe repro_v1_foundation.py:45. An earlier process canceled the stop and
+    # died; this rerun sees the held position with no stop. A preflight refusal must
+    # not read "refused; the resting stop still protects" -- nothing protects.
+    broker = FakeBroker(stop_status=None, refuse=True)
+    got = outcome(broker)
+    assert (got.code, got.state) == (EXIT_UNPROTECTED, "refused_position_unprotected")
+    assert got.detail["reason"] == "paper account required" and got.detail["coverage"]["ok"] is False
+    assert broker.posted() == []
+
+
+def test_refusal_with_a_stop_that_does_not_certify_coverage_is_an_incident():
+    # A stop that rests but cannot be verified (held, pending, expired, short) does
+    # not downgrade the refusal to "still protects".
+    for order in ({"status": "held"}, {"expires_at": "2026-09-01T00:00:00Z"}, {"qty": "4"}):
+        broker = FakeBroker(refuse=True)
+        broker.orders[STOP].update(order)
+        got = outcome(broker)
+        assert (got.code, got.state) == (EXIT_UNPROTECTED, "refused_position_unprotected"), order
+        assert got.detail["coverage"]["issues"]
+
+
+def test_portfolio_read_failure_in_preflight_on_an_uncovered_position_is_an_incident():
+    # The mutation gate reads the portfolio; the broker goes away mid-preflight while
+    # the position has no verified stop: 8, not 4.
+    broker = FakeBroker(stop_status=None)
+    broker.check = lambda *_a: (_ for _ in ()).throw(SystemExit(4))
+    got = outcome(broker)
+    assert (got.code, got.state) == (EXIT_UNPROTECTED, "broker_state_unavailable_position_unprotected")
+
+    covered = FakeBroker()
+    covered.check = lambda *_a: (_ for _ in ()).throw(SystemExit(4))
+    assert outcome(covered).code == EXIT_NO_STATE  # verified stop rests: nothing changed, retry later

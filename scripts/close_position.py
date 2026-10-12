@@ -20,12 +20,21 @@ crash or timeout resumes instead of selling twice:
   4. Confirm by client id. Not found: the position is now NAKED (stop gone,
      no exit resting): exit 8, rerun this exact command immediately.
 
+Exit codes derive from broker coverage, not from what this process did: the
+symbol's live coverage (risk_engine.reconciliation: an unexpired GTC stop
+resting as `new` for the full held quantity) is read before preflight, and
+every refusal or read failure is classified against it. A rerun after an
+earlier process canceled the stop and died therefore reports 8, never 3.
+
 Exit codes (JSON on stdout):
     0  close submitted or confirmed, or the position was already gone
     2  usage (no such position)
-    3  refused; the resting stop still protects
-    4  broker state unavailable before any change
-    8  INCIDENT: position may be unprotected; rerun the same command now
+    3  refused; a verified protective stop still rests and nothing changed
+    4  broker state unavailable before any change, with no uncovered position
+       observed; retry later
+    8  INCIDENT: the position has no verified protective stop (refused or
+       unreadable while uncovered, or mid cancel->close); rerun the same
+       command now, and escalate if it repeats
 """
 from __future__ import annotations
 
@@ -40,8 +49,9 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from scripts.replace_stop import (EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED,  # noqa: E402
-                                  EXIT_USAGE, LIVE, OPEN, Outcome, mutate)
+from scripts.replace_stop import (EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE, LIVE,  # noqa: E402
+                                  OPEN, Outcome, live_coverage, mutate, observed_unprotected,
+                                  state_unavailable)
 from scripts.validate_mutation import validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
@@ -80,19 +90,13 @@ def _resolve_client_id(read, symbol, day):
 
 
 def _held(read, symbol):
-    positions = read("positions")
-    if not isinstance(positions, list):
-        raise ValueError("positions snapshot is not a list")
-    for p in positions:
-        if isinstance(p, dict) and str(p.get("symbol", "")).upper() == symbol:
-            return p
-    return None
+    held, _ = live_coverage(read, symbol, datetime.now(timezone.utc))
+    return held
 
 
-def _resting_stops(read, symbol):
-    orders = read("orders", "open")
-    if not isinstance(orders, list):
-        raise ValueError("open-order snapshot is not a list")
+def _resting_stops(orders, symbol):
+    """Every stop of ours still at the broker, including ones that do not certify coverage
+    (held, pending_cancel): all of them must be gone before the market sell."""
     return [o for o in orders if isinstance(o, dict) and str(o.get("symbol", "")).upper() == symbol
             and o.get("side") == "sell" and o.get("type") in ("stop", "trailing_stop")
             and o.get("status") in OPEN | {"partially_filled", "pending_cancel"}]
@@ -100,19 +104,19 @@ def _resting_stops(read, symbol):
 
 def close_position(symbol: str, now: datetime, **deps) -> None:
     symbol = symbol.upper()
-    progress = {"cancel_sent": False}
+    progress = {"cancel_sent": False, "coverage": None}
     try:
         _close_position(symbol, now, progress, **deps)
     except SystemExit as exc:
-        if progress["cancel_sent"]:
-            raise Outcome(EXIT_UNPROTECTED, "broker_state_unavailable_rerun_to_resume", symbol=symbol,
-                          adapter_exit=exc.code)
-        raise Outcome(EXIT_NO_STATE, "broker_state_unavailable", symbol=symbol, adapter_exit=exc.code)
+        # Classified from coverage observed so far, not from this process alone.
+        raise state_unavailable(progress, "broker_state_unavailable_rerun_to_resume", symbol=symbol,
+                                adapter_exit=exc.code)
     except (ValueError, TypeError, KeyError) as exc:
-        if progress["cancel_sent"]:
-            raise Outcome(EXIT_UNPROTECTED, "unreadable_broker_state_rerun_to_resume", symbol=symbol,
-                          error=str(exc))
-        raise Outcome(EXIT_NO_STATE, "unreadable_broker_state", symbol=symbol, error=str(exc))
+        unreadable = state_unavailable(progress, "unreadable_broker_state_rerun_to_resume", symbol=symbol,
+                                       error=str(exc))
+        if unreadable.state == "broker_state_unavailable":
+            unreadable.state = "unreadable_broker_state"
+        raise unreadable
     raise AssertionError("close_position must end in an Outcome")
 
 
@@ -125,8 +129,10 @@ def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=va
         raise Outcome(EXIT_OK, "already_closing" if prior.get("status") != "filled" else "already_closed",
                       symbol=symbol, client_order_id=cid, order=prior)
 
-    held = _held(read, symbol)
-    stops = _resting_stops(read, symbol)
+    orders = read("orders", "open")
+    held, coverage = live_coverage(read, symbol, now, orders=orders)
+    progress["coverage"] = coverage
+    stops = _resting_stops(orders, symbol)
     if held is None:
         if stops:
             raise Outcome(EXIT_USAGE, "no_position_but_stop_resting", symbol=symbol,
@@ -135,10 +141,14 @@ def _close_position(symbol, now, progress, *, read=adapter, run=mutate, check=va
     qty = str(Decimal(str(held["qty"])))
     body = {"symbol": symbol, "qty": qty, "side": "sell", "type": "market", "time_in_force": "gtc"}
 
-    # 1. Preflight while the stop still rests and protects.
+    # 1. Preflight while the stop still rests. A refusal is "still protects" only when
+    #    the broker verifiably covers the position; otherwise it is already an incident.
     try:
         check("order", json.dumps(body))
     except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
+        if observed_unprotected(progress):
+            raise Outcome(EXIT_UNPROTECTED, "refused_position_unprotected", symbol=symbol, reason=str(exc),
+                          coverage=coverage)
         raise Outcome(EXIT_REFUSED, "refused", symbol=symbol, reason=str(exc))
 
     # 2. Cancel every resting stop; confirm each from broker state.
