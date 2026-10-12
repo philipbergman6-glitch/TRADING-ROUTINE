@@ -8,3 +8,7 @@ __pycache__/
 .venv/
 *.egg-info/
 .venv
+
+# Cloudflare wrangler local state (dispatcher/, ADR 0009)
+.wrangler/
+node_modules/

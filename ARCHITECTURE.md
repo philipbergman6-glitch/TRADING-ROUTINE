@@ -225,17 +225,18 @@ delivery survey in `docs/research/0009`.
 | Miss | A **stale window**. Reported as one heartbeat issue naming each window and the total stale minutes (exit 5, email). Not a trading refusal: the broker holds the stops. Market-open re-verifies coverage itself (`protection_monitor.py --dry-run`) before any buy and places none while coverage is short. |
 | Alert delivery | `scripts/email.sh` captures the Resend id and reads `last_event` back. Exit 0 only when Resend accepted the message and has not reported a bounce or failure. A lost alert fails the calling job (exit 9) and the heartbeat workflow opens or comments a GitHub issue, the channel independent of Resend. |
 | No-trade record | Market-open commits `market-open trades <date>` or `market-open no-trade <date>` every session, so the heartbeat distinguishes "did not run" from "nothing to do". |
+| Dispatcher | `dispatcher/worker.js`, a Cloudflare Worker cron (`0,30 13-20 * * MON-FRI` UTC) that POSTs `workflow_dispatch` (`dry_run=false`) for `protection-monitor.yml` on `main` (ADR 0009). GitHub's own cron stays as a second source; the concurrency group serialises both. |
+| Dispatcher credential | `GH_DISPATCH_TOKEN`: fine-grained PAT, this repository only, *Actions: read and write*. Stored as a Cloudflare Worker secret on `protection-dispatcher` — not in the repo, `.env` or GitHub secrets. Provisioned and rotated with `dispatcher/setup.sh`. |
 
-**What the deployed scheduler delivers (2026-09-29 to 2026-10-09):** two
+**What GitHub's scheduler alone delivered (2026-09-29 to 2026-10-09):** two
 scheduled runs per weekday, the first between 14:16 and 15:15 ET, none on
-2026-10-05; the heartbeat cron fires 2.7–3.8 h late. The level is therefore
-breached for roughly the first five hours of every session, and the heartbeat
-says so each evening. Meeting it means dispatching the monitor from outside
-GitHub's `schedule`: `workflow_dispatch` runs start within seconds (research
-0008, run 13), so an external cron calling the dispatch endpoint every 30
-minutes is enough. The options, each needing a fine-grained PAT with
-`actions: write` as a new secret, are listed in the PR for ticket #103;
-choosing one is the owner's decision, not a code change.
+2026-10-05; the heartbeat cron fires 2.7–3.8 h late. That breaches the level
+for roughly the first five hours of every session, which is why the monitor is
+dispatched from outside GitHub's `schedule`: `workflow_dispatch` runs start
+within seconds (research 0008, run 13). The dispatcher only starts runs; it
+does not judge them. A dead worker, a failed dispatch or an expired PAT shows
+up as the heartbeat's stale window, the same as a dropped cron slot. Until the
+owner deploys it (`dispatcher/setup.sh`), the breach is reported every session.
 
 ## Paper-only posture
 

@@ -1,0 +1,26 @@
+# Protection dispatcher (ADR 0009). Deployed by the owner with
+# dispatcher/setup.sh; nothing in CI deploys it.
+#
+# The one secret, GH_DISPATCH_TOKEN (fine-grained PAT, this repository only,
+# Actions: read and write), lives in Cloudflare as a Worker secret:
+#   npx wrangler@4.135.0 secret put GH_DISPATCH_TOKEN --config dispatcher/wrangler.toml
+# Never add it under [vars] or anywhere in the repository.
+
+name = "protection-dispatcher"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+workers_dev = false
+
+[triggers]
+# Cloudflare cron runs in UTC and numbers weekdays 1=Sunday, so names are used.
+# Same slots as the schedule in .github/workflows/protection-monitor.yml:
+# 13:00-20:30Z covers 09:30-16:00 ET in EDT and EST.
+crons = ["0,30 13-20 * * MON-FRI"]
+
+[vars]
+GITHUB_REPOSITORY = "philipbergman6-glitch/TRADING-ROUTINE"
+WORKFLOW_FILE = "protection-monitor.yml"
+WORKFLOW_REF = "main"
+
+[observability]
+enabled = true

@@ -10,8 +10,9 @@ name: protection-monitor
 # the exchange is open the newest successful run is never older than 90 min.
 # GitHub's schedule does not meet it (docs/research/0008: ~2 runs a day, the
 # first ~5 h after the open); the heartbeat measures the breach daily. The
-# cron below is the intent; workflow_dispatch from an external scheduler is
-# the way to meet the level without changing this file.
+# level is met by dispatcher/worker.js (ADR 0009), a Cloudflare cron that
+# dispatches this workflow with dry_run=false in the same slots; the cron
+# below stays as a second source. Manual dispatches default to dry_run=true.
 #
 # Exit 9 = the alert email could not be delivered (scripts/email.sh); the job
 # fails so the heartbeat's workflow_run trigger and GitHub's own notifications
