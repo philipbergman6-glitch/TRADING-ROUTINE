@@ -93,10 +93,12 @@ if [ -n "$HTTP_STATUS" ]; then
       --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
 fi
 REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
-untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
-failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
-8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
-email "UNPROTECTED SYM", log, STOP.
+verifiably still protects, untouched → log + HOLD · 4 broker unavailable, nothing
+changed and no uncovered position seen → STOP · 7 replacement failed, old level
+restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED — the
+broker shows no verified stop for the position, whatever caused it (refused or
+expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
+up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
 On VALIDATE_EXIT=3 → log violations, keep scanning. On VALIDATE_EXIT=4 → STOP, email, exit.
 
 STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
@@ -155,7 +157,9 @@ fi
 ENTRY_EXIT: 0 submitted / already_submitted (use the returned order id) · 3
 refused or broker_rejected → log verbatim, skip · 4 broker unavailable →
 STOP · 8 outcome unknown → rerun the SAME command now (it resumes); still 8 →
-email "ENTRY OUTCOME UNKNOWN SYM", STOP the buy path for that symbol.
+email "ENTRY OUTCOME UNKNOWN SYM", STOP the buy path for that symbol. An 8 with
+state *_position_unprotected means the symbol is already held with no verified
+stop: email "UNPROTECTED SYM", STOP.
 Gate before any convert: read filled_qty on the parent AND the
 protective leg. Do NOT convert, and do NOT assume the position is protected,
 until BOTH are true:
@@ -196,10 +200,12 @@ if [ -n "$HTTP_STATUS" ]; then
       --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
 fi
 REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
-untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
-failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
-8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
-email "UNPROTECTED SYM", log, STOP.
+verifiably still protects, untouched → log + HOLD · 4 broker unavailable, nothing
+changed and no uncovered position seen → STOP · 7 replacement failed, old level
+restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED — the
+broker shows no verified stop for the position, whatever caused it (refused or
+expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
+up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
 Query open orders/position before claiming protected: if neither the fixed
 leg nor the trail is present, that is an incident. Do NOT wire T2 /
 issue #32 stop-change or trail-ladder validators. #40 PATCH still OPEN — do

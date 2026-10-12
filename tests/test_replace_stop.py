@@ -11,7 +11,7 @@ import pytest
 from risk_engine import PortfolioState, Position
 from scripts import validate_order
 from scripts.replace_stop import (EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_RESTORED,
-                                  EXIT_UNPROTECTED, Outcome, replace_stop)
+                                  EXIT_UNPROTECTED, EXIT_USAGE, Outcome, replace_stop)
 from scripts.validate_mutation import validate_mutation
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,19 +25,25 @@ class FakeBroker:
     def __init__(self, status="new", stop_price="117", cancel_to="canceled", replacement="new",
                  restore="new", fail_reads_after_cancel=False, cancel_ok=True):
         self.orders = {OLD: {"id": OLD, "symbol": "AAPL", "side": "sell", "type": "trailing_stop",
-                             "qty": "100", "filled_qty": "0", "status": status, "stop_price": stop_price}}
+                             "qty": "100", "filled_qty": "0", "status": status, "stop_price": stop_price,
+                             "time_in_force": "gtc", "expires_at": "2026-12-18T21:00:00Z"}}
         self.by_client = {}
+        self.positions = [{"symbol": "AAPL", "qty": "100", "market_value": "12000"}]
         self.cancel_to, self.replacement, self.restore = cancel_to, replacement, restore
         self.fail_reads_after_cancel, self.cancel_ok = fail_reads_after_cancel, cancel_ok
         self.calls = []
 
-    def read(self, command, arg):
+    def read(self, command, arg=None):
         if self.fail_reads_after_cancel and ("run", "cancel", OLD) in self.calls:
             raise SystemExit(4)
         if command == "order-info":
             return self.orders[arg]
         if command == "order-by-client":
             return self.by_client.get(arg)
+        if command == "positions":
+            return self.positions
+        if command == "orders":
+            return [o for o in self.orders.values()]
         raise AssertionError(command)
 
     def run(self, command, arg):
@@ -64,8 +70,47 @@ class FakeBroker:
 def go(broker, check=None, trail="7", stop=None):
     with pytest.raises(Outcome) as info:
         replace_stop(OLD, None if stop else trail, stop, read=broker.read, run=broker.run, check=check or broker.check,
-                     sleep=lambda _: None, polls=5)
+                     sleep=lambda _: None, polls=5, now=NOW)
     return info.value
+
+
+# --- Exit codes derive from broker coverage, not from what this process did (#95) ---
+
+
+def refusing(*_a):
+    raise ValueError("stop_never_lowered")
+
+
+def test_refusal_while_old_stop_verifiably_protects_is_exit_3():
+    out = go(FakeBroker(), check=refusing)
+    assert (out.code, out.state) == (EXIT_REFUSED, "refused")
+
+
+def test_refusal_while_old_stop_cannot_certify_coverage_is_an_incident():
+    for order in ({"status": "held"}, {"qty": "60"}, {"expires_at": "2026-09-01T00:00:00Z"}):
+        b = FakeBroker()
+        b.orders[OLD].update(order)
+        out = go(b, check=refusing)
+        assert (out.code, out.state) == (EXIT_UNPROTECTED, "refused_position_unprotected"), order
+        assert b.posted() == [] and out.detail["coverage"]["ok"] is False
+
+
+def test_expired_old_stop_on_a_held_position_is_an_incident_not_usage():
+    b = FakeBroker(status="expired")
+    out = go(b)
+    assert (out.code, out.state) == (EXIT_UNPROTECTED, "old_stop_gone_position_unprotected")
+    flat = FakeBroker(status="expired")
+    flat.positions = []
+    assert go(flat).code == EXIT_USAGE  # nothing held: a stale order id is a usage error
+
+
+def test_read_failure_in_preflight_on_an_uncovered_position_is_an_incident():
+    b = FakeBroker()
+    b.orders[OLD]["status"] = "held"
+    out = go(b, check=lambda *_a: (_ for _ in ()).throw(SystemExit(4)))
+    assert (out.code, out.state) == (EXIT_UNPROTECTED, "broker_state_unavailable_position_unprotected")
+    covered = go(FakeBroker(), check=lambda *_a: (_ for _ in ()).throw(SystemExit(4)))
+    assert (covered.code, covered.state) == (EXIT_NO_STATE, "broker_state_unavailable")
 
 
 def test_happy_path_validates_before_cancel_then_replaces():
@@ -333,7 +378,7 @@ def run_e2e(tmp_path, old_stop, trail, **env_extra):
     state.write_text(json.dumps({"orders": [
         {"id": OLD, "symbol": "AAPL", "side": "sell", "type": "trailing_stop", "qty": "100",
          "filled_qty": "0", "status": "new", "stop_price": old_stop, "trail_percent": "10",
-         "time_in_force": "gtc"}]}))
+         "time_in_force": "gtc", "expires_at": "2099-01-01T00:00:00Z"}]}))
     env = {"PATH": f"{curl.parent}:{Path(sys.executable).parent}:/usr/bin:/bin",
            "ALPACA_API_KEY": "offline", "ALPACA_SECRET_KEY": "offline",
            "BROKER_STATE": str(state), "TMPDIR": str(tmp_path), **env_extra}

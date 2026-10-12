@@ -61,6 +61,14 @@ trailing one ratchets.
 _Avoid_: the stop, trailing stop (a trailing stop is one kind of protective
 stop, not a synonym for it)
 
+**Verified coverage**:
+The broker-observed state in which a position's full held quantity is matched
+by protective stops that are live, unexpired and good-till-cancelled. A stop
+that is pending, held, expired or short does not verify; recovery outcomes are
+judged against this, never against what one process remembers doing.
+_Avoid_: protected (ambiguous between the invariant and the observation), has a
+stop (a resting order is not yet verified coverage)
+
 **Unprotected window**:
 An interval in which an open position has no live protective stop. Some are
 deliberate and bounded — converting a fixed stop to a trailing one, or the
