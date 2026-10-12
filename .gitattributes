@@ -1,0 +1,4 @@
+# ADR 0004: the committed state store is append-only JSONL. Union merge lets
+# concurrent appends rebase without a textual conflict; replay decides which
+# claim won, so every writer must replay after a rebase.
+state/*.jsonl merge=union
