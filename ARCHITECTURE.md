@@ -37,7 +37,9 @@ scripts/alpaca.sh                ← caller intent flag (exit 5 if absent)
         ↓
 scripts/validate_mutation.py     ← re-check exact payload against broker state
         ↓
-Alpaca paper API
+scripts/account_pin.py check     ← broker account_number == profile pin (exit 8)
+        ↓
+Alpaca paper API                 ← production or drill profile (docs/ACCOUNTS.md)
         ↓
 ledger (Postgres)                ← preflight + response record when configured (T4)
 ```
@@ -72,6 +74,17 @@ it up before submitting and confirms it after, so a rerun never buys twice.
 `cl-<YYYYMMDD>-<SYM>`: preflight while the stop rests, cancel and poll to
 `canceled`, confirm the position, sell, confirm; a rerun resumes and an
 unconfirmed sell after a confirmed cancel is exit 8 (naked incident).
+
+All three scripts derive their exit code from **broker coverage, not from the
+mutations this process made**. Before classifying a refusal (exit 3) or a
+failed read (exit 4) they check the symbol's live coverage through
+`risk_engine.reconciliation` — the same definition `doctor.py --broker` uses:
+an unexpired GTC stop resting as `new` for the full held quantity. A held
+position without that verified coverage is exit 8 whichever process removed
+the stop, so a rerun after an earlier run cancelled and died never reports
+"refused; the stop still protects". Exit 3 therefore means a verified stop
+rests and nothing changed; exit 4 means nothing changed and no uncovered
+position was observed.
 
 Strategy constants are versioned in `risk_engine/versions.py` (`V1` frozen,
 `V2`); `STRATEGY_VERSION` selects at each CLI boundary. Protection also runs
@@ -177,6 +190,8 @@ than one described aspirationally.
 - **Read-only reconciliation, not a scheduled loop.** `scripts/doctor.py --broker`
   compares held quantities against current, unexpired GTC protective orders via
   `risk_engine.reconciliation`. It flags missing, excess and ambiguous coverage.
+  The recovery scripts (`submit_entry`, `replace_stop`, `close_position`) read
+  the same per-symbol coverage before classifying any refusal or read failure.
   `scripts/protection_monitor.py` on the `protection-monitor` workflow adds
   the scheduled loop with renew/convert/tighten and email on any issue;
   running since 2026-09-29, at the cadence measured under "Monitoring

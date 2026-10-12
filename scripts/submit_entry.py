@@ -20,12 +20,19 @@ The fixed protective leg is derived at the active version's entry distance
 when --price is given. Conversion to the trailing stop is the protection
 monitor's job (or STEP 5 of market-open); this script never converts.
 
+Exit codes derive from broker coverage, not from what this process did: when
+the symbol is already held, its live coverage (risk_engine.reconciliation) is
+read before submission, and a refusal on a held position with no verified
+protective stop is reported as exit 8 rather than hidden behind exit 3.
+
 Exit codes (JSON on stdout):
     0  submitted, or already submitted by an earlier run
     2  usage
-    3  refused by the mutation gate; nothing submitted
+    3  refused by the mutation gate or the broker; nothing submitted, and any
+       existing position in the symbol verifiably keeps its stop
     4  broker state unavailable before submission; nothing submitted
-    8  outcome unknown after submission; rerun the same command now
+    8  outcome unknown after submission (rerun the same command now), or
+       refused while the symbol is held without a verified protective stop
 """
 from __future__ import annotations
 
@@ -41,7 +48,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine import FixedStop, build_oto_entry, fixed_stop_at_distance, params_from_env  # noqa: E402
-from scripts.replace_stop import EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE, Outcome, mutate  # noqa: E402
+from scripts.replace_stop import (EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE,  # noqa: E402
+                                  Outcome, live_coverage, mutate)
 from scripts.validate_order import adapter  # noqa: E402
 
 ENTRY_PREFIX = "en-"
@@ -59,14 +67,26 @@ def entry_client_id(symbol: str, day, tag: str | None = None) -> str:
     return cid
 
 
-def submit_entry(body: dict, *, read=adapter, run=mutate) -> None:
+def submit_entry(body: dict, *, read=adapter, run=mutate, now=None) -> None:
     cid = body["client_order_id"]
+    now = now or datetime.now(timezone.utc)
     try:
         prior = read("order-by-client", cid)
+        if isinstance(prior, dict) and prior.get("status") not in DEAD:
+            raise Outcome(EXIT_OK, "already_submitted", client_order_id=cid, order=prior)
+        _, coverage = live_coverage(read, str(body["symbol"]).upper(), now)
     except SystemExit as exc:
         raise Outcome(EXIT_NO_STATE, "broker_state_unavailable", adapter_exit=exc.code)
-    if isinstance(prior, dict) and prior.get("status") not in DEAD:
-        raise Outcome(EXIT_OK, "already_submitted", client_order_id=cid, order=prior)
+    except (ValueError, TypeError, KeyError) as exc:
+        raise Outcome(EXIT_NO_STATE, "unreadable_broker_state", error=str(exc))
+
+    def refusal(state, **detail):
+        # A refused add changes nothing, but an already-held symbol with no verified
+        # protective stop is an incident whichever process lost it.
+        if coverage is not None and not coverage["ok"]:
+            return Outcome(EXIT_UNPROTECTED, f"{state}_position_unprotected", client_order_id=cid,
+                           coverage=coverage, **detail)
+        return Outcome(EXIT_REFUSED, state, client_order_id=cid, **detail)
 
     ok, http, out, err = run("order", json.dumps(body))
     try:
@@ -77,9 +97,9 @@ def submit_entry(body: dict, *, read=adapter, run=mutate) -> None:
     if isinstance(placed, dict) and placed.get("status") not in DEAD:
         raise Outcome(EXIT_OK, "submitted", client_order_id=cid, order=placed, http_status=http)
     if isinstance(placed, dict):
-        raise Outcome(EXIT_REFUSED, "broker_rejected", client_order_id=cid, order=placed, http_status=http)
+        raise refusal("broker_rejected", order=placed, http_status=http)
     if http.startswith("4") or (http == "000" and not ok and "REFUSED" in err):
-        raise Outcome(EXIT_REFUSED, "refused", client_order_id=cid, http_status=http, reason=err or out)
+        raise refusal("refused", http_status=http, reason=err or out)
     raise Outcome(EXIT_UNPROTECTED, "submitted_outcome_unknown_rerun", client_order_id=cid,
                   http_status=http, reason=err or out)
 

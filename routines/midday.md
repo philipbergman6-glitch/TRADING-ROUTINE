@@ -116,10 +116,12 @@ if [ -n "$HTTP_STATUS" ]; then
       --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
 fi
 REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
-untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
-failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
-8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
-email "UNPROTECTED SYM", log, STOP.
+verifiably still protects, untouched → log + HOLD · 4 broker unavailable, nothing
+changed and no uncovered position seen → STOP · 7 replacement failed, old level
+restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED — the
+broker shows no verified stop for the position, whatever caused it (refused or
+expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
+up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
 On validate_order exit 3 → log, keep scanning. On exit 4 → STOP. On exit 6 → STOP (ledger).
 
 STEP 2c — Renew expiring protective stops (Alpaca GTC expires after ~90 days).
@@ -175,9 +177,11 @@ if [ -n "$HTTP_STATUS" ]; then
       --response "$(printf "%s" "$CLOSE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
 fi
 CLOSE_EXIT: 0 close submitted / already closing / stop filled (position gone)
-· 3 refused, stop still protects → log, HOLD · 4 broker unavailable → STOP ·
-8 NAKED (stop canceled, sell not confirmed) → rerun the SAME command now;
-still 8 → email "UNPROTECTED SYM", STOP.
+· 3 refused, a verified stop still protects → log, HOLD · 4 broker unavailable,
+no uncovered position seen → STOP · 8 UNPROTECTED — the broker shows no verified
+stop for the position (refused or unreadable while uncovered, or stop canceled
+and sell not confirmed) → rerun the SAME command now; still 8 → email
+"UNPROTECTED SYM", STOP.
 Log the exit to TRADE-LOG: exit price, realized P&L (from
 `python3 scripts/blotter.py --markdown`, fill-based), "cut at -7% per rule".
 
@@ -219,10 +223,12 @@ if [ -n "$HTTP_STATUS" ]; then
       --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
 fi
 REPLACE_EXIT: 0 replaced/already replaced/old stop filled · 3 refused, old stop
-untouched → log + HOLD · 4 broker unavailable, nothing changed → STOP · 7 replacement
-failed, old level restored as fixed stop → email "STOP REPLACE FAILED SYM", log ·
-8 possibly UNPROTECTED → rerun the SAME command now (resumes, up to 3×); still 8 →
-email "UNPROTECTED SYM", log, STOP.
+verifiably still protects, untouched → log + HOLD · 4 broker unavailable, nothing
+changed and no uncovered position seen → STOP · 7 replacement failed, old level
+restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED — the
+broker shows no verified stop for the position, whatever caused it (refused or
+expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
+up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
 On validate_order exit 3 → skip tighten, log. On exit 4 → STOP. On exit 6 → STOP (ledger).
 #40 PATCH resize is OPEN — do not invent a patch path. replace_stop leaves a
 sub-second cancel→place window but validates first, confirms the cancel,

@@ -3,6 +3,28 @@
 # Usage: bash scripts/alpaca.sh <subcommand> [args...]
 set -euo pipefail
 
+# ACCOUNT PROFILE — which paper account this invocation talks to.
+#   production (default)  ALPACA_API_KEY / ALPACA_SECRET_KEY, .env
+#   drill                 DRILL_ALPACA_API_KEY / DRILL_ALPACA_SECRET_KEY, .env.drill
+# Select with ALPACA_PROFILE=drill or `--account drill` before the subcommand.
+# Both paper accounts live on the same host and no payload names the account,
+# so isolation is key-only: a process that holds both pairs is refused outright
+# (exit 6), and every write is preceded by a pinned account_number check (exit 8).
+if [[ "${1:-}" == "--account" ]]; then
+  [[ $# -ge 2 && -n "${2:-}" ]] || { echo "usage: alpaca.sh --account <production|drill> <subcommand> [args]" >&2; exit 1; }
+  if [[ -n "${ALPACA_PROFILE:-}" && "$ALPACA_PROFILE" != "$2" ]]; then
+    echo "REFUSING: --account $2 disagrees with ALPACA_PROFILE=$ALPACA_PROFILE." >&2
+    exit 6
+  fi
+  export ALPACA_PROFILE="$2"
+  shift 2
+fi
+export ALPACA_PROFILE="${ALPACA_PROFILE:-production}"
+case "$ALPACA_PROFILE" in
+  production|drill) ;;
+  *) echo "REFUSING: unknown ALPACA_PROFILE '$ALPACA_PROFILE' (production|drill)." >&2; exit 6 ;;
+esac
+
 # shellcheck source=scripts/_env.sh
 source "$(dirname "$0")/_env.sh"
 
@@ -24,11 +46,37 @@ if [[ "$DATA" != "https://data.alpaca.markets/v2" ]]; then
   exit 4
 fi
 
-: "${ALPACA_API_KEY:?ALPACA_API_KEY not set in environment}"
-: "${ALPACA_SECRET_KEY:?ALPACA_SECRET_KEY not set in environment}"
+# KEY-PAIR COLLISION GUARD — one invocation, one account. Holding both pairs
+# means a later line could pick the wrong one silently; refuse instead. Names
+# only are printed, never values.
+if [[ -n "${ALPACA_API_KEY:-}${ALPACA_SECRET_KEY:-}" && -n "${DRILL_ALPACA_API_KEY:-}${DRILL_ALPACA_SECRET_KEY:-}" ]]; then
+  echo "REFUSING: both ALPACA_* and DRILL_ALPACA_* key pairs are present in this environment." >&2
+  echo "Production keys belong in .env / ALPACA_*; drill keys in .env.drill / DRILL_ALPACA_*; never both." >&2
+  exit 6
+fi
+if [[ "$ALPACA_PROFILE" == "drill" ]]; then
+  [[ -n "${DRILL_ALPACA_API_KEY:-}" && -n "${DRILL_ALPACA_SECRET_KEY:-}" ]] \
+    || { echo "REFUSING: profile drill needs DRILL_ALPACA_API_KEY and DRILL_ALPACA_SECRET_KEY." >&2; exit 6; }
+  _KEY="$DRILL_ALPACA_API_KEY"; _SEC="$DRILL_ALPACA_SECRET_KEY"
+else
+  [[ -n "${ALPACA_API_KEY:-}" && -n "${ALPACA_SECRET_KEY:-}" ]] \
+    || { echo "REFUSING: profile production needs ALPACA_API_KEY and ALPACA_SECRET_KEY." >&2; exit 6; }
+  _KEY="$ALPACA_API_KEY"; _SEC="$ALPACA_SECRET_KEY"
+fi
 
-H_KEY="APCA-API-KEY-ID: $ALPACA_API_KEY"
-H_SEC="APCA-API-SECRET-KEY: $ALPACA_SECRET_KEY"
+H_KEY="APCA-API-KEY-ID: $_KEY"
+H_SEC="APCA-API-SECRET-KEY: $_SEC"
+unset _KEY _SEC
+
+# PINNED-ACCOUNT CHECK — GET /v2/account and compare account_number with the
+# profile's pin in scripts/accounts.json. Runs in a subshell with the status
+# capture unset so a refusal never looks like a broker response to the caller.
+_verify_account() {
+  local body
+  body=$( unset ALPACA_HTTP_STATUS_FILE; _curl -H "$H_KEY" -H "$H_SEC" "$API/account" ) || {
+    echo "alpaca.sh: could not read /account to verify the $ALPACA_PROFILE pin." >&2; return 7; }
+  printf '%s' "$body" | python3 "$(dirname "$0")/account_pin.py" check "$ALPACA_PROFILE"
+}
 
 # Optional HTTP-status capture for T4 ledger writes. When the caller exports
 # ALPACA_HTTP_STATUS_FILE to a path, write curl's %{http_code} there and keep
@@ -80,12 +128,20 @@ case "$cmd" in
     # Validate this exact command/body against broker state. The env flag is
     # only caller intent; it is never proof of a previous validation.
     python3 "$(dirname "$0")/validate_mutation.py" "$cmd" "${1:-}" >&2
+    # Last gate before the wire: the keys in hand must belong to the pinned
+    # account for this profile. A key mix-up is invisible in every other payload.
+    _verify_account >/dev/null || exit 8
     ;;
 esac
 
 case "$cmd" in
   account)
     _curl -H "$H_KEY" -H "$H_SEC" "$API/account"
+    ;;
+  verify-account)
+    # Read-only: confirm the selected profile's keys answer as the pinned account.
+    number=$(_verify_account) || exit 8
+    printf '{"profile": "%s", "account_number": "%s"}' "$ALPACA_PROFILE" "$number"
     ;;
   positions)
     _curl -H "$H_KEY" -H "$H_SEC" "$API/positions"
@@ -173,7 +229,7 @@ case "$cmd" in
     _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
     ;;
   *)
-    echo "Usage: bash scripts/alpaca.sh <account|positions|position|quote|orders|order-info|order-by-client|activities|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
+    echo "Usage: bash scripts/alpaca.sh [--account production|drill] <account|verify-account|positions|position|quote|orders|order-info|order-by-client|activities|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
     exit 1
     ;;
 esac
