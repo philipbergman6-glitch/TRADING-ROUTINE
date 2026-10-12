@@ -5,6 +5,13 @@ No submission, tokens or flag-based approval here. The wrapper passes the same
 body it sends to the broker. Account-wide bulk mutations are intentionally
 unsupported. This closes payload/approval drift, not cross-process races or
 cancel/replacement recovery; those require the execution coordinator.
+
+Every mutation is bound to the approved strategy version (ADR 0011,
+scripts/strategy_version.py). When the binding fails, the only mutation that
+passes is protective-stop restoration: a sell stop whose client_order_id is
+rs-/rr-<old id>, which the floor check below admits only when that old stop
+is confirmed canceled and no protective stop rests for a held position. It is
+validated under the approved version's parameters.
 """
 from __future__ import annotations
 
@@ -18,8 +25,9 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from risk_engine import OrderProposal, Side, params_from_env, validate_order, validate_stop_change
+from risk_engine import OrderProposal, Side, validate_order, validate_stop_change
 from risk_engine.models import to_money
+from scripts.strategy_version import bind
 from scripts.validate_order import adapter, load_sectors, read_portfolio
 
 
@@ -76,16 +84,26 @@ def _check_stop_floor(body, symbol, level, price, read, now, params):
         require(result.approved, "; ".join(result.reasons()))
 
 
-def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None, params=None):
+def is_restoration(command, body) -> bool:
+    """Shape of the one mutation an unbound runner may send (ADR 0011). The floor
+    check proves the rest: the named stop is canceled and nothing protective rests."""
+    return (command == "order" and body.get("side") == "sell" and body.get("type") in _STOP_TYPES
+            and str(body.get("client_order_id", "")).startswith((REPLACE_PREFIX, RESTORE_PREFIX)))
+
+
+def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None, params=None, binding=None):
     """Raise on unsafe/unsupported input; injectable reads keep tests offline."""
-    params = params or params_from_env(os.environ)
+    binding = binding or bind(os.environ)
     require(command in ("order", "close", "cancel"), "bulk mutations are disabled")
+    unbound = f"strategy version binding failed ({binding.error}); only protective-stop restoration may proceed"
+    require(not binding.error or command == "order", unbound)
     if command == "order":
         body = json.loads(argument, parse_float=str)
         require(isinstance(body, dict), "order body must be an object")
         allowed = {"symbol", "qty", "side", "type", "time_in_force", "order_class",
                    "stop_loss", "stop_price", "trail_percent", "client_order_id"}
         require(not set(body) - allowed, "unsupported order fields")
+        require(not binding.error or is_restoration(command, body), unbound)
         symbol = body.get("symbol", "")
     elif command == "cancel":
         require(re.fullmatch(r"[A-Za-z0-9-]+", argument) is not None, "invalid order id")
@@ -103,6 +121,7 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
     require(isinstance(asset, dict) and asset.get("symbol") == symbol
             and asset.get("class") == "us_equity", "broker asset must be a US equity")
 
+    params = params or binding.params
     # Fetching account data through read_portfolio is deliberately not optional
     # on the CLI. Tests inject the snapshot to avoid network access.
     state = portfolio if portfolio is not None else read_portfolio(now or datetime.now(timezone.utc), None, params)
@@ -166,6 +185,9 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
                 _check_stop_floor(body, symbol, level, price, read, now or datetime.now(timezone.utc), params)
     result = validate_order(proposal, state, params)
     require(result.approved, "; ".join(result.reasons()))
+    if binding.error:
+        print(f"VERSION BINDING EXCEPTION: protective-stop restoration {body['client_order_id']} validated under "
+              f"approved {binding.approved} while {binding.error}", file=sys.stderr)
 
 
 def main():

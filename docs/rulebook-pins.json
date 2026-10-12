@@ -1,5 +1,6 @@
 {
-  "_comment": "sha256 of memory/TRADING-STRATEGY.md per declared version. scripts/strategy_version.py refuses to run when the file hash differs from the pin for the declared version. Bump the version marker in the rulebook and add a pin here in the same commit; routines never edit the rulebook.",
+  "_comment": "The approved strategy version is \"active\" (ADR 0011): every mutation path binds to it through scripts/strategy_version.py. Each entry pins the sha256 of memory/TRADING-STRATEGY.md for that declared version; the rulebook's marker must equal \"active\" and its hash must equal the active pin. A version bump changes the rulebook marker, adds a pin here, moves \"active\" and closes the previous entry with \"until\", all in one owner-reviewed commit; routines never edit the rulebook or this file.",
+  "active": "v1.1",
   "v1": {
     "sha256": "84e53ed169eec0265d59317fc60725759d1de9edf834b2552c60a37df46516fa",
     "commit": "07603ef",

@@ -1,7 +1,9 @@
 # 0003. Versioned strategy parameters and an independent protection monitor
 
 Date: 2026-09-20. Status: accepted; §3 amended by ADR 0005 (client order ids
-are attempts of an intent, not the unit of identity).
+are attempts of an intent, not the unit of identity); §1 amended by ADR 0011
+(the approved version comes from `docs/rulebook-pins.json`; `STRATEGY_VERSION`
+must agree with it and unset is refused, not v1).
 
 ## Context
 

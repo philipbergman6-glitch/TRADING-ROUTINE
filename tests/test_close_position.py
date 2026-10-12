@@ -334,3 +334,28 @@ def test_malformed_intent_is_a_usage_error(monkeypatch, capsys):
     monkeypatch.setattr("sys.argv", ["close_position.py", "--symbol", "AMD", "--intent", "cl-20260921-AMD-r1"])
     assert cp.main() == EXIT_USAGE
     assert "attempt id" in json.loads(capsys.readouterr().out)["reason"]
+
+
+# ---- version binding (ADR 0011): a close is never restoration --------------------
+
+@pytest.mark.parametrize("version", [None, "", "1", "v2"])
+def test_unbound_runner_never_cancels_or_sells(monkeypatch, version):
+    monkeypatch.setenv("STRATEGY_VERSION", version) if version is not None else monkeypatch.delenv("STRATEGY_VERSION")
+    b = FakeBroker()
+    got = outcome(b)
+    assert (got.code, got.state) == (EXIT_REFUSED, "version_binding_refused")
+    assert b.calls == [] and got.detail["intent"] == CID
+
+
+def test_unbound_close_of_an_uncovered_position_is_an_incident(monkeypatch):
+    monkeypatch.delenv("STRATEGY_VERSION")
+    b = FakeBroker(stop_status="canceled")  # an earlier run canceled and died
+    got = outcome(b)
+    assert (got.code, got.state) == (EXIT_UNPROTECTED, "version_binding_refused_position_unprotected")
+    assert b.calls == []
+
+
+def test_unbound_rerun_still_reports_a_finished_close(monkeypatch):
+    monkeypatch.delenv("STRATEGY_VERSION")
+    b = FakeBroker(held=False, stop_status=None, existing={CID: {"id": "close-1", "status": "filled"}})
+    assert outcome(b).state == "close_complete"

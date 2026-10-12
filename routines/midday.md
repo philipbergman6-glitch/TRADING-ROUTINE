@@ -17,12 +17,13 @@ IMPORTANT — ENVIRONMENT VARIABLES:
              RESEND_API_KEY EMAIL_TO EMAIL_FROM; do
       [[ -n "${!v:-}" ]] && echo "$v: set" || echo "$v: MISSING"
     done
-- STRATEGY VERSION (hard gate, right after the loop above): STRATEGY_VERSION
-  selects the rule set and UNSET silently means v1. The declared version lives
-  in memory/TRADING-STRATEGY.md ("Active strategy version"). Run:
+- STRATEGY VERSION (hard gate, right after the loop above): the approved
+  version is "active" in docs/rulebook-pins.json (ADR 0011); STRATEGY_VERSION
+  must be its engine (v1) or full version (v1.1) — UNSET IS REFUSED — and the
+  rulebook marker and hash must match the pin. Run:
     python3 scripts/strategy_version.py || { bash scripts/email.sh "STRATEGY_VERSION MISMATCH $DATE: $(python3 scripts/strategy_version.py 2>&1)"; exit 1; }
-  Exit 5 = env and declared version disagree, exit 1 = marker unreadable.
-  Either way STOP — never trade under a rule set you did not intend. Quote
+  Exit 5 = env, marker or rulebook hash disagree, exit 1 = pins unreadable.
+  The mutation scripts refuse the same way (version_binding_refused). Either way STOP — never trade under a rule set you did not intend. Quote
   the printed "STRATEGY_VERSION: vN" line in today's TRADE-LOG entry.
 
 IMPORTANT — PERSISTENCE:

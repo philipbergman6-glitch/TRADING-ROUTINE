@@ -4,11 +4,13 @@ description: Manual trade helper with strategy-rule validation. Usage — /trade
 
 ## Strategy version gate (run first)
 
-STRATEGY_VERSION selects the rule set and UNSET silently means v1. The declared
-version lives in memory/TRADING-STRATEGY.md ("Active strategy version"). Run:
+The approved version is "active" in docs/rulebook-pins.json (ADR 0011).
+STRATEGY_VERSION must be set to its engine (v1) or the full version (v1.1);
+UNSET IS REFUSED, and the rulebook marker and hash must match the pin. Run:
     python3 scripts/strategy_version.py || exit 1
-Exit 5 = env and declared version disagree, exit 1 = marker unreadable. STOP on
-either — never trade under a rule set you did not intend. Quote the printed
+Exit 5 = env, marker or rulebook hash disagree, exit 1 = pins unreadable. STOP
+on either — never trade under a rule set you did not intend. The mutation
+scripts enforce the same binding and refuse (state version_binding_refused). Quote the printed
 "STRATEGY_VERSION: vN" line in the TRADE-LOG entry.
 
 ## T4 — ledger on the live path (optional; mandatory when configured)

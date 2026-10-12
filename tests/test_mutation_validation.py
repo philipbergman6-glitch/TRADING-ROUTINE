@@ -80,3 +80,29 @@ def test_actual_resting_stop_is_not_lowered(snapshot):
 def test_bulk_actions_fail_before_broker_reads(command):
     with pytest.raises(ValueError, match="bulk"):
         validate_mutation(command, "", read=lambda *args: pytest.fail("unexpected read"))
+
+
+# ---- version binding (ADR 0011): an unbound runner may not trade ----------------
+
+@pytest.mark.parametrize("env", [None, "", "V1", "v2"])
+def test_unbound_runner_cannot_buy(snapshot, monkeypatch, env):
+    if env is None:
+        monkeypatch.delenv("STRATEGY_VERSION")
+    else:
+        monkeypatch.setenv("STRATEGY_VERSION", env)
+    with pytest.raises(ValueError, match="version binding"):
+        check(order(), snapshot)
+
+
+@pytest.mark.parametrize("command,argument", [("close", "AAPL"), ("cancel", "abc-1")])
+def test_unbound_runner_cannot_close_or_cancel(monkeypatch, command, argument):
+    monkeypatch.delenv("STRATEGY_VERSION")
+    with pytest.raises(ValueError, match="version binding"):
+        validate_mutation(command, argument, read=lambda *a: pytest.fail("refused before broker reads"))
+
+
+def test_unreadable_pins_refuse_every_mutation(snapshot, monkeypatch, tmp_path):
+    from scripts import strategy_version
+    monkeypatch.setattr(strategy_version, "PINS_FILE", tmp_path / "missing.json")
+    with pytest.raises(ValueError, match="pins unreadable"):
+        check(order(), snapshot)

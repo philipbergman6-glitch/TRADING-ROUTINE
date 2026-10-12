@@ -118,6 +118,24 @@ at or above it.
 _Avoid_: leftover stop (names the pre-conversion leg right after entry, which is
 transient), legacy stop
 
+**Approved version**:
+The strategy version named by `"active"` in `docs/rulebook-pins.json`, with a
+pin and no `until`. The one source for which rules may trade (ADR 0011).
+_Avoid_: active version (the rulebook marker only declares it), STRATEGY_VERSION (the deployment's echo)
+
+**Version binding**:
+A run's agreement with the approved version: `STRATEGY_VERSION` names it, and
+the rulebook's marker and hash match its pin. An unbound run may mutate only
+by protective-stop restoration.
+_Avoid_: version check (it is a refusal, not a report)
+
+**Protective-stop restoration**:
+Placing the `rs-`/`rr-` stop for a held position without verified coverage
+after an earlier run's cancel, with no cancel of its own. The one mutation an
+unbound run may make; it runs under the approved version and raises an incident
+alert.
+_Avoid_: renewal, conversion, tightening (each cancels a resting stop first)
+
 **Protection check**:
 One successful verification of protection for every open position against
 live broker state, including any due renewal, conversion or tightening. A
