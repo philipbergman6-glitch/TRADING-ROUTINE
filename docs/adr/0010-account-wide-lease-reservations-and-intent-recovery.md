@@ -1,4 +1,4 @@
-# 0009. The coordinator: one account-wide lease, reservations derived from intents, recovery that only restores coverage
+# 0010. The coordinator: one account-wide lease, reservations derived from intents, recovery that only restores coverage
 
 Date: 2026-10-12. Status: accepted. Resolves
 [#99](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/99)
