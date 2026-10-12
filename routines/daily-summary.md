@@ -39,6 +39,7 @@ bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 python3 scripts/blotter.py --check    # exit 4 = fills and positions disagree → STOP, email "BLOTTER MISMATCH $DATE"
 python3 scripts/blotter.py --json     # round_trips[] + open_lots[]; fills are the record
+python3 scripts/reconcile_equity.py   # exit 4 = cash, holdings or daily equity do not reconcile → STOP, email "RECONCILIATION MISMATCH $DATE" with its output
 
 STEP 3 — Compute metrics:
 - Day P&L ($ and %) = today_equity - yesterday_equity

@@ -183,6 +183,45 @@ case "$cmd" in
     fi
     _curl -H "$H_KEY" -H "$H_SEC" "$url"
     ;;
+  activities-all)
+    # Every activity type (FILL, FEE, JNLC, dividends...) for equity
+    # reconciliation. Same paging as `activities`: PAGE_TOKEN is the last id.
+    after="${1:-}"
+    token="${2:-}"
+    url="$API/account/activities?direction=asc&page_size=100"
+    if [[ -n "$after" ]]; then
+      [[ "$after" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$ ]] || { echo "activities-all: AFTER must be YYYY-MM-DDTHH:MM:SSZ" >&2; exit 2; }
+      url="$url&after=$after"
+    fi
+    if [[ -n "$token" ]]; then
+      [[ "$token" =~ ^[A-Za-z0-9:_-]{1,80}$ ]] || { echo "activities-all: invalid PAGE_TOKEN" >&2; exit 2; }
+      url="$url&page_token=$token"
+    fi
+    _curl -H "$H_KEY" -H "$H_SEC" "$url"
+    ;;
+  portfolio-history)
+    # Daily broker equity series. Points are stamped 00:00 UTC the day after
+    # the session they close (see risk_engine/accounting.py).
+    period="${1:-1A}"
+    [[ "$period" =~ ^[0-9]{1,3}[DWMA]$ ]] || { echo "portfolio-history: PERIOD must look like 3M or 1A" >&2; exit 2; }
+    _curl -H "$H_KEY" -H "$H_SEC" "$API/account/portfolio/history?period=$period&timeframe=1D"
+    ;;
+  bars)
+    # Daily SIP closes for pricing held lots at each session close. Alpaca
+    # refuses SIP data newer than 15 minutes, so END must be a past session.
+    syms="${1:?usage: bars SYMBOLS START END [PAGE_TOKEN]}"
+    start="${2:?usage: bars SYMBOLS START END [PAGE_TOKEN]}"
+    end="${3:?usage: bars SYMBOLS START END [PAGE_TOKEN]}"
+    token="${4:-}"
+    [[ "$syms" =~ ^[A-Z.]{1,10}(,[A-Z.]{1,10})*$ ]] || { echo "bars: SYMBOLS must be comma-separated upper-case tickers" >&2; exit 2; }
+    [[ "$start" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ && "$end" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || { echo "bars: START and END must be YYYY-MM-DD" >&2; exit 2; }
+    url="$DATA/stocks/bars?symbols=$syms&timeframe=1Day&start=$start&end=$end&feed=sip&adjustment=raw&limit=10000"
+    if [[ -n "$token" ]]; then
+      [[ "$token" =~ ^[A-Za-z0-9|:_=-]{1,120}$ ]] || { echo "bars: invalid PAGE_TOKEN" >&2; exit 2; }
+      url="$url&page_token=$token"
+    fi
+    _curl -H "$H_KEY" -H "$H_SEC" "$url"
+    ;;
   asset)
     sym="${1:?usage: asset SYM}"
     _curl -H "$H_KEY" -H "$H_SEC" "$API/assets/$sym"
@@ -229,7 +268,7 @@ case "$cmd" in
     _curl -H "$H_KEY" -H "$H_SEC" -X DELETE "$API/positions"
     ;;
   *)
-    echo "Usage: bash scripts/alpaca.sh [--account production|drill] <account|verify-account|positions|position|quote|orders|order-info|order-by-client|activities|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
+    echo "Usage: bash scripts/alpaca.sh [--account production|drill] <account|verify-account|positions|position|quote|orders|order-info|order-by-client|activities|activities-all|portfolio-history|bars|asset|order|cancel|cancel-all|close|close-all> [args]" >&2
     exit 1
     ;;
 esac

@@ -193,3 +193,19 @@ stop replacement in between. It is read from broker fills and holdings, never
 minted; once flat it is a blotter *round trip*. A filled close attempt proves
 an earlier lifecycle ended, not that the current one has.
 _Avoid_: position (ambiguous between the holding and the episode), trade
+
+### Accounting
+
+**Reconciliation**:
+The daily proof that broker cash, holdings and equity are fully explained by
+the broker's own activity record: deposits, fills and fees rebuild cash to the
+cent, fills rebuild holdings share for share, and cash plus held lots at the
+session close rebuilds each past session's equity. Equity figures in the logs
+are narrative; the reconciliation is the record.
+_Avoid_: audit, P&L check (an audit judges process; this checks arithmetic)
+
+**Unexplained difference**:
+A reconciliation gap that no activity accounts for: any cash or holdings
+mismatch, or a session's equity beyond tolerance that is not recorded as a
+known broker snapshot artefact at the same size. It stops the daily summary.
+_Avoid_: drift, discrepancy (both suggest something tolerable)

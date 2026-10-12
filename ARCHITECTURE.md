@@ -196,6 +196,10 @@ than one described aspirationally.
   the scheduled loop with renew/convert/tighten and email on any issue;
   running since 2026-09-29, at the cadence measured under "Monitoring
   service level" below.
+  `scripts/reconcile_equity.py` (pure logic in `risk_engine/accounting.py`)
+  rebuilds cash, holdings and every past session's equity from broker
+  activities and SIP closes and hard-fails `daily-summary` on an unexplained
+  difference (ADR 0008).
 - **Scheduled routine gates (T1 + T2).** `market-open` and `midday` (and `/trade`)
   instruct `scripts/validate_order.py` before every order-mutating `alpaca.sh`
   path; `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) with
