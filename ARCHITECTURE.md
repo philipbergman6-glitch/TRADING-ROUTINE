@@ -133,6 +133,20 @@ max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
 unambiguous protection on every buy · fixed entry stop 9.5–10.5% below entry
 or exactly 10% entry trail · non-equity symbol formats rejected
 
+The position-count, position-size, weekly-trade, cash and deployment rules
+(and v2's sector cap) also count **reservations**: the capacity an unfinished
+entry intent holds until the broker shows it ([ADR 0010](docs/adr/0010-account-wide-lease-reservations-and-intent-recovery.md) §6).
+`PortfolioState.reservations` is required, like `is_paper`, so a buy decision
+cannot forget them. The engine counts them rule by rule rather than the caller
+pre-subtracting them: a reserved new symbol takes one slot however many intents
+reserve it; an add to a held name takes no slot; every non-fallback reservation
+is a weekly trade; all reserved notional is deployed and not available cash;
+the fallback is exempt from the counts, never from the money. Refusals name the
+reserving intent ids, and `max_affordable_shares` uses the same view.
+`scripts/validate_order.py` passes none until the coordinator
+([#100](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/100))
+reads them from the state store.
+
 Enforced on midday trail/stop *changes* via `scripts/validate_stop_change.py`
 (T2 / [issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32)):
 

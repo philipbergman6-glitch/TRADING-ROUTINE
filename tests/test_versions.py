@@ -31,7 +31,7 @@ from risk_engine.protection import fixed_stop_at_distance
 
 def portfolio(**overrides) -> PortfolioState:
     defaults = dict(equity=Decimal("10000"), cash=Decimal("10000"), is_paper=True,
-                    positions=(), trades_this_week=0)
+                    reservations=(), positions=(), trades_this_week=0)
     return PortfolioState(**{**defaults, **overrides})
 
 

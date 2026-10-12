@@ -222,7 +222,7 @@ def snapshot(old_status="canceled", opens=(), closed=()):
 
 def mutation(body, snap):
     validate_mutation("order", body, read=lambda *a: snap[a], now=NOW,
-                      portfolio=PortfolioState(equity="100000", cash="88000", is_paper=True,
+                      portfolio=PortfolioState(equity="100000", cash="88000", is_paper=True, reservations=(),
                                                positions=(Position("AAPL", "100", "12000"),)))
 
 
