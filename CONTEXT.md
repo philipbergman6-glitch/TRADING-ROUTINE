@@ -68,3 +68,16 @@ cancel-then-sell that a fully reserved position requires. An unbounded or
 undetected one is an incident.
 _Avoid_: naked position, the buy/stop gap (each names one instance of a general
 state)
+
+**Protection check**:
+One successful verification of protection for every open position against
+live broker state, including any due renewal, conversion or tightening. A
+check that could not read the broker, or that left protection short, is not a
+check.
+_Avoid_: monitor run, cron slot (a run can fail; a slot can produce no run)
+
+**Stale window**:
+An interval while the exchange is open during which the newest protection
+check is older than the maximum protection-check delay. A stale window is a
+monitoring miss, not an unprotected window: the broker still holds the stops.
+_Avoid_: outage, downtime (both suggest nothing was protected)

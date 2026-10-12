@@ -81,7 +81,8 @@ bash scripts/alpaca.sh orders
 python3 scripts/blotter.py --check   # fill-based FIFO book must match positions
 The protection monitor (.github/workflows/protection-monitor.yml) is
 scheduled every 30 min but GitHub fires it only ~2x/day at unpredictable
-times. It may have renewed, converted or tightened stops; read broker state,
+times (service level and measurement: ADR 0004; the heartbeat reports the
+stale windows each evening). It may have renewed, converted or tightened stops; read broker state,
 never assume what it did, and never write in the log that it acted unless
 its run appears in `gh run list --workflow=protection-monitor.yml`.
 

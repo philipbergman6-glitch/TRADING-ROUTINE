@@ -76,9 +76,10 @@ unconfirmed sell after a confirmed cancel is exit 8 (naked incident).
 Strategy constants are versioned in `risk_engine/versions.py` (`V1` frozen,
 `V2`); `STRATEGY_VERSION` selects at each CLI boundary. Protection also runs
 without any Claude session: `.github/workflows/protection-monitor.yml` runs
-`scripts/protection_monitor.py` every 30 minutes, which plans with the pure
-`risk_engine/monitor.py` (coverage, renew, convert, tighten, standing holds)
-and acts only through `scripts/replace_stop.py`. It never reads the ledger.
+`scripts/protection_monitor.py` (cron intent every 30 minutes; see
+"Monitoring service level" for what is actually delivered), which plans with
+the pure `risk_engine/monitor.py` (coverage, renew, convert, tighten, standing
+holds) and acts only through `scripts/replace_stop.py`. It never reads the ledger.
 Round trips, cooldown and sector streaks come from broker fills via
 `risk_engine/blotter.py`, not from markdown.
 
@@ -177,8 +178,9 @@ than one described aspirationally.
   compares held quantities against current, unexpired GTC protective orders via
   `risk_engine.reconciliation`. It flags missing, excess and ambiguous coverage.
   `scripts/protection_monitor.py` on the `protection-monitor` workflow adds
-  the scheduled loop with renew/convert/tighten and email on any issue; it
-  needs repository secrets and has not yet been observed running.
+  the scheduled loop with renew/convert/tighten and email on any issue;
+  running since 2026-09-29, at the cadence measured under "Monitoring
+  service level" below.
 - **Scheduled routine gates (T1 + T2).** `market-open` and `midday` (and `/trade`)
   instruct `scripts/validate_order.py` before every order-mutating `alpaca.sh`
   path; `alpaca.sh` hard-refuses `order`/`close`/`cancel` (and `*-all`) with
@@ -190,6 +192,31 @@ than one described aspirationally.
 - **Single user, paper only.** No multi-tenancy, no RBAC, no credential
   encryption, no live trading. There is one user and one paper account;
   building tenancy before a tenant is the expensive mistake.
+
+## Monitoring service level
+
+Decided in ADR 0004 from the run history in `docs/research/0008` and the
+delivery survey in `docs/research/0009`.
+
+| Term | Commitment |
+|---|---|
+| Protection check | One successful run of `scripts/protection_monitor.py` against live broker state (coverage verified, due actions done). |
+| Maximum protection-check delay | **90 minutes** while the exchange is open (09:30–16:00 ET, Alpaca trading days). Three cron slots: tolerates two consecutive dropped slots. |
+| Who measures | `scripts/heartbeat.py`, once per session after the close, from the completion time of every successful `protection-monitor` run (GitHub Actions run history). `scripts/protection_sla.py` holds the arithmetic. |
+| Miss | A **stale window**. Reported as one heartbeat issue naming each window and the total stale minutes (exit 5, email). Not a trading refusal: the broker holds the stops. Market-open re-verifies coverage itself (`protection_monitor.py --dry-run`) before any buy and places none while coverage is short. |
+| Alert delivery | `scripts/email.sh` captures the Resend id and reads `last_event` back. Exit 0 only when Resend accepted the message and has not reported a bounce or failure. A lost alert fails the calling job (exit 9) and the heartbeat workflow opens or comments a GitHub issue, the channel independent of Resend. |
+| No-trade record | Market-open commits `market-open trades <date>` or `market-open no-trade <date>` every session, so the heartbeat distinguishes "did not run" from "nothing to do". |
+
+**What the deployed scheduler delivers (2026-09-29 to 2026-10-09):** two
+scheduled runs per weekday, the first between 14:16 and 15:15 ET, none on
+2026-10-05; the heartbeat cron fires 2.7–3.8 h late. The level is therefore
+breached for roughly the first five hours of every session, and the heartbeat
+says so each evening. Meeting it means dispatching the monitor from outside
+GitHub's `schedule`: `workflow_dispatch` runs start within seconds (research
+0008, run 13), so an external cron calling the dispatch endpoint every 30
+minutes is enough. The options, each needing a fine-grained PAT with
+`actions: write` as a new secret, are listed in the PR for ticket #103;
+choosing one is the owner's decision, not a code change.
 
 ## Paper-only posture
 

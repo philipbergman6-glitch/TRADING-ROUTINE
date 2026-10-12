@@ -71,6 +71,12 @@ before the 30-session $10,000 v2 paper run:
   ~21:15Z); treat as a twice-daily coverage check, not a 30-min guard. No
   Claude, no ledger; renew, convert (v2: only at +5%), tighten per ladder;
   HOLD/STANDING reported; exit 5/7/8 emailed. Acts only via `replace_stop`.
+  Service level since 2026-10-12 (ADR 0004): 90-min maximum protection-check
+  delay during market hours, measured by the heartbeat from run history and
+  reported as stale windows; alerts are delivery-verified (`email.sh` reads
+  the Resend `last_event`; exit 9 = alert lost); market-open commits
+  `market-open no-trade <date>` on no-trade days. Meeting the level needs an
+  external dispatcher (owner decision, see PR for #103).
 - `scripts/submit_entry.py` (`en-<day>-<sym>`, lookup before submit) and
   `scripts/close_position.py` (`cl-<day>-<sym>`, cancel confirmed, sell
   confirmed, exit 8 if naked). Both wired into `routines/market-open.md`,

@@ -15,12 +15,16 @@ touched. Nothing here opens positions or closes them.
 The ledger is deliberately not consulted: the Sep 8-16 outage showed protection
 must not depend on an optional component. Version comes from STRATEGY_VERSION.
 
+With --email the report is sent through scripts/email.sh, which verifies
+delivery with Resend; a lost alert must fail the job (ADR 0004), so:
+
 Exit codes (JSON report always on stdout):
     0  all positions covered, every due action done (or nothing due)
     4  broker state unavailable; nothing changed
     5  coverage issue or a held action that leaves protection short of the rule
     7  an action failed but the prior level was restored
     8  INCIDENT: a position may be unprotected; rerun immediately
+    9  the alert could not be delivered (replaces 0 or 5; 7 and 8 keep their code)
 """
 from __future__ import annotations
 
@@ -41,6 +45,7 @@ from scripts.validate_order import EXIT_NO_STATE, adapter  # noqa: E402
 
 EMAIL = Path(__file__).resolve().parent / "email.sh"
 EXIT_ISSUES = 5
+EXIT_ALERT_FAILED = 9
 MAX_RERUNS = 3
 
 
@@ -73,13 +78,26 @@ def worst_exit(plan, results) -> int:
     return 0
 
 
-def notify(report: dict) -> None:
+def notify(report: dict, run=subprocess.run) -> bool:
+    """Email the report; True only when scripts/email.sh verified delivery."""
     lines = [f"protection monitor {report['observed_at']} exit {report['exit']}"]
     lines += [f"ISSUE {i}" for i in report["coverage"].get("issues", [])]
     lines += [f"{r['kind']} {r['symbol']} -> {r['state']}" for r in report["results"]]
     lines += [f"HOLD {h}" for h in report["holds"]]
     lines += [f"STANDING {s}" for s in report["standing"]]
-    subprocess.run(["bash", str(EMAIL), "\n".join(lines)], check=False, timeout=60)
+    try:
+        return run(["bash", str(EMAIL), "\n".join(lines)], check=False, timeout=120).returncode == 0
+    except subprocess.TimeoutExpired:
+        return False
+
+
+def exit_code(code: int, alert_delivered: bool | None) -> int:
+    """A lost alert fails the job. It replaces a clean or coverage-issue code so
+    the failure is named; a broker-state outcome (7, 8) is kept as the more
+    urgent signal and the report still records alert_delivered."""
+    if alert_delivered is False and code in (0, EXIT_ISSUES):
+        return EXIT_ALERT_FAILED
+    return code
 
 
 def main() -> int:
@@ -103,10 +121,11 @@ def main() -> int:
     code = worst_exit(plan, results) if not args.dry_run else (EXIT_ISSUES if plan.issues else 0)
     report = {"exit": code, "dry_run": args.dry_run, "strategy_version": params.name,
               "observed_at": now.isoformat(), "results": results, **plan.as_dict()}
+    alert_delivered = notify(report) if args.email and (code != 0 or results) else None
+    report["alert_delivered"] = alert_delivered
+    report["exit"] = exit_code(code, alert_delivered)
     print(json.dumps(report, indent=2, default=str))
-    if args.email and (code != 0 or results):
-        notify(report)
-    return code
+    return report["exit"]
 
 
 if __name__ == "__main__":
