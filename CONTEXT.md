@@ -157,3 +157,27 @@ loss, computed from broker fills. At two, that sector is closed to new entries
 (including its own broad ETF) for 20 sessions from the second loss; open
 positions in it stay on their stops.
 _Avoid_: sector exit, consecutive losers
+
+### Execution identity
+
+**Intent**:
+One requested action on one symbol — enter, close, or replace a stop — minted
+by the caller and recorded before anything is sent to the broker. It is the
+unit of idempotency and recovery: a rerun on any later day resolves the same
+intent. The day in its name says when it was minted, not what it is.
+_Avoid_: order, request, client order id (an order is what the broker holds;
+the client order id names one attempt)
+
+**Attempt**:
+One submission of an intent to the broker, carrying its own client order id.
+An intent has an ordered list of attempts; a new one is made only after the
+broker confirms the previous one dead, and an attempt's id is never reused.
+_Avoid_: retry (names the act, not the thing), resubmission
+
+**Position lifecycle**:
+One episode of holding a symbol, from the buy fill that takes the quantity
+from zero until reconciled holdings return to zero, including every add and
+stop replacement in between. It is read from broker fills and holdings, never
+minted; once flat it is a blotter *round trip*. A filled close attempt proves
+an earlier lifecycle ended, not that the current one has.
+_Avoid_: position (ambiguous between the holding and the episode), trade
