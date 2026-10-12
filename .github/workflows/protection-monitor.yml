@@ -61,10 +61,30 @@ jobs:
         run: |
           test -n "$ALPACA_API_KEY" && test -n "$ALPACA_SECRET_KEY" \
             || { echo "ALPACA secrets are not configured; nothing verified" >&2; exit 4; }
+      # Run record (ADR 0012). Protection never waits on a record (ADR 0004
+      # section 1), so a failed start lets the monitor run and fails the job
+      # afterwards; the heartbeat sees the failed workflow.
+      - name: Run record start
+        id: run_start
+        continue-on-error: true
+        run: |
+          python3 scripts/run_record.py start --routine protection-monitor \
+            --trigger "${{ github.event_name }}" \
+            --command-file .github/workflows/protection-monitor.yml
       - name: Protection monitor
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
-            python3 scripts/protection_monitor.py --dry-run --email
+            python3 scripts/protection_monitor.py --dry-run --email | tee "$RUNNER_TEMP/monitor-report.json"
           else
-            python3 scripts/protection_monitor.py --email
+            python3 scripts/protection_monitor.py --email | tee "$RUNNER_TEMP/monitor-report.json"
           fi
+      - name: Run record finish
+        # Runs even when the monitor failed: a missing or unreadable report is
+        # recorded as the incident.
+        if: always() && steps.run_start.outcome == 'success'
+        run: python3 scripts/run_record.py finish --monitor-report "$RUNNER_TEMP/monitor-report.json"
+      - name: Fail when the run record could not start
+        if: steps.run_start.outcome == 'failure'
+        run: |
+          echo "run record start failed; protection ran unrecorded (see the Run record start step)" >&2
+          exit 10

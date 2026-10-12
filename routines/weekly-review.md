@@ -27,6 +27,19 @@ git fetch origin main && git reset --hard FETCH_HEAD
 The sandbox clone is often stale. Skipping this means trading on outdated
 memory. If the fetch fails, STOP, email "SYNC FAILED $DATE", and exit.
 
+STEP 0b — RUN RECORD START (ADR 0012; right after the sync, before
+anything else):
+python3 scripts/run_record.py start --routine weekly-review --trigger cloud \
+    --command-file routines/weekly-review.md --model "<your model id>"
+--model is the exact model ID your own system prompt states; never guess one
+(no environment variable exposes it). If it exits non-zero (10 = store
+unavailable, 2 = usage), email
+"RUN RECORD FAILED weekly-review $DATE: <printed reason>" and continue without a
+record: this routine makes no broker mutation, and its log is still due.
+Skip the finish step in that case.
+If the run STOPs anywhere after this point, run the finish step first with
+--incident naming why.
+
 STEP 1 — Read memory for full week context:
 - memory/WEEKLY-REVIEW.md (match existing template exactly)
 - ALL this week's entries in memory/TRADE-LOG.md
@@ -104,3 +117,14 @@ git fetch origin main
 git log --format=%s -3 FETCH_HEAD | grep -qxF "weekly review $DATE" \
   && echo "PUSH VERIFIED" \
   || bash scripts/email.sh "PUSH NOT ON MAIN $DATE — origin/main tip: $(git log -1 --format='%h %s' FETCH_HEAD)"
+
+LAST STEP — RUN RECORD FINISH (ADR 0012; after the push is verified):
+python3 scripts/run_record.py finish \
+    [--action "<broker mutation made>"]... [--refusal "<action a rule refused>"]... \
+    [--incident "<what went wrong>"]... [--intent <intent id>]...
+One --action per broker mutation this run made (buy, sell, stop replace or
+renew), one --refusal per action a validator or rule refused, one
+--incident per failure (STOP, push not verified, alert not delivered,
+coverage short), one --intent per intent id a helper printed. No flags =
+no-trade; the outcome is derived. Never invent entries. On a non-zero exit
+email "RUN RECORD FINISH FAILED weekly-review $DATE: <printed reason>".

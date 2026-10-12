@@ -219,6 +219,27 @@ counted by the rules, never subtracted from the broker's figures.
 _Avoid_: hold, pending order (a pending order is a broker object; a reservation
 exists before any order does)
 
+### Provenance
+
+**Run**:
+One execution of a routine or of the protection monitor, from the moment it
+starts until it records how it ended. A run that started and never recorded
+an end is *unfinished*: it died or stopped before saying what it did.
+_Avoid_: session, job, execution (the mechanism, not the concept)
+
+**Run record**:
+The machine-written account of one run: what triggered it, the code, rulebook
+and instructions it ran under, the model that drove it where one did, and its
+outcome (actions taken, refusals, incidents, or no trade) with the intents it
+created. It is reconciled evidence; the trade and research logs are narrative.
+_Avoid_: log entry, audit trail (the logs are prose written by the run itself)
+
+**Unprovenanced**:
+Said of a run with no run record, which is every run before run records
+began. What code or model it used is unknown and is never reconstructed after
+the fact; its narrative log stands, labelled as such.
+_Avoid_: legacy, unverified (unverified suggests a check could still be run)
+
 ### Accounting
 
 **Reconciliation**:

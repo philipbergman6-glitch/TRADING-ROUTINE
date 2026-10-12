@@ -27,7 +27,7 @@ def main():
     try:
         snaps = dashboard.parse_trade_log(dashboard.TRADE_LOG.read_text())
         weeks = dashboard.parse_weekly_review(dashboard.WEEKLY_REVIEW.read_text())
-        generated = dashboard.emit(snaps, weeks)
+        generated = dashboard.emit(snaps, weeks, dashboard.read_state())
         report["checks"]["last_log"] = snaps[-1]["d"]
         report["checks"]["dashboard_current"] = dashboard.OUT.read_text() == generated
         if not report["checks"]["dashboard_current"]:

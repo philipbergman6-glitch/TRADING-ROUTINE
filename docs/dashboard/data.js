@@ -162,6 +162,15 @@ const BOOK = [ // Oct 9 EOD
 {s:"XLP", q:250, in:83.76, pl:-82.50, plp:-0.39, stop:79.91, protection:"fixed", w:19.7}
 ];
 
+// Run records (ADR 0012), from state/events.jsonl: machine-written by every
+// routine and protection-monitor run, reconciled, never curated. Runs started
+// before LOG_ASOF only. Runs before `since` (or all runs, while it is null)
+// are unprovenanced: no record of code, rulebook, prompt or model exists and
+// none is backfilled.
+const RUNS = {"outcomes": {}, "recent": [], "since": null, "through": "2026-10-08", "total": 0, "unfinished": 0};
+
+// ============ Curated: hand-written, dated by ANALYSIS_ASOF ============
+
 const TRADES = [
 {d:"Apr 28", s:"AMD",  sec:"tech", q:62,  in:"314.97", out:null, gap:"never logged · last seen +11.96%", pl:null, th:"AI/CPU momentum"},
 {d:"Apr 28", s:"NVDA", sec:"tech", q:90,  in:"208.64", out:null, gap:"never logged", pl:null, th:"AI GPU"},

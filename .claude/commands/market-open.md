@@ -2,6 +2,19 @@
 description: Market-open execution — validate, place buys, set 10% trailing stops
 ---
 
+## Run record (first step, ADR 0012)
+
+Local runs write through the dedicated clone (`--local`, ADR 0004 section 3).
+python3 scripts/run_record.py --local start --routine market-open --trigger local \
+    --command-file .claude/commands/market-open.md --model "<your model id>"
+--model is the exact model ID your own system prompt states; never guess one
+(no environment variable exposes it). If it exits non-zero (10 = store
+unavailable, 2 = usage), email
+"RUN RECORD FAILED market-open $DATE: <printed reason>" and STOP: a run that cannot
+be recorded makes no broker mutation (ADR 0004 section 1).
+If the run STOPs anywhere after this point, run the finish step first with
+--incident naming why.
+
 ## Strategy version gate (run first)
 
 STRATEGY_VERSION selects the rule set and UNSET silently means v1. The declared
@@ -240,3 +253,14 @@ bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
 email.sh exits non-zero when delivery could not be verified (creds unset,
 Resend rejected, bounced); treat that as "the owner was not told": retry
 once, then note "ALERT NOT DELIVERED" in the TRADE-LOG entry.
+
+LAST STEP — RUN RECORD FINISH (ADR 0012):
+python3 scripts/run_record.py --local finish \
+    [--action "<broker mutation made>"]... [--refusal "<action a rule refused>"]... \
+    [--incident "<what went wrong>"]... [--intent <intent id>]...
+One --action per broker mutation this run made (buy, sell, stop replace or
+renew), one --refusal per action a validator or rule refused, one
+--incident per failure (STOP, push not verified, alert not delivered,
+coverage short), one --intent per intent id a helper printed. No flags =
+no-trade; the outcome is derived. Never invent entries. On a non-zero exit
+email "RUN RECORD FINISH FAILED market-open $DATE: <printed reason>".
