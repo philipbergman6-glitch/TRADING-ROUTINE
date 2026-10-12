@@ -17,6 +17,13 @@ name: protection-monitor
 # Exit 9 = the alert email could not be delivered (scripts/email.sh); the job
 # fails so the heartbeat's workflow_run trigger and GitHub's own notifications
 # become the fallback signal.
+#
+# run-name stamps the mode into the run's display_title, the only place the
+# Actions run list exposes it: scripts/heartbeat.py counts only
+# "protection-monitor live" runs as protection checks (ADR 0007). Same
+# condition as the dry-run branch of the "Protection monitor" step below.
+
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.dry_run) == 'true' && 'protection-monitor dry run' || 'protection-monitor live' }}
 
 on:
   schedule:
