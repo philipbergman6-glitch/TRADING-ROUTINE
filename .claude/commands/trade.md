@@ -5,7 +5,7 @@ description: Manual trade helper with strategy-rule validation. Usage — /trade
 ## Strategy version gate (run first)
 
 The approved version is "active" in docs/rulebook-pins.json (ADR 0011).
-STRATEGY_VERSION must be set to its engine (v1) or the full version (v1.1);
+STRATEGY_VERSION must be set to its engine (v1) or the full version named there;
 UNSET IS REFUSED, and the rulebook marker and hash must match the pin. Run:
     python3 scripts/strategy_version.py || exit 1
 Exit 5 = env, marker or rulebook hash disagree, exit 1 = pins unreadable. STOP
@@ -56,6 +56,19 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
 
 1. Pull the quote to get the ask price P:
    `bash scripts/alpaca.sh quote SYMBOL`
+
+   For BUYs, rules 10 and 14 first (the engine does not check either):
+   - Rule 10 (Script): SYMBOL's sector MUST be in memory/SECTORS.json. Run
+     `python3 scripts/blotter.py --sector-streaks`; exit 4 → STOP. A sector
+     with streak ≥ 2 is banned until 20 trading sessions after its second
+     loss (the latest losing round trip in that sector in
+     `python3 scripts/blotter.py --json`; #138 moves the date into the
+     script). Buying into a banned sector, its sector ETF included → STOP.
+   - Rule 14 (Advisory until #136): if no single name is held (empty book
+     included) and SYMBOL is a broad ETF (SPDR sector fund or index tracker),
+     STOP unless the owner states the composition waiver (why no single name
+     passes the Entry Checklist); write it to today's RESEARCH-LOG entry as
+     "Composition waiver: <reason>" before validating.
 
 2. Validate through the risk engine. This is mandatory and it reads live
    account state itself — do not hand-check the rules.

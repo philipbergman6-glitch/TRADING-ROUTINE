@@ -1,6 +1,6 @@
 {
   "_comment": "The approved strategy version is \"active\" (ADR 0011): every mutation path binds to it through scripts/strategy_version.py. Each entry pins the sha256 of memory/TRADING-STRATEGY.md for that declared version; the rulebook's marker must equal \"active\" and its hash must equal the active pin. A version bump changes the rulebook marker, adds a pin here, moves \"active\" and closes the previous entry with \"until\", all in one owner-reviewed commit; routines never edit the rulebook or this file.",
-  "active": "v1.1",
+  "active": "v1.3",
   "v1": {
     "sha256": "84e53ed169eec0265d59317fc60725759d1de9edf834b2552c60a37df46516fa",
     "commit": "07603ef",
@@ -11,6 +11,18 @@
   "v1.1": {
     "sha256": "2dad4667f45c59b6a8e6926fdb83b68def8b9c702f2536419e9c6264899dd541",
     "since": "2026-09-25",
-    "note": "v1 engine parameters plus rule 14 (composition mandate). Marker in the rulebook reads v1.1."
+    "note": "v1 engine parameters plus rule 14 (composition mandate). Marker in the rulebook reads v1.1. Closed by the v1.2 bump (map #93, #107).",
+    "until": "2026-10-12"
+  },
+  "v1.2": {
+    "sha256": "add1ee9aada5cc0541b7101a3cbf20da984e2d1e38f272cd39620ffd0546962e",
+    "since": "2026-10-12",
+    "note": "v1 engine parameters; rules 4 and 7 state the standing-stop contract (held fixed stop is permitted protection, drift is a recorded hold, renewal at the same or higher level is never a rule-7 violation) and the checklist band is 10% (ADR 0013, #104). Wording only, no parameter change. Closed by the v1.3 bump in the same PR (#107).",
+    "until": "2026-10-12"
+  },
+  "v1.3": {
+    "sha256": "025e0702cb412f7066a806ac5175157d38e6129e3b66efa1d5d57a65e680b39c",
+    "since": "2026-10-12",
+    "note": "v1 engine parameters; rule 10 defined (failed trade, sector exit, 20-session ban, computed by blotter --sector-streaks), rules 12 and 14 state their precedence (14 constrains WHAT a rule-12 add buys, never WHETHER), broad ETF defined, empty book counts as rule-14 active (#105). Wording only, no parameter change."
   }
 }

@@ -19,7 +19,7 @@ IMPORTANT — ENVIRONMENT VARIABLES:
     done
 - STRATEGY VERSION (hard gate, right after the loop above): the approved
   version is "active" in docs/rulebook-pins.json (ADR 0011); STRATEGY_VERSION
-  must be its engine (v1) or full version (v1.1) — UNSET IS REFUSED — and the
+  must be its engine (v1) or the full version named there — UNSET IS REFUSED — and the
   rulebook marker and hash must match the pin. Run:
     python3 scripts/strategy_version.py || { bash scripts/email.sh "STRATEGY_VERSION MISMATCH $DATE: $(python3 scripts/strategy_version.py 2>&1)"; exit 1; }
   Exit 5 = env, marker or rulebook hash disagree, exit 1 = pins unreadable.
@@ -137,29 +137,37 @@ expired while uncovered, or mid-replacement) → rerun the SAME command now (res
 up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
 On validate_order exit 3 → log, keep scanning. On exit 4 → STOP. On exit 6 → STOP (ledger).
 
+Standing stops (rule 7, v1.2). For every resting protective stop, fixed or
+trailing, where (P − S) / P < 3%: leave it — do not move, convert, widen or
+lower it — and log "STANDING SYM stop S is X.XX% below P (rule 7: left, recorded)"
+under today's entry in TRADE-LOG, every session it persists. The protection
+monitor reports the same condition as `standing`. It is a hold, not a violation.
+
 STEP 2c — Renew expiring protective stops (Alpaca GTC expires after ~90 days).
 bash scripts/alpaca.sh orders | python3 scripts/build_oto_order.py expiring
 For each item (renew_stop_price = current stop level rounded UP — never lower),
 renew via scripts/replace_stop.py --stop-price. Replacement is a FIXED
 stop, not a fresh trail — a fresh trail would restart its high-water mark and
 drop the stop. STEP 2b holds it fixed until a 10% trail would sit at/above it.
+A held or renewed fixed stop is permitted protection (rule 4, v1.2), not a fault.
 
-VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
-    --price P --stop-price RENEW_STOP_PRICE --json); VALIDATE_EXIT=$?
-[ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
-LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
-On VALIDATE_EXIT=0:
+Gate with the stop-change validator, NOT validate_order: validate_order judges
+a new entry (9.5–10.5% band, 3% minimum against current price) and refuses a
+valid renewal. Rule 7 (v1.2): renewing at the current level or higher is never
+a violation. S = the expiring order's stop_price:
+python3 scripts/validate_stop_change.py --current-stop S --new-stop RENEW_STOP_PRICE --current-price P --json
+- Exit 0 → renew (below).
+- Exit 3 with `stop_never_lowered` → RENEW_STOP_PRICE is wrong; do NOT renew,
+  email "RENEWAL REFUSED SYM", log.
+- Exit 3 with only `stop_distance` → standing stop inside 3%. The mutation gate
+  still refuses this renewal (#137), so do NOT run replace_stop and do NOT
+  hand-place: email "RENEWAL BLOCKED SYM @ S expires <expires_at> (#137)", log.
+Renew:
 REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --stop-price RENEW_STOP_PRICE); REPLACE_EXIT=$?
-# http_status is set only when this run submitted the order (not on resume).
-HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
-if [ -n "$HTTP_STATUS" ]; then
-  python3 scripts/record_broker_response.py \
-      --order-id "$LEDGER_ORDER_ID" --kind stop --http-status "$HTTP_STATUS" \
-      --response "$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.dumps(json.load(sys.stdin).get("order") or {}))')"
-fi
+# A renewal is not a ledger order (the protection monitor renews the same way, without
+# the ledger): record_broker_response --kind stop is not run for it.
 REPLACE_EXIT handling as in STEP 2b (3 → old stop untouched, email; 7 → email;
-8 → rerun the SAME command, still 8 → email "UNPROTECTED SYM", STOP).
-validate_order exit 3 → do NOT run replace_stop; email. Exit 4/6 → STOP.
+8 → rerun the SAME command, still 8 → email "UNPROTECTED SYM", STOP; 4 → STOP).
 Log "Stop renewed SYM: <old type> → fixed @ RENEW_STOP_PRICE (expiry)" to TRADE-LOG.
 
 STEP 3 — Cut losers immediately. For every position where
