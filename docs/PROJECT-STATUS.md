@@ -135,13 +135,13 @@ calls; tests are offline (bare repo as origin, stub broker, fake clock).
 - The monitor runs recovery every live run (`--dry-run` reports the store's
   unfinished intents). `scripts/coordinator.py status|recover` CLI.
 - Store selection: this checkout's origin by default; `TRADING_STATE_STORE=local`
-  for local `/trade` (dedicated clone, ADR 0004 §3) — the `/trade` command
-  text does not set it yet (prose is #107's); `TRADING_STATE_REPO` for tests
+  for local `/trade` (dedicated clone, ADR 0004 §3; the local commands set it
+  since #144); `TRADING_STATE_REPO` for tests
   and drills. Tests can never reach the real origin (conftest points
   `TRADING_STATE_REPO` at a nonexistent path).
 - Drill hooks for #112: `COORDINATOR_FAULT=after_record|after_cancel|after_post|before_release|after_recovery_push`
   exits 97 there; `lose_response` drops the first POST answer and lookup.
-  Drill profile only. Follow-up routine text: #144.
+  Drill profile only. Routine text: #144 (below).
 - Tests: `tests/test_coordinator.py`, `tests/test_coordinated_helpers.py`;
   existing helper tests now run each call against its own empty store
   (`tests/store_support.py`). Suite ~100 s locally (was ~47 s): every
@@ -154,6 +154,31 @@ calls; tests are offline (bare repo as origin, stub broker, fake clock).
   one unrestorable gap blocked every later action.
 - Not verified: behaviour against GitHub's real push rejection through the
   cloud proxy, and a real lost response — both are #112 drills.
+
+## Session 2026-10-13: routine text for the coordinator (#144)
+
+Text and wiring tests only; no code, no broker calls. #78 is still open, so
+`routines/` and `.claude/commands/` were edited identically.
+
+- Mutating copies (market-open, midday, `/trade`) carry a `## Coordinator
+  exits (ADR 0010)` block, and every `ENTRY_EXIT` / `CLOSE_EXIT` /
+  `REPLACE_EXIT` legend ends with 10/11 (nothing changed: no further mutation
+  this run, email) and 12 (acted, outcome not recorded: do NOT rerun, log the
+  JSON, email, `--incident` + `--intent`). `/trade` gained the entry and close
+  legends it lacked. Buy validation handles `validate_order` exit 10; the
+  market-open `protection_monitor --dry-run` handles exit 10 and any other
+  exit.
+- Every `.claude/commands` call to a script that touches the store carries
+  `TRADING_STATE_STORE=local` (each Bash call is a fresh shell, so no
+  `export`).
+- Read-only routines run `coordinator.py status` (STEP 2b) and pass each
+  non-terminal intent, stale lease and recent takeover (24 h, 72 h on a
+  Monday, 7 days for the weekly review) to `run_record.py finish --incident`.
+- Wiring tests: `tests/test_t3_unprotected_windows.py` (legends, buy exit
+  10, monitor exits, local prefix) and `tests/test_run_record.py`
+  (read-only status step).
+- Not verified: an agent following the new text in a live routine; the
+  takeover windows can report one takeover twice, which is intended.
 
 ## Latest session: execution controls for v2 (2026-09-20)
 

@@ -5,6 +5,12 @@ description: Market-open execution — validate, place buys, set 10% trailing st
 ## Run record (first step, ADR 0012)
 
 Local runs write through the dedicated clone (`--local`, ADR 0004 section 3).
+State goes through the same clone, never through this development checkout's
+origin: every validate_order, submit_entry, close_position, replace_stop,
+protection_monitor and coordinator call below carries the
+TRADING_STATE_STORE=local prefix. Each Bash call is a fresh shell, so the
+prefix goes on every call; an `export` does not carry over.
+
 python3 scripts/run_record.py --local start --routine market-open --trigger local \
     --command-file .claude/commands/market-open.md --model "<your model id>"
 --model is the exact model ID your own system prompt states; never guess one
@@ -39,7 +45,7 @@ open). Markdown remains the operational store
 Capture after every validate (single-quoted `-c` — double quotes NameError on the key):
 
 ```
-VALIDATE_JSON=$(python3 scripts/validate_order.py ... --json)
+VALIDATE_JSON=$(TRADING_STATE_STORE=local python3 scripts/validate_order.py ... --json)
 # exit 0 or 3 = verdict (ledger row if DATABASE_URL set); exit 6 → STOP
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 ```
@@ -64,6 +70,40 @@ Trail/protective places that are separate broker orders: `--kind stop`
 
 You are running the market-open execution workflow. Resolve today's date via:
 DATE=$(date +%Y-%m-%d).
+
+## Coordinator exits (ADR 0010)
+
+submit_entry.py, close_position.py and replace_stop.py each run as one
+coordinated action: take the account lease in the state store, recover any
+intent an earlier writer left unfinished, act, record the outcome. Every
+ENTRY_EXIT / CLOSE_EXIT / REPLACE_EXIT legend below ends with the three codes
+the coordinator adds:
+- 10 store unavailable — nothing changed. Make no further broker mutation
+  this run; email "STATE STORE UNAVAILABLE $DATE: <script> SYM: <reason>" and
+  log it. Not an exit 10: replace_stop restoring a stop on a held position
+  that has none proceeds without the store and alerts itself (ADR 0004
+  section 1).
+- 11 lease wait exhausted — another writer (the protection monitor, a local
+  /trade, an overlapping run) held the lease through the wait; nothing
+  changed. Do not rerun now and make no further broker mutation this run (the
+  holder, or the next monitor run, finishes its own work); email "LEASE WAIT
+  EXHAUSTED $DATE: <script> SYM, held by <holder>" and log it.
+- 12 INCIDENT — the broker ACTED but the outcome could not be recorded. Do NOT
+  rerun: the next writer or protection monitor run recovers the outcome from
+  broker state. Read broker state before writing what happened, log the JSON
+  verbatim, email "OUTCOME NOT RECORDED $DATE: <script> SYM" (the script has
+  already alerted; this is the run's own record) and make no further broker
+  mutation this run.
+After any of them, still write today's TRADE-LOG entry and commit it, then
+finish the run record with one --incident naming the exit (exit 12 also
+passes --intent <the JSON's "intent">).
+
+Unfinished intents in run records: pass one --intent per intent id a helper
+printed (stderr "intent <id>: submitting attempt ..." or the JSON "intent").
+An intent the run could not finish (exit 12, an 8 that survived its reruns, a
+crash) stays non-terminal in the store; the next writer recovers it first, and
+the read-only routines list it as "unfinished intent <id>" in their run
+records until then.
 
 STEP 1 — Read memory for today's plan:
 - memory/TRADING-STRATEGY.md
@@ -91,7 +131,7 @@ python3 scripts/validate_stop_change.py --current-stop S --new-stop "$(python3 -
 Exit 3 with `stop_never_lowered` → HOLD the fixed stop (intended state after an
 expiry renewal, not a failure); log "HOLD fixed SYM @ S" and skip to next order.
 Exit 0 → convert:
-VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+VALIDATE_JSON=$(TRADING_STATE_STORE=local python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent 10 --json); VALIDATE_EXIT=$?
 [ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
@@ -99,7 +139,7 @@ On VALIDATE_EXIT=0:
 # One resumable command — never a hand-written cancel/order pair. It validates
 # the replacement against the ACTUAL resting stop before cancel, confirms the
 # cancel, submits client_order_id rs-<id>, restores the old level on failure.
-REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
+REPLACE_JSON=$(TRADING_STATE_STORE=local python3 scripts/replace_stop.py --order-id ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
 # http_status is set only when this run submitted the order (not on resume).
 HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
 if [ -n "$HTTP_STATUS" ]; then
@@ -114,12 +154,15 @@ restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED
 broker shows no verified stop for the position, whatever caused it (refused or
 expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
 up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
+· 10 store unavailable / 11 lease wait exhausted → nothing changed: no further
+broker mutation this run, email, log · 12 acted, outcome NOT recorded → INCIDENT,
+do NOT rerun: log the JSON, email, no further broker mutation (Coordinator exits).
 On VALIDATE_EXIT=3 → log violations, keep scanning. On VALIDATE_EXIT=4 → STOP, email, exit.
 
 STEP 2b-ii — Coverage re-verification (ADR 0007). Monitoring may have been
 stale for hours (GitHub fires the monitor ~2x/day); never add to a book you
 have not just verified. Before any buy:
-python3 scripts/protection_monitor.py --dry-run; COVERAGE_EXIT=$?
+TRADING_STATE_STORE=local python3 scripts/protection_monitor.py --dry-run; COVERAGE_EXIT=$?
 - Exit 0 → every position covered; proceed.
 - Exit 5 → coverage short: NO new buys this session. Email
   "COVERAGE SHORT $DATE: <issues from the JSON>", log it under today's
@@ -127,6 +170,12 @@ python3 scripts/protection_monitor.py --dry-run; COVERAGE_EXIT=$?
   repairs; market-open never places protective orders for existing legs).
 - Exit 4 → broker state unavailable: STOP, email "BROKER STATE UNAVAILABLE
   $DATE", exit.
+- Exit 10 → state store unavailable: its unfinished intents could not be read
+  and every buy would be refused anyway (validate_order exits 10). NO new buys
+  this session; email "STATE STORE UNAVAILABLE $DATE: <reason>", log it, and
+  continue as for exit 5.
+- Any other exit (12 comes only from a live monitor run, never --dry-run) →
+  STOP, email "COVERAGE CHECK FAILED $DATE exit=<N>", exit.
 
 STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
 DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
@@ -163,26 +212,29 @@ refused. Pass --sector to validate_order to mirror it.
 Rule 10 (Script), once per session before the first buy. Every buy's sector
 MUST be in memory/SECTORS.json (add it and commit it with the trade).
 STREAKS_JSON=$(python3 scripts/blotter.py --sector-streaks); STREAKS_EXIT=$?
-- Exit 4 (fills unavailable, or a traded symbol has no sector) → no new buys
-  this session; email "RULE 10 UNAVAILABLE $DATE", log it, and commit the log.
-- A sector with streak ≥ 2 is banned until 20 trading sessions after its
-  second loss: that loss is the latest losing round trip in the sector in
-  `python3 scripts/blotter.py --json` (its `exited` date; #138 moves the lift
-  date into --sector-streaks). A buy in a banned sector, its sector ETF
-  included → skip it, log "RULE 10 SECTOR BAN <sector> until <date>: SYM" to
-  TRADE-LOG. Open positions are never sold for it.
+- Exit 4 (fills unavailable, memory/SECTORS.json missing or empty, or a
+  traded symbol has no sector) → no new buys this session; email "RULE 10
+  UNAVAILABLE $DATE", log it, and commit the log.
+- Read SYM's sector entry from STREAKS_JSON. `"banned": true` → skip the buy
+  (its sector ETF included), log "RULE 10 SECTOR BAN <sector> until
+  <lifts_on>: SYM" to TRADE-LOG. A sector missing from STREAKS_JSON → add it
+  to memory/SECTORS.json and rerun before buying. Open positions are never
+  sold for it.
 Rule 14 (Advisory until #136): if no single name is held (empty book
 included), a broad-ETF buy (SPDR sector fund or index tracker) needs a
 "Composition waiver:" line in today's RESEARCH-LOG; without one → skip it,
 log "RULE 14 SKIPPED SYM: no composition waiver" to TRADE-LOG.
 
-VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
+VALIDATE_JSON=$(TRADING_STATE_STORE=local python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
     --price P --stop-price STOP --sector "GICS Sector" --json); VALIDATE_EXIT=$?
 [ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 Exit 0 = approved → proceed.
 Exit 3 = refused → skip this trade, log the violations verbatim to TRADE-LOG.
 Exit 4 = broker state unavailable → STOP, email "VALIDATE STATE UNAVAILABLE $DATE", exit.
+Exit 10 = state store unavailable (buys only: the reservations of unfinished
+intents are unknown) → no new buys this session; email "STATE STORE
+UNAVAILABLE $DATE: <reason>", log it, go to STEP 6.
 
 Also confirm a catalyst is documented in today's RESEARCH-LOG (the engine
 cannot judge catalyst quality — see risk_engine.UNMECHANISED).
@@ -195,7 +247,7 @@ attempt is retried as -r1.. automatically, no --tag needed), submits through
 alpaca.sh (which re-validates the exact body with ALPACA_RISK_OK=1), and
 confirms by client id. Never hand-write a raw order call for a buy.
 
-ENTRY_JSON=$(python3 scripts/submit_entry.py --symbol SYM --qty N --price P); ENTRY_EXIT=$?
+ENTRY_JSON=$(TRADING_STATE_STORE=local python3 scripts/submit_entry.py --symbol SYM --qty N --price P); ENTRY_EXIT=$?
 # http_status is set only when THIS run submitted (not on already_submitted).
 HTTP_STATUS=$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
 if [ -n "$HTTP_STATUS" ]; then
@@ -210,6 +262,9 @@ JSON `rerun` command now (it carries --intent and resumes); still 8 →
 email "ENTRY OUTCOME UNKNOWN SYM", STOP the buy path for that symbol. An 8 with
 state *_position_unprotected means the symbol is already held with no verified
 stop: email "UNPROTECTED SYM", STOP.
+· 10 store unavailable / 11 lease wait exhausted → nothing changed: no further
+broker mutation this run, email, log · 12 acted, outcome NOT recorded → INCIDENT,
+do NOT rerun: log the JSON, email, no further broker mutation (Coordinator exits).
 Gate before any convert: read filled_qty on the parent AND the
 protective leg. Do NOT convert, and do NOT assume the position is protected,
 until BOTH are true:
@@ -233,7 +288,7 @@ ONLY after the STEP 4 gate (filled_qty == qty AND leg matches). Use scripts/repl
 the fixed leg: it validates first, cancels (shares are reserved), confirms
 the cancel, then places the trail — resumable, never a hand-written pair.
 
-VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
+VALIDATE_JSON=$(TRADING_STATE_STORE=local python3 scripts/validate_order.py --symbol SYM --qty N --side sell \
     --price P --trail-percent 10 --json); VALIDATE_EXIT=$?
 [ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
@@ -241,7 +296,7 @@ On VALIDATE_EXIT=0:
 # One resumable command — never a hand-written cancel/order pair. It validates
 # the replacement against the ACTUAL resting stop before cancel, confirms the
 # cancel, submits client_order_id rs-<id>, restores the old level on failure.
-REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id LEG_ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
+REPLACE_JSON=$(TRADING_STATE_STORE=local python3 scripts/replace_stop.py --order-id LEG_ORDER_ID --trail-percent 10); REPLACE_EXIT=$?
 # http_status is set only when this run submitted the order (not on resume).
 HTTP_STATUS=$(printf "%s" "$REPLACE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
 if [ -n "$HTTP_STATUS" ]; then
@@ -256,6 +311,9 @@ restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED
 broker shows no verified stop for the position, whatever caused it (refused or
 expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
 up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
+· 10 store unavailable / 11 lease wait exhausted → nothing changed: no further
+broker mutation this run, email, log · 12 acted, outcome NOT recorded → INCIDENT,
+do NOT rerun: log the JSON, email, no further broker mutation (Coordinator exits).
 Query open orders/position before claiming protected: if neither the fixed
 leg nor the trail is present, that is an incident. Do NOT wire T2 /
 issue #32 stop-change or trail-ladder validators. #40 PATCH still OPEN — do

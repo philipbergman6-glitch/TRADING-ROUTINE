@@ -5,6 +5,12 @@ description: Friday weekly review — stats, grade, one email, optional strategy
 ## Run record (first step, ADR 0012)
 
 Local runs write through the dedicated clone (`--local`, ADR 0004 section 3).
+State goes through the same clone, never through this development checkout's
+origin: every validate_order, submit_entry, close_position, replace_stop,
+protection_monitor and coordinator call below carries the
+TRADING_STATE_STORE=local prefix. Each Bash call is a fresh shell, so the
+prefix goes on every call; an `export` does not carry over.
+
 python3 scripts/run_record.py --local start --routine weekly-review --trigger local \
     --command-file .claude/commands/weekly-review.md --model "<your model id>"
 --model is the exact model ID your own system prompt states; never guess one
@@ -28,6 +34,20 @@ STEP 1 — Read memory for full week context:
 STEP 2 — Pull week-end state:
 bash scripts/alpaca.sh account
 bash scripts/alpaca.sh positions
+
+STEP 2b — Unfinished intents (ADR 0010 section 5). This routine never takes
+the lease and never recovers; it reports what the writers left behind:
+STATUS_JSON=$(TRADING_STATE_STORE=local python3 scripts/coordinator.py status); STATUS_EXIT=$?
+- Exit 0 → add one finish --incident per item, filled from the JSON:
+  each "non_terminal" entry → "unfinished intent <intent> (<action> <symbol>): <state>";
+  each "takeovers" entry whose "at" is within the last 7 days →
+  "lease takeover <lease> by <writer> superseding <supersedes> at <at>";
+  a "holder" with "stale": true → "stale lease <lease> held by <writer> since <expires_at>".
+  A takeover may land in two runs' records; that is expected. Never act on
+  any of them here: the next writer or monitor run recovers them.
+- Exit 10 → --incident "state store unavailable: <reason>"; continue (this
+  routine changes nothing).
+- Any other exit → --incident "coordinator status exit <N>"; continue.
 
 STEP 3 — Compute the week's metrics:
 - Starting portfolio (Monday AM equity)
@@ -92,5 +112,6 @@ One --action per broker mutation this run made (buy, sell, stop replace or
 renew), one --refusal per action a validator or rule refused, one
 --incident per failure (STOP, push not verified, alert not delivered,
 coverage short), one --intent per intent id a helper printed. No flags =
-no-trade; the outcome is derived. Never invent entries. On a non-zero exit
+no-trade; the outcome is derived. Never invent entries. Include every
+STEP 2b incident. On a non-zero exit
 email "RUN RECORD FINISH FAILED weekly-review $DATE: <printed reason>".

@@ -66,6 +66,40 @@ python3 scripts/record_broker_response.py \
 Trail/protective places that are separate broker orders: `--kind stop`
 (Ledger `record_stop` / protection). Parent entry OTO: `--kind submit`.
 
+## Coordinator exits (ADR 0010)
+
+submit_entry.py, close_position.py and replace_stop.py each run as one
+coordinated action: take the account lease in the state store, recover any
+intent an earlier writer left unfinished, act, record the outcome. Every
+ENTRY_EXIT / CLOSE_EXIT / REPLACE_EXIT legend below ends with the three codes
+the coordinator adds:
+- 10 store unavailable — nothing changed. Make no further broker mutation
+  this run; email "STATE STORE UNAVAILABLE $DATE: <script> SYM: <reason>" and
+  log it. Not an exit 10: replace_stop restoring a stop on a held position
+  that has none proceeds without the store and alerts itself (ADR 0004
+  section 1).
+- 11 lease wait exhausted — another writer (the protection monitor, a local
+  /trade, an overlapping run) held the lease through the wait; nothing
+  changed. Do not rerun now and make no further broker mutation this run (the
+  holder, or the next monitor run, finishes its own work); email "LEASE WAIT
+  EXHAUSTED $DATE: <script> SYM, held by <holder>" and log it.
+- 12 INCIDENT — the broker ACTED but the outcome could not be recorded. Do NOT
+  rerun: the next writer or protection monitor run recovers the outcome from
+  broker state. Read broker state before writing what happened, log the JSON
+  verbatim, email "OUTCOME NOT RECORDED $DATE: <script> SYM" (the script has
+  already alerted; this is the run's own record) and make no further broker
+  mutation this run.
+After any of them, still write today's TRADE-LOG entry and commit it, then
+finish the run record with one --incident naming the exit (exit 12 also
+passes --intent <the JSON's "intent">).
+
+Unfinished intents in run records: pass one --intent per intent id a helper
+printed (stderr "intent <id>: submitting attempt ..." or the JSON "intent").
+An intent the run could not finish (exit 12, an 8 that survived its reruns, a
+crash) stays non-terminal in the store; the next writer recovers it first, and
+the read-only routines list it as "unfinished intent <id>" in their run
+records until then.
+
 STEP 0 — SYNC TO LATEST MAIN (mandatory, BEFORE reading any memory file):
 git fetch origin main && git reset --hard FETCH_HEAD
 The sandbox clone is often stale. Skipping this means trading on outdated
@@ -135,6 +169,9 @@ restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED
 broker shows no verified stop for the position, whatever caused it (refused or
 expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
 up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
+· 10 store unavailable / 11 lease wait exhausted → nothing changed: no further
+broker mutation this run, email, log · 12 acted, outcome NOT recorded → INCIDENT,
+do NOT rerun: log the JSON, email, no further broker mutation (Coordinator exits).
 On validate_order exit 3 → log, keep scanning. On exit 4 → STOP. On exit 6 → STOP (ledger).
 
 Standing stops (rule 7, v1.2). For every resting protective stop, fixed or
@@ -167,7 +204,10 @@ REPLACE_JSON=$(python3 scripts/replace_stop.py --order-id ORDER_ID --stop-price 
 # A renewal is not a ledger order (the protection monitor renews the same way, without
 # the ledger): record_broker_response --kind stop is not run for it.
 REPLACE_EXIT handling as in STEP 2b (3 → old stop untouched, email; 7 → email;
-8 → rerun the SAME command, still 8 → email "UNPROTECTED SYM", STOP; 4 → STOP).
+8 → rerun the SAME command, still 8 → email "UNPROTECTED SYM", STOP; 4 → STOP)
+· 10 store unavailable / 11 lease wait exhausted → nothing changed: no further
+broker mutation this run, email, log · 12 acted, outcome NOT recorded → INCIDENT,
+do NOT rerun: log the JSON, email, no further broker mutation (Coordinator exits).
 Log "Stop renewed SYM: <old type> → fixed @ RENEW_STOP_PRICE (expiry)" to TRADE-LOG.
 
 STEP 3 — Cut losers immediately. For every position where
@@ -208,6 +248,9 @@ stop for the position (refused or unreadable while uncovered, or stop canceled
 and sell not confirmed) → rerun the JSON `rerun` command now (it carries
 --intent, so it resolves this close even after UTC midnight); still 8 → email
 "UNPROTECTED SYM", STOP.
+· 10 store unavailable / 11 lease wait exhausted → nothing changed: no further
+broker mutation this run, email, log · 12 acted, outcome NOT recorded → INCIDENT,
+do NOT rerun: log the JSON, email, no further broker mutation (Coordinator exits).
 Log the exit to TRADE-LOG: exit price, realized P&L (from
 `python3 scripts/blotter.py --markdown`, fill-based), "cut at -7% per rule".
 
@@ -255,6 +298,9 @@ restored as fixed stop → email "STOP REPLACE FAILED SYM", log · 8 UNPROTECTED
 broker shows no verified stop for the position, whatever caused it (refused or
 expired while uncovered, or mid-replacement) → rerun the SAME command now (resumes,
 up to 3×); still 8 → email "UNPROTECTED SYM", log, STOP.
+· 10 store unavailable / 11 lease wait exhausted → nothing changed: no further
+broker mutation this run, email, log · 12 acted, outcome NOT recorded → INCIDENT,
+do NOT rerun: log the JSON, email, no further broker mutation (Coordinator exits).
 On validate_order exit 3 → skip tighten, log. On exit 4 → STOP. On exit 6 → STOP (ledger).
 #40 PATCH resize is OPEN — do not invent a patch path. replace_stop leaves a
 sub-second cancel→place window but validates first, confirms the cancel,
