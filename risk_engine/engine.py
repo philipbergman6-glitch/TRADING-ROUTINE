@@ -68,9 +68,15 @@ UNMECHANISED: dict[str, str] = {
         "checkable, but whether a catalyst is real is not."
     ),
     "sector_exit_after_two_failures": (
-        "Rule 10 -- mechanisable in principle, blocked on data: TRADE-LOG "
-        "records no sector field, so consecutive failures per sector cannot "
-        "be computed. Add the field and this rule graduates into the engine."
+        "Rule 10 -- Script class in v1: scripts/blotter.py --sector-streaks "
+        "computes consecutive closed losers per sector from broker fills "
+        "(sectors from memory/SECTORS.json) and the routines act on it. The "
+        "engine refuses nothing for it; v2 plans engine enforcement."
+    ),
+    "composition_mandate": (
+        "Rule 14 -- the next new position must be a single name while the "
+        "book holds none. Decided as an engine check (issue #105), not built "
+        "yet (issue #136); until then the routines carry it."
     ),
     "patience_over_activity": (
         "Rule 11 -- a disposition, not a predicate. Deliberately left to the "

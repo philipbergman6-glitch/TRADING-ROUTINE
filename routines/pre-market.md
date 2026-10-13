@@ -57,9 +57,14 @@ DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
 - Exit 4 → STOP, email "DEPLOYMENT STATE UNAVAILABLE $DATE", exit.
 - Exit 0 → no mandate. Record deployed_pct + sessions_under_band in STEP 4.
 - Exit 5 → MANDATE DUE. Today's entry MUST contain a "Deployment mandate"
-  block naming ONE leadership add: top-momentum sector NOT already held,
-  ticker, shares sized so cost ≤ target_notional at the premarket price,
-  catalyst, stop 10% below. The Decision line cannot be a plain HOLD.
+  block naming ONE leadership add: ticker, shares sized so cost ≤
+  target_notional at the premarket price, catalyst, stop 10% below. The
+  Decision line cannot be a plain HOLD. Rule 14 decides WHAT, rule 12
+  decides WHETHER: while no single name is held (empty book included), the
+  add MUST be a single name that passes the Entry Checklist. Only if none
+  passes, name the top-momentum sector ETF not already held AND write
+  "Composition waiver: <why no single name passed>" in the block. Rule 14 is
+  never a reason to defer or skip the add.
   Deferral ONLY if ALL hold: exemption_allowed is true, a market-wide risk
   event is scheduled TODAY (name it — routine data/earnings do not count),
   and RESEARCH-LOG shows no earlier deferral for this under-band streak.
@@ -82,7 +87,10 @@ fallback in the log entry.
 STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md:
 - Account snapshot (equity, cash, buying power, daytrade count)
 - Market context (oil, indices, VIX, today's releases)
-- 2-3 actionable trade ideas WITH catalyst + entry/stop/target
+- 2-3 actionable trade ideas WITH catalyst + entry/stop/target. Rule 14:
+  while no single name is held (empty book included), each idea is a single
+  name, or a broad ETF (SPDR sector fund or index tracker) with a
+  "Composition waiver: <reason>" line in this entry
 - Risk factors for the day
 - Deployment: deployed_pct, sessions_under_band, mandate (STEP 2c)
 - Decision: trade or HOLD (default HOLD — patience > activity — EXCEPT

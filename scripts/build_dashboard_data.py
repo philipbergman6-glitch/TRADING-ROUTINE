@@ -180,7 +180,7 @@ def build_book(snap):
         um = re.fullmatch(r"([+\-−]\$[\d,]+(?:\.\d+)?)\s+\(([+\-−][\d.]+%)\)", unreal.strip())
         if not um:
             fail(f"unparseable Unrealized P&L for {sym}: {unreal!r}")
-        sm = re.match(r"\$?([\d.]+)", stop.strip())
+        sm = re.match(r"\**\$?([\d.]+)", stop.strip())  # the log may bold the level
         if not sm:
             fail(f"unparseable stop for {sym}: {stop!r}")
         stop_s = sm.group(1)

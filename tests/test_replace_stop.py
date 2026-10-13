@@ -16,10 +16,12 @@ from scripts import validate_order
 from scripts.replace_stop import (EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_RESTORED,
                                   EXIT_UNPROTECTED, EXIT_USAGE, Outcome, replace_stop)
 from scripts.validate_mutation import validate_mutation
+from scripts.strategy_version import PINS_FILE
 
 ROOT = Path(__file__).resolve().parents[1]
 OLD = "11111111-2222-3333-4444-555555555555"
 NOW = datetime(2026, 9, 17, 16, 0, tzinfo=timezone.utc)
+APPROVED = json.loads(PINS_FILE.read_text())["active"]  # the live approved version
 
 
 
@@ -503,7 +505,7 @@ def test_unbound_rerun_after_cancel_restores_protection_under_the_approved_versi
     assert (out.code, out.state) == (EXIT_OK, "replaced")
     assert [c[1] for c in b.calls] == ["order"], "never a cancel under a failed binding"
     exc = out.detail["version_exception"]
-    assert exc["approved"] == "v1.1" and exc["engine"] == "v1" and "unset" in exc["error"]
+    assert exc["approved"] == APPROVED and exc["engine"] == "v1" and "unset" in exc["error"]
 
 
 def test_unbound_rerun_falls_back_to_exact_restore(monkeypatch):
@@ -550,4 +552,4 @@ def test_e2e_unbound_restoration_proceeds_through_the_gate_and_alerts(tmp_path):
     assert report["state"] == "replaced" and report["alert_delivered"] is True
     assert [(o["status"], o.get("client_order_id")) for o in orders] == [("canceled", None), ("new", "rs-" + OLD)]
     alert = (tmp_path / "alert.txt").read_text()
-    assert "VERSION BINDING INCIDENT" in alert and "AAPL" in alert and "v1.1" in alert
+    assert "VERSION BINDING INCIDENT" in alert and "AAPL" in alert and APPROVED in alert

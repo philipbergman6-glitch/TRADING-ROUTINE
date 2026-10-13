@@ -18,7 +18,7 @@ If the run STOPs anywhere after this point, run the finish step first with
 ## Strategy version gate (run first)
 
 The approved version is "active" in docs/rulebook-pins.json (ADR 0011).
-STRATEGY_VERSION must be set to its engine (v1) or the full version (v1.1);
+STRATEGY_VERSION must be set to its engine (v1) or the full version named there;
 UNSET IS REFUSED, and the rulebook marker and hash must match the pin. Run:
     python3 scripts/strategy_version.py || exit 1
 Exit 5 = env, marker or rulebook hash disagree, exit 1 = pins unreadable. STOP
@@ -134,7 +134,12 @@ DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
 - Exit 0 → no mandate; proceed with today's research plan only.
 - Exit 5 → MANDATE DUE. The buy list MUST include one leadership add: the
   "Deployment mandate" name from today's RESEARCH-LOG, or, if absent, the
-  top-momentum sector ETF not already held. Size: shares = floor(
+  top-momentum sector ETF not already held. Rule 14 constrains WHAT, never
+  WHETHER: if no single name is held (empty book included) and the add is a
+  broad ETF, today's RESEARCH-LOG must carry a "Composition waiver: <reason>"
+  line; if it does not, append one now (why no single name passed the Entry
+  Checklist) before STEP 3. If the add's sector is banned under rule 10
+  (STEP 3), take the next sector that is not. Size: shares = floor(
   target_notional / live price). It goes through STEP 3-5 like any buy.
   Skip it ONLY if (a) today's RESEARCH-LOG recorded a valid deferral
   (exemption_allowed true + named market-wide risk event today), or
@@ -154,6 +159,22 @@ STOP is the active version's entry distance below P (STRATEGY_VERSION: v1 =
 Before validating under v2, the symbol's GICS sector MUST be recorded in
 memory/SECTORS.json (commit it with the trade); a buy without a sector is
 refused. Pass --sector to validate_order to mirror it.
+
+Rule 10 (Script), once per session before the first buy. Every buy's sector
+MUST be in memory/SECTORS.json (add it and commit it with the trade).
+STREAKS_JSON=$(python3 scripts/blotter.py --sector-streaks); STREAKS_EXIT=$?
+- Exit 4 (fills unavailable, or a traded symbol has no sector) → no new buys
+  this session; email "RULE 10 UNAVAILABLE $DATE", log it, and commit the log.
+- A sector with streak ≥ 2 is banned until 20 trading sessions after its
+  second loss: that loss is the latest losing round trip in the sector in
+  `python3 scripts/blotter.py --json` (its `exited` date; #138 moves the lift
+  date into --sector-streaks). A buy in a banned sector, its sector ETF
+  included → skip it, log "RULE 10 SECTOR BAN <sector> until <date>: SYM" to
+  TRADE-LOG. Open positions are never sold for it.
+Rule 14 (Advisory until #136): if no single name is held (empty book
+included), a broad-ETF buy (SPDR sector fund or index tracker) needs a
+"Composition waiver:" line in today's RESEARCH-LOG; without one → skip it,
+log "RULE 14 SKIPPED SYM: no composition waiver" to TRADE-LOG.
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
     --price P --stop-price STOP --sector "GICS Sector" --json); VALIDATE_EXIT=$?
