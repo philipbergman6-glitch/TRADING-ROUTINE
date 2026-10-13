@@ -21,6 +21,8 @@ from .engine import (
     required_trail_percent,
     validate_order,
     validate_stop_change,
+    validate_stop_placement,
+    validate_stop_renewal,
 )
 from .protection import (
     CUT_LOSER_STEPS,
@@ -87,6 +89,8 @@ __all__ = [
     "required_trail_percent",
     "validate_order",
     "validate_stop_change",
+    "validate_stop_renewal",
+    "validate_stop_placement",
     "FixedStop",
     "TrailingStop",
     "fixed_stop_at_distance",

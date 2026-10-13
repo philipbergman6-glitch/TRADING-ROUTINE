@@ -13,6 +13,13 @@ Two paths — both call existing engine functions (no broker I/O):
     python3 scripts/validate_stop_change.py \\
         --current-stop 90 --new-stop 95 --current-price 110 --json
 
+  Expiry renewal (rule 7, v1.2: same level is never a violation, #137):
+    python3 scripts/validate_stop_change.py \\
+        --current-stop 48.78 --new-stop 48.78 --current-price 49.98 --renewal --json
+    The new stop must be the current stop rounded up to the cent; then only
+    "below current price" is checked, not the 3% minimum. Any other level is a
+    change and gets the full rule 7 check.
+
 Trail path composition:
   1. required_trail_percent(gain) — ladder floor (widest still permitted)
   2. refuse if proposed > required (too wide) or proposed < MIN_STOP_DISTANCE
@@ -49,6 +56,7 @@ from risk_engine import (  # noqa: E402
     params_from_env,
     required_trail_percent,
     validate_stop_change,
+    validate_stop_renewal,
 )
 from risk_engine.models import to_money  # noqa: E402
 
@@ -188,6 +196,11 @@ def main() -> int:
         action="store_true",
         help="print required_trail_percent(gain) and exit 0 (no validation)",
     )
+    parser.add_argument(
+        "--renewal",
+        action="store_true",
+        help="price path: the new stop renews the current one at its level (rule 7, v1.2)",
+    )
     parser.add_argument("--json", action="store_true", help="machine-readable verdict")
     args = parser.parse_args()
     # Version is a deployment setting (STRATEGY_VERSION), never a CLI flag: a
@@ -210,6 +223,10 @@ def main() -> int:
             "price path (--current-stop / --new-stop), not both",
             file=sys.stderr,
         )
+        return EXIT_USAGE
+
+    if args.renewal and not price_intent:
+        print("--renewal applies to the price path (--current-stop / --new-stop) only", file=sys.stderr)
         return EXIT_USAGE
 
     if args.print_required:
@@ -244,10 +261,9 @@ def main() -> int:
                 file=sys.stderr,
             )
             return EXIT_USAGE
+        check = validate_stop_renewal if args.renewal else validate_stop_change
         try:
-            result = validate_stop_change(
-                args.current_stop, args.new_stop, args.current_price, params
-            )
+            result = check(args.current_stop, args.new_stop, args.current_price, params)
         except (TypeError, ValueError) as exc:
             print(f"usage: {exc}", file=sys.stderr)
             return EXIT_USAGE
@@ -256,7 +272,7 @@ def main() -> int:
             violations=result.violations,
             as_json=args.json,
             extra={
-                "engine_calls": ["validate_stop_change"],
+                "engine_calls": [check.__name__],
                 "strategy_version": params.name,
                 "current_stop": str(to_money(args.current_stop, "current_stop")),
                 "new_stop": str(to_money(args.new_stop, "new_stop")),
