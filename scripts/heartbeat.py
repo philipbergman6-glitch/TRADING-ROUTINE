@@ -19,8 +19,11 @@ and never touches the broker beyond the exchange calendar:
      ADR 0007, the newest live check must never have been older than MAX_DELAY
      (90 min) while the exchange was open (scripts/protection_sla.py measures
      it from the runs' completion times); dashboard-data and tests must not
-     have failed today. The run list carries no dispatch inputs, so the
-     workflow's run-name stamps the mode into display_title.
+     have failed today. Runs are matched to a workflow by its file path: a
+     run-name replaces the run's `name` too (ticket #156). The run list
+     carries no dispatch inputs, so the monitor's run-name stamps the mode
+     into display_title; a run the heartbeat cannot judge live or dry is
+     exit 4, never a guess.
 
 The alert email is delivery-verified by scripts/email.sh; if it cannot be
 sent the job fails with exit 9 so the workflow itself becomes the signal. A
@@ -29,7 +32,7 @@ reported as alert_delivery "unverified", not a failure (ticket #147).
 
 Exit codes (JSON report on stdout):
     0  everything expected happened, or not a trading day
-    4  a source was unavailable; nothing assessed
+    4  a source was unavailable, or a run could not be judged; nothing assessed
     5  at least one expectation missed (emailed unless --no-email)
     9  expectations missed AND the alert could not be delivered
 """
@@ -64,9 +67,18 @@ EXPECTED_DAILY = {
 }
 EXPECTED_LABEL = {"market-open": "market-open <trades|no-trade>"}
 EXPECTED_FRIDAY = {"weekly-review": "weekly review"}
+# Workflow -> its file: the run list's `path`. `name` is the run-name when the workflow has one.
+WORKFLOW_PATH = {
+    "protection-monitor": ".github/workflows/protection-monitor.yml",
+    "dashboard-data": ".github/workflows/dashboard.yml",
+    "tests": ".github/workflows/tests.yml",
+}
 MONITOR = "protection-monitor"
 # display_title of a monitor run, set by run-name in .github/workflows/protection-monitor.yml.
 MONITOR_LIVE, MONITOR_DRY = "protection-monitor live", "protection-monitor dry run"
+# Before run-name (#103) the title was the workflow's name and only a workflow_dispatch could be
+# a dry run (419bd0d, the same condition run-name uses), so a scheduled run of that era is live.
+MONITOR_UNSTAMPED = "protection-monitor"
 MUST_NOT_FAIL = ("dashboard-data", "tests")
 EXCHANGE_TZ = ZoneInfo("America/New_York")
 
@@ -90,10 +102,32 @@ def _completed_at(run: dict) -> datetime:
 def _is_live(run: dict) -> bool:
     """A dry run plans but does no due work, so it is not a protection check (ADR 0007)."""
     title = run.get("display_title")
+    if title == MONITOR_UNSTAMPED and run.get("event") == "schedule":
+        return True
     if title not in (MONITOR_LIVE, MONITOR_DRY):
         raise ValueError(f"successful {MONITOR} run with unknown display_title {title!r} "
                          f"(expected {MONITOR_LIVE!r} or {MONITOR_DRY!r}): {run!r}")
     return title == MONITOR_LIVE
+
+
+def run_summary(run: dict) -> dict:
+    """The fields assess() reads from one /actions/runs entry."""
+    return {"name": run.get("name"), "path": run.get("path"), "event": run.get("event"),
+            "display_title": run.get("display_title"), "conclusion": run.get("conclusion"),
+            "status": run.get("status"), "url": run.get("html_url"),
+            "created_at": run.get("created_at"), "updated_at": run.get("updated_at")}
+
+
+def _by_workflow(runs: list[dict]) -> dict[str, list[dict]]:
+    names = {path: name for name, path in WORKFLOW_PATH.items()}
+    grouped: dict[str, list[dict]] = {name: [] for name in WORKFLOW_PATH}
+    for r in runs:
+        path = r.get("path")
+        if not isinstance(path, str) or not path:
+            raise ValueError(f"workflow run without a workflow path: {r!r}")
+        if path in names:
+            grouped[names[path]].append(r)
+    return grouped
 
 
 def protection_check_status(today: date, monitor_ok: list[dict], now: datetime) -> dict:
@@ -130,20 +164,18 @@ def assess(today: date, trading_day: bool, commit_subjects: list[str], runs: lis
         if not any(s.startswith(prefix) and stamp in s for s in commit_subjects):
             issues.append(f"routine {routine}: no commit '{EXPECTED_LABEL.get(routine, prefix)} {stamp}' on main")
 
-    by_workflow: dict[str, list[dict]] = {}
-    for r in runs:
-        by_workflow.setdefault(str(r.get("name")), []).append(r)
-    succeeded = [r for r in by_workflow.get(MONITOR, []) if r.get("conclusion") == "success"]
+    by_workflow = _by_workflow(runs)
+    succeeded = [r for r in by_workflow[MONITOR] if r.get("conclusion") == "success"]
     monitor_ok = [r for r in succeeded if _is_live(r)]
     if not monitor_ok:
-        seen = len(by_workflow.get(MONITOR, []))
+        seen = len(by_workflow[MONITOR])
         issues.append(f"workflow {MONITOR}: no successful live run today "
                       f"({seen} run(s) seen, {len(succeeded)} dry run(s))")
     protection = protection_check_status(today, monitor_ok, now)
     if monitor_ok and protection["breaches"]:
         issues.append(_breach_issue(today, protection, now))
     for name in MUST_NOT_FAIL:
-        failed = [r for r in by_workflow.get(name, []) if r.get("conclusion") == "failure"]
+        failed = [r for r in by_workflow[name] if r.get("conclusion") == "failure"]
         if failed:
             issues.append(f"workflow {name}: {len(failed)} failed run(s) today, latest {failed[0].get('url', '')}")
     return {"date": stamp, "trading_day": True, "expected_routines": sorted(expected),
@@ -202,9 +234,9 @@ def commit_subjects_since(midnight_utc: datetime) -> list[str]:
 def runs_today(repo: str, today: date) -> list[dict]:
     out = subprocess.run(
         ["gh", "api", "--paginate", f"repos/{repo}/actions/runs?created={today}&per_page=100",
-         "--jq", ".workflow_runs[] | {name, display_title, conclusion, status, url: .html_url, created_at, updated_at}"],
+         "--jq", ".workflow_runs[] | del(.actor, .triggering_actor, .repository, .head_repository, .head_commit)"],
         capture_output=True, text=True, check=True).stdout
-    return [json.loads(line) for line in out.splitlines() if line.strip()]
+    return [run_summary(json.loads(line)) for line in out.splitlines() if line.strip()]
 
 
 def main() -> int:
@@ -222,7 +254,11 @@ def main() -> int:
     except (RuntimeError, OSError, subprocess.CalledProcessError, json.JSONDecodeError) as exc:
         print(json.dumps({"date": str(today), "exit": EXIT_NO_STATE, "error": str(exc)}))
         return EXIT_NO_STATE
-    report = assess(today, trading, subjects, runs, now)
+    try:
+        report = assess(today, trading, subjects, runs, now)
+    except ValueError as exc:  # a run it cannot judge: say so, never guess (ticket #156)
+        print(json.dumps({"date": str(today), "exit": EXIT_NO_STATE, "error": str(exc)}))
+        return EXIT_NO_STATE
     delivery = None
     if report["issues"] and not args.no_email:
         body = f"HEARTBEAT {today}: {len(report['issues'])} missed expectation(s)\n" + "\n".join(
