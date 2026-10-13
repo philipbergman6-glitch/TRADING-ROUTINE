@@ -23,6 +23,9 @@ __all__ = [
     "V2",
     "VERSIONS",
     "SECTOR_ETFS",
+    "INDEX_TRACKERS",
+    "BROAD_ETFS",
+    "is_broad_etf",
     "STRATEGY_VERSION_ENV",
     "params_for",
     "params_from_env",
@@ -35,6 +38,30 @@ STRATEGY_VERSION_ENV = "STRATEGY_VERSION"
 SECTOR_ETFS: frozenset[str] = frozenset(
     {"XLB", "XLC", "XLE", "XLF", "XLI", "XLK", "XLP", "XLRE", "XLU", "XLV", "XLY"}
 )
+
+# Broad US equity index trackers (S&P 500, total market, Nasdaq-100, Dow,
+# Russell, S&P mid/small cap). A repo-maintained list, not a broker lookup:
+# rule 14 says "SPY, QQQ, IWM, DIA, VTI and similar" (#105 decision 4).
+INDEX_TRACKERS: frozenset[str] = frozenset({
+    "SPY", "IVV", "VOO", "SPLG", "RSP",
+    "VTI", "ITOT", "SCHB",
+    "QQQ", "QQQM",
+    "DIA",
+    "IWM", "IWB", "IWV", "VTWO",
+    "MDY", "IJH", "IJR", "VO", "VB",
+})
+
+# Rule 14 "broad ETF": holding one adds factor exposure, not an idiosyncratic
+# thesis. Every other tradable symbol is a single name; there is no per-symbol
+# override.
+BROAD_ETFS: frozenset[str] = SECTOR_ETFS | INDEX_TRACKERS
+
+
+def is_broad_etf(symbol: str) -> bool:
+    """Rule 14 instrument class: True for a broad ETF, False for a single name."""
+    if not isinstance(symbol, str) or not symbol.strip():
+        raise TypeError(f"symbol must be a non-empty string, got {symbol!r}")
+    return symbol.strip().upper() in BROAD_ETFS
 
 
 @dataclass(frozen=True)
@@ -65,8 +92,14 @@ class StrategyParams:
     fallback_symbol: str | None
     # v2 rule 9: sector ETFs may not be active positions.
     sector_etfs_allowed: bool
+    # v1 rule 14: while the book holds no single name, a new position must be
+    # one unless the caller passes a composition waiver.
+    composition_mandate: bool
 
     def __post_init__(self) -> None:
+        for flag in ("sector_etfs_allowed", "composition_mandate"):
+            if not isinstance(getattr(self, flag), bool):
+                raise TypeError(f"{flag} must be a bool, got {getattr(self, flag)!r}")
         if self.max_positions <= 0 or self.max_trades_per_week <= 0:
             raise ValueError("position and trade limits must be positive")
         low, high = self.entry_stop_band
@@ -106,6 +139,7 @@ V1 = StrategyParams(
     reentry_cooldown_sessions=0,
     fallback_symbol=None,
     sector_etfs_allowed=True,
+    composition_mandate=True,
 )
 
 V2 = StrategyParams(
@@ -124,6 +158,7 @@ V2 = StrategyParams(
     reentry_cooldown_sessions=10,
     fallback_symbol="SPY",
     sector_etfs_allowed=False,
+    composition_mandate=False,
 )
 
 VERSIONS: Mapping[str, StrategyParams] = {V1.name: V1, V2.name: V2}

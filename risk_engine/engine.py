@@ -25,7 +25,7 @@ from .models import (
     Violation,
     to_money,
 )
-from .versions import SECTOR_ETFS, V1, StrategyParams
+from .versions import SECTOR_ETFS, V1, StrategyParams, is_broad_etf
 
 __all__ = [
     "MAX_POSITIONS",
@@ -76,9 +76,10 @@ UNMECHANISED: dict[str, str] = {
         "engine refuses nothing for it; v2 plans engine enforcement."
     ),
     "composition_mandate": (
-        "Rule 14 -- the next new position must be a single name while the "
-        "book holds none. Decided as an engine check (issue #105), not built "
-        "yet (issue #136); until then the routines carry it."
+        "Rule 14 -- the engine refuses a broad ETF as a new position while the "
+        "book holds no single name, unless the caller passes a composition "
+        "waiver. Whether the waiver's reason is true (no single name passed "
+        "the entry checklist, written in RESEARCH-LOG) is not checkable."
     ),
     "patience_over_activity": (
         "Rule 11 -- a disposition, not a predicate. Deliberately left to the "
@@ -99,12 +100,15 @@ UNMECHANISED: dict[str, str] = {
 
 
 def validate_order(
-    proposal: OrderProposal, portfolio: PortfolioState, params: StrategyParams = V1
+    proposal: OrderProposal, portfolio: PortfolioState, params: StrategyParams = V1,
+    *, composition_waiver: str | None = None,
 ) -> ValidationResult:
     """Judge a proposed order against every mechanised rule of one version.
 
     Returns every violation, not just the first: a caller fixing one problem
-    should not have to re-run to discover the next.
+    should not have to re-run to discover the next. `composition_waiver` is
+    the reason a broad ETF is bought while rule 14 binds; it excuses that rule
+    only and is recorded in `waived`. Unused, it is not recorded.
     """
     if not isinstance(proposal, OrderProposal):
         raise TypeError("proposal must be an OrderProposal")
@@ -112,6 +116,7 @@ def validate_order(
         raise TypeError("portfolio must be a PortfolioState")
     if not isinstance(params, StrategyParams):
         raise TypeError("params must be a StrategyParams")
+    waiver = _clean_waiver(composition_waiver)
 
     violations: list[Violation] = []
 
@@ -139,7 +144,43 @@ def validate_order(
         return ValidationResult(tuple(violations))
 
     violations.extend(_validate_buy(proposal, portfolio, params))
-    return ValidationResult(tuple(violations))
+    waived: list[Violation] = []
+    mandate = _composition_mandate(proposal, portfolio, params)
+    if mandate is not None and waiver is None:
+        violations.append(mandate)
+    elif mandate is not None:
+        waived.append(Violation(mandate.rule, f"{mandate.detail}; composition waiver: {waiver}"))
+    return ValidationResult(tuple(violations), tuple(waived))
+
+
+def _clean_waiver(waiver: object) -> str | None:
+    if waiver is None:
+        return None
+    if not isinstance(waiver, str):
+        raise TypeError(f"composition_waiver must be a string or None, got {type(waiver).__name__}")
+    if not waiver.strip():
+        raise ValueError("composition_waiver must state the reason; omit it when there is none")
+    return waiver.strip()
+
+
+def _composition_mandate(
+    proposal: OrderProposal, portfolio: PortfolioState, params: StrategyParams
+) -> Violation | None:
+    """Rule 14: while the book -- positions and reservations, empty included --
+    holds no single name, the next new position must be one. A top-up of a
+    held or reserved name opens no new position and is not constrained."""
+    if not params.composition_mandate or not is_broad_etf(proposal.symbol):
+        return None
+    book = {p.symbol for p in portfolio.positions} | {r.symbol for r in portfolio.reservations}
+    if proposal.symbol in book or any(not is_broad_etf(s) for s in book):
+        return None
+    held = ", ".join(sorted(book)) or "nothing"
+    return Violation(
+        Rule.COMPOSITION_MANDATE,
+        f"{proposal.symbol} is a broad ETF and the book holds no single name ({held}); "
+        "the next new position must be a single name, or pass a composition waiver "
+        "with the reason written in RESEARCH-LOG",
+    )
 
 
 def _validate_sell(

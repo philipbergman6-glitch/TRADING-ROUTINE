@@ -5,6 +5,7 @@
     python3 scripts/submit_entry.py --symbol AMD --qty 10 --stop-price 93
     python3 scripts/submit_entry.py --symbol AMD --qty 10 --price 100 --tag b      # deliberate 2nd entry today
     python3 scripts/submit_entry.py --symbol AMD --qty 10 --price 100 --intent en-20261012-AMD   # rerun, any day
+    python3 scripts/submit_entry.py --symbol XLV --qty 10 --price 100 --composition-waiver "<reason>"
 
 The buy is one entry *intent* (ADR 0005) named en-<YYYYMMDD>-<SYMBOL>[-<tag>],
 derived from the mint day and the name rather than generated. Each POST is an
@@ -36,7 +37,12 @@ looks the order up instead of buying twice:
 The fixed protective leg is derived at the approved version's entry distance
 when --price is given. An entry is never protective restoration: when the run
 is not bound to the approved strategy version (ADR 0011,
-scripts/strategy_version.py) nothing is submitted (version_binding_refused). Conversion to the trailing stop is the protection
+scripts/strategy_version.py) nothing is submitted (version_binding_refused). A broad ETF bought while the book holds no single name (rule 14) needs
+--composition-waiver, the reason already written to RESEARCH-LOG. The waiver is
+recorded on the entry intent in the state store, which is where the gate inside
+alpaca.sh reads it: an attempt whose intent carries none is refused there.
+
+Conversion to the trailing stop is the protection
 monitor's job (or STEP 5 of market-open); this script never converts.
 
 Exit codes derive from broker coverage, not from what this process did: when
@@ -89,9 +95,12 @@ DEAD = {"canceled", "expired", "rejected", "replaced"}
 
 def submit_entry(body: dict, *, intent: str | None = None, tag: str | None = None, read=adapter, run=mutate,
                  now=None, binding=None, store=None, writer=None, check=None, clock=None, sleep=time.sleep,
-                 fault=None) -> None:
+                 fault=None, composition_waiver: str | None = None) -> None:
     """One coordinated entry; always ends by raising an Outcome."""
     binding = binding or bind(os.environ)
+    if composition_waiver is not None and (not isinstance(composition_waiver, str) or not composition_waiver.strip()):
+        raise ValueError("composition_waiver must state the reason; omit it when there is none")
+    waiver = composition_waiver.strip() if composition_waiver else None
     if "client_order_id" in body:
         raise ValueError("client_order_id is assigned from the intent; pass --intent or --tag instead")
     symbol = str(body["symbol"]).upper()
@@ -106,13 +115,13 @@ def submit_entry(body: dict, *, intent: str | None = None, tag: str | None = Non
             storeless = str(exc)
 
     def body_fn(session):
-        _submit(session, body, symbol, now, intent, tag, read, check, binding)
+        _submit(session, body, symbol, now, intent, tag, read, check, binding, waiver)
     coordinator.coordinate(body_fn, store=store, writer=writer or coordinator.writer_id("submit_entry"),
                            read=read, run=run, clock=clock, sleep=sleep, fault=fault, binding=binding,
                            storeless_error=storeless)
 
 
-def _submit(s, body, symbol, now, intent, tag, read, check, binding):
+def _submit(s, body, symbol, now, intent, tag, read, check, binding, waiver):
     named, superseded = {}, {}
     try:
         known = s.known_intents()
@@ -155,13 +164,15 @@ def _submit(s, body, symbol, now, intent, tag, read, check, binding):
     attempt = {**body, "client_order_id": cid}
     # Validate with every other unfinished entry intent's reservation (ADR 0010 section 6).
     try:
-        proposal = check("order", json.dumps(attempt), reservations=s.reservations(exclude=res.intent))
+        proposal = check("order", json.dumps(attempt), reservations=s.reservations(exclude=res.intent),
+                         composition_waiver=waiver)
     except SystemExit as exc:
         raise Outcome(EXIT_NO_STATE, "broker_state_unavailable", adapter_exit=exc.code, **named)
     except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
         refuse("refused", [str(exc)], reason=str(exc))
     s.record(res.intent, action="entry", symbol=symbol, qty=str(body["qty"]), price=str(proposal.price),
-             sector=proposal.sector, client_order_id=cid, refuse=lambda code, state, **d: refusal(state, code, **d))
+             sector=proposal.sector, client_order_id=cid, refuse=lambda code, state, **d: refusal(state, code, **d),
+             **({"composition_waiver": waiver} if waiver else {}))
     print(f"intent {res.intent}: submitting attempt {cid}", file=sys.stderr, flush=True)
     try:
         placed, http, reason, sent = s.post(cid, json.dumps(attempt))
@@ -184,6 +195,7 @@ def rerun_command(args, intent: str | None) -> str:
     parts = ["python3", "scripts/submit_entry.py", "--symbol", args.symbol.upper(), "--qty", args.qty]
     parts += ["--price", args.price] if args.price else ["--stop-price", args.stop_price]
     parts += ["--intent", intent] if intent else (["--tag", args.tag] if args.tag else [])
+    parts += ["--composition-waiver", args.composition_waiver] if args.composition_waiver else []
     return shlex.join(parts)
 
 
@@ -197,7 +209,11 @@ def main() -> int:
     identity = parser.add_mutually_exclusive_group()
     identity.add_argument("--tag", help="seq for a deliberate second entry the same day (not r<digits>)")
     identity.add_argument("--intent", help="resolve this entry intent (from an earlier run's output), any day")
+    parser.add_argument("--composition-waiver", help="rule 14: why no single name passed the entry checklist "
+                        "(already written to RESEARCH-LOG); recorded on the entry intent")
     args = parser.parse_args()
+    if args.composition_waiver is not None and not args.composition_waiver.strip():
+        parser.error("--composition-waiver needs the reason; omit it when there is none")
     try:
         binding = bind(os.environ)
         params = binding.params
@@ -209,7 +225,8 @@ def main() -> int:
         protection = (FixedStop(stop_price=Decimal(args.stop_price)) if args.stop_price
                       else fixed_stop_at_distance(args.price, params.entry_stop_pct))
         body = build_oto_entry(symbol=args.symbol, qty=args.qty, protection=protection)
-        submit_entry(body, intent=args.intent, tag=args.tag, binding=binding)
+        submit_entry(body, intent=args.intent, tag=args.tag, binding=binding,
+                     composition_waiver=args.composition_waiver)
     except (ValueError, TypeError) as exc:
         print(json.dumps({"state": "usage", "exit": EXIT_USAGE, "reason": str(exc)}))
         return EXIT_USAGE

@@ -41,12 +41,15 @@ from .protection import (
     fixed_stop_at_distance,
 )
 from .versions import (
+    BROAD_ETFS,
+    INDEX_TRACKERS,
     SECTOR_ETFS,
     STRATEGY_VERSION_ENV,
     V1,
     V2,
     VERSIONS,
     StrategyParams,
+    is_broad_etf,
     params_for,
     params_from_env,
 )
@@ -70,6 +73,9 @@ __all__ = [
     "MIN_STOP_DISTANCE_PCT",
     "UNMECHANISED",
     "SECTOR_ETFS",
+    "INDEX_TRACKERS",
+    "BROAD_ETFS",
+    "is_broad_etf",
     "STRATEGY_VERSION_ENV",
     "V1",
     "V2",
