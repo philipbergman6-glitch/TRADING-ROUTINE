@@ -100,8 +100,9 @@ waits, takes over after expiry + skew and recovers the dead intent
 
 Observed session on `PA3YVVX6ERYG`, run record
 `drill-20261013T132842Z-c54427` on `drill-state` (`routine: drill`), code
-`bfcdf9d` (branch `wf/112`: this runbook's store-branch change on top of
-`234ccad`). Each helper ran as `TRADING_RUN_ID=drill-20261013T132842Z-c54427-<label>`;
+`bfcdf9d` as recorded in the run's start line: `234ccad` plus this runbook's
+store-branch change, before the branch was rebased for its PR (whose first
+commit carries the same change). Each helper ran as `TRADING_RUN_ID=drill-20261013T132842Z-c54427-<label>`;
 the labels below are those writer ids. Writers in the two-writer drills used
 separate bare clones of `drill-state` (`TRADING_STATE_REPO`), as two cloud
 checkouts would. Times are UTC.
