@@ -28,8 +28,15 @@ __all__ = [
     "build_blotter",
     "cooldown_symbols",
     "sector_failure_streaks",
+    "SectorBan",
+    "sector_bans",
+    "SECTOR_BAN_SESSIONS",
     "sessions_between",
+    "session_after",
 ]
+
+# Rule 10 (rulebook v1.3): the ban lifts this many sessions after the second loss.
+SECTOR_BAN_SESSIONS = 20
 
 _REQUIRED = ("id", "transaction_time", "symbol", "side", "qty", "price", "order_id")
 
@@ -194,6 +201,19 @@ def sessions_between(start: date, end: date) -> int:
     return count
 
 
+def session_after(start: date, sessions: int) -> date:
+    """The weekday that is `sessions` weekdays after `start`, counted as
+    sessions_between counts them: sessions_between(start, result) == sessions."""
+    if sessions <= 0:
+        raise ValueError("sessions must be positive")
+    day, count = start, 0
+    while count < sessions:
+        day += timedelta(days=1)
+        if day.weekday() < 5:
+            count += 1
+    return day
+
+
 def cooldown_symbols(blotter: Blotter, today: date, sessions: int) -> frozenset[str]:
     """Rule 14: names whose latest exit is within `sessions` weekdays of today."""
     if sessions <= 0:
@@ -220,3 +240,39 @@ def sector_failure_streaks(blotter: Blotter, sectors: Mapping[str, str]) -> dict
             raise ValueError(f"no sector recorded for {trip.symbol}")
         streak[sector] = 0 if trip.won else streak.get(sector, 0) + 1
     return streak
+
+
+@dataclass(frozen=True)
+class SectorBan:
+    streak: int
+    banned: bool
+    lifts_on: date | None  # set once the streak reaches 2; may be in the past
+
+
+def sector_bans(blotter: Blotter, sectors: Mapping[str, str], today: date,
+                sessions: int = SECTOR_BAN_SESSIONS) -> dict[str, SectorBan]:
+    """Rule 10: per recorded sector, the failure streak and whether new entries are banned.
+
+    Every sector in `sectors` is reported, so a sector missing from the result
+    is a sector missing from the mapping. While the streak is 2 or more, the ban
+    runs from the latest loss (the second loss, or a later one that extends the
+    run) and lifts on the session `sessions` weekdays after it, counted as
+    cooldown_symbols counts. An exit dated after `today` (clock skew) is banned.
+    """
+    streaks = sector_failure_streaks(blotter, sectors)
+    last_loss: dict[str, date] = {}
+    for trip in blotter.round_trips:
+        if not trip.won:
+            sector = sectors[trip.symbol]
+            day = trip.exited.date()
+            if sector not in last_loss or day > last_loss[sector]:
+                last_loss[sector] = day
+    result: dict[str, SectorBan] = {}
+    for sector in sorted(set(sectors.values()) | set(streaks)):
+        streak = streaks.get(sector, 0)
+        if streak < 2:
+            result[sector] = SectorBan(streak, False, None)
+            continue
+        lifts_on = session_after(last_loss[sector], sessions)
+        result[sector] = SectorBan(streak, today < lifts_on, lifts_on)
+    return result
