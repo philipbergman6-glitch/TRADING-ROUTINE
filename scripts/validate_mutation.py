@@ -27,7 +27,9 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from risk_engine import OrderProposal, Side, validate_order, validate_stop_change
+from risk_engine import (OrderProposal, Side, validate_order, validate_stop_change, validate_stop_placement,
+                         validate_stop_renewal)
+from risk_engine.engine import is_renewal_level
 from risk_engine.models import to_money
 from scripts.strategy_version import bind
 from scripts.validate_order import adapter, buy_reservations, load_sectors, read_portfolio
@@ -51,6 +53,11 @@ def _check_stop_floor(body, symbol, level, price, read, now, params):
     release reserved shares), so its floor is read from the broker order named
     in client_order_id, and any same-symbol stop canceled in the last 15
     minutes also counts. Resting stops always count.
+
+    Rule 7 (v1.2, #137): a fixed stop at the level of every floor (rounded up
+    to the cent) is a renewal -- it neither lowers nor moves the stop, so the
+    3% minimum does not apply. Any other level is a change, and a stop with no
+    floor is a new placement; both get the 3% minimum.
     """
     opens = read("orders", "open")
     require(isinstance(opens, list) and len(opens) < 500, "open-order snapshot incomplete")
@@ -81,8 +88,12 @@ def _check_stop_floor(body, symbol, level, price, read, now, params):
                   and o.get("type") in _STOP_TYPES and o.get("status") == "canceled"]
         floors = [o.get("stop_price") for o in live + recent]
         require(all(f is not None for f in floors), "protective stop without stop_price; cannot verify floor")
+    if not floors:
+        result = validate_stop_placement(level, price, params)
+        require(result.approved, "; ".join(result.reasons()))
+    renewal = body.get("type") == "stop" and all(is_renewal_level(f, level) for f in floors)
     for floor in floors:
-        result = validate_stop_change(floor, level, price, params)
+        result = (validate_stop_renewal if renewal else validate_stop_change)(floor, level, price, params)
         require(result.approved, "; ".join(result.reasons()))
 
 
