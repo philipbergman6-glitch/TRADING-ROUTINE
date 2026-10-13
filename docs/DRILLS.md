@@ -41,7 +41,9 @@ state that counts as a pass, the evidence that proves it, and where it runs:
 # source the main checkout's loader (the Bash tool is zsh; _env.sh needs bash).
 drill() { env -i HOME="$HOME" PATH="$PATH" bash -c '
   export ALPACA_PROFILE=drill STRATEGY_VERSION=v1 EMAIL_FALLBACK_FILE=/tmp/drill-alerts.md
-  source <main checkout>/scripts/_env.sh; "$@"' drill "$@"; }
+  source <main checkout>/scripts/_env.sh
+  # heartbeat.py refuses an unset endpoint; the drill profile file sets none.
+  export ALPACA_ENDPOINT=https://paper-api.alpaca.markets/v2; "$@"' drill "$@"; }
 
 drill bash scripts/alpaca.sh verify-account            # {"profile":"drill","account_number":"PA3YVVX6ERYG"}
 drill bash scripts/alpaca.sh positions                 # []
@@ -66,7 +68,7 @@ otherwise every helper in the checkout writes as the session's run id.
 | 6 | Missing history | The closed-orders read behind rule 8 fails, or returns the 500-row page cap. | Buy refused with exit 4 (`could not establish broker state`); nothing POSTed. | Helper exit code; broker order list unchanged. | CI stub (needs a broker outage) |
 | 7 | Unavailable store | `TRADING_STATE_REPO` → a checkout whose `origin` is unreachable. | Buys, closes and replacements refused with exit 10 (`store_unavailable`), nothing sent. Restoring a stop on a held position with none still goes through and alerts `STORE UNAVAILABLE` (ADR 0004 section 1). | Helper JSON (`store_error`, `alerts`, `store_exception`); broker order list. | both |
 | 8 | Stale quote | Submit an entry before the open, when the latest SPY quote is minutes old. | Refused by the mutation gate (`quote must be no more than 60 seconds old`), exit 3, refusal recorded; nothing POSTed. | Helper JSON; store: intent `refused`; broker order list empty. | both |
-| 9 | Missed monitor | CI: a day whose live protection checks leave a gap over 90 min. Live: replay a real missed day through the real judge (`heartbeat.py --date 2026-10-07 --no-email`), with no dispatcher. | Heartbeat exit 5 naming the stale windows of the session. | Heartbeat JSON `protection_check.breaches`. | both |
+| 9 | Missed monitor | CI: a day whose live protection checks leave a gap over 90 min. Live: replay real missed days through the real judge (`heartbeat.py --date 2026-10-07 --no-email` before the run-name stamp, `--date 2026-10-12` after it), with no dispatcher; `--date 2026-09-29` holds an unstamped dispatch. | Heartbeat exit 5 naming the stale windows of the session, from every live monitor run of the day; a run it cannot judge live or dry is exit 4 with JSON, not a traceback. | Heartbeat JSON `protection_check.checks` and `.breaches`. | both |
 | 10 | Failed alert delivery | CI: `email.sh` refuses or hangs. Live: the heartbeat of a missed day with an invalid Resend key; coordinator alerts with no email credentials. | Heartbeat exit 9 (missed AND undeliverable); coordinator JSON `alerts_delivered: false`. | Heartbeat JSON `alert_delivery: failed`; helper JSON. | both |
 | 11 | Version mismatch | `STRATEGY_VERSION=v2` while `docs/rulebook-pins.json` approves v1.3. | Entry refused `version_binding_refused`, exit 3; nothing POSTed. Restoration of a naked stop still proceeds under the approved version and raises VERSION BINDING INCIDENT. | Helper JSON; broker order list. | both |
 
@@ -89,7 +91,7 @@ waits, takes over after expiry + skew and recovers the dead intent
 | 6 | `tests/test_drills.py::test_drill_missing_history_refuses_the_buy_with_exit_4` |
 | 7 | `tests/test_coordinator.py::test_store_unreachable_refuses_the_mutation`, `tests/test_coordinator.py::test_store_unreachable_still_lets_a_stop_go_on_a_position_with_none`, `tests/test_coordinated_helpers.py::test_replace_stop_without_the_store_refuses_and_leaves_the_old_stop`, `tests/test_coordinated_helpers.py::test_replace_stop_without_the_store_still_restores_a_naked_position`, `tests/test_coordinated_helpers.py::test_validate_order_refuses_buys_when_the_store_is_unreachable` |
 | 8 | `tests/test_mutation_validation.py::test_stale_future_or_naive_quote_refuses` |
-| 9 | `tests/test_heartbeat.py::test_two_afternoon_checks_breach_the_level_and_name_the_windows`, `tests/test_protection_sla.py::test_observed_2026_10_07_first_check_at_19_15z_breaches_from_15_00z` |
+| 9 | `tests/test_heartbeat.py::test_two_afternoon_checks_breach_the_level_and_name_the_windows`, `tests/test_protection_sla.py::test_observed_2026_10_07_first_check_at_19_15z_breaches_from_15_00z`, `tests/test_heartbeat.py::test_recorded_2026_10_12_counts_the_one_live_run_after_the_close`, `tests/test_heartbeat.py::test_recorded_2026_10_07_scheduled_pre_stamp_runs_breach_until_19_15z`, `tests/test_heartbeat.py::test_an_unjudgeable_run_is_a_json_exit_4_not_a_traceback` |
 | 10 | `tests/test_heartbeat.py::test_alert_failure_fails_the_job_even_when_only_issues_exist`, `tests/test_protection_monitor.py::test_alert_delivery_failure_fails_an_otherwise_clean_run`, `tests/test_drills.py::test_drill_an_undelivered_coordinator_alert_is_reported_not_swallowed` |
 | 11 | `tests/test_submit_entry.py::test_unbound_runner_never_submits_an_entry`, `tests/test_replace_stop.py::test_unbound_rerun_after_cancel_restores_protection_under_the_approved_version`, `tests/test_coordinator.py::test_recovery_restores_even_when_unbound_and_raises_the_version_incident` |
 | guard | `tests/test_coordinator.py::test_fault_injection_is_refused_outside_the_drill_profile`, `tests/test_coordinator.py::test_a_fault_set_outside_the_drill_profile_is_a_usage_outcome_for_every_helper`, `tests/test_drills.py::test_the_drill_profile_coordinates_on_its_own_store_branch`, `tests/test_account_profiles.py::test_both_key_pairs_present_is_refused_before_any_call`, `tests/test_account_profiles.py::test_both_pairs_refused_even_under_drill_profile` |
@@ -122,14 +124,16 @@ negative. SPY results stay recorded as red under drill 8.
 | 4 | Lost POST response | green | `takeover` 13:59:39 with `lose_response`: `http_status: "000"`, the same `cl-20261013-SCHB` re-POSTed and adopted; one sell `32220cac`, filled 29.86; intent `complete`. The helper does not log the re-POST's 422; it is inferred from the path (no `coordinator_notes`, one order). |
 | 7 | Unavailable store | green | `store2` 13:34: SCHB entry, exit 10 `store_unavailable`, nothing sent. `storerestore` 13:47:08: after `rr-…` was canceled directly with `alpaca.sh cancel`, `replace_stop.py` with the store unreachable placed `rs-57a42e08…` (`8ac6c56e`, stop 26.87) with `store_exception` and alert `STORE UNAVAILABLE`; exit 0. (`store`, 13:28, pre-open: refused exit 3 by the stale-quote gate before the store check.) |
 | 8 | Stale quote | red | #155. `drill-stale-quote` 13:27:46, pre-open: quote stamped 13:19:58, exit 3 `quote must be no more than 60 seconds old`, `refused` recorded, no order (correct). After the open, fresh SPY quotes were refused the same way (`writer-a`/`writer-b` 13:30:29; 12 of 15 samples had a negative age; host clock 0.11 s behind per `sntp`). |
-| 9 | Missed monitor | red | #156. `heartbeat.py --date 2026-10-12 --no-email`: exit 5 and a 390-min breach, but `0 run(s) seen` although a live run (21:38Z) and a dry run (15:14Z) exist: runs are matched by `name`, which GitHub now sets to the run-name, so every day reads as missed. `--date 2026-10-07`: a traceback, not exit 4. |
+| 9 | Missed monitor | green | Rerun alone after #156, run record `drill-20261013T141214Z-ea6d1d` on `drill-state` (code `a6e4794`), 14:12Z. `--date 2026-10-07`: exit 5, checks 19:15:28Z and 23:41:37Z (scheduled, pre-stamp: live), `stale 345 min of the 390-min session … 13:30-19:15Z (345 min)`. `--date 2026-10-12`: exit 5, the live run 21:38:36Z counted and the 15:14Z dry run not, `stale 390 min … 13:30-20:00Z (390 min)`. `--date 2026-09-29`: exit 4, JSON `unknown display_title 'protection-monitor'` (an unstamped dispatch, which defaulted to dry). First red (session above): runs were matched by `name`, which GitHub sets to the run-name, so every day read `0 run(s) seen`; 2026-10-07 was a traceback. |
 | 10 | Failed alert delivery | green | Heartbeat for 2026-10-12 with an invalid Resend key: exit 9, `alert_delivery: failed` (Resend 401; nothing sent). Coordinator: `storerestore`'s alert with no email credentials, `alerts_delivered: false`, text in the fallback file. |
 | 11 | Version mismatch | green | `version` 13:28:53, `STRATEGY_VERSION=v2`: exit 3 `version_binding_refused` (`approved v1.3`), `refused` recorded on `en-20261013-SPY-2`, no order. |
 
 ### Findings
 
 - **#155** (drill 8) and **#156** (drill 9) are the two red drills, filed on
-  map #93 with their evidence. Nothing was patched around them.
+  map #93 with their evidence. Nothing was patched around them. #156 is fixed
+  and drill 9 was rerun green on its own; the freeze still needs the full
+  rerun (#158).
 - **Fixed before the session, in this change:** every profile shared `main`'s
   state store, so a drill would have taken production's lease and its entry
   intents would have reserved production capacity. The store branch now
