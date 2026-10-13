@@ -538,3 +538,13 @@ def test_a_restore_that_cannot_cover_does_not_block_every_later_action(tmp_path,
     assert "RECOVERY COULD NOT RESTORE" in got.detail["alerts"][0]
     assert [(e["state"], e.get("reason")) for e in intent_lines(origin, "cl-20261013-AMD")][-1] == (
         "dead", "holder_died")
+
+
+def test_a_fault_set_outside_the_drill_profile_is_a_usage_outcome_for_every_helper(tmp_path, origin, monkeypatch):
+    monkeypatch.setenv("COORDINATOR_FAULT", "after_record")
+    monkeypatch.setenv("ALPACA_PROFILE", "production")
+    store, broker, clock = writer_store(tmp_path, origin, "a"), Broker(), Clock()
+    with pytest.raises(Outcome) as info:
+        coordinate(entry_body(), store=store, writer="w", read=broker.read, run=broker.run, clock=clock,
+                   sleep=clock.sleep)
+    assert (info.value.code, info.value.state) == (2, "usage") and broker.posts == [] and stored(origin) == []
