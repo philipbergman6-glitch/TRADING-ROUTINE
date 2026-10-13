@@ -9,7 +9,9 @@ name: heartbeat
 #
 # Alert delivery is verified (scripts/email.sh); if the email cannot be sent
 # this job fails and, as the channel independent of Resend, opens a GitHub
-# issue so the miss is visible in the repository itself.
+# issue so the miss is visible in the repository itself. An email sent with a
+# send-only Resend key cannot be verified: that is a warning plus one issue a
+# day (scripts/alert_unverified.sh), not a failure (ticket #147).
 
 on:
   schedule:
@@ -45,11 +47,18 @@ jobs:
           ref: main
       - name: Email immediately on a failed watched workflow
         if: github.event_name == 'workflow_run'
+        env:
+          EMAIL_UNVERIFIED_FILE: ${{ runner.temp }}/email-unverified
         run: |
           bash scripts/email.sh "WORKFLOW FAILED: ${{ github.event.workflow_run.name }} ($(date -u +%F)) ${{ github.event.workflow_run.html_url }}"
       - name: Daily heartbeat
         if: github.event_name != 'workflow_run'
+        env:
+          EMAIL_UNVERIFIED_FILE: ${{ runner.temp }}/email-unverified
         run: python3 scripts/heartbeat.py
+      - name: Warn once a day when alert delivery could not be verified
+        if: always()
+        run: bash scripts/alert_unverified.sh "${{ runner.temp }}/email-unverified"
       - name: Open a GitHub issue when the alert path itself failed
         if: failure()
         run: |

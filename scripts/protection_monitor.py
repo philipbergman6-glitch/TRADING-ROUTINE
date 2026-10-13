@@ -32,7 +32,9 @@ alerts. Pins that name no approved version leave nothing to plan with:
 coverage is still verified and reported, no action runs, exit 6.
 
 With --email the report is sent through scripts/email.sh, which verifies
-delivery with Resend; a lost alert must fail the job (ADR 0007), so:
+delivery with Resend; a lost alert must fail the job (ADR 0007), so exit 9
+below. A send-only Resend key leaves the email sent but unverified: the report
+says alert_delivery "unverified" and the exit is unchanged (ticket #147).
 
 Exit codes (JSON report always on stdout):
     0  all positions covered, every due action done (or nothing due)
@@ -60,13 +62,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine.monitor import Plan, plan_protection  # noqa: E402
 from risk_engine.reconciliation import reconcile_protection  # noqa: E402
-from scripts import coordinator  # noqa: E402
+from scripts import alert_delivery, coordinator  # noqa: E402
 from scripts.replace_stop import EXIT_OK, EXIT_RESTORED, EXIT_UNPROTECTED, Outcome, mutate, replace_stop  # noqa: E402
 from scripts.state_store import EXIT_STORE_UNAVAILABLE, StoreUnavailable  # noqa: E402
 from scripts.strategy_version import VersionBindingError, bind  # noqa: E402
 from scripts.validate_order import EXIT_NO_STATE, adapter  # noqa: E402
 
-EMAIL = Path(__file__).resolve().parent / "email.sh"
 EXIT_ISSUES = 5
 EXIT_VERSION_BINDING = 6
 EXIT_ALERT_FAILED = 9
@@ -104,8 +105,8 @@ def worst_exit(plan, results) -> int:
     return 0
 
 
-def notify(report: dict, run=subprocess.run) -> bool:
-    """Email the report; True only when scripts/email.sh verified delivery."""
+def notify(report: dict, run=subprocess.run) -> str:
+    """Email the report: "verified", "unverified" (sent, key cannot read status) or "failed"."""
     lines = [f"protection monitor {report['observed_at']} exit {report['exit']}"]
     binding = report.get("version_binding") or {}
     if binding.get("error"):
@@ -118,10 +119,7 @@ def notify(report: dict, run=subprocess.run) -> bool:
     lines += [f"{r['kind']} {r['symbol']} -> {r['state']}" for r in report["results"]]
     lines += [f"HOLD {h}" for h in report["holds"]]
     lines += [f"STANDING {s}" for s in report["standing"]]
-    try:
-        return run(["bash", str(EMAIL), "\n".join(lines)], check=False, timeout=120).returncode == 0
-    except subprocess.TimeoutExpired:
-        return False
+    return alert_delivery.send("\n".join(lines), run=run)
 
 
 def exit_code(code: int, alert_delivered: bool | None) -> int:
@@ -175,7 +173,11 @@ def run_monitor(now, *, dry_run=False, email=False, read=adapter, replace=replac
     report = {"exit": code, "dry_run": dry_run, "strategy_version": version["engine"], "version_binding": version,
               "observed_at": now.isoformat(), "recovery": recovered, "results": results, **plan.as_dict()}
     restored = any(r.get("reason") == "restored" for r in recovered.get("recovery", []) if isinstance(r, dict))
-    alert_delivered = send(report) if email and (code != 0 or results or restored) else None
+    delivery = send(report) if email and (code != 0 or results or restored) else None
+    if delivery not in (None, alert_delivery.VERIFIED, alert_delivery.UNVERIFIED, alert_delivery.FAILED):
+        raise ValueError(f"unknown alert delivery verdict {delivery!r}")
+    alert_delivered = None if delivery is None else delivery != alert_delivery.FAILED
+    report["alert_delivery"] = delivery
     report["alert_delivered"] = alert_delivered
     report["exit"] = exit_code(code, alert_delivered)
     return report

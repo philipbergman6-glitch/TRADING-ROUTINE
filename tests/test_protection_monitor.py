@@ -139,7 +139,11 @@ def test_alert_delivery_failure_fails_an_otherwise_clean_run():
 
     def ok(cmd, **kw):
         sent.append(cmd[-1])
-        return subprocess.CompletedProcess(cmd, 0)
+        return subprocess.CompletedProcess(cmd, 0, stdout="sent id=e1\ndelivery=verified\n", stderr="")
+
+    def send_only_key(cmd, **kw):
+        return subprocess.CompletedProcess(cmd, 0, stdout="delivery=unverified reason=restricted_api_key\n",
+                                           stderr="")
 
     def refused(cmd, **kw):
         return subprocess.CompletedProcess(cmd, 4)
@@ -147,9 +151,10 @@ def test_alert_delivery_failure_fails_an_otherwise_clean_run():
     def hung(cmd, **kw):
         raise subprocess.TimeoutExpired(cmd, kw.get("timeout"))
 
-    assert notify(report, run=ok) is True and "tighten MPC -> replaced" in sent[0]
-    assert notify(report, run=refused) is False
-    assert notify(report, run=hung) is False
+    assert notify(report, run=ok) == "verified" and "tighten MPC -> replaced" in sent[0]
+    assert notify(report, run=send_only_key) == "unverified"
+    assert notify(report, run=refused) == "failed"
+    assert notify(report, run=hung) == "failed"
     # A lost alert on a clean or coverage-issue run becomes exit 9; broker-state
     # outcomes (7, 8) keep their code since they are the more urgent signal.
     assert exit_code(0, alert_delivered=False) == EXIT_ALERT_FAILED
@@ -167,7 +172,7 @@ from scripts.protection_monitor import EXIT_ALERT_FAILED, EXIT_VERSION_BINDING, 
 CONVERT_BOOK = ([position("AMD", price="101")], [stop("s1", "AMD", "stop", "90")])
 
 
-def monitor(monkeypatch, version, outcome=None, book=CONVERT_BOOK, delivered=True, **kw):
+def monitor(monkeypatch, version, outcome=None, book=CONVERT_BOOK, delivered="verified", **kw):
     if version is None:
         monkeypatch.delenv("STRATEGY_VERSION")
     else:
@@ -221,8 +226,21 @@ def test_incident_outranks_the_binding_code(monkeypatch):
 
 
 def test_lost_alert_on_an_unbound_run_is_named(monkeypatch):
-    report, _ = monitor(monkeypatch, None, delivered=False)
+    report, _ = monitor(monkeypatch, None, delivered="failed")
     assert report["exit"] == EXIT_ALERT_FAILED
+    assert report["alert_delivery"] == "failed" and report["alert_delivered"] is False
+
+
+def test_send_only_key_is_sent_unverified_and_keeps_the_exit(monkeypatch):
+    """Ticket #147: a send-only Resend key is a configuration warning, not a lost alert."""
+    report, seen = monitor(monkeypatch, None, delivered="unverified")
+    assert seen["sent"] and report["exit"] == EXIT_VERSION_BINDING
+    assert report["alert_delivery"] == "unverified" and report["alert_delivered"] is True
+
+
+def test_unknown_delivery_verdict_is_refused(monkeypatch):
+    with pytest.raises(ValueError, match="delivery"):
+        monitor(monkeypatch, None, delivered=True)
 
 
 def test_unreadable_pins_still_verify_coverage_but_act_on_nothing(monkeypatch, tmp_path):

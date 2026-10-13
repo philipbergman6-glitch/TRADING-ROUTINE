@@ -50,7 +50,8 @@ nothing on a no-trade day, so the heartbeat could not tell "did not run" from
    exit 9 when the alert was lost (the monitor keeps 7/8, the more urgent
    broker-state codes), so a failed workflow run is the fallback signal; the
    heartbeat workflow then opens or comments a GitHub issue, the one channel
-   that does not depend on Resend.
+   that does not depend on Resend. A send-only key is the one exception: see
+   *Sent, unverified* under Consequences.
 5. **Market-open leaves a record every session**: commit subject
    `market-open trades <date>` or `market-open no-trade <date>`, and the
    heartbeat requires one of them.
@@ -87,3 +88,20 @@ nothing on a no-trade day, so the heartbeat could not tell "did not run" from
   any other title (a drifted `run-name`, or a run from before 2026-10-12) is
   rejected rather than guessed, so the heartbeat fails loudly once on the day
   this lands.
+- **Sent, unverified: a send-only Resend key is a configuration failure, not a
+  lost alert** (ticket
+  [#147](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/147)).
+  The production `RESEND_API_KEY` is a sending-only key, so every status read
+  answered 401 `restricted_api_key`, every alert ended in exit 5, and the
+  heartbeat fallback filed a duplicate "ALERT PATH FAILED" issue for an email
+  that had gone out (#140, #141, #143). `email.sh` now treats that one answer
+  as *sent, unverified*: exit 0, a `delivery=unverified
+  reason=restricted_api_key` verdict on stdout (`delivery=verified` otherwise),
+  a stderr warning, and a line in `EMAIL_UNVERIFIED_FILE`. The heartbeat and
+  the monitor report `alert_delivery` (`verified` / `unverified` / `failed`)
+  and keep their exit; only `failed` is a lost alert. Both workflows run
+  `scripts/alert_unverified.sh`, which raises it once a day: one workflow
+  warning and a dated GitHub issue, skipped when that day's issue already
+  exists. A rejected send (2), a verified bounce (4) and any other unreadable
+  status (5) still fail. The fix that restores verification is the owner's: a
+  full-access key in the repository secret.

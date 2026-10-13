@@ -23,7 +23,9 @@ and never touches the broker beyond the exchange calendar:
      workflow's run-name stamps the mode into display_title.
 
 The alert email is delivery-verified by scripts/email.sh; if it cannot be
-sent the job fails with exit 9 so the workflow itself becomes the signal.
+sent the job fails with exit 9 so the workflow itself becomes the signal. A
+send-only Resend key leaves it sent but unverified (scripts/alert_delivery.py):
+reported as alert_delivery "unverified", not a failure (ticket #147).
 
 Exit codes (JSON report on stdout):
     0  everything expected happened, or not a trading day
@@ -46,10 +48,10 @@ from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from scripts import alert_delivery  # noqa: E402
 from scripts.protection_sla import MAX_DELAY, session_window, staleness_breaches  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-EMAIL = ROOT / "scripts" / "email.sh"
 EXIT_OK, EXIT_NO_STATE, EXIT_ISSUES, EXIT_ALERT_FAILED = 0, 4, 5, 9
 
 # Routine -> subject prefix of the commit it pushes. Keep in sync with routines/*.md.
@@ -149,12 +151,9 @@ def assess(today: date, trading_day: bool, commit_subjects: list[str], runs: lis
             "exit": EXIT_ISSUES if issues else EXIT_OK}
 
 
-def send_alert(body: str, run=subprocess.run) -> bool:
-    """Send through scripts/email.sh, which verifies delivery; True only when it did."""
-    try:
-        return run(["bash", str(EMAIL), body], check=False, timeout=120).returncode == 0
-    except subprocess.TimeoutExpired:
-        return False
+def send_alert(body: str, run=subprocess.run) -> str:
+    """Send through scripts/email.sh: "verified", "unverified" (sent, key cannot read status) or "failed"."""
+    return alert_delivery.send(body, run=run)
 
 
 def exit_code(report_exit: int, alert_delivered: bool | None) -> int:
@@ -224,11 +223,13 @@ def main() -> int:
         print(json.dumps({"date": str(today), "exit": EXIT_NO_STATE, "error": str(exc)}))
         return EXIT_NO_STATE
     report = assess(today, trading, subjects, runs, now)
-    alert_delivered = None
+    delivery = None
     if report["issues"] and not args.no_email:
         body = f"HEARTBEAT {today}: {len(report['issues'])} missed expectation(s)\n" + "\n".join(
             f"- {i}" for i in report["issues"])
-        alert_delivered = send_alert(body)
+        delivery = send_alert(body)
+    alert_delivered = None if delivery is None else delivery != alert_delivery.FAILED
+    report["alert_delivery"] = delivery
     report["alert_delivered"] = alert_delivered
     report["exit"] = exit_code(report["exit"], alert_delivered)
     print(json.dumps(report, indent=2))
