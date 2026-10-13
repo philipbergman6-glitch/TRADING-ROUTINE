@@ -52,6 +52,20 @@ bash scripts/alpaca.sh account
 bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 
+STEP 2b — Unfinished intents (ADR 0010 section 5). This routine never takes
+the lease and never recovers; it reports what the writers left behind:
+STATUS_JSON=$(python3 scripts/coordinator.py status); STATUS_EXIT=$?
+- Exit 0 → add one finish --incident per item, filled from the JSON:
+  each "non_terminal" entry → "unfinished intent <intent> (<action> <symbol>): <state>";
+  each "takeovers" entry whose "at" is within the last 24 hours (72 on a Monday) →
+  "lease takeover <lease> by <writer> superseding <supersedes> at <at>";
+  a "holder" with "stale": true → "stale lease <lease> held by <writer> since <expires_at>".
+  A takeover may land in two runs' records; that is expected. Never act on
+  any of them here: the next writer or monitor run recovers them.
+- Exit 10 → --incident "state store unavailable: <reason>"; continue (this
+  routine changes nothing).
+- Any other exit → --incident "coordinator status exit <N>"; continue.
+
 STEP 2c — Deployment backstop (rule 12). Computed, never eyeballed:
 DEPLOY_JSON=$(python3 scripts/deployment_status.py); DEPLOY_EXIT=$?
 - Exit 4 → STOP, email "DEPLOYMENT STATE UNAVAILABLE $DATE", exit.
@@ -120,5 +134,6 @@ One --action per broker mutation this run made (buy, sell, stop replace or
 renew), one --refusal per action a validator or rule refused, one
 --incident per failure (STOP, push not verified, alert not delivered,
 coverage short), one --intent per intent id a helper printed. No flags =
-no-trade; the outcome is derived. Never invent entries. On a non-zero exit
+no-trade; the outcome is derived. Never invent entries. Include every
+STEP 2b incident. On a non-zero exit
 email "RUN RECORD FINISH FAILED pre-market $DATE: <printed reason>".
