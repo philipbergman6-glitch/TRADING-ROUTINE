@@ -153,7 +153,8 @@ calls; tests are offline (bare repo as origin, stub broker, fake clock).
   a failed push 1 after a recovery push raised `KeyError` and kept the lease;
   one unrestorable gap blocked every later action.
 - Not verified: behaviour against GitHub's real push rejection through the
-  cloud proxy, and a real lost response — both are #112 drills.
+  cloud proxy, and a real lost response — both are #112 drills (real lost
+  response and direct-to-GitHub rejection: green on 2026-10-13, see below).
 
 ## Session 2026-10-13: routine text for the coordinator (#144)
 
@@ -179,6 +180,34 @@ Text and wiring tests only; no code, no broker calls. #78 is still open, so
   (read-only status step).
 - Not verified: an agent following the new text in a live routine; the
   takeover windows can report one takeover twice, which is intended.
+
+## Session 2026-10-13: freeze-rehearsal drills (#112)
+
+Baseline `234ccad`. Runbook `docs/DRILLS.md`: 11 scenarios with induce /
+expected terminal state / evidence / mode, the CI tests behind each, the
+2026-10-13 live session's verdicts, and the freeze criterion with the tag
+command (the owner tags; no agent does).
+
+- Code: the state-store branch follows `ALPACA_PROFILE` (`main` production,
+  `drill-state` drill; `scripts/state_store.py: store_branch`), used by the
+  coordinator, run records and the store CLI. Before this, a drill would have
+  held production's lease and reserved its capacity. `drill-state` is seeded on
+  origin; never merge it. `run_record.py` accepts `--routine drill --trigger
+  local`, drill profile only.
+- Tests: `tests/test_drills.py` (store isolation, drill run records,
+  cross-midnight lost entry, missing history ×2, undelivered coordinator alert,
+  and three checks that the runbook names real tests and records every live
+  drill's verdict). `tests/store_support.make_origin` seeds `drill-state`.
+- Live session `drill-20261013T132842Z-c54427` on `PA3YVVX6ERYG`: 6 of 8 live
+  drills green (two writers incl. killed holder, crash after cancel, lost
+  response, unavailable store, failed alert delivery, version mismatch). Red:
+  drill 8 → #155 (fresh quotes refused when the host clock lags), drill 9 →
+  #156 (heartbeat matches monitor runs by `name`, which is now the run-name,
+  so it sees none). Account left flat and stop-free.
+- Not verified: non-fast-forward rejection through the cloud proxy (local
+  session pushed directly).
+- Next: #155, #156, then the full live rerun and the owner's tag (child
+  ticket on #93).
 
 ## Latest session: execution controls for v2 (2026-09-20)
 

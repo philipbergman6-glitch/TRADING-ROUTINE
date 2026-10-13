@@ -17,7 +17,7 @@ only identifying fields. Both accounts use the same paper endpoint, which
 | `account_number` | `PA38JXAA3CY1` | `PA3YVVX6ERYG` |
 | `id` | `433b0293-7c1c-4f67-87b3-52466b8403bb` | `fe69e15b-bcab-4ece-b80f-5da1d95bffc0` |
 | `created_at` | 2026-04-17T11:01:16Z | `2026-10-13T13:16:43Z` |
-| Starting equity | $100,000 (one JNLC deposit, research 0006) | $100,000 fixed (research 0010) |
+| Starting equity | $100,000 (one JNLC deposit, research 0006) | $10,000 as read on 2026-10-13 (research 0010 expected $100,000) |
 | GitHub secrets | `ALPACA_API_KEY`, `ALPACA_SECRET_KEY` | `DRILL_ALPACA_API_KEY`, `DRILL_ALPACA_SECRET_KEY` |
 
 Verified read-only on 2026-10-12 with `bash scripts/alpaca.sh verify-account`.
@@ -36,6 +36,10 @@ Rules enforced by `scripts/alpaca.sh` and `scripts/heartbeat.py`:
 
 - Exit 6: both key pairs present in one process, an unknown profile, the
   flag and `ALPACA_PROFILE` disagreeing, or the selected pair missing.
+- State store: the coordinator and run records use the branch of the
+  selected profile, `main` for production and `drill-state` for drill
+  (`scripts/state_store.py: store_branch`), so a drill never holds
+  production's lease or reservations. Never merge `drill-state`.
 - Exit 8: before any `order`, `close`, `close-all`, `cancel`, `cancel-all`
   the broker's `account_number` must equal the profile's pin; an unpinned
   profile refuses all writes.
