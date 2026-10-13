@@ -60,10 +60,24 @@ def test_pending_buy_blocks_additional_commitment(snapshot):
         check(order(), snapshot)
 
 
-@pytest.mark.parametrize("timestamp", ["2026-09-17T13:58:00Z", "2026-09-17T14:00:01Z", "2026-09-17T14:00:00"])
-def test_stale_future_or_naive_quote_refuses(snapshot, timestamp):
+@pytest.mark.parametrize("timestamp", [
+    "2026-09-17T14:00:00.112598Z",   # #155: host clock 0.11 s behind the broker's
+    "2026-09-17T14:00:05Z",          # host clock behind by exactly the allowed skew
+    "2026-09-17T13:59:00Z",          # 60 s old
+])
+def test_fresh_quote_passes_within_the_clock_skew(snapshot, timestamp):
     snapshot[("quote", "AAPL")]["quote"]["t"] = timestamp
-    with pytest.raises(ValueError, match="quote"):
+    check(order(), snapshot)
+
+
+@pytest.mark.parametrize("timestamp,reason", [
+    ("2026-09-17T13:58:59Z", "no more than 60 seconds old"),
+    ("2026-09-17T14:00:05.001Z", "ahead of the host clock"),
+    ("2026-09-17T14:00:00", "quote"),
+])
+def test_stale_future_or_naive_quote_refuses(snapshot, timestamp, reason):
+    snapshot[("quote", "AAPL")]["quote"]["t"] = timestamp
+    with pytest.raises(ValueError, match=reason):
         check(order(), snapshot)
 
 
