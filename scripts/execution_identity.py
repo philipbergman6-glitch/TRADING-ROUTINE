@@ -13,8 +13,9 @@ order instead of submitting again. Terminal attempts from yesterday are
 history. Otherwise the latest intent minted today is resolved, or a fresh one
 is minted.
 
-Until the state store (ADR 0004, #115) persists intent records, the broker is
-the only record: everything here is recoverable by walking the known prefix.
+The state store (ADR 0004) also records intents, including ones that never
+reached the broker (refused, or dead before a POST). Callers pass those ids as
+`known` so the family walk and the next free intent skip past them.
 """
 from __future__ import annotations
 
@@ -129,20 +130,25 @@ def _walk(read, intent: str, dead: frozenset) -> Resolution:
     return Resolution(intent, None, None, seen)
 
 
-def _family(read, kind, symbol, day, dead, tag=None) -> list[Resolution]:
+def walk_attempts(read, intent: str, dead=DEAD) -> Resolution:
+    """Where one known intent stands at the broker (the shared attempt walk)."""
+    return _walk(read, intent, frozenset(dead))
+
+
+def _family(read, kind, symbol, day, dead, tag=None, known=frozenset()) -> list[Resolution]:
     """Every intent of this kind and symbol minted on `day` (just the tagged one with a tag)."""
     seqs = [tag] if tag is not None else [None] + [str(s) for s in range(2, MAX_SEQ + 1)]
     found = []
     for seq in seqs:
         got = _walk(read, mint_intent(kind, symbol, day, seq), dead)
-        if not got.submitted:
+        if not got.submitted and got.intent not in known:
             break
         found.append(got)
     return found
 
 
 def resolve_intent(read, kind: str, symbol: str, now: datetime, *, intent: str | None = None,
-                   tag: str | None = None, dead=DEAD) -> Resolution:
+                   tag: str | None = None, dead=DEAD, known=frozenset()) -> Resolution:
     """The intent this run works under, and where it stands at the broker."""
     dead = frozenset(dead)
     if intent is not None:
@@ -151,8 +157,8 @@ def resolve_intent(read, kind: str, symbol: str, now: datetime, *, intent: str |
         parse_intent(intent, kind, symbol, now.date())
         return _walk(read, intent, dead)
     today = now.date()
-    yesterday = _family(read, kind, symbol, today - timedelta(days=1), dead, tag)
-    todays = _family(read, kind, symbol, today, dead, tag)
+    yesterday = _family(read, kind, symbol, today - timedelta(days=1), dead, tag, known)
+    todays = _family(read, kind, symbol, today, dead, tag, known)
     live = [r for r in yesterday + todays if r.live]
     if len(live) > 1:
         raise ValueError(f"several live attempts for {kind} {symbol}: {[r.client_order_id for r in live]}")
@@ -164,9 +170,10 @@ def resolve_intent(read, kind: str, symbol: str, now: datetime, *, intent: str |
     return Resolution(fresh, fresh)
 
 
-def next_free_intent(read, kind: str, symbol: str, now: datetime, *, dead=DEAD) -> str | None:
+def next_free_intent(read, kind: str, symbol: str, now: datetime, *, dead=DEAD,
+                     known=frozenset()) -> str | None:
     """The next unminted untagged intent of today, or None when the sequence is spent."""
-    seq = len(_family(read, kind, symbol, now.date(), frozenset(dead))) + 1
+    seq = len(_family(read, kind, symbol, now.date(), frozenset(dead), known=known)) + 1
     if seq > MAX_SEQ:
         return None
     return mint_intent(kind, symbol, now.date(), str(seq) if seq > 1 else None)

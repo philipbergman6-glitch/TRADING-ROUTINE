@@ -4,8 +4,8 @@
 Every line is one event carrying the envelope `id`, `kind`, `at` (UTC
 ISO-8601), `writer` (routine or workflow plus run id) and `schema` (integer).
 Current state is a replay of the file. Record kinds and the rules that say
-which claim wins are the coordinator's (#99); this module ships the envelope
-and the mechanics only.
+which claim wins are the coordinator's (ADR 0010, scripts/coordinator.py); this
+module ships the envelope and the mechanics only.
 
 Fail closed: a fetch that fails, a push budget that runs out, a line that fails
 validation, or a claim that no longer wins after a rebase all raise
@@ -33,10 +33,11 @@ ENVELOPE = ("id", "kind", "at", "writer", "schema")
 GIT_TIMEOUT_S = 60
 # Local mode (ADR 0004 §3): a dedicated bare clone, never the dev checkout.
 LOCAL_CLONE = Path.home() / ".cache" / "trading-routine" / "state.git"
-# Pushes tried before failing closed. Provisional: the coordinator (#99) owns
-# the number; callers pass it explicitly once that ADR lands.
-PUSH_BUDGET = 3
-RELEASE_KIND = "release"
+# Pushes tried before failing closed (ADR 0010 section 2).
+PUSH_BUDGET = 5
+# A claim that lost after a rebase is withdrawn by an event listing its line
+# ids; replay ignores every listed line. Not a lease release (ADR 0010).
+WITHDRAW_KIND = "withdraw"
 TOKEN = re.compile(r"\S+")
 # How far back on main a pushed subject is looked for when verifying.
 VERIFY_DEPTH = 200
@@ -55,7 +56,7 @@ class CorruptState(StoreUnavailable):
 
 
 class ClaimLost(StoreUnavailable):
-    """After a rebase the caller's claim no longer wins; a release line was
+    """After a rebase the caller's claim no longer wins; a withdraw line was
     pushed (if the budget allowed) and the writer must not act on the claim."""
 
 
@@ -194,7 +195,7 @@ class StateStore:
         The push is the compare-and-swap: it is rejected if main moved since
         the snapshot. On rejection the store refetches, rebases the lines onto
         the new tip and asks `still_wins(replayed events + lines)` again. When
-        the claim no longer wins, a release line is appended, pushed, and
+        the claim no longer wins, a withdraw line is appended, pushed, and
         ClaimLost is raised. After `budget` pushes, or on any fetch failure,
         StoreUnavailable is raised. Success is verified by subject on main."""
         if not lines:
@@ -216,7 +217,7 @@ class StateStore:
         for attempt in range(1, budget + 1):
             if not lost and not still_wins(snap.events + ours):
                 lost = True
-                ours = ours + [new_event(RELEASE_KIND, writer, intent=intent, releases=ids)]
+                ours = ours + [new_event(WITHDRAW_KIND, writer, intent=intent, withdraws=ids)]
             try:
                 commit = self._build(snap, ours, subject)
             except GitError as exc:
@@ -232,7 +233,7 @@ class StateStore:
                 snap = self.fetch()
             self._verify(snap, ours, subject)
             if lost:
-                raise ClaimLost(f"{intent}: claim lost to a concurrent writer; release pushed")
+                raise ClaimLost(f"{intent}: claim lost to a concurrent writer; withdraw pushed")
             return Committed(subject, attempt, snap.events)
         raise StoreUnavailable(f"{intent}: push budget of {budget} exhausted; last: {rejection}")
 

@@ -9,7 +9,7 @@ import pytest
 
 REPO = Path(__file__).resolve().parent.parent
 
-from scripts.state_store import (EXIT_STORE_UNAVAILABLE, EXIT_USAGE, RELEASE_KIND, STATE_FILE, ClaimLost,
+from scripts.state_store import (EXIT_STORE_UNAVAILABLE, EXIT_USAGE, PUSH_BUDGET, STATE_FILE, WITHDRAW_KIND, ClaimLost,
                                  CorruptState, StateStore, StoreUnavailable, local_store, main, new_event,
                                  replay, validate)
 
@@ -199,7 +199,7 @@ def first_claim_wins(symbol, claim_id):
     """A stand-in for the coordinator's replay rule (#99): the earliest
     unreleased claim on a symbol owns it."""
     def still_wins(events):
-        released = {i for e in events if e["kind"] == RELEASE_KIND for i in e["releases"]}
+        released = {i for e in events if e["kind"] == WITHDRAW_KIND for i in e["withdraws"]}
         claims = [e for e in events if e["kind"] == "test" and e.get("symbol") == symbol
                   and e["id"] not in released]
         return bool(claims) and claims[0]["id"] == claim_id
@@ -231,7 +231,7 @@ def test_concurrent_appends_from_one_base_both_survive_in_push_order(tmp_path, o
     assert replay(origin_file(origin)) == [eb, ea]
 
 
-def test_competing_claim_releases_and_fails_closed(tmp_path, origin):
+def test_competing_claim_withdraws_and_fails_closed(tmp_path, origin):
     a = StateStore(workdir(tmp_path, origin, "a"))
     b = StateStore(workdir(tmp_path, origin, "b"))
     snap_a, snap_b = a.fetch(), b.fetch()
@@ -243,11 +243,15 @@ def test_competing_claim_releases_and_fails_closed(tmp_path, origin):
 
     events = replay(origin_file(origin))
     assert [e["id"] for e in events[:2]] == [cb["id"], ca["id"]]
-    release = events[2]
-    assert release["kind"] == RELEASE_KIND and release["releases"] == [ca["id"]]
-    assert release["writer"] == "a/1" and release["intent"] == "ia"
+    withdraw = events[2]
+    assert withdraw["kind"] == WITHDRAW_KIND == "withdraw" and withdraw["withdraws"] == [ca["id"]]
+    assert withdraw["writer"] == "a/1" and withdraw["intent"] == "ia"
     # The winner is unaffected.
     assert first_claim_wins("XLK", cb["id"])(events)
+
+
+def test_push_budget_is_five_per_adr_0010():
+    assert PUSH_BUDGET == 5
 
 
 def install_reject_hook(origin):

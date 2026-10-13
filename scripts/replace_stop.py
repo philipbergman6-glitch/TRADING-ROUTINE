@@ -60,7 +60,7 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from risk_engine.reconciliation import reconcile_protection  # noqa: E402
+from scripts.coordinator import Outcome, live_coverage  # noqa: E402,F401  (re-exported for the helpers)
 from scripts.strategy_version import VersionBindingError, bind  # noqa: E402
 from scripts.validate_mutation import REPLACE_PREFIX, RESTORE_PREFIX, validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
@@ -70,33 +70,6 @@ EMAIL = Path(__file__).resolve().parent / "email.sh"
 OPEN = {"new", "accepted", "pending_new", "held", "accepted_for_bidding"}
 LIVE = {"new", "accepted", "pending_new"}
 EXIT_OK, EXIT_USAGE, EXIT_REFUSED, EXIT_NO_STATE, EXIT_RESTORED, EXIT_UNPROTECTED = 0, 2, 3, 4, 7, 8
-
-
-class Outcome(Exception):
-    def __init__(self, code, state, **detail):
-        super().__init__(state)
-        self.code, self.state, self.detail = code, state, detail
-
-
-def live_coverage(read, symbol: str, now: datetime, positions=None, orders=None):
-    """Held-vs-verified-protection for one symbol from current broker snapshots.
-
-    Returns (position, report) or (None, None) when the symbol is not held. The
-    report is risk_engine.reconciliation's: ok only when unexpired GTC stops resting
-    as `new` cover the full held quantity. A stop that is held, pending, expired,
-    short, or malformed does not certify coverage -- nor does a truncated order list.
-    Snapshots already read by the caller may be passed in to avoid a second read.
-    """
-    positions = read("positions") if positions is None else positions
-    orders = read("orders", "open") if orders is None else orders
-    if not isinstance(positions, list):
-        raise ValueError("positions snapshot is not a list")
-    if not isinstance(orders, list):
-        raise ValueError("open-order snapshot is not a list")
-    mine = [p for p in positions if isinstance(p, dict) and str(p.get("symbol", "")).upper() == symbol]
-    if not mine:
-        return None, None
-    return mine[0], reconcile_protection(mine, orders, now)
 
 
 def observed_unprotected(progress: dict) -> bool:
