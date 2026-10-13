@@ -113,3 +113,31 @@ def test_unverifiable_status_after_retries_exits_five():
 
 def test_empty_message_is_a_usage_error():
     assert run("   ").returncode == 1
+
+
+RESTRICTED = (401, {"statusCode": 401, "message": "This API key is restricted to only send emails",
+                    "name": "restricted_api_key"})
+
+
+def test_send_only_key_is_sent_unverified_not_a_failure(tmp_path):
+    """Ticket #147: a send-only RESEND_API_KEY cannot read status. The email went
+    out, so the caller must not fail; the gap is named and recorded once."""
+    marker = tmp_path / "unverified"
+    stub = Stub((200, {"id": "e1"}), [RESTRICTED])
+    r = run("x", stub, EMAIL_UNVERIFIED_FILE=str(marker))
+    assert r.returncode == 0, r.stderr
+    assert "delivery=unverified reason=restricted_api_key" in r.stdout.splitlines()
+    assert "delivery unverifiable: restricted key" in r.stderr and "e1" in r.stderr
+    assert sum(1 for q in stub.requests if q[0] == "GET") == 1  # no point retrying a permission
+    assert "restricted_api_key" in marker.read_text() and "e1" in marker.read_text()
+
+
+def test_verified_delivery_is_reported_as_verified():
+    stub = Stub((200, {"id": "e1"}), [(200, {"id": "e1", "last_event": "delivered"})])
+    r = run("x", stub)
+    assert r.returncode == 0 and "delivery=verified" in r.stdout.splitlines()
+
+
+def test_other_401_on_status_stays_unverifiable():
+    stub = Stub((200, {"id": "e1"}), [(401, {"statusCode": 401, "name": "invalid_api_key"})] * 3)
+    assert run("x", stub).returncode == 5

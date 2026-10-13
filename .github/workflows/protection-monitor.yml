@@ -16,7 +16,9 @@ name: protection-monitor
 #
 # Exit 9 = the alert email could not be delivered (scripts/email.sh); the job
 # fails so the heartbeat's workflow_run trigger and GitHub's own notifications
-# become the fallback signal.
+# become the fallback signal. An email sent with a send-only Resend key cannot
+# be verified: a warning plus one issue a day (scripts/alert_unverified.sh),
+# not a failure (ticket #147).
 #
 # run-name stamps the mode into the run's display_title, the only place the
 # Actions run list exposes it: scripts/heartbeat.py counts only
@@ -42,9 +44,11 @@ concurrency:
   cancel-in-progress: false
 
 # ADR 0004 §3: the monitor writes the committed state store (state/) on main.
-# Pushes made with GITHUB_TOKEN do not trigger other workflows.
+# Pushes made with GITHUB_TOKEN do not trigger other workflows. issues: write
+# is for the once-a-day unverified-delivery issue only.
 permissions:
   contents: write
+  issues: write
 
 jobs:
   monitor:
@@ -79,12 +83,19 @@ jobs:
             --trigger "${{ github.event_name }}" \
             --command-file .github/workflows/protection-monitor.yml
       - name: Protection monitor
+        env:
+          EMAIL_UNVERIFIED_FILE: ${{ runner.temp }}/email-unverified
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
             python3 scripts/protection_monitor.py --dry-run --email | tee "$RUNNER_TEMP/monitor-report.json"
           else
             python3 scripts/protection_monitor.py --email | tee "$RUNNER_TEMP/monitor-report.json"
           fi
+      - name: Warn once a day when alert delivery could not be verified
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/alert_unverified.sh "${{ runner.temp }}/email-unverified"
       - name: Run record finish
         # Runs even when the monitor failed: a missing or unreadable report is
         # recorded as the incident.
