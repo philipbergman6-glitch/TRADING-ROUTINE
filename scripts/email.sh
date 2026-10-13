@@ -4,15 +4,22 @@
 #
 # Sends, captures the Resend email id, then reads the email back and checks
 # its last_event. Exit 0 means Resend accepted the message and has not
-# reported a bounce/failure; anything else is a loud failure the caller must
-# treat as "the owner was NOT told":
+# reported a bounce/failure; the last stdout line says how far that is known:
+#   delivery=verified                              status read, no bounce
+#   delivery=unverified reason=restricted_api_key  sent; the key is send-only
+#                                                  so the status cannot be read
+# The send-only key is a configuration failure, not a lost alert (#147): it is
+# warned on stderr and appended to EMAIL_UNVERIFIED_FILE (if set) so the
+# workflow raises it once a day (scripts/alert_unverified.sh). Anything else is
+# a loud failure the caller must treat as "the owner was NOT told":
 #   1  usage (empty message)
 #   2  send rejected: HTTP != 200, or no id in the response (body on stderr)
 #   3  credentials unset (message also appended to EMAIL_FALLBACK_FILE)
 #   4  Resend reports the email bounced / failed / suppressed / canceled
-#   5  status unverifiable: GET /emails/{id} kept failing
+#   5  status unverifiable: GET /emails/{id} kept failing (other than above)
 # Env (optional): RESEND_API_BASE, EMAIL_STATUS_WAIT (s before the status read,
-# default 5), EMAIL_STATUS_RETRY_WAIT (default 5), EMAIL_FALLBACK_FILE.
+# default 5), EMAIL_STATUS_RETRY_WAIT (default 5), EMAIL_FALLBACK_FILE,
+# EMAIL_UNVERIFIED_FILE.
 set -euo pipefail
 
 # shellcheck source=scripts/_env.sh
@@ -92,6 +99,20 @@ for attempt in 1 2 3; do
     last_event="$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1])).get("last_event") or "")' "$body_file")"
     [[ -n "$last_event" ]] && break
   fi
+  if [[ "$http" == "401" ]] && python3 -c '
+import json, sys
+try:
+    sys.exit(0 if json.load(open(sys.argv[1])).get("name") == "restricted_api_key" else 1)
+except (ValueError, AttributeError):
+    sys.exit(1)' "$body_file"; then
+    echo "WARNING delivery unverifiable: restricted key. Email id=$id was sent but RESEND_API_KEY is send-only," \
+      "so GET $API/emails/$id answered 401 restricted_api_key. Owner: replace RESEND_API_KEY with a full-access key." >&2
+    if [[ -n "${EMAIL_UNVERIFIED_FILE:-}" ]]; then
+      printf '%s id=%s restricted_api_key\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')" "$id" >> "$EMAIL_UNVERIFIED_FILE"
+    fi
+    echo "delivery=unverified reason=restricted_api_key"
+    exit 0
+  fi
   [[ "$attempt" -lt 3 ]] && sleep "$STATUS_RETRY_WAIT"
 done
 if [[ -z "$last_event" ]]; then
@@ -104,3 +125,4 @@ case "$last_event" in
     echo "email id=$id NOT DELIVERED: last_event=$last_event" >&2
     exit 4 ;;
 esac
+echo "delivery=verified"

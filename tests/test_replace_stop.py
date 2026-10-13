@@ -273,6 +273,100 @@ def test_restore_must_match_exact_level_but_skips_distance_rule():
         mutation(restore("110"), snap)
 
 
+# ---- same-level renewal of a standing stop (#137, rule 7 v1.2) --------------
+
+def fixed_body(level, **extra):
+    return json.dumps({"symbol": "AAPL", "qty": "100", "side": "sell", "type": "stop",
+                       "time_in_force": "gtc", "stop_price": level, **extra})
+
+
+STANDING = {"symbol": "AAPL", "side": "sell", "type": "stop", "status": "new", "stop_price": "118.5"}
+
+
+def standing_snapshot(old_status="canceled", opens=()):
+    snap = snapshot(old_status, opens=opens)
+    snap[("order-info", OLD)].update(type="stop", stop_price="118.5")  # 1.25% below 120
+    return snap
+
+
+def test_same_level_renewal_within_3pct_passes_preflight_and_replacement():
+    mutation(fixed_body("118.5"), standing_snapshot("new", opens=[STANDING]))  # preflight: old still rests
+    mutation(fixed_body("118.5", client_order_id="rs-" + OLD), standing_snapshot())
+
+
+def test_lowered_renewal_is_refused():
+    with pytest.raises(ValueError, match="stop_never_lowered"):
+        mutation(fixed_body("118", client_order_id="rs-" + OLD), standing_snapshot())
+
+
+def test_raise_within_3pct_is_a_change_not_a_renewal():
+    with pytest.raises(ValueError, match="stop_distance"):
+        mutation(fixed_body("119", client_order_id="rs-" + OLD), standing_snapshot())
+
+
+def test_new_placement_within_3pct_is_refused():
+    with pytest.raises(ValueError, match="stop_distance"):
+        mutation(fixed_body("118.5"), snapshot())  # no resting or just-canceled stop: nothing to renew
+
+
+class RenewalBroker(FakeBroker):
+    """AAPL at 120 with a fixed stop at 118.5 (1.25% below: rule 7 drift) expiring
+    within the renewal window. The real validate_mutation gates the preflight and,
+    as alpaca.sh does, every order the replacement sends."""
+    PORTFOLIO = PortfolioState(equity="100000", cash="88000", is_paper=True, reservations=(),
+                               positions=(Position("AAPL", "100", "12000"),))
+
+    def __init__(self, **kw):
+        super().__init__(stop_price="118.5", **kw)
+        self.orders[OLD].update(type="stop", expires_at="2026-09-20T20:00:00Z")
+        self.positions[0].update(avg_entry_price="110", current_price="120")
+
+    def read(self, command, *args):
+        if command == "asset":
+            return {"symbol": args[0], "class": "us_equity", "status": "active", "tradable": True}
+        if command == "orders":
+            wanted = OPEN_STATUSES if args[0] == "open" else {"canceled", "filled", "expired"}
+            return [o for o in [*self.orders.values(), *self.by_client.values()] if o["status"] in wanted]
+        return super().read(command, *args)
+
+    def check(self, command, body):
+        self.calls.append(("check", command, body))
+        validate_mutation(command, body, read=self.read, now=NOW, portfolio=self.PORTFOLIO)
+
+    def run(self, command, arg):
+        if command == "order":
+            try:
+                validate_mutation(command, arg, read=self.read, now=NOW, portfolio=self.PORTFOLIO)
+            except ValueError as exc:
+                self.calls.append(("refused", command, arg))
+                return False, "000", "", f"REFUSED mutation: {exc}"
+        return super().run(command, arg)
+
+
+OPEN_STATUSES = {"new", "accepted", "pending_new", "held"}
+
+
+def test_monitor_renews_a_standing_stop_within_3pct_through_replace_stop():
+    from functools import partial
+    from scripts.protection_monitor import run_monitor
+    b = RenewalBroker()
+    replace = partial(replace_stop, read=b.read, run=b.run, check=b.check, sleep=lambda _: None, polls=5, now=NOW)
+    report = run_monitor(NOW, read=b.read, replace=replace,
+                         recovery=lambda *_a, **_k: {"exit": 0, "state": "nothing_to_recover"})
+    assert [(r["kind"], r["state"]) for r in report["results"]] == [("renew", "replaced")], report
+    assert report["exit"] == 0
+    renewed = b.posted()[0]
+    assert (renewed["type"], renewed["stop_price"], renewed["client_order_id"]) == ("stop", "118.5", "rs-" + OLD)
+    assert not [c for c in b.calls if c[0] == "refused"]
+
+
+def test_lowered_renewal_through_replace_stop_is_refused_before_cancel():
+    b = RenewalBroker()
+    out = go(b, check=b.check, stop="118")
+    assert (out.code, out.state) == (EXIT_REFUSED, "refused") and "stop_never_lowered" in out.detail["reason"]
+    assert b.orders[OLD]["status"] == "new" and b.posted() == []
+
+
 # ---- bounded order history (#1) ---------------------------------------------
 
 def test_weekly_trade_count_requests_a_bounded_window(monkeypatch):

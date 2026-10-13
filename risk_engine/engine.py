@@ -13,7 +13,7 @@ was automated.
 from __future__ import annotations
 
 import re
-from decimal import Decimal
+from decimal import ROUND_CEILING, Decimal
 
 from .models import (
     OrderProposal,
@@ -37,6 +37,8 @@ __all__ = [
     "UNMECHANISED",
     "validate_order",
     "validate_stop_change",
+    "validate_stop_renewal",
+    "validate_stop_placement",
     "required_trail_percent",
     "max_affordable_shares",
 ]
@@ -425,23 +427,64 @@ def validate_stop_change(
                 f"stop may never move down: {current} -> {proposed}",
             )
         )
-    if proposed >= price:
-        violations.append(
-            Violation(
-                Rule.STOP_DISTANCE,
-                f"stop {proposed} is at or above current price {price}",
-            )
-        )
-    else:
-        distance_pct = _pct(price - proposed, price)
-        if distance_pct < params.min_stop_distance_pct:
-            violations.append(
-                Violation(
-                    Rule.STOP_DISTANCE,
-                    f"stop is {distance_pct:.2f}% below price, minimum is {params.min_stop_distance_pct}%",
-                )
-            )
+    violations.extend(validate_stop_placement(proposed, price, params).violations)
     return ValidationResult(tuple(violations))
+
+
+def validate_stop_placement(
+    new_stop: object, current_price: object, params: StrategyParams = V1,
+) -> ValidationResult:
+    """Rule 7's distance clause: never place or move a stop to within the
+    minimum distance of current price (3% in v1)."""
+    proposed = to_money(new_stop, "new_stop")
+    price = to_money(current_price, "current_price")
+    if price <= 0:
+        raise ValueError(f"current_price must be positive, got {price}")
+    if proposed <= 0:
+        raise ValueError(f"new_stop must be positive, got {proposed}")
+    if proposed >= price:
+        return ValidationResult((Violation(
+            Rule.STOP_DISTANCE, f"stop {proposed} is at or above current price {price}"),))
+    distance_pct = _pct(price - proposed, price)
+    if distance_pct < params.min_stop_distance_pct:
+        return ValidationResult((Violation(
+            Rule.STOP_DISTANCE,
+            f"stop is {distance_pct:.2f}% below price, minimum is {params.min_stop_distance_pct}%"),))
+    return ValidationResult(())
+
+
+def is_renewal_level(current_stop: object, new_stop: object) -> bool:
+    """True when new_stop is current_stop rounded up to the cent: the level a
+    renewal places (risk_engine.protection.expiring_protective_stops)."""
+    current = to_money(current_stop, "current_stop")
+    proposed = to_money(new_stop, "new_stop")
+    return current <= proposed <= current.quantize(Decimal("0.01"), rounding=ROUND_CEILING)
+
+
+def validate_stop_renewal(
+    current_stop: object, new_stop: object, current_price: object,
+    params: StrategyParams = V1,
+) -> ValidationResult:
+    """Rule 7 (v1.2): renewing a stop at its current level is never a violation.
+
+    A renewal re-places the floor as a fixed stop (rounded up to the cent), so
+    it neither lowers nor moves the stop, and the 3% minimum -- which governs
+    placing or moving a stop -- does not apply: price drifting within 3% of a
+    standing stop is a hold, and renewal keeps that hold in place. Any other
+    level is a change and gets the full rule 7 check (validate_stop_change).
+    """
+    if not is_renewal_level(current_stop, new_stop):
+        return validate_stop_change(current_stop, new_stop, current_price, params)
+    proposed = to_money(new_stop, "new_stop")
+    price = to_money(current_price, "current_price")
+    if price <= 0:
+        raise ValueError(f"current_price must be positive, got {price}")
+    if proposed <= 0:
+        raise ValueError("current_stop and new_stop must be positive")
+    if proposed >= price:
+        return ValidationResult((Violation(
+            Rule.STOP_DISTANCE, f"stop {proposed} is at or above current price {price}"),))
+    return ValidationResult(())
 
 
 def required_trail_percent(gain_pct: object, params: StrategyParams = V1) -> Decimal:

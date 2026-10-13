@@ -1,5 +1,6 @@
 """Heartbeat: every expected routine commit and workflow outcome for a trading day, nothing on holidays."""
 from datetime import date, datetime, timedelta, timezone
+import json
 from pathlib import Path
 import re
 import subprocess
@@ -153,9 +154,44 @@ def test_alert_failure_fails_the_job_even_when_only_issues_exist():
     def hung(cmd, **kw):
         raise subprocess.TimeoutExpired(cmd, kw.get("timeout"))
 
-    assert send_alert("x", run=refused) is False
-    assert send_alert("x", run=hung) is False
-    assert send_alert("x", run=lambda cmd, **kw: subprocess.CompletedProcess(cmd, 0)) is True
+    assert send_alert("x", run=refused) == "failed"
+    assert send_alert("x", run=hung) == "failed"
     assert exit_code(EXIT_ISSUES, alert_delivered=True) == EXIT_ISSUES
     assert exit_code(EXIT_ISSUES, alert_delivered=False) == EXIT_ALERT_FAILED
     assert exit_code(EXIT_OK, alert_delivered=None) == EXIT_OK
+
+
+def email_sh(code, stdout=""):
+    """A fake scripts/email.sh run: exit code plus the stdout it would print."""
+    return lambda cmd, **kw: subprocess.CompletedProcess(cmd, code, stdout=stdout, stderr="")
+
+
+@pytest.mark.parametrize("code, stdout, delivery", [
+    (0, "sent id=e1\nlast_event=delivered\ndelivery=verified\n", "verified"),
+    (0, "sent id=e1\ndelivery=unverified reason=restricted_api_key\n", "unverified"),
+    (0, "sent id=e1\n", "unverified"),  # exit 0 without a verdict proves nothing more than "sent"
+    (4, "sent id=e1\nlast_event=bounced\n", "failed"),
+    (2, "", "failed"),
+])
+def test_alert_delivery_is_verified_unverified_or_failed(code, stdout, delivery):
+    assert send_alert("x", run=email_sh(code, stdout)) == delivery
+
+
+def test_send_only_key_reports_sent_unverified_and_keeps_the_exit(monkeypatch, capsys):
+    """Ticket #147: the restricted key is a configuration warning, not a lost alert."""
+    import scripts.heartbeat as hb
+    monkeypatch.setattr(hb, "trading_day_from_alpaca", lambda today: True)
+    monkeypatch.setattr(hb, "commit_subjects_since", lambda since: [])
+    monkeypatch.setattr(hb, "runs_today", lambda repo, today: [])
+    for code, stdout, expect_exit, expect_delivery in [
+            (0, "delivery=unverified reason=restricted_api_key\n", EXIT_ISSUES, "unverified"),
+            (0, "delivery=verified\n", EXIT_ISSUES, "verified"),
+            (4, "", EXIT_ALERT_FAILED, "failed")]:
+        monkeypatch.setattr(hb, "send_alert", lambda body, c=code, o=stdout: hb.alert_delivery.send(
+            body, run=email_sh(c, o)))
+        monkeypatch.setattr("sys.argv", ["heartbeat.py", "--date", "2026-09-28"])
+        assert hb.main() == expect_exit
+        out = capsys.readouterr().out
+        report = json.loads(out)
+        assert report["alert_delivery"] == expect_delivery
+        assert report["alert_delivered"] is (expect_delivery != "failed")
