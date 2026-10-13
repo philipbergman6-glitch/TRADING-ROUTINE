@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from risk_engine.blotter import (build_blotter, cooldown_symbols, parse_fills,
+from risk_engine.blotter import (build_blotter, cooldown_symbols, parse_fills, sector_bans,
                                  sector_failure_streaks, sessions_between)
 from scripts import blotter as cli
 
@@ -94,6 +94,81 @@ def test_sector_streaks_reset_on_a_winner_and_require_every_sector():
         sector_failure_streaks(two, {"NVDA": "IT"})
 
 
+TECH = {"NVDA": "IT", "MSFT": "IT", "AMD": "IT", "XOM": "Energy"}
+
+
+def trips(*legs):
+    """(symbol, buy price, sell price, exit day) -> one-share round trips, in order."""
+    rows = []
+    for i, (sym, buy, sell, day) in enumerate(legs):
+        rows += [fill(2 * i, f"{day}T13:30:00Z", sym, "buy", 1, buy),
+                 fill(2 * i + 1, f"{day}T19:00:00Z", sym, "sell", 1, sell)]
+    return build_blotter(parse_fills(rows))
+
+
+def test_two_consecutive_losses_ban_the_sector_for_20_sessions():
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("MSFT", 100, 95, "2026-06-09"))
+    bans = sector_bans(b, TECH, date(2026, 6, 10))
+    # 20 weekdays after Tue 2026-06-09 is Tue 2026-07-07.
+    assert (bans["IT"].streak, bans["IT"].banned, bans["IT"].lifts_on) == (2, True, date(2026, 7, 7))
+    assert sector_bans(b, TECH, date(2026, 7, 6))["IT"].banned is True      # 19 sessions
+    lifted = sector_bans(b, TECH, date(2026, 7, 7))["IT"]                    # 20 sessions
+    assert (lifted.streak, lifted.banned, lifted.lifts_on) == (2, False, date(2026, 7, 7))
+
+
+def test_a_win_between_losses_means_no_ban():
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("AMD", 100, 110, "2026-06-04"),
+              ("MSFT", 100, 95, "2026-06-09"))
+    it = sector_bans(b, TECH, date(2026, 6, 10))["IT"]
+    assert (it.streak, it.banned, it.lifts_on) == (1, False, None)
+
+
+def test_a_third_loss_restarts_the_window_from_the_latest_loss():
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("MSFT", 100, 95, "2026-06-09"),
+              ("AMD", 100, 97, "2026-07-08"))
+    it = sector_bans(b, TECH, date(2026, 7, 9))["IT"]
+    assert (it.streak, it.banned, it.lifts_on) == (3, True, date(2026, 8, 5))
+
+
+def test_every_recorded_sector_is_reported_and_other_sectors_are_untouched():
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("MSFT", 100, 95, "2026-06-09"))
+    bans = sector_bans(b, TECH, date(2026, 6, 10))
+    assert set(bans) == {"IT", "Energy"}
+    assert (bans["Energy"].streak, bans["Energy"].banned, bans["Energy"].lifts_on) == (0, False, None)
+
+
+def test_an_exit_dated_after_today_keeps_the_ban():
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("MSFT", 100, 95, "2026-06-09"))
+    assert sector_bans(b, TECH, date(2026, 6, 8))["IT"].banned is True
+
+
+def test_unmapped_symbol_is_an_error_for_the_ban_too():
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("MSFT", 100, 95, "2026-06-09"))
+    with pytest.raises(ValueError, match="no sector recorded for MSFT"):
+        sector_bans(b, {"NVDA": "IT"}, date(2026, 6, 10))
+
+
+def test_sector_streaks_report_is_json_ready():
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("MSFT", 100, 95, "2026-06-09"))
+    assert cli.sector_streaks_report(b, TECH, date(2026, 6, 10)) == {
+        "Energy": {"streak": 0, "banned": False, "lifts_on": None},
+        "IT": {"streak": 2, "banned": True, "lifts_on": "2026-07-07"},
+    }
+
+
+def test_sectors_file_missing_or_empty_is_an_error(tmp_path):
+    with pytest.raises(ValueError, match="not found"):
+        cli.load_sectors(tmp_path / "SECTORS.json")
+    empty = tmp_path / "empty.json"
+    empty.write_text(json.dumps({"_note": "x"}))
+    with pytest.raises(ValueError, match="no sectors"):
+        cli.load_sectors(empty)
+    bad = tmp_path / "bad.json"
+    bad.write_text(json.dumps({"AMD": ""}))
+    with pytest.raises(ValueError, match="AMD"):
+        cli.load_sectors(bad)
+
+
 def test_fetch_pages_by_last_id_until_short_page():
     pages = {"": [fill(i, "2026-05-01T14:00:00Z", "AMD", "buy", 1, "1") for i in range(100)],
              "99": [fill(100, "2026-05-01T15:00:00Z", "AMD", "buy", 1, "1")]}
@@ -123,3 +198,17 @@ def test_json_and_markdown_render(tmp_path):
     sectors = tmp_path / "SECTORS.json"
     sectors.write_text(json.dumps({"_note": "x", "amd": "IT"}))
     assert cli.load_sectors(sectors) == {"AMD": "IT"}
+
+
+def test_sector_streaks_cli_prints_the_report_and_exits_4_without_sectors(monkeypatch, capsys, tmp_path):
+    b = trips(("NVDA", 100, 90, "2026-06-03"), ("MSFT", 100, 95, "2026-06-09"))
+    real_load = cli.load_sectors
+    monkeypatch.setattr(cli, "blotter_from_broker", lambda **_: b)
+    monkeypatch.setattr(cli, "load_sectors", lambda: TECH)
+    monkeypatch.setattr("sys.argv", ["blotter.py", "--sector-streaks"])
+    assert cli.main() == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["IT"]["streak"] == 2 and out["IT"]["lifts_on"] == "2026-07-07"
+    monkeypatch.setattr(cli, "load_sectors", lambda: real_load(tmp_path / "missing.json"))
+    assert cli.main() == 4
+    assert "not found" in capsys.readouterr().err

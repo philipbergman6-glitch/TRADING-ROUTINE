@@ -5,10 +5,13 @@
     python3 scripts/blotter.py --markdown        # table for the trade log / reviews
     python3 scripts/blotter.py --cooldown        # symbols inside the active version's re-entry cooldown
     python3 scripts/blotter.py --check           # open lots must equal broker positions (exit 4 otherwise)
+    python3 scripts/blotter.py --sector-streaks  # rule 10: {sector: {streak, banned, lifts_on}}
 
 Fills are the record; markdown is the narrative. Sector per symbol comes from
-memory/SECTORS.json (rule 10 needs it; a missing sector is an error with
---sector-streaks, never a guess). Engineering test fills are excluded with
+memory/SECTORS.json (rule 10 needs it; a missing file or a traded symbol
+without a sector is an error with --sector-streaks, never a guess).
+--sector-streaks reports every recorded sector; `banned` is true until
+`lifts_on`, 20 weekday sessions after the latest loss of a 2+ loss streak. Engineering test fills are excluded with
 --exclude-symbol, and that exclusion is printed so it cannot be silent.
 
 Exit codes: 0 ok · 2 usage · 4 broker state unavailable or reconciliation failed
@@ -26,7 +29,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine.blotter import (  # noqa: E402
-    Blotter, build_blotter, cooldown_symbols, parse_fills, sector_failure_streaks,
+    Blotter, build_blotter, cooldown_symbols, parse_fills, sector_bans,
 )
 from risk_engine import params_from_env  # noqa: E402
 from scripts.validate_order import EXIT_NO_STATE, adapter  # noqa: E402
@@ -54,12 +57,23 @@ def fetch_fills(read=adapter, after: str | None = None) -> list[dict]:
 
 
 def load_sectors(path: Path = SECTORS_FILE) -> dict[str, str]:
+    """Symbol -> sector. Rule 10 cannot be computed without it, so a missing,
+    empty or malformed file is an error, not an empty mapping."""
     if not path.exists():
-        return {}
+        raise ValueError(f"{path} not found; rule 10 needs a sector per traded symbol")
     data = json.loads(path.read_text())
     if not isinstance(data, dict):
         raise ValueError(f"{path} must be a JSON object")
-    return {k.upper(): str(v) for k, v in data.items() if not k.startswith("_")}
+    sectors = {}
+    for symbol, sector in data.items():
+        if symbol.startswith("_"):
+            continue
+        if not isinstance(sector, str) or not sector.strip():
+            raise ValueError(f"{path}: {symbol} has no sector")
+        sectors[symbol.upper()] = sector.strip()
+    if not sectors:
+        raise ValueError(f"{path} records no sectors")
+    return sectors
 
 
 def blotter_from_broker(read=adapter, exclude: frozenset[str] = frozenset(), after=None) -> Blotter:
@@ -95,6 +109,12 @@ def to_markdown(blotter: Blotter) -> str:
     return "\n".join(lines)
 
 
+def sector_streaks_report(blotter: Blotter, sectors: dict[str, str], today: date) -> dict:
+    return {sector: {"streak": ban.streak, "banned": ban.banned,
+                     "lifts_on": ban.lifts_on.isoformat() if ban.lifts_on else None}
+            for sector, ban in sector_bans(blotter, sectors, today).items()}
+
+
 def check_positions(blotter: Blotter, positions: list) -> list[str]:
     """Open lots from fills must equal the broker's positions, quantity for quantity."""
     issues = []
@@ -112,7 +132,7 @@ def main() -> int:
     mode.add_argument("--json", action="store_true")
     mode.add_argument("--markdown", action="store_true")
     mode.add_argument("--cooldown", action="store_true", help="print symbols in re-entry cooldown, one per line")
-    mode.add_argument("--sector-streaks", action="store_true", help="consecutive closed losers per sector (rule 10)")
+    mode.add_argument("--sector-streaks", action="store_true", help="rule 10 per sector: streak, banned, lifts_on")
     mode.add_argument("--check", action="store_true", help="reconcile open lots against broker positions")
     parser.add_argument("--exclude-symbol", action="append", default=[], help="engineering test symbol to exclude")
     parser.add_argument("--after", help="only fills after this UTC time (YYYY-MM-DDTHH:MM:SSZ)")
@@ -132,7 +152,8 @@ def main() -> int:
             for symbol in sorted(cooldown_symbols(blotter, today, params.reentry_cooldown_sessions)):
                 print(symbol)
         elif args.sector_streaks:
-            print(json.dumps(sector_failure_streaks(blotter, load_sectors()), indent=2, sort_keys=True))
+            today = datetime.now(timezone.utc).date()
+            print(json.dumps(sector_streaks_report(blotter, load_sectors(), today), indent=2, sort_keys=True))
         else:
             issues = check_positions(blotter, adapter("positions"))
             print(json.dumps({"ok": not issues, "issues": issues, "open_lots": to_json(blotter)["open_lots"]}, indent=2))
