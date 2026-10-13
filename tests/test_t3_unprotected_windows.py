@@ -461,3 +461,101 @@ def test_no_hand_written_stop_replacement(path: Path) -> None:
     verbs = _first_mutating_block(path.read_text(), ("cancel", "order", "close"))
     for first, second in zip(verbs, verbs[1:]):
         assert (first, second) != ("cancel", "order"), f"{path.name}: use scripts/replace_stop.py"
+
+
+# --- coordinator exits 10/11/12 (ADR 0010, #144) ------------------------------
+
+ROUTINE_FILES = sorted([*(REPO / "routines").glob("*.md"), *(REPO / ".claude" / "commands").glob("*.md")])
+HELPERS = ("submit_entry", "close_position", "replace_stop")
+STORE_SCRIPTS = (*HELPERS, "validate_order", "protection_monitor", "coordinator")
+_HELPER_INVOCATION = re.compile(r"python3 scripts/(?:" + "|".join(HELPERS) + r")\.py")
+_HELPER_CALL = re.compile(r"(\w+)_JSON=\$\((?:TRADING_STATE_STORE=local )?python3 scripts/(?:"
+                          + "|".join(HELPERS) + r")\.py[^\n]*\); (\w+)_EXIT=\$\?")
+# A legend ends at the next validator/helper call or the next step.
+_LEGEND_END = re.compile(r"python3 scripts/(?:" + "|".join((*HELPERS, "validate_order")) + r")\.py"
+                         r"|\n(?:LAST )?STEP |\n\d+\. ")
+COORDINATOR_LEGEND = ("10 store unavailable", "11 lease wait exhausted",
+                      "12 acted, outcome NOT recorded", "do NOT rerun")
+
+
+def _flat(text: str) -> str:
+    return " ".join(text.split())
+
+
+def _after(text: str, start: int) -> str:
+    """The text from `start` to where the instruction's legend ends."""
+    end = _LEGEND_END.search(text, start)
+    return _flat(text[start:end.start() if end else len(text)])
+
+
+def _helper_calls(path: Path) -> list[re.Match[str]]:
+    return list(_HELPER_CALL.finditer(path.read_text()))
+
+
+def test_every_mutating_workflow_is_checked() -> None:
+    """The legend checks below find their files by the helper calls in them."""
+    found = {str(p.relative_to(REPO)) for p in ROUTINE_FILES if _helper_calls(p)}
+    assert found == {"routines/market-open.md", "routines/midday.md", ".claude/commands/market-open.md",
+                     ".claude/commands/midday.md", ".claude/commands/trade.md"}
+
+
+@pytest.mark.parametrize("path", ROUTINE_FILES, ids=lambda p: str(p.relative_to(REPO)))
+def test_every_helper_call_is_captured_and_has_a_coordinator_legend(path: Path) -> None:
+    """submit_entry / close_position / replace_stop exit 10, 11 and 12 under the
+    coordinator; a call whose legend misses them leaves the agent guessing."""
+    text = path.read_text()
+    calls = _helper_calls(path)
+    assert len(calls) == len(_HELPER_INVOCATION.findall(text)), (
+        f"{path.name}: every helper call is captured as X_JSON=$(...); X_EXIT=$?")
+    for call in calls:
+        assert call.group(1) == call.group(2), call.group(0)
+        legend = _after(text, call.end())
+        assert f"{call.group(2)}_EXIT" in legend, f"{path.name}: {call.group(0)} has no legend"
+        for phrase in COORDINATOR_LEGEND:
+            assert phrase in legend, f"{path.name}: {call.group(2)}_EXIT legend lacks {phrase!r}"
+
+
+@pytest.mark.parametrize("path", [p for p in ROUTINE_FILES if _helper_calls(p)],
+                         ids=lambda p: str(p.relative_to(REPO)))
+def test_mutating_workflow_explains_coordinator_exits(path: Path) -> None:
+    text = path.read_text()
+    assert "## Coordinator exits (ADR 0010)" in text
+    block = _flat(text.split("## Coordinator exits (ADR 0010)", 1)[1].split("\n## ", 1)[0])
+    for code in ("- 10 ", "- 11 ", "- 12 "):
+        assert code in block, f"{path.name}: coordinator block lacks exit {code.strip('- ')}"
+    # The one storeless mutation (ADR 0004 section 1) is not an exit 10.
+    assert "restoring a stop on a held position" in block
+    assert "Do NOT rerun" in block and "no further broker mutation" in block
+    if "trade.md" not in path.name:  # /trade writes no run record
+        assert "--intent" in block and "unfinished intent" in block
+
+
+@pytest.mark.parametrize("path", ROUTINE_FILES, ids=lambda p: str(p.relative_to(REPO)))
+def test_buy_validation_handles_store_unavailable(path: Path) -> None:
+    """validate_order exits 10 on a buy when the store's reservations are unknown."""
+    text = path.read_text()
+    for call in re.finditer(r"python3 scripts/validate_order\.py[^)]*--side buy[^)]*\)", text):
+        legend = _after(text, call.end()).lower()
+        assert re.search(r"exit 10\b[^.]*state store", legend), f"{path.name}: buy validate lacks exit 10"
+
+
+@pytest.mark.parametrize("path", ROUTINE_FILES, ids=lambda p: str(p.relative_to(REPO)))
+def test_protection_monitor_exit_10_is_handled(path: Path) -> None:
+    text = path.read_text()
+    for call in re.finditer(r"python3 scripts/protection_monitor\.py[^\n]*", text):
+        legend = _after(text, call.end())
+        assert "Exit 10" in legend and "state store" in legend.lower(), f"{path.name}: monitor exit 10"
+        assert "Any other exit" in legend, f"{path.name}: monitor exits beyond the legend must STOP"
+
+
+@pytest.mark.parametrize("path", ROUTINE_FILES, ids=lambda p: str(p.relative_to(REPO)))
+def test_local_commands_use_the_dedicated_store_clone(path: Path) -> None:
+    """ADR 0004 section 3: local runs write state through the dedicated clone,
+    never through the development checkout's origin. Each Bash call is a fresh
+    shell, so the prefix sits on every call; cloud routines use their checkout."""
+    text = path.read_text()
+    local = ".claude" in path.parts
+    prefix = "TRADING_STATE_STORE=local "
+    for call in re.finditer(r"python3 scripts/(?:" + "|".join(STORE_SCRIPTS) + r")\.py", text):
+        prefixed = text[max(0, call.start() - len(prefix)):call.start()] == prefix
+        assert prefixed == local, f"{path.relative_to(REPO)}: {text[call.start() - 30:call.end()]!r}"

@@ -311,3 +311,23 @@ def test_the_monitor_workflow_starts_and_finishes_a_run_record():
     assert 'run_record.py finish --monitor-report' in text
     assert text.index("run_record.py start") < text.index("scripts/protection_monitor.py") \
         < text.index("run_record.py finish")
+
+
+READ_ONLY = ("pre-market", "daily-summary", "weekly-review")
+
+
+@pytest.mark.parametrize("routine, trigger, path", [c for c in COPIES if c[0] in READ_ONLY])
+def test_read_only_routines_report_unfinished_intents_in_their_run_record(routine, trigger, path):
+    """ADR 0010 section 5: read-only routines never take the lease or recover;
+    they pass non-terminal intents, stale leases and takeovers to finish."""
+    text = " ".join((REPO / path).read_text(encoding="utf-8").replace("\\\n", " ").split())
+    prefix = "TRADING_STATE_STORE=local " if trigger == "local" else ""
+    status = f"STATUS_JSON=$({prefix}python3 scripts/coordinator.py status); STATUS_EXIT=$?"
+    assert status in text
+    assert text.index(status) < text.rindex("scripts/run_record.py")
+    step = text[text.index(status):]
+    for incident in ('"unfinished intent <intent>', '"lease takeover <lease>', '"stale lease <lease>',
+                     '"state store unavailable: <reason>"', "Any other exit"):
+        assert incident in step, f"{path}: lacks {incident}"
+    assert "coordinator.py recover" not in text
+    assert "every STEP 2b incident" in text[text.rindex("LAST STEP"):]
