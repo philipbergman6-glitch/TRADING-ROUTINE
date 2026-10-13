@@ -48,6 +48,13 @@ def require(condition, message):
 REPLACE_PREFIX = "rs-"   # replacement of a canceled stop: client_order_id = rs-<old broker id>
 RESTORE_PREFIX = "rr-"   # re-placement of the canceled stop's exact level after a failed replacement
 RECENT_CANCEL_WINDOW = timedelta(minutes=15)
+# A buy's quote age is measured on the host clock against the broker's stamp.
+# A fresh quote on a busy symbol is stamped within milliseconds of the broker's
+# time, so a host clock even 0.1 s behind gives it a negative age (#155). Ages
+# down to -QUOTE_CLOCK_SKEW are fresh; anything further ahead means a wrong
+# clock and refuses.
+QUOTE_MAX_AGE = timedelta(seconds=60)
+QUOTE_CLOCK_SKEW = timedelta(seconds=5)
 _STOP_TYPES = ("stop", "trailing_stop")
 
 
@@ -207,8 +214,12 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
             payload = read("quote", symbol)
             quote = payload.get("quote", {}) if isinstance(payload, dict) else {}
             stamped = datetime.fromisoformat(str(quote.get("t", "")).replace("Z", "+00:00"))
-            require(stamped.tzinfo is not None and 0 <= ((now or datetime.now(timezone.utc)) - stamped).total_seconds() <= 60,
-                    "quote must be no more than 60 seconds old")
+            require(stamped.tzinfo is not None, "quote timestamp has no timezone")
+            age = (now or datetime.now(timezone.utc)) - stamped
+            require(age >= -QUOTE_CLOCK_SKEW,
+                    f"quote stamped {-age.total_seconds():.3f}s ahead of the host clock "
+                    f"(allowed skew {QUOTE_CLOCK_SKEW.total_seconds():.0f}s); check the host clock")
+            require(age <= QUOTE_MAX_AGE, "quote must be no more than 60 seconds old")
             price = to_money(quote.get("ap"), "ask")
             proposal = OrderProposal(symbol=symbol, qty=body.get("qty"), side=side,
                                      price=price, stop_price=stop["stop_price"],

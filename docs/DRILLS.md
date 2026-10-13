@@ -28,7 +28,7 @@ state that counts as a pass, the evidence that proves it, and where it runs:
 4. Alerts: the drill key file holds no email credentials, so set
    `EMAIL_FALLBACK_FILE` to a scratch file; `email.sh` would otherwise append
    undelivered alerts to `DAILY-SUMMARY.md`.
-5. Tiny size only: 1 share of a broad ETF (SPY; SCHB while #155 is open).
+5. Tiny size only: 1 share of a broad ETF (SPY).
    A broad ETF with no single name held needs a waiver, so every entry carries
    `--composition-waiver "engineering drill #112 on the drill account; not a trade"`
    (rule 14). Rule 8 allows 3 new trades a week on the drill account too.
@@ -67,7 +67,7 @@ otherwise every helper in the checkout writes as the session's run id.
 | 5 | Partial fill | CI: a buy that fills 4 of 10, then is canceled. | Only the unfilled part stays reserved while live; once dead with a fill, the intent is `filled` and counts as a trade this week. | Store intent states; `trades_this_week`. | CI stub (1 share cannot partly fill; paper partial fills are not inducible) |
 | 6 | Missing history | The closed-orders read behind rule 8 fails, or returns the 500-row page cap. | Buy refused with exit 4 (`could not establish broker state`); nothing POSTed. | Helper exit code; broker order list unchanged. | CI stub (needs a broker outage) |
 | 7 | Unavailable store | `TRADING_STATE_REPO` → a checkout whose `origin` is unreachable. | Buys, closes and replacements refused with exit 10 (`store_unavailable`), nothing sent. Restoring a stop on a held position with none still goes through and alerts `STORE UNAVAILABLE` (ADR 0004 section 1). | Helper JSON (`store_error`, `alerts`, `store_exception`); broker order list. | both |
-| 8 | Stale quote | Submit an entry before the open, when the latest SPY quote is minutes old. | Refused by the mutation gate (`quote must be no more than 60 seconds old`), exit 3, refusal recorded; nothing POSTed. | Helper JSON; store: intent `refused`; broker order list empty. | both |
+| 8 | Stale quote | Submit an entry before the open, when the latest SPY quote is minutes old. After the open, submit a fresh one. | Refused by the mutation gate (`quote must be no more than 60 seconds old`), exit 3, refusal recorded; nothing POSTed. A fresh quote passes on a host clock up to 5 s behind the broker's (`QUOTE_CLOCK_SKEW`, #155). | Helper JSON; store: intent `refused`; broker order list empty. | both |
 | 9 | Missed monitor | CI: a day whose live protection checks leave a gap over 90 min. Live: replay real missed days through the real judge (`heartbeat.py --date 2026-10-07 --no-email` before the run-name stamp, `--date 2026-10-12` after it), with no dispatcher; `--date 2026-09-29` holds an unstamped dispatch. | Heartbeat exit 5 naming the stale windows of the session, from every live monitor run of the day; a run it cannot judge live or dry is exit 4 with JSON, not a traceback. | Heartbeat JSON `protection_check.checks` and `.breaches`. | both |
 | 10 | Failed alert delivery | CI: `email.sh` refuses or hangs. Live: the heartbeat of a missed day with an invalid Resend key; coordinator alerts with no email credentials. | Heartbeat exit 9 (missed AND undeliverable); coordinator JSON `alerts_delivered: false`. | Heartbeat JSON `alert_delivery: failed`; helper JSON. | both |
 | 11 | Version mismatch | `STRATEGY_VERSION=v2` while `docs/rulebook-pins.json` approves v1.3. | Entry refused `version_binding_refused`, exit 3; nothing POSTed. Restoration of a naked stop still proceeds under the approved version and raises VERSION BINDING INCIDENT. | Helper JSON; broker order list. | both |
@@ -90,7 +90,7 @@ waits, takes over after expiry + skew and recovers the dead intent
 | 5 | `tests/test_coordinator.py::test_partial_fill_reserves_only_the_unfilled_part_then_counts_as_filled_once_dead`, `tests/test_coordinated_helpers.py::test_a_buy_partly_filled_then_canceled_counts_as_a_trade_this_week` |
 | 6 | `tests/test_drills.py::test_drill_missing_history_refuses_the_buy_with_exit_4` |
 | 7 | `tests/test_coordinator.py::test_store_unreachable_refuses_the_mutation`, `tests/test_coordinator.py::test_store_unreachable_still_lets_a_stop_go_on_a_position_with_none`, `tests/test_coordinated_helpers.py::test_replace_stop_without_the_store_refuses_and_leaves_the_old_stop`, `tests/test_coordinated_helpers.py::test_replace_stop_without_the_store_still_restores_a_naked_position`, `tests/test_coordinated_helpers.py::test_validate_order_refuses_buys_when_the_store_is_unreachable` |
-| 8 | `tests/test_mutation_validation.py::test_stale_future_or_naive_quote_refuses` |
+| 8 | `tests/test_mutation_validation.py::test_stale_future_or_naive_quote_refuses`, `tests/test_mutation_validation.py::test_fresh_quote_passes_within_the_clock_skew` |
 | 9 | `tests/test_heartbeat.py::test_two_afternoon_checks_breach_the_level_and_name_the_windows`, `tests/test_protection_sla.py::test_observed_2026_10_07_first_check_at_19_15z_breaches_from_15_00z`, `tests/test_heartbeat.py::test_recorded_2026_10_12_counts_the_one_live_run_after_the_close`, `tests/test_heartbeat.py::test_recorded_2026_10_07_scheduled_pre_stamp_runs_breach_until_19_15z`, `tests/test_heartbeat.py::test_an_unjudgeable_run_is_a_json_exit_4_not_a_traceback` |
 | 10 | `tests/test_heartbeat.py::test_alert_failure_fails_the_job_even_when_only_issues_exist`, `tests/test_protection_monitor.py::test_alert_delivery_failure_fails_an_otherwise_clean_run`, `tests/test_drills.py::test_drill_an_undelivered_coordinator_alert_is_reported_not_swallowed` |
 | 11 | `tests/test_submit_entry.py::test_unbound_runner_never_submits_an_entry`, `tests/test_replace_stop.py::test_unbound_rerun_after_cancel_restores_protection_under_the_approved_version`, `tests/test_coordinator.py::test_recovery_restores_even_when_unbound_and_raises_the_version_incident` |
@@ -123,16 +123,55 @@ negative. SPY results stay recorded as red under drill 8.
 | 3 | Crash after cancel | green | `cancelcrash` 13:34:28: exit 97 right after canceling `c00c7554`; `rs-c00c7554…` `recorded`; position naked. `recover-early` 13:34:41: `lease_held`, nothing done. `recover` 13:46:35 (lease stale at 13:46:29): took over, placed `rr-c00c7554…` (`57a42e08`, stop 26.87), intent `dead (restored)`, exit 0. Naked for 12 min, the bound ADR 0010 states. |
 | 4 | Lost POST response | green | `takeover` 13:59:39 with `lose_response`: `http_status: "000"`, the same `cl-20261013-SCHB` re-POSTed and adopted; one sell `32220cac`, filled 29.86; intent `complete`. The helper does not log the re-POST's 422; it is inferred from the path (no `coordinator_notes`, one order). |
 | 7 | Unavailable store | green | `store2` 13:34: SCHB entry, exit 10 `store_unavailable`, nothing sent. `storerestore` 13:47:08: after `rr-…` was canceled directly with `alpaca.sh cancel`, `replace_stop.py` with the store unreachable placed `rs-57a42e08…` (`8ac6c56e`, stop 26.87) with `store_exception` and alert `STORE UNAVAILABLE`; exit 0. (`store`, 13:28, pre-open: refused exit 3 by the stale-quote gate before the store check.) |
-| 8 | Stale quote | red | #155. `drill-stale-quote` 13:27:46, pre-open: quote stamped 13:19:58, exit 3 `quote must be no more than 60 seconds old`, `refused` recorded, no order (correct). After the open, fresh SPY quotes were refused the same way (`writer-a`/`writer-b` 13:30:29; 12 of 15 samples had a negative age; host clock 0.11 s behind per `sntp`). |
-| 9 | Missed monitor | green | Rerun alone after #156, run record `drill-20261013T141214Z-ea6d1d` on `drill-state` (code `a6e4794`), 14:12Z. `--date 2026-10-07`: exit 5, checks 19:15:28Z and 23:41:37Z (scheduled, pre-stamp: live), `stale 345 min of the 390-min session … 13:30-19:15Z (345 min)`. `--date 2026-10-12`: exit 5, the live run 21:38:36Z counted and the 15:14Z dry run not, `stale 390 min … 13:30-20:00Z (390 min)`. `--date 2026-09-29`: exit 4, JSON `unknown display_title 'protection-monitor'` (an unstamped dispatch, which defaulted to dry). First red (session above): runs were matched by `name`, which GitHub sets to the run-name, so every day read `0 run(s) seen`; 2026-10-07 was a traceback. |
+| 8 | Stale quote | green | Stale: `drill-stale-quote` 13:27:46, pre-open: quote stamped 13:19:58, exit 3 `quote must be no more than 60 seconds old`, `refused` recorded, no order. Fresh (red in this session: SPY refused at `writer-a`/`writer-b` 13:30:29, 12 of 15 samples with a negative age, host 0.11 s behind per `sntp`; #155) rerun after the fix, see the rerun below. |
+| 9 | Missed monitor | green | Red in this session (#156): runs were matched by `name`, which GitHub sets to the run-name, so `heartbeat.py --date 2026-10-12 --no-email` read `0 run(s) seen` although a live run (21:38Z) and a dry run (15:14Z) exist, and every day read as missed; `--date 2026-10-07` was a traceback, not exit 4. Rerun after the fix, see the rerun below. |
 | 10 | Failed alert delivery | green | Heartbeat for 2026-10-12 with an invalid Resend key: exit 9, `alert_delivery: failed` (Resend 401; nothing sent). Coordinator: `storerestore`'s alert with no email credentials, `alerts_delivered: false`, text in the fallback file. |
 | 11 | Version mismatch | green | `version` 13:28:53, `STRATEGY_VERSION=v2`: exit 3 `version_binding_refused` (`approved v1.3`), `refused` recorded on `en-20261013-SPY-2`, no order. |
+
+### Rerun 2026-10-13: drill 8 (#155)
+
+Drill 8 only, after the #155 fix (quote ages down to −5 s count as fresh),
+from the fix branch. Run record `drill-20261013T140936Z-4a2ddb` on
+`drill-state`. Host clock 0.113 s behind (`sntp time.apple.com`); 3 of 10 SPY
+quote ages read at 14:09 were still negative.
+
+- `fresh` 14:10:00: `submit_entry.py --symbol SPY --qty 1 --price 777.48`
+  passed the gate. `en-20261013-SPY-5` (`2cfe1098`) filled at 777.31, OTO stop
+  leg 699.73; exit 0. **Green.**
+- `close` 14:10: `close_position.py --symbol SPY` canceled the leg and sold
+  `cl-20261013-SPY` (filled 777.32); the first run returned before the fill
+  (`acknowledged`), the rerun with `--intent` settled it `close_complete`.
+- The stale side keeps the 60 s bound unchanged, so the 13:27:46 refusal above
+  stands; CI: `tests/test_mutation_validation.py::test_stale_future_or_naive_quote_refuses`
+  and `::test_fresh_quote_passes_within_the_clock_skew`.
+- End state: no position, no open order, `drill-state` no holder and nothing
+  unfinished.
+
+### Rerun 2026-10-13: drill 9 (#156)
+
+Drill 9 only, after the #156 fix (runs matched by workflow path; a scheduled
+run from before the run-name stamp is live, any other unknown title exit 4),
+from the fix branch at `a6e4794`. Run record `drill-20261013T141214Z-ea6d1d`
+on `drill-state`, 14:12Z, read-only (Alpaca calendar, GitHub run list).
+
+- `--date 2026-10-07`: exit 5; checks 19:15:28Z and 23:41:37Z (scheduled,
+  pre-stamp); `stale 345 min of the 390-min session, over the 90-min level:
+  13:30-19:15Z (345 min)`, as research 0008 observed. **Green.**
+- `--date 2026-10-12`: exit 5; the live run 21:38:36Z counted, the 15:14Z dry
+  run not; `stale 390 min … 13:30-20:00Z (390 min)`. **Green.**
+- `--date 2026-09-29`: exit 4, JSON `unknown display_title
+  'protection-monitor'`: an unstamped dispatch, whose mode the run list
+  cannot show. **Green.**
+- The first attempt in the run refused with exit 4 (`ALPACA_ENDPOINT is not
+  the paper endpoint`): the drill profile sets no endpoint. Session setup above
+  now exports the paper URL.
+- End state: no position, no open order; run finished `no-trade`.
 
 ### Findings
 
 - **#155** (drill 8) and **#156** (drill 9) are the two red drills, filed on
-  map #93 with their evidence. Nothing was patched around them. #156 is fixed
-  and drill 9 was rerun green on its own; the freeze still needs the full
+  map #93 with their evidence. Nothing was patched around them. Both are
+  fixed and green on their reruns (above); the freeze still needs the full
   rerun (#158).
 - **Fixed before the session, in this change:** every profile shared `main`'s
   state store, so a drill would have taken production's lease and its entry
