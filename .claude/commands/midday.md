@@ -176,17 +176,17 @@ stop, not a fresh trail — a fresh trail would restart its high-water mark and
 drop the stop. STEP 2b holds it fixed until a 10% trail would sit at/above it.
 A held or renewed fixed stop is permitted protection (rule 4, v1.2), not a fault.
 
-Gate with the stop-change validator, NOT validate_order: validate_order judges
-a new entry (9.5–10.5% band, 3% minimum against current price) and refuses a
-valid renewal. Rule 7 (v1.2): renewing at the current level or higher is never
-a violation. S = the expiring order's stop_price:
-python3 scripts/validate_stop_change.py --current-stop S --new-stop RENEW_STOP_PRICE --current-price P --json
-- Exit 0 → renew (below).
+Gate with the stop-change validator in renewal mode, NOT validate_order:
+validate_order judges a new entry (9.5–10.5% band, 3% minimum against current
+price) and refuses a valid renewal. Rule 7 (v1.2): renewing at the current
+level is never a violation, even inside 3% of price. S = the expiring order's stop_price:
+python3 scripts/validate_stop_change.py --current-stop S --new-stop RENEW_STOP_PRICE --current-price P --renewal --json
+- Exit 0 → renew (below), also when price sits within 3% of S.
 - Exit 3 with `stop_never_lowered` → RENEW_STOP_PRICE is wrong; do NOT renew,
   email "RENEWAL REFUSED SYM", log.
-- Exit 3 with only `stop_distance` → standing stop inside 3%. The mutation gate
-  still refuses this renewal (#137), so do NOT run replace_stop and do NOT
-  hand-place: email "RENEWAL BLOCKED SYM @ S expires <expires_at> (#137)", log.
+- Exit 3 with `stop_distance` → RENEW_STOP_PRICE is above S rounded up to the
+  cent (a raise is a change, so the 3% minimum applies) or S is at/above price;
+  do NOT renew, email "RENEWAL REFUSED SYM", log.
 Renew:
 REPLACE_JSON=$(TRADING_STATE_STORE=local python3 scripts/replace_stop.py --order-id ORDER_ID --stop-price RENEW_STOP_PRICE); REPLACE_EXIT=$?
 # A renewal is not a ledger order (the protection monitor renews the same way, without

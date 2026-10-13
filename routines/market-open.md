@@ -342,9 +342,11 @@ headed "### $DATE — Market-Open", opening "**No trades.**" with the reason
 
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
-email.sh exits non-zero when delivery could not be verified (creds unset,
-Resend rejected, bounced); treat that as "the owner was not told": retry
-once, then note "ALERT NOT DELIVERED" in the TRADE-LOG entry.
+email.sh exits non-zero when the owner was not told (creds unset, Resend
+rejected the send, a verified bounce, or an unreadable status); treat that as
+"the owner was not told": retry once, then note "ALERT NOT DELIVERED" in the
+TRADE-LOG entry. Exit 0 with "delivery=unverified" means it was sent but the
+key cannot check delivery: not a failure, do not retry.
 
 STEP 8 — COMMIT, PUSH, VERIFY (mandatory EVERY trading day — the commit is
 the no-trade outcome record the heartbeat reads):

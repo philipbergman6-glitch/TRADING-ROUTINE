@@ -331,9 +331,11 @@ distinguishes "did not run" from "nothing to do" only by this record.
 
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
-email.sh exits non-zero when delivery could not be verified (creds unset,
-Resend rejected, bounced); treat that as "the owner was not told": retry
-once, then note "ALERT NOT DELIVERED" in the TRADE-LOG entry.
+email.sh exits non-zero when the owner was not told (creds unset, Resend
+rejected the send, a verified bounce, or an unreadable status); treat that as
+"the owner was not told": retry once, then note "ALERT NOT DELIVERED" in the
+TRADE-LOG entry. Exit 0 with "delivery=unverified" means it was sent but the
+key cannot check delivery: not a failure, do not retry.
 
 LAST STEP — RUN RECORD FINISH (ADR 0012):
 python3 scripts/run_record.py --local finish \
