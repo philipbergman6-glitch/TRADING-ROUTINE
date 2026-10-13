@@ -117,7 +117,9 @@ push 2: outcome settled from broker state + release
   after_post | before_release | after_recovery_push` kills the helper (exit 97)
   at that point; `lose_response` drops the first POST answer and lookup so a
   landed order takes the lost-response path. Drill profile
-  (`ALPACA_PROFILE=drill`) only; anywhere else it is a hard error. Local `/trade` writes through the dedicated clone with
+  (`ALPACA_PROFILE=drill`) only; anywhere else it is a hard error. The drill
+  profile coordinates on its own store branch, `drill-state`; runbook and
+  results in `docs/DRILLS.md`. Local `/trade` writes through the dedicated clone with
   `TRADING_STATE_STORE=local`.
 
 Stop replacement (trail tighten, fixed→trail conversion, expiry renewal) runs

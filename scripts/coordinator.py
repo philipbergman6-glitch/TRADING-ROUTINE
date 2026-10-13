@@ -65,7 +65,8 @@ from risk_engine import Reservation  # noqa: E402
 from risk_engine.reconciliation import reconcile_protection  # noqa: E402
 from scripts.execution_identity import walk_attempts  # noqa: E402
 from scripts.state_store import (EXIT_STORE_UNAVAILABLE, ClaimLost, CorruptState, StateStore,  # noqa: E402
-                                 StoreUnavailable, WITHDRAW_KIND, local_store, new_event, validate)
+                                 StoreUnavailable, WITHDRAW_KIND, local_store, new_event, store_branch,
+                                 validate)
 
 ROOT = Path(__file__).resolve().parent.parent
 EMAIL = Path(__file__).resolve().parent / "email.sh"
@@ -547,8 +548,10 @@ def writer_id(script: str, repo: Path = ROOT, environ=None) -> str:
 def open_store(environ=None) -> StateStore:
     """The store for this process: TRADING_STATE_STORE=local writes through the
     dedicated clone (local /trade, ADR 0004 section 3); otherwise this checkout's
-    origin. TRADING_STATE_REPO points at another checkout (tests, drills)."""
+    origin. TRADING_STATE_REPO points at another checkout (tests, drills). The
+    branch follows ALPACA_PROFILE: production is `main`, drill `drill-state`."""
     environ = os.environ if environ is None else environ
+    branch = store_branch(environ)
     repo = Path(environ.get("TRADING_STATE_REPO") or ROOT)
     mode = environ.get("TRADING_STATE_STORE", "")
     if mode not in ("", "checkout", "local"):
@@ -559,8 +562,8 @@ def open_store(environ=None) -> StateStore:
                                  text=True, timeout=30, check=True).stdout.strip()
         except (OSError, subprocess.SubprocessError) as exc:
             raise StoreUnavailable(f"no origin to clone for local mode: {exc}") from None
-        return local_store(url)
-    return StateStore(repo)
+        return local_store(url, branch=branch)
+    return StateStore(repo, branch=branch)
 
 
 class Session:
