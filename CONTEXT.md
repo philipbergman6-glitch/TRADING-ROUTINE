@@ -228,6 +228,20 @@ symbol. When a holder dies, its lease is taken over only after it expires, and
 the taker reconciles the dead holder's intents before doing anything else.
 _Avoid_: lock (a lock is held until released; a lease ends by itself), mutex
 
+**Coordinated action**:
+One pass through the coordinator under one lease: recovery first, then at most
+one new intent's validation, submission and outcome. It never spans the
+reasoning between two orders; two orders are two coordinated actions.
+_Avoid_: transaction (nothing is rolled back), session
+
+**Recovery**:
+Reconciling every unfinished intent against the broker at the start of a
+coordinated action. Its only change to the broker is restoring a protective
+stop a dead writer canceled; it never finishes a dead writer's trade, because
+that decision died with the writer and the next run decides again.
+_Avoid_: retry, resume (a resume continues the dead writer's action; recovery
+does not)
+
 **Reservation**:
 The capacity an unfinished entry intent holds against position slots, position
 size, deployment, the weekly trade count and cash, until the broker's own

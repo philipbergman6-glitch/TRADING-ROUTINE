@@ -1,13 +1,17 @@
 """Idempotent entry: a rerun looks the buy up by its stable client id instead
 of buying twice, and the outcome is always confirmed from broker state."""
 from datetime import datetime, timezone
+from decimal import Decimal
 import json
+from types import SimpleNamespace
 
 import pytest
 
 from scripts.replace_stop import EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, Outcome
 from scripts.execution_identity import MAX_RETRIES, attempt_id
+from scripts import coordinator, submit_entry as submit_entry_module
 from scripts.submit_entry import submit_entry
+from tests.store_support import fresh_stores
 
 NOW = datetime(2026, 9, 21, 15, 0, tzinfo=timezone.utc)
 
@@ -41,6 +45,20 @@ class FakeBroker:
 
 
 CID = "en-20260921-AMD"
+
+
+def approve(command, argument, reservations=()):
+    """The mutation gate, approving at a $100 ask (validation itself is tested elsewhere)."""
+    return SimpleNamespace(price=Decimal("100"), sector=None)
+
+
+@pytest.fixture(autouse=True)
+def coordinated(tmp_path, monkeypatch):
+    """Every entry runs as a coordinated action, each against its own empty
+    bare-repo store: these tests pin the broker-side identity rules. The store's
+    part is in tests/test_coordinated_helpers.py."""
+    monkeypatch.setattr(coordinator, "open_store", fresh_stores(tmp_path))
+    monkeypatch.setattr(submit_entry_module, "_validate_mutation", SimpleNamespace(validate_mutation=approve))
 AFTER_MIDNIGHT = datetime(2026, 9, 22, 0, 10, tzinfo=timezone.utc)
 
 
@@ -51,7 +69,7 @@ def body():
 
 def outcome(broker, b=None, now=NOW, **identity):
     with pytest.raises(Outcome) as info:
-        submit_entry(b or body(), read=broker.read, run=broker.run, now=now, **identity)
+        submit_entry(b or body(), read=broker.read, run=broker.run, now=now, sleep=lambda _: None, **identity)
     return info.value
 
 

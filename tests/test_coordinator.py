@@ -425,3 +425,116 @@ def test_fault_injection_is_refused_outside_the_drill_profile():
     with pytest.raises(ValueError, match="not one of"):
         co.env_fault({"COORDINATOR_FAULT": "nowhere", "ALPACA_PROFILE": "drill"})
     assert co.env_fault({})("after_record") is None
+
+
+def test_the_lose_response_drill_hook_drops_the_first_answer_and_lookup(tmp_path, origin):
+    # On the drill account a real POST lands; the hook hides the answer and the first
+    # lookup, so the lost-response path (re-POST, 422, adopt) runs against the broker.
+    store, broker, clock = writer_store(tmp_path, origin, "a"), Broker(), Clock()
+    fault = co.env_fault({"COORDINATOR_FAULT": "lose_response", "ALPACA_PROFILE": "drill"})
+    got = act(store, broker, clock, entry_body(), fault=fault)
+    assert [p["client_order_id"] for p in broker.posts] == [ENTRY, ENTRY]
+    assert got.state == "submitted" and got.detail["intent_state"] == "acknowledged"
+
+
+# --- regressions from review -------------------------------------------------------
+
+def test_a_failed_lookup_after_the_post_never_frees_the_intent_and_the_rerun_does_not_buy_again(tmp_path, origin):
+    store, broker, clock = writer_store(tmp_path, origin, "a"), Broker(), Clock()
+    real_run = broker.run
+
+    def run_then_reads_fail(command, arg):
+        result = real_run(command, arg)
+        broker.fail_reads = True                       # the adapter blips right after the POST
+        return result
+    broker.run = run_then_reads_fail
+
+    def body(s):
+        try:
+            entry_body()(s)
+        except SystemExit:
+            raise Outcome(8, "submitted_outcome_unknown_rerun", intent=ENTRY)
+    first = act(store, broker, clock, body)
+    assert first.code == 8 and fold(stored(origin)).intents[ENTRY].state in co.NON_TERMINAL
+
+    broker.run, broker.fail_reads = real_run, False
+    broker.hidden_lookups = 1                           # not yet visible to the rerun's recovery
+    clock.advance(seconds=5)
+    act(store, broker, clock, entry_body())             # the printed rerun, seconds later
+    assert len([o for o in broker.orders.values() if o["side"] == "buy"]) == 1
+    assert fold(stored(origin)).intents[ENTRY].state == "acknowledged"
+
+
+def test_a_released_recorded_intent_keeps_its_reservation_until_expiry_and_skew(tmp_path, origin):
+    store, broker, clock = writer_store(tmp_path, origin, "a"), Broker(), Clock()
+    left = hold_lease(store, broker, clock)            # recorded, then an unexpected error ...
+    left.abandon(RuntimeError("boom"))                 # ... released with the intent still recorded
+    clock.advance(seconds=5)
+    report = recover_only(store=store, writer="monitor", read=broker.read, run=broker.run, clock=clock,
+                          sleep=clock.sleep, fault=no_fault)
+    assert fold(stored(origin)).intents["en-20261013-XLK"].state == "recorded", report
+    assert [r.intent_id for r in store_reservations(store, broker.read)] == ["en-20261013-XLK"]
+
+    clock.advance(minutes=13)
+    recover_only(store=store, writer="monitor", read=broker.read, run=broker.run, clock=clock,
+                 sleep=clock.sleep, fault=no_fault)
+    assert [(e["state"], e.get("reason")) for e in intent_lines(origin, "en-20261013-XLK")][-1] == (
+        "dead", "holder_died")
+
+
+def install_reject_hook(origin):
+    hook = origin / "hooks" / "pre-receive"
+    hook.write_text("#!/bin/sh\necho 'rejected by test hook' >&2\nexit 1\n")
+    hook.chmod(0o755)
+
+
+def crashed_close(tmp_path, origin, broker, clock, held=10, stop_qty=10):
+    broker.hold("AMD", held)
+    stop = broker.stop("AMD", stop_qty, "90")
+    a = writer_store(tmp_path, origin, "dead")
+    snap = a.fetch()
+    s = Session(store=a, writer="midday", read=broker.read, run=broker.run, clock=clock, sleep=clock.sleep,
+                fault=no_fault, binding=None, snapshot=snap, view=fold(snap.events))
+    s.record("cl-20261013-AMD", action="close", symbol="AMD", cancels=[stop], refuse=refuse_with)
+    s.run("cancel", stop)
+    clock.advance(minutes=13)
+    return stop
+
+
+def test_a_store_failure_during_recovery_is_an_outcome_not_a_crash(tmp_path, origin):
+    broker, clock = Broker(), Clock()
+    crashed_close(tmp_path, origin, broker, clock)
+    install_reject_hook(origin)
+    report = recover_only(store=writer_store(tmp_path, origin, "m"), writer="monitor", read=broker.read,
+                          run=broker.run, clock=clock, sleep=clock.sleep, fault=no_fault)
+    assert report["exit"] == 8 and report["state"] == "recovery_store_unavailable_position_unprotected"
+    assert broker.posts == []                          # nothing restored without the acquire on main
+
+
+def test_a_failed_push_1_after_a_recovery_push_still_ends_in_an_outcome(tmp_path, origin):
+    broker, clock = Broker(), Clock()
+    crashed_close(tmp_path, origin, broker, clock)
+
+    def body(s):
+        install_reject_hook(origin)                    # the store goes away after push 0
+        s.record(ENTRY, action="entry", symbol="XLP", qty="1", price="80", refuse=refuse_with)
+        raise AssertionError("unreachable")
+    got = act(writer_store(tmp_path, origin, "b"), broker, clock, body)
+    # The restore POST already acted, so this is "acted, outcome not recorded", not a crash.
+    assert got.code == EXIT_NOT_RECORDED and got.detail["helper_state"] == "store_unavailable"
+    assert got.detail["outcome_recorded"] is False and "ACTED, OUTCOME NOT RECORDED" in got.detail["alerts"][-1]
+
+
+def test_a_restore_that_cannot_cover_does_not_block_every_later_action(tmp_path, origin):
+    broker, clock = Broker(), Clock()
+    crashed_close(tmp_path, origin, broker, clock, held=15, stop_qty=10)   # position grew after the stop
+    ran = []
+
+    def body(s):
+        ran.append(True)
+        raise Outcome(0, "nothing_to_do")
+    got = act(writer_store(tmp_path, origin, "b"), broker, clock, body)
+    assert ran and got.code == 8                      # still held without verified coverage
+    assert "RECOVERY COULD NOT RESTORE" in got.detail["alerts"][0]
+    assert [(e["state"], e.get("reason")) for e in intent_lines(origin, "cl-20261013-AMD")][-1] == (
+        "dead", "holder_died")

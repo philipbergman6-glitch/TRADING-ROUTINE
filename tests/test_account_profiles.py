@@ -14,6 +14,8 @@ import sys
 
 import pytest
 
+from tests.store_support import make_origin, writer_store
+
 from scripts.account_pin import check_pin, load_pin
 from scripts.heartbeat import resolve_credentials
 
@@ -68,6 +70,7 @@ def wrapper(tmp_path):
     calls = tmp_path / "calls"
     base = {"PATH": f"{tmp_path}:{Path(sys.executable).parent}:/usr/bin:/bin",
             "CALLS": str(calls), "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"],
+            "TRADING_STATE_REPO": str(writer_store(tmp_path, make_origin(tmp_path), "state").repo),
             "ACCOUNT_BY_KEY": json.dumps({"prod-key": "PAPROD000001", "drill-key": "PADRILL00001"})}
 
     def run(*argv, **env):

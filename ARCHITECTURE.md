@@ -55,8 +55,69 @@ buys require a fresh ask, no outstanding buy, a GTC OTO and compliant fixed
 protection. Bulk `cancel-all` and `close-all` are refused.
 
 This closes the old payload-versus-approval gap. It does not isolate credentials
-from the agent, serialize independent routines, reserve cross-process capacity,
-or make cancel→place atomic. Durable execution remains #19/#26.
+from the agent or make cancel→place atomic.
+
+### The coordinator (ADR 0010)
+
+Every broker mutation is one **coordinated action** behind
+`scripts/coordinator.py: coordinate(body, ...)`. The three mutation helpers
+(`submit_entry.py`, `close_position.py`, `replace_stop.py`; the monitor acts
+only through `replace_stop.py`) call it with their own logic as the body, so
+the routines' one-line call sites are unchanged.
+
+```
+fetch + replay state/events.jsonl (ADR 0004)
+        ↓   live holder → poll every 15 s, mutate nothing (bounded: expiry + skew)
+        ↓   stale holder (expires_at + 2 min) → take over with `supersedes`
+recover every non-terminal intent against the broker (ADR 0010 §4)
+        ↓   only mutation: re-place a dead writer's canceled stop as rr-<id>, pushed first
+body validates with PortfolioState.reservations from the store
+        ↓   (attempt statuses read before account / positions)
+push 1: acquire + recovery transitions + intent `recorded` (or `refused` + release)
+        ↓
+mutations via session.run / session.post   ← none after the 5-minute deadline;
+        ↓                                     lost response → re-POST the same id
+push 2: outcome settled from broker state + release
+```
+
+- **Store fit.** Intent lines carry `intent`, `state`, `lease` (the acquire
+  line's id); the first line carries `action`, `symbol` and, for entries,
+  `qty`/`price`/`sector` (the reservation) or, for closes and replacements, the
+  stop ids it will cancel. Replay (`coordinator.fold`) keeps the lease head and
+  holder; an intent line under a void or released lease is ignored; an illegal
+  transition under the valid lease fails closed. A claim that lost after a
+  rebase is withdrawn (`kind: withdraw`) and the writer waits again.
+- **Reservations** are derived, never stored apart from their intent:
+  `recorded`/`lost` entries reserve all their shares, `acknowledged` ones the
+  unfilled part. `validate_order.py` and `validate_mutation.py` (inside
+  `alpaca.sh`, excluding the attempt's own intent) read them too, and refuse
+  buys when the store is unreachable. The pending-buy gate stays as defence in
+  depth.
+- **Outcome states**: `acknowledged`, `lost` (unknown after the re-POST budget;
+  an entry keeps its reservation until the next 16:00 New York close), `filled`
+  (a partly filled then dead buy counts at the filled quantity, as does
+  `trades_this_week`), `complete`, `dead` (`attempts_dead`, `not_landed`,
+  `holder_died`, `restored`). A close or replacement whose cancel left the
+  position uncovered stays `recorded`, so the next recovery re-places the stop.
+  Recovery resolves a `recorded` intent only once its writer is provably past
+  its last POST (lease superseded, or expiry + skew since the line); before
+  that it keeps its reservation and a rerun resumes the same intent. A POST
+  whose lookup failed is `lost`, never `dead`. A restore that cannot verify
+  coverage closes the dead intent, alerts, and makes the action exit 8, without
+  blocking later actions.
+- **Fail closed.** Store unreachable → every mutation refuses (exit 10) except
+  a stop on a held position with none (ADR 0004 §1), which alerts. Lease wait
+  exhausted → exit 11. Broker acted but push 2 failed → exit 12 and an alert;
+  the lease goes stale and the next writer recovers the outcome.
+- **Who recovers**: every coordinated action first; the protection monitor on
+  every live run (`--dry-run` only reports); `python3 scripts/coordinator.py
+  status` is the read-only view for run records.
+- **Drill hooks** (#112): `COORDINATOR_FAULT=after_record | after_cancel |
+  after_post | before_release | after_recovery_push` kills the helper (exit 97)
+  at that point; `lose_response` drops the first POST answer and lookup so a
+  landed order takes the lost-response path. Drill profile
+  (`ALPACA_PROFILE=drill`) only; anywhere else it is a hard error. Local `/trade` writes through the dedicated clone with
+  `TRADING_STATE_STORE=local`.
 
 Stop replacement (trail tighten, fixed→trail conversion, expiry renewal) runs
 only through `scripts/replace_stop.py`: validate the exact replacement while
@@ -151,9 +212,8 @@ reserve it; an add to a held name takes no slot; every non-fallback reservation
 is a weekly trade; all reserved notional is deployed and not available cash;
 the fallback is exempt from the counts, never from the money. Refusals name the
 reserving intent ids, and `max_affordable_shares` uses the same view.
-`scripts/validate_order.py` passes none until the coordinator
-([#100](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/100))
-reads them from the state store.
+Every caller reads them from the state store through the coordinator (see
+"The coordinator" above).
 
 Enforced on midday trail/stop *changes* via `scripts/validate_stop_change.py`
 (T2 / [issue #32](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/32)):
@@ -216,10 +276,10 @@ than one described aspirationally.
   sub-second, recoverable window remains on replacement and on
   `scripts/close_position.py` (cancel→close). Collapsing trail-tighten via `PATCH` needs
   [#40](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/40)
-  (OPEN research — do not invent). Idempotency is per intent, recoverable from
-  the broker by walking deterministic client ids (`en-`, `cl-` intents with
-  `-rN` attempts; `rs-`, `rr-` keyed on the replaced stop), not yet a durable
-  intent store (ADR 0004, #115).
+  (OPEN research — do not invent). Idempotency is per intent: recorded in the
+  committed state store before any POST (ADR 0004, ADR 0010) and recoverable
+  from the broker by walking deterministic client ids (`en-`, `cl-` intents
+  with `-rN` attempts; `rs-`, `rr-` keyed on the replaced stop).
 - **Read-only reconciliation, not a scheduled loop.** `scripts/doctor.py --broker`
   compares held quantities against current, unexpired GTC protective orders via
   `risk_engine.reconciliation`. It flags missing, excess and ambiguous coverage.
@@ -239,7 +299,7 @@ than one described aspirationally.
   **exit 5** unless `ALPACA_RISK_OK=1`. Midday trail/stop *changes* also go
   through `scripts/validate_stop_change.py` (`required_trail_percent` +
   `validate_stop_change`, issue #32 / T2) before cancel→replace. The wrapper additionally revalidates the exact mutation.
-  A durable execution coordinator remains open (see #19 / #26). Read-only subcommands stay ungated.
+  The coordinator (ADR 0010) serializes the mutating writers and reserves capacity; validate↔submit token binding stays #19 / #26. Read-only subcommands stay ungated.
   Pre-market, daily-summary, and weekly-review are read-only.
 - **Single user, paper only.** No multi-tenancy, no RBAC, no credential
   encryption, no live trading. There is one user and one paper account;
