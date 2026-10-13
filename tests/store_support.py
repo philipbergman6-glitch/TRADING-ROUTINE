@@ -30,7 +30,7 @@ def make_origin(tmp_path: Path) -> Path:
     (seed / "README.md").write_text("seed\n")
     git("add", ".", cwd=seed)
     git("commit", "-q", "-m", "seed", cwd=seed)
-    git("push", "-q", str(bare), "HEAD:main", cwd=seed)
+    git("push", "-q", str(bare), "HEAD:main", "HEAD:drill-state", cwd=seed)  # drill profile's store (#112)
     return bare
 
 

@@ -47,6 +47,22 @@ FALLBACK_IDENTITY = {"GIT_AUTHOR_NAME": "trading-routine state store",
                      "GIT_COMMITTER_EMAIL": "state-store@trading-routine.invalid"}
 
 
+# Each account profile coordinates on its own branch (#112): the lease and
+# reservations are per broker account, so a drill must never hold production's
+# lease or count against its capacity. Same origin, so a drill still meets
+# GitHub's real non-fast-forward rejection.
+PROFILE_BRANCHES = {"production": "main", "drill": "drill-state"}
+
+
+def store_branch(environ=None) -> str:
+    """The store branch for ALPACA_PROFILE (default production); unknown is an error."""
+    environ = os.environ if environ is None else environ
+    profile = environ.get("ALPACA_PROFILE") or "production"
+    if profile not in PROFILE_BRANCHES:
+        raise ValueError(f"ALPACA_PROFILE={profile!r} has no state store; one of {sorted(PROFILE_BRANCHES)}")
+    return PROFILE_BRANCHES[profile]
+
+
 class StoreUnavailable(Exception):
     """The store cannot be reached or trusted; refuse the mutation (ADR 0004 §1)."""
 
@@ -274,12 +290,12 @@ class StateStore:
             raise StoreUnavailable(f"push not verified: {subject!r} is not on {self.branch}")
 
 
-def local_store(remote_url: str, path: Path | str = LOCAL_CLONE) -> StateStore:
+def local_store(remote_url: str, path: Path | str = LOCAL_CLONE, branch: str = "main") -> StateStore:
     """The store for local `/trade`: a dedicated bare clone at `path` whose
     origin is `remote_url`, created on first use. Writes push straight to
     main (the one exception to #71); the development checkout is not used."""
     path = Path(path)
-    store = StateStore(path)
+    store = StateStore(path, branch=branch)
     try:
         if not path.exists():
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -314,9 +330,9 @@ def main(argv: list[str] | None = None) -> int:
                 url = StateStore(args.repo)._git("remote", "get-url", "origin").strip()
             except GitError as exc:
                 raise StoreUnavailable(f"no origin to clone for local mode: {exc}") from None
-            store = local_store(url)
+            store = local_store(url, branch=store_branch())
         else:
-            store = StateStore(args.repo)
+            store = StateStore(args.repo, branch=store_branch())
         if args.command == "replay":
             for event in store.fetch().events:
                 sys.stdout.write(encode(event))

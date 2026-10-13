@@ -38,7 +38,7 @@ from typing import Mapping
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from scripts.state_store import (EXIT_STORE_UNAVAILABLE, GitError, StateStore,  # noqa: E402
-                                 StoreUnavailable, local_store, new_event, validate)
+                                 StoreUnavailable, local_store, new_event, store_branch, validate)
 
 EXIT_OK, EXIT_USAGE = 0, 2
 # The run id `start` minted, kept in the checkout's git directory: never
@@ -48,11 +48,14 @@ CURRENT_RUN = "trading-routine-run.json"
 KIND = "run"
 CLAUDE_ROUTINES = frozenset({"pre-market", "market-open", "midday", "daily-summary", "weekly-review"})
 MONITOR = "protection-monitor"
-ROUTINES = CLAUDE_ROUTINES | {MONITOR}
+# A freeze-rehearsal session on the drill account (docs/DRILLS.md); its records
+# live on the drill store branch, so only the drill profile may start one.
+DRILL = "drill"
+ROUTINES = CLAUDE_ROUTINES | {MONITOR, DRILL}
 # Claude routines run in the cloud (scheduled or "run now"; the run cannot tell
 # which) or locally as a slash command; the monitor runs on GitHub Actions.
 TRIGGERS = {**{r: frozenset({"cloud", "local"}) for r in CLAUDE_ROUTINES},
-            MONITOR: frozenset({"schedule", "workflow_dispatch"})}
+            MONITOR: frozenset({"schedule", "workflow_dispatch"}), DRILL: frozenset({"local"})}
 MODEL_SOURCES = frozenset({"self-reported", "env:ANTHROPIC_MODEL", "unexposed", "not-applicable"})
 OUTCOMES = ("incident", "actions", "refused", "no-trade")
 LISTS = ("actions", "refusals", "incidents")
@@ -310,6 +313,8 @@ def start(store: StateStore, repo: Path, *, routine: str, trigger: str, command_
           model: str | None, environ: Mapping[str, str]) -> dict:
     if routine not in ROUTINES:
         raise Usage(f"unknown routine {routine!r}; one of {sorted(ROUTINES)}")
+    if routine == DRILL and environ.get("ALPACA_PROFILE") != "drill":
+        raise Usage("a drill run is recorded only with ALPACA_PROFILE=drill")
     if not COMMAND_FILE.fullmatch(command_file):
         raise Usage(f"--command-file must be a repo-relative path, got {command_file!r}")
     root = Path(_git(repo, "rev-parse", "--show-toplevel").strip())
@@ -372,9 +377,9 @@ def main(argv: list[str] | None = None, environ: Mapping[str, str] | None = None
     repo = Path(args.repo)
     try:
         if args.local:
-            store = local_store(_git(repo, "remote", "get-url", "origin").strip())
+            store = local_store(_git(repo, "remote", "get-url", "origin").strip(), branch=store_branch(environ))
         else:
-            store = StateStore(repo)
+            store = StateStore(repo, branch=store_branch(environ))
         if args.command == "start":
             line = start(store, repo, routine=args.routine, trigger=args.trigger,
                          command_file=args.command_file, model=args.model, environ=environ)
