@@ -98,7 +98,57 @@ waits, takes over after expiry + skew and recovers the dead intent
 
 ## Results
 
-### Session 2026-10-13
+### Freeze rehearsal 2026-10-13 (#158)
+
+The session the freeze criterion reads. Observed on `PA3YVVX6ERYG`, run record
+`drill-20261013T143742Z-9367d9` on `drill-state` (`routine: drill`),
+14:37:42–15:08:21 UTC, at candidate commit **`4a66583`** of `main` (#160). The
+run's start line records `code_sha 4a66583…`, `code_dirty: false`, rulebook
+v1.3 pinned. At that commit the suite passed (958 passed, 21 deselected),
+`doctor.py` reported `ok: true`, `build_dashboard_data.py --check` passed, and
+`git diff --check` was clean.
+
+Each helper ran as `TRADING_RUN_ID=drill-20261013T143742Z-9367d9-<label>`, and
+the labels below are those writer ids. Each two-writer race used its own pair
+of bare clones (`TRADING_STATE_REPO`). "Store unreachable" means a bare clone
+whose `origin` is `https://127.0.0.1:9/…`. All times are UTC.
+
+Rule 8 allowed one buy. The #112 SCHB fill and the #155 SPY fill had already
+used 2 of the 3 trades for the week. So the session made exactly one 1-share
+SPY buy, and drills 1 → 3 → 7 → killed holder → 4 all ran on that position.
+For the same reason the killed writer is a `replace_stop.py` and not an entry:
+rule 8 would refuse a fourth buy before it ever reached `after_record`.
+
+### Verdicts by drill
+
+| # | Scenario | Result | Run / evidence |
+|---|---|---|---|
+| 1 | Two writers simultaneously | green | `writer-a`/`writer-b`, 14:39:09, SPY `--tag 8`. Both pushed `recorded` for `en-20261013-SPY-8` from one base, and b won. a lost the push race (`lease claim lost to a concurrent writer`), pushed a `withdraw` (14:39:23), waited on b's lease, then exited 0 with `already_filled`. b exited 0 with `submitted`. Broker: one buy `3c6363e8` (filled 777.57) with OTO leg `db051bf7` (stop 699.87). Store-level race `race-a`/`race-b` at 14:38:48: b shows `attempts: 2`. Killed holder: `killed` (14:54:47) ran `replace_stop.py` with `after_record` on the standing stop and died with exit 97 after push 1, leaving the stop in place. `takeover` logged `lease held by … waiting 15s` from 14:55:02. At 15:06:58 it took over (`supersedes f943753d…`) and recorded `rs-f31a4105…` as `dead (holder_died)` before it acted. |
+| 3 | Crash after cancel | green | `cancelcrash`, 14:40:03: `replace_stop.py --stop-price 699.87` (a same-level renewal) on `db051bf7` with `after_cancel`. It exited 97 right after the cancel (`db051bf7` canceled 14:40:15), leaving `rs-db051bf7…` `recorded` and the position naked. `recover-early`, 14:40:16: `lease_held`, nothing done. `recover`, 14:52:10, after the lease expired at 14:50:04 plus 2 min skew: took over and placed `rr-db051bf7…` (`ac948304`, stop 699.87, 14:52:20). Intent `dead (restored)`, exit 0. The position was naked for about 12 min (14:40:15–14:52:20), the bound ADR 0010 states. |
+| 4 | Lost POST response | green | `takeover`, 15:06:58, with `lose_response`, running `close_position.py --symbol SPY`. It canceled `f31a4105`, got `http_status: "000"`, then adopted the same `cl-20261013-SPY-2`. One sell, `d128d6f4`, filled 777.03 at 15:07:15. Intent `complete`; exit 0 with `close_submitted`. As in #112, the helper does not log the re-POST's 422. That step is inferred from the result: one order, with the adopted id. |
+| 7 | Unavailable store | green | Buy, `store`, 14:38:31: SPY entry `--tag 7` with the store unreachable. Exit 10 `store_unavailable`, nothing sent. Replacement, `storerestore`, 14:54:03: `replace_stop.py` on the standing `ac948304` with the store unreachable. Exit 10, old stop left. Restoration: a plain `alpaca.sh cancel` was refused (exit 5). `ac948304` was then canceled through the gated path (`ALPACA_RISK_OK=1`, which still runs `validate_mutation.py`). At 14:54:32, `storerestore` with the store unreachable placed `rs-ac948304…` (`f31a4105`, stop 699.87), reported `store_exception` and raised alert `STORE UNAVAILABLE`. Exit 0. |
+| 8 | Stale quote | green | Stale, `stale`, 14:53:43: an entry on TOK (iShares MSCI Kokusai, a broad developed-market ETF). Its latest IEX quote was stamped 14:06:57, 46 min old. Exit 3 `quote must be no more than 60 seconds old`, `refused` recorded on `en-20261013-TOK`, no order. Fresh: the SPY quotes of `store` (14:38:31) and drill 1 (14:39:09) passed the gate. The session ran during market hours, so a thin ETF's real stale quote stood in for SPY's pre-open one. |
+| 9 | Missed monitor | green | 14:40:32–14:40:38, no dispatcher. `--date 2026-10-07`: exit 5. Checks at 19:15:28 and 23:41:37; stale 13:30–19:15 (345 min). `--date 2026-10-12`: exit 5. The live run at 21:38:36 counted; stale 13:30–20:00 (390 min). `--date 2026-09-29`: exit 4, JSON `unknown display_title 'protection-monitor'`. |
+| 10 | Failed alert delivery | green | Heartbeat for 2026-10-12 with an invalid Resend key (14:40:45): exit 9, `alert_delivery: failed` (Resend 401 `API key is invalid`; nothing sent). Coordinator: the `storerestore` alert (14:54:32) ran with no email credentials and reported `alerts_delivered: false`; the text went to the fallback file. |
+| 11 | Version mismatch | green | `version`, 14:38:17, `STRATEGY_VERSION=v2`: exit 3 `version_binding_refused` (`env v2, approved v1.3`), `refused` recorded on `en-20261013-SPY-6`, no order. |
+
+### Notes on the freeze rehearsal
+
+- End state at 15:08:10: `positions` `[]` and `orders open` `[]`.
+  `coordinator.py status` on `drill-state`: no holder, no unfinished intent.
+  The broker's order list since 14:37 shows one buy (`3c6363e8`), one sell
+  (`d128d6f4`) and three stops, all canceled. The run finished with outcome
+  `actions`.
+- The first drill 11 attempt (14:37:52) had no `--tag`. It resolved the day's
+  existing SPY intent (`en-20261013-SPY-5`, #155's) as `already_filled`,
+  exit 0, and sent nothing. A second same-day entry needs `--tag`, so today's
+  entries used `--tag 6` to `8`.
+- In the run record's finish line, the covered-position replacement refusal is
+  labelled `f31a…`. It was on `ac948304`.
+- The drill account has now used 3 of the 3 trades allowed for the week of
+  2026-10-12. Any further drill buy before 2026-10-19 is refused by rule 8.
+
+### Earlier rehearsal 2026-10-13 (#112)
 
 Observed session on `PA3YVVX6ERYG`, run record
 `drill-20261013T132842Z-c54427` on `drill-state` (`routine: drill`), code
@@ -115,7 +165,7 @@ ran on 1 share of SCHB (Schwab U.S. Broad Market ETF, about $29.85), whose
 IEX quotes update less often, so the host-clock lag rarely made their age
 negative. SPY results stay recorded as red under drill 8.
 
-### Verdicts by drill
+#### Verdicts, run `drill-20261013T132842Z-c54427`
 
 | # | Scenario | Result | Run / evidence |
 |---|---|---|---|
@@ -128,7 +178,7 @@ negative. SPY results stay recorded as red under drill 8.
 | 10 | Failed alert delivery | green | Heartbeat for 2026-10-12 with an invalid Resend key: exit 9, `alert_delivery: failed` (Resend 401; nothing sent). Coordinator: `storerestore`'s alert with no email credentials, `alerts_delivered: false`, text in the fallback file. |
 | 11 | Version mismatch | green | `version` 13:28:53, `STRATEGY_VERSION=v2`: exit 3 `version_binding_refused` (`approved v1.3`), `refused` recorded on `en-20261013-SPY-2`, no order. |
 
-### Rerun 2026-10-13: drill 8 (#155)
+#### Rerun 2026-10-13: drill 8 (#155)
 
 Drill 8 only, after the #155 fix (quote ages down to −5 s count as fresh),
 from the fix branch. Run record `drill-20261013T140936Z-4a2ddb` on
@@ -147,7 +197,7 @@ quote ages read at 14:09 were still negative.
 - End state: no position, no open order, `drill-state` no holder and nothing
   unfinished.
 
-### Rerun 2026-10-13: drill 9 (#156)
+#### Rerun 2026-10-13: drill 9 (#156)
 
 Drill 9 only, after the #156 fix (runs matched by workflow path; a scheduled
 run from before the run-name stamp is live, any other unknown title exit 4),
@@ -167,7 +217,7 @@ on `drill-state`, 14:12Z, read-only (Alpaca calendar, GitHub run list).
   now exports the paper URL.
 - End state: no position, no open order; run finished `no-trade`.
 
-### Findings
+#### Findings
 
 - **#155** (drill 8) and **#156** (drill 9) are the two red drills, filed on
   map #93 with their evidence. Nothing was patched around them. Both are
