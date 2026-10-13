@@ -14,9 +14,9 @@ only identifying fields. Both accounts use the same paper endpoint, which
 
 | Field | production | drill |
 |---|---|---|
-| `account_number` | `PA38JXAA3CY1` | *(unpinned until `scripts/setup_drill_account.sh` runs)* |
-| `id` | `433b0293-7c1c-4f67-87b3-52466b8403bb` | *(same)* |
-| `created_at` | 2026-04-17T11:01:16Z | *(same)* |
+| `account_number` | `PA38JXAA3CY1` | `PA3YVVX6ERYG` |
+| `id` | `433b0293-7c1c-4f67-87b3-52466b8403bb` | `fe69e15b-bcab-4ece-b80f-5da1d95bffc0` |
+| `created_at` | 2026-04-17T11:01:16Z | `2026-10-13T13:16:43Z` |
 | Starting equity | $100,000 (one JNLC deposit, research 0006) | $100,000 fixed (research 0010) |
 | GitHub secrets | `ALPACA_API_KEY`, `ALPACA_SECRET_KEY` | `DRILL_ALPACA_API_KEY`, `DRILL_ALPACA_SECRET_KEY` |
 
@@ -61,3 +61,4 @@ with exit 8, which is intended.
 
 Recorded by the wizard; append one dated line per run.
 
+- 2026-10-13: attached to this repo with the production Alpaca, Perplexity and email keys; they never receive the DRILL_* pair (owner confirmed in the wizard).
