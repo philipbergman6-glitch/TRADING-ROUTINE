@@ -320,3 +320,11 @@ def test_run_records_are_emitted_apart_from_the_curated_sections():
     _, _, out = build()
     assert "const RUNS = " in out
     assert out.index("const RUNS = ") < out.index("// ============ Curated")
+
+
+def test_a_bolded_stop_level_parses():
+    # EOD 2026-10-12 bolded the XLE stop; the parser must read the level, not the markup.
+    row = ("XLE", "311", "$63.9218", "$66.02", "+1.44%", "+$652.55 (+3.28%)",
+           "**$59.778** (10% trail GTC, hwm **$66.42**)")
+    book = b.build_book({"kind": "EOD Snapshot", "d": "2026-10-12", "v": 106269.74, "positions": [row]})
+    assert book[0]["stop"] == "59.778" and book[0]["protection"] == "trailing"
