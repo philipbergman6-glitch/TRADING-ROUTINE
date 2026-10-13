@@ -18,6 +18,13 @@ command after a crash, timeout or lost response resumes instead of duplicating:
   4. If the replacement cannot be confirmed, re-place a fixed stop at the old
      stop's exact level (rr-<old id>) and report an incident.
 
+The whole replacement is one coordinated action (scripts/coordinator.py, ADR
+0010): the account-wide lease is taken, unfinished intents are recovered, a
+refusal is recorded, and the intent rs-<old id> (naming the stop it cancels)
+is recorded before the cancel. With the state store unreachable only
+restoration proceeds (ADR 0004 section 1: a stop on a held position with none),
+and it alerts.
+
 Version binding (ADR 0011): when the run is not bound to the approved strategy
 version (scripts/strategy_version.py), nothing is canceled. The one operation
 that proceeds is restoration: the old stop is already `canceled` or
@@ -45,6 +52,9 @@ Exit codes (JSON state always on stdout):
     8  INCIDENT: position has no verified protective stop (refused, expired or
        unreadable while uncovered, or mid-replacement) -- rerun this exact
        command now; a repeat 8 needs a human
+   10  state store unavailable; nothing changed (the old stop still rests)
+   11  the lease stayed held past the wait budget; nothing changed
+   12  acted, but the outcome could not be recorded in the store (alerted)
 """
 from __future__ import annotations
 
@@ -60,7 +70,9 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from scripts import coordinator  # noqa: E402
 from scripts.coordinator import Outcome, live_coverage  # noqa: E402,F401  (re-exported for the helpers)
+from scripts.state_store import StoreUnavailable  # noqa: E402
 from scripts.strategy_version import VersionBindingError, bind  # noqa: E402
 from scripts.validate_mutation import REPLACE_PREFIX, RESTORE_PREFIX, validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
@@ -105,17 +117,34 @@ def mutate(command, argument):
     return proc.returncode == 0, http, proc.stdout.strip(), proc.stderr.strip()
 
 
-def replace_stop(order_id, trail_percent=None, stop_price=None, binding=None, **deps):
+def replace_stop(order_id, trail_percent=None, stop_price=None, binding=None, *, read=adapter, run=None,
+                 store=None, writer=None, clock=None, sleep=time.sleep, fault=None, **deps):
     if (trail_percent is None) == (stop_price is None):
         raise Outcome(EXIT_USAGE, "exactly_one_of_trail_percent_or_stop_price")
     try:
         binding = binding or bind(os.environ)
     except VersionBindingError as exc:
         raise Outcome(EXIT_USAGE, "version_binding_unreadable", order_id=order_id, reason=str(exc))
+    storeless = None
+    if store is None:
+        try:
+            store = coordinator.open_store()
+        except StoreUnavailable as exc:
+            storeless = str(exc)
+
+    def body(session):
+        _coordinated_replace(session, order_id, trail_percent, stop_price, binding, read=read, sleep=sleep,
+                             **deps)
+    coordinator.coordinate(body, store=store, writer=writer or coordinator.writer_id("replace_stop"), read=read,
+                           run=run or mutate, clock=clock or coordinator._now, sleep=sleep, fault=fault,
+                           binding=binding, storeless_error=storeless)
+
+
+def _coordinated_replace(session, order_id, trail_percent, stop_price, binding, **deps):
     progress = {"cancel_sent": False, "coverage": None, "binding": binding, "version_exception": None}
     try:
         try:
-            _replace_stop(order_id, trail_percent, stop_price, progress, **deps)
+            _replace_stop(order_id, trail_percent, stop_price, progress, session=session, **deps)
         except SystemExit as exc:
             # A broker read failed. Classified from coverage observed so far, not from
             # this process alone: after cancel a rerun resumes; an uncovered position
@@ -149,8 +178,27 @@ def alert_version_exception(outcome, run=subprocess.run) -> bool:
         return False
 
 
-def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter, run=mutate, check=validate_mutation,
+def _record(session, progress, order_id, symbol, rid, held, coverage, *, restoration=False):
+    """Push 1: the intent rs-<old id> (or rs-<old id>-<n> when the store already
+    finished an earlier one for this stop) and the stop it cancels."""
+    intent, n = rid, 1
+    while session.state_of(intent) not in (None, *coordinator.NON_TERMINAL):
+        n += 1
+        intent = f"{rid}-{n}"
+
+    def refusal(code, state, **detail):
+        if held is not None and observed_unprotected(progress):
+            return Outcome(EXIT_UNPROTECTED, f"{state}_position_unprotected", symbol=symbol, coverage=coverage,
+                           **detail)
+        return Outcome(code, state, symbol=symbol, **detail)
+    session.record(intent, action="replace_stop", symbol=symbol, cancels=[order_id], client_order_id=rid,
+                   refuse=refusal, restoration=restoration)
+    return intent
+
+
+def _replace_stop(order_id, trail_percent, stop_price, progress, *, session, read=adapter, check=validate_mutation,
                   sleep=time.sleep, polls=20, now=None):
+    run = session.run
     now = now or datetime.now(timezone.utc)
     old = read("order-info", order_id)
     if not (isinstance(old, dict) and old.get("id") == order_id and old.get("side") == "sell"
@@ -177,17 +225,25 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
     if status == "filled":
         raise Outcome(EXIT_OK, "old_stop_filled", symbol=symbol)
     binding = progress["binding"]
+
+    def refuse(outcome, reason):
+        intent = rid
+        if session.state_of(intent) is not None:
+            intent = next(f"{rid}-{n}" for n in range(2, 100) if session.state_of(f"{rid}-{n}") is None)
+        session.refuse(intent, outcome, action="replace_stop", symbol=symbol, reasons=[reason])
+
     if status in OPEN:
         if binding.error:
-            raise version_refusal(progress, symbol)
+            refuse(version_refusal(progress, symbol), binding.error)
         # 1. Preflight while the old stop still rests and protects.
         try:
             check("order", json.dumps({k: v for k, v in body.items() if k != "client_order_id"}))
         except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
             if observed_unprotected(progress):
-                raise Outcome(EXIT_UNPROTECTED, "refused_position_unprotected", symbol=symbol, reason=str(exc),
-                              coverage=coverage)
-            raise Outcome(EXIT_REFUSED, "refused", symbol=symbol, reason=str(exc))
+                refuse(Outcome(EXIT_UNPROTECTED, "refused_position_unprotected", symbol=symbol, reason=str(exc),
+                               coverage=coverage), str(exc))
+            refuse(Outcome(EXIT_REFUSED, "refused", symbol=symbol, reason=str(exc)), str(exc))
+        _record(session, progress, order_id, symbol, rid, held, coverage)
         progress["cancel_sent"] = True
         cancel_ok, http, _, err = run("cancel", order_id)
         if not cancel_ok:
@@ -201,12 +257,15 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
                 raise Outcome(EXIT_UNPROTECTED, "old_stop_gone_position_unprotected", symbol=symbol,
                               status=status, coverage=coverage)
             raise Outcome(EXIT_USAGE, "old_stop_not_replaceable", symbol=symbol, status=status)
+        uncovered = held is not None and coverage is not None and not coverage["ok"]
         if binding.error:
             # Restoration (ADR 0011): an earlier run's cancel left a held position without
             # verified coverage; place protection under the approved version, cancel nothing.
-            if coverage is None or coverage["ok"]:
-                raise version_refusal(progress, symbol)
+            if not uncovered:
+                refuse(version_refusal(progress, symbol), binding.error)
             progress["version_exception"] = {**binding.as_dict(), "operation": "restore_after_confirmed_cancel"}
+        # Placing a stop on a held position with none may go without the store (ADR 0004 section 1).
+        _record(session, progress, order_id, symbol, rid, held, coverage, restoration=uncovered)
         progress["cancel_sent"] = True  # resuming an earlier run's cancel
 
     # 2. Confirm cancellation from broker state. A cancel the broker ACCEPTED may
@@ -231,8 +290,8 @@ def _replace_stop(order_id, trail_percent, stop_price, progress, *, read=adapter
         raise Outcome(EXIT_UNPROTECTED, "cancel_unconfirmed", symbol=symbol, status=status)
 
     # 3. Submit the replacement; confirm by client id regardless of exit status.
-    ok, http, out, err = run("order", json.dumps(body))
-    placed = read("order-by-client", rid)
+    placed, http, err, _ = session.post(rid, json.dumps(body))
+    out = ""
     if isinstance(placed, dict) and placed.get("status") in LIVE | {"filled"}:
         raise Outcome(EXIT_OK, "replaced", symbol=symbol, order=placed, http_status=http)
 
@@ -260,6 +319,7 @@ def main():
     try:
         replace_stop(args.order_id, args.trail_percent, args.stop_price)
     except Outcome as outcome:
+        coordinator.send_alerts(outcome)
         alert = {"alert_delivered": alert_version_exception(outcome)} if "version_exception" in outcome.detail else {}
         print(json.dumps({"state": outcome.state, "exit": outcome.code, **outcome.detail, **alert}, default=str))
         return outcome.code

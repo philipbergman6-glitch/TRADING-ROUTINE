@@ -15,6 +15,14 @@ touched. Nothing here opens positions or closes them.
 The ledger is deliberately not consulted: the Sep 8-16 outage showed protection
 must not depend on an optional component.
 
+Recovery (ADR 0010 section 5): every live run first reconciles unfinished
+intents in the state store (scripts/coordinator.py recover_only), so a dead
+writer's intents do not wait for the next routine; the only mutation is
+re-placing a stop a dead writer canceled. Each action then runs as its own
+coordinated action inside replace_stop. --dry-run only reports the store's
+unfinished intents. An unreachable store does not stop the run: actions that
+need it refuse, restoration of a naked position still proceeds.
+
 Version binding (ADR 0011): the plan uses the approved version named by
 docs/rulebook-pins.json. When the run is not bound to it (STRATEGY_VERSION
 missing, malformed or different; rulebook marker or hash off), every action
@@ -32,8 +40,10 @@ Exit codes (JSON report always on stdout):
     5  coverage issue or a held action that leaves protection short of the rule
     6  not bound to the approved strategy version: maintenance refused (replaces 0 or 5)
     7  an action failed but the prior level was restored
-    8  INCIDENT: a position may be unprotected; rerun immediately
-    9  the alert could not be delivered (replaces 0, 5 or 6; 7 and 8 keep their code)
+    8  INCIDENT: a position may be unprotected (or recovery could not restore one); rerun immediately
+    9  the alert could not be delivered (replaces 0, 5, 6 or 10; 7, 8 and 12 keep their code)
+   10  state store unavailable: recovery did not run (replaces 0, 5 or 6)
+   12  an action acted but its outcome could not be recorded in the store
 """
 from __future__ import annotations
 
@@ -50,7 +60,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine.monitor import Plan, plan_protection  # noqa: E402
 from risk_engine.reconciliation import reconcile_protection  # noqa: E402
-from scripts.replace_stop import EXIT_OK, EXIT_RESTORED, EXIT_UNPROTECTED, Outcome, replace_stop  # noqa: E402
+from scripts import coordinator  # noqa: E402
+from scripts.replace_stop import EXIT_OK, EXIT_RESTORED, EXIT_UNPROTECTED, Outcome, mutate, replace_stop  # noqa: E402
+from scripts.state_store import EXIT_STORE_UNAVAILABLE, StoreUnavailable  # noqa: E402
 from scripts.strategy_version import VersionBindingError, bind  # noqa: E402
 from scripts.validate_order import EXIT_NO_STATE, adapter  # noqa: E402
 
@@ -85,6 +97,8 @@ def worst_exit(plan, results) -> int:
         return EXIT_UNPROTECTED
     if any(c == EXIT_RESTORED for c in codes):
         return EXIT_RESTORED
+    if any(c == coordinator.EXIT_NOT_RECORDED for c in codes):
+        return coordinator.EXIT_NOT_RECORDED
     if plan.issues or any(c != EXIT_OK for c in codes):
         return EXIT_ISSUES
     return 0
@@ -96,6 +110,10 @@ def notify(report: dict, run=subprocess.run) -> bool:
     binding = report.get("version_binding") or {}
     if binding.get("error"):
         lines.append(f"VERSION BINDING FAILED (approved {binding.get('approved')}): {binding['error']}")
+    recovery = report.get("recovery") or {}
+    if recovery.get("exit"):
+        lines.append(f"RECOVERY {recovery.get('state')} (exit {recovery['exit']}): {recovery.get('reason', '')}")
+    lines += [f"RECOVERY ALERT {a}" for a in recovery.get("alerts", [])]
     lines += [f"ISSUE {i}" for i in report["coverage"].get("issues", [])]
     lines += [f"{r['kind']} {r['symbol']} -> {r['state']}" for r in report["results"]]
     lines += [f"HOLD {h}" for h in report["holds"]]
@@ -110,19 +128,33 @@ def exit_code(code: int, alert_delivered: bool | None) -> int:
     """A lost alert fails the job. It replaces a clean or coverage-issue code so
     the failure is named; a broker-state outcome (7, 8) is kept as the more
     urgent signal and the report still records alert_delivered."""
-    if alert_delivered is False and code in (0, EXIT_ISSUES, EXIT_VERSION_BINDING):
+    if alert_delivered is False and code in (0, EXIT_ISSUES, EXIT_VERSION_BINDING, EXIT_STORE_UNAVAILABLE):
         return EXIT_ALERT_FAILED
     return code
 
 
+def recover(binding, read, *, dry_run, run=mutate) -> dict:
+    """Recovery-only coordinated action (ADR 0010 section 5); --dry-run reports only."""
+    try:
+        store = coordinator.open_store()
+        if dry_run:
+            return {"exit": 0, "state": "status_only", **coordinator.status(store)}
+    except StoreUnavailable as exc:
+        return {"exit": EXIT_STORE_UNAVAILABLE, "state": "store_unavailable", "reason": str(exc)}
+    return coordinator.recover_only(store=store, writer=coordinator.writer_id("protection-monitor"), read=read,
+                                    run=run, binding=binding)
+
+
 def run_monitor(now, *, dry_run=False, email=False, read=adapter, replace=replace_stop, send=notify,
-                environ=None) -> dict:
+                environ=None, recovery=None) -> dict:
     """One monitor pass; returns the report (its "exit" is the process exit code)."""
     try:
         binding = bind(os.environ if environ is None else environ)
         version = binding.as_dict()
     except VersionBindingError as exc:
         binding, version = None, {"approved": None, "engine": None, "error": str(exc)}
+    # Recovery first, so the plan sees any stop it re-placed.
+    recovered = (recovery or recover)(binding, read, dry_run=dry_run)
     try:
         positions = read("positions")
         orders = read("orders", "open")
@@ -130,17 +162,20 @@ def run_monitor(now, *, dry_run=False, email=False, read=adapter, replace=replac
                 else Plan(coverage=reconcile_protection(positions, orders, now)))
     except SystemExit as exc:
         return {"exit": EXIT_NO_STATE, "state": "broker_state_unavailable", "adapter_exit": exc.code,
-                "version_binding": version}
+                "version_binding": version, "recovery": recovered}
     except (ValueError, TypeError, KeyError) as exc:
         return {"exit": EXIT_NO_STATE, "state": "unreadable_broker_state", "error": str(exc),
-                "version_binding": version}
+                "version_binding": version, "recovery": recovered}
     results = [] if dry_run else execute(plan, replace=partial(replace, binding=binding))
     code = worst_exit(plan, results) if not dry_run else (EXIT_ISSUES if plan.issues else 0)
     if version["error"] and code in (0, EXIT_ISSUES):
         code = EXIT_VERSION_BINDING
+    if recovered["exit"] == EXIT_UNPROTECTED or (recovered["exit"] and code in (0, EXIT_ISSUES, EXIT_VERSION_BINDING)):
+        code = recovered["exit"] if recovered["exit"] in (EXIT_UNPROTECTED, EXIT_STORE_UNAVAILABLE) else EXIT_ISSUES
     report = {"exit": code, "dry_run": dry_run, "strategy_version": version["engine"], "version_binding": version,
-              "observed_at": now.isoformat(), "results": results, **plan.as_dict()}
-    alert_delivered = send(report) if email and (code != 0 or results) else None
+              "observed_at": now.isoformat(), "recovery": recovered, "results": results, **plan.as_dict()}
+    restored = any(r.get("reason") == "restored" for r in recovered.get("recovery", []) if isinstance(r, dict))
+    alert_delivered = send(report) if email and (code != 0 or results or restored) else None
     report["alert_delivered"] = alert_delivered
     report["exit"] = exit_code(code, alert_delivered)
     return report

@@ -5,7 +5,9 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 import json
+import shutil
 import subprocess
+import tempfile
 from pathlib import Path
 
 from scripts.state_store import STATE_FILE, StateStore, replay
@@ -38,6 +40,31 @@ def writer_store(tmp_path: Path, origin: Path, name: str) -> StateStore:
     git("config", "user.name", name, cwd=path)
     git("config", "user.email", f"{name}@example.invalid", cwd=path)
     return StateStore(path)
+
+
+def fresh_stores(tmp_path: Path):
+    """An open_store stand-in: every call gets its own empty bare-repo store.
+    For tests that pin broker-side behaviour one call at a time."""
+    count = iter(range(10_000))
+
+    def open_store(environ=None):
+        root = tmp_path / f"store{next(count)}"
+        shutil.copytree(_template(), root, symlinks=True)
+        git("remote", "set-url", "origin", str(root / "origin.git"), cwd=root / "routine")
+        return StateStore(root / "routine")
+    return open_store
+
+
+_TEMPLATE: list[Path] = []
+
+
+def _template() -> Path:
+    """One bare origin + writer clone per test session, copied per store (git init is the slow part)."""
+    if not _TEMPLATE:
+        root = Path(tempfile.mkdtemp(prefix="state-template-"))
+        writer_store(root, make_origin(root), "routine")
+        _TEMPLATE.append(root)
+    return _TEMPLATE[0]
 
 
 def stored(origin: Path) -> list[dict]:

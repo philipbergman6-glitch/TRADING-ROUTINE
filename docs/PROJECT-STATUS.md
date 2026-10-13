@@ -46,8 +46,9 @@ before the 30-session $10,000 v2 paper run:
    accepts the buy.
 4. **Segment start.** Move test orders out of the scored account, record the
    model ID per run, run the segment-start checklist in spec section 5.
-5. Still open by design: cross-process reservations / durable intent store
-   (#19, #26); the cancel→place window is recoverable, not atomic (#40).
+5. Still open by design: the cancel→place window is recoverable, not atomic
+   (#40). Cross-process reservations and the durable intent store landed with
+   the coordinator (#100, below); validate↔submit token binding stays #19/#26.
 
 ## Session 2026-10-12: execution identity (#96)
 
@@ -79,9 +80,9 @@ Implements ADR 0005 (audit defect 1). Baseline `65acb7a`. No broker calls.
   `test_new_same_day_position_is_not_reported_closed_from_old_exit`, plus
   repeated close, same-day re-entry, missing stop, rejected recovery and
   cross-midnight cases in `test_close_position.py` / `test_submit_entry.py`.
-- Not done: the in-process lost-response re-POST within a wait budget (a
-  rerun re-POSTs the same attempt id instead); intent records in `state/`
-  (#100); drills on the isolated account.
+- Not done then, done in #100 (below): the in-process lost-response re-POST
+  and intent records in `state/`. Still open: drills on the isolated account
+  (#112).
 
 ## Session 2026-10-12: committed state store (#115)
 
@@ -102,11 +103,50 @@ records #108). Baseline `565562d`.
   Local mode (`local_store`, CLI `--local`) uses a bare clone at
   `~/.cache/trading-routine/state.git`, never the development checkout.
 - Provisional, owned by #99: push budget `PUSH_BUDGET = 3` and the `release`
-  kind name.
+  kind name. Settled by #100: budget 5, kind `withdraw` (field `withdraws`).
 - `.gitattributes`: `state/*.jsonl merge=union`. `protection-monitor.yml`:
   `permissions: contents: write` (no push yet).
 - Checks: `tests/test_state_store.py` (50, offline, local bare repo as origin)
   plus the commands in AGENTS.md "Verification".
+
+## Session 2026-10-13: the coordinator (#100)
+
+Implements ADR 0010 on ADR 0004/0005. Baseline `df39494` (PR #135). Landed as
+two PRs on the same ticket: #142 (core), then the helper wiring. No broker
+calls; tests are offline (bare repo as origin, stub broker, fake clock).
+
+- `scripts/coordinator.py`: `coordinate(body, ...)` is the one entry point;
+  `submit_entry.py`, `close_position.py` and `replace_stop.py` run their logic
+  as its body, so routine call sites are unchanged. Lease replay (`fold`),
+  wait / takeover after `expires_at` + 2 min, recovery per the §4 table (only
+  `rr-<canceled id>` restoration, pushed before the restoring POST), push 1
+  (`recorded`/`refused`), 5-minute mutation deadline, lost-response budget
+  (3 re-POSTs of the same id, 5 s apart; 422 proves existence), push 2
+  (outcome settled from broker state + release).
+- Exit codes: 10 store unavailable (unchanged), **11** lease wait exhausted,
+  **12** acted, outcome not recorded (alerts). Monitor: 10 when recovery could
+  not run, 12 propagated from an action.
+- Reservations reach the engine from the store in `submit_entry` (preflight),
+  `validate_order.py` (buys; exit 10 if the store is unreachable) and
+  `validate_mutation.py` (inside `alpaca.sh`, own intent excluded).
+  `trades_this_week` counts any buy with `filled_qty > 0`: Alpaca probably
+  leaves `filled_at` null on a partly filled then canceled order (forum and
+  ccxt evidence, low–medium confidence; not observed on our account).
+- The monitor runs recovery every live run (`--dry-run` reports the store's
+  unfinished intents). `scripts/coordinator.py status|recover` CLI.
+- Store selection: this checkout's origin by default; `TRADING_STATE_STORE=local`
+  for local `/trade` (dedicated clone, ADR 0004 §3) — the `/trade` command
+  text does not set it yet (prose is #107's); `TRADING_STATE_REPO` for tests
+  and drills. Tests can never reach the real origin (conftest points
+  `TRADING_STATE_REPO` at a nonexistent path).
+- Drill hooks for #112: `COORDINATOR_FAULT=after_record|after_cancel|after_post|before_release|after_recovery_push`
+  exits 97, drill profile only.
+- Tests: `tests/test_coordinator.py`, `tests/test_coordinated_helpers.py`;
+  existing helper tests now run each call against its own empty store
+  (`tests/store_support.py`). Suite ~100 s locally (was ~47 s): every
+  coordinated action does real git pushes.
+- Not verified: behaviour against GitHub's real push rejection through the
+  cloud proxy, and a real lost response — both are #112 drills.
 
 ## Latest session: execution controls for v2 (2026-09-20)
 

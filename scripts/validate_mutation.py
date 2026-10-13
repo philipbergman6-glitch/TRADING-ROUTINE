@@ -3,8 +3,10 @@
 
 No submission, tokens or flag-based approval here. The wrapper passes the same
 body it sends to the broker. Account-wide bulk mutations are intentionally
-unsupported. This closes payload/approval drift, not cross-process races or
-cancel/replacement recovery; those require the execution coordinator.
+unsupported. This closes payload/approval drift; cross-process races and
+recovery are the coordinator's (scripts/coordinator.py, ADR 0010). A buy is
+judged with the state store's reservations, its own intent's excluded; an
+unreachable store refuses the buy.
 
 Every mutation is bound to the approved strategy version (ADR 0011,
 scripts/strategy_version.py). When the binding fails, the only mutation that
@@ -28,7 +30,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from risk_engine import OrderProposal, Side, validate_order, validate_stop_change
 from risk_engine.models import to_money
 from scripts.strategy_version import bind
-from scripts.validate_order import adapter, load_sectors, read_portfolio
+from scripts.validate_order import adapter, buy_reservations, load_sectors, read_portfolio
 
 
 def require(condition, message):
@@ -91,8 +93,22 @@ def is_restoration(command, body) -> bool:
             and str(body.get("client_order_id", "")).startswith((REPLACE_PREFIX, RESTORE_PREFIX)))
 
 
-def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None, params=None, binding=None):
-    """Raise on unsafe/unsupported input; injectable reads keep tests offline."""
+def _store_reservations(body):
+    """The store's reservations minus this attempt's own intent (it is recorded
+    before its POST). An unreachable store is a refusal, not a guess."""
+    from scripts.coordinator import intent_of_attempt  # noqa: E402  (local: avoids a cycle)
+    cid = str(body.get("client_order_id") or "")
+    try:
+        return buy_reservations(exclude=intent_of_attempt(cid) if cid else None)
+    except SystemExit:
+        raise ValueError("state store unreachable; buys are refused without its reservations") from None
+
+
+def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None, params=None, binding=None,
+                      reservations=None):
+    """Raise on unsafe/unsupported input; injectable reads keep tests offline.
+    Returns the validated OrderProposal (None for cancel). `reservations` are the
+    coordinator's; without them a buy reads them from the state store."""
     binding = binding or bind(os.environ)
     require(command in ("order", "close", "cancel"), "bulk mutations are disabled")
     unbound = f"strategy version binding failed ({binding.error}); only protective-stop restoration may proceed"
@@ -124,12 +140,17 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
     params = params or binding.params
     # Fetching account data through read_portfolio is deliberately not optional
     # on the CLI. Tests inject the snapshot to avoid network access.
-    state = portfolio if portfolio is not None else read_portfolio(now or datetime.now(timezone.utc), None, params)
+    if portfolio is None:
+        if reservations is None:
+            buying = command == "order" and body.get("side") == "buy"
+            reservations = (lambda: _store_reservations(body)) if buying else ()
+        portfolio = read_portfolio(now or datetime.now(timezone.utc), None, params, reservations=reservations)
+    state = portfolio
     require(state.is_paper, "paper account required")
     if command == "cancel":
         if body.get("side") == "sell":
             require(state.position_for(symbol) is not None, "cancel target has no held position")
-        return
+        return None
 
     if command == "close":
         held = state.position_for(symbol)
@@ -188,6 +209,7 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
     if binding.error:
         print(f"VERSION BINDING EXCEPTION: protective-stop restoration {body['client_order_id']} validated under "
               f"approved {binding.approved} while {binding.error}", file=sys.stderr)
+    return proposal
 
 
 def main():

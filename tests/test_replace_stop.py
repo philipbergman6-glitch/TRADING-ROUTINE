@@ -8,6 +8,9 @@ import sys
 
 import pytest
 
+from scripts import coordinator
+from tests.store_support import fresh_stores, intent_lines, make_origin, writer_store
+
 from risk_engine import PortfolioState, Position
 from scripts import validate_order
 from scripts.replace_stop import (EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_RESTORED,
@@ -18,6 +21,13 @@ ROOT = Path(__file__).resolve().parents[1]
 OLD = "11111111-2222-3333-4444-555555555555"
 NOW = datetime(2026, 9, 17, 16, 0, tzinfo=timezone.utc)
 
+
+
+@pytest.fixture(autouse=True)
+def coordinated(tmp_path, monkeypatch):
+    """Each replacement is a coordinated action against its own empty store;
+    the store's part is in tests/test_coordinated_helpers.py."""
+    monkeypatch.setattr(coordinator, "open_store", fresh_stores(tmp_path))
 
 class FakeBroker:
     """Order state machine. `cancel_to` is what a cancel request turns the old stop into."""
@@ -390,11 +400,14 @@ def run_e2e(tmp_path, old_stop, trail, old_status="new", **env_extra):
     env = {"PATH": f"{curl.parent}:{Path(sys.executable).parent}:/usr/bin:/bin",
            "ALPACA_API_KEY": "offline", "ALPACA_SECRET_KEY": "offline",
            "BROKER_STATE": str(state), "TMPDIR": str(tmp_path),
-           "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"], **env_extra}
+           "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"],
+           "TRADING_STATE_REPO": str(writer_store(tmp_path, origin := make_origin(tmp_path), "state").repo),
+           **env_extra}
     env = {k: v for k, v in env.items() if v is not None}
     proc = subprocess.run([sys.executable, str(tmp_path / "scripts/replace_stop.py"),
                            "--order-id", OLD, "--trail-percent", trail],
                           env=env, text=True, capture_output=True, timeout=60)
+    proc.origin = origin
     return proc, json.loads(state.read_text())["orders"]
 
 
@@ -404,6 +417,8 @@ def test_e2e_tighten_replaces_through_real_wrapper(tmp_path):
     assert json.loads(proc.stdout)["state"] == "replaced"
     assert [o["status"] for o in orders] == ["canceled", "new"]
     assert orders[1]["client_order_id"] == "rs-" + OLD
+    # One coordinated action: recorded before the cancel, complete once the replacement rests.
+    assert [e["state"] for e in intent_lines(proc.origin, "rs-" + OLD)] == ["recorded", "complete"]
 
 
 def test_e2e_lowering_refused_before_cancel(tmp_path):

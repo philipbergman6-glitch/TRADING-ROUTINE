@@ -6,13 +6,22 @@ import json
 
 import pytest
 
+from scripts import coordinator
 from scripts.close_position import close_position
 from scripts.execution_identity import MAX_RETRIES, attempt_id, mint_intent
 from scripts.replace_stop import EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE, Outcome
+from tests.store_support import fresh_stores
 
 NOW = datetime(2026, 9, 21, 16, 0, tzinfo=timezone.utc)
 STOP = "aaaa-1111"
 CID = "cl-20260921-AMD"
+
+
+@pytest.fixture(autouse=True)
+def coordinated(tmp_path, monkeypatch):
+    """Each close is a coordinated action against its own empty store; the
+    store's part is in tests/test_coordinated_helpers.py."""
+    monkeypatch.setattr(coordinator, "open_store", fresh_stores(tmp_path))
 
 
 class FakeBroker:

@@ -44,7 +44,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass, field
-from datetime import date, datetime, time as dtime, timedelta, timezone
+from datetime import datetime, time as dtime, timedelta, timezone
 from decimal import Decimal, InvalidOperation
 import json
 import os
@@ -579,7 +579,9 @@ class Session:
         return self._line(LEASE_KIND, op="release", lease=self.acquire["id"], prev=self.acquire["id"])
 
     def current(self) -> View:
-        """The store as it will read once our pending lines land."""
+        """The store as it will read once our pending lines land (empty when unreachable)."""
+        if self.storeless:
+            return View()
         ours = ([] if self.established else [self.acquire]) + self.pending
         return fold(self.events + ours)
 
@@ -678,6 +680,10 @@ class Session:
         same push: a refusal changes nothing), then raise `outcome`."""
         if self.storeless:
             outcome.detail.update(refusal_recorded=False, store_error=self.storeless)
+            raise outcome
+        known = self.state_of(intent)
+        if known is not None:  # an unfinished intent refused on a rerun keeps its state
+            outcome.detail.update(refusal_recorded=False, intent_state=known)
             raise outcome
         line = self._intent_line(intent, "refused", action=action, symbol=symbol,
                                  reasons=[str(r) for r in reasons])

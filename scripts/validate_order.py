@@ -19,6 +19,11 @@ Exit codes:
     2  usage error
     4  could not establish broker state (never assume; refuse to guess)
     6  ledger configured but record failed (fail closed)
+   10  buy, and the state store is unreachable: its reservations are unknown
+
+A buy is judged with the reservations of every unfinished entry intent in the
+committed state store (ADR 0010 section 6, scripts/coordinator.py), read before
+account and positions. Sells need none.
 
 Nothing here submits an order. Validation and execution stay separate so this
 can be run freely, including as a dry run — but dry-run still records.
@@ -128,10 +133,14 @@ def adapter(*args: str) -> object:
 
 
 def trades_this_week(now: datetime) -> int:
-    """Count filled buys since Monday 00:00 UTC.
+    """Count buys that filled anything since Monday 00:00 UTC.
 
     Derived from the broker rather than the markdown trade log: the broker is
-    the authority on what actually executed, and the log can drift.
+    the authority on what actually executed, and the log can drift. A buy that
+    partly filled and was then canceled or expired counts, matching the
+    coordinator's `filled` state (ADR 0010 section 3). Alpaca may leave
+    `filled_at` null on such an order (not confirmed, 2026-10-13), so it is
+    recognised by `filled_qty` and windowed by the time it ended.
     """
     monday = (now - timedelta(days=now.weekday())).replace(
         hour=0, minute=0, second=0, microsecond=0
@@ -146,17 +155,28 @@ def trades_this_week(now: datetime) -> int:
         sys.exit(EXIT_NO_STATE)
     count = 0
     for order in orders:
-        if order.get("side") != "buy" or not order.get("filled_at"):
+        if order.get("side") != "buy":
             continue
-        filled = datetime.fromisoformat(order["filled_at"].replace("Z", "+00:00"))
-        if filled >= monday:
+        if not order.get("filled_at") and Decimal(str(order.get("filled_qty") or 0)) <= 0:
+            continue
+        ended = next((order[k] for k in ("filled_at", "canceled_at", "expired_at", "updated_at")
+                      if order.get(k)), None)
+        if ended is None:  # cannot window it: count it (refuses more, never less)
+            count += 1
+            continue
+        if datetime.fromisoformat(str(ended).replace("Z", "+00:00")) >= monday:
             count += 1
     return count
 
 
 def read_portfolio(
-    now: datetime, override_trades: int | None, params: StrategyParams = V1
+    now: datetime, override_trades: int | None, params: StrategyParams = V1, *, reservations
 ) -> PortfolioState:
+    """`reservations` is a tuple, or a zero-argument callable that reads them; it
+    is called before account and positions so a fill landing between the reads
+    is counted twice rather than not at all (ADR 0010 section 6)."""
+    if callable(reservations):
+        reservations = reservations()
     account = adapter("account")
     if not isinstance(account, dict) or "equity" not in account:
         sys.exit(EXIT_NO_STATE)
@@ -175,9 +195,7 @@ def read_portfolio(
         # falls back to 0, which fails closed (every buy refused).
         cash=str(account.get("cash", "0")),
         is_paper=_is_paper(),
-        # No store read yet: the coordinator (#100) supplies the open
-        # reservations of non-terminal entry intents (ADR 0010 §6).
-        reservations=(),
+        reservations=tuple(reservations),
         positions=tuple(
             Position(
                 symbol=p["symbol"],
@@ -192,6 +210,18 @@ def read_portfolio(
         ),
         cooldown_symbols=cooldown_from_fills(now, params),
     )
+
+
+def buy_reservations(exclude: str | None = None):
+    """Reservations from the state store; exit 10 when it cannot be read: a buy
+    judged without them could take capacity another intent holds."""
+    from scripts.coordinator import open_store, store_reservations  # noqa: E402  (local: avoids a cycle)
+    from scripts.state_store import EXIT_STORE_UNAVAILABLE, StoreUnavailable  # noqa: E402
+    try:
+        return store_reservations(open_store(), adapter, exclude=exclude)
+    except StoreUnavailable as exc:
+        print(f"state store unavailable; buys refused: {exc}", file=sys.stderr)
+        sys.exit(EXIT_STORE_UNAVAILABLE)
 
 
 def _is_paper() -> bool:
@@ -241,7 +271,8 @@ def main() -> int:
 
     now = datetime.now(timezone.utc)
     params = params_from_env(os.environ)
-    state = read_portfolio(now, args.trades_this_week, params)
+    reservations = (lambda: buy_reservations()) if args.side == Side.BUY.value else ()
+    state = read_portfolio(now, args.trades_this_week, params, reservations=reservations)
     proposal = OrderProposal(
         symbol=args.symbol,
         qty=Decimal(args.qty),

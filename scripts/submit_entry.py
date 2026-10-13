@@ -20,13 +20,18 @@ looks the order up instead of buying twice:
      intent. A live attempt is reported as already_submitted, a filled one as
      already_filled; exit 0 without submitting. A filled entry from yesterday
      is history and does not block a new entry today.
-  1. Submit the next attempt through scripts/alpaca.sh, which validates the
-     exact body against current broker state (fresh ask, sizing, pending-buy
-     gate, protection).
-  2. Confirm by client id regardless of what the HTTP layer said. Not found
-     after a refused response: exit 3. Not found after an unknown outcome:
-     exit 8 and rerun the printed command (it re-POSTs the same attempt id, so
-     a landed order answers 422 and is found by lookup).
+  1. Everything runs as one coordinated action (scripts/coordinator.py, ADR
+     0010): take the account-wide lease, recover unfinished intents, then
+     validate the exact body with the reservations of every other unfinished
+     entry intent. A refusal is recorded; an approval records the intent with
+     its reservation before anything is sent.
+  2. Submit the next attempt through scripts/alpaca.sh, which validates the
+     exact body again (fresh ask, sizing, pending-buy gate, protection).
+  3. Confirm by client id regardless of what the HTTP layer said. Not found
+     after a refused response: exit 3. Unknown outcome: the same attempt id is
+     re-POSTed within the lost-response budget (a landed order answers 422);
+     still not found: the intent is `lost` and keeps its reservation, exit 8,
+     rerun the printed command.
 
 The fixed protective leg is derived at the approved version's entry distance
 when --price is given. An entry is never protective restoration: when the run
@@ -49,6 +54,9 @@ Exit codes (JSON on stdout):
     4  broker state unavailable before submission; nothing submitted
     8  outcome unknown after submission (rerun the printed command now), or
        refused while the symbol is held without a verified protective stop
+   10  state store unavailable; nothing submitted
+   11  the lease stayed held past the wait budget; nothing submitted
+   12  submitted, but the outcome could not be recorded in the store (alerted)
 """
 from __future__ import annotations
 
@@ -60,14 +68,19 @@ import os
 from pathlib import Path
 import shlex
 import sys
+import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from risk_engine import FixedStop, build_oto_entry, fixed_stop_at_distance  # noqa: E402
-from scripts.execution_identity import mint_intent, parse_intent, resolve_intent  # noqa: E402
+from scripts import coordinator  # noqa: E402
+from scripts.execution_identity import (Resolution, mint_intent, next_free_intent, parse_intent,  # noqa: E402
+                                        resolve_intent)
 from scripts.replace_stop import (EXIT_NO_STATE, EXIT_OK, EXIT_REFUSED, EXIT_UNPROTECTED, EXIT_USAGE,  # noqa: E402
                                   Outcome, live_coverage, mutate)
+from scripts.state_store import StoreUnavailable  # noqa: E402
 from scripts.strategy_version import bind  # noqa: E402
+from scripts import validate_mutation as _validate_mutation  # noqa: E402
 from scripts.validate_order import adapter  # noqa: E402
 
 KIND = "en"
@@ -75,15 +88,42 @@ DEAD = {"canceled", "expired", "rejected", "replaced"}
 
 
 def submit_entry(body: dict, *, intent: str | None = None, tag: str | None = None, read=adapter, run=mutate,
-                 now=None, binding=None) -> None:
+                 now=None, binding=None, store=None, writer=None, check=None, clock=None, sleep=time.sleep,
+                 fault=None) -> None:
+    """One coordinated entry; always ends by raising an Outcome."""
     binding = binding or bind(os.environ)
     if "client_order_id" in body:
         raise ValueError("client_order_id is assigned from the intent; pass --intent or --tag instead")
     symbol = str(body["symbol"]).upper()
-    now = now or datetime.now(timezone.utc)
-    named = {}
+    clock = clock or coordinator._now  # lease timing is wall time, never the caller's `now`
+    now = now or clock()
+    check = check or _validate_mutation.validate_mutation
+    storeless = None
+    if store is None:
+        try:
+            store = coordinator.open_store()
+        except StoreUnavailable as exc:
+            storeless = str(exc)
+
+    def body_fn(session):
+        _submit(session, body, symbol, now, intent, tag, read, check, binding)
+    coordinator.coordinate(body_fn, store=store, writer=writer or coordinator.writer_id("submit_entry"),
+                           read=read, run=run, clock=clock, sleep=sleep, fault=fault, binding=binding,
+                           storeless_error=storeless)
+
+
+def _submit(s, body, symbol, now, intent, tag, read, check, binding):
+    named, superseded = {}, {}
     try:
-        res = resolve_intent(read, KIND, symbol, now, intent=intent, tag=tag, dead=DEAD)
+        known = s.known_intents()
+        res = resolve_intent(read, KIND, symbol, now, intent=intent, tag=tag, dead=DEAD, known=known)
+        stored = s.state_of(res.intent)
+        if not (res.live or res.filled) and stored is not None and stored not in coordinator.NON_TERMINAL:
+            # The store holds this intent as finished (refused, or dead before landing):
+            # never record it twice; continue under the next free intent of today.
+            superseded = {"superseded_intent": res.intent, "superseded_state": stored}
+            nxt = None if tag else next_free_intent(read, KIND, symbol, now, dead=DEAD, known=known)
+            res = Resolution(nxt, nxt) if nxt else Resolution(res.intent, None)
         named = {"intent": res.intent}
         if res.live or res.filled:
             raise Outcome(EXIT_OK, "already_filled" if res.filled else "already_submitted",
@@ -95,37 +135,48 @@ def submit_entry(body: dict, *, intent: str | None = None, tag: str | None = Non
         raise Outcome(EXIT_NO_STATE, "unreadable_broker_state", error=str(exc), **named)
     cid = res.client_order_id
 
-    def refusal(state, **detail):
+    def refusal(state, code=EXIT_REFUSED, **detail):
         # A refused add changes nothing, but an already-held symbol with no verified
         # protective stop is an incident whichever process lost it.
         if coverage is not None and not coverage["ok"]:
             return Outcome(EXIT_UNPROTECTED, f"{state}_position_unprotected", client_order_id=cid,
-                           coverage=coverage, **named, **detail)
-        return Outcome(EXIT_REFUSED, state, client_order_id=cid, **named, **detail)
+                           coverage=coverage, **named, **superseded, **detail)
+        return Outcome(code, state, client_order_id=cid, **named, **superseded, **detail)
+
+    def refuse(state, reasons, **detail):
+        s.refuse(res.intent, refusal(state, **detail), action="entry", symbol=symbol, reasons=reasons)
 
     if binding.error:
-        raise refusal("version_binding_refused", reason=binding.error)
+        refuse("version_binding_refused", [binding.error], reason=binding.error)
     if res.exhausted:
-        raise refusal("entry_retries_exhausted", dead_attempts=res.dead)
+        if superseded:
+            refuse("entry_intents_exhausted", ["every entry intent for today is spent"])
+        refuse("entry_retries_exhausted", ["every attempt of the intent is dead"], dead_attempts=res.dead)
     attempt = {**body, "client_order_id": cid}
-    # ADR 0005 section 5: until the state store is wired (#100), "recorded" means printed
-    # before the POST; the broker prefix walk recovers it either way.
-    print(f"intent {res.intent}: submitting attempt {cid}", file=sys.stderr, flush=True)
-    ok, http, out, err = run("order", json.dumps(attempt))
+    # Validate with every other unfinished entry intent's reservation (ADR 0010 section 6).
     try:
-        placed = read("order-by-client", cid)
+        proposal = check("order", json.dumps(attempt), reservations=s.reservations(exclude=res.intent))
+    except SystemExit as exc:
+        raise Outcome(EXIT_NO_STATE, "broker_state_unavailable", adapter_exit=exc.code, **named)
+    except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
+        refuse("refused", [str(exc)], reason=str(exc))
+    s.record(res.intent, action="entry", symbol=symbol, qty=str(body["qty"]), price=str(proposal.price),
+             sector=proposal.sector, client_order_id=cid, refuse=lambda code, state, **d: refusal(state, code, **d))
+    print(f"intent {res.intent}: submitting attempt {cid}", file=sys.stderr, flush=True)
+    try:
+        placed, http, reason, sent = s.post(cid, json.dumps(attempt))
     except SystemExit as exc:
         raise Outcome(EXIT_UNPROTECTED, "submitted_outcome_unknown_rerun", client_order_id=cid,
-                      http_status=http, adapter_exit=exc.code, **named)
+                      adapter_exit=exc.code, **named)
     if isinstance(placed, dict) and placed.get("status") not in DEAD:
         raise Outcome(EXIT_OK, "submitted", client_order_id=cid, order=placed, http_status=http,
-                      dead_attempts=res.dead, **named)
+                      dead_attempts=res.dead, **named, **superseded)
     if isinstance(placed, dict):
         raise refusal("broker_rejected", order=placed, http_status=http)
-    if http.startswith("4") or (http == "000" and not ok and "REFUSED" in err):
-        raise refusal("refused", http_status=http, reason=err or out)
+    if sent == "refused":
+        raise refusal("refused", http_status=http, reason=reason)
     raise Outcome(EXIT_UNPROTECTED, "submitted_outcome_unknown_rerun", client_order_id=cid,
-                  http_status=http, reason=err or out, **named)
+                  http_status=http, reason=reason, **named)
 
 
 def rerun_command(args, intent: str | None) -> str:
@@ -163,6 +214,7 @@ def main() -> int:
         print(json.dumps({"state": "usage", "exit": EXIT_USAGE, "reason": str(exc)}))
         return EXIT_USAGE
     except Outcome as outcome:
+        coordinator.send_alerts(outcome)
         print(json.dumps({"state": outcome.state, "exit": outcome.code, "strategy_version": params.name,
                           **outcome.detail, "rerun": rerun_command(args, outcome.detail.get("intent"))},
                          default=str))

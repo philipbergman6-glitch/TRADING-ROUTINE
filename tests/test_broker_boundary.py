@@ -8,6 +8,8 @@ import sys
 
 import pytest
 
+from tests.store_support import make_origin, writer_store
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -59,7 +61,9 @@ else:
            "ALPACA_API_KEY": "offline", "ALPACA_SECRET_KEY": "offline",
            "ALPACA_RISK_OK": "1", "POSTS": str(tmp_path / "posts"),
            "ALPACA_HTTP_STATUS_FILE": str(tmp_path / "status"),
-           "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"]}
+           "STRATEGY_VERSION": os.environ["STRATEGY_VERSION"],
+           # An empty, reachable state store: no reservations (ADR 0010).
+           "TRADING_STATE_REPO": str(writer_store(tmp_path, make_origin(tmp_path), "state").repo)}
     def run(command, body="", **extra):
         return subprocess.run(["/bin/bash", str(tmp_path / "scripts/alpaca.sh"), command, body],
                               env={**env, **extra}, text=True, capture_output=True, timeout=10)

@@ -5,6 +5,9 @@ from decimal import Decimal
 
 import pytest
 
+from scripts import coordinator
+from tests.store_support import fresh_stores
+
 from risk_engine import V1, V2
 from risk_engine.monitor import plan_protection
 from scripts.protection_monitor import EXIT_ISSUES, execute, worst_exit
@@ -14,6 +17,12 @@ NOW = datetime(2026, 9, 21, 15, 0, tzinfo=timezone.utc)
 FAR = (NOW + timedelta(days=80)).strftime("%Y-%m-%dT%H:%M:%SZ")
 SOON = (NOW + timedelta(days=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+
+
+@pytest.fixture(autouse=True)
+def coordinated(tmp_path, monkeypatch):
+    """Recovery runs against an empty store unless a test says otherwise."""
+    monkeypatch.setattr(coordinator, "open_store", fresh_stores(tmp_path))
 
 def position(symbol, qty="100", entry="100", price="100"):
     return {"symbol": symbol, "qty": qty, "avg_entry_price": entry, "current_price": price,
