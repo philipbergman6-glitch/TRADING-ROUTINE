@@ -60,3 +60,4 @@
 {"id":"3ba99b4d02b240149bc993760f23c639","kind":"intent","at":"2026-10-13T14:38:19+00:00","writer":"drill-20261013T143742Z-9367d9-version","schema":1,"intent":"en-20261013-SPY-6","state":"refused","lease":"f009de26361a4cf1bc2ab0b88de2da27","action":"entry","symbol":"SPY","reasons":["STRATEGY_VERSION MISMATCH: env v2, approved v1.3 (set STRATEGY_VERSION=v1)"]}
 {"id":"32b4224123e546419c4cdd2c66a630f9","kind":"lease","at":"2026-10-13T14:38:19+00:00","writer":"drill-20261013T143742Z-9367d9-version","schema":1,"op":"release","lease":"f009de26361a4cf1bc2ab0b88de2da27","prev":"f009de26361a4cf1bc2ab0b88de2da27"}
 {"id":"f1fcfd8259874c94b3ea443ee78ddef2","kind":"drill-probe","at":"2026-10-13T14:38:48+00:00","writer":"drill-20261013T143742Z-9367d9-race-a","schema":1}
+{"id":"3bc8677aad034dbbafb934b2a9e7b1cc","kind":"drill-probe","at":"2026-10-13T14:38:48+00:00","writer":"drill-20261013T143742Z-9367d9-race-b","schema":1}
