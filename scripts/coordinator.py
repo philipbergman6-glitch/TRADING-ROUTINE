@@ -909,7 +909,11 @@ def coordinate(body: Callable[[Session], None], *, store: StateStore | None, wri
     """Run `body(session)` as one coordinated action. The body ends by raising its
     Outcome; push 2 happens on the way out and may change the code to
     EXIT_NOT_RECORDED. A void claim re-enters the wait; the whole action reruns."""
-    fault = fault or env_fault()
+    if fault is None:
+        try:
+            fault = env_fault()
+        except ValueError as exc:  # a misplaced drill hook stops everything, as a usage error
+            raise Outcome(2, "usage", reason=str(exc)) from None
     started = clock()
     while True:
         error = storeless_error
