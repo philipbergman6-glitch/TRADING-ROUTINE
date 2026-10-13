@@ -99,6 +99,12 @@ push 2: outcome settled from broker state + release
   `trades_this_week`), `complete`, `dead` (`attempts_dead`, `not_landed`,
   `holder_died`, `restored`). A close or replacement whose cancel left the
   position uncovered stays `recorded`, so the next recovery re-places the stop.
+  Recovery resolves a `recorded` intent only once its writer is provably past
+  its last POST (lease superseded, or expiry + skew since the line); before
+  that it keeps its reservation and a rerun resumes the same intent. A POST
+  whose lookup failed is `lost`, never `dead`. A restore that cannot verify
+  coverage closes the dead intent, alerts, and makes the action exit 8, without
+  blocking later actions.
 - **Fail closed.** Store unreachable → every mutation refuses (exit 10) except
   a stop on a held position with none (ADR 0004 §1), which alerts. Lease wait
   exhausted → exit 11. Broker acted but push 2 failed → exit 12 and an alert;
@@ -108,8 +114,9 @@ push 2: outcome settled from broker state + release
   status` is the read-only view for run records.
 - **Drill hooks** (#112): `COORDINATOR_FAULT=after_record | after_cancel |
   after_post | before_release | after_recovery_push` kills the helper (exit 97)
-  at that point, on `ALPACA_PROFILE=drill` only; anywhere else it is a hard
-  error. Local `/trade` writes through the dedicated clone with
+  at that point; `lose_response` drops the first POST answer and lookup so a
+  landed order takes the lost-response path. Drill profile
+  (`ALPACA_PROFILE=drill`) only; anywhere else it is a hard error. Local `/trade` writes through the dedicated clone with
   `TRADING_STATE_STORE=local`.
 
 Stop replacement (trail tighten, fixed→trail conversion, expiry renewal) runs

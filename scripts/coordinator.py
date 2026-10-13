@@ -38,7 +38,9 @@ Exit codes (JSON on stdout): 0 ok · 8 recovery could not restore coverage ·
 
 Fault injection for drills (#112): COORDINATOR_FAULT=<point> kills the process
 (exit 97) at that point; honoured only with ALPACA_PROFILE=drill and a hard
-failure anywhere else. Points: FAULT_POINTS.
+failure anywhere else. Points: FAULT_POINTS. `lose_response` does not kill:
+it discards the first POST's answer and the first lookup, so a real landed
+order goes through the lost-response path (re-POST, 422, adopt).
 """
 from __future__ import annotations
 
@@ -100,7 +102,8 @@ CLOSE_DEAD = frozenset({"canceled", "expired", "rejected"})
 STOP_OPEN = frozenset({"new", "accepted", "pending_new", "held", "accepted_for_bidding"})
 STOP_LIVE = frozenset({"new", "accepted", "pending_new"})
 BUY_LIVE = frozenset({"accepted", "new", "partially_filled", "pending_new", "held"})
-FAULT_POINTS = frozenset({"after_recovery_push", "after_record", "after_cancel", "after_post", "before_release"})
+FAULT_POINTS = frozenset({"after_recovery_push", "after_record", "after_cancel", "after_post", "before_release",
+                          "lose_response"})
 NY = ZoneInfo("America/New_York")
 SESSION_CLOSE = dtime(16, 0)
 
@@ -183,6 +186,7 @@ class View:
     valid: set = field(default_factory=set)
     void: set = field(default_factory=set)
     takeovers: list = field(default_factory=list)
+    superseded: set = field(default_factory=set)
 
     def non_terminal(self) -> list[IntentView]:
         return [iv for iv in self.intents.values() if iv.state in NON_TERMINAL]
@@ -213,6 +217,7 @@ class View:
         if e["prev"] == self.head and (self.holder is None or supersedes == self.holder["id"]):
             if self.holder is not None:
                 self.takeovers.append(e)
+                self.superseded.add(self.holder["id"])
             self.head, self.holder = e["id"], e
             self.valid.add(e["id"])
         else:
@@ -379,9 +384,12 @@ class Transition:
     restore: tuple = ()        # recovery only: canceled stop ids to re-place first
 
 
-def _protective_gap(read, iv, now):
-    """(held, uncovered, canceled stop ids) for a close or replace-stop intent."""
+def _protective_gap(read, iv, now, seen=None):
+    """(held, uncovered, canceled stop ids) for a close or replace-stop intent.
+    An uncovered symbol is added to `seen` (drives ADR 0006 classification)."""
     held, coverage = live_coverage(read, iv.symbol, now)
+    if held is not None and not coverage["ok"] and seen is not None:
+        seen.add(iv.symbol)
     canceled = []
     for sid in iv.first.get("cancels", []):
         old = read("order-info", sid)
@@ -398,13 +406,16 @@ def _close_done(read, symbol, now) -> bool:
 
 
 def reconcile(iv: IntentView, read, now: datetime, *, sent: str | None = None, recovering: bool,
-              unfilled: dict | None = None) -> Transition | None:
+              unfilled: dict | None = None, holder_gone: bool = True, seen: set | None = None) -> Transition | None:
     """The state `iv` moves to given broker state, or None to stay.
 
-    `recovering` is True when the writer that recorded `iv` is gone (ADR 0010
-    section 4); False when the live writer settles its own intent, with `sent`
-    describing its last POST: None (nothing sent), "refused" (proven not to
-    have landed) or "unknown" (lost after the budget)."""
+    `recovering` is True when another writer reconciles `iv` (ADR 0010
+    section 4); `holder_gone` says whether the writer that recorded it is
+    provably past its last possible POST (lease superseded, or expiry + skew
+    elapsed since the line); until then "no attempt found" proves nothing and
+    a `recorded` intent stays as it is. False when the live writer settles its
+    own intent, with `sent` describing its last POST: None (nothing sent),
+    "refused" (proven not to have landed) or "unknown" (sent, outcome unseen)."""
     if iv.action == "entry":
         res = walk_attempts(read, iv.intent, ENTRY_DEAD)
         found = {"client_order_id": res.client_order_id} if res.order is not None else {}
@@ -421,7 +432,7 @@ def reconcile(iv: IntentView, read, now: datetime, *, sent: str | None = None, r
                 return Transition("filled", {"client_order_id": d["client_order_id"], "filled_qty": str(filled)})
         if unfilled is not None:
             unfilled[iv.intent] = _qty(iv.first["qty"])
-        return _not_landed(iv, res, now, sent=sent, recovering=recovering, gap=None)
+        return _not_landed(iv, res, now, sent=sent, recovering=recovering, gap=None, holder_gone=holder_gone)
 
     if iv.action == "close":
         res = walk_attempts(read, iv.intent, CLOSE_DEAD)
@@ -431,7 +442,8 @@ def reconcile(iv: IntentView, read, now: datetime, *, sent: str | None = None, r
         if res.order is not None:
             return None if iv.state == "acknowledged" else Transition(
                 "acknowledged", {"client_order_id": res.client_order_id})
-        return _not_landed(iv, res, now, sent=sent, recovering=recovering, gap=_protective_gap(read, iv, now))
+        return _not_landed(iv, res, now, sent=sent, recovering=recovering, gap=_protective_gap(read, iv, now, seen),
+                           holder_gone=holder_gone)
 
     # replace_stop: one replacement attempt rs-<old>; rr-<old> is its restore.
     old_id = iv.first["cancels"][0]
@@ -439,10 +451,11 @@ def reconcile(iv: IntentView, read, now: datetime, *, sent: str | None = None, r
         placed = read("order-by-client", cid)
         if isinstance(placed, dict) and placed.get("status") in STOP_OPEN | {"filled"}:
             return Transition(state, {"client_order_id": cid, **({"reason": "restored"} if state == "dead" else {})})
-    return _not_landed(iv, None, now, sent=sent, recovering=recovering, gap=_protective_gap(read, iv, now))
+    return _not_landed(iv, None, now, sent=sent, recovering=recovering, gap=_protective_gap(read, iv, now, seen),
+                       holder_gone=holder_gone)
 
 
-def _not_landed(iv, res, now, *, sent, recovering, gap):
+def _not_landed(iv, res, now, *, sent, recovering, gap, holder_gone=True):
     """No attempt of `iv` is live or filled."""
     exhausted = res is not None and res.exhausted
     if not recovering:
@@ -461,6 +474,8 @@ def _not_landed(iv, res, now, *, sent, recovering, gap):
         return None
     if iv.state == "acknowledged" or exhausted:
         return Transition("dead", {"reason": "attempts_dead"})
+    if not holder_gone:  # released, not stale: its POST may still be invisible
+        return None
     # recorded under a lease that is gone
     if gap is not None and gap[1] and gap[2]:
         return Transition("dead", {"reason": "restored"}, restore=tuple(gap[2]))
@@ -489,10 +504,19 @@ def env_fault(environ=None) -> Callable[[str], None]:
     if environ.get("ALPACA_PROFILE") != "drill":
         raise ValueError("COORDINATOR_FAULT is honoured only with ALPACA_PROFILE=drill")
 
+    dropped = []
+
     def fault(name):
+        if point == "lose_response":
+            if name == "drop_response" and not dropped:
+                dropped.append(name)
+                print("COORDINATOR_FAULT: dropping the POST response and first lookup", file=sys.stderr, flush=True)
+                return True
+            return None
         if name == point:
             print(f"COORDINATOR_FAULT: dying at {name}", file=sys.stderr, flush=True)
             os._exit(EXIT_FAULT)
+        return None
     return fault
 
 
@@ -552,6 +576,9 @@ class Session:
         self.sent: str | None = None        # last POST: None / "landed" / "refused" / "unknown"
         self.acted = False
         self.recovery: list[dict] = []
+        self.uncovered: set = set()          # symbols recovery saw held without verified coverage
+        self.restore_failed: list[str] = []
+        self.last_sent = False
         self.unfilled: dict = {}
         self.alerts: list[str] = []
         self.notes: list[str] = []
@@ -608,8 +635,11 @@ class Session:
         first, re-places the canceled stops, then records `dead (restored)`."""
         now = self.clock()
         restores = []
+        superseded = self.current().superseded
         for iv in self.view.non_terminal():
-            step = reconcile(iv, self.read, now, recovering=True, unfilled=self.unfilled)
+            gone = iv.lease in superseded or now >= datetime.fromisoformat(iv.last["at"]) + LEASE_TTL + SKEW
+            step = reconcile(iv, self.read, now, recovering=True, unfilled=self.unfilled, holder_gone=gone,
+                             seen=self.uncovered)
             if step is None:
                 self.recovery.append({"intent": iv.intent, "state": iv.state, "action": "none"})
                 continue
@@ -626,14 +656,24 @@ class Session:
             self._push(self.pending, f"recover-{self.acquire['id'][:12]}")
         except ClaimLost:
             raise _Contended() from None
+        except StoreUnavailable as exc:  # nothing was mutated; the gap stays for the next writer
+            raise Outcome(EXIT_UNPROTECTED, "recovery_store_unavailable_position_unprotected",
+                          symbols=sorted({iv.symbol for iv, _ in restores}), store_error=str(exc)) from None
         self.fault("after_recovery_push")
         for iv, step in restores:
             restored = self._restore(iv, step.restore)
             if not restored:
-                self.recovery.append({"intent": iv.intent, "from": iv.state, "to": iv.state,
+                # Do not block every later action on one gap a restore cannot close (e.g. the
+                # position grew after the stop was sized): the dead writer's intent is over,
+                # the gap is an incident, and protective actions must still be able to run.
+                self.restore_failed.append(iv.symbol)
+                self.pending.append(self._intent_line(iv.intent, "dead", reason="holder_died",
+                                                      restore_failed=list(step.restore)))
+                self.recovery.append({"intent": iv.intent, "from": iv.state, "to": "dead", "reason": "holder_died",
                                       "restore_failed": list(step.restore)})
-                raise Outcome(EXIT_UNPROTECTED, "recovery_restore_failed", intent=iv.intent, symbol=iv.symbol,
-                              canceled=list(step.restore))
+                self.alerts.append(f"RECOVERY COULD NOT RESTORE {iv.symbol}: re-placing {list(step.restore)} did "
+                                   f"not verify coverage; {iv.intent} closed as holder_died. A human must check.")
+                continue
             self.pending.append(self._intent_line(iv.intent, "dead", reason="restored", restored=restored))
             self.recovery.append({"intent": iv.intent, "from": iv.state, "to": "dead", "reason": "restored",
                                   "restored": restored})
@@ -729,10 +769,12 @@ class Session:
         """The broker mutation, refused after the deadline (ADR 0010 section 1)."""
         if not (self.established or self.storeless_ok):
             raise AssertionError("broker mutation before the lease and intent are on main")
+        self.last_sent = False
         if self.clock() > self.deadline:
             self.notes.append(f"mutation deadline passed; {command} not sent")
             return False, "000", "", "REFUSED: coordinator mutation deadline passed"
         self.acted = True
+        self.last_sent = True
         result = self._run(command, argument)
         if command == "cancel":
             self.fault("after_cancel")
@@ -743,8 +785,13 @@ class Session:
         budget: on an unknown outcome, re-POST the same id; a 422 "must be
         unique" proves the order exists. Returns (order|None, http, error, sent)."""
         ok, http, out, err = self.run("order", body_json)
+        if self.last_sent:
+            self.sent = "unknown"  # until a lookup or a refusal says otherwise
         self.fault("after_post")
-        placed = self.read("order-by-client", cid)
+        if self.fault("drop_response") is True:  # drill: the answer and first lookup are lost
+            ok, http, out, err, placed = False, "000", "", "COORDINATOR_FAULT: response dropped", None
+        else:
+            placed = self.read("order-by-client", cid)
         if isinstance(placed, dict):
             self.sent = "landed"
             return placed, http, err or out, "landed"
@@ -792,8 +839,8 @@ class Session:
             self._alerts(detail)
             return
         lines = []
-        if self.intent:
-            iv = self.current().intents[self.intent]
+        iv = self.current().intents.get(self.intent) if self.intent else None
+        if iv is not None:  # None: push 1 never landed, nothing to settle
             try:
                 step = reconcile(iv, self.read, self.clock(), sent=self.sent, recovering=False)
             except (SystemExit, ValueError, TypeError, KeyError) as exc:
@@ -804,6 +851,7 @@ class Session:
                 lines.append(self._intent_line(self.intent, step.state, **step.fields))
             detail["intent_state"] = step.state if step else iv.state
         lines.append(self._release_line())
+        self._still_uncovered(outcome)
         self.fault("before_release")
         try:
             self._push(self.pending + lines, f"{self.intent or 'release'}")
@@ -818,6 +866,18 @@ class Session:
             else:
                 detail.update(outcome_recorded=False, store_error=str(exc))
         self._alerts(detail)
+
+    def _still_uncovered(self, outcome: Outcome):
+        """ADR 0006: a symbol recovery could not restore that is still held without
+        verified coverage makes the action an incident, whatever the body did."""
+        for symbol in self.restore_failed:
+            try:
+                held, coverage = live_coverage(self.read, symbol, self.clock())
+            except (SystemExit, ValueError, TypeError, KeyError):
+                held, coverage = True, {"ok": False}
+            if held is not None and not coverage["ok"] and outcome.code != EXIT_UNPROTECTED:
+                outcome.detail.update(helper_state=outcome.state, helper_exit=outcome.code)
+                outcome.code, outcome.state = EXIT_UNPROTECTED, "recovery_restore_failed_position_unprotected"
 
     def abandon(self, exc: BaseException):
         """An unexpected exception escaped after our acquire landed: release so the
@@ -894,11 +954,13 @@ def _run_body(body, session):
             try:
                 session.recover()
             except SystemExit as exc:
-                raise Outcome(EXIT_UNPROTECTED if session.acted else 4, "broker_state_unavailable_in_recovery",
-                              adapter_exit=exc.code) from None
+                code = EXIT_UNPROTECTED if session.acted or session.uncovered else 4
+                raise Outcome(code, "broker_state_unavailable_in_recovery", adapter_exit=exc.code,
+                              uncovered=sorted(session.uncovered)) from None
             except (ValueError, TypeError, KeyError) as exc:
-                raise Outcome(EXIT_UNPROTECTED if session.acted else 4, "unreadable_broker_state_in_recovery",
-                              error=str(exc)) from None
+                code = EXIT_UNPROTECTED if session.acted or session.uncovered else 4
+                raise Outcome(code, "unreadable_broker_state_in_recovery", error=str(exc),
+                              uncovered=sorted(session.uncovered)) from None
         body(session)
     except Outcome as outcome:
         session.finish(outcome)
@@ -925,6 +987,8 @@ def recover_only(*, store, writer, read, run, clock=_now, sleep=time.sleep, faul
         return {"exit": EXIT_OK, "state": "nothing_to_recover"}
 
     def body(session):
+        if session.storeless:  # the store went away between the two fetches: nothing recovered
+            raise Outcome(EXIT_STORE_UNAVAILABLE, "store_unavailable", reason=session.storeless)
         raise Outcome(EXIT_OK, "recovered")
     try:
         coordinate(body, store=store, writer=writer, read=read, run=run, clock=clock, sleep=sleep,
@@ -933,6 +997,8 @@ def recover_only(*, store, writer, read, run, clock=_now, sleep=time.sleep, faul
         return {"exit": outcome.code, "state": outcome.state, **outcome.detail}
     except SystemExit as exc:
         return {"exit": 4, "state": "broker_state_unavailable", "adapter_exit": exc.code}
+    except StoreUnavailable as exc:
+        return {"exit": EXIT_STORE_UNAVAILABLE, "state": "store_unavailable", "reason": str(exc)}
     raise AssertionError("recovery must end in an Outcome")
 
 

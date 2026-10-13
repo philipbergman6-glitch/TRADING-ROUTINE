@@ -140,11 +140,18 @@ calls; tests are offline (bare repo as origin, stub broker, fake clock).
   and drills. Tests can never reach the real origin (conftest points
   `TRADING_STATE_REPO` at a nonexistent path).
 - Drill hooks for #112: `COORDINATOR_FAULT=after_record|after_cancel|after_post|before_release|after_recovery_push`
-  exits 97, drill profile only.
+  exits 97 there; `lose_response` drops the first POST answer and lookup.
+  Drill profile only. Follow-up routine text: #144.
 - Tests: `tests/test_coordinator.py`, `tests/test_coordinated_helpers.py`;
   existing helper tests now run each call against its own empty store
   (`tests/store_support.py`). Suite ~100 s locally (was ~47 s): every
   coordinated action does real git pushes.
+- An independent review of the branch found five bugs, all fixed with
+  regression tests: a lookup failure right after a POST could free the intent,
+  and the rerun would buy again; a released `recorded` intent was resolved
+  before expiry + skew; a store failure during recovery crashed the monitor;
+  a failed push 1 after a recovery push raised `KeyError` and kept the lease;
+  one unrestorable gap blocked every later action.
 - Not verified: behaviour against GitHub's real push rejection through the
   cloud proxy, and a real lost response — both are #112 drills.
 
