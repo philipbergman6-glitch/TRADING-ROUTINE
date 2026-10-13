@@ -98,19 +98,22 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
      buying into it, its sector ETF included → STOP and report the lift
      date. A sector missing from the output → add it to memory/SECTORS.json
      and rerun.
-   - Rule 14 (Advisory until #136): if no single name is held (empty book
+   - Rule 14 (Engine): if no single name is held (empty book
      included) and SYMBOL is a broad ETF (SPDR sector fund or index tracker),
      STOP unless the owner states the composition waiver (why no single name
      passes the Entry Checklist); write it to today's RESEARCH-LOG entry as
-     "Composition waiver: <reason>" before validating.
+     "Composition waiver: <reason>" before validating. Then pass
+     --composition-waiver "<reason>" to BOTH validate_order.py and
+     submit_entry.py (the alpaca.sh gate reads it back from the entry intent).
 
 2. Validate through the risk engine. This is mandatory and it reads live
    account state itself — do not hand-check the rules.
 
    For BUYs (ADR 0002 OTO fixed leg — validate with --stop-price, not trail-only):
    ```
+   WAIVER_ARGS=()   # or: WAIVER_ARGS=(--composition-waiver "<reason from RESEARCH-LOG>")
    VALIDATE_JSON=$(TRADING_STATE_STORE=local python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-       --price P --stop-price STOP --json); VALIDATE_EXIT=$?
+       --price P --stop-price STOP "${WAIVER_ARGS[@]}" --json); VALIDATE_EXIT=$?
    LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    ```
    Exit 10 (buys only) = state store unavailable: the reservations of
@@ -145,7 +148,7 @@ Args: SYMBOL SHARES SIDE (buy or sell). If missing, ask.
    # LEDGER_ORDER_ID from the buy validate --json above (re-assert before record)
    LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
    # submit_entry.py: OTO via build_oto_order.py, intent en-<YYYYMMDD>-<SYM> (ADR 0005), lookup before submit; exit 8 → run the JSON `rerun` command
-   ENTRY_JSON=$(TRADING_STATE_STORE=local python3 scripts/submit_entry.py --symbol SYM --qty N --price P); ENTRY_EXIT=$?
+   ENTRY_JSON=$(TRADING_STATE_STORE=local python3 scripts/submit_entry.py --symbol SYM --qty N --price P "${WAIVER_ARGS[@]}"); ENTRY_EXIT=$?
    HTTP_STATUS=$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
    if [ -n "$HTTP_STATUS" ]; then
      python3 scripts/record_broker_response.py \

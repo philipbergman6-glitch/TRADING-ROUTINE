@@ -78,6 +78,19 @@ def test_buy_paths_check_rules_10_and_14_before_validating(path: Path) -> None:
     assert text.index("Composition waiver") < validate, "rule 14: a broad ETF needs a recorded waiver"
 
 
+@pytest.mark.parametrize("path", BUY_PATHS, ids=lambda p: str(p.relative_to(REPO)))
+def test_buy_paths_pass_the_composition_waiver_to_both_calls(path: Path) -> None:
+    # Rule 14 is Engine (#136): the alpaca.sh gate reads the waiver back from
+    # the entry intent, so a waiver given only to validate_order.py is refused.
+    text = path.read_text()
+    assert "Rule 14 (Engine)" in text and "Advisory until #136" not in text
+    start = text.index("validate_order.py --symbol SYM --qty N --side buy")
+    validate = text[start : text.index("VALIDATE_EXIT=$?", start)]
+    entry = next(line for line in text.splitlines() if "submit_entry.py --symbol SYM" in line)
+    for name, call in (("validate_order.py", validate), ("submit_entry.py", entry)):
+        assert "--composition-waiver" in call or "WAIVER_ARGS" in call, f"{name} buy call carries no waiver"
+
+
 @pytest.mark.parametrize(
     "path",
     (REPO / "routines" / "pre-market.md", REPO / ".claude" / "commands" / "pre-market.md"),

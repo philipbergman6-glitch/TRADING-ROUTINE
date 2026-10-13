@@ -233,13 +233,17 @@ STREAKS_JSON=$(python3 scripts/blotter.py --sector-streaks); STREAKS_EXIT=$?
   <lifts_on>: SYM" to TRADE-LOG. A sector missing from STREAKS_JSON → add it
   to memory/SECTORS.json and rerun before buying. Open positions are never
   sold for it.
-Rule 14 (Advisory until #136): if no single name is held (empty book
-included), a broad-ETF buy (SPDR sector fund or index tracker) needs a
-"Composition waiver:" line in today's RESEARCH-LOG; without one → skip it,
-log "RULE 14 SKIPPED SYM: no composition waiver" to TRADE-LOG.
+Rule 14 (Engine): if no single name is held (empty book included), a
+broad-ETF buy (SPDR sector fund or index tracker) is refused unless it
+carries a composition waiver. Pass one ONLY when today's RESEARCH-LOG has a
+"Composition waiver: <reason>" line, with that same reason; without one →
+skip it, log "RULE 14 SKIPPED SYM: no composition waiver" to TRADE-LOG.
+The waiver goes to BOTH validate_order.py and submit_entry.py (the alpaca.sh
+gate reads it back from the entry intent).
+WAIVER_ARGS=()   # or: WAIVER_ARGS=(--composition-waiver "<reason from RESEARCH-LOG>")
 
 VALIDATE_JSON=$(python3 scripts/validate_order.py --symbol SYM --qty N --side buy \
-    --price P --stop-price STOP --sector "GICS Sector" --json); VALIDATE_EXIT=$?
+    --price P --stop-price STOP --sector "GICS Sector" "${WAIVER_ARGS[@]}" --json); VALIDATE_EXIT=$?
 [ "$VALIDATE_EXIT" -eq 0 ] || echo "VALIDATE REFUSED exit=$VALIDATE_EXIT: $VALIDATE_JSON"   # branch on VALIDATE_EXIT, never on reading the JSON
 LEDGER_ORDER_ID=$(printf "%s" "$VALIDATE_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin)["ledger_order_id"])')
 Exit 0 = approved → proceed.
@@ -260,7 +264,7 @@ attempt is retried as -r1.. automatically, no --tag needed), submits through
 alpaca.sh (which re-validates the exact body with ALPACA_RISK_OK=1), and
 confirms by client id. Never hand-write a raw order call for a buy.
 
-ENTRY_JSON=$(python3 scripts/submit_entry.py --symbol SYM --qty N --price P); ENTRY_EXIT=$?
+ENTRY_JSON=$(python3 scripts/submit_entry.py --symbol SYM --qty N --price P "${WAIVER_ARGS[@]}"); ENTRY_EXIT=$?
 # http_status is set only when THIS run submitted (not on already_submitted).
 HTTP_STATUS=$(printf "%s" "$ENTRY_JSON" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("http_status") or "")')
 if [ -n "$HTTP_STATUS" ]; then
