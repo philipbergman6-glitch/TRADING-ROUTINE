@@ -47,7 +47,7 @@ class FakeBroker:
 CID = "en-20260921-AMD"
 
 
-def approve(command, argument, reservations=()):
+def approve(command, argument, reservations=(), composition_waiver=None):
     """The mutation gate, approving at a $100 ask (validation itself is tested elsewhere)."""
     return SimpleNamespace(price=Decimal("100"), sector=None)
 
@@ -140,7 +140,7 @@ def test_tag_is_a_deliberate_second_entry_the_same_day():
 def test_main_prints_the_intent_and_a_rerun_that_names_it(monkeypatch, capsys):
     import scripts.submit_entry as se
 
-    def fake(b, intent=None, tag=None, binding=None):
+    def fake(b, intent=None, tag=None, binding=None, composition_waiver=None):
         raise Outcome(EXIT_UNPROTECTED, "submitted_outcome_unknown_rerun", intent=CID, client_order_id=CID)
     monkeypatch.setattr(se, "submit_entry", fake)
     monkeypatch.setattr("sys.argv", ["submit_entry.py", "--symbol", "AMD", "--qty", "10", "--price", "100"])

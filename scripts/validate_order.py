@@ -13,6 +13,11 @@ verdict stands. This does not bind validate→submit (#19); it only records.
     python3 scripts/validate_order.py --symbol AAPL --qty 100 --side buy \
         --price 187.85 --trail-percent 10
 
+A broad ETF bought while the book holds no single name (rule 14) is refused
+unless --composition-waiver "<reason>" is passed, the reason having been
+written to that session's RESEARCH-LOG first. The waiver is recorded in the
+verdict's `waived` list; the engine cannot check that the reason is true.
+
 Exit codes:
     0  approved -- safe to submit (ledger_order_id printed with --json)
     3  refused  -- one or more rules broken (reasons on stderr; still ledgered)
@@ -263,11 +268,19 @@ def main() -> int:
         help="GICS sector of the symbol (default: memory/SECTORS.json); required by versions with a sector cap",
     )
     parser.add_argument(
+        "--composition-waiver",
+        default=None,
+        help="rule 14: why no single name passed the entry checklist (already written to "
+        "RESEARCH-LOG); permits a broad ETF while the book holds no single name",
+    )
+    parser.add_argument(
         "--research-ref",
         default=None,
         help="optional research log pointer recorded with the decision",
     )
     args = parser.parse_args()
+    if args.composition_waiver is not None and not args.composition_waiver.strip():
+        parser.error("--composition-waiver needs the reason; omit it when there is none")
 
     now = datetime.now(timezone.utc)
     params = params_from_env(os.environ)
@@ -282,7 +295,7 @@ def main() -> int:
         trail_percent=Decimal(args.trail_percent) if args.trail_percent else None,
         sector=args.sector or load_sectors().get(args.symbol.upper()),
     )
-    result = validate_order(proposal, state, params)
+    result = validate_order(proposal, state, params, composition_waiver=args.composition_waiver)
     version_label = args.strategy_version or (
         params.name if os.environ.get("STRATEGY_VERSION") else DEFAULT_STRATEGY_VERSION
     )
@@ -323,6 +336,12 @@ def main() -> int:
                         {"rule": v.rule.value, "detail": v.detail}
                         for v in result.violations
                     ],
+                    "composition_waiver": (
+                        args.composition_waiver.strip() if args.composition_waiver else None
+                    ),
+                    "waived": [
+                        {"rule": v.rule.value, "detail": v.detail} for v in result.waived
+                    ],
                 },
                 indent=2,
             )
@@ -333,6 +352,8 @@ def main() -> int:
             f"@ {proposal.price} (notional {proposal.notional}) "
             f"ledger_order_id={ledger_ref}"
         )
+        for waived in result.waivers():
+            print(f"  waived: {waived}")
     else:
         print(
             f"REFUSED   {proposal.side.value} {proposal.qty} {proposal.symbol} "

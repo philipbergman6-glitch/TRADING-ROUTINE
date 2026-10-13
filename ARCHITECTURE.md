@@ -82,8 +82,9 @@ push 2: outcome settled from broker state + release
 
 - **Store fit.** Intent lines carry `intent`, `state`, `lease` (the acquire
   line's id); the first line carries `action`, `symbol` and, for entries,
-  `qty`/`price`/`sector` (the reservation) or, for closes and replacements, the
-  stop ids it will cancel. Replay (`coordinator.fold`) keeps the lease head and
+  `qty`/`price`/`sector` (the reservation) and any `composition_waiver` (rule
+  14; the `alpaca.sh` gate reads it back by client id) or, for closes and
+  replacements, the stop ids it will cancel. Replay (`coordinator.fold`) keeps the lease head and
   holder; an intent line under a void or released lease is ignored; an illegal
   transition under the valid lease fails closed. A claim that lost after a
   rebase is withdrawn (`kind: withdraw`) and the writer waits again.
@@ -200,7 +201,10 @@ reached on `/trade`, `market-open`, and `midday` via `scripts/validate_order.py`
 paper-account-only · stocks-only · max 6 positions · max 20% per position ·
 max 3 new trades per week · sufficient cash · 85% deployment ceiling ·
 unambiguous protection on every buy · fixed entry stop 9.5–10.5% below entry
-or exactly 10% entry trail · non-equity symbol formats rejected
+or exactly 10% entry trail · non-equity symbol formats rejected ·
+composition mandate (rule 14: no broad ETF as a new position while the book,
+reservations included, holds no single name, unless the caller passes a
+composition waiver, which the verdict records in `waived`)
 
 The position-count, position-size, weekly-trade, cash and deployment rules
 (and v2's sector cap) also count **reservations**: the capacity an unfinished

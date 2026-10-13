@@ -14,6 +14,11 @@ passes is protective-stop restoration: a sell stop whose client_order_id is
 rs-/rr-<old id>, which the floor check below admits only when that old stop
 is confirmed canceled and no protective stop rests for a held position. It is
 validated under the approved version's parameters.
+
+A broad-ETF buy refused under rule 14 (composition mandate) passes only with a
+composition waiver: the caller's, or, when the gate runs inside alpaca.sh and
+sees only the body, the one its entry intent was recorded with in the state
+store (scripts/submit_entry.py --composition-waiver).
 """
 from __future__ import annotations
 
@@ -27,7 +32,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from risk_engine import (OrderProposal, Side, validate_order, validate_stop_change, validate_stop_placement,
+from risk_engine import (OrderProposal, Rule, Side, validate_order, validate_stop_change, validate_stop_placement,
                          validate_stop_renewal)
 from risk_engine.engine import is_renewal_level
 from risk_engine.models import to_money
@@ -115,12 +120,28 @@ def _store_reservations(body):
         raise ValueError("state store unreachable; buys are refused without its reservations") from None
 
 
+def _store_waiver(body):
+    """The composition waiver this attempt's entry intent was recorded with; None
+    when it carries none. An unreachable store is a refusal, not a guess."""
+    from scripts.coordinator import intent_of_attempt, open_store, recorded_waiver  # noqa: E402  (local: avoids a cycle)
+    from scripts.state_store import StoreUnavailable  # noqa: E402
+    cid = str(body.get("client_order_id") or "")
+    if not cid:
+        return None
+    try:
+        return recorded_waiver(open_store(), intent_of_attempt(cid))
+    except StoreUnavailable as exc:
+        raise ValueError(f"state store unreachable; cannot read the composition waiver: {exc}") from None
+
+
 def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=None, params=None, binding=None,
-                      reservations=None):
+                      reservations=None, composition_waiver=None):
     """Raise on unsafe/unsupported input; injectable reads keep tests offline.
-    Returns the validated OrderProposal (None for cancel). `reservations` are the
-    coordinator's; without them a buy reads them from the state store."""
+    Returns the validated OrderProposal (None for cancel). `reservations` and
+    `composition_waiver` are the coordinator's; without reservations a buy reads
+    both from the state store (the waiver only when rule 14 refuses it)."""
     binding = binding or bind(os.environ)
+    from_store = reservations is None
     require(command in ("order", "close", "cancel"), "bulk mutations are disabled")
     unbound = f"strategy version binding failed ({binding.error}); only protective-stop restoration may proceed"
     require(not binding.error or command == "order", unbound)
@@ -215,7 +236,11 @@ def validate_mutation(command, argument, *, read=adapter, portfolio=None, now=No
                 level = None
             if level is not None:
                 _check_stop_floor(body, symbol, level, price, read, now or datetime.now(timezone.utc), params)
-    result = validate_order(proposal, state, params)
+    result = validate_order(proposal, state, params, composition_waiver=composition_waiver)
+    if from_store and composition_waiver is None and result.broke(Rule.COMPOSITION_MANDATE):
+        waiver = _store_waiver(body)
+        if waiver is not None:
+            result = validate_order(proposal, state, params, composition_waiver=waiver)
     require(result.approved, "; ".join(result.reasons()))
     if binding.error:
         print(f"VERSION BINDING EXCEPTION: protective-stop restoration {body['client_order_id']} validated under "

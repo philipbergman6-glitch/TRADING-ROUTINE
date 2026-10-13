@@ -45,6 +45,7 @@ class Rule(str, Enum):
     MAX_SECTOR_POSITIONS = "max_sector_positions"  # v2 rule 3: sector concentration cap
     REENTRY_COOLDOWN = "reentry_cooldown"  # v2 rule 14: no re-entry after a stop-out
     UNIVERSE = "universe"  # v2 rule 9: sector ETFs are not active positions
+    COMPOSITION_MANDATE = "composition_mandate"  # v1 rule 14: next new position is a single name
 
 
 class Side(str, Enum):
@@ -88,9 +89,15 @@ class Violation:
 
 @dataclass(frozen=True)
 class ValidationResult:
-    """The engine's verdict. Falsy when the order must not be sent."""
+    """The engine's verdict. Falsy when the order must not be sent.
+
+    `waived` holds what a caller-supplied waiver excused (rule 14's
+    composition waiver is the only one), each detail carrying the reason, so
+    an approval says what it was approved despite.
+    """
 
     violations: tuple[Violation, ...] = ()
+    waived: tuple[Violation, ...] = ()
 
     @property
     def approved(self) -> bool:
@@ -104,6 +111,9 @@ class ValidationResult:
 
     def reasons(self) -> list[str]:
         return [str(v) for v in self.violations]
+
+    def waivers(self) -> list[str]:
+        return [str(v) for v in self.waived]
 
 
 @dataclass(frozen=True)

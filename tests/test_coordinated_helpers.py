@@ -35,11 +35,11 @@ class Market(Broker):
 
 def engine_gate(broker, cash="25000"):
     """The real mutation gate and engine, on a fixed account: $100k equity, `cash` settled."""
-    def check(command, argument, reservations=()):
+    def check(command, argument, reservations=(), composition_waiver=None):
         state = PortfolioState(equity="100000", cash=cash, is_paper=True, reservations=reservations,
                                positions=(), trades_this_week=0)
         return validate_mutation(command, argument, read=broker.read, portfolio=state, now=NOW,
-                                 binding=bind(os.environ))
+                                 binding=bind(os.environ), composition_waiver=composition_waiver)
     return check
 
 
@@ -66,15 +66,16 @@ def test_a_pending_entry_reservation_refuses_a_buy_broker_state_alone_would_allo
     assert (first.code, first.detail["intent_state"]) == (8, "lost")
     broker.orders.clear()                                       # the broker shows nothing at all
 
-    # Broker state alone ($25,000 cash, nothing held, nothing pending) allows a $10,000 buy ...
+    # Broker state alone ($25,000 cash, nothing held, nothing pending) allows a $10,000 buy
+    # (a single name: rule 14 refuses a broad ETF into an empty book) ...
     (tmp_path / "x").mkdir()
-    control = entry(writer_store(tmp_path / "x", make_origin(tmp_path / "x"), "c"), Market(), Clock(), "XLP", 100)
+    control = entry(writer_store(tmp_path / "x", make_origin(tmp_path / "x"), "c"), Market(), Clock(), "MSFT", 100)
     assert control.state == "submitted"
     # ... the lost entry's reservation leaves $5,000 and refuses it, naming the intent.
-    second = entry(store, broker, clock, "XLP", 100)
+    second = entry(store, broker, clock, "MSFT", 100)
     assert (second.code, second.state) == (3, "refused") and ENTRY in second.detail["reason"]
     assert [p["symbol"] for p in broker.posts] == ["AMD"] * (1 + coordinator.LOST_REPOSTS)
-    refused = intent_lines(origin, "en-20261013-XLP")
+    refused = intent_lines(origin, "en-20261013-MSFT")
     assert [e["state"] for e in refused] == ["refused"] and ENTRY in refused[0]["reasons"][0]
 
 

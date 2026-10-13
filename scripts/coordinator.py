@@ -241,7 +241,7 @@ class View:
             iv = IntentView(intent, action, _text(e, "symbol"), state)
             if state == "recorded" and action == "entry":
                 _positive(e, "qty"), _positive(e, "price")
-                _text(e, "sector", optional=True)
+                _text(e, "sector", optional=True), _text(e, "composition_waiver", optional=True)
             if state == "recorded" and action != "entry":
                 cancels = e.get("cancels")
                 if not isinstance(cancels, list) or not all(isinstance(c, str) and c for c in cancels):
@@ -356,6 +356,13 @@ def store_reservations(store: StateStore, read, exclude: str | None = None) -> t
     unfilled = {iv.intent: entry_unfilled(read, iv) for iv in view.non_terminal()
                 if iv.action == "entry" and iv.intent != exclude}
     return reservations_of(view, unfilled, exclude)
+
+
+def recorded_waiver(store: StateStore, intent: str) -> str | None:
+    """The composition waiver (rule 14) an entry intent was recorded with, for
+    the exact-payload gate, which sees only the body. Raises StoreUnavailable."""
+    iv = fold(store.fetch().events).intents.get(intent)
+    return iv.first.get("composition_waiver") if iv is not None and iv.action == "entry" else None
 
 
 def intent_of_attempt(client_order_id: str) -> str:
