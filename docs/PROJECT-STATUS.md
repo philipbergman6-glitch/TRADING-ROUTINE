@@ -353,3 +353,9 @@ Baseline `f7adfd5`. No broker calls.
   the dispatcher is unprovisioned (#130), so the monitor ran twice on
   2026-10-13 and not at all on 2026-10-14 before 17:20Z; no market-open or
   midday run record on 2026-10-14; Resend key still send-only (#147).
+- Follow-up, same day: the scheduler had fired market-open (13:35Z) and
+  midday (17:10Z); both stopped at the version gate (exit 5) before the run
+  record, which is why main shows nothing. `.claude/settings.json` now
+  exports `STRATEGY_VERSION=v1` for every Claude Code session of the checkout
+  (ADR 0011 deployment step amended); the cloud environment setting remains
+  the owner's override. Dispatcher (#130) and Resend key (#147) unchanged.

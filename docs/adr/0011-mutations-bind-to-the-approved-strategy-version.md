@@ -116,7 +116,12 @@ lost the variable during a v2 segment, would trade under rules nobody approved.
   scripts run:
   - the GitHub Actions repository variable (`gh variable set STRATEGY_VERSION
     --body v1`), read by `protection-monitor.yml`;
-  - each cloud routine's environment;
+  - each cloud routine's environment. Since 2026-10-14 the repository's
+    `.claude/settings.json` exports `STRATEGY_VERSION=v1` into every Claude
+    Code session of this checkout, so a routine session is bound as soon as
+    it syncs main; a value set in the cloud environment still wins. The
+    routines ran three sessions unbound (2026-10-13 market-open through
+    2026-10-14 midday) before this, each stopping at its gate;
   - local shells. The Python CLIs read the process environment, not `.env`.
 
   Until the variable is set, every routine stops at its gate, and the monitor
