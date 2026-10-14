@@ -33,14 +33,30 @@ jobs:
       - name: Test (golden + benchmark-chain + paper-only guards)
         run: python3 -m pytest tests/ -q
 
+      # The routine that pushed memory/** pushes its run-record finish line to
+      # main seconds later (ADR 0012), so a push built on the triggering commit
+      # is rejected as non-fast-forward. Every attempt therefore refetches
+      # main, rebuilds data.js on that tip (the build re-reads state/ too) and
+      # pushes; a rejection means someone else pushed meanwhile, so try again.
       - name: Commit and push if changed
         run: |
-          if git diff --quiet docs/dashboard/data.js; then
-            echo "data.js unchanged — nothing to publish"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/dashboard/data.js
-          git commit -m "dashboard data: $(date -u +%F) [skip ci]"
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            python3 scripts/build_dashboard_data.py
+            if git diff --quiet docs/dashboard/data.js; then
+              echo "data.js unchanged — nothing to publish"
+              exit 0
+            fi
+            git add docs/dashboard/data.js
+            git commit -m "dashboard data: $(date -u +%F) [skip ci]"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "push rejected (attempt $attempt of 5): main moved, rebuilding on its new tip"
+            sleep $((attempt * 5))
+          done
+          echo "::error::could not publish data.js after 5 attempts"
+          exit 1

@@ -335,3 +335,21 @@ At the next material engineering handoff, replace stale sections here with the
 new baseline, changes, verification, and next work. Check Git for changes since
 the baseline before acting. Keep task routing in `AGENTS.md`, design rationale
 in ADRs, and trading history in `memory/`; avoid copying those documents here.
+
+## Session 2026-10-14: dashboard publish race
+
+Baseline `f7adfd5`. No broker calls.
+
+- `dashboard.yml` failed on the last two routine pushes (runs 203, 204): its
+  `git push` was rejected as non-fast-forward because the routine's run-record
+  finish line (ADR 0012) lands on main seconds after the memory push. The
+  publish step now refetches main, rebuilds `data.js` on that tip and pushes,
+  up to five attempts. `docs/dashboard/data.js` regenerated (log 2026-10-13).
+- Checks: offline suite (958 passed), `build_dashboard_data.py --check`,
+  `doctor.py` offline, `git diff --check`.
+- Still owner-only, found by the same overview: `STRATEGY_VERSION` is set as
+  the Actions variable (the monitor applied MPC's tighten on 2026-10-13) but
+  not in the cloud routine environment (pre-market 2026-10-14 still exit 5);
+  the dispatcher is unprovisioned (#130), so the monitor ran twice on
+  2026-10-13 and not at all on 2026-10-14 before 17:20Z; no market-open or
+  midday run record on 2026-10-14; Resend key still send-only (#147).
