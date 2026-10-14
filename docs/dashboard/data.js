@@ -1,9 +1,9 @@
-// ============ DATA — origin/main, latest log 2026-10-13 ============
+// ============ DATA — origin/main, latest log 2026-10-14 ============
 
 // Two independent dates. LOG_ASOF moves nightly with the trade log;
 // ANALYSIS_ASOF only moves when a human rewrites the editorial prose.
 // The dashboard shows both, so curated text can never pass as live.
-const LOG_ASOF = "2026-10-13";
+const LOG_ASOF = "2026-10-14";
 const ANALYSIS_ASOF = "2026-09-17";
 
 // {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}
@@ -123,7 +123,8 @@ const EQ = [
 {d:"2026-10-08",n:118,v:105990.39,cash:19.5,dp:1.39,note:""},
 {d:"2026-10-09",n:119,v:105778.92,cash:19.5,dp:-0.20,note:""},
 {d:"2026-10-12",n:120,v:106269.74,cash:19.4,dp:0.46,note:""},
-{d:"2026-10-13",n:121,v:107397.51,cash:19.2,dp:1.06,note:""}
+{d:"2026-10-13",n:121,v:107397.51,cash:19.2,dp:1.06,note:""},
+{d:"2026-10-14",n:122,v:107650.97,cash:19.2,dp:0.24,note:""}
 ];
 
 // weekly reviews. spx = as logged that week (contemporaneous record);
@@ -156,12 +157,12 @@ const WEEKS = [
 {w:"10/09", bot:2.43, spx:0.91, spxc:0.91, est:0}
 ];
 
-const BOOK = [ // Oct 13 EOD
-{s:"MPC", q:13, in:396.33, pl:1061.71, plp:20.61, stop:444.29, protection:"trailing", w:5.8},
-{s:"PSX", q:57, in:264.20, pl:1619.94, plp:10.76, stop:263.583, protection:"trailing", w:15.5},
-{s:"XLE", q:311, in:63.92, pl:1003.98, plp:5.05, stop:60.52, protection:"trailing", w:19.4},
-{s:"XLK", q:112, in:187.85, pl:944.16, plp:4.49, stop:182.925, protection:"trailing", w:20.5},
-{s:"XLP", q:250, in:83.76, pl:65.25, plp:0.31, stop:79.91, protection:"fixed", w:19.6}
+const BOOK = [ // Oct 14 EOD
+{s:"MPC", q:13, in:396.33, pl:1165.71, plp:22.63, stop:460.87, protection:"trailing", w:5.9},
+{s:"PSX", q:57, in:264.20, pl:1869.60, plp:12.42, stop:267.669, protection:"trailing", w:15.7},
+{s:"XLE", q:311, in:63.92, pl:1153.26, plp:5.80, stop:60.93, protection:"trailing", w:19.5},
+{s:"XLK", q:112, in:187.85, pl:290.08, plp:1.38, stop:182.925, protection:"trailing", w:19.8},
+{s:"XLP", q:250, in:83.76, pl:469.85, plp:2.24, stop:79.91, protection:"fixed", w:19.9}
 ];
 
 // Run records (ADR 0012), from state/events.jsonl: machine-written by every
@@ -169,7 +170,7 @@ const BOOK = [ // Oct 13 EOD
 // before LOG_ASOF only. Runs before `since` (or all runs, while it is null)
 // are unprovenanced: no record of code, rulebook, prompt or model exists and
 // none is backfilled.
-const RUNS = {"outcomes": {"incident": 1, "refused": 1}, "recent": [{"dirty": false, "e": "2026-10-12T21:38:31+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261012T213829Z-783273", "s": "2026-10-12T21:38:29+00:00", "sha": "6e17208", "t": "schedule"}, {"dirty": false, "e": "2026-10-12T20:19:15+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 2, "in": 0, "r": 0}, "o": "incident", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261012T201439Z-fe1f5e", "s": "2026-10-12T20:14:39+00:00", "sha": "968c7f6", "t": "cloud"}], "since": "2026-10-12", "through": "2026-10-12", "total": 2, "unfinished": 0};
+const RUNS = {"outcomes": {"actions": 1, "incident": 2, "no-trade": 1, "refused": 2}, "recent": [{"dirty": false, "e": "2026-10-13T23:40:02+00:00", "m": "not-applicable", "n": {"a": 1, "i": 0, "in": 0, "r": 1}, "o": "actions", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261013T233947Z-2ed2f8", "s": "2026-10-13T23:39:47+00:00", "sha": "3637f6d", "t": "schedule"}, {"dirty": false, "e": "2026-10-13T20:18:45+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 3, "in": 0, "r": 0}, "o": "incident", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261013T201452Z-a7142a", "s": "2026-10-13T20:14:52+00:00", "sha": "d878278", "t": "cloud"}, {"dirty": false, "e": "2026-10-13T19:47:27+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261013T194724Z-242c44", "s": "2026-10-13T19:47:24+00:00", "sha": "3d36d13", "t": "schedule"}, {"dirty": false, "e": "2026-10-13T11:37:55+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 0, "in": 0, "r": 0}, "o": "no-trade", "r": "pre-market", "rb": "v1.3", "run": "pre-market-20261013T113314Z-54bdd3", "s": "2026-10-13T11:33:14+00:00", "sha": "65886be", "t": "cloud"}, {"dirty": false, "e": "2026-10-12T21:38:31+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261012T213829Z-783273", "s": "2026-10-12T21:38:29+00:00", "sha": "6e17208", "t": "schedule"}, {"dirty": false, "e": "2026-10-12T20:19:15+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 2, "in": 0, "r": 0}, "o": "incident", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261012T201439Z-fe1f5e", "s": "2026-10-12T20:14:39+00:00", "sha": "968c7f6", "t": "cloud"}], "since": "2026-10-12", "through": "2026-10-13", "total": 6, "unfinished": 0};
 
 // ============ Curated: hand-written, dated by ANALYSIS_ASOF ============
 
@@ -207,7 +208,7 @@ const FEED = [
 {d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."}
 ];
 
-const RULES = [{"ok": "?", "c": "warn", "t": "Logged protection", "v": "4 trailing / 1 fixed; broker status unverified"}, {"ok": "?", "c": "warn", "t": "Historical rule compliance", "v": "not independently verified"}, {"ok": "✓", "c": "up", "t": "Logged deployment", "v": "80.8% as of 2026-10-13"}];
+const RULES = [{"ok": "?", "c": "warn", "t": "Logged protection", "v": "4 trailing / 1 fixed; broker status unverified"}, {"ok": "?", "c": "warn", "t": "Historical rule compliance", "v": "not independently verified"}, {"ok": "✓", "c": "up", "t": "Logged deployment", "v": "80.8% as of 2026-10-14"}];
 
 const RISK = [
 {t:"Evidence", v:"Markdown snapshots; broker reconciliation outstanding", c:"warn"},
