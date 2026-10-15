@@ -36,7 +36,7 @@ bash scripts/alpaca.sh account
 bash scripts/alpaca.sh positions
 bash scripts/alpaca.sh orders
 python3 scripts/blotter.py --check    # exit 4 = fills and positions disagree → STOP, email "BLOTTER MISMATCH $DATE"
-python3 scripts/blotter.py --json     # round_trips[] + open_lots[]; fills are the record
+python3 scripts/blotter.py --json | tee memory/BLOTTER.json   # round_trips[] + open_lots[]; fills are the record; the dashboard blotter is built from this file
 python3 scripts/reconcile_equity.py   # exit 4 = cash, holdings or daily equity do not reconcile → STOP, email "RECONCILIATION MISMATCH $DATE" with its output
 
 STEP 2b — Unfinished intents (ADR 0010 section 5). This routine never takes

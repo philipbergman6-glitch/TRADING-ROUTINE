@@ -17,7 +17,7 @@ coverage-only recovery), a committed append-only state store with per-run
 records (ADR 0004, 0012), a sha256-pinned versioned rulebook (ADR 0011), an
 optional Postgres ledger, and a dashboard generated from the markdown logs.
 
-Checks on 2026-10-15 from this baseline: offline suite 958 passed (one
+Checks on 2026-10-15 from this baseline: offline suite 962 passed (one
 `test_email_sh` case fails only on a workstation whose `_env.sh` provides real
 Resend credentials; it passes in CI, run 2026-10-15 `tests` success),
 `build_dashboard_data.py --check` OK, `doctor.py` offline OK, dashboard data
@@ -64,6 +64,26 @@ Remaining before the 30-session $10,000 v2 paper run:
 
 Session notes below are in reverse order of when they were written, newest
 first, then the sessions of 2026-10-12 and 2026-10-13 and the September work.
+
+## Session 2026-10-15: dashboard blotter from broker fills
+
+Baseline `f35e7ca`. One read-only broker call (`blotter.py --json`).
+
+- The dashboard's trade blotter was a hand-written list ending 2026-08-10. It
+  is now generated: the daily summary writes `scripts/blotter.py --json` to
+  `memory/BLOTTER.json` beside the EOD snapshot, and `build_dashboard_data.py`
+  emits `TRADES` from it (open lots first, then closed round trips newest exit
+  first, engineering test symbol `F` excluded by name). The build hard-fails
+  if the open lots disagree with the latest EOD book or a symbol lacks a
+  sector. Realized P&L and win rate on the page now come from the same rows
+  (+$2,703.45 over 16 round trips at 2026-10-14; matches research 0006 plus
+  the XLB exit).
+- Decision tape, risk panel, insights and chart notes refreshed through
+  2026-10-13; `ANALYSIS_ASOF` 2026-10-15. Decision tape is newest first.
+- Both `routines/daily-summary.md` and `.claude/commands/daily-summary.md`
+  write and commit `memory/BLOTTER.json`.
+- Checks: offline suite 962 passed (same local-only `test_email_sh` failure),
+  `build_dashboard_data.py --check`, `doctor.py`, `git diff --check`.
 
 ## Session 2026-10-14: dashboard publish race
 

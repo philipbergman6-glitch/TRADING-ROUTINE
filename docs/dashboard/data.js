@@ -4,7 +4,7 @@
 // ANALYSIS_ASOF only moves when a human rewrites the editorial prose.
 // The dashboard shows both, so curated text can never pass as live.
 const LOG_ASOF = "2026-10-14";
-const ANALYSIS_ASOF = "2026-09-17";
+const ANALYSIS_ASOF = "2026-10-15";
 
 // {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}
 const EQ = [
@@ -102,28 +102,28 @@ const EQ = [
 {d:"2026-09-09",n:96,v:103998.63,cash:20.3,dp:-0.72,note:""},
 {d:"2026-09-10",n:97,v:103289.39,cash:20.4,dp:-0.68,note:""},
 {d:"2026-09-11",n:98,v:103925.69,cash:20.3,dp:0.62,note:""},
-{d:"2026-09-14",n:99,v:103176.77,cash:39.4,dp:-0.72,note:""},
+{d:"2026-09-14",n:99,v:103176.77,cash:39.4,dp:-0.72,note:"XLI stop fires: −$1,575 after 77 days"},
 {d:"2026-09-15",n:100,v:103071.25,cash:39.4,dp:-0.10,note:""},
 {d:"2026-09-16",n:101,v:102827.45,cash:39.5,dp:-0.24,note:""},
-{d:"2026-09-17",n:102,v:103631.88,cash:20.0,dp:0.78,note:""},
+{d:"2026-09-17",n:102,v:103631.88,cash:20.0,dp:0.78,note:"XLE bought — energy sleeve opened"},
 {d:"2026-09-18",n:103,v:103282.35,cash:20.1,dp:-0.34,note:""},
 {d:"2026-09-21",n:105,v:102959.64,cash:20.1,dp:-0.31,note:""},
 {d:"2026-09-22",n:106,v:103477.27,cash:20.1,dp:0.50,note:""},
 {d:"2026-09-23",n:107,v:103339.91,cash:20.1,dp:-0.13,note:""},
 {d:"2026-09-24",n:108,v:102896.62,cash:20.2,dp:-0.43,note:""},
 {d:"2026-09-25",n:109,v:103093.11,cash:20.1,dp:0.19,note:""},
-{d:"2026-09-28",n:110,v:102720.45,cash:15.2,dp:-0.36,note:""},
+{d:"2026-09-28",n:110,v:102720.45,cash:15.2,dp:-0.36,note:"MPC bought — first single name since GOOGL (rule 14)"},
 {d:"2026-09-29",n:111,v:102329.13,cash:15.2,dp:-0.38,note:""},
-{d:"2026-09-30",n:112,v:101934.29,cash:35.0,dp:-0.39,note:""},
+{d:"2026-09-30",n:112,v:101934.29,cash:35.0,dp:-0.39,note:"XLB stop fires: −$948 after 93 days"},
 {d:"2026-10-01",n:113,v:102909.79,cash:34.7,dp:0.96,note:""},
-{d:"2026-10-02",n:114,v:103268.31,cash:20.0,dp:0.35,note:""},
+{d:"2026-10-02",n:114,v:103268.31,cash:20.0,dp:0.35,note:"PSX bought — second refiner"},
 {d:"2026-10-05",n:115,v:104115.94,cash:19.8,dp:0.82,note:""},
 {d:"2026-10-06",n:116,v:104530.87,cash:19.7,dp:0.40,note:""},
 {d:"2026-10-07",n:117,v:104538.19,cash:19.7,dp:0.01,note:""},
 {d:"2026-10-08",n:118,v:105990.39,cash:19.5,dp:1.39,note:""},
 {d:"2026-10-09",n:119,v:105778.92,cash:19.5,dp:-0.20,note:""},
 {d:"2026-10-12",n:120,v:106269.74,cash:19.4,dp:0.46,note:""},
-{d:"2026-10-13",n:121,v:107397.51,cash:19.2,dp:1.06,note:""},
+{d:"2026-10-13",n:121,v:107397.51,cash:19.2,dp:1.06,note:"STRATEGY_VERSION unset: market-open halts at the version gate"},
 {d:"2026-10-14",n:122,v:107650.97,cash:19.2,dp:0.24,note:""}
 ];
 
@@ -172,53 +172,71 @@ const BOOK = [ // Oct 14 EOD
 // none is backfilled.
 const RUNS = {"outcomes": {"actions": 1, "incident": 2, "no-trade": 1, "refused": 2}, "recent": [{"dirty": false, "e": "2026-10-13T23:40:02+00:00", "m": "not-applicable", "n": {"a": 1, "i": 0, "in": 0, "r": 1}, "o": "actions", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261013T233947Z-2ed2f8", "s": "2026-10-13T23:39:47+00:00", "sha": "3637f6d", "t": "schedule"}, {"dirty": false, "e": "2026-10-13T20:18:45+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 3, "in": 0, "r": 0}, "o": "incident", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261013T201452Z-a7142a", "s": "2026-10-13T20:14:52+00:00", "sha": "d878278", "t": "cloud"}, {"dirty": false, "e": "2026-10-13T19:47:27+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261013T194724Z-242c44", "s": "2026-10-13T19:47:24+00:00", "sha": "3d36d13", "t": "schedule"}, {"dirty": false, "e": "2026-10-13T11:37:55+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 0, "in": 0, "r": 0}, "o": "no-trade", "r": "pre-market", "rb": "v1.3", "run": "pre-market-20261013T113314Z-54bdd3", "s": "2026-10-13T11:33:14+00:00", "sha": "65886be", "t": "cloud"}, {"dirty": false, "e": "2026-10-12T21:38:31+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261012T213829Z-783273", "s": "2026-10-12T21:38:29+00:00", "sha": "6e17208", "t": "schedule"}, {"dirty": false, "e": "2026-10-12T20:19:15+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 2, "in": 0, "r": 0}, "o": "incident", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261012T201439Z-fe1f5e", "s": "2026-10-12T20:14:39+00:00", "sha": "968c7f6", "t": "cloud"}], "since": "2026-10-12", "through": "2026-10-13", "total": 6, "unfinished": 0};
 
-// ============ Curated: hand-written, dated by ANALYSIS_ASOF ============
-
+// Trade blotter from memory/BLOTTER.json (scripts/blotter.py --json: broker
+// fills, FIFO). Open lots first, newest entry first; then closed round trips,
+// newest exit first. Test symbols excluded: ['F'].
 const TRADES = [
-{d:"Apr 28", s:"AMD",  sec:"tech", q:62,  in:"314.97", out:null, gap:"never logged · last seen +11.96%", pl:null, th:"AI/CPU momentum"},
-{d:"Apr 28", s:"NVDA", sec:"tech", q:90,  in:"208.64", out:null, gap:"never logged", pl:null, th:"AI GPU"},
-{d:"Apr 28", s:"PLTR", sec:"tech", q:142, in:"142.30", out:null, gap:"never logged · last seen −3.02%", pl:null, th:"AI/defense sw"},
-{d:"May 07", s:"XOM",  sec:"enrg", q:140, in:"—",      out:"146.62", pl:{v:"+95", up:1}, th:"Energy leadership"},
-{d:"May 26", s:"MU",   sec:"tech", q:25,  in:"853.58", out:null, gap:"never logged · last seen +8.58%", pl:null, th:"HBM cycle"},
-{d:"May 27", s:"AVGO", sec:"tech", q:40,  in:"427.95", out:null, gap:"never logged", pl:null, th:"AI networking"},
-{d:"Jun 03", s:"MSFT", sec:"tech", q:48,  in:"436.20", out:"~401 · stop", pl:{v:"−1,690", up:0}, th:"Mega-cap AI capex"},
-{d:"Jun 03", s:"NVDA", sec:"tech", q:90,  in:"219.64", out:"~199 · stop", pl:{v:"−1,857", up:0}, th:"Re-entry"},
-{d:"Jun 10", s:"XOM",  sec:"enrg", q:142, in:"150.14", out:"141.74 · thesis cut", pl:{v:"−1,193", up:0}, th:"Cut at −5.6%, before −7% rule"},
-{d:"Jun 25", s:"GOOGL",sec:"tech", q:62,  in:"336.36", out:"322.93 · stop Jul 23", pl:{v:"−833", up:0}, th:"+10.55% high given back"},
-{d:"Jun 25", s:"XLF",  sec:"etf",  q:390, in:"53.97",  out:"53.83 · rotation", pl:{v:"−53", up:0}, th:"Financials thesis broke"},
-{d:"Jun 29", s:"XLI",  sec:"etf",  q:116, in:"182.16", out:"168.58 · Sep 14 stop", pl:{v:"−1,575.36", up:0}, th:"Industrials leader; exit recorded Sep 14"},
-{d:"Jun 29", s:"XLB",  sec:"etf",  q:412, in:"51.07",  out:"OPEN", open:1, pl:null, th:"Materials #2"},
-{d:"Jun 30", s:"XLP",  sec:"etf",  q:250, in:"83.76",  out:"OPEN", open:1, pl:null, th:"Defensive diversifier"},
-{d:"Aug 10", s:"XLK",  sec:"etf",  q:112, in:"187.85", out:"OPEN", open:1, pl:null, th:"Rule 12 deployment backstop — first tech since GOOGL"}
+{"d": "2026-10-02", "s": "PSX", "sec": "enrg", "lbl": "ENERGY", "q": 57, "in": "264.20", "out": null, "days": 12, "pl": null, "plp": null, "open": 1},
+{"d": "2026-09-28", "s": "MPC", "sec": "enrg", "lbl": "ENERGY", "q": 13, "in": "396.33", "out": null, "days": 16, "pl": null, "plp": null, "open": 1},
+{"d": "2026-09-17", "s": "XLE", "sec": "etf", "lbl": "ENERGY ETF", "q": 311, "in": "63.92", "out": null, "days": 27, "pl": null, "plp": null, "open": 1},
+{"d": "2026-08-10", "s": "XLK", "sec": "etf", "lbl": "TECH ETF", "q": 112, "in": "187.85", "out": null, "days": 65, "pl": null, "plp": null, "open": 1},
+{"d": "2026-06-30", "s": "XLP", "sec": "etf", "lbl": "STAPLES ETF", "q": 250, "in": "83.76", "out": null, "days": 106, "pl": null, "plp": null, "open": 1},
+{"d": "2026-06-29", "s": "XLB", "sec": "etf", "lbl": "MATERIALS ETF", "q": 412, "in": "51.07", "out": "2026-09-30 · 48.77", "days": 93, "pl": {"v": "−947.79", "up": 0}, "plp": "−4.50", "open": 0},
+{"d": "2026-06-29", "s": "XLI", "sec": "etf", "lbl": "INDUSTRIALS ETF", "q": 116, "in": "182.16", "out": "2026-09-14 · 168.58", "days": 77, "pl": {"v": "−1,575.36", "up": 0}, "plp": "−7.46", "open": 0},
+{"d": "2026-06-25", "s": "GOOGL", "sec": "tech", "lbl": "COMMS", "q": 62, "in": "336.36", "out": "2026-07-23 · 322.93", "days": 28, "pl": {"v": "−832.73", "up": 0}, "plp": "−3.99", "open": 0},
+{"d": "2026-06-25", "s": "XLF", "sec": "etf", "lbl": "FINANCIALS ETF", "q": 390, "in": "53.97", "out": "2026-06-29 · 53.83", "days": 4, "pl": {"v": "−52.85", "up": 0}, "plp": "−0.25", "open": 0},
+{"d": "2026-06-10", "s": "XOM", "sec": "enrg", "lbl": "ENERGY", "q": 142, "in": "150.14", "out": "2026-06-15 · 141.74", "days": 5, "pl": {"v": "−1,192.80", "up": 0}, "plp": "−5.59", "open": 0},
+{"d": "2026-06-03", "s": "MSFT", "sec": "tech", "lbl": "TECH", "q": 48, "in": "436.20", "out": "2026-06-09 · 401.09", "days": 6, "pl": {"v": "−1,685.28", "up": 0}, "plp": "−8.05", "open": 0},
+{"d": "2026-06-03", "s": "NVDA", "sec": "tech", "lbl": "TECH", "q": 90, "in": "219.64", "out": "2026-06-09 · 199.37", "days": 6, "pl": {"v": "−1,823.96", "up": 0}, "plp": "−9.23", "open": 0},
+{"d": "2026-05-26", "s": "MU", "sec": "tech", "lbl": "TECH", "q": 25, "in": "853.58", "out": "2026-06-04 · 1013.36", "days": 9, "pl": {"v": "+3,994.50", "up": 1}, "plp": "+18.72", "open": 0},
+{"d": "2026-05-27", "s": "AVGO", "sec": "tech", "lbl": "TECH", "q": 40, "in": "427.95", "out": "2026-06-04 · 410.09", "days": 8, "pl": {"v": "−714.57", "up": 0}, "plp": "−4.17", "open": 0},
+{"d": "2026-05-07", "s": "PLTR", "sec": "tech", "lbl": "TECH", "q": 152, "in": "136.96", "out": "2026-06-02 · 152.21", "days": 26, "pl": {"v": "+2,317.64", "up": 1}, "plp": "+11.13", "open": 0},
+{"d": "2026-05-07", "s": "XOM", "sec": "enrg", "lbl": "ENERGY", "q": 140, "in": "145.94", "out": "2026-05-27 · 146.62", "days": 20, "pl": {"v": "+95.21", "up": 1}, "plp": "+0.47", "open": 0},
+{"d": "2026-04-28", "s": "NVDA", "sec": "tech", "lbl": "TECH", "q": 90, "in": "208.64", "out": "2026-05-26 · 212.71", "days": 28, "pl": {"v": "+366.30", "up": 1}, "plp": "+1.95", "open": 0},
+{"d": "2026-05-21", "s": "WMT", "sec": "oth", "lbl": "STAPLES", "q": 175, "in": "122.44", "out": "2026-05-21 · 122.38", "days": 0, "pl": {"v": "−11.43", "up": 0}, "plp": "−0.05", "open": 0},
+{"d": "2026-05-07", "s": "AMD", "sec": "tech", "lbl": "TECH", "q": 49, "in": "414.16", "out": "2026-05-18 · 421.44", "days": 11, "pl": {"v": "+356.86", "up": 1}, "plp": "+1.76", "open": 0},
+{"d": "2026-04-28", "s": "AMD", "sec": "tech", "lbl": "TECH", "q": 62, "in": "314.97", "out": "2026-05-06 · 408.93", "days": 8, "pl": {"v": "+5,825.49", "up": 1}, "plp": "+29.83", "open": 0},
+{"d": "2026-04-28", "s": "PLTR", "sec": "tech", "lbl": "TECH", "q": 142, "in": "142.30", "out": "2026-05-06 · 132.33", "days": 8, "pl": {"v": "−1,415.78", "up": 0}, "plp": "−7.01", "open": 0}
 ];
 
+// ============ Curated: hand-written, dated by ANALYSIS_ASOF ============
+
+// Decision tape: curated highlights, newest first.
 const FEED = [
-{d:"04/30", b:"hold", x:"XOM idea 6/10 — <b>below the 8/10 bar. DO NOT BUY.</b>"},
-{d:"06/09", b:"cut",  x:"MSFT & NVDA trailing stops fire. Full reset to cash."},
-{d:"06/15", b:"cut",  x:"<b>XOM thesis-break cut at −5.6%</b> — US-Iran deal killed the oil premium. Didn't wait for −7%."},
-{d:"06/22", b:"sys",  x:"/conviction from 100% cash: 24 sources. DELL ✓ GNRC ✓ — <b>MU refused</b> (+200% YTD, binary print, target 26% below spot)."},
-{d:"06/25", b:"trade",x:"Idle streak broken after 6 cash sessions: GOOGL + XLF."},
-{d:"06/29", b:"trade",x:"Rotation: XLF out (worst sector YTD), XLI + XLB in."},
-{d:"06/30", b:"trade",x:"XLP added — <b>deployment inside the 75–85% band for the first time</b> (79.4%)."},
-{d:"07/23", b:"cut",  x:"GOOGL gaps through stop post-Q2 (capex fear): <b>−3.99%</b>. Pre-market call: no re-entry into the fear. Held."},
-{d:"07/24", b:"sys",  x:"Weekly review: <b>all-ETF book has no independent engine</b> — sourcing a single-name is 'the book's missing half'."},
-{d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."},
-{d:"08/07", b:"sys",  x:"Weekly review writes <b>Rule 12 into the strategy itself</b>: below-band for 3 sessions ⇒ next market-open MUST add. Verbatim: <i>'patience was masking non-compliance.'</i>"},
+{d:"10/13", b:"sys",  x:"<b>STRATEGY_VERSION unset in the cloud routine environment</b>: market-open and midday stop at the version gate (exit 5) before any broker call — owner configuration, not code. The protection monitor (Actions variable set) keeps covering the book."},
+{d:"10/13", b:"sys",  x:"v1 frozen at tag <b>v1-baseline</b>: coordinator lease + intent recovery (ADR 0010) and per-run records (ADR 0012) now wrap every mutation."},
+{d:"10/02", b:"trade",x:"PSX 57 @ $264.20 — second refiner. <b>validate_order exit 0</b>, bracket entry, protective leg converted to a 10% trail."},
+{d:"09/30", b:"cut",  x:"XLB fixed stop fires at $48.77: <b>−$947.79 (−4.50%)</b> after 93 days. Book is now energy-led."},
+{d:"09/28", b:"trade",x:"MPC 13 @ $396.33 — <b>first single name since GOOGL</b>, under rule 14's composition mandate."},
+{d:"09/19", b:"sys",  x:"Research 0006: full fill history pulled read-only and <b>reconciled to equity to the cent</b>. Bot +3.28% vs SPY +7.04% to Sep 18; the ETF segment is the drag."},
+{d:"09/17", b:"trade",x:"XLE 311 @ $63.92 — energy sleeve opened."},
+{d:"09/14", b:"cut",  x:"XLI trailing stop fires at $168.58: <b>−$1,575.36 (−7.46%)</b>."},
+{d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."},
 {d:"08/10", b:"trade",x:"<b>Rule 12 fires on its own deadline</b> — XLK 112 @ $187.85. Deployment 60.4% → 80.2%, back in band after 12 sessions out; first tech exposure since the GOOGL stop."},
-{d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."}
+{d:"08/07", b:"sys",  x:"Weekly review writes <b>Rule 12 into the strategy itself</b>: below-band for 3 sessions ⇒ next market-open MUST add. Verbatim: <i>'patience was masking non-compliance.'</i>"},
+{d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."},
+{d:"07/24", b:"sys",  x:"Weekly review: <b>all-ETF book has no independent engine</b> — sourcing a single-name is 'the book's missing half'."},
+{d:"07/23", b:"cut",  x:"GOOGL gaps through stop post-Q2 (capex fear): <b>−3.99%</b>. Pre-market call: no re-entry into the fear. Held."},
+{d:"06/30", b:"trade",x:"XLP added — <b>deployment inside the 75–85% band for the first time</b> (79.4%)."},
+{d:"06/29", b:"trade",x:"Rotation: XLF out (worst sector YTD), XLI + XLB in."},
+{d:"06/25", b:"trade",x:"Idle streak broken after 6 cash sessions: GOOGL + XLF."},
+{d:"06/22", b:"sys",  x:"/conviction from 100% cash: 24 sources. DELL ✓ GNRC ✓ — <b>MU refused</b> (+200% YTD, binary print, target 26% below spot)."},
+{d:"06/15", b:"cut",  x:"<b>XOM thesis-break cut at −5.6%</b> — US-Iran deal killed the oil premium. Didn't wait for −7%."},
+{d:"06/09", b:"cut",  x:"MSFT & NVDA trailing stops fire. Full reset to cash."},
+{d:"04/30", b:"hold", x:"XOM idea 6/10 — <b>below the 8/10 bar. DO NOT BUY.</b>"}
 ];
 
 const RULES = [{"ok": "?", "c": "warn", "t": "Logged protection", "v": "4 trailing / 1 fixed; broker status unverified"}, {"ok": "?", "c": "warn", "t": "Historical rule compliance", "v": "not independently verified"}, {"ok": "✓", "c": "up", "t": "Logged deployment", "v": "80.8% as of 2026-10-14"}];
 
 const RISK = [
-{t:"Evidence", v:"Markdown snapshots; broker reconciliation outstanding", c:"warn"},
-{t:"Execution", v:"Recovery across interrupted routines remains unproven", c:"warn"},
+{t:"Evidence", v:"Fills reconciled to equity to the cent at 2026-09-18 (research 0006); blotter rebuilt from broker fills each EOD", c:"up"},
+{t:"Execution", v:"Every mutation under the coordinator lease with intent recovery (ADR 0010) since 2026-10-13", c:"up"},
 {t:"Benchmark", v:"Some weeks estimated; see comparison labels", c:"warn"}
 ];
 
-// Commentary as of 2026-09-17; not a live safety certification.
+// Commentary as of 2026-10-15; not a live safety certification.
 const INSIGHTS = [
-{c:"var(--amber)", n:"01", h:"Prove the system before real money.", p:"The current objective is a recoverable paper execution path and independently reconciled performance. A green unit-test suite alone does not establish continuous protection or a profitable strategy."},
-{c:"var(--cyan)", n:"02", h:"Keep the evidence visible.", p:"The equity curve and current book are generated from dated logs. The historical blotter below is incomplete; use it as an archive, not a complete realized-return or win-rate calculation. Benchmark weeks marked estimated remain provisional."},
+{c:"var(--amber)", n:"01", h:"The plumbing is proven; the edge is not.", p:"Paper results reconcile to the cent, every mutation runs under a lease with recovery, and each run leaves a record. What the logs do not yet show is skill: the bot trails SPY since the June rotation into sector ETFs, and the single-name segment carried the return."},
+{c:"var(--cyan)", n:"02", h:"Keep the evidence visible.", p:"The equity curve and book come from dated logs; the blotter comes from broker fills, FIFO, with engineering test fills excluded by name. Benchmark weeks marked estimated remain provisional. Nothing on this page is hand-typed except this column and the decision tape."},
 {c:"var(--violet)", n:"03", h:"Test whether the decisions add value.", p:"Freeze an experiment specification and compare prospective agent decisions with passive and simple mechanical baselines, on matching dates and after modeled costs. Record predictions before trades and version every strategy change."}
 ];

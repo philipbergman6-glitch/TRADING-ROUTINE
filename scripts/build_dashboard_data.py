@@ -11,10 +11,14 @@ Parses:
                               every routine and monitor run; runs started
                               before LOG_ASOF only, so a later record cannot
                               make the committed data.js stale)
+  - memory/BLOTTER.json    -> TRADES (scripts/blotter.py --json, written by the
+                              daily summary from broker fills: FIFO round
+                              trips and open lots; open lots must equal the
+                              latest EOD book or the build fails)
 
-TRADES / FEED / RULES / INSIGHTS and per-date chart notes are curated, not
-derivable from the logs — they are curated below and dated by ANALYSIS_ASOF,
-which the dashboard displays alongside the (separate) latest-log date.
+FEED / RISK / INSIGHTS and per-date chart notes are curated, not derivable
+from the logs — they are written below and dated by ANALYSIS_ASOF, which the
+dashboard displays alongside the (separate) latest-log date.
 
 HARD-FAILS on any parse mismatch. Never publishes partial or stale data.
 """
@@ -33,7 +37,13 @@ from scripts.state_store import STATE_FILE, CorruptState, replay  # noqa: E402
 STATE = REPO / STATE_FILE
 TRADE_LOG = REPO / "memory" / "TRADE-LOG.md"
 WEEKLY_REVIEW = REPO / "memory" / "WEEKLY-REVIEW.md"
+BLOTTER = REPO / "memory" / "BLOTTER.json"
+SECTORS = REPO / "memory" / "SECTORS.json"
 OUT = REPO / "docs" / "dashboard" / "data.js"
+
+# Engineering test fills (research 0006 excludes them from every figure).
+# Excluded here by symbol, and the exclusion is printed in the blotter label.
+TEST_SYMBOLS = frozenset({"F"})
 
 YEAR = 2026
 DAY0_DATE = "2026-04-27"  # "Day 0" baseline header carries no calendar date
@@ -305,6 +315,84 @@ def parse_weekly_review(text):
 
 
 # --------------------------------------------------------------------------
+# memory/BLOTTER.json -> TRADES
+# --------------------------------------------------------------------------
+# The daily summary writes `scripts/blotter.py --json` (broker fills, FIFO)
+# to memory/BLOTTER.json next to the EOD snapshot. Fills are the record; the
+# dashboard orders them for a reader: open lots first (newest entry first),
+# then closed round trips, newest exit first.
+
+CHIP_BY_SECTOR = {"Information Technology": "tech", "Communication Services": "tech",
+                  "Energy": "enrg"}
+SHORT_SECTOR = {"Information Technology": "TECH", "Communication Services": "COMMS",
+                "Energy": "ENERGY", "Consumer Staples": "STAPLES",
+                "Consumer Discretionary": "DISCRETIONARY", "Materials": "MATERIALS",
+                "Industrials": "INDUSTRIALS", "Financials": "FINANCIALS"}
+
+
+def read_blotter():
+    if not BLOTTER.exists():
+        fail(f"{BLOTTER.relative_to(REPO)} missing: run scripts/blotter.py --json > memory/BLOTTER.json")
+    try:
+        data = json.loads(BLOTTER.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        fail(f"BLOTTER.json is not valid JSON: {exc}")
+    for key in ("round_trips", "open_lots"):
+        if not isinstance(data.get(key), list):
+            fail(f"BLOTTER.json lacks a '{key}' list")
+    return data
+
+
+def sector_chip(symbol, sectors):
+    sector = sectors.get(symbol)
+    if not sector:
+        fail(f"{symbol} traded but missing from memory/SECTORS.json")
+    short = SHORT_SECTOR.get(sector, sector.upper())
+    if symbol.startswith("XL"):
+        return "etf", f"{short} ETF"
+    return CHIP_BY_SECTOR.get(sector, "oth"), short
+
+
+def signed_money(v):
+    v = float(v)
+    return f"{'+' if v >= 0 else '−'}{abs(v):,.2f}"
+
+
+def build_trades(blotter, book, log_asof):
+    """BLOTTER.json -> TRADES rows, open lots first, then newest exit first."""
+    sectors = json.loads(SECTORS.read_text(encoding="utf-8"))
+    asof = date.fromisoformat(log_asof)
+    opens = [o for o in blotter["open_lots"] if o["symbol"] not in TEST_SYMBOLS]
+    closed = [r for r in blotter["round_trips"] if r["symbol"] not in TEST_SYMBOLS]
+
+    lots = sorted(o["symbol"] for o in opens)
+    held = sorted(b["s"] for b in book)
+    if lots != held:
+        fail(f"BLOTTER.json open lots {lots} do not match the latest EOD book {held}: "
+             "refresh the blotter with the EOD snapshot")
+
+    rows = []
+    for o in sorted(opens, key=lambda o: o["entered"], reverse=True):
+        entered = date.fromisoformat(o["entered"][:10])
+        chip, label = sector_chip(o["symbol"], sectors)
+        rows.append({"d": entered.isoformat(), "s": o["symbol"], "sec": chip, "lbl": label,
+                     "q": int(o["qty"]), "in": f"{float(o['avg_in']):.2f}", "out": None,
+                     "days": (asof - entered).days, "pl": None, "plp": None, "open": 1})
+    for r in sorted(closed, key=lambda r: (r["exited"], r["entered"]), reverse=True):
+        entered = date.fromisoformat(r["entered"][:10])
+        exited = date.fromisoformat(r["exited"][:10])
+        chip, label = sector_chip(r["symbol"], sectors)
+        pnl = float(r["pnl"])
+        rows.append({"d": entered.isoformat(), "s": r["symbol"], "sec": chip, "lbl": label,
+                     "q": int(r["qty"]), "in": f"{float(r['avg_in']):.2f}",
+                     "out": f"{exited.isoformat()} · {float(r['avg_out']):.2f}",
+                     "days": (exited - entered).days,
+                     "pl": {"v": signed_money(pnl), "up": 1 if pnl >= 0 else 0},
+                     "plp": signed_money(r["pnl_pct"]), "open": 0})
+    return rows
+
+
+# --------------------------------------------------------------------------
 # state/events.jsonl -> RUNS
 # --------------------------------------------------------------------------
 
@@ -371,15 +459,13 @@ def summarize_runs(events, log_asof):
 # editorial does not. The dashboard surfaces both so a stale narrative can
 # never sit behind a "LIVE" badge. When you revise the prose below, bump
 # ANALYSIS_ASOF in the same commit.
-ANALYSIS_ASOF = "2026-09-17"
+ANALYSIS_ASOF = "2026-10-15"
 
 #
-# TRADES / FEED / RULES / RISK / INSIGHTS and the per-date chart notes are
-# editorial: they cannot be derived from the logs, so they are written by hand
-# and dated. Figures that DO move with the logs (deployment %, phase day) are
-# placeholders substituted at build time — never bake a live number in here.
-# Open positions carry pl:null on purpose; their P&L lives in BOOK, which is
-# regenerated nightly, so the blotter cannot drift.
+# FEED / RISK / INSIGHTS and the per-date chart notes are editorial: they
+# cannot be derived from the logs, so they are written by hand and dated.
+# Figures that DO move with the logs (deployment %, phase day, the blotter)
+# are generated above — never bake a live number in here.
 # --------------------------------------------------------------------------
 
 # Chart-point annotations by date; dates without an entry get note:"".
@@ -410,55 +496,52 @@ EQ_NOTES = {
     "2026-08-04": "Fresh phase high — all 3 green on cost",
     "2026-08-07": "Rule 12 written: deployment backstop after 3 idle sessions",
     "2026-08-10": "Rule 12 fires: XLK bought — 60.4% → 80.2%, back in band",
+    "2026-09-14": "XLI stop fires: −$1,575 after 77 days",
+    "2026-09-17": "XLE bought — energy sleeve opened",
+    "2026-09-28": "MPC bought — first single name since GOOGL (rule 14)",
+    "2026-09-30": "XLB stop fires: −$948 after 93 days",
+    "2026-10-02": "PSX bought — second refiner",
+    "2026-10-13": "STRATEGY_VERSION unset: market-open halts at the version gate",
 }
 
 STATIC_TAIL = '''\
-const TRADES = [
-{d:"Apr 28", s:"AMD",  sec:"tech", q:62,  in:"314.97", out:null, gap:"never logged · last seen +11.96%", pl:null, th:"AI/CPU momentum"},
-{d:"Apr 28", s:"NVDA", sec:"tech", q:90,  in:"208.64", out:null, gap:"never logged", pl:null, th:"AI GPU"},
-{d:"Apr 28", s:"PLTR", sec:"tech", q:142, in:"142.30", out:null, gap:"never logged · last seen −3.02%", pl:null, th:"AI/defense sw"},
-{d:"May 07", s:"XOM",  sec:"enrg", q:140, in:"—",      out:"146.62", pl:{v:"+95", up:1}, th:"Energy leadership"},
-{d:"May 26", s:"MU",   sec:"tech", q:25,  in:"853.58", out:null, gap:"never logged · last seen +8.58%", pl:null, th:"HBM cycle"},
-{d:"May 27", s:"AVGO", sec:"tech", q:40,  in:"427.95", out:null, gap:"never logged", pl:null, th:"AI networking"},
-{d:"Jun 03", s:"MSFT", sec:"tech", q:48,  in:"436.20", out:"~401 · stop", pl:{v:"−1,690", up:0}, th:"Mega-cap AI capex"},
-{d:"Jun 03", s:"NVDA", sec:"tech", q:90,  in:"219.64", out:"~199 · stop", pl:{v:"−1,857", up:0}, th:"Re-entry"},
-{d:"Jun 10", s:"XOM",  sec:"enrg", q:142, in:"150.14", out:"141.74 · thesis cut", pl:{v:"−1,193", up:0}, th:"Cut at −5.6%, before −7% rule"},
-{d:"Jun 25", s:"GOOGL",sec:"tech", q:62,  in:"336.36", out:"322.93 · stop Jul 23", pl:{v:"−833", up:0}, th:"+10.55% high given back"},
-{d:"Jun 25", s:"XLF",  sec:"etf",  q:390, in:"53.97",  out:"53.83 · rotation", pl:{v:"−53", up:0}, th:"Financials thesis broke"},
-{d:"Jun 29", s:"XLI",  sec:"etf",  q:116, in:"182.16", out:"168.58 · Sep 14 stop", pl:{v:"−1,575.36", up:0}, th:"Industrials leader; exit recorded Sep 14"},
-{d:"Jun 29", s:"XLB",  sec:"etf",  q:412, in:"51.07",  out:"OPEN", open:1, pl:null, th:"Materials #2"},
-{d:"Jun 30", s:"XLP",  sec:"etf",  q:250, in:"83.76",  out:"OPEN", open:1, pl:null, th:"Defensive diversifier"},
-{d:"Aug 10", s:"XLK",  sec:"etf",  q:112, in:"187.85", out:"OPEN", open:1, pl:null, th:"Rule 12 deployment backstop — first tech since GOOGL"}
-];
-
+// Decision tape: curated highlights, newest first.
 const FEED = [
-{d:"04/30", b:"hold", x:"XOM idea 6/10 — <b>below the 8/10 bar. DO NOT BUY.</b>"},
-{d:"06/09", b:"cut",  x:"MSFT & NVDA trailing stops fire. Full reset to cash."},
-{d:"06/15", b:"cut",  x:"<b>XOM thesis-break cut at −5.6%</b> — US-Iran deal killed the oil premium. Didn't wait for −7%."},
-{d:"06/22", b:"sys",  x:"/conviction from 100% cash: 24 sources. DELL ✓ GNRC ✓ — <b>MU refused</b> (+200% YTD, binary print, target 26% below spot)."},
-{d:"06/25", b:"trade",x:"Idle streak broken after 6 cash sessions: GOOGL + XLF."},
-{d:"06/29", b:"trade",x:"Rotation: XLF out (worst sector YTD), XLI + XLB in."},
-{d:"06/30", b:"trade",x:"XLP added — <b>deployment inside the 75–85% band for the first time</b> (79.4%)."},
-{d:"07/23", b:"cut",  x:"GOOGL gaps through stop post-Q2 (capex fear): <b>−3.99%</b>. Pre-market call: no re-entry into the fear. Held."},
-{d:"07/24", b:"sys",  x:"Weekly review: <b>all-ETF book has no independent engine</b> — sourcing a single-name is 'the book's missing half'."},
-{d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."},
-{d:"08/07", b:"sys",  x:"Weekly review writes <b>Rule 12 into the strategy itself</b>: below-band for 3 sessions ⇒ next market-open MUST add. Verbatim: <i>'patience was masking non-compliance.'</i>"},
+{d:"10/13", b:"sys",  x:"<b>STRATEGY_VERSION unset in the cloud routine environment</b>: market-open and midday stop at the version gate (exit 5) before any broker call — owner configuration, not code. The protection monitor (Actions variable set) keeps covering the book."},
+{d:"10/13", b:"sys",  x:"v1 frozen at tag <b>v1-baseline</b>: coordinator lease + intent recovery (ADR 0010) and per-run records (ADR 0012) now wrap every mutation."},
+{d:"10/02", b:"trade",x:"PSX 57 @ $264.20 — second refiner. <b>validate_order exit 0</b>, bracket entry, protective leg converted to a 10% trail."},
+{d:"09/30", b:"cut",  x:"XLB fixed stop fires at $48.77: <b>−$947.79 (−4.50%)</b> after 93 days. Book is now energy-led."},
+{d:"09/28", b:"trade",x:"MPC 13 @ $396.33 — <b>first single name since GOOGL</b>, under rule 14's composition mandate."},
+{d:"09/19", b:"sys",  x:"Research 0006: full fill history pulled read-only and <b>reconciled to equity to the cent</b>. Bot +3.28% vs SPY +7.04% to Sep 18; the ETF segment is the drag."},
+{d:"09/17", b:"trade",x:"XLE 311 @ $63.92 — energy sleeve opened."},
+{d:"09/14", b:"cut",  x:"XLI trailing stop fires at $168.58: <b>−$1,575.36 (−7.46%)</b>."},
+{d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."},
 {d:"08/10", b:"trade",x:"<b>Rule 12 fires on its own deadline</b> — XLK 112 @ $187.85. Deployment 60.4% → 80.2%, back in band after 12 sessions out; first tech exposure since the GOOGL stop."},
-{d:"08/11", b:"sys",  x:"Benchmark audit: the logged S&amp;P series <b>broke chain 3×</b> (weeks 07/24, 07/31, 08/07). Chart now plots the re-chained series — <b>which is worse for the bot</b>. Build hard-fails on any new break."}
+{d:"08/07", b:"sys",  x:"Weekly review writes <b>Rule 12 into the strategy itself</b>: below-band for 3 sessions ⇒ next market-open MUST add. Verbatim: <i>'patience was masking non-compliance.'</i>"},
+{d:"07/28", b:"hold", x:"FOMC Jul 28–31: <b>no new risk into the decision</b>. Redeploy deferred again."},
+{d:"07/24", b:"sys",  x:"Weekly review: <b>all-ETF book has no independent engine</b> — sourcing a single-name is 'the book's missing half'."},
+{d:"07/23", b:"cut",  x:"GOOGL gaps through stop post-Q2 (capex fear): <b>−3.99%</b>. Pre-market call: no re-entry into the fear. Held."},
+{d:"06/30", b:"trade",x:"XLP added — <b>deployment inside the 75–85% band for the first time</b> (79.4%)."},
+{d:"06/29", b:"trade",x:"Rotation: XLF out (worst sector YTD), XLI + XLB in."},
+{d:"06/25", b:"trade",x:"Idle streak broken after 6 cash sessions: GOOGL + XLF."},
+{d:"06/22", b:"sys",  x:"/conviction from 100% cash: 24 sources. DELL ✓ GNRC ✓ — <b>MU refused</b> (+200% YTD, binary print, target 26% below spot)."},
+{d:"06/15", b:"cut",  x:"<b>XOM thesis-break cut at −5.6%</b> — US-Iran deal killed the oil premium. Didn't wait for −7%."},
+{d:"06/09", b:"cut",  x:"MSFT & NVDA trailing stops fire. Full reset to cash."},
+{d:"04/30", b:"hold", x:"XOM idea 6/10 — <b>below the 8/10 bar. DO NOT BUY.</b>"}
 ];
 
 const RULES = __RULES_JSON__;
 
 const RISK = [
-{t:"Evidence", v:"Markdown snapshots; broker reconciliation outstanding", c:"warn"},
-{t:"Execution", v:"Recovery across interrupted routines remains unproven", c:"warn"},
+{t:"Evidence", v:"Fills reconciled to equity to the cent at 2026-09-18 (research 0006); blotter rebuilt from broker fills each EOD", c:"up"},
+{t:"Execution", v:"Every mutation under the coordinator lease with intent recovery (ADR 0010) since 2026-10-13", c:"up"},
 {t:"Benchmark", v:"Some weeks estimated; see comparison labels", c:"warn"}
 ];
 
 // Commentary as of __ANALYSIS_ASOF__; not a live safety certification.
 const INSIGHTS = [
-{c:"var(--amber)", n:"01", h:"Prove the system before real money.", p:"The current objective is a recoverable paper execution path and independently reconciled performance. A green unit-test suite alone does not establish continuous protection or a profitable strategy."},
-{c:"var(--cyan)", n:"02", h:"Keep the evidence visible.", p:"The equity curve and current book are generated from dated logs. The historical blotter below is incomplete; use it as an archive, not a complete realized-return or win-rate calculation. Benchmark weeks marked estimated remain provisional."},
+{c:"var(--amber)", n:"01", h:"The plumbing is proven; the edge is not.", p:"Paper results reconcile to the cent, every mutation runs under a lease with recovery, and each run leaves a record. What the logs do not yet show is skill: the bot trails SPY since the June rotation into sector ETFs, and the single-name segment carried the return."},
+{c:"var(--cyan)", n:"02", h:"Keep the evidence visible.", p:"The equity curve and book come from dated logs; the blotter comes from broker fills, FIFO, with engineering test fills excluded by name. Benchmark weeks marked estimated remain provisional. Nothing on this page is hand-typed except this column and the decision tape."},
 {c:"var(--violet)", n:"03", h:"Test whether the decisions add value.", p:"Freeze an experiment specification and compare prospective agent decisions with passive and simple mechanical baselines, on matching dates and after modeled costs. Record predictions before trades and version every strategy change."}
 ];
 '''
@@ -474,9 +557,10 @@ def js_num(v, nd):
     return fmt(v, nd)
 
 
-def emit(snaps, weeks, events):
+def emit(snaps, weeks, events, blotter=None):
     book = build_book(snaps[-1])
     runs = summarize_runs(events, snaps[-1]["d"])
+    trades = build_trades(blotter if blotter is not None else read_blotter(), book, snaps[-1]["d"])
 
     # a note keyed to a date that carries no EOD snapshot is a silent typo —
     # it would never render, so refuse to publish rather than drop it quietly
@@ -543,6 +627,11 @@ def emit(snaps, weeks, events):
         "// none is backfilled.\n"
         f"const RUNS = {json.dumps(runs, ensure_ascii=False, sort_keys=True)};\n"
         "\n"
+        "// Trade blotter from memory/BLOTTER.json (scripts/blotter.py --json: broker\n"
+        "// fills, FIFO). Open lots first, newest entry first; then closed round trips,\n"
+        f"// newest exit first. Test symbols excluded: {sorted(TEST_SYMBOLS)}.\n"
+        "const TRADES = [\n" + ",\n".join(json.dumps(t, ensure_ascii=False) for t in trades) + "\n];\n"
+        "\n"
         "// ============ Curated: hand-written, dated by ANALYSIS_ASOF ============\n"
         "\n" + static_tail
     )
@@ -551,7 +640,7 @@ def emit(snaps, weeks, events):
 def main():
     snaps = parse_trade_log(TRADE_LOG.read_text(encoding="utf-8"))
     weeks = parse_weekly_review(WEEKLY_REVIEW.read_text(encoding="utf-8"))
-    out = emit(snaps, weeks, read_state())
+    out = emit(snaps, weeks, read_state(), read_blotter())
     check = "--check" in sys.argv
     current = OUT.read_text(encoding="utf-8") if OUT.exists() else None
     if check:
@@ -563,7 +652,8 @@ def main():
         return
     OUT.write_text(out, encoding="utf-8")
     print(f"wrote {OUT} — EQ {len(snaps)} · WEEKS {len(weeks)} · "
-          f"BOOK {len(build_book(snaps[-1]))} (latest EOD {snaps[-1]['d']})")
+          f"BOOK {len(build_book(snaps[-1]))} (latest EOD {snaps[-1]['d']}) · "
+          f"TRADES {out.count(chr(10) + '{\"d\"')} from BLOTTER.json")
 
 
 if __name__ == "__main__":

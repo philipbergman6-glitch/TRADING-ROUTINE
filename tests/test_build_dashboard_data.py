@@ -220,6 +220,61 @@ def test_env_file_does_not_override_process_env():
 # --- Freshness stamps: curated prose must never pass as live data -----------
 
 
+# --- trade blotter: generated from memory/BLOTTER.json, never curated ---
+
+def _blotter():
+    return {"round_trips": [
+        {"symbol": "XLI", "entered": "2026-06-29T13:37:00+00:00", "exited": "2026-09-14T15:00:00+00:00",
+         "qty": "116", "avg_in": "182.16", "avg_out": "168.5793", "pnl": "-1575.36", "pnl_pct": "-7.46"},
+        {"symbol": "AMD", "entered": "2026-04-28T13:30:00+00:00", "exited": "2026-05-06T14:00:00+00:00",
+         "qty": "62", "avg_in": "314.9676", "avg_out": "408.9271", "pnl": "5825.49", "pnl_pct": "29.83"},
+        {"symbol": "F", "entered": "2026-09-10T13:30:00+00:00", "exited": "2026-09-10T13:31:00+00:00",
+         "qty": "1", "avg_in": "10", "avg_out": "10", "pnl": "0", "pnl_pct": "0"}],
+        "open_lots": [
+        {"symbol": "XLP", "entered": "2026-06-30T13:40:00+00:00", "qty": "250", "avg_in": "83.76"},
+        {"symbol": "PSX", "entered": "2026-10-02T13:40:00+00:00", "qty": "57", "avg_in": "264.20"}]}
+
+
+def _book(*symbols):
+    return [{"s": s} for s in symbols]
+
+
+def test_trades_open_lots_first_then_newest_exit_first():
+    rows = b.build_trades(_blotter(), _book("PSX", "XLP"), "2026-10-14")
+    assert [r["s"] for r in rows] == ["PSX", "XLP", "XLI", "AMD"]
+    assert rows[0]["open"] == 1 and rows[0]["days"] == 12 and rows[0]["pl"] is None
+    assert rows[2] == {"d": "2026-06-29", "s": "XLI", "sec": "etf", "lbl": "INDUSTRIALS ETF",
+                       "q": 116, "in": "182.16", "out": "2026-09-14 · 168.58", "days": 77,
+                       "pl": {"v": "−1,575.36", "up": 0}, "plp": "−7.46", "open": 0}
+    assert rows[3]["pl"] == {"v": "+5,825.49", "up": 1} and rows[3]["sec"] == "tech"
+
+
+def test_trades_exclude_engineering_test_fills_by_symbol():
+    rows = b.build_trades(_blotter(), _book("PSX", "XLP"), "2026-10-14")
+    assert "F" not in {r["s"] for r in rows}
+    _, _, out = build()
+    assert '"s": "F"' not in out
+    assert "Test symbols excluded: ['F']" in out
+
+
+def test_hard_fails_when_open_lots_disagree_with_latest_book():
+    with pytest.raises(b.ParseError, match="do not match the latest EOD book"):
+        b.build_trades(_blotter(), _book("PSX", "XLP", "XLE"), "2026-10-14")
+
+
+def test_hard_fails_on_symbol_without_sector():
+    blotter = _blotter()
+    blotter["open_lots"][0]["symbol"] = "ZZZZ"
+    with pytest.raises(b.ParseError, match="missing from memory/SECTORS.json"):
+        b.build_trades(blotter, _book("PSX", "ZZZZ"), "2026-10-14")
+
+
+def test_trades_are_emitted_from_the_generated_section_not_the_curated_tail():
+    assert "const TRADES" not in b.STATIC_TAIL
+    _, _, out = build()
+    assert out.index("const TRADES = [") < out.index("// ============ Curated")
+
+
 def test_emits_both_freshness_dates():
     """The dashboard needs two independent dates to distinguish generated
     figures from curated narrative."""

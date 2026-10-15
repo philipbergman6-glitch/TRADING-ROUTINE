@@ -81,6 +81,7 @@
   .chip.enrg { color: var(--amber); border: 1px solid #4E3A14; }
   .chip.etf  { color: var(--violet); border: 1px solid #3A3260; }
   .chip.open { color: var(--green); border: 1px solid #1B4A30; }
+  .chip.oth  { color: var(--dim); border: 1px solid #2A3144; }
   .gap { color: var(--faint); font-style: italic; }
 
   .feed { max-height: 340px; overflow-y: auto; }
@@ -178,10 +179,10 @@
 
     <!-- blotter -->
     <div class="panel c8" style="--pc: var(--red)">
-      <div class="panel-h"><span class="t">Trade blotter</span><span class="sub">every position the log records · italics = exit never written (pre-review era, Apr–May)</span></div>
+      <div class="panel-h"><span class="t">Trade blotter</span><span class="sub" id="subBlotter">broker fills · FIFO · scripts/blotter.py</span></div>
       <div class="panel-b" style="padding-top:4px;">
         <table>
-          <thead><tr><th>in</th><th>sym</th><th></th><th class="r">qty</th><th class="r">entry</th><th class="r">exit</th><th class="r">realized</th><th>note</th></tr></thead>
+          <thead><tr><th>in</th><th>sym</th><th>sector</th><th class="r">qty</th><th class="r">avg in</th><th class="r">exit · avg out</th><th class="r">held</th><th class="r">realized</th></tr></thead>
           <tbody id="blotter"></tbody>
         </table>
       </div>
@@ -253,8 +254,9 @@ const DD = (()=>{ let rp = FIRST, w = {dd:0, pk:FIRST, tr:FIRST};
     if (dd < w.dd) w = {dd, pk:rp, tr:p}; }
   return w; })();
 
-// realized P&L: only closed rows that actually carry a written exit
-const CLOSED = TRADES.filter(t => t.pl && !t.open);
+// realized P&L: closed FIFO round trips from broker fills (BLOTTER.json)
+const CLOSED = TRADES.filter(t => !t.open);
+const OPEN = TRADES.filter(t => t.open);
 const realized = CLOSED.reduce((s,t) => s + Number(t.pl.v.replace(/,/g,'').replace('−','-')), 0);
 const wins = CLOSED.filter(t => t.pl.up).length;
 
@@ -293,7 +295,7 @@ $('kpis').innerHTML = [
   {l:"peak", v:pct((peak/FIRST.v-1)*100), s:usd0(peak)+" · "+dLbl(peakP.d).toLowerCase(), c:"var(--green)", kc:"var(--green)"},
   {l:"max drawdown", v:pct(DD.dd), s:`${usdR(DD.tr.v-DD.pk.v)} · ${dLbl(DD.pk.d).toLowerCase()} → ${dLbl(DD.tr.d).toLowerCase()}`, c:"var(--red)", kc:"var(--red)"},
   {l:"deployment", v:deployed+"%", s:`mandate 75–85% · ${band}`, c:bandC==='up'?"var(--green)":"var(--amber)", kc:bandC==='up'?"var(--green)":"var(--amber)"},
-  {l:"historical blotter", v:"INCOMPLETE", s:"Realized P&L and win rate withheld pending reconciliation", c:realized>=0?"var(--green)":"var(--red)", kc:"var(--amber)"}
+  {l:"realized p&l · broker fifo", v:usd(realized), s:`${CLOSED.length} round trips · ${wins} wins / ${CLOSED.length-wins} losses · ${OPEN.length} open`, c:realized>=0?"var(--green)":"var(--red)", kc:realized>=0?"var(--green)":"var(--red)"}
 ].map(k=>`<div class="kpi" style="--kc:${k.kc}"><div class="l">${k.l}</div><div class="v mono" style="color:${k.c}">${k.v}</div><div class="s">${k.s}</div></div>`).join('');
 
 // ---- Equity chart ----
@@ -449,17 +451,18 @@ $('risk').innerHTML = `
   svg.onmouseleave = hideTT;
 })();
 
-// ---- Blotter ----
+// ---- Blotter (generated from broker fills; open lots first, then newest exit first) ----
+$('subBlotter').textContent = `broker fills · FIFO · ${OPEN.length} open lots then ${CLOSED.length} round trips, newest first · test fills excluded · as of ${LOG_ASOF} EOD`;
 $('blotter').innerHTML = TRADES.map(t=>`
   <tr>
     <td class="dim">${t.d}</td>
     <td class="sym">${t.s}</td>
-    <td><span class="chip ${t.open?'open':t.sec}">${t.open?(BOOK.some(p=>p.s===t.s)?'IN LATEST BOOK':'UNRECONCILED'):t.sec==='tech'?'TECH':t.sec==='enrg'?'ENRG':'ETF'}</span></td>
+    <td><span class="chip ${t.sec}">${t.lbl}</span></td>
     <td class="r">${t.q}</td>
     <td class="r">${t.in}</td>
-    <td class="r ${t.gap?'gap':''}">${t.out ?? t.gap}</td>
-    <td class="r">${t.pl ? `<span class="${t.pl.up?'up':'dn'}">${t.pl.v}</span>` : '<span class="faint">—</span>'}</td>
-    <td style="font-family:var(--sans); color:var(--dim); font-size:11px;">${t.th}</td>
+    <td class="r">${t.open ? `<span class="chip open">OPEN${BOOK.some(p=>p.s===t.s)?'':' · NOT IN BOOK'}</span>` : t.out}</td>
+    <td class="r dim">${t.days}d</td>
+    <td class="r">${t.pl ? `<span class="${t.pl.up?'up':'dn'}">${t.pl.v}</span><br><span class="faint" style="font-size:10px">${t.plp}%</span>` : `<span class="faint">see book</span>`}</td>
   </tr>`).join('');
 
 // ---- Run records (generated; never curated) ----
