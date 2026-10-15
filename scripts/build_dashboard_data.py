@@ -645,9 +645,10 @@ def main():
         print("OK: data.js reproduces committed values")
         return
     OUT.write_text(out, encoding="utf-8")
+    trade_rows = out.count('\n{"d"')
     print(f"wrote {OUT} — EQ {len(snaps)} · WEEKS {len(weeks)} · "
           f"BOOK {len(build_book(snaps[-1]))} (latest EOD {snaps[-1]['d']}) · "
-          f"TRADES {out.count(chr(10) + '{\"d\"')} from BLOTTER.json")
+          f"TRADES {trade_rows} from BLOTTER.json")
 
 
 if __name__ == "__main__":
