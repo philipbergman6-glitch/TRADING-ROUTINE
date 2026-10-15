@@ -201,6 +201,7 @@ const TRADES = [
 
 // ============ Curated: hand-written, dated by ANALYSIS_ASOF ============
 
+// Commentary as of 2026-10-15; not a live safety certification.
 // Decision tape: curated highlights, newest first.
 const FEED = [
 {d:"10/13", b:"sys",  x:"<b>STRATEGY_VERSION unset in the cloud routine environment</b>: market-open and midday stop at the version gate (exit 5) before any broker call — owner configuration, not code. The protection monitor (Actions variable set) keeps covering the book."},
@@ -232,11 +233,4 @@ const RISK = [
 {t:"Evidence", v:"Fills reconciled to equity to the cent at 2026-09-18 (research 0006); blotter rebuilt from broker fills each EOD", c:"up"},
 {t:"Execution", v:"Every mutation under the coordinator lease with intent recovery (ADR 0010) since 2026-10-13", c:"up"},
 {t:"Benchmark", v:"Some weeks estimated; see comparison labels", c:"warn"}
-];
-
-// Commentary as of 2026-10-15; not a live safety certification.
-const INSIGHTS = [
-{c:"var(--amber)", n:"01", h:"The plumbing is proven; the edge is not.", p:"Paper results reconcile to the cent, every mutation runs under a lease with recovery, and each run leaves a record. What the logs do not yet show is skill: the bot trails SPY since the June rotation into sector ETFs, and the single-name segment carried the return."},
-{c:"var(--cyan)", n:"02", h:"Keep the evidence visible.", p:"The equity curve and book come from dated logs; the blotter comes from broker fills, FIFO, with engineering test fills excluded by name. Benchmark weeks marked estimated remain provisional. Nothing on this page is hand-typed except this column and the decision tape."},
-{c:"var(--violet)", n:"03", h:"Test whether the decisions add value.", p:"Freeze an experiment specification and compare prospective agent decisions with passive and simple mechanical baselines, on matching dates and after modeled costs. Record predictions before trades and version every strategy change."}
 ];

@@ -103,12 +103,6 @@
   .rule .rt { font-size: 11.5px; color: var(--dim); flex: 1; }
   .rule .rv { font-family: var(--mono); font-size: 10.5px; text-align: right; }
 
-  .insight { display: flex; gap: 12px; padding: 11px 4px; border-bottom: 1px solid var(--line-soft); }
-  .insight:last-child { border: none; }
-  .insight .no { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--in-c, var(--cyan)); min-width: 24px; }
-  .insight h4 { font-size: 12.5px; margin-bottom: 3px; }
-  .insight p { font-size: 11.5px; color: var(--dim); line-height: 1.5; }
-  .insight p b { color: var(--txt); font-weight: 600; }
 
   .pos { display: flex; align-items: center; gap: 12px; padding: 10px 4px; border-bottom: 1px solid var(--line-soft); }
   .pos:last-child { border: none; }
@@ -208,10 +202,14 @@
       </div>
     </div>
 
-    <!-- insights -->
-    <div class="panel c12" style="--pc: var(--amber)">
-      <div class="panel-h"><span class="t">What the logs are telling you</span><span class="sub" id="subIns">editorial · not derived from the logs</span></div>
-      <div class="panel-b" id="insights" style="columns: 2; column-gap: 40px;"></div>
+    <!-- fund brain -->
+    <div class="panel c12" style="--pc: var(--violet)">
+      <div class="panel-h"><span class="t">Fund Brain</span><span class="sub">knowledge base · idea → order → fill → exit → lesson</span></div>
+      <div class="panel-b" style="font-size:12.5px; line-height:1.55;">
+        Every figure on this page is drawn from the fund's record: research entries, the rulebook, intents and run records, broker fills, EOD snapshots and weekly reviews.
+        The Fund Brain is the knowledge base that links that record per trade and per thesis so the routines read one brief instead of log tails.
+        <a href="https://github.com/philipbergman6-glitch/TRADING-ROUTINE/blob/main/docs/brain/README.md" style="color:var(--violet); font-weight:600;">Open the Fund Brain →</a>
+      </div>
     </div>
 
   </div>
@@ -285,7 +283,6 @@ $('subEq').textContent = `${EQ.length} logged snapshots, TRADE-LOG.md verbatim �
 $('subBook').textContent = `${dLbl(LAST.d)} EOD · ${BOOK.every(p=>p.pl>=0) ? 'all green' : `${BOOK.filter(p=>p.pl>=0).length}/${BOOK.length} green`}`;
 $('subWk').textContent = `${WEEKS.length} reviews · ${WEEKS.filter(w=>w.est).length} estimated benchmark weeks · through ${WEEKS.at(-1).w}`;
 $('subDep').textContent = `75–85% band · ${deployed}% now, ${band}`;
-$('subIns').textContent = `commentary as of ${ANALYSIS_ASOF} · historical observations are not live verification`;
 $('subPnl').textContent = `${EQ.length-1} EOD prints · flat stretch = the 100%-cash idle week Jun 17–24`;
 
 // ---- KPIs ----
@@ -482,13 +479,11 @@ $('runs').innerHTML = RUNS.recent.map(r=>`
     <td class="r">${r.n.a} / ${r.n.r} / ${r.n.i}</td>
   </tr>`).join('');
 
-// ---- Feed / Rules / Insights ----
+// ---- Feed / Rules ----
 $('feed').innerHTML = FEED.map(f=>`
   <div class="fitem"><span class="fd">${f.d}</span><span class="badge ${f.b}">${f.b.toUpperCase()}</span><span class="fx">${f.x}</span></div>`).join('');
 $('rules').innerHTML = RULES.map(r=>`
   <div class="rule"><span class="st ${r.c}">${r.ok}</span><span class="rt">${r.t}</span><span class="rv ${r.c}">${r.v}</span></div>`).join('');
-$('insights').innerHTML = INSIGHTS.map(i=>`
-  <div class="insight" style="--in-c:${i.c}; break-inside:avoid;"><span class="no">${i.n}</span><span><h4>${i.h}</h4><p>${i.p}</p></span></div>`).join('');
 </script>
 </body>
 </html>
