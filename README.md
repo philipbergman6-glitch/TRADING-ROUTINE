@@ -17,8 +17,9 @@ reach the broker. Nothing trades without passing the engine.
 | Running since | 2026-04-27 on an Alpaca paper account ($100,000 start) |
 | Scheduled routines | Four per trading day, every trading day, plus a Friday review |
 | Risk engine | Pure Python, no I/O, every money value a `Decimal` |
-| Tests | 405 (384 offline, 21 against a real Postgres in CI) |
+| Tests | 979 (958 offline, 21 against a real Postgres in CI) |
 | Monitoring | Independent protection monitor plus a daily heartbeat that emails on any miss |
+| Execution | One coordinator: account-wide lease, intents recorded before the broker sees them, recovery that only restores coverage |
 | Broker safety | Paper endpoints only, hard-coded; every mutation re-validated against its exact payload |
 
 ## How a trading day runs
@@ -63,6 +64,12 @@ logs by GitHub Actions, so what you see on the page is what the agent wrote.
 - **Versioned strategy.** `STRATEGY_VERSION` selects a frozen parameter set in
   `risk_engine/versions.py`. The rulebook file is sha256-pinned, and
   `strategy_version.py` hard-fails before any order if version and pin disagree.
+- **One writer at a time.** Every mutation runs inside `coordinator.py`
+  (ADR 0010): an account-wide lease in a committed, append-only state file,
+  the intent pushed to `main` before the broker sees it, capacity reserved
+  from recorded intents, and recovery of unfinished intents that may only
+  restore a stop, never open exposure. Each run leaves a run record (ADR 0012)
+  with the code SHA, outcome, actions and refusals.
 
 ## Components
 
@@ -74,6 +81,8 @@ logs by GitHub Actions, so what you see on the page is what the agent wrote.
 | `scripts/submit_entry.py` | Idempotent buy with protective leg |
 | `scripts/close_position.py` | Recovered exit: cancel stop, confirm, sell, confirm |
 | `scripts/replace_stop.py` | Resumable stop replacement with restore on failure |
+| `scripts/coordinator.py` | Lease, intent recording, reservations and recovery around every broker mutation |
+| `scripts/state_store.py`, `scripts/run_record.py` | Committed append-only state (`state/events.jsonl`): intents, leases, per-run provenance |
 | `scripts/protection_monitor.py` | Scheduled coverage check and actions without Claude |
 | `scripts/heartbeat.py` | Daily liveness check, emails on a miss |
 | `scripts/blotter.py` | FIFO round trips, cooldowns and sector streaks from broker fills |
@@ -131,6 +140,8 @@ through `CLAUDE.md`.
 
 ## Roadmap
 
+- v1 baseline frozen at tag `v1-baseline` (2026-10-13). Next: provision the
+  Cloudflare cron dispatcher so the protection monitor meets its 90-minute
+  service level (#130).
 - Run the v2 rulebook as a scored 30-session paper segment at $10,000.
-- Durable execution coordinator with cross-process reservations.
-- Replace log tails in routines with a generated state brief.
+- Replace log tails in routines with a generated state brief (#69).

@@ -1,44 +1,56 @@
 # Engineering handoff
 
-Updated: **2026-09-20**. Baseline for this session: verified GitHub main
-**`8de4a1b`** (PR #82, the versioned strategy spec). This session's work is on
-branch `exec/controls-v2` and lands as one squash-merged PR. GitHub issue
-status was not checked.
+Updated: **2026-10-15**. Baseline: GitHub main **`af766a0`** (code tip
+`234ccad`, PR #111; later commits are routine logs and state records). The
+v1 freeze milestone (#93) closed on 2026-10-13 and is tagged `v1-baseline`
+(`4a66583`). Open GitHub issues were reviewed on 2026-10-15.
 
 ## Where the project stands
 
-The paper system has a pure risk engine, a broker mutation gate, resumable
-protective-stop replacement, an optional Postgres ledger, scheduled agent
-instructions, and a dashboard generated from markdown logs. It is still an
-experimental research platform. **Paper trading is already running**: on
-2026-09-19 the owner confirmed approximately three months of operation through
-Claude Desktop cloud routines. The separate versioned evaluation specification
-in `PAPER-EXPERIMENT.md` is a proposed next phase, not the start of paper trading.
+Paper trading has run on the Alpaca paper account since 2026-04-27 through
+scheduled cloud routines (pre-market, market-open, midday, daily summary,
+Friday weekly review), with an independent protection monitor and heartbeat
+in GitHub Actions. The code has a pure risk engine, a broker mutation gate,
+resumable protective-stop replacement, the coordinator (ADR 0010: one
+account-wide lease, intents recorded before submission, reservations,
+coverage-only recovery), a committed append-only state store with per-run
+records (ADR 0004, 0012), a sha256-pinned versioned rulebook (ADR 0011), an
+optional Postgres ledger, and a dashboard generated from the markdown logs.
 
-The September 17 audit has already led to fixes. Start with
-[implementation status](audits/2026-09-17/IMPLEMENTATION.md), not the older
-[diagnosis](audits/2026-09-17/REPORT.md), when identifying remaining work.
-Implemented controls include exact paper endpoints, exact-payload validation,
-fresh-quote/pending-buy gates, preservation of the actual resting stop floor,
-bounded order-history queries, and resumable stop replacement/restoration.
+Checks on 2026-10-15 from this baseline: offline suite 958 passed (one
+`test_email_sh` case fails only on a workstation whose `_env.sh` provides real
+Resend credentials; it passes in CI, run 2026-10-15 `tests` success),
+`build_dashboard_data.py --check` OK, `doctor.py` offline OK, dashboard data
+current through the 2026-10-14 EOD snapshot.
+
+## Open operational items (owner-only)
+
+1. **`STRATEGY_VERSION` is unset in the cloud routine environment**
+   (`TRADING-ROUTINES`). Since 2026-10-13 `strategy_version.py` exits 5 at the
+   top of market-open and midday, so neither has traded or touched a stop;
+   pre-market records the incident each morning (5 sessions by 2026-10-15).
+   The GitHub Actions variable is set, so the protection monitor is
+   unaffected. Fix: add `STRATEGY_VERSION=v1` to the environment at
+   claude.ai/code (routine bodies carry no env), then confirm the next
+   market-open run record shows `outcome` other than `refused`.
+2. **Protection dispatcher unprovisioned** (#130): needs the owner's
+   Cloudflare account and a PAT. Until then the monitor runs on the GitHub
+   cron only and its 90-minute level is not met.
+3. **Resend key is send-only** (#147, recurring ALERT DELIVERY UNVERIFIED
+   issues): alerts send but bounces cannot be read back. Replace the
+   `RESEND_API_KEY` secret with a full-access key.
+4. **Heartbeat exits 5 nightly** while item 1 stands (expected market-open and
+   midday records are missing), filing an ALERT PATH FAILED issue each night.
+   Close those issues once item 1 is fixed and a clean heartbeat runs.
 
 ## Next engineering milestone
 
-The execution controls in [STRATEGY-SPEC.md](STRATEGY-SPEC.md) section 6 now
-exist in code with offline tests (see the status column there). Remaining
-before the 30-session $10,000 v2 paper run:
+Remaining before the 30-session $10,000 v2 paper run:
 
-1. **Owner configuration.** Add repository secrets `ALPACA_API_KEY`,
-   `ALPACA_SECRET_KEY`, `RESEND_API_KEY`, `EMAIL_TO`, `EMAIL_FROM` and the
-   variable `STRATEGY_VERSION` (`v2` for the run; unset means `v1`), then
-   trigger `protection-monitor` by `workflow_dispatch` with `dry_run=true` and
-   read the report. Done 2026-09-29: Alpaca/email secrets set, dry run passed
-   (exit 0, all positions covered). `STRATEGY_VERSION` variable still unset (v1).
-   Set `STRATEGY_VERSION=v2` in the cloud routine environment too, and flip
-   `Active strategy version` in `memory/TRADING-STRATEGY.md` to `v2` in the same
-   change: `scripts/strategy_version.py` (run first by market-open, midday,
-   /trade) hard-fails when the two disagree, so an unset variable can no longer
-   trade v1 rules silently.
+1. Set `STRATEGY_VERSION=v2` in both the Actions variable and the routine
+   environment and flip `Active strategy version` in
+   `memory/TRADING-STRATEGY.md` in the same change; `strategy_version.py`
+   hard-fails when they disagree.
 2. **Owner decisions** in spec section 7 (review threshold definition; rule 15
    trim vs delete). Rule 15 has no script until decided.
 3. **Sector data.** `memory/SECTORS.json` holds the symbols traded so far; each
@@ -47,8 +59,29 @@ before the 30-session $10,000 v2 paper run:
 4. **Segment start.** Move test orders out of the scored account, record the
    model ID per run, run the segment-start checklist in spec section 5.
 5. Still open by design: the cancel→place window is recoverable, not atomic
-   (#40). Cross-process reservations and the durable intent store landed with
-   the coordinator (#100, below); validate↔submit token binding stays #19/#26.
+   (#40); validate↔submit token binding stays #19/#26; the state brief that
+   replaces log tails in routines is map #69.
+
+Session notes below are in reverse order of when they were written, newest
+first, then the sessions of 2026-10-12 and 2026-10-13 and the September work.
+
+## Session 2026-10-14: dashboard publish race
+
+Baseline `f7adfd5`. No broker calls.
+
+- `dashboard.yml` failed on the last two routine pushes (runs 203, 204): its
+  `git push` was rejected as non-fast-forward because the routine's run-record
+  finish line (ADR 0012) lands on main seconds after the memory push. The
+  publish step now refetches main, rebuilds `data.js` on that tip and pushes,
+  up to five attempts. `docs/dashboard/data.js` regenerated (log 2026-10-13).
+- Checks: offline suite (958 passed), `build_dashboard_data.py --check`,
+  `doctor.py` offline, `git diff --check`.
+- Still owner-only, found by the same overview: `STRATEGY_VERSION` is set as
+  the Actions variable (the monitor applied MPC's tighten on 2026-10-13) but
+  not in the cloud routine environment (pre-market 2026-10-14 still exit 5);
+  the dispatcher is unprovisioned (#130), so the monitor ran twice on
+  2026-10-13 and not at all on 2026-10-14 before 17:20Z; no market-open or
+  midday run record on 2026-10-14; Resend key still send-only (#147).
 
 ## Session 2026-10-12: execution identity (#96)
 
@@ -209,7 +242,7 @@ command (the owner tags; no agent does).
 - Next: #155, #156, then the full live rerun and the owner's tag (child
   ticket on #93).
 
-## Latest session: execution controls for v2 (2026-09-20)
+## Session 2026-09-20: execution controls for v2
 
 - `risk_engine/versions.py`: `StrategyParams` with `V1` (frozen) and `V2`;
   `STRATEGY_VERSION` read once per CLI (`validate_order`, `validate_mutation`,
@@ -259,7 +292,7 @@ Actions workflow were not exercised. `STRATEGY_VERSION` is unset in every
 cloud routine until the owner sets the repository variable, so cloud runs
 stay on v1.
 
-## Latest session: paper results audit (2026-09-19)
+## Session 2026-09-19: paper results audit
 
 - Pulled the paper account's full order, fill, fee and portfolio history
   read-only and reconciled it to equity exactly. Results, benchmark comparison,
@@ -288,7 +321,7 @@ stay on v1.
   scored account.
 - No orders, notifications, pushes or configuration changes were made.
 
-## Earlier session: project access and workflow
+## Session 2026-09-19: project access and workflow
 
 - Corrected the distinction between the running paper trial and the proposed
   next evaluation phase following the owner's clarification. Reviewed strategy
@@ -335,21 +368,3 @@ At the next material engineering handoff, replace stale sections here with the
 new baseline, changes, verification, and next work. Check Git for changes since
 the baseline before acting. Keep task routing in `AGENTS.md`, design rationale
 in ADRs, and trading history in `memory/`; avoid copying those documents here.
-
-## Session 2026-10-14: dashboard publish race
-
-Baseline `f7adfd5`. No broker calls.
-
-- `dashboard.yml` failed on the last two routine pushes (runs 203, 204): its
-  `git push` was rejected as non-fast-forward because the routine's run-record
-  finish line (ADR 0012) lands on main seconds after the memory push. The
-  publish step now refetches main, rebuilds `data.js` on that tip and pushes,
-  up to five attempts. `docs/dashboard/data.js` regenerated (log 2026-10-13).
-- Checks: offline suite (958 passed), `build_dashboard_data.py --check`,
-  `doctor.py` offline, `git diff --check`.
-- Still owner-only, found by the same overview: `STRATEGY_VERSION` is set as
-  the Actions variable (the monitor applied MPC's tighten on 2026-10-13) but
-  not in the cloud routine environment (pre-market 2026-10-14 still exit 5);
-  the dispatcher is unprovisioned (#130), so the monitor ran twice on
-  2026-10-13 and not at all on 2026-10-14 before 17:20Z; no market-open or
-  midday run record on 2026-10-14; Resend key still send-only (#147).
