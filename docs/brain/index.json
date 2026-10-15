@@ -1986,7 +1986,9 @@
     "research/2026-10-15/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-10-15/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -11240,6 +11242,24 @@
    ],
    "title": "EOD Snapshot (Day 122, Wednesday, CPI day)",
    "week": null
+  },
+  "trade/2026-10-15/market-open-trades/1": {
+   "date": "2026-10-15",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-15/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 3754,
+   "log": "trade",
+   "note": "Day 123, Thursday, PPI + retail sales day",
+   "symbols": [
+    "MPC",
+    "PSX",
+    "XLE",
+    "XLK",
+    "XLP"
+   ],
+   "title": "Market-Open (Day 123, Thursday, PPI + retail sales day)",
+   "week": null
   }
  },
  "generated_from": {
@@ -11256,7 +11276,7 @@
     "entries": 198
    },
    "memory/TRADE-LOG.md": {
-    "entries": 244,
+    "entries": 245,
     "eod_snapshots": 117
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -12183,7 +12203,8 @@
     "trade/2026-10-12/market-open-trades/1",
     "trade/2026-10-12/eod-snapshot/1",
     "trade/2026-10-13/eod-snapshot/1",
-    "trade/2026-10-14/eod-snapshot/1"
+    "trade/2026-10-14/eod-snapshot/1",
+    "trade/2026-10-15/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-02",
@@ -13029,7 +13050,8 @@
     "trade/2026-10-12/market-open-trades/1",
     "trade/2026-10-12/eod-snapshot/1",
     "trade/2026-10-13/eod-snapshot/1",
-    "trade/2026-10-14/eod-snapshot/1"
+    "trade/2026-10-14/eod-snapshot/1",
+    "trade/2026-10-15/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-02",
@@ -13656,7 +13678,8 @@
     "trade/2026-10-12/market-open-trades/1",
     "trade/2026-10-12/eod-snapshot/1",
     "trade/2026-10-13/eod-snapshot/1",
-    "trade/2026-10-14/eod-snapshot/1"
+    "trade/2026-10-14/eod-snapshot/1",
+    "trade/2026-10-15/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -14297,7 +14320,8 @@
     "trade/2026-10-12/market-open-trades/1",
     "trade/2026-10-12/eod-snapshot/1",
     "trade/2026-10-13/eod-snapshot/1",
-    "trade/2026-10-14/eod-snapshot/1"
+    "trade/2026-10-14/eod-snapshot/1",
+    "trade/2026-10-15/market-open-trades/1"
    ],
    "weeks": [
     "2026-08-14",
@@ -14686,7 +14710,8 @@
     "trade/2026-10-12/eod-snapshot/1",
     "trade/2026-10-13/market-open-trades/1",
     "trade/2026-10-13/eod-snapshot/1",
-    "trade/2026-10-14/eod-snapshot/1"
+    "trade/2026-10-14/eod-snapshot/1",
+    "trade/2026-10-15/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
