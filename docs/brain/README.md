@@ -4,10 +4,33 @@ The knowledge base for this fund: every idea, the order it became, the fill,
 the exit, and what was learned, linked so a routine or a person can follow one
 trade end to end and see the whole book's state in one place.
 
-Status 2026-10-15: **the raw record exists and is complete; the brain is not
-yet built.** Everything below is already committed to this repository and
-written by the routines themselves. What is missing is the linkage and the
-index that turn a chronological log into something a routine can query.
+Status 2026-10-15: **the raw record exists and is complete; the first slice
+of the brain, the index, is built.** Everything below is already committed to
+this repository and written by the routines themselves. The linkage that turns
+a chronological log into something a routine can query lands here piece by
+piece; the map is tracker issue
+[#169](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/169).
+
+## The index (built)
+
+- [`INDEX.md`](INDEX.md): per-symbol table (sector, closed and open
+  lifecycles, research and trade-log mentions, last decision date), open
+  lots, round trips, every refusal, source counts.
+- [`index.json`](index.json): the machine form. `symbols[SYM]` holds
+  everything about one symbol (research entry ids, trade-log entry ids, idea
+  and decision mentions, last decision text, blotter round trips and open
+  lots, run and intent ids, week endings); `dates[YYYY-MM-DD]` joins the same
+  record per UTC day; `entries`, `runs`, `intents`, `weeks` and `refusals`
+  hold the detail.
+- Built by `scripts/build_brain_index.py` from the committed record, no
+  network, no LLM. `--check` reproduces both files or fails, and runs in the
+  dashboard workflow after every EOD push. `--symbol PSX` and
+  `--refusals 2026-10` answer the two reference questions from the shell.
+- Join key today is (symbol, UTC date); the trade id is ADR 0014, ticket
+  [#172](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/172).
+  Run and intent records are included only when started before the latest
+  EOD snapshot, the same cutoff the dashboard uses, so the committed index is
+  reproducible between EOD pushes.
 
 ## The chain, and where each link lives today
 
@@ -59,7 +82,10 @@ renders the daily state, the blotter and the run records from these files.
 
 ## Build plan
 
-Tracked on the issue tracker under map #69 (state brief) and the v2 paper
-experiment (`docs/PAPER-EXPERIMENT.md`). Pieces land here, under
-`docs/brain/`, as generated files with their builder scripts and tests, in
-the same way `docs/dashboard/data.js` is generated today.
+Tracked on the issue tracker under map
+[#169 Fund Brain](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/169)
+(trade id, thread per trade, thesis record, outcome review, brief reads the
+brain), with map #69 (state brief) as the first consumer and the v2 paper
+experiment (`docs/PAPER-EXPERIMENT.md`) as the client. Pieces land here,
+under `docs/brain/`, as generated files with their builder scripts and tests,
+in the same way `docs/dashboard/data.js` is generated today.

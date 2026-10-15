@@ -5,6 +5,30 @@ Updated: **2026-10-15**. Baseline: GitHub main **`af766a0`** (code tip
 v1 freeze milestone (#93) closed on 2026-10-13 and is tagged `v1-baseline`
 (`4a66583`). Open GitHub issues were reviewed on 2026-10-15.
 
+## Fund Brain (session of 2026-10-15, later)
+
+Map [#169](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/169)
+charts the brain as decision tickets (trade id → ADR 0014 #172, thread per
+trade #176, thesis record #178, outcome review #180, brief reads the brain
+#184) with map #69 as first consumer. Landed in this session:
+
+- `scripts/build_brain_index.py` → `docs/brain/index.json` + `INDEX.md`
+  (ticket #174): the committed record joined per symbol and per UTC date;
+  `--check`, `--symbol SYM`, `--refusals YYYY-MM`. Hard-fails on an unknown
+  entry-header kind, a traded symbol without a sector, a week without a
+  grade, a malformed run record. Tests `tests/test_build_brain_index.py`
+  (golden + hard-fail). `dashboard.yml` regenerates and commits both files
+  with `data.js`.
+- Research 0012 (`research/brain-post-exit-closes`, #182 closed): nothing
+  committed reproduces the post-exit table; SIP daily bars are readable with
+  the paper key; recommended `memory/CLOSES.json` written forward-only by
+  daily-summary. Research 0011 (`research/brain-entry-forms`, by a parallel
+  session): header-form inventory; three launch-day lifecycles have no
+  research entry.
+- Next: ticket #172 (trade id, HITL grilling, owner needed), then #176.
+  Checks this session: brain `--check` OK, dashboard `--check` OK, offline
+  suite 984 passed (same one workstation-only email failure).
+
 ## Where the project stands
 
 Paper trading has run on the Alpaca paper account since 2026-04-27 through
