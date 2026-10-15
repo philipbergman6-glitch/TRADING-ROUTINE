@@ -9,6 +9,7 @@ on:
     paths:
       - "memory/**"
       - "scripts/build_dashboard_data.py"
+      - "scripts/build_brain_index.py"
   workflow_dispatch:
 
 permissions:
@@ -30,6 +31,9 @@ jobs:
       - name: Regenerate docs/dashboard/data.js (hard-fails on parse mismatch)
         run: python3 scripts/build_dashboard_data.py
 
+      - name: Regenerate docs/brain/index.json and INDEX.md (hard-fails on parse mismatch)
+        run: python3 scripts/build_brain_index.py
+
       - name: Test (golden + benchmark-chain + paper-only guards)
         run: python3 -m pytest tests/ -q
 
@@ -46,12 +50,14 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             python3 scripts/build_dashboard_data.py
-            if git diff --quiet docs/dashboard/data.js; then
-              echo "data.js unchanged — nothing to publish"
+            python3 scripts/build_brain_index.py
+            python3 scripts/build_brain_index.py --check
+            if git diff --quiet docs/dashboard/data.js docs/brain/index.json docs/brain/INDEX.md; then
+              echo "data.js and brain index unchanged — nothing to publish"
               exit 0
             fi
-            git add docs/dashboard/data.js
-            git commit -m "dashboard data: $(date -u +%F) [skip ci]"
+            git add docs/dashboard/data.js docs/brain/index.json docs/brain/INDEX.md
+            git commit -m "dashboard data + brain index: $(date -u +%F) [skip ci]"
             if git push origin HEAD:main; then
               exit 0
             fi
