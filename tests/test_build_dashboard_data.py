@@ -45,6 +45,21 @@ def test_hard_fails_on_malformed_portfolio_line():
         b.parse_trade_log(text)
 
 
+def test_portfolio_line_tolerates_bold_wrapped_values():
+    """The 2026-10-15 EOD snapshot bolded its Day P&L for emphasis
+    ("**Day P&L:** **-$796.54 (-0.74%)**") and the whole publish chain
+    failed. Emphasis is formatting, not a format change: parse it."""
+    text = (
+        "### Oct 15 — EOD Snapshot (Day 123, Thursday)\n"
+        "**Portfolio:** **$106,854.43** | **Cash:** **$20,631.91** (19.31%) | "
+        "**Day P&L:** **-$796.54 (-0.74%)** | **Phase P&L:** +$6,854.43 (+6.85%)\n")
+    snaps = b.parse_trade_log(text)
+    assert len(snaps) == 1
+    assert snaps[0]["v"] == 106854.43
+    assert snaps[0]["cash"] == 19.31
+    assert snaps[0]["dp"] == -0.74
+
+
 def test_phase_day_parsed_and_monotonic():
     snaps, _, _ = build()
     assert snaps[0]["n"] == 0

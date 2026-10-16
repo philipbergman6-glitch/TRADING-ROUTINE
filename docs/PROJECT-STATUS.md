@@ -5,6 +5,34 @@ Updated: **2026-10-15**. Baseline: GitHub main **`af766a0`** (code tip
 v1 freeze milestone (#93) closed on 2026-10-13 and is tagged `v1-baseline`
 (`4a66583`). Open GitHub issues were reviewed on 2026-10-15.
 
+## Session 2026-10-16: EOD snapshot bolded a value, the publish chain fell over
+
+Baseline `3eddf2c`. No broker calls.
+
+- The 2026-10-15 EOD snapshot wrote `**Day P&L:** **-$796.54 (-0.74%)**`.
+  The `PORTFOLIO` regex in `build_dashboard_data.py` did not allow bold around
+  a value, so `dashboard-data` (run 38800828297) and `tests` (run 38800828500)
+  failed on `f7bde99`, the nightly heartbeat exited 5 (issue #187), and the
+  2026-10-16 pre-market STOPPED at STEP 2c because `deployment_status.py`
+  imports the same parser (run record `pre-market-20261016T113253Z-cfea06`).
+  Fix: the regex tolerates `\**` around each value (the stop column already
+  did); regression test `test_portfolio_line_tolerates_bold_wrapped_values`.
+  The log line itself is unchanged.
+- `build_dashboard_data.py --parse` parses both logs and writes nothing. Both
+  daily-summary copies now say the Portfolio line is machine-read, values
+  stay plain, and run `--parse` before committing the snapshot.
+- `docs/dashboard/data.js`, `docs/brain/index.json` and `INDEX.md`
+  regenerated through the 2026-10-15 EOD (118 snapshots, 21 blotter rows).
+- Checks: offline suite 986 passed, `doctor.py` OK, `--check` OK for both
+  builders, `git diff --check` clean.
+- Still owner-only, unchanged this session: `STRATEGY_VERSION` unset in the
+  cloud routine environment (pre-market counted a sixth session on 10/16; it
+  was set for the 10/15 market-open run only); no market-open run record on
+  10/12-10/14 and no midday run record since 10/09, so those schedules are
+  not reaching a run-record start at all; Resend key send-only (#147);
+  dispatcher unprovisioned (#130). Until this branch is on main the
+  market-open and midday gates fail the same way pre-market did on 10/16.
+
 ## Fund Brain (session of 2026-10-15, later)
 
 Map [#169](https://github.com/philipbergman6-glitch/TRADING-ROUTINE/issues/169)
