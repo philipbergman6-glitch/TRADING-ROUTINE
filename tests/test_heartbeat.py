@@ -274,3 +274,17 @@ def test_send_only_key_reports_sent_unverified_and_keeps_the_exit(monkeypatch, c
         report = json.loads(out)
         assert report["alert_delivery"] == expect_delivery
         assert report["alert_delivered"] is (expect_delivery != "failed")
+
+
+HEARTBEAT_YML = Path(__file__).resolve().parent.parent / ".github" / "workflows" / "heartbeat.yml"
+
+
+def test_workflow_keeps_an_emailed_miss_green_and_opens_issues_only_for_a_broken_alert_path():
+    # Exit 5 means the miss was emailed: the email is the signal, so the job
+    # must not go red (GitHub's "Run failed" mail) nor open an ALERT PATH
+    # FAILED issue (#141, #143, #164, #167, #187 were all exit-5 nights).
+    text = HEARTBEAT_YML.read_text()
+    assert 'echo "exit=$rc" >> "$GITHUB_OUTPUT"' in text
+    assert f'[ "$rc" -eq {EXIT_ISSUES} ] && exit 0' in text
+    assert f"if: failure() && steps.heartbeat.outputs.exit != '{EXIT_NO_STATE}'" in text
+    assert "if: failure()\n" not in text

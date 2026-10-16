@@ -333,6 +333,12 @@ day with subject "market-open trades $DATE" (any order submitted or backstop
 skip logged) or "market-open no-trade $DATE" (otherwise): the heartbeat
 distinguishes "did not run" from "nothing to do" only by this record.
 
+Log-format gate — run BEFORE committing. The dated entry header is
+machine-read (dashboard, brain index, rule-12 gate): the kind after the dash
+must be one the parser already knows for this routine ("Market-Open", "Market-Open Trades", "Market-Open Review"),
+never a new word, and the EOD Portfolio line keeps plain values.
+python3 scripts/build_brain_index.py --parse   # exit 1 = an entry you just wrote does not parse → fix it, re-run, only then STEP 7
+
 STEP 7 — Notification: only if a trade was placed.
 bash scripts/email.sh "<tickers, shares, fill prices, one-line why>"
 email.sh exits non-zero when the owner was not told (creds unset, Resend

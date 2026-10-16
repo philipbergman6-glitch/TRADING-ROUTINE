@@ -3821,7 +3821,7 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow / next run:** the first action, before anything else, is the config fix — **export `STRATEGY_VERSION=v1` in the routine environment**. Until then market-open stops at this gate, midday stops, /trade refuses, and the protection monitor computes the correct action and declines to take it (exit 6). Everything else on the board is carried forward from the 10/15 EOD unchanged.
 
 ---
-### 2026-10-16 — Midday (Day 124, Friday, industrial production day)
+### 2026-10-16 — Midday Scan (Day 124, Friday, industrial production day)
 
 **No trades. STOPPED at the STRATEGY_VERSION gate, before STEP 0b** — the second run today to stop at the same place. `scripts/strategy_version.py` → **exit 5: "STRATEGY_VERSION is unset; the approved version is v1.3: set STRATEGY_VERSION=v1"**. Unset is refused outright, so the run made **no broker call of any kind**: no positions or orders read, no blotter check, no ADR 0002 convergence scan, no expiry renewal scan, no cut check, no tighten check, no order validated, none submitted, no stop touched. No run record was started (the gate precedes STEP 0b). Week of 2026-10-12 trade count: **0/3** — the week closes with the full budget unspent.
 

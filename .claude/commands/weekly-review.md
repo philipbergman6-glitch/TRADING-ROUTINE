@@ -95,6 +95,12 @@ and any edit without an owner-approved version bump halts every routine
 at scripts/strategy_version.py the next session. The owner applies the
 change and bumps the version.
 
+Log-format gate — run BEFORE committing. The dated entry header is
+machine-read (dashboard, brain index, rule-12 gate): the kind after the dash
+must be one the parser already knows for this routine (a "## Week ending YYYY-MM-DD" section with its "### Overall Grade:" line),
+never a new word, and the EOD Portfolio line keeps plain values.
+python3 scripts/build_brain_index.py --parse   # exit 1 = an entry you just wrote does not parse → fix it, re-run, only then STEP 6
+
 STEP 6 — Send ONE email. <= 15 lines:
 bash scripts/email.sh "Week ending MMM DD
 Portfolio: \$X (±X% week, ±X% phase)

@@ -356,6 +356,11 @@ STEP 8 — COMMIT, PUSH, VERIFY (mandatory EVERY trading day — the commit is
 the no-trade outcome record the heartbeat reads):
 SUBJECT="market-open trades $DATE"      # any order submitted or backstop skip logged
 SUBJECT="market-open no-trade $DATE"    # otherwise
+Log-format gate — run BEFORE committing. The dated entry header is
+machine-read (dashboard, brain index, rule-12 gate): the kind after the dash
+must be one the parser already knows for this routine ("Market-Open", "Market-Open Trades", "Market-Open Review"),
+never a new word, and the EOD Portfolio line keeps plain values.
+python3 scripts/build_brain_index.py --parse   # exit 1 = an entry you just wrote does not parse → fix it, re-run, only then git add
 git add memory/TRADE-LOG.md
 git commit -m "$SUBJECT"
 git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }

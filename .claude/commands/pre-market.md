@@ -93,6 +93,12 @@ STEP 4 — Write a dated entry to memory/RESEARCH-LOG.md:
 - Decision: trade or HOLD (default HOLD — patience > activity — EXCEPT
   when STEP 2c exits 5: then the mandate add or a valid deferral)
 
+Log-format gate — run BEFORE committing. The dated entry header is
+machine-read (dashboard, brain index, rule-12 gate): the kind after the dash
+must be one the parser already knows for this routine ("Pre-market Research"),
+never a new word, and the EOD Portfolio line keeps plain values.
+python3 scripts/build_brain_index.py --parse   # exit 1 = an entry you just wrote does not parse → fix it, re-run, only then STEP 5
+
 STEP 5 — Notification: silent unless urgent.
 bash scripts/email.sh "<one line>"
 

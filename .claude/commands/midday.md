@@ -302,6 +302,12 @@ STEP 3. Document reasoning in TRADE-LOG.
 STEP 6 — Optional intraday research via Perplexity if something is moving
 sharply with no obvious cause. Append afternoon addendum to RESEARCH-LOG.
 
+Log-format gate — run BEFORE committing. The dated entry header is
+machine-read (dashboard, brain index, rule-12 gate): the kind after the dash
+must be one the parser already knows for this routine ("Midday Scan", "Midday Cut", "Midday Exits"),
+never a new word, and the EOD Portfolio line keeps plain values.
+python3 scripts/build_brain_index.py --parse   # exit 1 = an entry you just wrote does not parse → fix it, re-run, only then STEP 7
+
 STEP 7 — Notification: only if action was taken.
 bash scripts/email.sh "<action summary>"
 

@@ -74,7 +74,7 @@ STEP 4 — Append EOD snapshot to memory/TRADE-LOG.md:
 The Portfolio line is machine-read (dashboard, brain index, rule-12 gate):
 only the four labels are bold, the values are plain — no **bold** or other
 markup around a number. Emphasis belongs in Notes. Then, BEFORE committing:
-python3 scripts/build_dashboard_data.py --parse   # exit 1 = the snapshot you just wrote does not parse → fix the line, re-run, only then STEP 5
+python3 scripts/build_brain_index.py --parse   # exit 1 = the snapshot you just wrote (Portfolio line or "### <date> — EOD Snapshot" header) does not parse → fix the line, re-run, only then STEP 5
 
 STEP 5 — Send ONE email (always, even on no-trade days). <= 15 lines:
 bash scripts/email.sh "EOD MMM DD

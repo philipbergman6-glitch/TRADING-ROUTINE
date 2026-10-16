@@ -1943,7 +1943,7 @@
     "trade/2026-10-12/market-open-trades/1",
     "trade/2026-10-12/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-16"
   },
   "2026-10-13": {
    "fills": [],
@@ -1965,7 +1965,7 @@
     "trade/2026-10-13/market-open-trades/1",
     "trade/2026-10-13/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-16"
   },
   "2026-10-14": {
    "fills": [],
@@ -1982,7 +1982,7 @@
    "trade_log": [
     "trade/2026-10-14/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-16"
   },
   "2026-10-15": {
    "fills": [],
@@ -1990,22 +1990,38 @@
    "research": [
     "research/2026-10-15/pre-market-research/1"
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261015T113310Z-f307d0",
+    "market-open-20261015T133553Z-a47d04",
+    "protection-monitor-20261015T174030Z-2eae56",
+    "daily-summary-20261015T201408Z-16dd3a",
+    "protection-monitor-20261015T210619Z-70bdad"
+   ],
    "trade_log": [
     "trade/2026-10-15/market-open-trades/1",
     "trade/2026-10-15/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-16"
   },
   "2026-10-16": {
-   "fills": [],
+   "fills": [
+    {
+     "avg": "182.9000",
+     "pnl": "-554.40",
+     "qty": "112",
+     "side": "exit",
+     "symbol": "XLK"
+    }
+   ],
    "intents": [],
    "research": [],
    "runs": [],
    "trade_log": [
-    "trade/2026-10-16/market-open-trades/1"
+    "trade/2026-10-16/market-open-trades/1",
+    "trade/2026-10-16/midday-scan/1",
+    "trade/2026-10-16/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-16"
   }
  },
  "entries": {
@@ -7068,7 +7084,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Day 120, Monday, Columbus Day — equities open, bond market closed)",
-   "week": null
+   "week": "2026-10-16"
   },
   "research/2026-10-13/pre-market-research/1": {
    "date": "2026-10-13",
@@ -7098,7 +7114,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Day 121, Tuesday — bond market reopens, CPI eve)",
-   "week": null
+   "week": "2026-10-16"
   },
   "research/2026-10-14/pre-market-research/1": {
    "date": "2026-10-14",
@@ -7125,7 +7141,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Day 122, Wednesday, CPI day)",
-   "week": null
+   "week": "2026-10-16"
   },
   "research/2026-10-15/pre-market-research/1": {
    "date": "2026-10-15",
@@ -7152,7 +7168,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Day 123, Thursday, PPI + retail sales day)",
-   "week": null
+   "week": "2026-10-16"
   },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
@@ -11189,7 +11205,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 120, Monday, Columbus Day — equities open, bond market closed)",
-   "week": null
+   "week": "2026-10-16"
   },
   "trade/2026-10-12/market-open-trades/1": {
    "date": "2026-10-12",
@@ -11207,7 +11223,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 120, Monday, Columbus Day — equities open, bond market closed)",
-   "week": null
+   "week": "2026-10-16"
   },
   "trade/2026-10-13/eod-snapshot/1": {
    "date": "2026-10-13",
@@ -11225,7 +11241,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 121, Tuesday, bond market reopened; CPI tomorrow)",
-   "week": null
+   "week": "2026-10-16"
   },
   "trade/2026-10-13/market-open-trades/1": {
    "date": "2026-10-13",
@@ -11239,7 +11255,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 121, Tuesday)",
-   "week": null
+   "week": "2026-10-16"
   },
   "trade/2026-10-14/eod-snapshot/1": {
    "date": "2026-10-14",
@@ -11257,7 +11273,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 122, Wednesday, CPI day)",
-   "week": null
+   "week": "2026-10-16"
   },
   "trade/2026-10-15/eod-snapshot/1": {
    "date": "2026-10-15",
@@ -11275,7 +11291,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 123, Thursday, PPI + jobless claims + retail sales + Empire/Philly — all landed)",
-   "week": null
+   "week": "2026-10-16"
   },
   "trade/2026-10-15/market-open-trades/1": {
    "date": "2026-10-15",
@@ -11293,7 +11309,25 @@
     "XLP"
    ],
    "title": "Market-Open (Day 123, Thursday, PPI + retail sales day)",
-   "week": null
+   "week": "2026-10-16"
+  },
+  "trade/2026-10-16/eod-snapshot/1": {
+   "date": "2026-10-16",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-16/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 3837,
+   "log": "trade",
+   "note": "Day 124, Friday, industrial production day — XLK stopped out",
+   "symbols": [
+    "MPC",
+    "PSX",
+    "XLE",
+    "XLK",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 124, Friday, industrial production day — XLK stopped out)",
+   "week": "2026-10-16"
   },
   "trade/2026-10-16/market-open-trades/1": {
    "date": "2026-10-16",
@@ -11309,35 +11343,51 @@
     "XLP"
    ],
    "title": "Market-Open (Day 124, Friday, industrial production day)",
-   "week": null
+   "week": "2026-10-16"
+  },
+  "trade/2026-10-16/midday-scan/1": {
+   "date": "2026-10-16",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-16/midday-scan/1",
+   "kind": "midday-scan",
+   "line": 3824,
+   "log": "trade",
+   "note": "Day 124, Friday, industrial production day",
+   "symbols": [
+    "MPC",
+    "XLK",
+    "XLP"
+   ],
+   "title": "Midday Scan (Day 124, Friday, industrial production day)",
+   "week": "2026-10-16"
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-10-15 (UTC)",
+  "run_cutoff": "started before 2026-10-16 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
      "F"
     ],
-    "open_lots": 5,
-    "round_trips": 16
+    "open_lots": 4,
+    "round_trips": 17
    },
    "memory/RESEARCH-LOG.md": {
     "entries": 198
    },
    "memory/TRADE-LOG.md": {
-    "entries": 247,
-    "eod_snapshots": 118
+    "entries": 249,
+    "eod_snapshots": 119
    },
    "memory/WEEKLY-REVIEW.md": {
-    "weeks": 24
+    "weeks": 25
    },
    "state/events.jsonl": {
     "intents": 3,
-    "runs": 10
+    "runs": 15
    }
   },
-  "trade_log_asof": "2026-10-15"
+  "trade_log_asof": "2026-10-16"
  },
  "intents": {
   "rs-e138322d-a9c9-4f04-9e55-16c4d1ad1a1d": {
@@ -11469,6 +11519,30 @@
    "source": "run",
    "symbol": "XLP",
    "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 77.436"
+  },
+  {
+   "at": "2026-10-15T13:39:52+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261015T133553Z-a47d04",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP fixed->trailing conversion refused: stop_never_lowered 79.91 -> 79.24 at price 88.05; fixed stop HELD"
+  },
+  {
+   "at": "2026-10-15T17:40:33+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261015T174030Z-2eae56",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.3315"
+  },
+  {
+   "at": "2026-10-15T21:06:22+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261015T210619Z-70bdad",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.453"
   }
  ],
  "runs": {
@@ -11538,6 +11612,50 @@
    "symbols": [],
    "trigger": "cloud"
   },
+  "daily-summary-20261015T201408Z-16dd3a": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "d72311421003bd7b65911541d6351dce8ec6cf16",
+   "ended_at": "2026-10-15T20:18:40+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261015T201408Z-16dd3a",
+   "started_at": "2026-10-15T20:14:08+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "market-open-20261015T133553Z-a47d04": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "da567dfa9050175af9159bb80e990cfe0fd26859",
+   "ended_at": "2026-10-15T13:39:52+00:00",
+   "incidents": [
+    "STOP at STEP 2c: deployment_status.py exit 4 (DEPLOYMENT STATE UNAVAILABLE) — SyntaxError in scripts/build_dashboard_data.py line 650 blocked the rule-12 backstop gate; no broker mutation. Parse error fixed and committed; re-run exit 0, target_notional 0, nothing owed."
+   ],
+   "intents": [],
+   "model_id": "claude-opus-5",
+   "model_source": "self-reported",
+   "outcome": "incident",
+   "refusals": [
+    "XLP fixed->trailing conversion refused: stop_never_lowered 79.91 -> 79.24 at price 88.05; fixed stop HELD"
+   ],
+   "routine": "market-open",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "market-open-20261015T133553Z-a47d04",
+   "started_at": "2026-10-15T13:35:53+00:00",
+   "symbols": [
+    "XLP"
+   ],
+   "trigger": "cloud"
+  },
   "pre-market-20261013T113314Z-54bdd3": {
    "actions": [],
    "code_dirty": false,
@@ -11577,6 +11695,33 @@
    "run": "pre-market-20261014T113250Z-b97851",
    "started_at": "2026-10-14T11:32:50+00:00",
    "symbols": [],
+   "trigger": "cloud"
+  },
+  "pre-market-20261015T113310Z-f307d0": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "350520c84dc9a9dd60978dc1f8b552ddeeb650a9",
+   "ended_at": "2026-10-15T11:37:56+00:00",
+   "incidents": [
+    "STRATEGY_VERSION unset for a 5th session: strategy_version.py exit 5, protection_monitor.py exit 6 (EXIT_VERSION_BINDING) with coverage.ok true and zero actions; owner must export STRATEGY_VERSION=v1",
+    "email delivery unverified: RESEND_API_KEY is send-only (401 restricted_api_key on GET), alert id 01a13f5a-43c7-79be-bd3a-20b8bbe4d2bd",
+    "rule 7 condition: XLK cushion 2.40% is inside the 3% minimum (price 187.42 vs resting stop 182.925); stop left in place and recorded per rule 7, session 1",
+    "rule 3 condition: XLP weight 20.23% marginally through the 20% per-position cap on appreciation drift only; no trim, recorded"
+   ],
+   "intents": [],
+   "model_id": "claude-opus-5",
+   "model_source": "self-reported",
+   "outcome": "incident",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261015T113310Z-f307d0",
+   "started_at": "2026-10-15T11:33:10+00:00",
+   "symbols": [
+    "XLK",
+    "XLP"
+   ],
    "trigger": "cloud"
   },
   "protection-monitor-20261012T213829Z-783273": {
@@ -11692,6 +11837,52 @@
    "rulebook_version": "v1.3",
    "run": "protection-monitor-20261014T212424Z-01d3da",
    "started_at": "2026-10-14T21:24:24+00:00",
+   "symbols": [
+    "XLP"
+   ],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261015T174030Z-2eae56": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "0f9382fbefc19278915eec9e2ad9cf0be26c63d0",
+   "ended_at": "2026-10-15T17:40:33+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.3315"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261015T174030Z-2eae56",
+   "started_at": "2026-10-15T17:40:30+00:00",
+   "symbols": [
+    "XLP"
+   ],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261015T210619Z-70bdad": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "a4845d427215434c1150ec6b5cc38eae18aa028a",
+   "ended_at": "2026-10-15T21:06:22+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.453"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261015T210619Z-70bdad",
+   "started_at": "2026-10-15T21:06:19+00:00",
    "symbols": [
     "XLP"
    ],
@@ -12359,11 +12550,14 @@
     "trade/2026-10-14/eod-snapshot/1",
     "trade/2026-10-15/market-open-trades/1",
     "trade/2026-10-15/eod-snapshot/1",
-    "trade/2026-10-16/market-open-trades/1"
+    "trade/2026-10-16/market-open-trades/1",
+    "trade/2026-10-16/midday-scan/1",
+    "trade/2026-10-16/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-02",
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-16"
    ]
   },
   "MSFT": {
@@ -13207,11 +13401,13 @@
     "trade/2026-10-13/eod-snapshot/1",
     "trade/2026-10-14/eod-snapshot/1",
     "trade/2026-10-15/market-open-trades/1",
-    "trade/2026-10-15/eod-snapshot/1"
+    "trade/2026-10-15/eod-snapshot/1",
+    "trade/2026-10-16/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-02",
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-16"
    ]
   },
   "WMT": {
@@ -13636,7 +13832,8 @@
     "2026-09-18",
     "2026-09-25",
     "2026-10-02",
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-16"
    ]
   },
   "XLE": {
@@ -13836,7 +14033,8 @@
     "trade/2026-10-13/eod-snapshot/1",
     "trade/2026-10-14/eod-snapshot/1",
     "trade/2026-10-15/market-open-trades/1",
-    "trade/2026-10-15/eod-snapshot/1"
+    "trade/2026-10-15/eod-snapshot/1",
+    "trade/2026-10-16/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -13846,7 +14044,8 @@
     "2026-09-18",
     "2026-09-25",
     "2026-10-02",
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-16"
    ]
   },
   "XLF": {
@@ -14223,7 +14422,8 @@
     "2026-08-28",
     "2026-09-04",
     "2026-09-11",
-    "2026-09-18"
+    "2026-09-18",
+    "2026-10-16"
    ]
   },
   "XLK": {
@@ -14303,17 +14503,7 @@
     "entry": "research/2026-10-15/pre-market-research/1",
     "text": "**HOLD the existing book — no orders from this routine.** Rule 12 compels nothing (exit 0, `target_notional` 0); rule 14 is lapsed; coverage is **5/5, zero actions, zero issues**; no position near the -7% cut (worst is XLK at **+7.28%** above it); no stop in the expiry window (`alpaca.sh orders | build_oto_order.py expiring` → `[]`, exit 0, earliest **XLK 2026-11-06**); deployment **80.90%, mid-ba"
    },
-   "open_lots": [
-    {
-     "avg_in": "187.8500",
-     "entered": "2026-08-10T13:47:25.748661+00:00",
-     "entry_order_ids": [
-      "a950e46b-2ed1-4bb8-80dc-8fea96f59dd5"
-     ],
-     "qty": "112",
-     "symbol": "XLK"
-    }
-   ],
+   "open_lots": [],
    "research": [
     "research/2026-07-01/pre-market-research/1",
     "research/2026-07-02/pre-market-research/1",
@@ -14376,8 +14566,27 @@
     "research/2026-10-14/pre-market-research/1",
     "research/2026-10-15/pre-market-research/1"
    ],
-   "round_trips": [],
-   "runs": [],
+   "round_trips": [
+    {
+     "avg_in": "187.8500",
+     "avg_out": "182.9000",
+     "entered": "2026-08-10T13:47:25.748661+00:00",
+     "entry_order_ids": [
+      "a950e46b-2ed1-4bb8-80dc-8fea96f59dd5"
+     ],
+     "exit_order_ids": [
+      "934ca71d-f505-428d-8cd7-ac0925fc0f77"
+     ],
+     "exited": "2026-10-16T19:07:05.215347+00:00",
+     "pnl": "-554.40",
+     "pnl_pct": "-2.64",
+     "qty": "112",
+     "symbol": "XLK"
+    }
+   ],
+   "runs": [
+    "pre-market-20261015T113310Z-f307d0"
+   ],
    "sector": "Information Technology",
    "trade_log": [
     "trade/2026-08-10/market-open-trades/1",
@@ -14480,7 +14689,9 @@
     "trade/2026-10-14/eod-snapshot/1",
     "trade/2026-10-15/market-open-trades/1",
     "trade/2026-10-15/eod-snapshot/1",
-    "trade/2026-10-16/market-open-trades/1"
+    "trade/2026-10-16/market-open-trades/1",
+    "trade/2026-10-16/midday-scan/1",
+    "trade/2026-10-16/eod-snapshot/1"
    ],
    "weeks": [
     "2026-08-14",
@@ -14491,7 +14702,8 @@
     "2026-09-18",
     "2026-09-25",
     "2026-10-02",
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-16"
    ]
   },
   "XLP": {
@@ -14714,7 +14926,11 @@
     "protection-monitor-20261013T194724Z-242c44",
     "protection-monitor-20261013T233947Z-2ed2f8",
     "protection-monitor-20261014T175117Z-eb445b",
-    "protection-monitor-20261014T212424Z-01d3da"
+    "protection-monitor-20261014T212424Z-01d3da",
+    "pre-market-20261015T113310Z-f307d0",
+    "market-open-20261015T133553Z-a47d04",
+    "protection-monitor-20261015T174030Z-2eae56",
+    "protection-monitor-20261015T210619Z-70bdad"
    ],
    "sector": "Consumer Staples",
    "trade_log": [
@@ -14874,7 +15090,9 @@
     "trade/2026-10-14/eod-snapshot/1",
     "trade/2026-10-15/market-open-trades/1",
     "trade/2026-10-15/eod-snapshot/1",
-    "trade/2026-10-16/market-open-trades/1"
+    "trade/2026-10-16/market-open-trades/1",
+    "trade/2026-10-16/midday-scan/1",
+    "trade/2026-10-16/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
@@ -14891,7 +15109,8 @@
     "2026-09-18",
     "2026-09-25",
     "2026-10-02",
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-16"
    ]
   },
   "XOM": {
@@ -15619,6 +15838,30 @@
     "PSX",
     "XLB",
     "XLE",
+    "XLK",
+    "XLP"
+   ]
+  },
+  "2026-10-16": {
+   "closed_trades": [
+    "XLK"
+   ],
+   "ending": "2026-10-16",
+   "grade": "A-",
+   "line": 1607,
+   "open_positions": [
+    "MPC",
+    "PSX",
+    "XLE",
+    "XLK",
+    "XLP"
+   ],
+   "symbols": [
+    "MPC",
+    "PSX",
+    "XLB",
+    "XLE",
+    "XLI",
     "XLK",
     "XLP"
    ]

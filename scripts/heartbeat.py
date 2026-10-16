@@ -2,6 +2,7 @@
 """Daily liveness check: did every expected routine and workflow run today?
 
     python3 scripts/heartbeat.py            # report; exit 5 and email when something is missing
+                                            # (heartbeat.yml keeps 5 green: the email is the signal)
     python3 scripts/heartbeat.py --no-email
 
 Closes the "merged but never observed running" gap (PROJECT-STATUS, audit
