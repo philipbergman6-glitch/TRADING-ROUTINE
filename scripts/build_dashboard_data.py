@@ -111,10 +111,12 @@ def js_str(s):
 # without giving midday its own series — see the assert in parse_trade_log.
 SNAP_HDR = re.compile(r"^#{2,3}\s+(.+?)\s+—\s+(EOD Snapshot)\b(.*)$")
 DAY_NO = re.compile(r"\(Day\s+(\d+)\b")
+# The routine may bold a value for emphasis ("**Day P&L:** **-$796.54 (-0.74%)**",
+# 2026-10-15); the \** runs tolerate that, as the stop column's parser does.
 PORTFOLIO = re.compile(
-    r"^\*\*Portfolio:\*\*\s+(\$[\d,]+(?:\.\d+)?)\s+\|\s+"
-    r"\*\*Cash:\*\*\s+\$[\d,]+(?:\.\d+)?\s+\(([\d.]+)%\)\s+\|\s+"
-    r"\*\*Day P&L:\*\*\s+([+\-−]?\$[\d,]+(?:\.\d+)?)(?:\s+\(([+\-−]?[\d.]+)%\))?")
+    r"^\*\*Portfolio:\*\*\s+\**(\$[\d,]+(?:\.\d+)?)\**\s+\|\s+"
+    r"\*\*Cash:\*\*\s+\**\$[\d,]+(?:\.\d+)?\**\s+\**\(([\d.]+)%\)\**\s+\|\s+"
+    r"\*\*Day P&L:\*\*\s+\**([+\-−]?\$[\d,]+(?:\.\d+)?)\**(?:\s+\**\(([+\-−]?[\d.]+)%\)\**)?")
 POS_HDR = re.compile(
     r"^\|\s*Ticker\s*\|\s*Shares\s*\|\s*Entry\s*\|\s*Close\s*\|\s*Day Chg\s*\|"
     r"\s*Unrealized P&L\s*\|\s*Stop\s*\|")
@@ -634,6 +636,13 @@ def emit(snaps, weeks, events, blotter=None):
 def main():
     snaps = parse_trade_log(TRADE_LOG.read_text(encoding="utf-8"))
     weeks = parse_weekly_review(WEEKLY_REVIEW.read_text(encoding="utf-8"))
+    if "--parse" in sys.argv:
+        # Log-format gate for the routines that append to the logs: a snapshot
+        # the parser rejects would otherwise fail dashboard-data, tests and the
+        # next morning's rule-12 deployment gate (2026-10-15). Writes nothing.
+        print(f"OK: parsed {len(snaps)} EOD snapshots (latest {snaps[-1]['d']}) "
+              f"and {len(weeks)} weekly reviews")
+        return
     out = emit(snaps, weeks, read_state(), read_blotter())
     check = "--check" in sys.argv
     current = OUT.read_text(encoding="utf-8") if OUT.exists() else None
