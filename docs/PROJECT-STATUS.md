@@ -1,9 +1,44 @@
 # Engineering handoff
 
-Updated: **2026-10-15**. Baseline: GitHub main **`af766a0`** (code tip
-`234ccad`, PR #111; later commits are routine logs and state records). The
+Updated: **2026-10-16**. Baseline: GitHub main **`397ddc7`** (code tip
+`518cd3f`, PR #188; later commits are routine logs and state records). The
 v1 freeze milestone (#93) closed on 2026-10-13 and is tagged `v1-baseline`
 (`4a66583`). Open GitHub issues were reviewed on 2026-10-15.
+
+## Session 2026-10-16 (later): a "Midday" header broke the publish chain three times; heartbeat noise
+
+Baseline `397ddc7`. No broker calls. Branch `ccr-870adb35-6yx7ir`.
+
+- The 2026-10-16 midday run (stopped at the STRATEGY_VERSION gate, so it
+  improvised its entry) wrote `### 2026-10-16 — Midday (Day 124, …)`.
+  `build_brain_index.py` knows "Midday Scan", "Midday Cut", "Midday Exits";
+  plain "Midday" is an unknown kind and the build hard-fails by design. Every
+  `memory/**` push after it (midday 17:12Z, EOD 20:18Z, weekly review 21:10Z)
+  failed `dashboard-data` and `tests`, each one also firing a heartbeat
+  "WORKFLOW FAILED" email. Fix: the header now reads "Midday Scan" (the
+  entry text is unchanged); `data.js`, `index.json` and `INDEX.md`
+  regenerated through the 10-16 EOD and weekly review.
+- `build_brain_index.py --parse`: parse every input, write nothing. Every
+  log-writing routine (pre-market, market-open, midday, daily-summary,
+  weekly-review; both the cloud and the local copy) runs it before committing,
+  with the header kinds it may use spelled out. It replaces the dashboard-only
+  `--parse` the daily summary gained in PR #188, which could not have caught a
+  header kind. Pinned by `test_every_log_writing_routine_runs_the_parse_gate_before_committing`.
+- heartbeat.yml: `heartbeat.py` exit 5 (misses found AND emailed) now leaves
+  the job green — the email is the signal; a red run only added GitHub's own
+  "Run failed" mail. The ALERT PATH FAILED issue opens only when the run is
+  red for a reason other than exit 4 (exit 9, the workflow_run email step, or
+  a step before the script). Exit 4 and 9 still fail the job. The five issues
+  that rule opened on exit-5 nights (#141, #143, #164, #167, #187) were
+  closed as not planned.
+- Checks: offline suite green (see commit), `doctor.py` OK, `--check` OK for
+  both builders, `git diff --check` clean. heartbeat.yml parsed as YAML; the
+  step-output wiring is pinned by a test, not exercised here (no Actions run
+  until the branch is on main).
+- Still owner-only: `STRATEGY_VERSION` unset in the cloud routine
+  environment — the 10-16 market-open and midday both stopped at the gate, so
+  no cut/tighten/renewal logic ran that day (trailing stops at the broker
+  held); Resend key send-only (#147); dispatcher unprovisioned (#130).
 
 ## Session 2026-10-16: EOD snapshot bolded a value, the publish chain fell over
 

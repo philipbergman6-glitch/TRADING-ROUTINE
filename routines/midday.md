@@ -319,6 +319,11 @@ bash scripts/email.sh "<action summary>"
 
 STEP 8 — COMMIT, PUSH, VERIFY (if any memory files changed):
 Skip this step entirely if no-op.
+Log-format gate — run BEFORE committing. The dated entry header is
+machine-read (dashboard, brain index, rule-12 gate): the kind after the dash
+must be one the parser already knows for this routine ("Midday Scan", "Midday Cut", "Midday Exits"),
+never a new word, and the EOD Portfolio line keeps plain values.
+python3 scripts/build_brain_index.py --parse   # exit 1 = an entry you just wrote does not parse → fix it, re-run, only then git add
 git add memory/TRADE-LOG.md memory/RESEARCH-LOG.md
 git commit -m "midday scan $DATE"
 git push origin HEAD:main || { git pull --rebase origin main && git push origin HEAD:main; }

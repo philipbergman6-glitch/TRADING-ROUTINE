@@ -9,9 +9,12 @@ name: heartbeat
 #
 # Alert delivery is verified (scripts/email.sh); if the email cannot be sent
 # this job fails and, as the channel independent of Resend, opens a GitHub
-# issue so the miss is visible in the repository itself. An email sent with a
-# send-only Resend key cannot be verified: that is a warning plus one issue a
-# day (scripts/alert_unverified.sh), not a failure (ticket #147).
+# issue so the miss is visible in the repository itself. A miss that WAS
+# emailed (heartbeat.py exit 5) leaves the job green: the email is the signal,
+# and a red run would only add GitHub's own "Run failed" mail plus a spurious
+# ALERT PATH FAILED issue (five of them, #141-#187, 2026-10-12 to 10-16). An
+# email sent with a send-only Resend key cannot be verified: that is a warning
+# plus one issue a day (scripts/alert_unverified.sh), not a failure (ticket #147).
 
 on:
   schedule:
@@ -46,21 +49,34 @@ jobs:
           fetch-depth: 0
           ref: main
       - name: Email immediately on a failed watched workflow
+        id: email
         if: github.event_name == 'workflow_run'
         env:
           EMAIL_UNVERIFIED_FILE: ${{ runner.temp }}/email-unverified
         run: |
           bash scripts/email.sh "WORKFLOW FAILED: ${{ github.event.workflow_run.name }} ($(date -u +%F)) ${{ github.event.workflow_run.html_url }}"
       - name: Daily heartbeat
+        id: heartbeat
         if: github.event_name != 'workflow_run'
         env:
           EMAIL_UNVERIFIED_FILE: ${{ runner.temp }}/email-unverified
-        run: python3 scripts/heartbeat.py
+        # Exit 5 = expectations missed and the alert was emailed: green, the
+        # email is the signal. 4 = nothing could be assessed, 9 = the alert
+        # was not delivered: both stay red. The code is kept for the issue step.
+        run: |
+          python3 scripts/heartbeat.py && rc=0 || rc=$?
+          echo "exit=$rc" >> "$GITHUB_OUTPUT"
+          [ "$rc" -eq 5 ] && exit 0
+          exit "$rc"
       - name: Warn once a day when alert delivery could not be verified
         if: always()
         run: bash scripts/alert_unverified.sh "${{ runner.temp }}/email-unverified"
       - name: Open a GitHub issue when the alert path itself failed
-        if: failure()
+        # Exit 4 is "nothing assessed", not a broken alert path; GitHub's own
+        # run-failed mail covers it. Anything else red here (exit 9, the
+        # workflow_run email step, a step before the script) means the owner
+        # may not have been told.
+        if: failure() && steps.heartbeat.outputs.exit != '4'
         run: |
           title="ALERT PATH FAILED $(date -u +%F): heartbeat ${{ github.event_name }}"
           body="Heartbeat run ${{ github.run_id }} failed, so the email alert may not have reached the owner. Read the run log: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

@@ -3,6 +3,7 @@
 
     python3 scripts/build_brain_index.py                 # regenerate both files
     python3 scripts/build_brain_index.py --check         # regenerate in memory, compare
+    python3 scripts/build_brain_index.py --parse         # parse every input, write nothing (routine log gate)
     python3 scripts/build_brain_index.py --symbol PLTR   # everything about one symbol
     python3 scripts/build_brain_index.py --refusals 2026-10   # every refusal in a month
 
@@ -485,6 +486,16 @@ def render_md(index):
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     index = build()
+    if "--parse" in argv:
+        # Log-format gate for the routines that append to the logs (2026-10-16:
+        # a "Midday" header, not "Midday Scan", failed dashboard-data and tests
+        # three times in one day). build() has already parsed every input;
+        # an unknown header kind raised ParseError before this line.
+        g = index["generated_from"]["sources"]
+        print(f"OK: parsed research {g['memory/RESEARCH-LOG.md']['entries']} · "
+              f"trade-log {g['memory/TRADE-LOG.md']['entries']} · weeks {len(index['weeks'])} · "
+              f"latest EOD {index['generated_from']['trade_log_asof']}; nothing written")
+        return 0
     if "--symbol" in argv:
         print(json.dumps(query_symbol(index, argv[argv.index("--symbol") + 1]), indent=1, sort_keys=True))
         return 0

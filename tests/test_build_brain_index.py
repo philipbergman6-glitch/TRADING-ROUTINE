@@ -191,3 +191,43 @@ def test_dates_join_every_source(built):
 def test_readme_links_the_index():
     text = (REPO / "docs" / "brain" / "README.md").read_text(encoding="utf-8")
     assert "INDEX.md" in text and "index.json" in text
+
+
+# ------------------------------------------------------------ routine gate
+
+LOG_WRITING_ROUTINES = [
+    REPO / "routines" / name for name in
+    ("pre-market.md", "market-open.md", "midday.md", "daily-summary.md", "weekly-review.md")
+] + [
+    REPO / ".claude" / "commands" / name for name in
+    ("pre-market.md", "market-open.md", "midday.md", "daily-summary.md", "weekly-review.md")
+]
+
+
+def test_parse_mode_parses_everything_and_writes_nothing(tmp_path, monkeypatch, capsys):
+    # 2026-10-16: a "### <date> — Midday" header (not "Midday Scan") failed
+    # dashboard-data and tests three times in one day. --parse is the gate the
+    # routines run before committing; it must exercise the same parsers and
+    # leave the published files alone.
+    monkeypatch.setattr(bi, "OUT_JSON", tmp_path / "index.json")
+    monkeypatch.setattr(bi, "OUT_MD", tmp_path / "INDEX.md")
+    assert bi.main(["--parse"]) == 0
+    assert not (tmp_path / "index.json").exists() and not (tmp_path / "INDEX.md").exists()
+    out = capsys.readouterr().out
+    assert out.startswith("OK: parsed") and "nothing written" in out
+
+
+def test_parse_mode_hard_fails_on_an_unknown_header(tmp_path, monkeypatch):
+    bad = bi.TRADE_LOG.read_text(encoding="utf-8").replace(
+        "— Midday Scan (Day 124", "— Midday (Day 124", 1)
+    assert bad != bi.TRADE_LOG.read_text(encoding="utf-8")
+    (tmp_path / "TRADE-LOG.md").write_text(bad, encoding="utf-8")
+    monkeypatch.setattr(bi, "TRADE_LOG", tmp_path / "TRADE-LOG.md")
+    with pytest.raises(bi.ParseError, match="unknown trade-log entry kind 'Midday'"):
+        bi.main(["--parse"])
+
+
+@pytest.mark.parametrize("command", LOG_WRITING_ROUTINES, ids=lambda p: f"{p.parent.name}/{p.name}")
+def test_every_log_writing_routine_runs_the_parse_gate_before_committing(command):
+    text = command.read_text(encoding="utf-8")
+    assert "python3 scripts/build_brain_index.py --parse" in text, command
