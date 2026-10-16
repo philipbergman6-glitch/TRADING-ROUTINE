@@ -3821,3 +3821,16 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow / next run:** the first action, before anything else, is the config fix — **export `STRATEGY_VERSION=v1` in the routine environment**. Until then market-open stops at this gate, midday stops, /trade refuses, and the protection monitor computes the correct action and declines to take it (exit 6). Everything else on the board is carried forward from the 10/15 EOD unchanged.
 
 ---
+### 2026-10-16 — Midday (Day 124, Friday, industrial production day)
+
+**No trades. STOPPED at the STRATEGY_VERSION gate, before STEP 0b** — the second run today to stop at the same place. `scripts/strategy_version.py` → **exit 5: "STRATEGY_VERSION is unset; the approved version is v1.3: set STRATEGY_VERSION=v1"**. Unset is refused outright, so the run made **no broker call of any kind**: no positions or orders read, no blotter check, no ADR 0002 convergence scan, no expiry renewal scan, no cut check, no tighten check, no order validated, none submitted, no stop touched. No run record was started (the gate precedes STEP 0b). Week of 2026-10-12 trade count: **0/3** — the week closes with the full budget unspent.
+
+**Env check:** sync to origin/main OK (tip `1aafd5e`). All six required vars set (ALPACA_API_KEY, ALPACA_SECRET_KEY, PERPLEXITY_API_KEY, RESEND_API_KEY, EMAIL_TO, EMAIL_FROM); no `.env` read, written or sourced. `STRATEGY_VERSION` **unset**. Alert sent (`STRATEGY_VERSION MISMATCH 2026-10-16`, id `01a145b2-0902-74f2-8489-a8da41bfe807`, `delivery=unverified reason=restricted_api_key` — sent, send-only key cannot confirm; not a failure).
+
+**Unchanged owner config item, now the only thing standing between the book and its own rules.** `docs/rulebook-pins.json` active = **v1.3**; the gate wants `STRATEGY_VERSION=v1` (the engine) in the process env of **every** run that may mutate — a routine cannot persist it. The only place it is wired is `.github/workflows/protection-monitor.yml:65` (`${{ vars.STRATEGY_VERSION }}`), and that is the repo-variable path, not this cloud routine environment; the cloud environment's own env var set is where it is missing. Two full sessions of supervision have now been skipped today.
+
+**What went unchecked, carried from the 10/15 EOD:** **MPC** cushion 3.36%, thinnest in the book, 5% rung holding only while MPC ≥ $475.60 (Thu close $476.92, 0.28% above it) — a pullback through it widens the requirement back to 7 and `stop_never_lowered` correctly refuses to undo the tighter resting stop; **XLK** out of rule-7 breach at 3.21% cushion with 0.21pp of margin and no new high in ten sessions, cut at $174.7005, trail at $182.925; **XLP** at $88.79 on 10/15, 2.43% from where the fixed→trailing conversion stops being refused — still the first mutation available to the next routine that passes its gates. Trailing stops ratchet at the broker without intervention, so protection was never absent; anything needing a validated replacement did not happen.
+
+**Next run:** the config fix first — **export `STRATEGY_VERSION=v1` in the routine environment**. Until then every mutating path refuses: market-open stops, midday stops, /trade refuses, the protection monitor computes the correct action and declines to take it (exit 6). Today's remaining scheduled run is the daily summary.
+
+---
