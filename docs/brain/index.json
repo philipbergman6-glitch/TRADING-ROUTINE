@@ -2022,6 +2022,16 @@
     "trade/2026-10-16/eod-snapshot/1"
    ],
    "week": "2026-10-16"
+  },
+  "2026-10-18": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-10-18/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -7170,6 +7180,29 @@
    "title": "Pre-Market (Day 123, Thursday, PPI + retail sales day)",
    "week": "2026-10-16"
   },
+  "research/2026-10-18/pre-market-research/1": {
+   "date": "2026-10-18",
+   "decision": [
+    "XLK"
+   ],
+   "decision_text": "**HOLD today — market closed (Sunday), no orders.** Plan for Mon 10/19 market-open: **BUY GEV 21 sh (~$19.3k), 10% stop**, the pre-committed replacement for XLK, subject to live re-validation; otherwise patience until rule 12 forces it. All 4 stops active and correct; no rebalancing. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-10-18/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 8553,
+   "log": "research",
+   "note": "Sunday, markets closed — prep for Mon 10/19",
+   "symbols": [
+    "MPC",
+    "PSX",
+    "XLE",
+    "XLK",
+    "XLP"
+   ],
+   "title": "Pre-Market (Sunday, markets closed — prep for Mon 10/19)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -11373,7 +11406,7 @@
     "round_trips": 17
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 198
+    "entries": 199
    },
    "memory/TRADE-LOG.md": {
     "entries": 249,
@@ -12511,7 +12544,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -13374,7 +13408,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -13978,7 +14013,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -14476,7 +14512,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-18/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-07-01/pre-market-research/1",
@@ -14499,9 +14536,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-10-15",
-    "entry": "research/2026-10-15/pre-market-research/1",
-    "text": "**HOLD the existing book — no orders from this routine.** Rule 12 compels nothing (exit 0, `target_notional` 0); rule 14 is lapsed; coverage is **5/5, zero actions, zero issues**; no position near the -7% cut (worst is XLK at **+7.28%** above it); no stop in the expiry window (`alpaca.sh orders | build_oto_order.py expiring` → `[]`, exit 0, earliest **XLK 2026-11-06**); deployment **80.90%, mid-ba"
+    "date": "2026-10-18",
+    "entry": "research/2026-10-18/pre-market-research/1",
+    "text": "**HOLD today — market closed (Sunday), no orders.** Plan for Mon 10/19 market-open: **BUY GEV 21 sh (~$19.3k), 10% stop**, the pre-committed replacement for XLK, subject to live re-validation; otherwise patience until rule 12 forces it. All 4 stops active and correct; no rebalancing. ---"
    },
    "open_lots": [],
    "research": [
@@ -14564,7 +14601,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-18/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -14918,7 +14956,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
