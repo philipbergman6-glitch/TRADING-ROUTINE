@@ -8549,3 +8549,41 @@ Rule 14 is **lapsed** (MPC and PSX are open single names), so no composition wai
 - **No standing condition remains** (Morgan Stanley discharged 10/08, GLJ Sell/$470 discharged 10/12). Next catalysts: **PPI + retail sales + claims + Philly Fed employment 10/15 08:30**, industrial production 10/16, **Hormuz/Gulf weather and Russian diesel cargoes through November**, BE Q3 ~10/27, **FOMC 10/27-28**, **GEV Q3 10/28**, **PSX Q3 10/28** (Bayway labour, Roxana), CAT Q3 11/03, MPC Q3 11/03, payrolls 11/06, **CPI 11/10**.
 
 ---
+
+### 2026-10-18 — Pre-Market (Sunday, markets closed — prep for Mon 10/19)
+
+### Account snapshot
+- **Equity $107,169.51** · **Cash $41,116.27** · Long MV $66,053.24 · `buying_power` $349,414 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5-6 since XLK stopped out 10/16): XLP 20.44% · XLE 19.80% · PSX 15.59% · MPC 5.80%. Week trades 0/3 (new week).
+- Stops 4/4, one-for-one: MPC 5% trail $460.87 · PSX 10% trail $267.67 · XLE 10% trail $61.46 · XLP fixed $79.91. `build_oto_order.py expiring` → `[]`.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. `strategy_version.py` **exit 0 — STRATEGY_VERSION=v1 is now set** (config item resolved for this run).
+
+### Market context (Fri 10/16 closes; no live weekend data)
+- **WTI $101.84 (+3.95%) · Brent $109.95** — WTI back above $100.
+- **ES 7,704.25 (-1.11%)**; tech selloff capped the week. **VIX 19.99 (+21.45%)** from 16.46 — fourth straight higher session.
+- Futures still price ~one 25bp hike by Dec; **FOMC 10/27-28**, PCE 10/29. No CPI/PPI/payrolls this week (CPI 11/10, payrolls 11/06, PPI 11/13).
+- Week: NAHB Mon, housing starts Tue, claims Thu, UMich final Fri. Earnings: FITB, CLF BMO Mon; NFLX, TSLA, META, TXN, GE Aerospace, PG later in week.
+- Sector YTD (rule 9): Energy ~+40%, Info Tech ~+30% (but **Info Tech now BANNED by rule 10, streak 3, lifts 2026-11-13**), Health Care ~+14%, Materials ~+12%.
+- Holdings news: MPC Q3 11/03, WFC $560 target; PSX Q3 10/28, UBS Buy $310; MPC–PSX merger talk dead. Nothing new on XLE/XLP.
+- Research via Perplexity (no fallback needed).
+
+### Trade ideas
+Rule 14 lapsed (MPC, PSX are single names) — no composition waiver needed.
+1. **GE Vernova (GEV) — the pre-committed replacement.** Catalyst: Venture Global framework (up to 16 power islands, ~$17.2bn) + **Q3 10/28**. Fri close $921.20. Entry ~$921, **stop $829.08 (10%)**, target $1,105 (2:1). `validate_order.py --symbol GEV --qty 21 --side buy --price 921.20 --stop-price 829.08 --trades-this-week 0 --sector Industrials` → **APPROVED, exit 0**, notional $19,345 (≈target_notional $19,682). Post-fill deployed ≈79.7%, 5 positions. Non-energy, Industrials streak 1. Market-open must re-validate at a verified live print.
+2. **Eaton (ETN)** — grid/data-centre theme. Perplexity prints conflict ($391.25 Fri vs ~$912 in 10/15 entry) — **price unverified, not actionable**.
+3. **Caterpillar (CAT)** — Q3 11/03, power-gen backlog. Needs verified live print. Fallback only.
+
+### Risk factors
+- **VIX ~20 and rising four sessions**; AI/high-debt tech selloff; hike repricing into FOMC 10/28.
+- **Energy/refining 41.2% of book** (XLE+PSX+MPC); WTI >$100 is the tailwind and the concentration risk. Next add stays non-energy.
+- MPC cushion ~3.6% vs Fri $478.07 mark; 5% rung requires MPC ≥ $475.60 (0.52% away) — if lost, required trail widens to 7 but resting stop is never lowered (permitted).
+- XLP 20.44% weight, over rule-3 cap on drift only — no trim. Fixed→trailing conversion still held until XLP ≥ ~$88.79.
+- GEV's 10/28 print and ex-div 10/27 fall in FOMC week — event risk on a fresh entry.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **61.63**, band [75, 85], `sessions_under_band` **1**, `mandate` false, `exemption_allowed` false, `target_notional` $19,682, `last_eod` 2026-10-16. **No mandate yet** — becomes due after 3 sessions under band.
+
+### Decision
+**HOLD today — market closed (Sunday), no orders.** Plan for Mon 10/19 market-open: **BUY GEV 21 sh (~$19.3k), 10% stop**, the pre-committed replacement for XLK, subject to live re-validation; otherwise patience until rule 12 forces it. All 4 stops active and correct; no rebalancing.
+
+---
