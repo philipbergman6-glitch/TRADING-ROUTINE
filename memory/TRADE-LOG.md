@@ -3859,3 +3859,26 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow / Monday:** **the config fix comes first and nothing else changes until it does — export `STRATEGY_VERSION=v1` in the routine environment.** It is the seventh session this item has been on the board; it was set for one run on 10/15 (exit 0, the only clean live path since 10/09) and has been unset for all three runs since. Until it is set, market-open stops, midday stops, /trade refuses, and the protection monitor computes the correct action and declines to take it (exit 6) — **today only escaped cost because the stop that mattered lived at the broker.** The only place it is wired is `.github/workflows/protection-monitor.yml:65` (`${{ vars.STRATEGY_VERSION }}`), the repo-variable path, not this cloud environment. **Then the deployment question, which is new:** at 61.65% deployed with $25,032.83 of headroom and 4 positions, the next market-open run that passes its gate has a real decision rather than a mechanical refusal — **GEV at full weight** (~15-18% of equity, non-energy, Industrials streak 1, single name, 10% stop, re-validated at a **verified live print, never the Alpaca quote feed**) is the standing replacement thesis, and the week resets to 0/3 entries on Monday. **XLP at $88.79 is 1.34% away** from where the fixed→trailing conversion stops being refused — closer than Thursday, and still the first mutation available to the next routine that passes its gates. **No leg is in rule-7 breach and no standing condition remains.** Next catalysts: **Hormuz/Gulf weather and Russian diesel cargoes through November**, BE Q3 ~10/27, **FOMC 10/27-28**, **GEV Q3 10/28**, **PSX Q3 10/28** (Bayway labour, Roxana), CAT Q3 11/03, MPC Q3 11/03, payrolls 11/06, **CPI 11/10**.
 
 ---
+## 2026-10-19 — Market-Open Trades (Day 125, Monday, NAHB day)
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-10-19 | GEV | BUY | 21 | $930.12 | $838.79 fixed GTC (OTO leg 41858b3e, 9.82% below fill, exp 2027-01-15) — HELD, trail conversion refused `stop_never_lowered` | The pre-committed non-energy replacement for XLK. Catalyst: Venture Global framework (up to 16 × 720 MW power islands, ≤$17.2bn) + Q3 10/28; Susquehanna PT $1,270. Sector: Industrials (streak 1, not banned). Single name; rule 14 already lapsed | $1,112.78 (2:1) | 2:1 |
+
+**Week of 2026-10-19 trade count: 1/3**
+
+**Notes:** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset — `ledger_order_id` null, `record_broker_response` no-op). Run record `market-open-20261019T133552Z-91d245`.
+
+**Discretionary, not mandated.** `deployment_status.py` exit 0 at the open (`deployed_pct` 61.66, `sessions_under_band` 1, `mandate` false, `target_notional` $19,667). Rule 10: `blotter.py --sector-streaks` exit 0, Industrials `banned: false` (Info Tech banned to 11/13, not relevant). **GEV added to `memory/SECTORS.json` as Industrials** (committed with this entry).
+
+**Execution.** Quote feed again oscillated between a wide state (ask $940, ~1.4% spread) and the tight inside market; acted only in the tight state (bid $928.53 / ask $931.99). `validate_order.py --symbol GEV --qty 21 --side buy --price 931.99 --stop-price 838.79 --sector Industrials` → **exit 0**, notional $19,571.79. `submit_entry.py` → **exit 0 `submitted`**, HTTP 200, intent/client id `en-20261019-GEV`, parent `8d0e50f8`. **STEP-4 gate met: filled_qty 21 == qty 21, avg $930.12** (13:38:12 UTC); leg `41858b3e` FixedStop (`type=stop`, trail null, $838.79, GTC).
+
+**STEP 5 — conversion refused, fixed leg HELD (rule 4 permitted protection).** `validate_order.py ... --side sell --trail-percent 10` exit 0; `replace_stop.py --order-id 41858b3e --trail-percent 10` → **exit 3 `refused`**: "stop_never_lowered: 838.79 -> 835.2945" (GEV traded back to ~$920-928 after the fill). Old stop untouched and verified. Converts the first session a 10% trail sits ≥ $838.79, i.e. GEV ≥ ~$931.99.
+
+**STEP 2b:** one pre-existing fixed leg, XLP $79.91 — gate `validate_stop_change.py --current-stop 79.91 --new-stop 78.49 --current-price 87.21` exit 3 `stop_never_lowered` → **HOLD fixed XLP @ $79.91**. **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, coverage ok, 4/4 before the buy.
+
+**Post-trade state.** Equity $107,252.15, cash $21,583.75, LMV $85,668.40 → **deployed 79.88%, back inside the 75-85% band**; `target_notional` now 0. **5 positions** (rule-3 range). `protection_monitor.py --dry-run` exit 0, **5/5 covered one-for-one**, zero actions, holds GEV + XLP (both fixed, both `stop_never_lowered`). Stops: GEV fixed $838.79 · MPC 5% trail $462.65 (hwm $487, self-ratcheted) · PSX 10% trail $268.20 (hwm $298) · XLE 10% trail $61.47 (hwm $68.30) · XLP fixed $79.91. MPC cushion 4.22% vs $483.05 — **back outside rule 7's 3%**, condition from pre-market cleared. None lowered. Energy/refining still ~41.3% of equity (unchanged — GEV, ~18.2% of equity, was funded from cash, not energy).
+
+**Watch:** GEV ex-div 10/27 + Q3 10/28 in FOMC week; GEV trail conversion at ≥ $931.99; XLP conversion at ≥ ~$88.79. Next catalysts: FOMC 10/27-28, GEV/PSX Q3 10/28, MPC Q3 11/03.
+
+---
