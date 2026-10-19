@@ -8587,3 +8587,40 @@ Rule 14 lapsed (MPC, PSX are single names) — no composition waiver needed.
 **HOLD today — market closed (Sunday), no orders.** Plan for Mon 10/19 market-open: **BUY GEV 21 sh (~$19.3k), 10% stop**, the pre-committed replacement for XLK, subject to live re-validation; otherwise patience until rule 12 forces it. All 4 stops active and correct; no rebalancing.
 
 ---
+
+### 2026-10-19 — Pre-Market (Monday, NAHB day)
+
+### Account snapshot
+- **Equity $106,764.30** (`last_equity` $107,169.51, -$405.21/-0.38% on premarket marks) · **Cash $41,116.27** · Long MV $65,648.03 · `buying_power` $348,280 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5-6): XLP 20.44% · XLE 19.75% · PSX 15.53% · MPC 5.76%. Week trades **0/3**.
+- Stops 4/4, one-for-one, qty matching: MPC 5% trail $460.8735 · PSX 10% trail $267.669 · XLE 10% trail $61.461 · XLP fixed $79.91. Earliest expiry XLP 2026-12-15.
+- `strategy_version.py` exit 0 (STRATEGY_VERSION=v1 set). `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. LEDGER DISABLED.
+
+### Market context
+- **WTI ~$100.65 (-0.75%) · Brent ~$107.95 (-1.74%)** — oil easing.
+- **ES ~7,744 (+0.52%)** — AI names rebounding from last week's selloff (biggest weekly drop since June); yields lower. **VIX 18.75 (-6.2%)** from 19.99.
+- No CPI/PPI/FOMC/payrolls today; NAHB + bill auctions only. FOMC 10/27-28, payrolls 11/06, CPI 11/10. Sept import prices +1.1% m/m keeps hike risk live.
+- BMO: GE Aerospace, FITB, CLF, PAC. Week: NFLX, TSLA, TXN, LRCX, META (Wed).
+- Sector YTD (rule 9): Energy ~+40%, Info Tech ~+30% (**banned, rule 10, lifts 11/13**), Health Care ~+14%, Materials ~+12%.
+- Holdings: no new company-specific news. MPC/PSX premarket marks soft (-1.0%/-0.8%) with crude.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (MPC, PSX are single names) — no composition waiver needed.
+1. **GE Vernova (GEV)** — pre-committed replacement. Catalyst: Venture Global framework (up to 16 × 720 MW units, ≤$17.2bn) + **Q3 10/28**; Susquehanna PT $1,300→$1,270 (positive). Premarket **~$940 (+2.0%)**. Entry ~$940, **stop $846.00 (10%)**, target $1,128 (2:1). `validate_order.py --symbol GEV --qty 21 --side buy --price 940.00 --stop-price 846.00 --trades-this-week 0 --sector Industrials` → **APPROVED, exit 0**, notional $19,740 (≤ target_notional $19,763). Post-fill ≈80% deployed, 5 positions. Industrials streak 1, non-energy. Market-open re-validates at a verified live print.
+2. **Eaton (ETN)** — grid theme; price unverified (conflicting prints). Not actionable.
+3. **Caterpillar (CAT)** — Q3 11/03; needs verified live print. Fallback only.
+
+### Risk factors
+- **MPC cushion INSIDE rule-7 3% minimum: $473.25 premarket vs $460.8735 stop = 2.69%.** Below the $475.60 +20% rung → `--print-required` now **7** (gain +19.41%); resting 5% trail is tighter and is **never lowered** — permitted. Rule 7: stop left as is, condition recorded (session 1). -7% cut at $368.59, far away.
+- Energy/refining 41.0% of book; crude giving back. Next add stays non-energy.
+- XLP 20.44% over the 20% cap on drift only — no trim. Fixed→trailing conversion still held until XLP ≥ ~$88.79 (premarket $87.30).
+- GEV: ex-div 10/27 + Q3 10/28 in FOMC week — event risk on a fresh entry; AI-infra sentiment volatile.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **61.49**, band [75, 85], `sessions_under_band` **1**, `mandate` false, `exemption_allowed` false, `target_notional` $19,763, `last_eod` 2026-10-16. No mandate yet.
+
+### Decision
+**TRADE (discretionary): BUY GEV 21 sh at market-open, 10% stop**, subject to live re-validation at a verified print (resize to stay ≤ cash and ≤85% deployment if price moves). Existing book HOLD — no stop changes; all 4 stops active and correct.
+
+---
