@@ -3882,3 +3882,16 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Watch:** GEV ex-div 10/27 + Q3 10/28 in FOMC week; GEV trail conversion at ≥ $931.99; XLP conversion at ≥ ~$88.79. Next catalysts: FOMC 10/27-28, GEV/PSX Q3 10/28, MPC Q3 11/03.
 
 ---
+### 2026-10-19 — Midday Scan (Day 125, Monday, NAHB day)
+
+**No trades. No broker mutation.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261019T171051Z-67d107`. `blotter.py --check` exit 0, 5 open lots match positions. Week of 2026-10-19 trade count: **1/3**.
+
+**Protection 5/5, one-for-one:** GEV fixed $838.79 · MPC 5% trail $469.281 (hwm $493.98, self-ratcheted) · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.6545 (hwm $68.505) · XLP fixed $79.91. None lowered, none touched.
+
+**STEP 2b:** HOLD fixed GEV @ $838.79 (`validate_stop_change.py` 838.79→824.25 @ $915.835 exit 3 `stop_never_lowered`). HOLD fixed XLP @ $79.91 (79.91→78.51 @ $87.23 exit 3 `stop_never_lowered`). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Rule 7:** STANDING MPC stop 469.281 is 1.83% below P 478.01 (rule 7: left, recorded). Other cushions: GEV 8.41%, XLP 8.39%, PSX 7.97%, XLE 9.24%.
+
+**STEP 3:** no position ≤ -7% (worst GEV -1.54%). **STEP 4:** `--print-required` MPC 5 (+20.61%), PSX 10, XLE 10, GEV 10, XLP 10 — all equal to the resting trail; nothing to tighten. **STEP 5:** no thesis broken (GEV -0.58% on the day, in line with fill-day drift; energy soft with crude).
+
+---
