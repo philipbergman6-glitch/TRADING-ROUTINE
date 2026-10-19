@@ -1,9 +1,9 @@
-// ============ DATA — origin/main, latest log 2026-10-16 ============
+// ============ DATA — origin/main, latest log 2026-10-19 ============
 
 // Two independent dates. LOG_ASOF moves nightly with the trade log;
 // ANALYSIS_ASOF only moves when a human rewrites the editorial prose.
 // The dashboard shows both, so curated text can never pass as live.
-const LOG_ASOF = "2026-10-16";
+const LOG_ASOF = "2026-10-19";
 const ANALYSIS_ASOF = "2026-10-15";
 
 // {d, n: phase day, v: portfolio $, cash: cash %, dp: day P&L %}
@@ -126,7 +126,8 @@ const EQ = [
 {d:"2026-10-13",n:121,v:107397.51,cash:19.2,dp:1.06,note:"STRATEGY_VERSION unset: market-open halts at the version gate"},
 {d:"2026-10-14",n:122,v:107650.97,cash:19.2,dp:0.24,note:""},
 {d:"2026-10-15",n:123,v:106854.43,cash:19.3,dp:-0.74,note:""},
-{d:"2026-10-16",n:124,v:107225.88,cash:38.4,dp:0.33,note:""}
+{d:"2026-10-16",n:124,v:107225.88,cash:38.4,dp:0.33,note:""},
+{d:"2026-10-19",n:125,v:106292.25,cash:20.3,dp:-0.82,note:""}
 ];
 
 // weekly reviews. spx = as logged that week (contemporaneous record);
@@ -160,11 +161,12 @@ const WEEKS = [
 {w:"10/16", bot:1.37, spx:-1.71, spxc:-1.71, est:0}
 ];
 
-const BOOK = [ // Oct 16 EOD
-{s:"MPC", q:13, in:396.33, pl:1141.66, plp:22.16, stop:460.87, protection:"trailing", w:5.9},
-{s:"PSX", q:57, in:264.20, pl:1651.29, plp:10.97, stop:267.669, protection:"trailing", w:15.6},
-{s:"XLE", q:311, in:63.92, pl:1319.86, plp:6.64, stop:61.461, protection:"trailing", w:19.8},
-{s:"XLP", q:250, in:83.76, pl:965.00, plp:4.61, stop:79.91, protection:"fixed", w:20.4}
+const BOOK = [ // Oct 19 EOD
+{s:"GEV", q:21, in:930.12, pl:-444.57, plp:-2.28, stop:838.79, protection:"fixed", w:18.0},
+{s:"MPC", q:13, in:396.33, pl:1005.68, plp:19.52, stop:469.281, protection:"trailing", w:5.8},
+{s:"PSX", q:57, in:264.20, pl:1501.95, plp:9.97, stop:269.442, protection:"trailing", w:15.6},
+{s:"XLE", q:311, in:63.92, pl:1206.13, plp:6.07, stop:61.65, protection:"trailing", w:19.8},
+{s:"XLP", q:250, in:83.76, pl:875.43, plp:4.18, stop:79.91, protection:"fixed", w:20.5}
 ];
 
 // Run records (ADR 0012), from state/events.jsonl: machine-written by every
@@ -172,16 +174,17 @@ const BOOK = [ // Oct 16 EOD
 // before LOG_ASOF only. Runs before `since` (or all runs, while it is null)
 // are unprovenanced: no record of code, rulebook, prompt or model exists and
 // none is backfilled.
-const RUNS = {"outcomes": {"actions": 1, "incident": 5, "no-trade": 3, "refused": 6}, "recent": [{"dirty": false, "e": "2026-10-15T21:06:22+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261015T210619Z-70bdad", "s": "2026-10-15T21:06:19+00:00", "sha": "a4845d4", "t": "schedule"}, {"dirty": false, "e": "2026-10-15T20:18:40+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 0, "in": 0, "r": 0}, "o": "no-trade", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261015T201408Z-16dd3a", "s": "2026-10-15T20:14:08+00:00", "sha": "d723114", "t": "cloud"}, {"dirty": false, "e": "2026-10-15T17:40:33+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261015T174030Z-2eae56", "s": "2026-10-15T17:40:30+00:00", "sha": "0f9382f", "t": "schedule"}, {"dirty": false, "e": "2026-10-15T13:39:52+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 1, "in": 0, "r": 1}, "o": "incident", "r": "market-open", "rb": "v1.3", "run": "market-open-20261015T133553Z-a47d04", "s": "2026-10-15T13:35:53+00:00", "sha": "da567df", "t": "cloud"}, {"dirty": false, "e": "2026-10-15T11:37:56+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 4, "in": 0, "r": 0}, "o": "incident", "r": "pre-market", "rb": "v1.3", "run": "pre-market-20261015T113310Z-f307d0", "s": "2026-10-15T11:33:10+00:00", "sha": "350520c", "t": "cloud"}, {"dirty": false, "e": "2026-10-14T21:24:26+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261014T212424Z-01d3da", "s": "2026-10-14T21:24:24+00:00", "sha": "0400fc0", "t": "schedule"}, {"dirty": false, "e": "2026-10-14T20:18:08+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 0, "in": 0, "r": 0}, "o": "no-trade", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261014T201409Z-10fbf0", "s": "2026-10-14T20:14:09+00:00", "sha": "198b4b8", "t": "cloud"}, {"dirty": false, "e": "2026-10-14T17:51:20+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261014T175117Z-eb445b", "s": "2026-10-14T17:51:17+00:00", "sha": "4626518", "t": "schedule"}, {"dirty": false, "e": "2026-10-14T11:38:43+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 2, "in": 0, "r": 0}, "o": "incident", "r": "pre-market", "rb": "v1.3", "run": "pre-market-20261014T113250Z-b97851", "s": "2026-10-14T11:32:50+00:00", "sha": "421ba2b", "t": "cloud"}, {"dirty": false, "e": "2026-10-13T23:40:02+00:00", "m": "not-applicable", "n": {"a": 1, "i": 0, "in": 0, "r": 1}, "o": "actions", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261013T233947Z-2ed2f8", "s": "2026-10-13T23:39:47+00:00", "sha": "3637f6d", "t": "schedule"}, {"dirty": false, "e": "2026-10-13T20:18:45+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 3, "in": 0, "r": 0}, "o": "incident", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261013T201452Z-a7142a", "s": "2026-10-13T20:14:52+00:00", "sha": "d878278", "t": "cloud"}, {"dirty": false, "e": "2026-10-13T19:47:27+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261013T194724Z-242c44", "s": "2026-10-13T19:47:24+00:00", "sha": "3d36d13", "t": "schedule"}], "since": "2026-10-12", "through": "2026-10-15", "total": 15, "unfinished": 0};
+const RUNS = {"outcomes": {"actions": 1, "incident": 7, "no-trade": 5, "refused": 9}, "recent": [{"dirty": false, "e": "2026-10-18T07:25:55+00:00", "m": "claude-opus-5-5", "n": {"a": 0, "i": 0, "in": 0, "r": 0}, "o": "no-trade", "r": "pre-market", "rb": "v1.3", "run": "pre-market-20261018T072401Z-c78172", "s": "2026-10-18T07:24:01+00:00", "sha": "2b7e617", "t": "cloud"}, {"dirty": false, "e": "2026-10-16T22:57:56+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261016T225753Z-14c86a", "s": "2026-10-16T22:57:53+00:00", "sha": "87fc9c7", "t": "schedule"}, {"dirty": false, "e": "2026-10-16T21:09:43+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 1, "in": 0, "r": 0}, "o": "incident", "r": "weekly-review", "rb": "v1.3", "run": "weekly-review-20261016T210306Z-6aa915", "s": "2026-10-16T21:03:06+00:00", "sha": "64e9504", "t": "cloud"}, {"dirty": false, "e": "2026-10-16T20:17:55+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 0, "in": 0, "r": 0}, "o": "no-trade", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261016T201419Z-0d4df6", "s": "2026-10-16T20:14:19+00:00", "sha": "cf2fd2d", "t": "cloud"}, {"dirty": false, "e": "2026-10-16T20:01:20+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261016T200117Z-82920f", "s": "2026-10-16T20:01:17+00:00", "sha": "cc2d816", "t": "schedule"}, {"dirty": false, "e": "2026-10-16T17:13:59+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261016T171356Z-504d2d", "s": "2026-10-16T17:13:56+00:00", "sha": "7981ec6", "t": "schedule"}, {"dirty": false, "e": "2026-10-16T11:34:54+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 3, "in": 0, "r": 0}, "o": "incident", "r": "pre-market", "rb": "v1.3", "run": "pre-market-20261016T113253Z-cfea06", "s": "2026-10-16T11:32:53+00:00", "sha": "7ff27b8", "t": "cloud"}, {"dirty": false, "e": "2026-10-15T21:06:22+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261015T210619Z-70bdad", "s": "2026-10-15T21:06:19+00:00", "sha": "a4845d4", "t": "schedule"}, {"dirty": false, "e": "2026-10-15T20:18:40+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 0, "in": 0, "r": 0}, "o": "no-trade", "r": "daily-summary", "rb": "v1.3", "run": "daily-summary-20261015T201408Z-16dd3a", "s": "2026-10-15T20:14:08+00:00", "sha": "d723114", "t": "cloud"}, {"dirty": false, "e": "2026-10-15T17:40:33+00:00", "m": "not-applicable", "n": {"a": 0, "i": 0, "in": 0, "r": 1}, "o": "refused", "r": "protection-monitor", "rb": "v1.3", "run": "protection-monitor-20261015T174030Z-2eae56", "s": "2026-10-15T17:40:30+00:00", "sha": "0f9382f", "t": "schedule"}, {"dirty": false, "e": "2026-10-15T13:39:52+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 1, "in": 0, "r": 1}, "o": "incident", "r": "market-open", "rb": "v1.3", "run": "market-open-20261015T133553Z-a47d04", "s": "2026-10-15T13:35:53+00:00", "sha": "da567df", "t": "cloud"}, {"dirty": false, "e": "2026-10-15T11:37:56+00:00", "m": "claude-opus-5", "n": {"a": 0, "i": 4, "in": 0, "r": 0}, "o": "incident", "r": "pre-market", "rb": "v1.3", "run": "pre-market-20261015T113310Z-f307d0", "s": "2026-10-15T11:33:10+00:00", "sha": "350520c", "t": "cloud"}], "since": "2026-10-12", "through": "2026-10-18", "total": 22, "unfinished": 0};
 
 // Trade blotter from memory/BLOTTER.json (scripts/blotter.py --json: broker
 // fills, FIFO). Open lots first, newest entry first; then closed round trips,
 // newest exit first. Test symbols excluded: ['F'].
 const TRADES = [
-{"d": "2026-10-02", "s": "PSX", "sec": "enrg", "lbl": "ENERGY", "q": 57, "in": "264.20", "out": null, "days": 14, "pl": null, "plp": null, "open": 1},
-{"d": "2026-09-28", "s": "MPC", "sec": "enrg", "lbl": "ENERGY", "q": 13, "in": "396.33", "out": null, "days": 18, "pl": null, "plp": null, "open": 1},
-{"d": "2026-09-17", "s": "XLE", "sec": "etf", "lbl": "ENERGY ETF", "q": 311, "in": "63.92", "out": null, "days": 29, "pl": null, "plp": null, "open": 1},
-{"d": "2026-06-30", "s": "XLP", "sec": "etf", "lbl": "STAPLES ETF", "q": 250, "in": "83.76", "out": null, "days": 108, "pl": null, "plp": null, "open": 1},
+{"d": "2026-10-19", "s": "GEV", "sec": "oth", "lbl": "INDUSTRIALS", "q": 21, "in": "930.12", "out": null, "days": 0, "pl": null, "plp": null, "open": 1},
+{"d": "2026-10-02", "s": "PSX", "sec": "enrg", "lbl": "ENERGY", "q": 57, "in": "264.20", "out": null, "days": 17, "pl": null, "plp": null, "open": 1},
+{"d": "2026-09-28", "s": "MPC", "sec": "enrg", "lbl": "ENERGY", "q": 13, "in": "396.33", "out": null, "days": 21, "pl": null, "plp": null, "open": 1},
+{"d": "2026-09-17", "s": "XLE", "sec": "etf", "lbl": "ENERGY ETF", "q": 311, "in": "63.92", "out": null, "days": 32, "pl": null, "plp": null, "open": 1},
+{"d": "2026-06-30", "s": "XLP", "sec": "etf", "lbl": "STAPLES ETF", "q": 250, "in": "83.76", "out": null, "days": 111, "pl": null, "plp": null, "open": 1},
 {"d": "2026-08-10", "s": "XLK", "sec": "etf", "lbl": "TECH ETF", "q": 112, "in": "187.85", "out": "2026-10-16 · 182.90", "days": 67, "pl": {"v": "−554.40", "up": 0}, "plp": "−2.64", "open": 0},
 {"d": "2026-06-29", "s": "XLB", "sec": "etf", "lbl": "MATERIALS ETF", "q": 412, "in": "51.07", "out": "2026-09-30 · 48.77", "days": 93, "pl": {"v": "−947.79", "up": 0}, "plp": "−4.50", "open": 0},
 {"d": "2026-06-29", "s": "XLI", "sec": "etf", "lbl": "INDUSTRIALS ETF", "q": 116, "in": "182.16", "out": "2026-09-14 · 168.58", "days": 77, "pl": {"v": "−1,575.36", "up": 0}, "plp": "−7.46", "open": 0},
@@ -229,7 +232,7 @@ const FEED = [
 {d:"04/30", b:"hold", x:"XOM idea 6/10 — <b>below the 8/10 bar. DO NOT BUY.</b>"}
 ];
 
-const RULES = [{"ok": "?", "c": "warn", "t": "Logged protection", "v": "3 trailing / 1 fixed; broker status unverified"}, {"ok": "?", "c": "warn", "t": "Historical rule compliance", "v": "not independently verified"}, {"ok": "!", "c": "warn", "t": "Logged deployment", "v": "61.6% as of 2026-10-16"}];
+const RULES = [{"ok": "?", "c": "warn", "t": "Logged protection", "v": "3 trailing / 2 fixed; broker status unverified"}, {"ok": "?", "c": "warn", "t": "Historical rule compliance", "v": "not independently verified"}, {"ok": "✓", "c": "up", "t": "Logged deployment", "v": "79.7% as of 2026-10-19"}];
 
 const RISK = [
 {t:"Evidence", v:"Fills reconciled to equity to the cent at 2026-09-18 (research 0006); blotter rebuilt from broker fills each EOD", c:"up"},

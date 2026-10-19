@@ -2015,7 +2015,14 @@
    ],
    "intents": [],
    "research": [],
-   "runs": [],
+   "runs": [
+    "pre-market-20261016T113253Z-cfea06",
+    "protection-monitor-20261016T171356Z-504d2d",
+    "protection-monitor-20261016T200117Z-82920f",
+    "daily-summary-20261016T201419Z-0d4df6",
+    "weekly-review-20261016T210306Z-6aa915",
+    "protection-monitor-20261016T225753Z-14c86a"
+   ],
    "trade_log": [
     "trade/2026-10-16/market-open-trades/1",
     "trade/2026-10-16/midday-scan/1",
@@ -2029,12 +2036,21 @@
    "research": [
     "research/2026-10-18/pre-market-research/1"
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261018T072401Z-c78172"
+   ],
    "trade_log": [],
    "week": null
   },
   "2026-10-19": {
-   "fills": [],
+   "fills": [
+    {
+     "avg": "930.1200",
+     "qty": "21",
+     "side": "entry",
+     "symbol": "GEV"
+    }
+   ],
    "intents": [],
    "research": [
     "research/2026-10-19/pre-market-research/1"
@@ -2042,7 +2058,8 @@
    "runs": [],
    "trade_log": [
     "trade/2026-10-19/market-open-trades/1",
-    "trade/2026-10-19/midday-scan/1"
+    "trade/2026-10-19/midday-scan/1",
+    "trade/2026-10-19/eod-snapshot/1"
    ],
    "week": null
   }
@@ -11476,6 +11493,24 @@
    "title": "Midday Scan (Day 124, Friday, industrial production day)",
    "week": "2026-10-16"
   },
+  "trade/2026-10-19/eod-snapshot/1": {
+   "date": "2026-10-19",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-19/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 3898,
+   "log": "trade",
+   "note": "Day 125, Monday, NAHB day — GEV entered",
+   "symbols": [
+    "GEV",
+    "MPC",
+    "PSX",
+    "XLE",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 125, Monday, NAHB day — GEV entered)",
+   "week": null
+  },
   "trade/2026-10-19/market-open-trades/1": {
    "date": "2026-10-19",
    "file": "memory/TRADE-LOG.md",
@@ -11515,31 +11550,31 @@
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-10-16 (UTC)",
+  "run_cutoff": "started before 2026-10-19 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
      "F"
     ],
-    "open_lots": 4,
+    "open_lots": 5,
     "round_trips": 17
    },
    "memory/RESEARCH-LOG.md": {
     "entries": 200
    },
    "memory/TRADE-LOG.md": {
-    "entries": 251,
-    "eod_snapshots": 119
+    "entries": 252,
+    "eod_snapshots": 120
    },
    "memory/WEEKLY-REVIEW.md": {
     "weeks": 25
    },
    "state/events.jsonl": {
     "intents": 3,
-    "runs": 15
+    "runs": 22
    }
   },
-  "trade_log_asof": "2026-10-16"
+  "trade_log_asof": "2026-10-19"
  },
  "intents": {
   "rs-e138322d-a9c9-4f04-9e55-16c4d1ad1a1d": {
@@ -11695,6 +11730,30 @@
    "source": "run",
    "symbol": "XLP",
    "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.453"
+  },
+  {
+   "at": "2026-10-16T17:13:59+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261016T171356Z-504d2d",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.588"
+  },
+  {
+   "at": "2026-10-16T20:01:20+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261016T200117Z-82920f",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.858"
+  },
+  {
+   "at": "2026-10-16T22:57:56+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261016T225753Z-14c86a",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.795"
   }
  ],
  "runs": {
@@ -11780,6 +11839,25 @@
    "rulebook_version": "v1.3",
    "run": "daily-summary-20261015T201408Z-16dd3a",
    "started_at": "2026-10-15T20:14:08+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "daily-summary-20261016T201419Z-0d4df6": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "cf2fd2d176198616794c55b5976cd3b6b757e039",
+   "ended_at": "2026-10-16T20:17:55+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261016T201419Z-0d4df6",
+   "started_at": "2026-10-16T20:14:19+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -11874,6 +11952,48 @@
     "XLK",
     "XLP"
    ],
+   "trigger": "cloud"
+  },
+  "pre-market-20261016T113253Z-cfea06": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "7ff27b8df62912ca0a683210856de377a2e13ddc",
+   "ended_at": "2026-10-16T11:34:54+00:00",
+   "incidents": [
+    "STOP at STEP 2c: deployment_status.py exit 4 — DEPLOYMENT STATE UNAVAILABLE: ParseError: snapshot '### Oct 15 — EOD Snapshot (Day 123, Thursday...)' has no **Portfolio:** line; Day P&L value is bold-wrapped in memory/TRADE-LOG.md so the PORTFOLIO regex in build_dashboard_data.py cannot match. Rule-12 backstop uncomputable; routine stopped before STEP 3, no research entry written, no broker mutation.",
+    "STRATEGY_VERSION unset for a sixth session: strategy_version.py exit 5 ('the approved version is v1.3: set STRATEGY_VERSION=v1'); owner must export it in the routine environment.",
+    "Alert delivery unverifiable: scripts/email.sh exit 0 but RESEND_API_KEY is send-only (401 restricted_api_key), so the DEPLOYMENT STATE UNAVAILABLE email could not be confirmed delivered."
+   ],
+   "intents": [],
+   "model_id": "claude-opus-5",
+   "model_source": "self-reported",
+   "outcome": "incident",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261016T113253Z-cfea06",
+   "started_at": "2026-10-16T11:32:53+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "pre-market-20261018T072401Z-c78172": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "2b7e6176267a00b57ee60d7728abfc519c4ab287",
+   "ended_at": "2026-10-18T07:25:55+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261018T072401Z-c78172",
+   "started_at": "2026-10-18T07:24:01+00:00",
+   "symbols": [],
    "trigger": "cloud"
   },
   "protection-monitor-20261012T213829Z-783273": {
@@ -12039,6 +12159,96 @@
     "XLP"
    ],
    "trigger": "schedule"
+  },
+  "protection-monitor-20261016T171356Z-504d2d": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "7981ec632e00b65f2fe9671f68ee234abb670762",
+   "ended_at": "2026-10-16T17:13:59+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.588"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261016T171356Z-504d2d",
+   "started_at": "2026-10-16T17:13:56+00:00",
+   "symbols": [
+    "XLP"
+   ],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261016T200117Z-82920f": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "cc2d816c33712ebc5da5c1b1c7948105464dbb6a",
+   "ended_at": "2026-10-16T20:01:20+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.858"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261016T200117Z-82920f",
+   "started_at": "2026-10-16T20:01:17+00:00",
+   "symbols": [
+    "XLP"
+   ],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261016T225753Z-14c86a": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "87fc9c7e3a56822641ad71ae212329e8c76e5d48",
+   "ended_at": "2026-10-16T22:57:56+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.795"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261016T225753Z-14c86a",
+   "started_at": "2026-10-16T22:57:53+00:00",
+   "symbols": [
+    "XLP"
+   ],
+   "trigger": "schedule"
+  },
+  "weekly-review-20261016T210306Z-6aa915": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "64e9504fb9e5c7f3c89ef301815a98e8061cc9d1",
+   "ended_at": "2026-10-16T21:09:43+00:00",
+   "incidents": [
+    "email delivery unverified: RESEND_API_KEY send-only, GET on email id 01a1468c-0807-7491-8f1e-d31686b8d7e9 answered 401 restricted_api_key"
+   ],
+   "intents": [],
+   "model_id": "claude-opus-5",
+   "model_source": "self-reported",
+   "outcome": "incident",
+   "refusals": [],
+   "routine": "weekly-review",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "weekly-review-20261016T210306Z-6aa915",
+   "started_at": "2026-10-16T21:03:06+00:00",
+   "symbols": [],
+   "trigger": "cloud"
   }
  },
  "symbols": {
@@ -12401,7 +12611,17 @@
     "entry": "research/2026-10-19/pre-market-research/1",
     "text": "**TRADE (discretionary): BUY GEV 21 sh at market-open, 10% stop**, subject to live re-validation at a verified print (resize to stay ≤ cash and ≤85% deployment if price moves). Existing book HOLD — no stop changes; all 4 stops active and correct. ---"
    },
-   "open_lots": [],
+   "open_lots": [
+    {
+     "avg_in": "930.1200",
+     "entered": "2026-10-19T13:38:12.367605+00:00",
+     "entry_order_ids": [
+      "8d0e50f8-ba9e-4c9b-b2b2-28e13b423fff"
+     ],
+     "qty": "21",
+     "symbol": "GEV"
+    }
+   ],
    "research": [
     "research/2026-05-26/pre-market-research/2",
     "research/2026-10-01/pre-market-research/1",
@@ -12440,7 +12660,8 @@
     "trade/2026-10-15/eod-snapshot/1",
     "trade/2026-10-16/eod-snapshot/1",
     "trade/2026-10-19/market-open-trades/1",
-    "trade/2026-10-19/midday-scan/1"
+    "trade/2026-10-19/midday-scan/1",
+    "trade/2026-10-19/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-09",
@@ -12782,7 +13003,8 @@
     "trade/2026-10-16/midday-scan/1",
     "trade/2026-10-16/eod-snapshot/1",
     "trade/2026-10-19/market-open-trades/1",
-    "trade/2026-10-19/midday-scan/1"
+    "trade/2026-10-19/midday-scan/1",
+    "trade/2026-10-19/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-02",
@@ -13636,7 +13858,8 @@
     "trade/2026-10-15/eod-snapshot/1",
     "trade/2026-10-16/eod-snapshot/1",
     "trade/2026-10-19/market-open-trades/1",
-    "trade/2026-10-19/midday-scan/1"
+    "trade/2026-10-19/midday-scan/1",
+    "trade/2026-10-19/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-02",
@@ -14272,7 +14495,8 @@
     "trade/2026-10-15/eod-snapshot/1",
     "trade/2026-10-16/eod-snapshot/1",
     "trade/2026-10-19/market-open-trades/1",
-    "trade/2026-10-19/midday-scan/1"
+    "trade/2026-10-19/midday-scan/1",
+    "trade/2026-10-19/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -15173,7 +15397,10 @@
     "pre-market-20261015T113310Z-f307d0",
     "market-open-20261015T133553Z-a47d04",
     "protection-monitor-20261015T174030Z-2eae56",
-    "protection-monitor-20261015T210619Z-70bdad"
+    "protection-monitor-20261015T210619Z-70bdad",
+    "protection-monitor-20261016T171356Z-504d2d",
+    "protection-monitor-20261016T200117Z-82920f",
+    "protection-monitor-20261016T225753Z-14c86a"
    ],
    "sector": "Consumer Staples",
    "trade_log": [
@@ -15337,7 +15564,8 @@
     "trade/2026-10-16/midday-scan/1",
     "trade/2026-10-16/eod-snapshot/1",
     "trade/2026-10-19/market-open-trades/1",
-    "trade/2026-10-19/midday-scan/1"
+    "trade/2026-10-19/midday-scan/1",
+    "trade/2026-10-19/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
