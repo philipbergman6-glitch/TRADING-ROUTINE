@@ -3895,3 +3895,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **STEP 3:** no position ≤ -7% (worst GEV -1.54%). **STEP 4:** `--print-required` MPC 5 (+20.61%), PSX 10, XLE 10, GEV 10, XLP 10 — all equal to the resting trail; nothing to tighten. **STEP 5:** no thesis broken (GEV -0.58% on the day, in line with fill-day drift; energy soft with crude).
 
 ---
+### Oct 19 — EOD Snapshot (Day 125, Monday, NAHB day — GEV entered)
+**Portfolio:** $106,292.25 | **Cash:** $21,583.75 (20.31%) | **Day P&L:** -$877.26 (-0.82%) | **Phase P&L:** +$6,292.25 (+6.29%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GEV | 21 | $930.12 | $908.95 | -1.33% (-2.28% vs fill) | -$444.57 (-2.28%) | $838.79 (fixed GTC OTO leg, HELD) |
+| MPC | 13 | $396.33 | $473.69 | -0.92% | +$1,005.68 (+19.52%) | $469.281 (5% trail GTC, hwm $493.98) |
+| PSX | 57 | $264.20 | $290.55 | -0.89% | +$1,501.95 (+9.97%) | $269.442 (10% trail GTC, hwm $299.38) |
+| XLE | 311 | $63.9218 | $67.80 | -0.64% | +$1,206.13 (+6.07%) | $61.6545 (10% trail GTC, hwm $68.505) |
+| XLP | 250 | $83.76 | $87.2617 | -0.41% | +$875.43 (+4.18%) | $79.91 (fixed GTC, HELD) |
+
+**Trades today:** one — BUY GEV 21 @ $930.12 (13:38 UTC, OTO fixed stop $838.79). No sells. Blotter: 5 open lots, 19 round trips, none exited today. **Week trades: 1/3.** Blotter and TRADE-LOG agree.
+
+**Notes:** Broad red day: every leg closed down, GEV contributing -$444.57 from its fill and the four holdovers -$432.69. Day P&L is measured against the broker's official 10/16 close of $107,169.51 (reconcile_equity rebuilds it to the cent); the 10/16 snapshot logged $107,225.88, a $56.37 late-mark gap, not a cash or position discrepancy. Deployed 79.69%, inside the 75-85% band; 5 positions (rule-3 range). Protection 5/5 one-for-one, nothing lowered, no mutation by this routine. **MPC cushion is 0.93% ($473.69 vs stop $469.281) — inside rule 7's 3%, the 5% trail is close to firing and would realize ~+$948 (+18.4%).** Other cushions: XLE 9.06%, XLP 8.42%, GEV 7.72%, PSX 7.26%. Weights: XLP 20.52% · XLE 19.84% · GEV 17.96% · PSX 15.58% · MPC 5.79%; energy/refining 41.21%. blotter --check exit 0, reconcile RECONCILED exit 0 (127 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261019T201348Z-aed0cb.
+
+**Tomorrow:** let MPC's trail work (a stop-out locks the gain); GEV trail conversion once a 10% trail sits ≥ $838.79 (GEV ≥ ~$931.99); XLP conversion at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28, MPC Q3 11/03.
+
+---

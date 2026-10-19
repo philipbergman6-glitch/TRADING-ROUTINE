@@ -343,6 +343,15 @@
       "entry_order_ids": [
         "50841d9c-d726-4113-9c3c-8360d32ce700"
       ]
+    },
+    {
+      "symbol": "GEV",
+      "entered": "2026-10-19T13:38:12.367605+00:00",
+      "qty": "21",
+      "avg_in": "930.1200",
+      "entry_order_ids": [
+        "8d0e50f8-ba9e-4c9b-b2b2-28e13b423fff"
+      ]
     }
   ]
 }
