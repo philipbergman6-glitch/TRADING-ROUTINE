@@ -305,6 +305,22 @@
       "exit_order_ids": [
         "934ca71d-f505-428d-8cd7-ac0925fc0f77"
       ]
+    },
+    {
+      "symbol": "MPC",
+      "entered": "2026-09-28T13:53:28.042146+00:00",
+      "exited": "2026-10-20T13:46:43.166917+00:00",
+      "qty": "13",
+      "avg_in": "396.3300",
+      "avg_out": "468.3700",
+      "pnl": "936.52",
+      "pnl_pct": "18.18",
+      "entry_order_ids": [
+        "3a62e256-9b22-4358-9cd0-5c5725648a42"
+      ],
+      "exit_order_ids": [
+        "a4b9c899-8fb0-4ccb-85e8-8a2f22e6ae3c"
+      ]
     }
   ],
   "open_lots": [
@@ -324,15 +340,6 @@
       "avg_in": "63.9218",
       "entry_order_ids": [
         "3390f741-bb6c-42a7-a9a1-0d3536cce8ee"
-      ]
-    },
-    {
-      "symbol": "MPC",
-      "entered": "2026-09-28T13:53:28.042146+00:00",
-      "qty": "13",
-      "avg_in": "396.3300",
-      "entry_order_ids": [
-        "3a62e256-9b22-4358-9cd0-5c5725648a42"
       ]
     },
     {

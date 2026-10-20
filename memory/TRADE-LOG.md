@@ -3943,3 +3943,20 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $105,976.12, cash $27,672.55, LMV $78,303.57 → **~73.9% deployed, below the 75% floor** after the MPC exit; 4 positions (below rule-3 range). Rule-12 counter is set by the EOD snapshot; one session under band compels nothing.
 
 ---
+### Oct 20 — EOD Snapshot (Day 126, Tuesday, housing starts day — MPC stopped out)
+**Portfolio:** $106,043.69 | **Cash:** $27,672.55 (26.10%) | **Day P&L:** -$224.91 (-0.21%) | **Phase P&L:** +$6,043.69 (+6.04%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GEV | 21 | $930.12 | $890.33 | -1.99% | -$835.59 (-4.28%) | $838.79 (fixed GTC OTO leg, HELD) |
+| PSX | 57 | $264.20 | $291.03 | +0.17% | +$1,529.31 (+10.16%) | $269.442 (10% trail GTC, hwm $299.38) |
+| XLE | 311 | $63.9218 | $68.00 | +0.29% | +$1,268.33 (+6.38%) | $61.6545 (10% trail GTC, hwm $68.505) |
+| XLP | 250 | $83.76 | $87.75 | +0.62% | +$997.50 (+4.76%) | $79.91 (fixed GTC, HELD) |
+
+**Trades today:** one — SELL MPC 13 @ $468.37 (13:46 UTC, 5% trailing stop a4b9c899), realized +$936.52 (+18.18%). No buys. Blotter: 4 open lots, 20 round trips, one exited today. **Week trades: 1/3** (stop-outs are not entries). Blotter and TRADE-LOG agree.
+
+**Notes:** Quiet day apart from MPC's 5% trail firing at the open, locking +$936.52 on the refiner. GEV was the drag (-$380.31 intraday, -4.28% from fill); the three holdovers added +$224.56. Day P&L is measured against the broker's official 10/19 close of $106,268.60 (reconcile_equity rebuilds it to the cent); the 10/19 snapshot logged $106,292.25, a $23.65 late-mark gap, not a cash or position discrepancy. **Deployed 73.90%, below the 75-85% band after the MPC exit — session 1 under band**; 4 positions, below rule-3 range. Protection 4/4 one-for-one, nothing lowered, no mutation by this routine. Cushions: GEV 5.79%, PSX 7.42%, XLP 8.93%, XLE 9.33%. GEV -7% cut level $865.01 is 2.84% away. Weights: XLP 20.69% · XLE 19.94% · GEV 17.63% · PSX 15.64%; energy/refining down to 35.59%. blotter --check exit 0, reconcile RECONCILED exit 0 (128 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261020T201050Z-f9e1f6.
+
+**Tomorrow:** under band one session — pre-market should look for a non-energy entry to restore 75-85% and a 5th position (2 week slots left); midday watches GEV vs the $865.01 cut; GEV trail conversion at ≥ ~$931.99, XLP at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28.
+
+---
