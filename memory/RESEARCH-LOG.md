@@ -8624,3 +8624,41 @@ Rule 14 lapsed (MPC, PSX are single names) — no composition waiver needed.
 **TRADE (discretionary): BUY GEV 21 sh at market-open, 10% stop**, subject to live re-validation at a verified print (resize to stay ≤ cash and ≤85% deployment if price moves). Existing book HOLD — no stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-10-20 — Pre-Market (Tuesday, housing starts day)
+
+### Account snapshot
+- **Equity $106,660.25** (`last_equity` $106,268.60, +$391.65/+0.37% on premarket marks) · **Cash $21,583.74** · Long MV $85,076.51 · `buying_power` $324,549 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions** (rule-3 range): XLP 20.59% · XLE 20.03% · GEV 17.50% · PSX 15.76% · MPC 5.88%. Energy/refining 41.67%. Week trades **1/3**.
+- Stops 5/5, one-for-one, qty matching: GEV fixed $838.79 (HELD) · MPC 5% trail $469.281 (hwm $493.98) · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.6545 (hwm $68.505) · XLP fixed $79.91 (HELD). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261020T113322Z-4533a9`.
+
+### Market context
+- **WTI ~$104.16 (+0.5%) · Brent ~$109.81 (+0.2%)** — crude firm above $100.
+- **ES ~7,743 (+0.11%)**; tech jitters again weigh on Nasdaq futures. **VIX 18.58 (+0.8%)**, prior close 18.44.
+- No CPI/PPI/FOMC/payrolls today; Sept housing starts/permits 08:30, GDPNow afternoon. FOMC 10/27-28, payrolls 11/06, CPI 11/10.
+- BMO: GE Aerospace, RTX, GM, MMM, HAL, NOC, EFX, GPC, SYF, KEY. AMC: NFLX, ISRG, COF, UAL, CB.
+- Sector YTD (rule 9, S&P DJI thru 10/15): Health Care +14.35%, Materials +11.60%, Industrials +8.20%; Energy/Info Tech lead momentum composite (Info Tech **banned**, rule 10, lifts 11/13).
+- Holdings: **GEV ~$889-895 premarket (-1.4% to -2.1%)**, 4th down day; new 9E turbine order (Songon, Côte d'Ivoire); ex-div $0.50 10/27, Q3 10/28. MPC +1.8% / PSX +1.5% / XLE +1.3% premarket on refining margins; PSX $1.33 div ex 11/17. XLP: no news.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (GEV, MPC, PSX are single names) — no composition waiver needed. Book at 5 positions, 79.76% deployed — sixth slot only with ≤ ~$5.6k headroom to 85%; ideas are watch-list only.
+1. **Caterpillar (CAT)** — Industrials (streak 1), power-gen backlog; catalyst Q3 11/03. Price unverified — needs live print. Entry/stop 10% below/target 2:1 set at a verified print.
+2. **Intuitive Surgical (ISRG)** — Health Care (YTD leader); catalyst Q3 tonight AMC. Act only post-print, on a verified price; stop 10%, target 2:1.
+3. **RTX** — Industrials; Q3 BMO today. Watch reaction only; no entry until price/thesis verified.
+
+### Risk factors
+- **MPC cushion INSIDE rule-7 3%: $482.20 premarket vs $469.281 stop = 2.68%** — stop left as is, condition recorded (session 2; 0.93% at 10/19 close). Gain +21.67% → 5% trail stays required.
+- **GEV -4.42% vs $930.12 fill; -7% cut at $865.01 is ~2.7% (Alpaca $889) to ~3.3% (Perplexity $895) away.** Stop cushion 5.65%. Midday must check the cut on a verified print.
+- Energy/refining 41.67% of equity; XLP 20.59% and XLE 20.03% over 20% cap on drift only — no trim.
+- XLE premarket $68.68 > hwm $68.505 → trail ratchets on a green open. XLP conversion still held until ≥ ~$88.79 (premarket $87.86, 1.06% away). GEV conversion at ≥ ~$931.99.
+- Tech jitters/yields; FOMC week next with GEV print inside it.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **79.76**, band [75, 85], `sessions_under_band` **0**, `mandate` false, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-10-19. In band, no mandate.
+
+### Decision
+**HOLD — no new orders.** In band, 5 positions, rule 12 compels nothing; patience > activity. All 5 stops active and correct; no stop changes. Watch: GEV -7% cut ($865.01), MPC trail (rule-7 condition session 2), XLP/GEV fixed→trailing conversions.
+
+---
