@@ -3926,3 +3926,20 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Watch:** STANDING MPC stop 469.281 is 0.48% below P 471.53 (rule 7: left, recorded). GEV -4.60% vs fill ($887.35); -7% cut at $865.01 is 2.52% away — midday checks on a verified print.
 
 ---
+### 2026-10-20 — Midday Scan (Day 126, Tuesday, housing starts day)
+
+**No broker mutation by this routine. MPC exited on its own stop.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261020T170554Z-389684`. Week of 2026-10-19 trade count: **1/3** (stop-outs are not entries).
+
+**MPC stopped out:** 5% trailing stop (hwm $493.98, stop $469.281) filled **SELL 13 @ $468.37** at 13:46:43 UTC (order a4b9c899). Realized **+$936.52 (+18.18%)** per `blotter.py --markdown` (fill-based). Rule-7 standing condition cleared by the fill. `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Protection 4/4, one-for-one:** GEV fixed $838.79 · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.6545 (hwm $68.505) · XLP fixed $79.91. None lowered, none touched.
+
+**STEP 2b:** HOLD fixed GEV @ $838.79 (`validate_stop_change.py` 838.79→807.98 @ $897.75 exit 3 `stop_never_lowered`). HOLD fixed XLP @ $79.91 (79.91→78.83 @ $87.585 exit 3 `stop_never_lowered`). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Rule 7:** no standing condition. Cushions: GEV 6.57%, PSX 6.96%, XLP 8.76%, XLE 8.87%.
+
+**STEP 3:** no position ≤ -7% (worst GEV -3.48%, recovered from $887.35 at the open; cut level $865.01). **STEP 4:** `--print-required` PSX 10 (+9.61%), XLE 10, GEV 10, XLP 10 — all equal to the resting trail; nothing to tighten. **STEP 5:** no thesis broken.
+
+**Deployment:** equity $105,976.12, cash $27,672.55, LMV $78,303.57 → **~73.9% deployed, below the 75% floor** after the MPC exit; 4 positions (below rule-3 range). Rule-12 counter is set by the EOD snapshot; one session under band compels nothing.
+
+---
