@@ -2062,6 +2062,16 @@
     "trade/2026-10-19/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-10-20": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-10-20/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -7285,6 +7295,31 @@
    "title": "Pre-Market (Monday, NAHB day)",
    "week": null
   },
+  "research/2026-10-20/pre-market-research/1": {
+   "date": "2026-10-20",
+   "decision": [
+    "GEV",
+    "MPC",
+    "XLP"
+   ],
+   "decision_text": "**HOLD — no new orders.** In band, 5 positions, rule 12 compels nothing; patience > activity. All 5 stops active and correct; no stop changes. Watch: GEV -7% cut ($865.01), MPC trail (rule-7 condition session 2), XLP/GEV fixed→trailing conversions. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-10-20/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 8628,
+   "log": "research",
+   "note": "Tuesday, housing starts day",
+   "symbols": [
+    "GEV",
+    "MPC",
+    "PSX",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Pre-Market (Tuesday, housing starts day)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -11560,7 +11595,7 @@
     "round_trips": 17
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 200
+    "entries": 201
    },
    "memory/TRADE-LOG.md": {
     "entries": 252,
@@ -12595,7 +12630,8 @@
     "research/2026-10-14/pre-market-research/1",
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
-    "research/2026-10-19/pre-market-research/1"
+    "research/2026-10-19/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-26/pre-market-research/2",
@@ -12607,9 +12643,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-10-19",
-    "entry": "research/2026-10-19/pre-market-research/1",
-    "text": "**TRADE (discretionary): BUY GEV 21 sh at market-open, 10% stop**, subject to live re-validation at a verified print (resize to stay ≤ cash and ≤85% deployment if price moves). Existing book HOLD — no stop changes; all 4 stops active and correct. ---"
+    "date": "2026-10-20",
+    "entry": "research/2026-10-20/pre-market-research/1",
+    "text": "**HOLD — no new orders.** In band, 5 positions, rule 12 compels nothing; patience > activity. All 5 stops active and correct; no stop changes. Watch: GEV -7% cut ($865.01), MPC trail (rule-7 condition session 2), XLP/GEV fixed→trailing conversions. ---"
    },
    "open_lots": [
     {
@@ -12636,7 +12672,8 @@
     "research/2026-10-14/pre-market-research/1",
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
-    "research/2026-10-19/pre-market-research/1"
+    "research/2026-10-19/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -12903,7 +12940,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-09/pre-market-research/2",
@@ -12923,9 +12961,9 @@
     "rs-e138322d-a9c9-4f04-9e55-16c4d1ad1a1d-3"
    ],
    "last_decision": {
-    "date": "2026-10-15",
-    "entry": "research/2026-10-15/pre-market-research/1",
-    "text": "**HOLD the existing book — no orders from this routine.** Rule 12 compels nothing (exit 0, `target_notional` 0); rule 14 is lapsed; coverage is **5/5, zero actions, zero issues**; no position near the -7% cut (worst is XLK at **+7.28%** above it); no stop in the expiry window (`alpaca.sh orders | build_oto_order.py expiring` → `[]`, exit 0, earliest **XLK 2026-11-06**); deployment **80.90%, mid-ba"
+    "date": "2026-10-20",
+    "entry": "research/2026-10-20/pre-market-research/1",
+    "text": "**HOLD — no new orders.** In band, 5 positions, rule 12 compels nothing; patience > activity. All 5 stops active and correct; no stop changes. Watch: GEV -7% cut ($865.01), MPC trail (rule-7 condition session 2), XLP/GEV fixed→trailing conversions. ---"
    },
    "open_lots": [
     {
@@ -12960,7 +12998,8 @@
     "research/2026-10-14/pre-market-research/1",
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
-    "research/2026-10-19/pre-market-research/1"
+    "research/2026-10-19/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -13828,7 +13867,8 @@
     "research/2026-10-14/pre-market-research/1",
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
-    "research/2026-10-19/pre-market-research/1"
+    "research/2026-10-19/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -14437,7 +14477,8 @@
     "research/2026-10-14/pre-market-research/1",
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
-    "research/2026-10-19/pre-market-research/1"
+    "research/2026-10-19/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -15250,7 +15291,8 @@
     "research/2026-10-12/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-10-14/pre-market-research/1",
-    "research/2026-10-15/pre-market-research/1"
+    "research/2026-10-15/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-06-30/pre-market-research/1",
@@ -15279,9 +15321,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-10-15",
-    "entry": "research/2026-10-15/pre-market-research/1",
-    "text": "**HOLD the existing book — no orders from this routine.** Rule 12 compels nothing (exit 0, `target_notional` 0); rule 14 is lapsed; coverage is **5/5, zero actions, zero issues**; no position near the -7% cut (worst is XLK at **+7.28%** above it); no stop in the expiry window (`alpaca.sh orders | build_oto_order.py expiring` → `[]`, exit 0, earliest **XLK 2026-11-06**); deployment **80.90%, mid-ba"
+    "date": "2026-10-20",
+    "entry": "research/2026-10-20/pre-market-research/1",
+    "text": "**HOLD — no new orders.** In band, 5 positions, rule 12 compels nothing; patience > activity. All 5 stops active and correct; no stop changes. Watch: GEV -7% cut ($865.01), MPC trail (rule-7 condition session 2), XLP/GEV fixed→trailing conversions. ---"
    },
    "open_lots": [
     {
@@ -15385,7 +15427,8 @@
     "research/2026-10-14/pre-market-research/1",
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
-    "research/2026-10-19/pre-market-research/1"
+    "research/2026-10-19/pre-market-research/1",
+    "research/2026-10-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
