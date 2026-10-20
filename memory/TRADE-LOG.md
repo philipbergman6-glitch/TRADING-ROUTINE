@@ -3913,3 +3913,16 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** let MPC's trail work (a stop-out locks the gain); GEV trail conversion once a 10% trail sits ≥ $838.79 (GEV ≥ ~$931.99); XLP conversion at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28, MPC Q3 11/03.
 
 ---
+### 2026-10-20 — Market-Open (Day 126, Tuesday, housing starts day)
+
+**No trades.** Pre-market plan HOLD: in band, 5 positions, no mandate; ideas (CAT, ISRG, RTX) watch-list only. No broker mutation. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset). Run record `market-open-20261020T133401Z-41cdef`. Week of 2026-10-19 trade count: **1/3**.
+
+**Account:** equity $106,136.76, cash $21,583.74, LMV $84,553.02. `deployment_status.py` exit 0: `deployed_pct` 79.66, `sessions_under_band` 0, `mandate` false, `target_notional` 0.
+
+**STEP 2b:** HOLD fixed GEV @ $838.79 (`validate_stop_change.py` 838.79→798.62 @ $887.35 exit 3 `stop_never_lowered`). HOLD fixed XLP @ $79.91 (79.91→79.25 @ $88.06 exit 3 `stop_never_lowered`). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, coverage ok, 5/5 one-for-one, zero actions.
+
+**Stops:** GEV fixed $838.79 · MPC 5% trail $469.281 (hwm $493.98) · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.6545 (hwm $68.505) · XLP fixed $79.91. None lowered, none touched.
+
+**Watch:** STANDING MPC stop 469.281 is 0.48% below P 471.53 (rule 7: left, recorded). GEV -4.60% vs fill ($887.35); -7% cut at $865.01 is 2.52% away — midday checks on a verified print.
+
+---
