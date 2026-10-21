@@ -3960,3 +3960,18 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** under band one session — pre-market should look for a non-energy entry to restore 75-85% and a 5th position (2 week slots left); midday watches GEV vs the $865.01 cut; GEV trail conversion at ≥ ~$931.99, XLP at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28.
 
 ---
+### 2026-10-21 — Market-Open (Day 127, Wednesday, TSLA/META AMC day)
+
+**No trades.** Pre-market plan BUY TMO 15 (discretionary, not mandated) was gated on a verified live print; none was obtainable, so the buy was skipped. No broker mutation. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261021T133357Z-e85cec`. Week of 2026-10-19 trade count: **1/3**.
+
+**Why skipped:** the IEX quote for TMO stayed 1.9–5.5% wide for 60 polls, 13:34–13:45 UTC (bid $677–694, ask $701–730), and never tightened under 0.5%. Perplexity had only a stale pre-market $671.08 (09:07 ET, -2.44%), against the research log's ~$694. Because the fixed OTO leg is priced off P, an unverified P could put the stop outside the 9.5–10.5% band. No validate/submit was run. Rule 10: `blotter.py --sector-streaks` exit 0, Health Care `banned: false`, streak 0. **TMO added to `memory/SECTORS.json` as Health Care** so a later entry is ready.
+
+**Account:** equity $106,727.22, cash $27,672.41, LMV $79,054.81. `deployment_status.py` exit 0: `deployed_pct` 74.07, `sessions_under_band` 1, `mandate` false, `target_notional` $6,328.
+
+**STEP 2b:** HOLD fixed GEV @ $838.79 (`validate_stop_change.py` 838.79→838.55 @ $931.72 exit 3 `stop_never_lowered`). HOLD fixed XLP @ $79.91 (79.91→78.57 @ $87.305 exit 3 `stop_never_lowered`). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, coverage ok, 4/4 one-for-one, zero actions.
+
+**Stops:** GEV fixed $838.79 · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.6545 (hwm $68.505) · XLP fixed $79.91. None lowered, none touched.
+
+**Watch:** session 2 under band if EOD stays below 75%. Rule 12 mandates an add after session 3, so midday/tomorrow should retry TMO at a verified print. GEV $931.72 is just under the ~$931.99 conversion level.
+
+---
