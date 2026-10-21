@@ -2094,6 +2094,16 @@
     "trade/2026-10-20/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-10-21": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-10-21/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -7342,6 +7352,26 @@
    "title": "Pre-Market (Tuesday, housing starts day)",
    "week": null
   },
+  "research/2026-10-21/pre-market-research/1": {
+   "date": "2026-10-21",
+   "decision": [],
+   "decision_text": "**TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-10-21/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 8666,
+   "log": "research",
+   "note": "Wednesday, TSLA/META AMC day",
+   "symbols": [
+    "GEV",
+    "PSX",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Pre-Market (Wednesday, TSLA/META AMC day)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -11671,7 +11701,7 @@
     "round_trips": 18
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 201
+    "entries": 202
    },
    "memory/TRADE-LOG.md": {
     "entries": 255,
@@ -13027,7 +13057,8 @@
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
-    "research/2026-10-20/pre-market-research/1"
+    "research/2026-10-20/pre-market-research/1",
+    "research/2026-10-21/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -14240,7 +14271,8 @@
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
-    "research/2026-10-20/pre-market-research/1"
+    "research/2026-10-20/pre-market-research/1",
+    "research/2026-10-21/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -14853,7 +14885,8 @@
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
-    "research/2026-10-20/pre-market-research/1"
+    "research/2026-10-20/pre-market-research/1",
+    "research/2026-10-21/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -15806,7 +15839,8 @@
     "research/2026-10-15/pre-market-research/1",
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
-    "research/2026-10-20/pre-market-research/1"
+    "research/2026-10-20/pre-market-research/1",
+    "research/2026-10-21/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
