@@ -3975,3 +3975,18 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Watch:** session 2 under band if EOD stays below 75%. Rule 12 mandates an add after session 3, so midday/tomorrow should retry TMO at a verified print. GEV $931.72 is just under the ~$931.99 conversion level.
 
 ---
+### 2026-10-21 — Midday Scan (Day 127, Wednesday, TSLA/META AMC day)
+
+**No broker mutation.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261021T170538Z-182703`. Week of 2026-10-19 trade count: **1/3**.
+
+**Protection 4/4, one-for-one:** GEV fixed $838.79 · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.6545 (hwm $68.505) · XLP fixed $79.91. None lowered, none touched. `blotter.py --check` exit 0, 4 open lots match positions.
+
+**STEP 2b:** HOLD fixed GEV @ $838.79 (`validate_stop_change.py` 838.79→837.43 @ $930.48 exit 3 `stop_never_lowered`). HOLD fixed XLP @ $79.91 (79.91→78.50 @ $87.225 exit 3 `stop_never_lowered`). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Rule 7:** no standing condition. Cushions: GEV 9.85%, PSX 6.12%, XLP 8.39%, XLE 9.04%.
+
+**STEP 3:** no position ≤ -7% (GEV +0.04%, back at fill). **STEP 4:** `--print-required` PSX 10 (+8.63%), XLE 10, GEV 10, XLP 10 — all equal to the resting trail; nothing to tighten. **STEP 5:** no thesis broken.
+
+**Deployment:** equity $106,454.52, cash $27,672.41, LMV $78,782.11 → **~74.0% deployed**, still below band; TMO entry (skipped at open) is the open item for the next market-open. Midday places no buys.
+
+---
