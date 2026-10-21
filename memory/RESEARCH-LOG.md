@@ -8662,3 +8662,40 @@ Rule 14 lapsed (GEV, MPC, PSX are single names) — no composition waiver needed
 **HOLD — no new orders.** In band, 5 positions, rule 12 compels nothing; patience > activity. All 5 stops active and correct; no stop changes. Watch: GEV -7% cut ($865.01), MPC trail (rule-7 condition session 2), XLP/GEV fixed→trailing conversions.
 
 ---
+
+### 2026-10-21 — Pre-Market (Wednesday, TSLA/META AMC day)
+
+### Account snapshot
+- **Equity $106,150.16** (`last_equity` $106,034.22, +$115.94/+0.11% on premarket marks) · **Cash $27,672.41** · Long MV $78,477.75 · `buying_power` $330,427 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5-6): XLP 20.57% · XLE 19.93% · GEV 18.02% · PSX 15.41%. Week trades **1/3**.
+- Stops 4/4, one-for-one, qty matching: GEV fixed $838.79 (HELD) · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.6545 (hwm $68.505) · XLP fixed $79.91 (HELD). Earliest expiry XLP 2026-12-15.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261021T113259Z-399cc3`.
+
+### Market context
+- **WTI ~$99.20 (+1.4%) · Brent ~$110.43 (+1.5%)** — Gulf shipping risk keeps crude bid.
+- **ES ~7,772 (+0.22%)**; AI trade revived (SMCI). **VIX 17.31 (-6.1%)** from 18.44.
+- No CPI/PPI/FOMC/payrolls today; jobless claims 08:30, weekly ADP 12:15. FOMC 10/27-28, payrolls 11/06, CPI 11/10.
+- BMO: TMO (beat: adj EPS $6.68 vs $6.40, rev >$12.1bn), PM, ABT, NEE, T, DHR, CME, TDY. AMC: TSLA, META, LRCX, TXN, IBM. ISRG beat last night but **-7% premarket** on per-procedure pricing guide.
+- Sector YTD (rule 9, thru 10/16): Energy +55.9%, Info Tech +22.1% (**banned**, rule 10, lifts 11/13), Health Care +14.35% (new highs in Oct), Materials +11.6%, Industrials +8.2%.
+- Holdings: **GEV $911.02 premarket (+2.3%)**, after-hours rebound; BofA Buy/$1,310; ex-div 10/27, Q3 10/28. PSX $287 (-1.4%), XLE/XLP flat. No other news.
+- Research via Perplexity (no fallback). Alpaca IEX quotes stale overnight; TMO price from Perplexity.
+
+### Trade ideas
+Rule 14 lapsed (GEV, PSX are single names) — no composition waiver needed.
+1. **Thermo Fisher (TMO)** — Health Care (YTD #3, momentum, streak 0). Catalyst: Q3 beat this morning. Premarket ~$694. Entry ~$694, **stop $624.60 (10%)**, target $832.80 (2:1). `validate_order.py --symbol TMO --qty 15 --side buy --price 694.00 --stop-price 624.60 --trades-this-week 1 --sector "Health Care"` → **APPROVED, exit 0**, notional $10,410 (≤ cash). Post-fill ≈83.7% deployed, 5 positions. Market-open re-validates at a verified live print.
+2. **Abbott (ABT)** — Health Care; Q3 BMO, result/price unverified. Fallback only.
+3. **Intuitive Surgical (ISRG)** — -7% on pricing guide; no entry into a broken reaction. Watch only.
+
+### Risk factors
+- **GEV -2.05% vs fill; -7% cut $865.01** (5.0% away premarket). Stop cushion 7.93%. Conversion at ≥ ~$931.99.
+- TMO: fresh entry on print day — gap fade risk; resize if open moves >2% from $694 (stay ≤85%).
+- Energy/refining 35.3% of equity; crude >$99 with geopolitical risk both ways. XLP 20.57% over cap on drift only — no trim; conversion at ≥ ~$88.79.
+- TSLA/META/LRCX AMC tonight; FOMC next week inside GEV/PSX prints.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **73.93**, band [75, 85], `sessions_under_band` **1**, `mandate` false, `exemption_allowed` false, `target_notional` $6,442, `last_eod` 2026-10-20. No mandate yet.
+
+### Decision
+**TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct.
+
+---
