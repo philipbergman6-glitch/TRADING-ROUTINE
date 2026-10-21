@@ -2087,7 +2087,14 @@
    "research": [
     "research/2026-10-20/pre-market-research/1"
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261020T113322Z-4533a9",
+    "market-open-20261020T133401Z-41cdef",
+    "midday-20261020T170554Z-389684",
+    "protection-monitor-20261020T175008Z-409e43",
+    "daily-summary-20261020T201050Z-f9e1f6",
+    "protection-monitor-20261020T212413Z-fd4d5f"
+   ],
    "trade_log": [
     "trade/2026-10-20/market-open-trades/1",
     "trade/2026-10-20/midday-scan/1",
@@ -2104,7 +2111,8 @@
    "runs": [],
    "trade_log": [
     "trade/2026-10-21/market-open-trades/1",
-    "trade/2026-10-21/midday-scan/1"
+    "trade/2026-10-21/midday-scan/1",
+    "trade/2026-10-21/eod-snapshot/1"
    ],
    "week": null
   }
@@ -11696,6 +11704,24 @@
    "title": "Midday Scan (Day 126, Tuesday, housing starts day)",
    "week": null
   },
+  "trade/2026-10-21/eod-snapshot/1": {
+   "date": "2026-10-21",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-21/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 3993,
+   "log": "trade",
+   "note": "Day 127, Wednesday, TSLA/META AMC day — GEV trail converted",
+   "symbols": [
+    "GEV",
+    "PSX",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 127, Wednesday, TSLA/META AMC day — GEV trail converted)",
+   "week": null
+  },
   "trade/2026-10-21/market-open-trades/1": {
    "date": "2026-10-21",
    "file": "memory/TRADE-LOG.md",
@@ -11734,7 +11760,7 @@
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-10-20 (UTC)",
+  "run_cutoff": "started before 2026-10-21 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
@@ -11747,18 +11773,18 @@
     "entries": 202
    },
    "memory/TRADE-LOG.md": {
-    "entries": 257,
-    "eod_snapshots": 121
+    "entries": 258,
+    "eod_snapshots": 122
    },
    "memory/WEEKLY-REVIEW.md": {
     "weeks": 25
    },
    "state/events.jsonl": {
     "intents": 5,
-    "runs": 28
+    "runs": 34
    }
   },
-  "trade_log_asof": "2026-10-20"
+  "trade_log_asof": "2026-10-21"
  },
  "intents": {
   "en-20261019-GEV": {
@@ -12071,6 +12097,38 @@
    "source": "run",
    "symbol": "XLP",
    "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.70446"
+  },
+  {
+   "at": "2026-10-20T17:50:11+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261020T175008Z-409e43",
+   "source": "run",
+   "symbol": "GEV",
+   "text": "GEV: HOLD fixed 838.79: stop_never_lowered: stop may never move down: 838.79 -> 809.298"
+  },
+  {
+   "at": "2026-10-20T17:50:11+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261020T175008Z-409e43",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.804"
+  },
+  {
+   "at": "2026-10-20T21:24:16+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261020T212413Z-fd4d5f",
+   "source": "run",
+   "symbol": "GEV",
+   "text": "GEV: HOLD fixed 838.79: stop_never_lowered: stop may never move down: 838.79 -> 810.98406"
+  },
+  {
+   "at": "2026-10-20T21:24:16+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261020T212413Z-fd4d5f",
+   "source": "run",
+   "symbol": "XLP",
+   "text": "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.813"
   }
  ],
  "runs": {
@@ -12197,6 +12255,25 @@
    "symbols": [],
    "trigger": "cloud"
   },
+  "daily-summary-20261020T201050Z-f9e1f6": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "02fd159b068a140f78a05e96a6c0da5a1301f7cd",
+   "ended_at": "2026-10-20T20:11:46+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261020T201050Z-f9e1f6",
+   "started_at": "2026-10-20T20:10:50+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
   "market-open-20261015T133553Z-a47d04": {
    "actions": [],
    "code_dirty": false,
@@ -12251,6 +12328,25 @@
    ],
    "trigger": "cloud"
   },
+  "market-open-20261020T133401Z-41cdef": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "ec68d15d764baac92ebd0cc543de5286029ca127",
+   "ended_at": "2026-10-20T13:34:42+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "market-open",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "market-open-20261020T133401Z-41cdef",
+   "started_at": "2026-10-20T13:34:01+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
   "midday-20261019T171051Z-67d107": {
    "actions": [],
    "code_dirty": false,
@@ -12274,6 +12370,25 @@
     "GEV",
     "XLP"
    ],
+   "trigger": "cloud"
+  },
+  "midday-20261020T170554Z-389684": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "41fd8058c2e528cfe45acc062bfecd54455bc31a",
+   "ended_at": "2026-10-20T17:06:51+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "midday",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "midday-20261020T170554Z-389684",
+   "started_at": "2026-10-20T17:05:54+00:00",
+   "symbols": [],
    "trigger": "cloud"
   },
   "pre-market-20261013T113314Z-54bdd3": {
@@ -12402,6 +12517,25 @@
    "rulebook_version": "v1.3",
    "run": "pre-market-20261019T113313Z-26117d",
    "started_at": "2026-10-19T11:33:14+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "pre-market-20261020T113322Z-4533a9": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "0041b691616b4c3b5a83f17e22a76fbcb0b0160f",
+   "ended_at": "2026-10-20T11:34:42+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261020T113322Z-4533a9",
+   "started_at": "2026-10-20T11:33:22+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -12682,6 +12816,56 @@
    "rulebook_version": "v1.3",
    "run": "protection-monitor-20261019T230049Z-9bf29d",
    "started_at": "2026-10-19T23:00:49+00:00",
+   "symbols": [
+    "GEV",
+    "XLP"
+   ],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261020T175008Z-409e43": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "28b98f007f47c632757daa17700b78116fcf60f9",
+   "ended_at": "2026-10-20T17:50:11+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "GEV: HOLD fixed 838.79: stop_never_lowered: stop may never move down: 838.79 -> 809.298",
+    "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.804"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261020T175008Z-409e43",
+   "started_at": "2026-10-20T17:50:08+00:00",
+   "symbols": [
+    "GEV",
+    "XLP"
+   ],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261020T212413Z-fd4d5f": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "a4f19f085e01425a83f9feb3dca31d30bebd5c0a",
+   "ended_at": "2026-10-20T21:24:16+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "GEV: HOLD fixed 838.79: stop_never_lowered: stop may never move down: 838.79 -> 810.98406",
+    "XLP: HOLD fixed 79.91: stop_never_lowered: stop may never move down: 79.91 -> 78.813"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261020T212413Z-fd4d5f",
+   "started_at": "2026-10-20T21:24:13+00:00",
    "symbols": [
     "GEV",
     "XLP"
@@ -13108,7 +13292,9 @@
     "market-open-20261019T133552Z-91d245",
     "midday-20261019T171051Z-67d107",
     "protection-monitor-20261019T190918Z-a75fb8",
-    "protection-monitor-20261019T230049Z-9bf29d"
+    "protection-monitor-20261019T230049Z-9bf29d",
+    "protection-monitor-20261020T175008Z-409e43",
+    "protection-monitor-20261020T212413Z-fd4d5f"
    ],
    "sector": "Industrials",
    "trade_log": [
@@ -13136,7 +13322,8 @@
     "trade/2026-10-20/midday-scan/1",
     "trade/2026-10-20/eod-snapshot/1",
     "trade/2026-10-21/market-open-trades/1",
-    "trade/2026-10-21/midday-scan/1"
+    "trade/2026-10-21/midday-scan/1",
+    "trade/2026-10-21/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-09",
@@ -14353,7 +14540,8 @@
     "trade/2026-10-20/midday-scan/1",
     "trade/2026-10-20/eod-snapshot/1",
     "trade/2026-10-21/market-open-trades/1",
-    "trade/2026-10-21/midday-scan/1"
+    "trade/2026-10-21/midday-scan/1",
+    "trade/2026-10-21/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-02",
@@ -14382,7 +14570,8 @@
    "sector": "Health Care",
    "trade_log": [
     "trade/2026-10-21/market-open-trades/1",
-    "trade/2026-10-21/midday-scan/1"
+    "trade/2026-10-21/midday-scan/1",
+    "trade/2026-10-21/eod-snapshot/1"
    ],
    "weeks": []
   },
@@ -15022,7 +15211,8 @@
     "trade/2026-10-20/midday-scan/1",
     "trade/2026-10-20/eod-snapshot/1",
     "trade/2026-10-21/market-open-trades/1",
-    "trade/2026-10-21/midday-scan/1"
+    "trade/2026-10-21/midday-scan/1",
+    "trade/2026-10-21/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -15933,7 +16123,9 @@
     "market-open-20261019T133552Z-91d245",
     "midday-20261019T171051Z-67d107",
     "protection-monitor-20261019T190918Z-a75fb8",
-    "protection-monitor-20261019T230049Z-9bf29d"
+    "protection-monitor-20261019T230049Z-9bf29d",
+    "protection-monitor-20261020T175008Z-409e43",
+    "protection-monitor-20261020T212413Z-fd4d5f"
    ],
    "sector": "Consumer Staples",
    "trade_log": [
@@ -16103,7 +16295,8 @@
     "trade/2026-10-20/midday-scan/1",
     "trade/2026-10-20/eod-snapshot/1",
     "trade/2026-10-21/market-open-trades/1",
-    "trade/2026-10-21/midday-scan/1"
+    "trade/2026-10-21/midday-scan/1",
+    "trade/2026-10-21/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
