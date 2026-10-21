@@ -3990,3 +3990,20 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $106,454.52, cash $27,672.41, LMV $78,782.11 → **~74.0% deployed**, still below band; TMO entry (skipped at open) is the open item for the next market-open. Midday places no buys.
 
 ---
+### Oct 21 — EOD Snapshot (Day 127, Wednesday, TSLA/META AMC day — GEV trail converted)
+**Portfolio:** $106,625.98 | **Cash:** $27,672.41 (25.95%) | **Day P&L:** +$591.76 (+0.56%) | **Phase P&L:** +$6,625.98 (+6.63%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GEV | 21 | $930.12 | $925.92 | +4.00% | -$88.20 (-0.45%) | $839.457 (10% trail GTC, hwm $932.73) |
+| PSX | 57 | $264.20 | $290.07 | -0.33% | +$1,474.59 (+9.79%) | $269.442 (10% trail GTC, hwm $299.38) |
+| XLE | 311 | $63.9218 | $68.16 | +0.28% | +$1,318.09 (+6.63%) | $61.776 (10% trail GTC, hwm $68.64) |
+| XLP | 250 | $83.76 | $87.11 | -0.73% | +$837.50 (+4.00%) | $79.91 (fixed GTC, HELD) |
+
+**Trades today:** none. Blotter: 4 open lots, nothing entered or exited today. TMO buy skipped at the open (no verified print). **Week trades: 1/3.** Blotter and TRADE-LOG agree.
+
+**Notes:** GEV led, +4.00% (+$747.39 intraday) back to roughly its fill; PSX and XLP gave back a little. Day P&L is against the broker's official 10/20 close of $106,034.22 (reconcile_equity rebuilds it to the cent); the 10/20 snapshot logged $106,043.69, a $9.47 late-mark gap. **GEV fixed $838.79 leg was converted to a 10% trailing stop** at 17:56 UTC (order 14793028, hwm $932.73, stop $839.457 ≥ old $838.79, not lowered) by the protection-monitor run, not this routine. Protection 4/4 one-for-one, no mutation by this routine. **Deployed 74.05%, below the 75-85% band — session 2 under band** (`deployment_status.py`: mandate false, target $6,347); 4 positions, below rule-3 range. Cushions: GEV 9.34%, PSX 7.11%, XLP 8.27%, XLE 9.37%. Weights: XLP 20.42% · XLE 19.88% · GEV 18.24% · PSX 15.51%. blotter --check exit 0, reconcile RECONCILED exit 0 (129 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261021T201002Z-528f43.
+
+**Tomorrow:** session 2 under band; market-open should retry TMO (or another non-energy name) at a verified print to restore 75-85% before rule 12 mandates an add after session 3 (2 week slots left). XLP trail conversion at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28.
+
+---
