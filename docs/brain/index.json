@@ -2102,7 +2102,9 @@
     "research/2026-10-21/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-10-21/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -5257,6 +5259,7 @@
    "note": "Thursday, Day 62",
    "symbols": [
     "GOOGL",
+    "TMO",
     "XLB",
     "XLE",
     "XLI",
@@ -7354,7 +7357,9 @@
   },
   "research/2026-10-21/pre-market-research/1": {
    "date": "2026-10-21",
-   "decision": [],
+   "decision": [
+    "TMO"
+   ],
    "decision_text": "**TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-10-21/pre-market-research/1",
@@ -7366,6 +7371,7 @@
    "symbols": [
     "GEV",
     "PSX",
+    "TMO",
     "XLE",
     "XLP"
    ],
@@ -11688,6 +11694,24 @@
    ],
    "title": "Midday Scan (Day 126, Tuesday, housing starts day)",
    "week": null
+  },
+  "trade/2026-10-21/market-open-trades/1": {
+   "date": "2026-10-21",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-21/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 3963,
+   "log": "trade",
+   "note": "Day 127, Wednesday, TSLA/META AMC day",
+   "symbols": [
+    "GEV",
+    "PSX",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Market-Open (Day 127, Wednesday, TSLA/META AMC day)",
+   "week": null
   }
  },
  "generated_from": {
@@ -11704,7 +11728,7 @@
     "entries": 202
    },
    "memory/TRADE-LOG.md": {
-    "entries": 255,
+    "entries": 256,
     "eod_snapshots": 121
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -13091,7 +13115,8 @@
     "trade/2026-10-19/eod-snapshot/1",
     "trade/2026-10-20/market-open-trades/1",
     "trade/2026-10-20/midday-scan/1",
-    "trade/2026-10-20/eod-snapshot/1"
+    "trade/2026-10-20/eod-snapshot/1",
+    "trade/2026-10-21/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-09",
@@ -14306,13 +14331,38 @@
     "trade/2026-10-19/eod-snapshot/1",
     "trade/2026-10-20/market-open-trades/1",
     "trade/2026-10-20/midday-scan/1",
-    "trade/2026-10-20/eod-snapshot/1"
+    "trade/2026-10-20/eod-snapshot/1",
+    "trade/2026-10-21/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-02",
     "2026-10-09",
     "2026-10-16"
    ]
+  },
+  "TMO": {
+   "decisions": [
+    "research/2026-10-21/pre-market-research/1"
+   ],
+   "ideas": [],
+   "intents": [],
+   "last_decision": {
+    "date": "2026-10-21",
+    "entry": "research/2026-10-21/pre-market-research/1",
+    "text": "**TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct. ---"
+   },
+   "open_lots": [],
+   "research": [
+    "research/2026-07-23/pre-market-research/1",
+    "research/2026-10-21/pre-market-research/1"
+   ],
+   "round_trips": [],
+   "runs": [],
+   "sector": "Health Care",
+   "trade_log": [
+    "trade/2026-10-21/market-open-trades/1"
+   ],
+   "weeks": []
   },
   "WMT": {
    "decisions": [
@@ -14948,7 +14998,8 @@
     "trade/2026-10-19/eod-snapshot/1",
     "trade/2026-10-20/market-open-trades/1",
     "trade/2026-10-20/midday-scan/1",
-    "trade/2026-10-20/eod-snapshot/1"
+    "trade/2026-10-20/eod-snapshot/1",
+    "trade/2026-10-21/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -16027,7 +16078,8 @@
     "trade/2026-10-19/eod-snapshot/1",
     "trade/2026-10-20/market-open-trades/1",
     "trade/2026-10-20/midday-scan/1",
-    "trade/2026-10-20/eod-snapshot/1"
+    "trade/2026-10-20/eod-snapshot/1",
+    "trade/2026-10-21/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
