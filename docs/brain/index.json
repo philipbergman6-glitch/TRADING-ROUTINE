@@ -2120,11 +2120,13 @@
    "fills": [],
    "intents": [],
    "research": [
-    "research/2026-10-22/pre-market-research/1"
+    "research/2026-10-22/pre-market-research/1",
+    "research/2026-10-22/addendum/1"
    ],
    "runs": [],
    "trade_log": [
-    "trade/2026-10-22/market-open-trades/1"
+    "trade/2026-10-22/market-open-trades/1",
+    "trade/2026-10-22/midday-scan/1"
    ],
    "week": null
   }
@@ -7399,6 +7401,26 @@
    "title": "Pre-Market (Wednesday, TSLA/META AMC day)",
    "week": null
   },
+  "research/2026-10-22/addendum/1": {
+   "date": "2026-10-22",
+   "decision": [],
+   "decision_text": "",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-10-22/addendum/1",
+   "ideas": [],
+   "kind": "addendum",
+   "line": 8739,
+   "log": "research",
+   "note": "",
+   "symbols": [
+    "GEV",
+    "PSX",
+    "TMO",
+    "XLP"
+   ],
+   "title": "Midday Addendum",
+   "week": null
+  },
   "research/2026-10-22/pre-market-research/1": {
    "date": "2026-10-22",
    "decision": [
@@ -11810,6 +11832,24 @@
    ],
    "title": "Market-Open Trades (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day)",
    "week": null
+  },
+  "trade/2026-10-22/midday-scan/1": {
+   "date": "2026-10-22",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-22/midday-scan/1",
+   "kind": "midday-scan",
+   "line": 4033,
+   "log": "trade",
+   "note": "Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day — GEV stopped out, XLP trail converted",
+   "symbols": [
+    "GEV",
+    "PSX",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Midday Scan (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day — GEV stopped out, XLP trail converted)",
+   "week": null
   }
  },
  "generated_from": {
@@ -11823,10 +11863,10 @@
     "round_trips": 18
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 203
+    "entries": 204
    },
    "memory/TRADE-LOG.md": {
-    "entries": 259,
+    "entries": 260,
     "eod_snapshots": 122
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -13339,7 +13379,8 @@
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
     "research/2026-10-21/pre-market-research/1",
-    "research/2026-10-22/pre-market-research/1"
+    "research/2026-10-22/pre-market-research/1",
+    "research/2026-10-22/addendum/1"
    ],
    "round_trips": [],
    "runs": [
@@ -13378,7 +13419,8 @@
     "trade/2026-10-21/market-open-trades/1",
     "trade/2026-10-21/midday-scan/1",
     "trade/2026-10-21/eod-snapshot/1",
-    "trade/2026-10-22/market-open-trades/1"
+    "trade/2026-10-22/market-open-trades/1",
+    "trade/2026-10-22/midday-scan/1"
    ],
    "weeks": [
     "2026-10-09",
@@ -14560,7 +14602,8 @@
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
     "research/2026-10-21/pre-market-research/1",
-    "research/2026-10-22/pre-market-research/1"
+    "research/2026-10-22/pre-market-research/1",
+    "research/2026-10-22/addendum/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -14598,7 +14641,8 @@
     "trade/2026-10-21/market-open-trades/1",
     "trade/2026-10-21/midday-scan/1",
     "trade/2026-10-21/eod-snapshot/1",
-    "trade/2026-10-22/market-open-trades/1"
+    "trade/2026-10-22/market-open-trades/1",
+    "trade/2026-10-22/midday-scan/1"
    ],
    "weeks": [
     "2026-10-02",
@@ -14622,7 +14666,8 @@
    "research": [
     "research/2026-07-23/pre-market-research/1",
     "research/2026-10-21/pre-market-research/1",
-    "research/2026-10-22/pre-market-research/1"
+    "research/2026-10-22/pre-market-research/1",
+    "research/2026-10-22/addendum/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -14631,7 +14676,8 @@
     "trade/2026-10-21/market-open-trades/1",
     "trade/2026-10-21/midday-scan/1",
     "trade/2026-10-21/eod-snapshot/1",
-    "trade/2026-10-22/market-open-trades/1"
+    "trade/2026-10-22/market-open-trades/1",
+    "trade/2026-10-22/midday-scan/1"
    ],
    "weeks": []
   },
@@ -15274,7 +15320,8 @@
     "trade/2026-10-21/market-open-trades/1",
     "trade/2026-10-21/midday-scan/1",
     "trade/2026-10-21/eod-snapshot/1",
-    "trade/2026-10-22/market-open-trades/1"
+    "trade/2026-10-22/market-open-trades/1",
+    "trade/2026-10-22/midday-scan/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -16167,7 +16214,8 @@
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
     "research/2026-10-21/pre-market-research/1",
-    "research/2026-10-22/pre-market-research/1"
+    "research/2026-10-22/pre-market-research/1",
+    "research/2026-10-22/addendum/1"
    ],
    "round_trips": [],
    "runs": [
@@ -16360,7 +16408,8 @@
     "trade/2026-10-21/market-open-trades/1",
     "trade/2026-10-21/midday-scan/1",
     "trade/2026-10-21/eod-snapshot/1",
-    "trade/2026-10-22/market-open-trades/1"
+    "trade/2026-10-22/market-open-trades/1",
+    "trade/2026-10-22/midday-scan/1"
    ],
    "weeks": [
     "2026-07-03",
