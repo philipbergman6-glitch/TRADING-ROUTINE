@@ -4047,3 +4047,20 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $104,259.76, cash $34,850.63, LMV $69,409.13 → **66.57% deployed**, below band (`deployment_status.py`: sessions_under_band 2, mandate false, target $13,998). 4 positions, below rule-3 range. Tonight's EOD would be session 3 under band → rule 12 mandates an add at the next market-open (not Industrials or Info Tech, both banned). Midday places no buys.
 
 ---
+### Oct 22 — EOD Snapshot (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day — TMO entered, GEV stopped out)
+**Portfolio:** $104,734.41 | **Cash:** $34,850.63 (33.28%) | **Day P&L:** -$1,891.57 (-1.77%) | **Phase P&L:** +$4,734.41 (+4.73%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| PSX | 57 | $264.20 | $284.63 | -1.88% | +$1,164.51 (+7.73%) | $269.442 (10% trail GTC, hwm $299.38) |
+| TMO | 15 | $696.57 | $676.54 | -2.52% | -$300.45 (-2.88%) | $627.85 (fixed GTC OTO leg, HELD) |
+| XLE | 311 | $63.9218 | $67.57 | -0.87% | +$1,134.60 (+5.71%) | $61.866 (10% trail GTC, hwm $68.74) |
+| XLP | 250 | $83.76 | $89.99 | +3.31% | +$1,557.50 (+7.44%) | $80.991 (10% trail GTC, hwm $89.99) |
+
+**Trades today:** BUY TMO 15 @ $696.57 (13:44 UTC); SELL GEV 21 @ $839.37 (broker 10% trail, 14:24 UTC), realized -$1,905.75 (-9.76%). **Week trades: 2/3** (GEV 10/19, TMO 10/22). Blotter and TRADE-LOG agree.
+
+**Notes:** Rough day: GEV gapped through its -7% cut and the 10% trail filled at $839.37, a -$1,905.75 loss that drove nearly all of the -1.77% day; TMO slid -2.9% below its fill and PSX gave back 1.9% on refiner sell-the-news, while XLP (+3.31%) ratcheted its trail to $80.991. Day P&L is against the broker's 10/21 close of $106,625.98 (matches the 10/21 snapshot). Industrials now banned to 2026-11-19 (rule 10, streak 2). Protection 4/4 one-for-one; no broker mutation by this routine. **Deployed 66.72%, below the 75-85% band** (`deployment_status.py`: sessions_under_band 2 before tonight, mandate false, target $13,903); 4 positions, below rule-3 range. Cushions: PSX 5.34%, TMO 7.20%, XLE 8.44%, XLP 10.0%. blotter --check exit 0, reconcile RECONCILED exit 0 (130 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261022T201036Z-50adab.
+
+**Tomorrow:** this EOD is session 3 under band → rule 12 mandates an add at market-open (not Industrials or Info Tech, both banned; 1 week slot left). TMO trail conversion at ≥ ~$697.61. Catalysts: GEV gone; FOMC 10/27-28, PSX Q3 10/28.
+
+---
