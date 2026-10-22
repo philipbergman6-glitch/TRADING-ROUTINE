@@ -8699,3 +8699,40 @@ Rule 14 lapsed (GEV, PSX are single names) — no composition waiver needed.
 **TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-10-22 — Pre-Market (Thursday, PG/LMT/HON/UNP/VLO BMO day)
+
+### Account snapshot
+- **Equity $106,504.88** (`last_equity` $106,625.98, -$121.10/-0.11% on premarket marks) · **Cash $27,672.41** · Long MV $78,832.47 · `buying_power` $331,421 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5-6): XLP 20.66% · XLE 20.08% · GEV 17.60% · PSX 15.68%. Week trades **1/3**.
+- Stops 4/4, one-for-one, qty matching: GEV 10% trail $839.457 (hwm $932.73) · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.776 (hwm $68.64) · XLP fixed $79.91 (HELD). Earliest expiry XLP 2026-12-15.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261022T113305Z-a9d875`.
+
+### Market context
+- **WTI ~$98.30 (+1.2%) · Brent ~$110.47 (+1.5%)** — Middle East hostilities escalating; inflation/rates worry.
+- **ES ~7,725 (-0.96%)** after mixed TSLA/META; NFLX -5%. SMCI guide raise lifts AI-infra. **VIX ~18.2 (+8.9%)** from 16.68.
+- No CPI/PPI/FOMC/payrolls today; jobless claims 08:30 (cons 200k), LEI 10:00, 5y TIPS auction 13:00. Fed blackout; FOMC 10/27-28, payrolls 11/06, CPI 11/10.
+- BMO: PG, LMT, HON, UNP, VLO, CMCSA, BX, NSC, DGX, DOW, PHM, AAL.
+- Sector YTD (rule 9, thru 10/15): Health Care +14.35%, Materials +11.6%, Industrials +8.2%; Energy/Info Tech lead momentum (Info Tech **banned**, rule 10, lifts 11/13).
+- Holdings: **GEV ~$893 premarket (-3.5%)**, profit-taking into Q3 10/28 despite Venture Global power-island deal; ex-div 10/27. PSX ~$291-293 (+0.3-1%), Bayway lockout of ~385 workers; Q3 10/28. XLE near 52w high; VLO prints today (refining read-through). XLP: no news.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (GEV, PSX are single names) — no composition waiver needed.
+1. **Thermo Fisher (TMO)** — Health Care (YTD #1, streak 0). Catalyst: Q3 beat 10/21, holding gains. Premarket ~$694.04 (flat vs $694.02 close). Entry ~$694, **stop $624.64 (10%)**, target $832.84 (2:1). `validate_order.py --symbol TMO --qty 15 --side buy --price 694.04 --stop-price 624.64 --trades-this-week 1 --sector "Health Care"` → **APPROVED, exit 0**, notional $10,411 (≤ cash). Post-fill ≈83.8% deployed, 5 positions. Market-open re-validates at a verified live print; skip again if none.
+2. **Quest Diagnostics (DGX)** — Health Care; Q3 BMO today, result/price unverified. Fallback only.
+3. **Honeywell (HON)** — Industrials (streak 1); Q3 BMO today. Watch reaction only; no entry until price/thesis verified.
+
+### Risk factors
+- **GEV ~$893 premarket, -4.0% vs fill; -7% cut $865.01 is ~3.1% away.** Trail cushion ~6.0%. Midday must check the cut on a verified print.
+- Risk-off tape (ES -1%, VIX +9%) on oil/geopolitics; TMO entry into a weak open — resize if open moves >2% from $694 (stay ≤85%).
+- Energy/refining 35.8% of equity. XLP 20.66% / XLE 20.08% over cap on drift only — no trim. XLP premarket $88.01 < ~$88.79 conversion level → fixed stop held.
+- FOMC week next with GEV/PSX prints inside it.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **74.02**, band [75, 85], `sessions_under_band` **2**, `mandate` false, `exemption_allowed` false, `target_notional` $6,371, `last_eod` 2026-10-21. No mandate yet; one more under-band EOD makes rule 12 due.
+
+### Decision
+**TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct.
+
+---
