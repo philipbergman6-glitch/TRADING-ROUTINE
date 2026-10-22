@@ -4007,3 +4007,26 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** session 2 under band; market-open should retry TMO (or another non-energy name) at a verified print to restore 75-85% before rule 12 mandates an add after session 3 (2 week slots left). XLP trail conversion at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28.
 
 ---
+## 2026-10-22 — Market-Open Trades (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day)
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-10-22 | TMO | BUY | 15 | $696.57 | $627.85 fixed GTC (OTO leg 3e064925, 9.87% below fill) — HELD, trail conversion refused `stop_never_lowered` | Non-energy 5th position to restore the 75-85% band before rule 12 forces it. Catalyst: Q3 beat 10/21, holding gains. Sector: Health Care (YTD #1, streak 0, not banned). Single name; rule 14 already lapsed | $834.01 (2:1) | 2:1 |
+
+**Week of 2026-10-19 trade count: 2/3**
+
+**Notes:** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset — `ledger_order_id` null, `record_broker_response` no-op). Run record `market-open-20261022T133326Z-b1bba7`.
+
+**Discretionary, not mandated.** `deployment_status.py` exit 0 at the open (`deployed_pct` 73.96, `sessions_under_band` 2, `mandate` false, `target_notional` $6,419). Rule 10: `blotter.py --sector-streaks` exit 0, Health Care `banned: false`, streak 0. TMO is already in `memory/SECTORS.json` (Health Care).
+
+**Execution.** The IEX quote opened wide (bid $691.84 / ask $730.59, 13:33 UTC), so I polled until it tightened: at 13:44:19 it was bid $695.65 / ask $697.61, spread 0.28%, mid $696.63, within 2% of the plan's $694. `validate_order.py --symbol TMO --qty 15 --side buy --price 697.61 --stop-price 627.85 --sector "Health Care"` → **exit 0**, notional $10,464.15. `submit_entry.py` → **exit 0 `submitted`**, HTTP 200, intent/client id `en-20261022-TMO`, parent `5734ba30`. **STEP-4 gate met: filled_qty 15 == qty 15, avg $696.57** (13:44:44 UTC); leg `3e064925` FixedStop (`type=stop`, trail null, $627.85, GTC).
+
+**STEP 5 — conversion refused, fixed leg HELD (rule 4 permitted protection).** `validate_order.py ... --side sell --trail-percent 10` exit 0; `replace_stop.py --order-id 3e064925 --trail-percent 10` → **exit 3 `refused`**: "stop_never_lowered: 627.85 -> 624.654" (the TMO mark slipped to ~$693.71 after the fill). The old stop is untouched and was verified afterwards. The entry intent was recovered to `filled`. It converts the first session a 10% trail sits at or above $627.85, i.e. TMO ≥ ~$697.61.
+
+**STEP 2b:** one pre-existing fixed leg, XLP $79.91. Gate `validate_stop_change.py --current-stop 79.91 --new-stop 79.26 --current-price 88.07` exit 3 `stop_never_lowered` → **HOLD fixed XLP @ $79.91**. **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, coverage ok, 4/4 before the buy.
+
+**Post-trade state.** Equity $105,503.72, cash $17,223.86, LMV $88,279.86 → **deployed 83.67%, back inside the 75-85% band**. **5 positions** (rule-3 range). `protection_monitor.py --dry-run` exit 0, **5/5 covered one-for-one**, holds TMO + XLP (both fixed, both `stop_never_lowered`). Stops: TMO fixed $627.85 · GEV 10% trail $839.457 (hwm $932.73) · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.866 (hwm $68.74) · XLP fixed $79.91. None lowered. Trade email sent (`delivery=unverified`, restricted key — not a failure); it quoted the plan target $832.84, and the fill-based target is $834.01.
+
+**Watch:** GEV ~$887 at the open, -4.6% vs fill; the -7% cut at $865.01 is ~2.5% away, so midday must check it. TMO trail conversion at ≥ ~$697.61; XLP at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28.
+
+---
