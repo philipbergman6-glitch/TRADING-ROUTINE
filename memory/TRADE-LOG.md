@@ -4030,3 +4030,20 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Watch:** GEV ~$887 at the open, -4.6% vs fill; the -7% cut at $865.01 is ~2.5% away, so midday must check it. TMO trail conversion at ≥ ~$697.61; XLP at ≥ ~$88.79. Catalysts: GEV ex-div 10/27, FOMC 10/27-28, GEV/PSX Q3 10/28.
 
 ---
+### 2026-10-22 — Midday Scan (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day — GEV stopped out, XLP trail converted)
+
+**One broker mutation: XLP fixed stop → 10% trail.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset). Run record `midday-20261022T170445Z-f666d3`. Week of 2026-10-19 trade count: **2/3** (stop-outs are not entries).
+
+**GEV stopped out (broker trailing stop, not this routine):** order 14793028 (10% trail, stop $839.457) filled SELL 21 @ $839.37 at 14:24:56 UTC. Realized **-$1,905.75 (-9.76%)** per `blotter.py --markdown` (in $930.12). The -7% cut at $865.01 was gapped through between scans. **Rule 10: Industrials streak 2 → banned, lifts 2026-11-19** (`blotter.py --sector-streaks`).
+
+**STEP 2b:** XLP gate `validate_stop_change.py --current-stop 79.91 --new-stop 80.49 --current-price 89.435` exit 0; `validate_order.py --symbol XLP --qty 250 --side sell --price 89.415 --trail-percent 10` exit 0; `replace_stop.py --order-id 1fed8260 --trail-percent 10` → **exit 0 `replaced`**, HTTP 200, new order 852ae37d (`rs-1fed8260-…`), 10% trail, hwm $89.40, stop $80.46 ≥ old $79.91 (not lowered). HOLD fixed TMO @ $627.85 (627.85→610.54 @ $678.38 exit 3 `stop_never_lowered`). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 4/4, one-for-one:** TMO fixed $627.85 · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.866 (hwm $68.74) · XLP 10% trail $80.46 (hwm $89.40). `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Rule 7:** no standing condition. Cushions: PSX 3.77% (nearest), TMO 7.34%, XLE 8.10%, XLP 10.0%.
+
+**STEP 3:** no position ≤ -7% (TMO -2.73%, PSX +5.98%, XLE +5.32%, XLP +6.74%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken — PSX -3.6% is a refiner sell-the-news after VLO's Q3 beat (EPS $23.90 vs ~$21.2), plus Bayway lockout/diesel-export noise; TMO -2.7% with no company-specific news.
+
+**Deployment:** equity $104,259.76, cash $34,850.63, LMV $69,409.13 → **66.57% deployed**, below band (`deployment_status.py`: sessions_under_band 2, mandate false, target $13,998). 4 positions, below rule-3 range. Tonight's EOD would be session 3 under band → rule 12 mandates an add at the next market-open (not Industrials or Info Tech, both banned). Midday places no buys.
+
+---

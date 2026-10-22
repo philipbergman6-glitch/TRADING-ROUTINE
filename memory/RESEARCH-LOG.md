@@ -8736,3 +8736,10 @@ Rule 14 lapsed (GEV, PSX are single names) — no composition waiver needed.
 **TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct.
 
 ---
+### 2026-10-22 — Midday Addendum
+- **GEV stopped out** 14:24 UTC @ $839.37 (10% trail), -9.76% on the lot; no verified catalyst for the morning drop (Perplexity found none). Industrials now rule-10 banned until 2026-11-19.
+- **Refiners down** (PSX $279.53, -3.6% at 12:13 ET): VLO Q3 adj. EPS $23.90 vs ~$21.2 est., revenue $46.1B (+43% y/y), yet the stock fell — treated as priced in; valuation, diesel-export risk and Bayway lockout in focus. PSX thesis intact; trail cushion 3.8%.
+- **TMO** ~$677.6 (-2.4% on day, -2.7% vs fill); no company-specific news found. Fixed stop $627.85 held.
+- XLP +2.7% to ~$89.4 (defensive bid); fixed stop converted to 10% trail at $80.46.
+
+---
