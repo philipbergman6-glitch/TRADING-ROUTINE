@@ -2115,6 +2115,16 @@
     "trade/2026-10-21/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-10-22": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-10-22/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -7387,6 +7397,29 @@
    "title": "Pre-Market (Wednesday, TSLA/META AMC day)",
    "week": null
   },
+  "research/2026-10-22/pre-market-research/1": {
+   "date": "2026-10-22",
+   "decision": [
+    "TMO"
+   ],
+   "decision_text": "**TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-10-22/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 8703,
+   "log": "research",
+   "note": "Thursday, PG/LMT/HON/UNP/VLO BMO day",
+   "symbols": [
+    "GEV",
+    "PSX",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Pre-Market (Thursday, PG/LMT/HON/UNP/VLO BMO day)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -11770,7 +11803,7 @@
     "round_trips": 18
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 202
+    "entries": 203
    },
    "memory/TRADE-LOG.md": {
     "entries": 258,
@@ -13285,7 +13318,8 @@
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
-    "research/2026-10-21/pre-market-research/1"
+    "research/2026-10-21/pre-market-research/1",
+    "research/2026-10-22/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -14504,7 +14538,8 @@
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
-    "research/2026-10-21/pre-market-research/1"
+    "research/2026-10-21/pre-market-research/1",
+    "research/2026-10-22/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -14551,19 +14586,21 @@
   },
   "TMO": {
    "decisions": [
-    "research/2026-10-21/pre-market-research/1"
+    "research/2026-10-21/pre-market-research/1",
+    "research/2026-10-22/pre-market-research/1"
    ],
    "ideas": [],
    "intents": [],
    "last_decision": {
-    "date": "2026-10-21",
-    "entry": "research/2026-10-21/pre-market-research/1",
+    "date": "2026-10-22",
+    "entry": "research/2026-10-22/pre-market-research/1",
     "text": "**TRADE (discretionary): BUY TMO 15 sh at market-open, 10% stop**, subject to live re-validation at a verified print. Restores band and 5th position before rule 12 forces it. Existing book HOLD — no stop changes; all 4 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
     "research/2026-07-23/pre-market-research/1",
-    "research/2026-10-21/pre-market-research/1"
+    "research/2026-10-21/pre-market-research/1",
+    "research/2026-10-22/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -15147,7 +15184,8 @@
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
-    "research/2026-10-21/pre-market-research/1"
+    "research/2026-10-21/pre-market-research/1",
+    "research/2026-10-22/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -16104,7 +16142,8 @@
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
-    "research/2026-10-21/pre-market-research/1"
+    "research/2026-10-21/pre-market-research/1",
+    "research/2026-10-22/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
