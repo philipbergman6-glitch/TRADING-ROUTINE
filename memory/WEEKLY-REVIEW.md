@@ -1698,3 +1698,95 @@ Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues
 **The week the composition held in reverse.** The S&P fell **1.71% chained (-1.95% as-actual, -152.10 points)** on hot CPI, an October-hike repricing and an AI/high-debt unwind; the book rose **+1.37% to a phase high of $107,225.88 (+7.23%)** for a **+3.08pp relative win — double the previous phase record, the third in a row, and the first one earned against a falling index**, which was the open question the last two weeks could not answer. It was earned by weighting, not by action: **zero entries, 0/3 of the budget, no hand on any stop**, with XLP +4.61% vs fill and all three energy legs closing green on Friday. **The system's single most load-bearing design choice was tested under the worst available conditions and passed: XLK's trail fired on its own at the broker for -$554.40 (-2.64%) — 38% of the -7% floor — on a day when both cash-hours routines were gated shut and no routine could have acted.** Rule 6's +20% rung had already tightened MPC to a 5% trail overnight Tuesday, leaving its stop **$64.54 above its fill, locking ~$839**, and three legs ratcheted themselves to new highs unassisted. Fifteenth straight week with the risk machinery clean: no stop lowered or hand-moved, 4/4 coverage, `blotter --check` exit 0 and a reconciled FIFO book every session including the one with an exit, coordinator clean all week. Not an A, because **the only trade that closed was a loss — 0% win rate, 0.00 profit factor, the third consecutive week realized P&L went backwards and still no realized winner in the phase** — and because the week contained **the worst operational failure of the phase: `STRATEGY_VERSION` unset for a sixth, seventh and eighth session, costing two entire supervision sessions on Friday, which escaped without cost only because the one event that mattered lived at the broker.** The book also ends the week **out of its own rule-3 range at 4 positions and below its rule-2 band at 61.65%**, with `target_notional` $19,671, the deferral spent, and a mandate two sessions away. Not lower than A-, because every rule was followed in every session, the loss was a floor the system imposed rather than a mistake it made (and the third in a straight line of progressively cheaper exits: -7.46%, -4.50%, **-2.64%**), and the one structural gap is the same one this review proposes for a third week — **rule 15, a 35% entry-only sector cap**, which this week showed binds on a third mechanism (a stop-out elsewhere, now at **41.22%** energy) and whose unwritten substitute gets its first real test on Monday with $25,032.83 of headroom and a clock running.
 
 ---
+
+## Week ending 2026-10-23
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $107,225.88 (Mon Oct 19 AM = Fri Oct 16 logged close) |
+| Ending portfolio | $105,550.90 (Fri Oct 23 close; broker live equity $105,637.91 after-hours, an $87.01 marking difference) |
+| Week return | -$1,674.98 (-1.56%) |
+| S&P 500 week | -0.47% (7,659.44 Oct 16 → 7,623.68 Oct 23; chained from the prior week's logged close — the fetch's Oct 16 level matched it exactly, no drift) |
+| Bot vs S&P | -1.10% (UNDERPERFORMED — ends a three-week run of relative wins) |
+| Trades | 3 new (W:1 / L:1 / open:5); 2 closed |
+| Win rate | 50% (1 of 2 closed) |
+| Best trade | MPC +18.18% (+$936.52) — the phase's first realized winner |
+| Worst trade | GEV -9.76% (-$1,905.75) |
+| Profit factor | 0.49 ($936.52 / $1,905.75) |
+
+Arithmetic: week return = $105,550.90 - $107,225.88 = **-$1,674.98**; 1,674.98 / 107,225.88 = **-1.5621%**. Phase: $105,550.90 vs $100,000 = **+5.55%**.
+S&P chained = (7,623.68 - 7,659.44) / 7,659.44 = **-0.4669%**. Relative = -1.5621% - (-0.4669%) = **-1.10pp**.
+Day-by-day (logged): Mon -$877.26 (-0.82%) · Tue -$224.91 (-0.21%) · Wed +$591.76 (+0.56%) · **Thu -$1,891.57 (-1.77%)** · Fri +$816.87 (+0.78%). Sum -$1,585.11; the -$89.87 gap to the week figure is the late-mark gaps of the 10/16 ($56.37) and 10/19-10/22 ($33.50) snapshots against the broker's official closes, not a cash or position discrepancy.
+Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues, 5 open lots match broker): two round_trips exited Mon 10/19 - Fri 10/23 — **MPC** (09-28 → 10-20, 13 sh, $396.33 → $468.37, **+$936.52 / +18.18%**) and **GEV** (10-19 → 10-22, 21 sh, $930.12 → $839.37, **-$1,905.75 / -9.76%**). W = 1, L = 1, open = 5; win rate 1/2 = 50%; PF = 936.52 / 1,905.75 = 0.49. Realized net **-$969.23**. Entries: GEV 10/19, TMO 10/22, SLB 10/23 — **3/3 of the budget**. Blotter total: 21 round trips, 5 open lots. TRADE-LOG and blotter agree on every session.
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| MPC | $396.33 (09-28) | $468.37 (10-20, 13:46 UTC) | **+$936.52 (+18.18%)** | 13 sh. Rule 6's 5% rung (set overnight 10/13) fired at the open on its own; hwm $493.98. First realized winner of the phase. |
+| GEV | $930.12 (10-19) | $839.37 (10-22, 14:24 UTC) | **-$1,905.75 (-9.76%)** | 21 sh. 10% trail (converted 10/21, stop $839.457) filled after GEV gapped through the -7% cut ($865.01) between scans. Held 3 sessions. Industrials streak 2 → **banned to 11/19** (rule 10). |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLE | $63.9218 | $69.33 | +$1,681.96 (+8.46%) | $62.748 (10% trail GTC, hwm $69.72) |
+| PSX | $264.20 | $283.18 | +$1,081.86 (+7.18%) | $269.442 (10% trail GTC, hwm $299.38) |
+| XLP | $83.76 | $88.26 | +$1,125.00 (+5.37%) | $80.991 (10% trail GTC, hwm $89.99 — converted from fixed 10/22) |
+| SLB | $50.08 | $53.06 | +$825.46 (+5.95%) | $47.97 (10% trail GTC, hwm $53.30 — converted 10/23) |
+| TMO | $696.57 | $673.82 | -$341.25 (-3.27%) | $627.85 (fixed GTC OTO leg, HELD — `stop_never_lowered`) |
+
+**Deployed:** $84,572.81 / $105,550.90 = **80.13%**, inside the 75-85% band; cash $20,978.09 (19.87%). **5 positions** (rule-3 range). Weights: **XLP 20.90% · XLE 20.43% · PSX 15.29% · SLB 13.92% · TMO 9.58%**. **Energy = XLE + PSX + SLB = 49.64% of equity**, up from 41.22%. Protection 5/5 one-for-one, none lowered. Cushions: PSX 4.85% (nearest), TMO 6.82%, XLP 8.24%, XLE 9.49%, SLB 9.59%. `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Bans: Info Tech to 11/13, Industrials to 11/19.
+
+### What Worked
+- **The phase's first realized winner: MPC +$936.52 (+18.18%).** Rule 6's +20% rung tightened it to a 5% trail on 10/13 and the broker sold it at the open 10/20 — the tighten ladder converting paper gain into cash exactly as designed.
+- **The STRATEGY_VERSION config fix landed.** `strategy_version.py` exit 0 on every run all week (env v1, approved v1.3); after eight gated sessions, every mutating routine ran its full path.
+- **Fixed→trailing conversions worked on three legs:** GEV (10/21), XLP (10/22, the three-week-pending one) and SLB (10/23, same day as entry), each gated by `validate_stop_change.py` and never lowered.
+- **Deployment discipline held under the clock.** Two under-band sessions after the MPC/GEV exits, a skipped TMO entry (10/21) because no verified print existed, and the rule-12 mandate executed on session 3 — book closes 80.13% deployed with 5 positions.
+- Risk machinery clean again: `blotter --check` exit 0 and `reconcile_equity.py` RECONCILED every session, coordinator clean all week, no `.env`.
+
+### What Didn't Work
+- **GEV lost -9.76% in three sessions — bought the week before its Q3 print and after a de-rating that last week's review already flagged.** It gapped through the -7% cut between scans; the 10% trail was the only thing that fired. Entering a high-beta single name into a print week at ~18% weight was the sizing choice the review said had to be conscious; the result was the phase's largest single-trade loss and an Industrials ban.
+- **Energy went to 49.64% via the rule-12 mandate — the hand-written pre-commitment broke the first time it was tested.** Last week's review said "do not add to energy under any circumstance, including a mandated rule-12 add"; Friday's mandate bought SLB (Energy, momentum #1) with LLY (Health Care) named only as a fallback. Pre-SLB energy was already 35.55%. SLB is up +5.95% on day one, but the outcome does not change the process failure: an unwritten constraint does not bind a mandated add.
+- **Underperformed the S&P by 1.10pp** on a week when the index fell only 0.47%; the GEV loss alone (-1.78% of equity) is more than the whole gap.
+- **Realized P&L negative again: -$969.23 net**, PF 0.49. The streak of shrinking losses (-7.46% → -4.50% → -2.64%) broke with -9.76%.
+- **TMO entered 10/22 and sits -3.27% with its fixed stop held**; its -7% cut ($647.81) is 3.9% away and it has not traded above the ~$697.61 conversion level since the fill.
+
+### Key Lessons
+- **Earnings-week entries in high-beta single names need a sizing haircut, not just a note.** GEV's -9.76% exit came from a gap the -7% manual cut cannot catch; the trail is the only real floor, and the loss scales with weight.
+- **A pre-commitment written in a review is not a constraint on a mandated routine.** Rule 12 forces *whether*; nothing in the rulebook constrains *which sector*, and the market-open routine correctly followed the RESEARCH-LOG mandate name. This is the fourth week this gap is on the record — it now has a concrete cost: +8.4pp of energy in one trade.
+- **The rule-6 ladder is the system's profit engine.** MPC is the only realized winner in the phase, and it was realized by the 5% rung, not by a decision.
+
+### Adjustments for Next Week
+- **No new energy, and pre-market must name a non-energy mandate candidate first** if any rule-12 clock starts (deployed is 80.13%, so none is running). Energy at 49.64% across three legs; PSX Q3 10/28 is the dated risk, PSX cushion 4.85% is the nearest stop.
+- **Single-name entries in an earnings week: size at ≤ ~10% of equity** (half the GEV weight) unless the print has already passed.
+- TMO: midday watches the -7% cut at $647.81; trail conversion at ≥ ~$697.61. Do not pre-empt the fixed stop.
+- Week slots reset Mon 10/26 (0/3). Bans: Info Tech (11/13), Industrials (11/19). Catalysts: **FOMC 10/27-28**, **PSX Q3 10/28**, LLY Q3 10/29, payrolls 11/06, CPI 11/10.
+
+### Proposed Rule Change (rule 15 — sector/factor exposure cap) — RE-PROPOSED, fourth week, text unchanged
+
+**Not applied.** `memory/TRADING-STRATEGY.md` is hash-pinned (active **v1.3**); the owner applies the change and bumps the version.
+
+**Proposed text (identical to the last three weeks):**
+
+> 15. Sector exposure cap — no more than 35% of equity in any one GICS sector,
+>     counting broad-sector ETFs and single names together (an ETF counts at
+>     100% toward its own sector). Measured at the moment of entry against
+>     post-trade equity: a buy that would take a sector above 35% is rejected
+>     and the next-ranked candidate is taken instead. The cap never forces a
+>     sale — an existing overweight reached by appreciation or by a stop-out
+>     elsewhere is held and decays naturally, but no new position may be added
+>     in an over-cap sector until it is back under 35%. The reason for any
+>     candidate rejected by this cap is logged in that session's pre-market
+>     RESEARCH-LOG entry.
+
+**New evidence from this week:**
+- **The exact failure the proposal predicted happened.** Last week's evidence named the configuration "unwritten constraint + forced add + no mechanism"; on 10/23 the rule-12 mandate bought SLB with energy at 35.55% pre-trade, taking it to **49.64%**. Under rule 15 SLB is rejected and the named fallback (LLY, Health Care) is taken — no other change to the session.
+- **It would not have blocked the mandate, only redirected it**, consistent with rule 14's precedent (constrains WHAT a rule-12 add buys, never WHETHER).
+
+**Would start:** v1.4, on owner approval.
+
+### Overall Grade: C
+
+**-1.56% against an S&P down 0.47% — a -1.10pp relative loss that ends a three-week run of wins.** The week had the phase's first realized winner (MPC +$936.52, +18.18%, delivered by the rule-6 rung) and the STRATEGY_VERSION fix finally held for every run, but it was outweighed by **GEV's -$1,905.75 (-9.76%) three-session loss** in an earnings week and by **energy concentration jumping to 49.64%** when the rule-12 mandate bought SLB against last week's explicit pre-commitment. Every validator was respected, protection stayed 5/5 with nothing lowered, and the book ends in band with five positions — so not lower than C. Not higher, because realized P&L was negative (PF 0.49), the largest loss of the phase came from a sizing choice the review had flagged in advance, and the one structural gap (rule 15) cost real concentration for a fourth week.
+
+---
