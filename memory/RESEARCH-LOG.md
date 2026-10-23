@@ -8743,3 +8743,41 @@ Rule 14 lapsed (GEV, PSX are single names) — no composition waiver needed.
 - XLP +2.7% to ~$89.4 (defensive bid); fixed stop converted to 10% trail at $80.46.
 
 ---
+
+### 2026-10-23 — Pre-Market (Friday, AXP/SLB/ITW BMO day — rule 12 mandate due)
+
+### Account snapshot
+- **Equity $104,727.19** (`last_equity` $104,734.03, -$6.84/-0.01% on premarket marks) · **Cash $34,850.25** · Long MV $69,876.94 · `buying_power` $335,056 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5-6): XLP 21.40% · XLE 20.17% · PSX 15.49% · TMO 9.66%. Week trades **2/3** (1 slot left).
+- Stops 4/4, one-for-one, qty matching: PSX 10% trail $269.442 (hwm $299.38) · TMO fixed $627.85 (HELD) · XLE 10% trail $61.866 (hwm $68.74) · XLP 10% trail $80.991 (hwm $89.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261023T113321Z-809b59`.
+
+### Market context
+- **WTI ~$100.77 (+1.3%) · Brent ~$114.03 (+0.8%)** — crude near 5-month highs; reports of possible renewed US-Israeli strikes on Iran.
+- **ES ~7,657 (-0.08%)** after Thursday's AI-capex selloff (NDX -2.9%, SOX -6.7%). **VIX 19.56 (+2.8%)** from 19.03.
+- No CPI/PPI/FOMC/payrolls today; flash PMIs 09:45, final UMich sentiment/inflation expectations 10:00 (routine data). FOMC 10/27-28, payrolls 11/06, CPI 11/10.
+- BMO: AXP, **SLB (beat: adj EPS $0.64 vs $0.62, rev $9.45B vs $9.29B)**, ITW, INFY, FCNCA, ALV, BAH. HCA is 10/27 (not today).
+- Sector momentum (rule 9): Energy clear leader (+40.4% YTD thru 10/2), Health Care at record highs (10/20). Info Tech **banned** (lifts 11/13), Industrials **banned** (lifts 11/19).
+- Holdings: PSX $284.63 close, TD Cowen PT $308 / BofA $303, Bayway dispute; Q3 10/28. XLE ~$67.81 premarket (+0.4%). XLP ~-0.5% premarket after +3%. TMO ~$674 (-0.4%), no news.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (PSX, TMO are single names) — no composition waiver needed.
+1. **SLB (SLB)** — Energy (momentum #1, streak 0, not banned). Catalyst: Q3 beat this morning, intl +5%/NA +7% seq. Premarket ~$49.85. Entry ~$49.85, **stop $44.87 (9.99%)**, target $59.81 (2:1). `validate_order.py --symbol SLB --qty 278 --side buy --price 49.85 --stop-price 44.87 --trades-this-week 2 --sector "Energy"` → **APPROVED, exit 0**, notional $13,858.30 (≤ target $13,904, ≤ cash). Post-fill ≈80.0% deployed, 5 positions. SLB not yet in `memory/SECTORS.json` — market-open must add it (Energy) before entry.
+2. **Eli Lilly (LLY)** — Health Care (record highs, streak 0). Catalyst: near-record close +2.8% 10/22, $5B Virginia plant; Q3 10/29. Premarket ~$1,295. Stop $1,165.50 (10%), target $1,554 (2:1). `validate_order.py ... --qty 10 --price 1295.00 --stop-price 1165.50 --sector "Health Care"` → APPROVED, exit 0, $12,950. Alternate if SLB fails at the open (diversifies away from Energy; earnings gap risk 10/29).
+3. **HCA** — Health Care; Q3 10/27, negative ESP. Watch only.
+
+### Risk factors
+- Energy concentration: PSX+XLE 35.7% now → ~48.9% with SLB. Crude >$100 on Iran headlines cuts both ways; refiners already selling on peak-margin fears.
+- TMO -3.2% vs fill; -7% cut $647.81 is ~3.9% away. Trail conversion at ≥ ~$697.61.
+- PSX trail cushion ~5.3%. XLP 21.4% / XLE 20.2% over cap on drift only — no trim.
+- Tech/AI-capex selloff could spread; FOMC 10/27-28 with PSX print 10/28.
+
+### Deployment
+- `deployment_status.py` exit **5**: `deployed_pct` **66.72**, band [75, 85], `sessions_under_band` **3**, `mandate` **true**, `exemption_allowed` true, `target_notional` $13,904, `last_eod` 2026-10-22.
+- **Deployment mandate:** BUY **SLB 278 sh** (cost ≈$13,858 ≤ $13,904 at premarket $49.85), catalyst Q3 beat today, **stop $44.87 (10% below)**. Single name passing the Entry Checklist (catalyst ✓, Energy momentum ✓, 10% stop ✓, 2:1 ✓). No deferral: no market-wide risk event scheduled today (PMIs/UMich are routine data).
+
+### Decision
+**TRADE (rule-12 mandate): BUY SLB 278 sh at market-open, 10% stop**, re-validated at a verified live print and resized to ≤ $13,904. Fallback LLY 10 sh if SLB fails validation. Existing book HOLD — no stop changes; all 4 stops active and correct.
+
+---
