@@ -4087,3 +4087,18 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Watch:** Energy concentration ~49% (PSX + XLE + SLB). TMO $665.84, -4.4% vs fill; the -7% cut at $647.81 is ~2.7% away. Week slots used 3/3: no new entries until 10/26. Catalysts: FOMC 10/27-28, PSX Q3 10/28.
 
 ---
+### 2026-10-23 — Midday Scan (Day 129, Friday, AXP/SLB/ITW BMO day — SLB trail converted)
+
+**One broker mutation: SLB fixed stop → 10% trail.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset). Run record `midday-20261023T170437Z-fa4072`. Week of 2026-10-19 trade count: **3/3**.
+
+**STEP 2b:** SLB gate `validate_stop_change.py --current-stop 45.07 --new-stop 47.48 --current-price 52.75` exit 0; `validate_order.py --symbol SLB --qty 277 --side sell --price 52.75 --trail-percent 10` exit 0; `replace_stop.py --order-id e9965acf --trail-percent 10` → **exit 0 `replaced`**, HTTP 200, new order 7e6bd87b (`rs-e9965acf-…`), 10% trail, hwm $52.74, stop $47.466 ≥ old $45.07 (not lowered). HOLD fixed TMO @ $627.85 (627.85→601.52 @ $668.35 exit 3 `stop_never_lowered`). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 5/5, one-for-one:** SLB 10% trail $47.466 (hwm $52.74) · TMO fixed $627.85 · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $62.748 (hwm $69.72) · XLP 10% trail $80.991 (hwm $89.99). `blotter.py --check` exit 0, 5 open lots match positions.
+
+**Rule 7:** no standing condition. Cushions: PSX 5.60% (nearest), TMO 6.06%, XLP 8.23%, XLE 9.60%, SLB 10.0%.
+
+**STEP 3:** no position ≤ -7% (TMO -4.05%, PSX +8.03%, SLB +5.33%, XLE +8.59%, XLP +5.37%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken — SLB +6.5% on its Q3 beat; TMO -1.2% with no company-specific news; XLP -1.9% gives back part of Thursday's +3.3%.
+
+**Deployment:** equity $105,528.32, cash $20,978.09, LMV $84,550.23 → **80.12% deployed**, inside band (`deployment_status.py` mandate false). 5 positions. Energy ~49% (PSX + XLE + SLB).
+
+---
