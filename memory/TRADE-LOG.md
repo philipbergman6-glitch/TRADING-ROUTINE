@@ -4102,3 +4102,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $105,528.32, cash $20,978.09, LMV $84,550.23 → **80.12% deployed**, inside band (`deployment_status.py` mandate false). 5 positions. Energy ~49% (PSX + XLE + SLB).
 
 ---
+### Oct 23 — EOD Snapshot (Day 129, Friday, AXP/SLB/ITW BMO day — SLB entered, trail converted)
+**Portfolio:** $105,550.90 | **Cash:** $20,978.09 (19.87%) | **Day P&L:** +$816.87 (+0.78%) | **Phase P&L:** +$5,550.90 (+5.55%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| PSX | 57 | $264.20 | $283.18 | -0.51% | +$1,081.86 (+7.18%) | $269.442 (10% trail GTC, hwm $299.38) |
+| SLB | 277 | $50.08 | $53.06 | +7.08% | +$825.46 (+5.95%) | $47.97 (10% trail GTC, hwm $53.30) |
+| TMO | 15 | $696.57 | $673.82 | -0.40% | -$341.25 (-3.27%) | $627.85 (fixed GTC OTO leg, HELD) |
+| XLE | 311 | $63.9218 | $69.33 | +2.60% | +$1,681.96 (+8.46%) | $62.748 (10% trail GTC, hwm $69.72) |
+| XLP | 250 | $83.76 | $88.26 | -1.92% | +$1,125.00 (+5.37%) | $80.991 (10% trail GTC, hwm $89.99) |
+
+**Trades today:** BUY SLB 277 @ $50.08 (13:36 UTC, rule-12 mandate). **Week trades: 3/3** (GEV 10/19, TMO 10/22, SLB 10/23). Blotter and TRADE-LOG agree.
+
+**Notes:** Good recovery day: the mandated SLB add jumped +6% on its Q3 beat and XLE added +2.6%, outweighing XLP giving back 1.9% of Thursday's pop; TMO and PSX drifted slightly lower. Day P&L is against the broker's 10/22 close of $104,734.03 (reconciled; the 10/22 snapshot read $104,734.41). Deployment back inside band at 80.13% (`deployment_status.py` mandate false), 5 positions. Energy ~49% (PSX + XLE + SLB). Protection 5/5 one-for-one; SLB trail ratcheted to $47.97; no broker mutation by this routine. Cushions: PSX 4.85% (nearest), TMO 6.82%, XLP 8.24%, XLE 9.49%, SLB 9.59%. blotter --check exit 0, reconcile RECONCILED exit 0 (131 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261023T200957Z-6f0779.
+
+**Tomorrow:** weekend; week slots reset Mon 10/26. TMO -7% cut at $647.81 (~3.9% away); trail conversion at ≥ ~$697.61. Catalysts: FOMC 10/27-28, PSX Q3 10/28.
+
+---
