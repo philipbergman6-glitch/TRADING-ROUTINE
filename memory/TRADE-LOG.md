@@ -4064,3 +4064,26 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** this EOD is session 3 under band → rule 12 mandates an add at market-open (not Industrials or Info Tech, both banned; 1 week slot left). TMO trail conversion at ≥ ~$697.61. Catalysts: GEV gone; FOMC 10/27-28, PSX Q3 10/28.
 
 ---
+## 2026-10-23 — Market-Open Trades (Day 129, Friday, AXP/SLB/ITW BMO day — rule 12 mandate)
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-10-23 | SLB | BUY | 277 | $50.08 | $45.07 fixed GTC (OTO leg e9965acf, 10.0% below fill) — HELD, trail conversion refused `stop_never_lowered` | Rule-12 mandated leadership add (session 3 under band). Catalyst: Q3 beat this morning (adj EPS $0.64 vs $0.62, rev $9.45B vs $9.29B). Sector: Energy (momentum #1, streak 0, not banned). Single name; rule 14 already lapsed | $60.10 (2:1) | 2:1 |
+
+**Week of 2026-10-19 trade count: 3/3**
+
+**Notes:** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset — `ledger_order_id` null, `record_broker_response` no-op). Run record `market-open-20261023T133401Z-a490d8`.
+
+**Mandated.** `deployment_status.py` exit 5 (`deployed_pct` 66.74, `sessions_under_band` 3, `mandate` true, `target_notional` $13,894). Deployment mandate name from RESEARCH-LOG: SLB; no deferral (no market-wide risk event). Rule 10: `blotter.py --sector-streaks` exit 0, Energy `banned: false`, streak 0. SLB added to `memory/SECTORS.json` (Energy).
+
+**Execution.** The IEX quote flickered wide (bid $48.73), so I polled until it was steady: at 13:36:21 UTC bid $50.03 / ask $50.08, spread 0.10%. Size floor($13,894 / $50.08) = 277. `validate_order.py --symbol SLB --qty 277 --side buy --price 50.08 --stop-price 45.07 --sector "Energy"` → **exit 0**, notional $13,872.16. `submit_entry.py` → **exit 0 `submitted`**, HTTP 200, intent/client id `en-20261023-SLB`, parent `7ed83231`. **STEP-4 gate met: filled_qty 277 == qty 277, avg $50.08** (13:36:54 UTC); leg `e9965acf` FixedStop (`type=stop`, trail null, $45.07, GTC).
+
+**STEP 5 — conversion refused, fixed leg HELD (rule 4 permitted protection).** `validate_order.py ... --side sell --price 50.05 --trail-percent 10` exit 0; `replace_stop.py --order-id e9965acf --trail-percent 10` → **exit 3 `refused`**: "stop_never_lowered: 45.07 -> 45.0135". The old stop is untouched. The entry intent was recovered to `filled`. It converts the first session a 10% trail sits at or above $45.07, i.e. SLB ≥ ~$50.08.
+
+**STEP 2b:** one pre-existing fixed leg, TMO $627.85. Gate `validate_stop_change.py --current-stop 627.85 --new-stop 599.26 --current-price 665.84` exit 3 `stop_never_lowered` → **HOLD fixed TMO @ $627.85**. **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, coverage ok, 4/4 before the buy.
+
+**Post-trade state.** Equity $104,684.90, cash $20,978.09, LMV $83,706.81 → **deployed 79.96%, inside the 75-85% band**. **5 positions** (rule-3 range). `protection_monitor.py --dry-run` exit 0, **5/5 covered one-for-one**, holds SLB + TMO (both fixed, both `stop_never_lowered`). Stops: SLB fixed $45.07 · TMO fixed $627.85 · PSX 10% trail $269.442 (hwm $299.38) · XLE 10% trail $61.866 (hwm $68.74) · XLP 10% trail $80.991 (hwm $89.99). None lowered. Trade email sent (`delivery=unverified`, restricted key — not a failure).
+
+**Watch:** Energy concentration ~49% (PSX + XLE + SLB). TMO $665.84, -4.4% vs fill; the -7% cut at $647.81 is ~2.7% away. Week slots used 3/3: no new entries until 10/26. Catalysts: FOMC 10/27-28, PSX Q3 10/28.
+
+---
