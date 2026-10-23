@@ -2040,7 +2040,7 @@
     "pre-market-20261018T072401Z-c78172"
    ],
    "trade_log": [],
-   "week": null
+   "week": "2026-10-23"
   },
   "2026-10-19": {
    "fills": [
@@ -2071,7 +2071,7 @@
     "trade/2026-10-19/midday-scan/1",
     "trade/2026-10-19/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-23"
   },
   "2026-10-20": {
    "fills": [
@@ -2100,7 +2100,7 @@
     "trade/2026-10-20/midday-scan/1",
     "trade/2026-10-20/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-23"
   },
   "2026-10-21": {
    "fills": [],
@@ -2123,7 +2123,7 @@
     "trade/2026-10-21/midday-scan/1",
     "trade/2026-10-21/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-23"
   },
   "2026-10-22": {
    "fills": [
@@ -2163,7 +2163,7 @@
     "trade/2026-10-22/midday-scan/1",
     "trade/2026-10-22/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-23"
   },
   "2026-10-23": {
    "fills": [
@@ -2184,7 +2184,7 @@
     "trade/2026-10-23/midday-scan/1",
     "trade/2026-10-23/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-23"
   }
  },
  "entries": {
@@ -7385,7 +7385,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Sunday, markets closed — prep for Mon 10/19)",
-   "week": null
+   "week": "2026-10-23"
   },
   "research/2026-10-19/pre-market-research/1": {
    "date": "2026-10-19",
@@ -7408,7 +7408,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Monday, NAHB day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "research/2026-10-20/pre-market-research/1": {
    "date": "2026-10-20",
@@ -7433,7 +7433,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Tuesday, housing starts day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "research/2026-10-21/pre-market-research/1": {
    "date": "2026-10-21",
@@ -7456,7 +7456,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Wednesday, TSLA/META AMC day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "research/2026-10-22/addendum/1": {
    "date": "2026-10-22",
@@ -7476,7 +7476,7 @@
     "XLP"
    ],
    "title": "Midday Addendum",
-   "week": null
+   "week": "2026-10-23"
   },
   "research/2026-10-22/pre-market-research/1": {
    "date": "2026-10-22",
@@ -7499,7 +7499,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Thursday, PG/LMT/HON/UNP/VLO BMO day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "research/2026-10-23/pre-market-research/1": {
    "date": "2026-10-23",
@@ -7522,7 +7522,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Friday, AXP/SLB/ITW BMO day — rule 12 mandate due)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
@@ -11748,7 +11748,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 125, Monday, NAHB day — GEV entered)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-19/market-open-trades/1": {
    "date": "2026-10-19",
@@ -11767,7 +11767,7 @@
     "XLP"
    ],
    "title": "Market-Open Trades (Day 125, Monday, NAHB day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-19/midday-scan/1": {
    "date": "2026-10-19",
@@ -11785,7 +11785,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 125, Monday, NAHB day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-20/eod-snapshot/1": {
    "date": "2026-10-20",
@@ -11803,7 +11803,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 126, Tuesday, housing starts day — MPC stopped out)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-20/market-open-trades/1": {
    "date": "2026-10-20",
@@ -11821,7 +11821,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 126, Tuesday, housing starts day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-20/midday-scan/1": {
    "date": "2026-10-20",
@@ -11839,7 +11839,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 126, Tuesday, housing starts day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-21/eod-snapshot/1": {
    "date": "2026-10-21",
@@ -11857,7 +11857,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 127, Wednesday, TSLA/META AMC day — GEV trail converted)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-21/market-open-trades/1": {
    "date": "2026-10-21",
@@ -11875,7 +11875,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 127, Wednesday, TSLA/META AMC day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-21/midday-scan/1": {
    "date": "2026-10-21",
@@ -11893,7 +11893,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 127, Wednesday, TSLA/META AMC day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-22/eod-snapshot/1": {
    "date": "2026-10-22",
@@ -11911,7 +11911,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day — TMO entered, GEV stopped out)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-22/market-open-trades/1": {
    "date": "2026-10-22",
@@ -11929,7 +11929,7 @@
     "XLP"
    ],
    "title": "Market-Open Trades (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-22/midday-scan/1": {
    "date": "2026-10-22",
@@ -11947,7 +11947,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day — GEV stopped out, XLP trail converted)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-23/eod-snapshot/1": {
    "date": "2026-10-23",
@@ -11966,7 +11966,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 129, Friday, AXP/SLB/ITW BMO day — SLB entered, trail converted)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-23/market-open-trades/1": {
    "date": "2026-10-23",
@@ -11984,7 +11984,7 @@
     "XLP"
    ],
    "title": "Market-Open Trades (Day 129, Friday, AXP/SLB/ITW BMO day — rule 12 mandate)",
-   "week": null
+   "week": "2026-10-23"
   },
   "trade/2026-10-23/midday-scan/1": {
    "date": "2026-10-23",
@@ -12002,7 +12002,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 129, Friday, AXP/SLB/ITW BMO day — SLB trail converted)",
-   "week": null
+   "week": "2026-10-23"
   }
  },
  "generated_from": {
@@ -12023,7 +12023,7 @@
     "eod_snapshots": 124
    },
    "memory/WEEKLY-REVIEW.md": {
-    "weeks": 25
+    "weeks": 26
    },
    "state/events.jsonl": {
     "intents": 9,
@@ -14039,7 +14039,8 @@
    ],
    "weeks": [
     "2026-10-09",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-10-23"
    ]
   },
   "GOOGL": {
@@ -14395,7 +14396,8 @@
    "weeks": [
     "2026-10-02",
     "2026-10-09",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-10-23"
    ]
   },
   "MSFT": {
@@ -15267,7 +15269,8 @@
    "weeks": [
     "2026-10-02",
     "2026-10-09",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-10-23"
    ]
   },
   "SLB": {
@@ -15304,7 +15307,9 @@
     "trade/2026-10-23/midday-scan/1",
     "trade/2026-10-23/eod-snapshot/1"
    ],
-   "weeks": []
+   "weeks": [
+    "2026-10-23"
+   ]
   },
   "TMO": {
    "decisions": [
@@ -15359,7 +15364,9 @@
     "trade/2026-10-23/midday-scan/1",
     "trade/2026-10-23/eod-snapshot/1"
    ],
-   "weeks": []
+   "weeks": [
+    "2026-10-23"
+   ]
   },
   "WMT": {
    "decisions": [
@@ -16017,7 +16024,8 @@
     "2026-09-25",
     "2026-10-02",
     "2026-10-09",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-10-23"
    ]
   },
   "XLF": {
@@ -17122,7 +17130,8 @@
     "2026-09-25",
     "2026-10-02",
     "2026-10-09",
-    "2026-10-16"
+    "2026-10-16",
+    "2026-10-23"
    ]
   },
   "XOM": {
@@ -17877,6 +17886,31 @@
     "XLE",
     "XLI",
     "XLK",
+    "XLP"
+   ]
+  },
+  "2026-10-23": {
+   "closed_trades": [
+    "GEV",
+    "MPC"
+   ],
+   "ending": "2026-10-23",
+   "grade": "C",
+   "line": 1702,
+   "open_positions": [
+    "PSX",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "symbols": [
+    "GEV",
+    "MPC",
+    "PSX",
+    "SLB",
+    "TMO",
+    "XLE",
     "XLP"
    ]
   }
