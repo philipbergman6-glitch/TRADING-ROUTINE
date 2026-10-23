@@ -2161,7 +2161,9 @@
     "research/2026-10-23/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-10-23/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -5347,6 +5349,7 @@
    "note": "Friday, Day 63",
    "symbols": [
     "GOOGL",
+    "SLB",
     "XLB",
     "XLE",
     "XLI",
@@ -7480,7 +7483,9 @@
   },
   "research/2026-10-23/pre-market-research/1": {
    "date": "2026-10-23",
-   "decision": [],
+   "decision": [
+    "SLB"
+   ],
    "decision_text": "**TRADE (rule-12 mandate): BUY SLB 278 sh at market-open, 10% stop**, re-validated at a verified live print and resized to ≤ $13,904. Fallback LLY 10 sh if SLB fails validation. Existing book HOLD — no stop changes; all 4 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-10-23/pre-market-research/1",
@@ -7491,6 +7496,7 @@
    "note": "Friday, AXP/SLB/ITW BMO day — rule 12 mandate due",
    "symbols": [
     "PSX",
+    "SLB",
     "TMO",
     "XLE",
     "XLP"
@@ -11922,6 +11928,24 @@
    ],
    "title": "Midday Scan (Day 128, Thursday, PG/LMT/HON/UNP/VLO BMO day — GEV stopped out, XLP trail converted)",
    "week": null
+  },
+  "trade/2026-10-23/market-open-trades/1": {
+   "date": "2026-10-23",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-23/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4067,
+   "log": "trade",
+   "note": "Day 129, Friday, AXP/SLB/ITW BMO day — rule 12 mandate",
+   "symbols": [
+    "PSX",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Market-Open Trades (Day 129, Friday, AXP/SLB/ITW BMO day — rule 12 mandate)",
+   "week": null
   }
  },
  "generated_from": {
@@ -11938,7 +11962,7 @@
     "entries": 205
    },
    "memory/TRADE-LOG.md": {
-    "entries": 261,
+    "entries": 262,
     "eod_snapshots": 123
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -14909,13 +14933,38 @@
     "trade/2026-10-21/eod-snapshot/1",
     "trade/2026-10-22/market-open-trades/1",
     "trade/2026-10-22/midday-scan/1",
-    "trade/2026-10-22/eod-snapshot/1"
+    "trade/2026-10-22/eod-snapshot/1",
+    "trade/2026-10-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-02",
     "2026-10-09",
     "2026-10-16"
    ]
+  },
+  "SLB": {
+   "decisions": [
+    "research/2026-10-23/pre-market-research/1"
+   ],
+   "ideas": [],
+   "intents": [],
+   "last_decision": {
+    "date": "2026-10-23",
+    "entry": "research/2026-10-23/pre-market-research/1",
+    "text": "**TRADE (rule-12 mandate): BUY SLB 278 sh at market-open, 10% stop**, re-validated at a verified live print and resized to ≤ $13,904. Fallback LLY 10 sh if SLB fails validation. Existing book HOLD — no stop changes; all 4 stops active and correct. ---"
+   },
+   "open_lots": [],
+   "research": [
+    "research/2026-07-24/pre-market-research/1",
+    "research/2026-10-23/pre-market-research/1"
+   ],
+   "round_trips": [],
+   "runs": [],
+   "sector": "Energy",
+   "trade_log": [
+    "trade/2026-10-23/market-open-trades/1"
+   ],
+   "weeks": []
   },
   "TMO": {
    "decisions": [
@@ -14958,7 +15007,8 @@
     "trade/2026-10-21/eod-snapshot/1",
     "trade/2026-10-22/market-open-trades/1",
     "trade/2026-10-22/midday-scan/1",
-    "trade/2026-10-22/eod-snapshot/1"
+    "trade/2026-10-22/eod-snapshot/1",
+    "trade/2026-10-23/market-open-trades/1"
    ],
    "weeks": []
   },
@@ -15604,7 +15654,8 @@
     "trade/2026-10-21/eod-snapshot/1",
     "trade/2026-10-22/market-open-trades/1",
     "trade/2026-10-22/midday-scan/1",
-    "trade/2026-10-22/eod-snapshot/1"
+    "trade/2026-10-22/eod-snapshot/1",
+    "trade/2026-10-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -16696,7 +16747,8 @@
     "trade/2026-10-21/eod-snapshot/1",
     "trade/2026-10-22/market-open-trades/1",
     "trade/2026-10-22/midday-scan/1",
-    "trade/2026-10-22/eod-snapshot/1"
+    "trade/2026-10-22/eod-snapshot/1",
+    "trade/2026-10-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
