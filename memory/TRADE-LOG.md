@@ -4120,3 +4120,12 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** weekend; week slots reset Mon 10/26. TMO -7% cut at $647.81 (~3.9% away); trail conversion at ≥ ~$697.61. Catalysts: FOMC 10/27-28, PSX Q3 10/28.
 
 ---
+### 2026-10-26 — Market-Open (Day 130, Monday, VZ BMO day — FOMC week)
+
+**No trades.** Research plan HOLD (in band, 5 positions, FOMC Wed + mega-cap earnings; LLY watch-listed for post-10/29 entry). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261026T134151Z-64f2b4`. Week of 2026-10-26 trade count: **0/3**.
+
+**STEP 2b:** one fixed leg, TMO $627.85. Gate `validate_stop_change.py --current-stop 627.85 --new-stop 609.58 --current-price 677.31` exit 3 `stop_never_lowered` → **HOLD fixed TMO @ $627.85**. **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, coverage ok, **5/5 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 (`deployed_pct` 80.13, `sessions_under_band` 0, mandate false).
+
+**Live state (13:42 UTC):** equity $105,526.55, cash $20,978.08, LMV $84,548.47 → **80.12% deployed**, inside band. Stops: PSX 10% trail $269.442 (hwm $299.38) · SLB 10% trail $47.97 (hwm $53.30) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.748 (hwm $69.72) · XLP 10% trail $80.991 (hwm $89.99). None lowered; no broker mutation. Cushions: PSX 6.52%, TMO 7.30%, SLB 7.43%, XLP 8.31%, XLE 9.33%. TMO -2.77% vs fill (-7% cut $647.81).
+
+---
