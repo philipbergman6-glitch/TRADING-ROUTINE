@@ -4129,3 +4129,18 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:42 UTC):** equity $105,526.55, cash $20,978.08, LMV $84,548.47 → **80.12% deployed**, inside band. Stops: PSX 10% trail $269.442 (hwm $299.38) · SLB 10% trail $47.97 (hwm $53.30) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.748 (hwm $69.72) · XLP 10% trail $80.991 (hwm $89.99). None lowered; no broker mutation. Cushions: PSX 6.52%, TMO 7.30%, SLB 7.43%, XLP 8.31%, XLE 9.33%. TMO -2.77% vs fill (-7% cut $647.81).
 
 ---
+### 2026-10-26 — Midday Scan (Day 130, Monday, VZ BMO day — FOMC week)
+
+**No broker mutation.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261026T170551Z-7c4527`. Week of 2026-10-26 trade count: **0/3**.
+
+**STEP 2b:** HOLD fixed TMO @ $627.85 (`validate_stop_change.py --current-stop 627.85 --new-stop 609.59 --current-price 677.32` exit 3 `stop_never_lowered`). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 5/5, one-for-one:** PSX 10% trail $269.442 (hwm $299.38) · SLB 10% trail $47.97 (hwm $53.30) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). `blotter.py --check` exit 0, 5 open lots match positions.
+
+**Rule 7:** no standing condition. Cushions: PSX 6.88%, TMO 7.30%, XLP 7.89%, SLB 8.76%, XLE 9.57%.
+
+**STEP 3:** no position ≤ -7% (TMO -2.76%, PSX +9.51%, XLE +8.77%, SLB +4.98%, XLP +4.98%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken — PSX +2.2% ahead of 10/28 Q3; SLB -0.9%, XLP -0.4%, TMO +0.5%, XLE +0.3% on no company-specific news.
+
+**Deployment:** equity $105,791.81, cash $20,978.08, LMV $84,813.73 → **80.17% deployed**, inside band. 5 positions. Energy ~50% (PSX + XLE + SLB).
+
+---
