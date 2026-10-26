@@ -2193,7 +2193,9 @@
     "research/2026-10-26/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-10-26/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -12036,6 +12038,24 @@
    ],
    "title": "Midday Scan (Day 129, Friday, AXP/SLB/ITW BMO day — SLB trail converted)",
    "week": "2026-10-23"
+  },
+  "trade/2026-10-26/market-open-trades/1": {
+   "date": "2026-10-26",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-26/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4123,
+   "log": "trade",
+   "note": "Day 130, Monday, VZ BMO day — FOMC week",
+   "symbols": [
+    "PSX",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Market-Open (Day 130, Monday, VZ BMO day — FOMC week)",
+   "week": null
   }
  },
  "generated_from": {
@@ -12052,7 +12072,7 @@
     "entries": 206
    },
    "memory/TRADE-LOG.md": {
-    "entries": 264,
+    "entries": 265,
     "eod_snapshots": 124
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -15300,7 +15320,8 @@
     "trade/2026-10-22/eod-snapshot/1",
     "trade/2026-10-23/market-open-trades/1",
     "trade/2026-10-23/midday-scan/1",
-    "trade/2026-10-23/eod-snapshot/1"
+    "trade/2026-10-23/eod-snapshot/1",
+    "trade/2026-10-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-02",
@@ -15342,7 +15363,8 @@
    "trade_log": [
     "trade/2026-10-23/market-open-trades/1",
     "trade/2026-10-23/midday-scan/1",
-    "trade/2026-10-23/eod-snapshot/1"
+    "trade/2026-10-23/eod-snapshot/1",
+    "trade/2026-10-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23"
@@ -15400,7 +15422,8 @@
     "trade/2026-10-22/eod-snapshot/1",
     "trade/2026-10-23/market-open-trades/1",
     "trade/2026-10-23/midday-scan/1",
-    "trade/2026-10-23/eod-snapshot/1"
+    "trade/2026-10-23/eod-snapshot/1",
+    "trade/2026-10-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23"
@@ -16052,7 +16075,8 @@
     "trade/2026-10-22/eod-snapshot/1",
     "trade/2026-10-23/market-open-trades/1",
     "trade/2026-10-23/midday-scan/1",
-    "trade/2026-10-23/eod-snapshot/1"
+    "trade/2026-10-23/eod-snapshot/1",
+    "trade/2026-10-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -17152,7 +17176,8 @@
     "trade/2026-10-22/eod-snapshot/1",
     "trade/2026-10-23/market-open-trades/1",
     "trade/2026-10-23/midday-scan/1",
-    "trade/2026-10-23/eod-snapshot/1"
+    "trade/2026-10-23/eod-snapshot/1",
+    "trade/2026-10-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
