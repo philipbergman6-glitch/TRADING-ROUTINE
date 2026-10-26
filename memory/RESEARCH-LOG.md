@@ -8781,3 +8781,40 @@ Rule 14 lapsed (PSX, TMO are single names) — no composition waiver needed.
 **TRADE (rule-12 mandate): BUY SLB 278 sh at market-open, 10% stop**, re-validated at a verified live print and resized to ≤ $13,904. Fallback LLY 10 sh if SLB fails validation. Existing book HOLD — no stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-10-26 — Pre-Market (Monday, VZ BMO day — FOMC week)
+
+### Account snapshot
+- **Equity $104,832.90** (`last_equity` $105,550.89, -$717.99/-0.68% on premarket marks) · **Cash $20,978.08** · Long MV $83,854.82 · `buying_power` $318,706 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions** (rule-3 range): XLP 21.10% · XLE 20.29% · PSX 15.17% · SLB 13.75% · TMO 9.68%. Week trades **0/3** (reset).
+- Stops 5/5, one-for-one, qty matching: PSX 10% trail $269.442 (hwm $299.38) · SLB 10% trail $47.97 (hwm $53.30) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.748 (hwm $69.72) · XLP 10% trail $80.991 (hwm $89.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261026T113316Z-1390b0`.
+
+### Market context
+- **WTI ~$101.8 · Brent ~$110.5** — crude easing on reports of Qatari mediation in US-Iran tensions.
+- **ES ~7,684 (+0.32%)**, Dow futs +0.5%, NDX +0.2%. **VIX 19.45** (Fri close, +2.2%).
+- No CPI/PPI/payrolls today; Dallas Fed mfg 10:30 (routine). **FOMC decision Wed 10/28**; ECB Thu, BoJ Fri; payrolls 11/06.
+- BMO: **VZ** (cons EPS $1.27, rev $34.77B), CX, KNSA. AMC: WELL, CDNS, NUE, PSA, HIG. GOOGL/MSFT Wed, AMZN Thu — AI-capex test after last week's tech selloff.
+- Sector YTD (rule 9, thru 10/16): Energy +54.7%, Info Tech +22.7% (**banned**, lifts 11/13), Health Care +15.8%, Staples +15.6%, Materials +11.6%; Industrials **banned** (lifts 11/19).
+- Holdings: PSX DOE SPR exchange (400k bbl) for Lake Charles, no op impact expected; Bayway lockout ongoing; dividend raised to $1.33; Q3 10/28. SLB/TMO/XLE/XLP: no fresh news.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (PSX, SLB, TMO are single names) — no composition waiver needed.
+1. **Eli Lilly (LLY)** — Health Care (#3 YTD, streak 0). Catalyst: ESMO oncology data (olomorasib+Keytruda 62% ORR), $5B Virginia plant; Q3 10/29. Premarket ~$1,282.41. Sized to band cap: 4 sh, **stop $1,154.17 (10%)**, target $1,538.89 (2:1). `validate_order.py --symbol LLY --qty 4 --side buy --price 1282.41 --stop-price 1154.17 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $5,129.64. Post-fill ≈84.9%. Prefer entry AFTER 10/29 print (gap risk). LLY not in `memory/SECTORS.json`.
+2. **Verizon (VZ)** — Comm Services (streak 1, weak YTD). Q3 BMO today; watch reaction only.
+3. **Nucor (NUE)** — Materials (+11.6% YTD); Q3 AMC today. Watch for Tue entry on a beat.
+
+### Risk factors
+- **PSX ~$279 premarket, trail cushion 3.4%** to $269.442 — near rule-7 3% zone; Q3 10/28.
+- Energy concentration ~49% (PSX+XLE+SLB); crude easing on Iran de-escalation headlines is the main threat.
+- TMO -2.9% vs fill; -7% cut $647.81 ~4.3% away; trail conversion at ≥ ~$697.61.
+- XLP 21.1% / XLE 20.3% over cap on drift only — no trim. FOMC Wed + mega-cap earnings Wed/Thu.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **79.99**, band [75, 85], `sessions_under_band` **0**, `mandate` false, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-10-23. No mandate.
+
+### Decision
+**HOLD.** In band (80%), 5 positions, FOMC + key earnings this week; LLY watch-listed for post-10/29 entry. No stop changes; all 5 stops active and correct.
+
+---
