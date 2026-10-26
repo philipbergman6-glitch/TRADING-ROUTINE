@@ -4144,3 +4144,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $105,791.81, cash $20,978.08, LMV $84,813.73 → **80.17% deployed**, inside band. 5 positions. Energy ~50% (PSX + XLE + SLB).
 
 ---
+### Oct 26 — EOD Snapshot (Day 130, Monday, VZ BMO day — FOMC week)
+**Portfolio:** $106,067.08 | **Cash:** $20,978.08 (19.78%) | **Day P&L:** +$516.19 (+0.49%) | **Phase P&L:** +$6,067.08 (+6.07%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| PSX | 57 | $264.20 | $288.85 | +2.00% | +$1,405.05 (+9.33%) | $269.442 (10% trail GTC, hwm $299.38) |
+| SLB | 277 | $50.08 | $53.08 | +0.04% | +$831.00 (+5.99%) | $47.97 (10% trail GTC, hwm $53.30) |
+| TMO | 15 | $696.57 | $684.89 | +1.64% | -$175.20 (-1.68%) | $627.85 (fixed GTC OTO leg, HELD) |
+| XLE | 311 | $63.9218 | $69.64 | +0.45% | +$1,778.37 (+8.95%) | $62.874 (10% trail GTC, hwm $69.86) |
+| XLP | 250 | $83.76 | $87.96 | -0.34% | +$1,050.00 (+5.01%) | $80.991 (10% trail GTC, hwm $89.99) |
+
+**Trades today:** none. **Week trades: 0/3** (week of 10/26). Blotter and TRADE-LOG agree.
+
+**Notes:** Quiet up day ahead of FOMC: PSX +2.0% into its 10/28 Q3 print and TMO +1.6% did the lifting, XLE edged up, XLP slipped. Day P&L is against the broker's 10/23 close of $105,550.89 (reconciled; the 10/23 snapshot read $105,550.90). New phase high at +6.07%. Deployment 80.22%, inside band, 5 positions; energy ~50% (PSX + XLE + SLB). Protection 5/5 one-for-one; XLE trail ratcheted to $62.874; no broker mutation by this routine. Cushions: PSX 6.72% (nearest), XLP 7.92%, TMO 8.33%, SLB 9.63%, XLE 9.72%. blotter --check exit 0, reconcile RECONCILED exit 0 (132 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261026T201025Z-30ee8d.
+
+**Tomorrow:** HOLD into FOMC 10/27-28; PSX Q3 10/28; LLY watch-listed post-10/29. TMO -7% cut at $647.81 (~5.4% away); trail conversion at ≥ ~$697.61.
+
+---
