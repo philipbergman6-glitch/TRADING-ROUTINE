@@ -2185,6 +2185,16 @@
     "trade/2026-10-23/eod-snapshot/1"
    ],
    "week": "2026-10-23"
+  },
+  "2026-10-26": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-10-26/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -7524,6 +7534,29 @@
    "title": "Pre-Market (Friday, AXP/SLB/ITW BMO day — rule 12 mandate due)",
    "week": "2026-10-23"
   },
+  "research/2026-10-26/pre-market-research/1": {
+   "date": "2026-10-26",
+   "decision": [],
+   "decision_text": "**HOLD.** In band (80%), 5 positions, FOMC + key earnings this week; LLY watch-listed for post-10/29 entry. No stop changes; all 5 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-10-26/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 8785,
+   "log": "research",
+   "note": "Monday, VZ BMO day — FOMC week",
+   "symbols": [
+    "GOOGL",
+    "MSFT",
+    "PSX",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Pre-Market (Monday, VZ BMO day — FOMC week)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -12016,7 +12049,7 @@
     "round_trips": 19
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 205
+    "entries": 206
    },
    "memory/TRADE-LOG.md": {
     "entries": 264,
@@ -14156,7 +14189,8 @@
     "research/2026-07-24/pre-market-research/1",
     "research/2026-08-06/pre-market-research/1",
     "research/2026-08-07/pre-market-research/1",
-    "research/2026-08-10/pre-market-research/1"
+    "research/2026-08-10/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -14449,7 +14483,8 @@
     "research/2026-07-29/pre-market-research/1",
     "research/2026-07-30/pre-market-research/1",
     "research/2026-10-07/pre-market-research/1",
-    "research/2026-10-08/pre-market-research/1"
+    "research/2026-10-08/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -15221,7 +15256,8 @@
     "research/2026-10-21/pre-market-research/1",
     "research/2026-10-22/pre-market-research/1",
     "research/2026-10-22/addendum/1",
-    "research/2026-10-23/pre-market-research/1"
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -15297,7 +15333,8 @@
    ],
    "research": [
     "research/2026-07-24/pre-market-research/1",
-    "research/2026-10-23/pre-market-research/1"
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -15342,7 +15379,8 @@
     "research/2026-10-21/pre-market-research/1",
     "research/2026-10-22/pre-market-research/1",
     "research/2026-10-22/addendum/1",
-    "research/2026-10-23/pre-market-research/1"
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -15942,7 +15980,8 @@
     "research/2026-10-20/pre-market-research/1",
     "research/2026-10-21/pre-market-research/1",
     "research/2026-10-22/pre-market-research/1",
-    "research/2026-10-23/pre-market-research/1"
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -16911,7 +16950,8 @@
     "research/2026-10-21/pre-market-research/1",
     "research/2026-10-22/pre-market-research/1",
     "research/2026-10-22/addendum/1",
-    "research/2026-10-23/pre-market-research/1"
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
