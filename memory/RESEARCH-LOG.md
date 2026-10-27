@@ -8855,3 +8855,9 @@ Rule 14 lapsed (PSX, SLB, TMO are single names) — no composition waiver needed
 **HOLD.** In band (80%), 5 positions, FOMC decision tomorrow; HCA/LLY watch-listed (LLY post-10/29). No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-10-27 — Midday addendum
+- **PSX -6.8% intraday (~$269), trailing stop filled 15:27 UTC @ $269.18.** Refiners (MPC, PBF, PSX) down ~4–7% ahead of PSX Q3 Wed BMO: profit-taking after a long run plus expectations of easing fuel tightness/refining margins. Crude lower on Middle East diplomatic progress reducing the risk premium (Perplexity; marketbeat, quiverquant). XLE -2.0%, SLB +1.0%.
+- Book now 4 positions, ~65% deployed — below band; re-deployment candidates HCA (Q3 beat today), LLY (post-10/29).
+
+---

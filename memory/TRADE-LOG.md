@@ -4171,3 +4171,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:37 UTC):** equity $105,760.81, cash $20,978.08, LMV $84,782.73 → **80.16% deployed**, inside band. Stops: PSX 10% trail $269.442 (hwm $299.38) · SLB 10% trail $48.267 (hwm $53.63) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). None lowered; no broker mutation. Cushions: PSX 5.79%, XLP 7.27%, TMO 7.83%, XLE 9.53%, SLB 9.74%. TMO -2.21% vs fill (-7% cut $647.81).
 
 ---
+
+### 2026-10-27 — Midday Scan (Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1)
+
+**PSX stopped out; no broker mutation by this routine.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261027T170622Z-946f23`. Week of 2026-10-26 trade count: **0/3** (stop-out is not a new trade).
+
+**EXIT PSX (trailing stop):** 10% trail order 8036d669 (`rs-acf7902f-…`, stop $269.442, hwm $299.38) filled 15:27 UTC, SELL 57 @ $269.18 avg. Realized **+$283.86 (+1.88%)** per `blotter.py --markdown` (entry 10/02 @ $264.20). Cause: refiners sold off ~5–7% into PSX Q3 (Wed BMO) on profit-taking and easing margin expectations; crude lower on Middle East de-escalation (Perplexity). Sector streak unaffected (closed at a gain).
+
+**STEP 2b:** HOLD fixed TMO @ $627.85 (`validate_stop_change.py --current-stop 627.85 --new-stop 626.03 --current-price 695.585` exit 3 `stop_never_lowered`). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 4/4, one-for-one:** SLB 10% trail $48.735 (hwm $54.15) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Rule 7:** no standing condition. Cushions: XLP 7.03% (nearest), XLE 7.92%, SLB 9.12%, TMO 9.74%.
+
+**STEP 3:** no position ≤ -7% (TMO -0.14%, SLB +7.08%, XLE +6.82%, XLP +4.01%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken — XLE -2.0% on crude de-escalation selling (named risk, stop 7.9% away); SLB +1.0%, TMO +1.6% (trail conversion at ≥ ~$697.61, ~0.3% away), XLP -1.0%.
+
+**Deployment:** equity $104,619.55, cash $36,321.34, LMV $68,298.21 → **65.28% deployed**, BELOW band after the PSX exit. 4 positions (below rule-3 range of 5–6). Rule-12 streak counts from EOD snapshots; pre-market/market-open to plan re-deployment (HCA/LLY watch-listed).
+
+---
