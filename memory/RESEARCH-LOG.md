@@ -8818,3 +8818,40 @@ Rule 14 lapsed (PSX, SLB, TMO are single names) — no composition waiver needed
 **HOLD.** In band (80%), 5 positions, FOMC + key earnings this week; LLY watch-listed for post-10/29 entry. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-10-27 — Pre-Market (Tuesday, KO/BA/HCA BMO day — FOMC day 1)
+
+### Account snapshot
+- **Equity $105,735.15** (`last_equity` $106,067.08, -$331.93/-0.31% on premarket marks) · **Cash $20,978.08** · Long MV $84,757.07 · `buying_power` $321,232 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions** (rule-3 range): XLP 20.76% · XLE 20.37% · PSX 15.47% · SLB 13.84% · TMO 9.72%. Week trades **0/3**.
+- Stops 5/5, one-for-one, qty matching: PSX 10% trail $269.442 (hwm $299.38) · SLB 10% trail $47.97 (hwm $53.30) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261027T113314Z-82eb46`.
+
+### Market context
+- **WTI ~$102.1 · Brent ~$111.1** — flat-to-firm; US-Iran diplomacy headlines still the swing factor.
+- **ES ~7,717 (+0.04%)**. **VIX 17.84** (-3.0%) after Mon close 18.39 (-5.5%).
+- No CPI/PPI/payrolls; durable goods 08:30, Case-Shiller 09:00, Conf. Board confidence/new home sales/Richmond Fed 10:00 (routine). **FOMC day 1; decision Wed 10/28 14:00 ET.** MSFT/GOOGL Wed, AMZN Thu. Anthropic S-1 reviving AI/semis trade.
+- BMO: KO, BA, UPS, **HCA (beat: adj EPS $7.22 vs $6.65, rev $19.85B vs $19.33B; FY guide EPS $28.70–30.50; ~+4% premarket)**, PYPL, PCAR, FCX, JCI, SHW, RCL, GLW, ECL, SCCO, ITW, SPGI, HLT, AMT, CNP.
+- Sector momentum (rule 9, S&P score thru 9/30): Energy 1.30, Info Tech 1.10 (**banned**, lifts 11/13), Health Care 0.91, Financials 0.52; Industrials **banned** (lifts 11/19).
+- Holdings: PSX $287 premarket, Q3 tomorrow, Bayway lockout ongoing, dividend $1.33. SLB/TMO/XLE/XLP: no fresh news.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (PSX, SLB, TMO are single names) — no composition waiver needed. Band cap ≈$5,118 of room to 85%.
+1. **HCA Healthcare (HCA)** — Health Care (#3 momentum, streak 0). Catalyst: Q3 beat + guide this morning. Est. ~$485.70 (+4.4% on $465.26). 10 sh, **stop $437.13 (10%)**, target $582.84 (2:1). `validate_order.py --symbol HCA --qty 10 --side buy --price 485.70 --stop-price 437.13 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $4,857. Not in `memory/SECTORS.json`. Watch only — gap-chase into FOMC.
+2. **Eli Lilly (LLY)** — Health Care. Q3 10/29; ~$1,277 (stale mid). 3 sh, stop $1,149.73, target $1,532.98. `validate_order.py ... --qty 3 --price 1277.48 --stop-price 1149.73` → **APPROVED, exit 0**, $3,832. Prefer entry AFTER 10/29 print.
+3. **Freeport (FCX)** — Materials; Q3 BMO today. Watch reaction only.
+
+### Risk factors
+- FOMC Wed 14:00 ET + MSFT/GOOGL Wed AMC, AMZN Thu; PSX Q3 Wed BMO.
+- Energy concentration ~50% (PSX+XLE+SLB); crude reversal on Iran de-escalation is main threat.
+- Health Care adds would stack on TMO (-1.7% vs fill; -7% cut $647.81 ~5.4% away; trail conversion ≥ ~$697.61).
+- Cushions: PSX 6.12% (nearest), XLP 7.77%, TMO 8.33%, SLB 9.20%, XLE 9.21%. XLP 20.8% / XLE 20.4% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **80.16**, band [75, 85], `sessions_under_band` **0**, `mandate` false, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-10-26. No mandate.
+
+### Decision
+**HOLD.** In band (80%), 5 positions, FOMC decision tomorrow; HCA/LLY watch-listed (LLY post-10/29). No stop changes; all 5 stops active and correct.
+
+---
