@@ -4189,3 +4189,20 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $104,619.55, cash $36,321.34, LMV $68,298.21 → **65.28% deployed**, BELOW band after the PSX exit. 4 positions (below rule-3 range of 5–6). Rule-12 streak counts from EOD snapshots; pre-market/market-open to plan re-deployment (HCA/LLY watch-listed).
 
 ---
+### Oct 27 — EOD Snapshot (Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1)
+**Portfolio:** $104,697.61 | **Cash:** $36,321.34 (34.69%) | **Day P&L:** -$1,369.47 (-1.29%) | **Phase P&L:** +$4,697.61 (+4.70%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| SLB | 277 | $50.08 | $54.08 | +1.88% | +$1,108.00 (+7.99%) | $48.906 (10% trail GTC, hwm $54.34) |
+| TMO | 15 | $696.57 | $693.02 | +1.19% | -$53.25 (-0.51%) | $627.85 (fixed GTC OTO leg, HELD) |
+| XLE | 311 | $63.9218 | $68.21 | -2.05% | +$1,333.64 (+6.71%) | $62.874 (10% trail GTC, hwm $69.86) |
+| XLP | 250 | $83.76 | $87.15 | -0.92% | +$847.50 (+4.05%) | $80.991 (10% trail GTC, hwm $89.99) |
+
+**Trades today:** SELL PSX 57 @ $269.18 (10% trailing stop, 15:27 UTC), realized +$283.86 (+1.88%) vs 10/02 entry $264.20. **Week trades: 0/3** (week of 10/26; stop-out is an exit, not a new entry). Blotter and TRADE-LOG agree.
+
+**Notes:** Down day driven by energy: PSX's trail triggered as refiners sold off into Wednesday's Q3 print and crude eased on Middle East de-escalation, locking a small +1.88% win after giving back most of a ~13% peak gain; XLE -2.1% on the same crude move. SLB (+1.9%, trail ratcheted to $48.906) and TMO (+1.2%) offset partially; XLP slipped. Day P&L is against the broker's 10/26 close of $106,067.08 (matches the 10/26 snapshot). Deployment dropped to 65.31% (LMV $68,376.27), BELOW the band, with 4 positions (below the 5–6 range) — day 1 under band for rule 12. Protection 4/4 one-for-one; no broker mutation by this routine. Cushions: XLP 7.07% (nearest), XLE 7.82%, TMO 9.40%, SLB 9.57%. Energy now ~35% (XLE + SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (133 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261027T201206Z-efb78f.
+
+**Tomorrow:** Plan re-deployment toward band in pre-market/market-open (HCA watch-listed; LLY post-10/29), mindful of FOMC decision Wed. TMO -7% cut $647.81 (~6.5% away); trail conversion at ≥ ~$697.61.
+
+---
