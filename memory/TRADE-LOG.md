@@ -4206,3 +4206,12 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Plan re-deployment toward band in pre-market/market-open (HCA watch-listed; LLY post-10/29), mindful of FOMC decision Wed. TMO -7% cut $647.81 (~6.5% away); trail conversion at ≥ ~$697.61.
 
 ---
+### 2026-10-28 — Market-Open (Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC)
+
+**No trades.** Research plan HOLD (under band day 1, no mandate; FOMC 14:00 ET; LLY re-deploy after 10/29 print, GEHC alternate). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261028T134412Z-d4ac9e`. Week of 2026-10-26 trade count: **0/3**.
+
+**STEP 2b — TMO fixed leg converted to trail.** Gate `validate_stop_change.py --current-stop 627.85 --new-stop 632.10 --current-price 702.33` exit 0 (trail now sits above the held fixed stop). `validate_order.py --symbol TMO --qty 15 --side sell --price 702.33 --trail-percent 10` exit 0 (ledger disabled). `replace_stop.py --order-id 3e064925…` exit 0 `replaced` → 10% trail GTC 2aeb09e7 (`rs-3e064925-…`), stop $632.178, hwm $702.42, HTTP 200. Stop raised $627.85 → $632.178, never lowered. **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, coverage ok, **4/4 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 (`deployed_pct` 65.23, `sessions_under_band` 1, mandate false).
+
+**Live state (13:45 UTC):** equity $104,528.52, cash $36,321.01, LMV $68,207.51 → **65.25% deployed**, below band (day 1). Stops: SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $632.178 (hwm $702.42) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). Cushions: XLP 6.46% (nearest), SLB 7.92%, XLE 7.94%, TMO 9.99%. TMO +0.83% vs fill.
+
+---
