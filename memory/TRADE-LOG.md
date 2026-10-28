@@ -4231,3 +4231,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $104,996.77, cash $36,321.01, LMV $68,675.76 → **65.41% deployed**, below band (day 1 per EOD). 4 positions. LLY re-deploy planned after 10/29 print (GEHC alternate).
 
 ---
+
+### Oct 28 — EOD Snapshot (Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC)
+**Portfolio:** $104,869.29 | **Cash:** $36,321.01 (34.63%) | **Day P&L:** +$172.01 (+0.16%) | **Phase P&L:** +$4,869.29 (+4.87%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| SLB | 277 | $50.08 | $53.75 | -0.61% | +$1,016.59 (+7.33%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $704.15 | +1.61% | +$113.70 (+1.09%) | $639.729 (10% trail GTC, hwm $710.81) |
+| XLE | 311 | $63.9218 | $68.48 | +0.40% | +$1,417.61 (+7.13%) | $62.874 (10% trail GTC, hwm $69.86) |
+| XLP | 250 | $83.76 | $87.20 | +0.06% | +$860.00 (+4.11%) | $80.991 (10% trail GTC, hwm $89.99) |
+
+**Trades today:** none (blotter shows no entries or exits dated 10/28). **Week trades: 0/3** (week of 10/26). Blotter and TRADE-LOG agree.
+
+**Notes:** Quiet, slightly positive FOMC day: TMO led (+1.6%) after its fixed OTO leg was converted to a 10% trail at market-open (stop $627.85 → now $639.729, never lowered); XLE edged up, SLB gave back 0.6%, XLP flat. Day P&L is against the broker's 10/27 close of $104,697.28 (the 10/27 snapshot logged $104,697.61, a $0.33 mark difference; reconcile uses the broker value, diff 0.00). Deployment 65.37% (LMV $68,548.28), BELOW the band, 4 positions (below the 5–6 range) — day 2 under band for rule 12. Protection 4/4 one-for-one, the only broker mutation today was market-open's TMO stop replace; none by this routine. Cushions: XLP 7.12% (nearest), XLE 8.19%, SLB 8.58%, TMO 9.15%. Energy ~34% (XLE + SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (134 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261028T201341Z-136d16.
+
+**Tomorrow:** Under band day 2 — pre-market/market-open to plan re-deployment (LLY after its 10/29 print, GEHC alternate), digesting FOMC and MSFT/GOOGL AMC reactions.
+
+---
