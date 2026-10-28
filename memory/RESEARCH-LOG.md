@@ -8861,3 +8861,40 @@ Rule 14 lapsed (PSX, SLB, TMO are single names) — no composition waiver needed
 - Book now 4 positions, ~65% deployed — below band; re-deployment candidates HCA (Q3 beat today), LLY (post-10/29).
 
 ---
+
+### 2026-10-28 — Pre-Market (Wednesday, FOMC decision day — MSFT/GOOGL AMC)
+
+### Account snapshot
+- **Equity $104,719.00** (`last_equity` $104,697.28, +$21.72/+0.02% on premarket marks) · **Cash $36,321.01** · Long MV $68,397.99 · `buying_power` $336,798 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5–6): XLP 20.70% · XLE 20.32% · SLB 14.37% · TMO 9.93%. Week trades **0/3**.
+- Stops 4/4, one-for-one, qty matching: SLB 10% trail $48.906 (hwm $54.34) · TMO fixed $627.85 (HELD) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261028T113527Z-ef814a`.
+
+### Market context
+- **WTI ~$101.3 · Brent ~$115.9** — Brent firm on reports of possible renewed US military action vs Iran.
+- **ES ~7,764 (+0.08%)**; SPX closed 7,722.60 (+0.60%) Tue, SOX +3.6%. **VIX ~17.5**.
+- No CPI/PPI/payrolls. **FOMC decision today 14:00 ET** (market-wide risk event). CPI 11/10, payrolls 11/06, PPI 11/13. Tue: Conf. Board 91.7, durables +1.8%.
+- BMO: GEHC (cons EPS $1.23), GEV, LUV, ETSY, GSK, BLCO, EVR, MAS. AMC: MSFT, GOOGL, NOW. AMZN Thu; LLY Q3 Thu 10/29.
+- Sector YTD (rule 9, thru 10/27): Energy +55.6%, Info Tech +32.1% (**banned**, lifts 11/13), Health Care +17.2% (streak 0), Industrials +13.4% (**banned**, lifts 11/19), Materials +10.8%. Staples +5.4% (#8).
+- Holdings: SLB Q3 beat (rev $9.45B, +5% q/q); UBS/Barclays trimmed PTs, ratings positive. TMO/XLE/XLP: no fresh news.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (SLB, TMO are single names) — no composition waiver needed. Room to 85% ≈ $20,600; to 75% $15,377.
+1. **Eli Lilly (LLY)** — Health Care (#3 YTD, streak 0). Catalyst: Q3 Thu 10/29 10:00 ET; Novo ad-injunction denied; $1.73 div. Premarket ~$1,270. 12 sh, **stop $1,143.00 (10%)**, target $1,524.00 (2:1). `validate_order.py --symbol LLY --qty 12 --side buy --price 1270.00 --stop-price 1143.00 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $15,240. Post-fill ≈79.9%. Entry AFTER 10/29 print. Not in `memory/SECTORS.json`.
+2. **GE HealthCare (GEHC)** — Health Care. Catalyst: Q3 BMO today. Last close $71.11. 200 sh, **stop $64.00 (10%)**, target $85.33 (2:1). `validate_order.py ... --qty 200 --price 71.11 --stop-price 64.00` → **APPROVED, exit 0**, $14,222. Watch reaction only; not in `memory/SECTORS.json`.
+3. **HCA Healthcare (HCA)** — beat-and-raise faded: closed $449.96 (-3.3%) Tue. Dropped from active list; watch only.
+
+### Risk factors
+- FOMC 14:00 ET + MSFT/GOOGL AMC; LLY/AMZN Thu.
+- Iran escalation headlines (Brent $115+) — energy ~35% (XLE+SLB) benefits, but whipsaw risk after Tue's de-escalation sell-off.
+- Health Care adds stack on TMO (-0.5% vs fill; -7% cut $647.81; trail conversion ≥ ~$697.61).
+- Cushions: XLP 6.58% (nearest), XLE 8.09%, TMO 9.40%, SLB 10.00%. XLP 20.7% / XLE 20.3% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **65.32**, band [75, 85], `sessions_under_band` **1**, `mandate` false, `exemption_allowed` false, `target_notional` $15,377, `last_eod` 2026-10-27. No mandate yet (due after 3 sessions).
+
+### Decision
+**HOLD.** Under band day 1, no mandate; FOMC decision today. Re-deploy via LLY after the 10/29 print (GEHC alternate). No stop changes; all 4 stops active and correct.
+
+---
