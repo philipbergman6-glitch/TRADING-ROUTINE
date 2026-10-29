@@ -4261,3 +4261,19 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:45 UTC):** equity $105,010.48, cash $36,321.01, LMV $68,689.47 → **65.41% deployed**, below band. Stops: SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $639.729 (hwm $710.81) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99).
 
 ---
+
+### 2026-10-29 — Midday Scan (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)
+
+**No action; no broker mutation.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261029T170510Z-98a9e6`. Week of 2026-10-26 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 4/4, one-for-one:** SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $639.729 (hwm $710.81) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Rule 7:** no standing condition. Cushions: XLP 7.61% (nearest), XLE 8.04%, SLB 8.98%, TMO 9.92%.
+
+**STEP 3:** no position ≤ -7% (SLB +7.80%, XLE +6.96%, XLP +4.66%, TMO +1.96%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken — XLP +0.95%, TMO +0.86%, SLB +0.44%, XLE -0.12% intraday; nothing moving sharply.
+
+**Deployment:** equity $105,108.85, cash $36,321.01, LMV $68,787.84 → **65.44% deployed**, below band (day 2 per EOD; LLY refused at market-open on gap). 4 positions. Rule-12 mandate likely due at tomorrow's market-open.
+
+---
