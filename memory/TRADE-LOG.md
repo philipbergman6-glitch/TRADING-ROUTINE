@@ -4277,3 +4277,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** equity $105,108.85, cash $36,321.01, LMV $68,787.84 → **65.44% deployed**, below band (day 2 per EOD; LLY refused at market-open on gap). 4 positions. Rule-12 mandate likely due at tomorrow's market-open.
 
 ---
+
+### Oct 29 — EOD Snapshot (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)
+**Portfolio:** $105,638.46 | **Cash:** $36,321.01 (34.38%) | **Day P&L:** +$868.50 (+0.83%) | **Phase P&L:** +$5,638.46 (+5.64%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| SLB | 277 | $50.08 | $54.024 | +0.51% | +$1,092.49 (+7.88%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $709.18 | +0.71% | +$189.15 (+1.81%) | $640.669 (10% trail GTC, hwm $711.85) |
+| XLE | 311 | $63.9218 | $69.10 | +0.95% | +$1,610.43 (+8.10%) | $62.874 (10% trail GTC, hwm $69.86) |
+| XLP | 250 | $83.76 | $88.90 | +2.37% | +$1,285.00 (+6.14%) | $80.991 (10% trail GTC, hwm $89.99) |
+
+**Trades today:** none (blotter shows no entries or exits dated 10/29; LLY 11 sh refused at market-open on stop-distance after the gap). **Week trades: 0/3** (week of 10/26). Blotter and TRADE-LOG agree.
+
+**Notes:** Broad up day, all four green: XLP led (+2.4%), XLE +0.9%, TMO +0.7% (trail ratcheted, stop $639.729 → $640.669, hwm $711.85), SLB +0.5%. Day P&L is against the broker's 10/28 close of $104,769.96 (the 10/28 snapshot logged $104,869.29 from pre-close marks, a $99.33 difference; reconcile uses the broker value, diff 0.00). Deployment 65.62% (LMV $69,317.45), BELOW the band, 4 positions (below the 5–6 range) — under band day 3 for rule 12. Protection 4/4 one-for-one; no broker mutation today (LLY entry refused by submit_entry exit 3). Cushions: XLP 8.90% (nearest), XLE 9.01%, SLB 9.04%, TMO 9.66%. Energy ~34.5% (XLE + SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (135 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261029T201442Z-093ac5.
+
+**Tomorrow:** Under band day 3 — rule-12 re-deployment mandate likely at market-open (LLY re-plan post-print or GEHC alternate, re-validated), digesting AMZN AMC.
+
+---
