@@ -4249,3 +4249,15 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Under band day 2 — pre-market/market-open to plan re-deployment (LLY after its 10/29 print, GEHC alternate), digesting FOMC and MSFT/GOOGL AMC reactions.
 
 ---
+
+### 2026-10-29 — Market-Open (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)
+
+**No trades.** Planned LLY 11 sh refused at the entry gate. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261029T134351Z-34cfda`. Week of 2026-10-26 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **4/4 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 (`deployed_pct` 65.42, `sessions_under_band` 2, mandate false). **Rule 10:** `blotter.py --sector-streaks` exit 0, Health Care streak 0, not banned; LLY added to `memory/SECTORS.json` (Health Care).
+
+**LLY (refused):** gapped to ~$1,385 (+7.3% vs $1,290.67 close; pre-market plan $1,312). `validate_order.py --symbol LLY --qty 11 --side buy --price 1385.15 --stop-price 1246.64 --sector "Health Care"` → APPROVED exit 0, $15,236.65 (ledger disabled). `submit_entry.py --symbol LLY --qty 11 --price 1385.15` → **exit 3 refused**: `stop_distance: entry fixed stop must be 9.5–10.5% below entry, got 10.72%` (price ran up between validate and submit; intent `en-20261029-LLY`, refusal recorded). Skipped per routine; not chased. GEHC alternate not substituted (its plan was pre-gap and not re-validated). Rule 12 mandate likely due tomorrow (under band day 3).
+
+**Live state (13:45 UTC):** equity $105,010.48, cash $36,321.01, LMV $68,689.47 → **65.41% deployed**, below band. Stops: SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $639.729 (hwm $710.81) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99).
+
+---
