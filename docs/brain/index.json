@@ -2270,7 +2270,9 @@
     "research/2026-10-29/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-10-29/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -2312,6 +2314,7 @@
    "note": "",
    "symbols": [
     "AMD",
+    "LLY",
     "MSFT",
     "NVDA",
     "PLTR",
@@ -5746,6 +5749,7 @@
    "note": "Day 71",
    "symbols": [
     "AMD",
+    "LLY",
     "XLB",
     "XLE",
     "XLI",
@@ -7591,6 +7595,7 @@
   "research/2026-10-23/pre-market-research/1": {
    "date": "2026-10-23",
    "decision": [
+    "LLY",
     "SLB"
    ],
    "decision_text": "**TRADE (rule-12 mandate): BUY SLB 278 sh at market-open, 10% stop**, re-validated at a verified live print and resized to ≤ $13,904. Fallback LLY 10 sh if SLB fails validation. Existing book HOLD — no stop changes; all 4 stops active and correct. ---",
@@ -7602,6 +7607,7 @@
    "log": "research",
    "note": "Friday, AXP/SLB/ITW BMO day — rule 12 mandate due",
    "symbols": [
+    "LLY",
     "PSX",
     "SLB",
     "TMO",
@@ -7613,7 +7619,9 @@
   },
   "research/2026-10-26/pre-market-research/1": {
    "date": "2026-10-26",
-   "decision": [],
+   "decision": [
+    "LLY"
+   ],
    "decision_text": "**HOLD.** In band (80%), 5 positions, FOMC + key earnings this week; LLY watch-listed for post-10/29 entry. No stop changes; all 5 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-10-26/pre-market-research/1",
@@ -7624,6 +7632,7 @@
    "note": "Monday, VZ BMO day — FOMC week",
    "symbols": [
     "GOOGL",
+    "LLY",
     "MSFT",
     "PSX",
     "SLB",
@@ -7646,6 +7655,7 @@
    "log": "research",
    "note": "",
    "symbols": [
+    "LLY",
     "MPC",
     "PSX",
     "SLB",
@@ -7656,7 +7666,9 @@
   },
   "research/2026-10-27/pre-market-research/1": {
    "date": "2026-10-27",
-   "decision": [],
+   "decision": [
+    "LLY"
+   ],
    "decision_text": "**HOLD.** In band (80%), 5 positions, FOMC decision tomorrow; HCA/LLY watch-listed (LLY post-10/29). No stop changes; all 5 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-10-27/pre-market-research/1",
@@ -7667,6 +7679,7 @@
    "note": "Tuesday, KO/BA/HCA BMO day — FOMC day 1",
    "symbols": [
     "GOOGL",
+    "LLY",
     "MSFT",
     "PSX",
     "SLB",
@@ -7679,7 +7692,9 @@
   },
   "research/2026-10-28/pre-market-research/1": {
    "date": "2026-10-28",
-   "decision": [],
+   "decision": [
+    "LLY"
+   ],
    "decision_text": "**HOLD.** Under band day 1, no mandate; FOMC decision today. Re-deploy via LLY after the 10/29 print (GEHC alternate). No stop changes; all 4 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-10-28/pre-market-research/1",
@@ -7691,6 +7706,7 @@
    "symbols": [
     "GEV",
     "GOOGL",
+    "LLY",
     "MSFT",
     "SLB",
     "TMO",
@@ -7702,7 +7718,9 @@
   },
   "research/2026-10-29/pre-market-research/1": {
    "date": "2026-10-29",
-   "decision": [],
+   "decision": [
+    "LLY"
+   ],
    "decision_text": "**TRADE — LLY 11 sh** at market-open (catalyst confirmed by the print as planned; restores band ahead of tomorrow's rule-12 mandate). GEHC alternate. No stop changes; all 4 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-10-29/pre-market-research/1",
@@ -7713,6 +7731,7 @@
    "note": "Thursday, LLY BMO / AMZN AMC — post-FOMC",
    "symbols": [
     "GOOGL",
+    "LLY",
     "MSFT",
     "SLB",
     "TMO",
@@ -12211,6 +12230,7 @@
    "log": "trade",
    "note": "Day 130, Monday, VZ BMO day — FOMC week",
    "symbols": [
+    "LLY",
     "PSX",
     "SLB",
     "TMO",
@@ -12229,6 +12249,7 @@
    "log": "trade",
    "note": "Day 130, Monday, VZ BMO day — FOMC week",
    "symbols": [
+    "LLY",
     "PSX",
     "SLB",
     "TMO",
@@ -12265,6 +12286,7 @@
    "log": "trade",
    "note": "Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1",
    "symbols": [
+    "LLY",
     "PSX",
     "SLB",
     "TMO",
@@ -12283,6 +12305,7 @@
    "log": "trade",
    "note": "Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1",
    "symbols": [
+    "LLY",
     "PSX",
     "SLB",
     "TMO",
@@ -12301,6 +12324,7 @@
    "log": "trade",
    "note": "Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1",
    "symbols": [
+    "LLY",
     "PSX",
     "SLB",
     "TMO",
@@ -12320,6 +12344,7 @@
    "note": "Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC",
    "symbols": [
     "GOOGL",
+    "LLY",
     "MSFT",
     "SLB",
     "TMO",
@@ -12338,6 +12363,7 @@
    "log": "trade",
    "note": "Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC",
    "symbols": [
+    "LLY",
     "SLB",
     "TMO",
     "XLE",
@@ -12355,12 +12381,31 @@
    "log": "trade",
    "note": "Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC",
    "symbols": [
+    "LLY",
     "SLB",
     "TMO",
     "XLE",
     "XLP"
    ],
    "title": "Midday Scan (Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC)",
+   "week": null
+  },
+  "trade/2026-10-29/market-open-trades/1": {
+   "date": "2026-10-29",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-29/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4253,
+   "log": "trade",
+   "note": "Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC",
+   "symbols": [
+    "LLY",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Market-Open (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)",
    "week": null
   }
  },
@@ -12378,7 +12423,7 @@
     "entries": 210
    },
    "memory/TRADE-LOG.md": {
-    "entries": 273,
+    "entries": 274,
     "eod_snapshots": 127
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -15181,6 +15226,50 @@
     "2026-10-09"
    ]
   },
+  "LLY": {
+   "decisions": [
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1",
+    "research/2026-10-27/pre-market-research/1",
+    "research/2026-10-28/pre-market-research/1",
+    "research/2026-10-29/pre-market-research/1"
+   ],
+   "ideas": [],
+   "intents": [],
+   "last_decision": {
+    "date": "2026-10-29",
+    "entry": "research/2026-10-29/pre-market-research/1",
+    "text": "**TRADE — LLY 11 sh** at market-open (catalyst confirmed by the print as planned; restores band ahead of tomorrow's rule-12 mandate). GEHC alternate. No stop changes; all 4 stops active and correct. ---"
+   },
+   "open_lots": [],
+   "research": [
+    "research/2026-04-30/pre-market-research/1",
+    "research/2026-08-05/pre-market-research/1",
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-10-26/pre-market-research/1",
+    "research/2026-10-27/pre-market-research/1",
+    "research/2026-10-27/addendum/1",
+    "research/2026-10-28/pre-market-research/1",
+    "research/2026-10-29/pre-market-research/1"
+   ],
+   "round_trips": [],
+   "runs": [],
+   "sector": "Health Care",
+   "trade_log": [
+    "trade/2026-10-26/market-open-trades/1",
+    "trade/2026-10-26/eod-snapshot/1",
+    "trade/2026-10-27/market-open-trades/1",
+    "trade/2026-10-27/midday-scan/1",
+    "trade/2026-10-27/eod-snapshot/1",
+    "trade/2026-10-28/market-open-trades/1",
+    "trade/2026-10-28/midday-scan/1",
+    "trade/2026-10-28/eod-snapshot/1",
+    "trade/2026-10-29/market-open-trades/1"
+   ],
+   "weeks": [
+    "2026-10-23"
+   ]
+  },
   "MPC": {
    "decisions": [
     "research/2026-05-09/pre-market-research/2",
@@ -16267,7 +16356,8 @@
     "trade/2026-10-27/eod-snapshot/1",
     "trade/2026-10-28/market-open-trades/1",
     "trade/2026-10-28/midday-scan/1",
-    "trade/2026-10-28/eod-snapshot/1"
+    "trade/2026-10-28/eod-snapshot/1",
+    "trade/2026-10-29/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23"
@@ -16343,7 +16433,8 @@
     "trade/2026-10-27/eod-snapshot/1",
     "trade/2026-10-28/market-open-trades/1",
     "trade/2026-10-28/midday-scan/1",
-    "trade/2026-10-28/eod-snapshot/1"
+    "trade/2026-10-28/eod-snapshot/1",
+    "trade/2026-10-29/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23"
@@ -17008,7 +17099,8 @@
     "trade/2026-10-27/eod-snapshot/1",
     "trade/2026-10-28/market-open-trades/1",
     "trade/2026-10-28/midday-scan/1",
-    "trade/2026-10-28/eod-snapshot/1"
+    "trade/2026-10-28/eod-snapshot/1",
+    "trade/2026-10-29/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -18120,7 +18212,8 @@
     "trade/2026-10-27/eod-snapshot/1",
     "trade/2026-10-28/market-open-trades/1",
     "trade/2026-10-28/midday-scan/1",
-    "trade/2026-10-28/eod-snapshot/1"
+    "trade/2026-10-28/eod-snapshot/1",
+    "trade/2026-10-29/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
@@ -18914,6 +19007,7 @@
    ],
    "symbols": [
     "GEV",
+    "LLY",
     "MPC",
     "PSX",
     "SLB",
