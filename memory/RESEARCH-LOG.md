@@ -8898,3 +8898,38 @@ Rule 14 lapsed (SLB, TMO are single names) — no composition waiver needed. Roo
 **HOLD.** Under band day 1, no mandate; FOMC decision today. Re-deploy via LLY after the 10/29 print (GEHC alternate). No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-10-29 — Pre-Market Research (Thursday, LLY BMO / AMZN AMC — post-FOMC)
+
+### Account snapshot
+- **Equity $105,460.33** (`last_equity` $104,769.96, +$690.37/+0.66% on premarket marks) · **Cash $36,321.01** · Long MV $69,139.32 · `buying_power` $338,874 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5–6): XLP 20.89% · XLE 20.37% · SLB 14.21% · TMO 10.08%. Week trades **0/3**.
+- Stops 4/4, one-for-one, qty matching: SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $639.729 (hwm $710.81) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261029T113451Z-02030d`.
+
+### Market context
+- **WTI ~$101.7 (-1.1%) · Brent ~$114.6 (-0.6%)** — easing on Middle East diplomacy hopes.
+- **ES ~7,756 (-0.34%)**, NQ -1.2%: GOOGL -9/10% on Q3 miss + negative FCF; MSFT +3% (Azure +48%). **VIX 17.24**.
+- **FOMC held Wed; two dissents for a hike** — hawkish tilt. Today 08:30: Q3 GDP (adv.), Sep PCE/personal income, jobless claims (cons 198K). No CPI (11/10)/PPI (11/13)/payrolls (11/06).
+- BMO: **LLY (beat-and-raise)**, BLDR, GVA, VNT, MD, PGY. AMC: **AMZN**.
+- Sector momentum (rule 9): Energy, Info Tech (**banned**, lifts 11/13), Health Care (streak 0) lead SSGA scorecard; Industrials **banned** (lifts 11/19).
+- Holdings: SLB — Q3 beat 10/23, Kelvion deal pending; XLE near 52-wk high. TMO/XLP: no fresh news. Premarket all green (XLP +1.5%, XLE +0.9%, SLB +0.7%, TMO +0.7%).
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (SLB, TMO are single names) — no composition waiver needed. Room to 85% ≈ $20,500; to 75% $15,229 (`target_notional`).
+1. **Eli Lilly (LLY)** — Health Care (streak 0). Catalyst: Q3 beat this morning — rev $24.4B (+39% y/y) vs ~$22.5B, adj EPS $7.48 vs ~$7.03, FY rev guide raised to $91–92B from $85–87B; Mounjaro +65%. Premarket ~$1,312 (+1.8% on $1,288.30 close). 11 sh, **stop $1,181.10 (10%)**, target $1,574.79 (2:1). `validate_order.py --symbol LLY --qty 11 --side buy --price 1312.33 --stop-price 1181.10 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $14,436. Post-fill ≈79.2%. Not in `memory/SECTORS.json`.
+2. **GE HealthCare (GEHC)** — Health Care. Catalyst: Q3 Wed, +6.6% to $75.82. 190 sh, **stop $68.24 (10%)**, target $90.98 (2:1). `validate_order.py ... --qty 190 --price 75.82 --stop-price 68.24` → **APPROVED, exit 0**, $14,406. Alternate only (post-gap). Not in `memory/SECTORS.json`.
+
+### Risk factors
+- Hawkish FOMC dissents + GDP/PCE 08:30; GOOGL miss dragging AI/mega-cap; AMZN AMC.
+- LLY add stacks Health Care with TMO (~24% combined); gap-chase risk — market-open re-checks price vs validated size.
+- Cushions: XLP 8.10% (nearest), XLE 8.99%, SLB 9.17%, TMO 9.77%. XLP 20.9% / XLE 20.4% over cap on drift only — no trim. Energy ~35% (XLE+SLB).
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **65.56**, band [75, 85], `sessions_under_band` **2**, `mandate` false, `exemption_allowed` false, `target_notional` $15,229, `last_eod` 2026-10-28. No mandate (due after 3 sessions).
+
+### Decision
+**TRADE — LLY 11 sh** at market-open (catalyst confirmed by the print as planned; restores band ahead of tomorrow's rule-12 mandate). GEHC alternate. No stop changes; all 4 stops active and correct.
+
+---
