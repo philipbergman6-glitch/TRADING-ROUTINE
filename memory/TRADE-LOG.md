@@ -4325,3 +4325,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** cash $36,321.01, LMV $69,404.08 → ~65.6% deployed, below band (rule-12 backstop add skipped at market-open on submit_entry stop-distance refusals). 4 positions.
 
 ---
+
+### Oct 30 — EOD Snapshot (Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop)
+**Portfolio:** $105,833.21 | **Cash:** $36,321.01 (34.32%) | **Day P&L:** +$555.32 (+0.53%) | **Phase P&L:** +$5,833.21 (+5.83%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| SLB | 277 | $50.08 | $53.74 | -0.13% | +$1,013.82 (+7.31%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $697.00 | -1.72% | +$6.45 (+0.06%) | $640.669 (10% trail GTC, hwm $711.85) |
+| XLE | 311 | $63.9218 | $70.02 | +1.91% | +$1,896.55 (+9.54%) | $63.1359 (10% trail GTC, hwm $70.151) |
+| XLP | 250 | $83.76 | $89.58 | +1.59% | +$1,455.00 (+6.95%) | $81.342 (10% trail GTC, hwm $90.38) |
+
+**Trades today:** none (blotter shows no entries or exits dated 10/30; rule-12 backstop LLY 10 sh and MRK 100 sh both refused by submit_entry exit 3 on stop-distance at the open). **Week trades: 0/3** (week of 10/26). Blotter and TRADE-LOG agree.
+
+**Notes:** Energy and staples carried the day after XOM/CVX prints: XLE +1.9% (trail ratcheted, stop $62.874 → $63.1359, hwm $70.151), XLP +1.6% (stop $80.991 → $81.342, hwm $90.38); TMO -1.7% gave back almost all its gain (now +0.06%), SLB flat. Day P&L is against the broker's 10/29 close of $105,277.89 (the 10/29 snapshot logged $105,638.46 from pre-close marks, a $360.57 difference; reconcile uses the broker value, diff 0.00). Deployment 65.68% (LMV $69,512.20), BELOW the band, 4 positions — under band day 4; the rule-12 mandate went unfilled for the second straight day because the submit_entry ask-based stop-distance check refused on IEX quote noise at the open. Protection 4/4 one-for-one; no broker mutation today. Cushions: TMO 8.08% (nearest), SLB 8.56%, XLP 9.20%, XLE 9.83%. Energy ~34.6% (XLE + SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (136 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261030T201019Z-c9e846.
+
+**Tomorrow:** Weekend — Friday weekly review; Monday under band day 5, rule-12 re-deployment still due (needs a fix or a post-open entry so the ask-based gate isn't hit by opening quote noise).
+
+---
