@@ -4295,3 +4295,17 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Under band day 3 — rule-12 re-deployment mandate likely at market-open (LLY re-plan post-print or GEHC alternate, re-validated), digesting AMZN AMC.
 
 ---
+
+### 2026-10-30 — Market-Open (Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop)
+
+**No trades.** Rule-12 backstop add SKIPPED: LLY (mandate) and MRK (alternate) both approved by `validate_order.py`, both refused at the `submit_entry.py` gate. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261030T133339Z-1af823`. Week of 2026-10-26 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **4/4 one-for-one**. **STEP 2c:** `deployment_status.py` exit 5 — **MANDATE DUE** (`deployed_pct` 65.74, `sessions_under_band` 3, `target_notional` $15,117). **Rule 10:** `blotter.py --sector-streaks` exit 0, Health Care streak 0, not banned; MRK added to `memory/SECTORS.json` (Health Care). Rule 14 lapsed (SLB, TMO single names).
+
+**LLY (refused):** `validate_order.py --symbol LLY --qty 10 --side buy --price 1460.63 --stop-price 1314.57 --sector "Health Care"` → APPROVED exit 0, $14,606.30 (ledger disabled). `submit_entry.py --symbol LLY --qty 10 --price 1460.63` → **exit 3**: `REFUSED mutation: stop_distance: entry fixed stop must be 9.5–10.5% below entry, got 8.29%` (intent `en-20261030-LLY`, dead).
+**MRK (alternate, refused):** tight quote $150.41/$150.77. `validate_order.py --symbol MRK --qty 100 --side buy --price 150.77 --stop-price 135.69 --sector "Health Care"` → APPROVED exit 0, $15,077.00. `submit_entry.py --symbol MRK --qty 100 --price 150.77` → **exit 3**: `REFUSED mutation: stop_distance: entry fixed stop must be 9.5–10.5% below entry, got 13.68%` (intent `en-20261030-MRK`, dead).
+**Cause:** the alpaca.sh gate re-reads the IEX ask, which flickered between real and spurious levels in the first 10 min (LLY ask jumping $1,422 ↔ $1,460/$1,480; MRK $151 ↔ $157–158). Second refusal of the mandate name on two straight days from the same mechanism (10/29 gap, today feed noise) — the entry gate's ask-based distance check is fragile at the open. Not retried (exit 3 = skip). Email "BACKSTOP ADD SKIPPED" sent.
+
+**Live state (13:42 UTC):** equity $105,969.68, cash $36,321.01, LMV $69,648.67 → **65.72% deployed**, below band. Stops: SLB 10% trail $49.14 · TMO 10% trail $640.669 · XLE 10% trail $62.9145 · XLP 10% trail $81.342.
+
+---
