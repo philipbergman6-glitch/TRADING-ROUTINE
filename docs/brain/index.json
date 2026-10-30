@@ -2293,7 +2293,9 @@
     "research/2026-10-30/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-10-30/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -2336,6 +2338,7 @@
    "symbols": [
     "AMD",
     "LLY",
+    "MRK",
     "MSFT",
     "NVDA",
     "PLTR",
@@ -5740,6 +5743,7 @@
    "note": "Day 70",
    "symbols": [
     "AMD",
+    "MRK",
     "XLB",
     "XLI",
     "XLP"
@@ -7765,7 +7769,8 @@
   "research/2026-10-30/pre-market-research/1": {
    "date": "2026-10-30",
    "decision": [
-    "LLY"
+    "LLY",
+    "MRK"
    ],
    "decision_text": "**TRADE — rule-12 mandate: LLY 10 sh** at market-open (MRK 100 sh alternate). No stop changes; all 4 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
@@ -7778,6 +7783,7 @@
    "symbols": [
     "GOOGL",
     "LLY",
+    "MRK",
     "SLB",
     "TMO",
     "XLE",
@@ -12489,6 +12495,25 @@
    ],
    "title": "Midday Scan (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)",
    "week": null
+  },
+  "trade/2026-10-30/market-open-trades/1": {
+   "date": "2026-10-30",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-10-30/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4299,
+   "log": "trade",
+   "note": "Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Market-Open (Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop)",
+   "week": null
   }
  },
  "generated_from": {
@@ -12505,7 +12530,7 @@
     "entries": 211
    },
    "memory/TRADE-LOG.md": {
-    "entries": 276,
+    "entries": 277,
     "eod_snapshots": 128
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -15499,7 +15524,8 @@
     "trade/2026-10-28/eod-snapshot/1",
     "trade/2026-10-29/market-open-trades/1",
     "trade/2026-10-29/midday-scan/1",
-    "trade/2026-10-29/eod-snapshot/1"
+    "trade/2026-10-29/eod-snapshot/1",
+    "trade/2026-10-30/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23"
@@ -15643,6 +15669,31 @@
     "2026-10-16",
     "2026-10-23"
    ]
+  },
+  "MRK": {
+   "decisions": [
+    "research/2026-10-30/pre-market-research/1"
+   ],
+   "ideas": [],
+   "intents": [],
+   "last_decision": {
+    "date": "2026-10-30",
+    "entry": "research/2026-10-30/pre-market-research/1",
+    "text": "**TRADE — rule-12 mandate: LLY 10 sh** at market-open (MRK 100 sh alternate). No stop changes; all 4 stops active and correct. ---"
+   },
+   "open_lots": [],
+   "research": [
+    "research/2026-04-30/pre-market-research/1",
+    "research/2026-08-04/pre-market-research/1",
+    "research/2026-10-30/pre-market-research/1"
+   ],
+   "round_trips": [],
+   "runs": [],
+   "sector": "Health Care",
+   "trade_log": [
+    "trade/2026-10-30/market-open-trades/1"
+   ],
+   "weeks": []
   },
   "MSFT": {
    "decisions": [
@@ -16595,7 +16646,8 @@
     "trade/2026-10-28/eod-snapshot/1",
     "trade/2026-10-29/market-open-trades/1",
     "trade/2026-10-29/midday-scan/1",
-    "trade/2026-10-29/eod-snapshot/1"
+    "trade/2026-10-29/eod-snapshot/1",
+    "trade/2026-10-30/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23"
@@ -16677,7 +16729,8 @@
     "trade/2026-10-28/eod-snapshot/1",
     "trade/2026-10-29/market-open-trades/1",
     "trade/2026-10-29/midday-scan/1",
-    "trade/2026-10-29/eod-snapshot/1"
+    "trade/2026-10-29/eod-snapshot/1",
+    "trade/2026-10-30/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23"
@@ -17346,7 +17399,8 @@
     "trade/2026-10-28/eod-snapshot/1",
     "trade/2026-10-29/market-open-trades/1",
     "trade/2026-10-29/midday-scan/1",
-    "trade/2026-10-29/eod-snapshot/1"
+    "trade/2026-10-29/eod-snapshot/1",
+    "trade/2026-10-30/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -18462,7 +18516,8 @@
     "trade/2026-10-28/eod-snapshot/1",
     "trade/2026-10-29/market-open-trades/1",
     "trade/2026-10-29/midday-scan/1",
-    "trade/2026-10-29/eod-snapshot/1"
+    "trade/2026-10-29/eod-snapshot/1",
+    "trade/2026-10-30/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
