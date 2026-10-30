@@ -8933,3 +8933,40 @@ Rule 14 lapsed (SLB, TMO are single names) — no composition waiver needed. Roo
 **TRADE — LLY 11 sh** at market-open (catalyst confirmed by the print as planned; restores band ahead of tomorrow's rule-12 mandate). GEHC alternate. No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-10-30 — Pre-Market Research (Friday, XOM/CVX/ABBV BMO — post-AMZN, rule-12 mandate day)
+
+### Account snapshot
+- **Equity $106,168.31** (`last_equity` $105,277.89, +$890.42/+0.85% on premarket marks) · **Cash $36,321.01** · Long MV $69,847.30 · `buying_power` $340,856 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5–6): XLP 21.23% · XLE 20.37% · SLB 14.12% · TMO 10.07%. Week trades **0/3**.
+- Stops 4/4, one-for-one, qty matching: SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.669 (hwm $711.85) · XLE 10% trail $62.874 (hwm $69.86) · XLP 10% trail $80.991 (hwm $89.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261030T113339Z-047892`.
+
+### Market context
+- **WTI ~$103.9 (+1.8%) · Brent ~$117.3 (+2.1%)**.
+- **ES ~7,672 (-1.06%)**, NQ ~-2%: AMZN/INTC results deepen AI-capex return worries on top of GOOGL. **VIX ~18.5 (+7%)**. Treasuries bid.
+- Today: 08:30 Q3 ECI, 09:45 Chicago PMI (cons 55.8); Fed Daly 12:00, Musalem 12:30; BoJ decision overnight. No CPI (11/10)/PPI (11/13)/payrolls (11/06)/FOMC (12/08–09). Sep PCE 3.6% y/y (Thu) — hike-resumption chatter after 10–2 hold.
+- BMO: **XOM** (adj EPS $4.23 vs ~$4.08; FCF $19.1B), CVX, ABBV, BP, SNY, GD, REGN, CL. Thu: LLY beat-and-raise, **MRK beat-and-raise** (adj EPS $2.49 vs $2.09).
+- Sector YTD (rule 9, thru 10/29): Energy +53.7%, Info Tech +24.4% (**banned**, lifts 11/13), Health Care +18.8% (streak 0), Materials +14.5%, Industrials +9.6% (**banned**, lifts 11/19).
+- Holdings: SLB — CAO sold 10,047 sh @ $53.65 (minor); Q3 beat stands. XOM print supports XLE (XOM+CVX ~42% of fund). TMO/XLP: no fresh news. Premarket: XLP +2.2%, XLE +1.2%, SLB +0.6%, TMO +0.5%.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (SLB, TMO are single names) — no composition waiver needed. `target_notional` $15,087.
+1. **Eli Lilly (LLY)** — Health Care (#3 YTD, streak 0). Catalyst: Q3 beat-and-raise Thu (rev $24.4B +39% y/y, FY guide $91–92B); holding the gap, premarket ~$1,407 (+2.4% on $1,373.70 close). 10 sh, **stop $1,266.49 (10%)**, target $1,688.65 (2:1). `validate_order.py --symbol LLY --qty 10 --side buy --price 1407.21 --stop-price 1266.49 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $14,072.10 ≤ $15,087. Post-fill ≈79.0%. In `memory/SECTORS.json`.
+2. **Merck (MRK)** — Health Care. Catalyst: Q3 beat-and-raise Thu (FY rev $66.8–67.3B); premarket ~$147.73 (+4.8%). 100 sh, **stop $132.96 (10%)**, target $177.27 (2:1). `validate_order.py --symbol MRK --qty 100 --side buy --price 147.73 --stop-price 132.96 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $14,773. Alternate only. Not in `memory/SECTORS.json`.
+
+### Risk factors
+- Tech/AI-capex sell-off (NQ -2%), VIX rising; Fed speakers after hot PCE.
+- LLY gap-chase: 10/29 entry refused on stop-distance after the open ran — market-open must re-validate at the live price and re-size to the 9.5–10.5% band.
+- Health Care LLY + TMO ≈23% post-fill; Energy ~34.5% (XLE+SLB); XOM/CVX prints and crude headlines swing XLE.
+- Cushions: SLB 9.18% (nearest), XLE 9.57%, TMO 10.14%, XLP 10.17%. XLP 21.2% / XLE 20.4% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 5: `deployed_pct` **65.79**, band [75, 85], `sessions_under_band` **3**, `mandate` **true**, `exemption_allowed` true, `target_notional` $15,087, `last_eod` 2026-10-29. **MANDATE DUE.**
+- **Deployment mandate:** BUY **LLY 10 sh** (cost ≈$14,072 ≤ $15,087 at premarket $1,407.21), catalyst Q3 beat-and-raise, **stop $1,266.49 (10% below)**. Single name passing the Entry Checklist (catalyst ✓, Health Care momentum ✓, 10% stop ✓, 2:1 ✓). MRK 100 sh alternate if LLY fails re-validation. No deferral: no market-wide risk event scheduled today (ECI/Chicago PMI/Fed speakers are routine data; BoJ is not a US market-wide event).
+
+### Decision
+**TRADE — rule-12 mandate: LLY 10 sh** at market-open (MRK 100 sh alternate). No stop changes; all 4 stops active and correct.
+
+---
