@@ -1790,3 +1790,92 @@ Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues
 **-1.56% against an S&P down 0.47% — a -1.10pp relative loss that ends a three-week run of wins.** The week had the phase's first realized winner (MPC +$936.52, +18.18%, delivered by the rule-6 rung) and the STRATEGY_VERSION fix finally held for every run, but it was outweighed by **GEV's -$1,905.75 (-9.76%) three-session loss** in an earnings week and by **energy concentration jumping to 49.64%** when the rule-12 mandate bought SLB against last week's explicit pre-commitment. Every validator was respected, protection stayed 5/5 with nothing lowered, and the book ends in band with five positions — so not lower than C. Not higher, because realized P&L was negative (PF 0.49), the largest loss of the phase came from a sizing choice the review had flagged in advance, and the one structural gap (rule 15) cost real concentration for a fourth week.
 
 ---
+
+## Week ending 2026-10-30
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $105,550.90 (Mon Oct 26 AM = Fri Oct 23 logged close) |
+| Ending portfolio | $105,833.21 (Fri Oct 30 close; broker live equity $105,818.27 after-hours, a $14.94 marking difference) |
+| Week return | +$282.31 (+0.27%) |
+| S&P 500 week | -0.57% (7,623.68 Oct 23 → 7,580.07 Oct 30; chained from the prior week's logged close — the fetch's Oct 23 level matched it exactly, no drift) |
+| Bot vs S&P | +0.84% (OUTPERFORMED) |
+| Trades | 0 new (W:1 / L:0 / open:4); 1 closed |
+| Win rate | 100% (1 of 1 closed) |
+| Best trade | PSX +1.88% (+$283.86) |
+| Worst trade | PSX +1.88% (only closed trade) |
+| Profit factor | n/a (no losers; $283.86 / $0) |
+
+Arithmetic: week return = $105,833.21 - $105,550.90 = **+$282.31**; 282.31 / 105,550.90 = **+0.2675%**. Phase: $105,833.21 vs $100,000 = **+5.83%**.
+S&P chained = (7,580.07 - 7,623.68) / 7,623.68 = **-0.5720%**. Relative = +0.2675% - (-0.5720%) = **+0.84pp**.
+Day-by-day (logged): Mon +$516.19 (+0.49%) · **Tue -$1,369.47 (-1.29%)** · Wed +$172.01 (+0.16%) · Thu +$868.50 (+0.83%) · Fri +$555.32 (+0.53%). Sum +$742.55; the -$460.24 gap to the week figure is the pre-close marks of the 10/28 ($99.33) and 10/29 ($360.57) snapshots (plus $0.33 on 10/27) against the broker's official closes, not a cash or position discrepancy.
+Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues, 4 open lots match broker): one round_trip exited Mon 10/26 - Fri 10/30 — **PSX** (10-02 → 10-27, 57 sh, $264.20 → $269.18, **+$283.86 / +1.88%**). W = 1, L = 0, open = 4; win rate 1/1 = 100%; PF n/a. Realized net **+$283.86**. Entries: **none — 0/3 of the budget**; LLY refused 10/29, LLY and MRK refused 10/30 (all `submit_entry.py` exit 3, stop-distance). TRADE-LOG and blotter agree on every session.
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| PSX | $264.20 (10-02) | $269.18 (10-27, 15:27 UTC) | **+$283.86 (+1.88%)** | 57 sh. 10% trail ($269.442, hwm $299.38) filled as refiners sold off ~5-7% into Q3 on crude de-escalation. Gave back most of a ~13.3% peak; the +15% rung was never reached. Energy streak unaffected (gain). |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLE | $63.9218 | $70.02 | +$1,896.55 (+9.54%) | $63.1359 (10% trail GTC, hwm $70.151) |
+| XLP | $83.76 | $89.58 | +$1,455.00 (+6.95%) | $81.342 (10% trail GTC, hwm $90.38) |
+| SLB | $50.08 | $53.74 | +$1,013.82 (+7.31%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | $696.57 | $697.00 | +$6.45 (+0.06%) | $640.669 (10% trail GTC, hwm $711.85 — converted from fixed 10/28) |
+
+**Deployed:** $69,512.20 / $105,833.21 = **65.68%**, BELOW the 75-85% band (under band day 4 at EOD); cash $36,321.01 (34.32%). **4 positions** — below the rule-3 range since 10/27. Weights: **XLP 21.16% · XLE 20.58% · SLB 14.07% · TMO 9.88%**. **Energy = XLE + SLB = 34.64% of equity**, down from 49.64% (PSX exit). Protection 4/4 one-for-one, all trailing, none lowered. Cushions: TMO 8.08% (nearest), SLB 8.56%, XLP 9.20%, XLE 9.83%. `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Bans: Info Tech to 11/13, Industrials to 11/19.
+
+### What Worked
+- **Beat the S&P by 0.84pp with zero entries** — XLE (+9.54%) and XLP (+6.95%) carried a week when the index fell 0.57% on the GOOGL/AMZN AI-capex unwind.
+- **PSX's trail locked a small win (+$283.86) before its Q3 print** — the second realized winner of the phase, and the energy concentration fell from 49.64% to 34.64% by mechanism, not decision.
+- **TMO fixed→trail conversion executed the first session it was legal** (10/28, $627.85 → $632.178, gated by `validate_stop_change.py`), leaving the book 4/4 trailing.
+- **The entry gate did its job on bad inputs:** `submit_entry.py` refused three orders whose stop distance at the re-read ask was out of band (10.72%, 8.29%, 13.68%); no out-of-spec stop reached the broker.
+- Risk machinery clean: `blotter --check` exit 0 and `reconcile_equity.py` RECONCILED every session, coordinator clean all week, `strategy_version.py` exit 0 every run, no `.env`.
+
+### What Didn't Work
+- **The rule-12 mandate went unfilled.** Under band since 10/27 (day 4 at Friday EOD), mandate due 10/30, and both the mandate name (LLY) and the alternate (MRK) were refused at `submit_entry.py`. The rule says the add MUST happen; it did not. Cause is tooling, not judgment, but the outcome is the same rule-12 non-compliance the rule was written to stop.
+- **The entry gate reads a different price than the validator.** `validate_order.py` approved each order at the routine's price; `submit_entry.py` re-read the IEX ask seconds later and refused on stop distance — 10/29 because LLY ran after the gap, 10/30 because the IEX ask flickered ($1,422 ↔ $1,460-1,480 on LLY, $151 ↔ $157-158 on MRK). The stop is computed once and never re-derived from the price the gate uses, so any move or quote noise at the open refuses the order.
+- **LLY was missed by ~11%:** pre-market plan $1,312 (10/29) → refused at ~$1,385 → refused at ~$1,460 on 10/30. Waiting for the print was right; having no way to enter after it was not.
+- **Book below rule 3 (4 positions) and rule 2 (65.68%) for four sessions**, with ~$36K idle cash in a week the book only outperformed because the index fell.
+- **PSX gave back ~11pp of a ~13% peak** before the trail filled; the rule-6 ladder starts at +15%, so a +13% peak is fully exposed to the 10% trail.
+
+### Key Lessons
+- **A two-step gate that re-reads price must re-derive the stop from that price.** Approve-then-refuse on the same intent is not a safety check, it is a coin flip at the open; three refusals in two sessions is a defect, not variance.
+- **Opening-minute IEX quotes are not reliable for a distance check.** Both 10/30 refusals came from spurious asks in the first ~10 minutes.
+- **A mandate with no working execution path is an unwritten rule again** — the exact failure mode rules 12 and 14 were written against, now in the plumbing instead of the rulebook.
+
+### Adjustments for Next Week
+- **Monday 11/02 is under band day 5 — the rule-12 add is overdue and must be placed.** Engineering fix before the open: `submit_entry.py` / the order builder should compute the fixed stop as 10% below the same price the gate reads (or price the entry as a limit at the validated level), so validate and submit agree. Absent a fix, enter after the first ~15 minutes when the IEX quote is stable. Never bypass the gate.
+- Candidates: LLY (re-size at the live price), MRK alternate; Health Care stacks with TMO (~24% combined) — acceptable. **No new energy** (34.64%).
+- Week slots reset Mon 11/02 (0/3); two adds needed to restore 5-6 positions and the band. Bans: Info Tech (11/13), Industrials (11/19). Catalysts: **payrolls 11/06**, CPI 11/10, PPI 11/13; FOMC 12/08-09.
+
+### Proposed Rule Change (rule 15 — sector/factor exposure cap) — RE-PROPOSED, fifth week, text unchanged
+
+**Not applied.** `memory/TRADING-STRATEGY.md` is hash-pinned (active **v1.3**); the owner applies the change and bumps the version.
+
+**Proposed text (identical to the last four weeks):**
+
+> 15. Sector exposure cap — no more than 35% of equity in any one GICS sector,
+>     counting broad-sector ETFs and single names together (an ETF counts at
+>     100% toward its own sector). Measured at the moment of entry against
+>     post-trade equity: a buy that would take a sector above 35% is rejected
+>     and the next-ranked candidate is taken instead. The cap never forces a
+>     sale — an existing overweight reached by appreciation or by a stop-out
+>     elsewhere is held and decays naturally, but no new position may be added
+>     in an over-cap sector until it is back under 35%. The reason for any
+>     candidate rejected by this cap is logged in that session's pre-market
+>     RESEARCH-LOG entry.
+
+**New evidence from this week:**
+- **The "decays naturally" clause was demonstrated:** energy went 49.64% → 34.64% via the PSX trail with no forced sale — the cap's non-forcing design matches how the book actually de-concentrates.
+- **Energy sits at 34.64%, 0.36pp under the cap,** going into a week with a mandated add; one more energy entry would breach it immediately. The unwritten "no new energy" still carries the load.
+
+**Would start:** v1.4, on owner approval.
+
+### Overall Grade: B-
+
+**+0.27% against an S&P down 0.57% — a +0.84pp relative win, back on the right side after last week's loss.** It was earned by weighting, not action: XLE and XLP carried the book, PSX's trail locked a +$283.86 winner before its print and cut energy from 49.64% to 34.64% on its own, and TMO converted to a trail the first legal session. Every validator was respected and protection stayed one-for-one with nothing lowered. Not higher, because **the rule-12 mandate came due and was not filled** — LLY and MRK were approved by `validate_order.py` and refused by `submit_entry.py` on a stop-distance check computed against a different (moving or spurious) price, so the book ends four sessions below band and below the rule-3 range with $36K idle, and missed LLY's ~11% post-print run. Not lower, because the refusals were the gate working on bad inputs rather than a rule being broken by choice, the fix is mechanical and named, and the relative result was positive.
+
+---
