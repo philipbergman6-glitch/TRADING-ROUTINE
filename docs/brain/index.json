@@ -2217,7 +2217,7 @@
     "trade/2026-10-26/midday-scan/1",
     "trade/2026-10-26/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-30"
   },
   "2026-10-27": {
    "fills": [
@@ -2247,7 +2247,7 @@
     "trade/2026-10-27/midday-scan/1",
     "trade/2026-10-27/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-30"
   },
   "2026-10-28": {
    "fills": [],
@@ -2270,7 +2270,7 @@
     "trade/2026-10-28/midday-scan/1",
     "trade/2026-10-28/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-30"
   },
   "2026-10-29": {
    "fills": [],
@@ -2293,7 +2293,7 @@
     "trade/2026-10-29/midday-scan/1",
     "trade/2026-10-29/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-30"
   },
   "2026-10-30": {
    "fills": [],
@@ -2307,7 +2307,7 @@
     "trade/2026-10-30/midday-scan/1",
     "trade/2026-10-30/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-10-30"
   }
  },
  "entries": {
@@ -7677,7 +7677,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Monday, VZ BMO day — FOMC week)",
-   "week": null
+   "week": "2026-10-30"
   },
   "research/2026-10-27/addendum/1": {
    "date": "2026-10-27",
@@ -7698,7 +7698,7 @@
     "XLE"
    ],
    "title": "Midday addendum",
-   "week": null
+   "week": "2026-10-30"
   },
   "research/2026-10-27/pre-market-research/1": {
    "date": "2026-10-27",
@@ -7724,7 +7724,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Tuesday, KO/BA/HCA BMO day — FOMC day 1)",
-   "week": null
+   "week": "2026-10-30"
   },
   "research/2026-10-28/pre-market-research/1": {
    "date": "2026-10-28",
@@ -7750,7 +7750,7 @@
     "XLP"
    ],
    "title": "Pre-Market (Wednesday, FOMC decision day — MSFT/GOOGL AMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "research/2026-10-29/pre-market-research/1": {
    "date": "2026-10-29",
@@ -7775,7 +7775,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Thursday, LLY BMO / AMZN AMC — post-FOMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "research/2026-10-30/pre-market-research/1": {
    "date": "2026-10-30",
@@ -7802,7 +7802,7 @@
     "XOM"
    ],
    "title": "Pre-Market Research (Friday, XOM/CVX/ABBV BMO — post-AMZN, rule-12 mandate day)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
@@ -12301,7 +12301,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 130, Monday, VZ BMO day — FOMC week)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-26/market-open-trades/1": {
    "date": "2026-10-26",
@@ -12320,7 +12320,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 130, Monday, VZ BMO day — FOMC week)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-26/midday-scan/1": {
    "date": "2026-10-26",
@@ -12338,7 +12338,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 130, Monday, VZ BMO day — FOMC week)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-27/eod-snapshot/1": {
    "date": "2026-10-27",
@@ -12357,7 +12357,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-27/market-open-trades/1": {
    "date": "2026-10-27",
@@ -12376,7 +12376,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-27/midday-scan/1": {
    "date": "2026-10-27",
@@ -12395,7 +12395,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 131, Tuesday, KO/BA/HCA BMO day — FOMC day 1)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-28/eod-snapshot/1": {
    "date": "2026-10-28",
@@ -12415,7 +12415,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-28/market-open-trades/1": {
    "date": "2026-10-28",
@@ -12433,7 +12433,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-28/midday-scan/1": {
    "date": "2026-10-28",
@@ -12451,7 +12451,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 132, Wednesday, FOMC decision day — MSFT/GOOGL AMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-29/eod-snapshot/1": {
    "date": "2026-10-29",
@@ -12469,7 +12469,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-29/market-open-trades/1": {
    "date": "2026-10-29",
@@ -12487,7 +12487,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-29/midday-scan/1": {
    "date": "2026-10-29",
@@ -12505,7 +12505,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 133, Thursday, LLY BMO / AMZN AMC — post-FOMC)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-30/eod-snapshot/1": {
    "date": "2026-10-30",
@@ -12525,7 +12525,7 @@
     "XOM"
    ],
    "title": "EOD Snapshot (Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-30/market-open-trades/1": {
    "date": "2026-10-30",
@@ -12544,7 +12544,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop)",
-   "week": null
+   "week": "2026-10-30"
   },
   "trade/2026-10-30/midday-scan/1": {
    "date": "2026-10-30",
@@ -12561,7 +12561,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop)",
-   "week": null
+   "week": "2026-10-30"
   }
  },
  "generated_from": {
@@ -12582,7 +12582,7 @@
     "eod_snapshots": 129
    },
    "memory/WEEKLY-REVIEW.md": {
-    "weeks": 26
+    "weeks": 27
    },
    "state/events.jsonl": {
     "intents": 14,
@@ -15684,7 +15684,8 @@
     "2026-09-18",
     "2026-09-25",
     "2026-10-02",
-    "2026-10-09"
+    "2026-10-09",
+    "2026-10-30"
    ]
   },
   "LLY": {
@@ -15738,7 +15739,8 @@
     "trade/2026-10-30/eod-snapshot/1"
    ],
    "weeks": [
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-30"
    ]
   },
   "MPC": {
@@ -15904,7 +15906,9 @@
     "trade/2026-10-30/market-open-trades/1",
     "trade/2026-10-30/eod-snapshot/1"
    ],
-   "weeks": []
+   "weeks": [
+    "2026-10-30"
+   ]
   },
   "MSFT": {
    "decisions": [
@@ -16797,7 +16801,8 @@
     "2026-10-02",
     "2026-10-09",
     "2026-10-16",
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-30"
    ]
   },
   "SLB": {
@@ -16863,7 +16868,8 @@
     "trade/2026-10-30/eod-snapshot/1"
    ],
    "weeks": [
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-30"
    ]
   },
   "TMO": {
@@ -16948,7 +16954,8 @@
     "trade/2026-10-30/eod-snapshot/1"
    ],
    "weeks": [
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-30"
    ]
   },
   "WMT": {
@@ -17629,7 +17636,8 @@
     "2026-10-02",
     "2026-10-09",
     "2026-10-16",
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-30"
    ]
   },
   "XLF": {
@@ -18755,7 +18763,8 @@
     "2026-10-02",
     "2026-10-09",
     "2026-10-16",
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-30"
    ]
   },
   "XOM": {
@@ -19534,6 +19543,31 @@
     "GEV",
     "LLY",
     "MPC",
+    "PSX",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ]
+  },
+  "2026-10-30": {
+   "closed_trades": [
+    "PSX"
+   ],
+   "ending": "2026-10-30",
+   "grade": "B-",
+   "line": 1794,
+   "open_positions": [
+    "PSX",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "symbols": [
+    "GOOGL",
+    "LLY",
+    "MRK",
     "PSX",
     "SLB",
     "TMO",

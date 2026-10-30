@@ -168,7 +168,8 @@ const WEEKS = [
 {w:"10/02", bot:0.17, spx:0.03, spxc:0.03, est:0},
 {w:"10/09", bot:2.43, spx:0.91, spxc:0.91, est:0},
 {w:"10/16", bot:1.37, spx:-1.71, spxc:-1.71, est:0},
-{w:"10/23", bot:-1.56, spx:-0.47, spxc:-0.47, est:0}
+{w:"10/23", bot:-1.56, spx:-0.47, spxc:-0.47, est:0},
+{w:"10/30", bot:0.27, spx:-0.57, spxc:-0.57, est:0}
 ];
 
 const BOOK = [ // Oct 30 EOD
