@@ -2316,7 +2316,9 @@
     "research/2026-11-02/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-11-02/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -12599,6 +12601,24 @@
    ],
    "title": "Midday Scan (Day 134, Friday, XOM/CVX/ABBV BMO — Deployment Backstop)",
    "week": "2026-10-30"
+  },
+  "trade/2026-11-02/market-open-trades/1": {
+   "date": "2026-11-02",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-02/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4347,
+   "log": "trade",
+   "note": "Day 135, Monday, ISM Mfg / AAPL+PLTR AMC — Deployment Backstop",
+   "symbols": [
+    "LLY",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Market-Open (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC — Deployment Backstop)",
+   "week": null
   }
  },
  "generated_from": {
@@ -12615,7 +12635,7 @@
     "entries": 212
    },
    "memory/TRADE-LOG.md": {
-    "entries": 279,
+    "entries": 280,
     "eod_snapshots": 129
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -15776,7 +15796,8 @@
     "trade/2026-10-29/midday-scan/1",
     "trade/2026-10-29/eod-snapshot/1",
     "trade/2026-10-30/market-open-trades/1",
-    "trade/2026-10-30/eod-snapshot/1"
+    "trade/2026-10-30/eod-snapshot/1",
+    "trade/2026-11-02/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -16909,7 +16930,8 @@
     "trade/2026-10-29/eod-snapshot/1",
     "trade/2026-10-30/market-open-trades/1",
     "trade/2026-10-30/midday-scan/1",
-    "trade/2026-10-30/eod-snapshot/1"
+    "trade/2026-10-30/eod-snapshot/1",
+    "trade/2026-11-02/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -16996,7 +17018,8 @@
     "trade/2026-10-29/eod-snapshot/1",
     "trade/2026-10-30/market-open-trades/1",
     "trade/2026-10-30/midday-scan/1",
-    "trade/2026-10-30/eod-snapshot/1"
+    "trade/2026-10-30/eod-snapshot/1",
+    "trade/2026-11-02/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -17670,7 +17693,8 @@
     "trade/2026-10-29/eod-snapshot/1",
     "trade/2026-10-30/market-open-trades/1",
     "trade/2026-10-30/midday-scan/1",
-    "trade/2026-10-30/eod-snapshot/1"
+    "trade/2026-10-30/eod-snapshot/1",
+    "trade/2026-11-02/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -18791,7 +18815,8 @@
     "trade/2026-10-29/eod-snapshot/1",
     "trade/2026-10-30/market-open-trades/1",
     "trade/2026-10-30/midday-scan/1",
-    "trade/2026-10-30/eod-snapshot/1"
+    "trade/2026-10-30/eod-snapshot/1",
+    "trade/2026-11-02/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
