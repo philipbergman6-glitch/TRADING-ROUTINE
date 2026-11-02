@@ -8970,3 +8970,41 @@ Rule 14 lapsed (SLB, TMO are single names) — no composition waiver needed. `ta
 **TRADE — rule-12 mandate: LLY 10 sh** at market-open (MRK 100 sh alternate). No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-11-02 — Pre-Market Research (Monday, ISM Mfg / AAPL+PLTR AMC — midterms Tue, rule-12 mandate day)
+
+### Account snapshot
+- **Equity $105,251.60** (`last_equity` $105,793.21, -$541.61/-0.51% on premarket marks) · **Cash $36,321.01** · Long MV $68,930.59 · `buying_power` $338,290 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5–6): XLP 21.23% · XLE 20.47% · SLB 13.96% · TMO 9.83%. Week trades **0/3** (week of 11/02).
+- Stops 4/4, one-for-one, qty matching: SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.669 (hwm $711.85) · XLE 10% trail $63.1359 (hwm $70.151) · XLP 10% trail $81.342 (hwm $90.38). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261102T113341Z-8ca1d2`.
+
+### Market context
+- **WTI ~$100.9 (-3.1%) · Brent ~$110.0 (-3.0%)** — reported Iran–Qatar talks to ease the conflict.
+- **ES ~7,645 (+0.41%)** — tech relief bounce after October AI sell-off. **VIX 18.9** (19.42 Fri close).
+- Today: 10:00 ISM Mfg (cons 54.6, prices paid ~77), construction spending. No CPI (11/10)/PPI (11/13)/payrolls (11/06)/FOMC.
+- BMO: MAR, ETR, IDXX, PEG, EL, CHKP, TEM, L. AMC: **AAPL, PLTR**, VRTX, WMB, FANG. AMD Tue. **US midterms Tue 11/03.**
+- Sector YTD (rule 9, thru 10/30): Energy +59.7%, Health Care +18.8% (streak 0), Materials +16.5%, Info Tech +15.0% (**banned**, lifts 11/13), Staples +14.8%, Industrials +9.6% (**banned**, lifts 11/19).
+- Holdings: SLB — Q3 beat, PTs $64–70; CLO sold 20,986 sh 10/30. TMO — exec leadership transition announced 10/30; Citi PT $800, Argus $780. XLP — record $90.38, best month since 1998. XLE — oil -3% weighs today. Premarket: XLE -1.1%, SLB -1.3%, TMO -1.0%, XLP -0.1%.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (SLB, TMO single names) — no composition waiver needed. `target_notional` $15,270.
+1. **Eli Lilly (LLY)** — Health Care (#2 YTD, streak 0). Catalyst: Q3 beat-and-raise (rev $24.4B +39%, FY rev guide $91–92B) + positive Ph3 retatrutide T2D data; PTs $1,500–1,650. Premarket ~$1,406.96 (-0.7%). 10 sh, **stop $1,266.26 (10%)**, target $1,688.36 (2:1). `validate_order.py --symbol LLY --qty 10 --side buy --price 1406.96 --stop-price 1266.26 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $14,069.60 ≤ $15,270. Post-fill ≈78.9%. In `memory/SECTORS.json`.
+2. **Merck (MRK)** — Health Care. Catalyst: Q3 beat-and-raise (adj EPS $2.49 vs $2.12), Keytruda +6%; ~$149.52. 100 sh, **stop $134.57 (10%)**, target $179.42 (2:1). `validate_order.py --symbol MRK --qty 100 --side buy --price 149.52 --stop-price 134.57 --trades-this-week 0 --sector "Health Care"` → **APPROVED, exit 0**, $14,952. Alternate only. In `memory/SECTORS.json`.
+
+### Risk factors
+- Midterms Tue + AAPL/PLTR AMC, AMD Tue — elevated cross-asset vol; AI-valuation fragility.
+- Oil -3% on Iran diplomacy hits energy ~34% (XLE+SLB).
+- Entry-gate fragility: 10/29 and 10/30 mandate adds refused by `submit_entry.py` stop-distance on opening IEX quote noise (current Alpaca quotes are stale/wide: LLY $1,351.58/$1,496.25). Market-open must re-validate at a settled live ask and re-size to the 9.5–10.5% band.
+- Health Care LLY + TMO ≈23% post-fill.
+- Cushions: TMO 7.15% (nearest), SLB 7.39%, XLE 8.86%, XLP 8.97%. XLP 21.2% / XLE 20.5% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 5: `deployed_pct` **65.49**, band [75, 85], `sessions_under_band` **4**, `mandate` **true**, `exemption_allowed` **false**, `target_notional` $15,270, `last_eod` 2026-10-30. **MANDATE DUE.**
+- **Deployment mandate:** BUY **LLY 10 sh** (cost ≈$14,070 ≤ $15,270 at premarket $1,406.96), catalyst Q3 beat-and-raise + retatrutide Ph3, **stop $1,266.26 (10% below)**. Single name passing the Entry Checklist (catalyst ✓, Health Care momentum ✓, 10% stop ✓, 2:1 ✓). MRK 100 sh alternate if LLY fails re-validation. No deferral: `exemption_allowed` false (midterms are Tue, not today; ISM is routine data).
+
+### Decision
+**TRADE — rule-12 mandate: LLY 10 sh** at market-open (MRK 100 sh alternate). No stop changes; all 4 stops active and correct.
+
+---
