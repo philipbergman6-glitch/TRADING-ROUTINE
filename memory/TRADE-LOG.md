@@ -4379,3 +4379,22 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Deployment:** LMV ≈$82,974, 5 positions, in band after this morning's LLY add.
 
 ---
+
+### Nov 02 — EOD Snapshot (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC — Deployment Backstop)
+**Portfolio:** $105,111.33 | **Cash:** $22,311.21 (21.23%) | **Day P&L:** -$681.88 (-0.64%) | **Phase P&L:** +$5,111.33 (+5.11%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,419.925 | +0.17% | +$189.45 (+1.35%) | $1,278.675 (10% trail GTC, hwm $1,420.75) |
+| SLB | 277 | $50.08 | $52.69 | -1.95% | +$722.97 (+5.21%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $686.285 | -1.54% | -$154.28 (-1.48%) | $640.669 (10% trail GTC, hwm $711.85) |
+| XLE | 311 | $63.9218 | $67.565 | -3.51% | +$1,133.05 (+5.70%) | $63.1359 (10% trail GTC, hwm $70.151) |
+| XLP | 250 | $83.76 | $90.795 | +1.54% | +$1,758.75 (+8.40%) | $81.819 (10% trail GTC, hwm $90.91) |
+
+**Trades today:** BUY LLY 10 @ $1,400.98 (rule-12 deployment backstop, blotter entry 14:46 UTC). No exits. **Week trades: 1/3** (week of 11/02). Blotter and TRADE-LOG agree.
+
+**Notes:** Energy dragged on oil weakness (Iran–Qatar talks): XLE -3.5% and SLB -2.0% cost ~$1,054, partly offset by XLP +1.5% (trail ratcheted to $81.819, hwm $90.91) and LLY, which closed +1.35% above its fill (trail up to $1,278.675). TMO -1.5% and now -1.48% from entry. Day P&L is against the broker's 10/30 close of $105,793.21 (the 10/30 snapshot logged $105,833.21 from pre-close marks, a $40 difference; reconcile uses the broker value, diff 0.00). Deployment 78.77% (LMV $82,800.12), in band after the LLY add — under-band streak ends at 4 sessions. 5 positions, protection 5/5 one-for-one. Cushions: XLE 6.56% (nearest), TMO 6.65%, SLB 6.74%, XLP 9.89%, LLY 9.95%. Energy ~33.9% (XLE + SLB), Health Care ~23.3% (LLY + TMO). blotter --check exit 0, reconcile RECONCILED exit 0 (137 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261102T201131Z-d3c20e.
+
+**Tomorrow:** Hold; watch XLE/SLB/TMO cushions (~6.6%) against further oil weakness — no new entries needed, deployment in band.
+
+---

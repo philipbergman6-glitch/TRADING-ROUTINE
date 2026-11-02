@@ -391,6 +391,15 @@
       "entry_order_ids": [
         "7ed83231-0c73-48a2-98d8-6560a79cbefe"
       ]
+    },
+    {
+      "symbol": "LLY",
+      "entered": "2026-11-02T14:46:16.886361+00:00",
+      "qty": "10",
+      "avg_in": "1400.9800",
+      "entry_order_ids": [
+        "fe10d5bc-f694-42be-9684-c71aebfb2b35"
+      ]
     }
   ]
 }
