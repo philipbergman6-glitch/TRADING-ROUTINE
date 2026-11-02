@@ -4363,3 +4363,19 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (14:48 UTC):** equity $104,968.17, cash $22,311.21, LMV $82,656.96 → **78.74% deployed**, in band. 5 positions. Protection 5/5 one-for-one (`protection_monitor.py --dry-run` exit 0): LLY 10% trail $1,261.791 · SLB 10% trail $49.14 · TMO 10% trail $640.669 · XLE 10% trail $63.1359 · XLP 10% trail $81.3555. Health Care ≈23% (LLY + TMO).
 
 ---
+
+### 2026-11-02 — Midday Scan (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC)
+
+**No action; no broker mutation.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261102T170748Z-fe36b9`. Week of 2026-11-02 trade count: **1/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 5/5, one-for-one:** LLY 10% trail $1,271.2491 (hwm $1,412.499) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.669 (hwm $711.85) · XLE 10% trail $63.1359 (hwm $70.151) · XLP 10% trail $81.504 (hwm $90.56). `blotter.py --check` exit 0, 5 open lots match positions.
+
+**Rule 7:** no standing condition. Cushions: TMO 6.66% (nearest), XLE 7.39%, SLB 8.28%, LLY 9.62%, XLP 9.72%.
+
+**STEP 3:** no position ≤ -7% (XLP +7.78%, SLB +6.98%, XLE +6.65%, LLY +0.40%, TMO -1.47%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken — XLE -2.6% intraday on oil weakness (Iran–Qatar talks, known cause), TMO -1.5%, LLY -0.8%, SLB -0.3%, XLP +1.0%.
+
+**Deployment:** LMV ≈$82,974, 5 positions, in band after this morning's LLY add.
+
+---
