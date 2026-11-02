@@ -4343,3 +4343,23 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Weekend — Friday weekly review; Monday under band day 5, rule-12 re-deployment still due (needs a fix or a post-open entry so the ask-based gate isn't hit by opening quote noise).
 
 ---
+
+### 2026-11-02 — Market-Open (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC — Deployment Backstop)
+
+**BUY LLY 10 sh @ $1,400.98** (rule-12 mandate filled). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261102T141442Z-7bb22a`. Week of 2026-11-02 trade count: **1/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **4/4 one-for-one**. **STEP 2c:** `deployment_status.py` exit 5 — **MANDATE DUE** (`deployed_pct` 65.46, `sessions_under_band` 4, `exemption_allowed` false, `target_notional` $15,286). **Rule 10:** `blotter.py --sector-streaks` exit 0, Health Care streak 0, not banned. Rule 14 lapsed (SLB, TMO single names).
+
+**Timing:** run fired 14:14 UTC (pre-open, quotes stale from Fri close). Waited to 14:45 UTC and sampled the IEX ask 6× over 30s ($1,396.28–$1,398.28) before sizing, to avoid the opening-quote noise that refused the 10/29 and 10/30 adds.
+
+| Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|--------|------|--------|-------|------|--------|--------|-----|
+| LLY | buy | 10 | $1,400.98 | $1,261.791 (10% trail GTC, hwm $1,401.19) | Q3 beat-and-raise (rev $24.4B +39%, FY guide $91–92B) + Ph3 retatrutide T2D data; Health Care #2 YTD | $1,680 | 2:1 |
+
+- `validate_order.py --symbol LLY --qty 10 --side buy --price 1397.50 --stop-price 1257.75 --sector "Health Care"` → APPROVED exit 0, $13,975.00 (ledger disabled).
+- `submit_entry.py --symbol LLY --qty 10 --price 1397.50` → exit 0 `submitted`, intent `en-20261102-LLY`, order `fe10d5bc-f694-42be-9684-c71aebfb2b35`. Filled 10/10 @ $1,400.98; fixed leg `97efb864` stop $1,257.75 (10.22% below fill) confirmed.
+- STEP 5: `validate_order.py --side sell --price 1399.875 --trail-percent 10` → exit 0; `replace_stop.py --order-id 97efb864-d656-402d-92c4-019c870ba1b4 --trail-percent 10` → exit 0 `replaced`, trail `c47ec323-09cd-44cc-a322-9d4bfa057566` (rs-97efb864-d656-402d-92c4-019c870ba1b4), stop $1,261.071 → $1,261.791 (not lowered vs $1,257.75). Intent `en-20261102-LLY` complete.
+
+**Live state (14:48 UTC):** equity $104,968.17, cash $22,311.21, LMV $82,656.96 → **78.74% deployed**, in band. 5 positions. Protection 5/5 one-for-one (`protection_monitor.py --dry-run` exit 0): LLY 10% trail $1,261.791 · SLB 10% trail $49.14 · TMO 10% trail $640.669 · XLE 10% trail $63.1359 · XLP 10% trail $81.3555. Health Care ≈23% (LLY + TMO).
+
+---
