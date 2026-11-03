@@ -9008,3 +9008,38 @@ Rule 14 lapsed (SLB, TMO single names) — no composition waiver needed. `target
 **TRADE — rule-12 mandate: LLY 10 sh** at market-open (MRK 100 sh alternate). No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-11-03 — Pre-Market Research (Tuesday, US midterms / JOLTS / MPC+SHOP+ETN BMO)
+
+### Account snapshot
+- **Equity $104,732.94** (`last_equity` $104,772.97, -$40.03/-0.04% on premarket marks) · **Cash $22,311.20** · Long MV $82,421.74 · `buying_power` $320,026 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions** (rule-3 range 5–6): XLP 21.57% · XLE 20.18% · SLB 13.84% · LLY 13.34% · TMO 9.78%. Week trades **1/3** (week of 11/02).
+- Stops 5/5, one-for-one, qty matching: LLY 10% trail $1,279.791 (hwm $1,421.99) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.669 (hwm $711.85) · XLE 10% trail $63.1359 (hwm $70.151) · XLP 10% trail $81.891 (hwm $90.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261103T113257Z-780f77`.
+
+### Market context
+- **WTI ~$96.7 · Brent ~$104.8** — extending the slide on US/Iran–Qatar peace hopes.
+- **ES ~7,571 (-0.04%)** — flat, defensive ahead of midterm results. **VIX 21.15** (+8.9% Mon).
+- Today: **US midterm elections** (results overnight); 10:00 JOLTS. No CPI (11/10)/PPI (11/13)/payrolls (11/06)/FOMC (12/08–09).
+- BMO: **MPC** (EPS est ~$25.4–26.0, call 11:00), SHOP, ETN, AME, MPLX, SUN. AMD AMC. AAPL/PLTR reported Mon AMC.
+- Sector YTD (rule 9): Energy +53.7%, Info Tech +24.4% (**banned**, lifts 11/13), Health Care +18.8% (streak 0), Materials +14.5% (streak 1), Industrials +9.6% (**banned**, lifts 11/19).
+- Holdings: LLY — Q3 beat-and-raise, retatrutide vs Ozempic data, $1.73 div (record 11/13). TMO — Q3 beat-and-raise, leadership transition. SLB — Q3 beat stands. XLE/XLP — no fund-specific news; oil weakness the XLE/SLB headwind.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (LLY, SLB, TMO single names). Cash $22,311; max-deployment cap (85%) limits any add to ~$6.5k.
+1. **Merck (MRK)** — Health Care (#3 YTD, streak 0). Catalyst: Q3 beat-and-raise 10/29 (adj EPS $2.49, FY rev $66.8–67.3B), holding gains; close $148.36. 44 sh, **stop $133.52 (10%)**, target $178.04 (2:1). `validate_order.py --symbol MRK --qty 44 --side buy --price 148.36 --stop-price 133.52 --trades-this-week 1 --sector "Health Care"` → **APPROVED, exit 0**, $6,527.84 (100 sh refused: max_deployment_pct 92.86%). Adds Health Care to ~30%.
+2. **Marathon Petroleum (MPC)** — Energy (#1 YTD). Catalyst: Q3 print BMO today — act only on a beat/clean guide; close $430.39. 15 sh, **stop $387.35 (10%)**, target $516.47 (2:1). `validate_order.py --symbol MPC --qty 15 --side buy --price 430.39 --stop-price 387.35 --trades-this-week 1 --sector "Energy"` → **APPROVED, exit 0**, $6,455.85. Energy would reach ~40% — watchlist only.
+
+### Risk factors
+- Midterm results overnight + AMD AMC; VIX >21, AI-valuation fragility.
+- Oil sliding on Iran diplomacy: Energy ~34% (XLE+SLB); SLB cushion 6.08%, XLE 7.07%.
+- Cushions: SLB 6.08% (nearest), TMO 6.15%, XLE 7.07%, LLY 8.38%, XLP 9.37%. No position within 3% of its stop (rule 7). XLP 21.6% / XLE 20.2% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **78.7**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `last_eod` 2026-11-02. No mandate.
+
+### Decision
+**HOLD.** In band, 5 positions, protection 5/5; midterm-result risk argues patience (rule 11). MRK 44 sh is the first add if deployment drifts below band. No stop changes; all 5 stops active and correct.
+
+---
