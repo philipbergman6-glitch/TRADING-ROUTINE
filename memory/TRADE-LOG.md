@@ -4398,3 +4398,13 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Hold; watch XLE/SLB/TMO cushions (~6.6%) against further oil weakness — no new entries needed, deployment in band.
 
 ---
+
+### 2026-11-03 — Market-Open
+
+**No trades.** The research plan was HOLD (in band, midterm-result risk, rule 11). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261103T133327Z-8a849c`. Week of 2026-11-02 trade count: **1/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **5/5 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 — no mandate (`deployed_pct` 78.59, `sessions_under_band` 0).
+
+**Live state (13:33 UTC):** equity $104,183.82, cash $22,311.20, LMV $81,872.62. Stops: LLY 10% trail $1,279.791 · SLB 10% trail $49.14 · TMO 10% trail $640.669 · XLE 10% trail $63.1359 · XLP 10% trail $81.891. MRK 44 sh is still the first add if deployment drops below the band.
+
+---
