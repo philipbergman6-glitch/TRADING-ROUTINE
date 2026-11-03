@@ -2348,7 +2348,9 @@
     "research/2026-11-03/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-11-03/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -12712,6 +12714,25 @@
    ],
    "title": "Midday Scan (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC)",
    "week": null
+  },
+  "trade/2026-11-03/market-open-trades/1": {
+   "date": "2026-11-03",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-03/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4402,
+   "log": "trade",
+   "note": "",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Market-Open",
+   "week": null
   }
  },
  "generated_from": {
@@ -12728,7 +12749,7 @@
     "entries": 213
    },
    "memory/TRADE-LOG.md": {
-    "entries": 282,
+    "entries": 283,
     "eod_snapshots": 130
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -16124,7 +16145,8 @@
     "trade/2026-10-30/eod-snapshot/1",
     "trade/2026-11-02/market-open-trades/1",
     "trade/2026-11-02/midday-scan/1",
-    "trade/2026-11-02/eod-snapshot/1"
+    "trade/2026-11-02/eod-snapshot/1",
+    "trade/2026-11-03/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -16301,7 +16323,8 @@
    "sector": "Health Care",
    "trade_log": [
     "trade/2026-10-30/market-open-trades/1",
-    "trade/2026-10-30/eod-snapshot/1"
+    "trade/2026-10-30/eod-snapshot/1",
+    "trade/2026-11-03/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-30"
@@ -17269,7 +17292,8 @@
     "trade/2026-10-30/eod-snapshot/1",
     "trade/2026-11-02/market-open-trades/1",
     "trade/2026-11-02/midday-scan/1",
-    "trade/2026-11-02/eod-snapshot/1"
+    "trade/2026-11-02/eod-snapshot/1",
+    "trade/2026-11-03/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -17360,7 +17384,8 @@
     "trade/2026-10-30/eod-snapshot/1",
     "trade/2026-11-02/market-open-trades/1",
     "trade/2026-11-02/midday-scan/1",
-    "trade/2026-11-02/eod-snapshot/1"
+    "trade/2026-11-02/eod-snapshot/1",
+    "trade/2026-11-03/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -18038,7 +18063,8 @@
     "trade/2026-10-30/eod-snapshot/1",
     "trade/2026-11-02/market-open-trades/1",
     "trade/2026-11-02/midday-scan/1",
-    "trade/2026-11-02/eod-snapshot/1"
+    "trade/2026-11-02/eod-snapshot/1",
+    "trade/2026-11-03/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -19163,7 +19189,8 @@
     "trade/2026-10-30/eod-snapshot/1",
     "trade/2026-11-02/market-open-trades/1",
     "trade/2026-11-02/midday-scan/1",
-    "trade/2026-11-02/eod-snapshot/1"
+    "trade/2026-11-02/eod-snapshot/1",
+    "trade/2026-11-03/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
