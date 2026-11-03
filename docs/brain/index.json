@@ -2329,11 +2329,20 @@
      "symbol": "LLY"
     }
    ],
-   "intents": [],
+   "intents": [
+    "en-20261102-LLY",
+    "rs-97efb864-d656-402d-92c4-019c870ba1b4"
+   ],
    "research": [
     "research/2026-11-02/pre-market-research/1"
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261102T113341Z-8ca1d2",
+    "market-open-20261102T141442Z-7bb22a",
+    "midday-20261102T170748Z-fe36b9",
+    "daily-summary-20261102T201131Z-d3c20e",
+    "protection-monitor-20261102T221316Z-1e63fd"
+   ],
    "trade_log": [
     "trade/2026-11-02/market-open-trades/1",
     "trade/2026-11-02/midday-scan/1",
@@ -2350,7 +2359,8 @@
    "runs": [],
    "trade_log": [
     "trade/2026-11-03/market-open-trades/1",
-    "trade/2026-11-03/midday-scan/1"
+    "trade/2026-11-03/midday-scan/1",
+    "trade/2026-11-03/eod-snapshot/1"
    ],
    "week": null
   }
@@ -12716,6 +12726,24 @@
    "title": "Midday Scan (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC)",
    "week": null
   },
+  "trade/2026-11-03/eod-snapshot/1": {
+   "date": "2026-11-03",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-03/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 4426,
+   "log": "trade",
+   "note": "Day 136, Tuesday, US midterms / JOLTS / MPC BMO",
+   "symbols": [
+    "LLY",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 136, Tuesday, US midterms / JOLTS / MPC BMO)",
+   "week": null
+  },
   "trade/2026-11-03/market-open-trades/1": {
    "date": "2026-11-03",
    "file": "memory/TRADE-LOG.md",
@@ -12755,7 +12783,7 @@
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-11-02 (UTC)",
+  "run_cutoff": "started before 2026-11-03 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
@@ -12768,18 +12796,18 @@
     "entries": 213
    },
    "memory/TRADE-LOG.md": {
-    "entries": 284,
-    "eod_snapshots": 130
+    "entries": 285,
+    "eod_snapshots": 131
    },
    "memory/WEEKLY-REVIEW.md": {
     "weeks": 27
    },
    "state/events.jsonl": {
-    "intents": 16,
-    "runs": 84
+    "intents": 18,
+    "runs": 89
    }
   },
-  "trade_log_asof": "2026-11-02"
+  "trade_log_asof": "2026-11-03"
  },
  "intents": {
   "en-20261019-GEV": {
@@ -12983,6 +13011,46 @@
    "last_state": "dead",
    "symbol": "MRK"
   },
+  "en-20261102-LLY": {
+   "action": "entry",
+   "first_at": "2026-11-02T14:46:11+00:00",
+   "history": [
+    {
+     "action": "entry",
+     "at": "2026-11-02T14:46:11+00:00",
+     "client_order_id": "en-20261102-LLY",
+     "id": "887b777e385a48f8a32b2cf272db5cde",
+     "lease": "d7e340a64429436a9b867b49879d0d0a",
+     "price": "1396",
+     "qty": "10",
+     "sector": "Health Care",
+     "state": "recorded",
+     "symbol": "LLY",
+     "writer": "market-open-20261102T141442Z-7bb22a"
+    },
+    {
+     "at": "2026-11-02T14:46:15+00:00",
+     "client_order_id": "en-20261102-LLY",
+     "filled_qty": "0",
+     "id": "75e995cef2434f18b74e64307a61080c",
+     "lease": "d7e340a64429436a9b867b49879d0d0a",
+     "state": "acknowledged",
+     "writer": "market-open-20261102T141442Z-7bb22a"
+    },
+    {
+     "at": "2026-11-02T14:46:37+00:00",
+     "client_order_id": "en-20261102-LLY",
+     "filled_qty": "10",
+     "id": "703dd425bf4d455ab6bd09bc402ee5c6",
+     "lease": "2864961862644b3585e63cc02e3369d0",
+     "state": "filled",
+     "writer": "market-open-20261102T141442Z-7bb22a"
+    }
+   ],
+   "intent": "en-20261102-LLY",
+   "last_state": "filled",
+   "symbol": "LLY"
+  },
   "rs-1fed8260-db64-4d12-a3ac-a7a3f75fb484": {
    "action": "replace_stop",
    "first_at": "2026-10-22T17:05:36+00:00",
@@ -13114,6 +13182,36 @@
    "intent": "rs-41858b3e-eae4-4e21-9431-c8df78607acc-2",
    "last_state": "complete",
    "symbol": "GEV"
+  },
+  "rs-97efb864-d656-402d-92c4-019c870ba1b4": {
+   "action": "replace_stop",
+   "first_at": "2026-11-02T14:46:38+00:00",
+   "history": [
+    {
+     "action": "replace_stop",
+     "at": "2026-11-02T14:46:38+00:00",
+     "cancels": [
+      "97efb864-d656-402d-92c4-019c870ba1b4"
+     ],
+     "client_order_id": "rs-97efb864-d656-402d-92c4-019c870ba1b4",
+     "id": "f240d851ccbb438a91e6472be2c5ccd9",
+     "lease": "2864961862644b3585e63cc02e3369d0",
+     "state": "recorded",
+     "symbol": "LLY",
+     "writer": "market-open-20261102T141442Z-7bb22a"
+    },
+    {
+     "at": "2026-11-02T14:46:45+00:00",
+     "client_order_id": "rs-97efb864-d656-402d-92c4-019c870ba1b4",
+     "id": "2e0ba95d918941f6a32c22c5d78e4ed1",
+     "lease": "2864961862644b3585e63cc02e3369d0",
+     "state": "complete",
+     "writer": "market-open-20261102T141442Z-7bb22a"
+    }
+   ],
+   "intent": "rs-97efb864-d656-402d-92c4-019c870ba1b4",
+   "last_state": "complete",
+   "symbol": "LLY"
   },
   "rs-e138322d-a9c9-4f04-9e55-16c4d1ad1a1d": {
    "action": "replace_stop",
@@ -13906,6 +14004,25 @@
    "symbols": [],
    "trigger": "cloud"
   },
+  "daily-summary-20261102T201131Z-d3c20e": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "62279282d5e0de1e594a3ba67298ae736adbb4d7",
+   "ended_at": "2026-11-02T20:12:24+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261102T201131Z-d3c20e",
+   "started_at": "2026-11-02T20:11:31+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
   "market-open-20261015T133553Z-a47d04": {
    "actions": [],
    "code_dirty": false,
@@ -14170,6 +14287,32 @@
    ],
    "trigger": "cloud"
   },
+  "market-open-20261102T141442Z-7bb22a": {
+   "actions": [
+    "buy LLY 10 sh OTO @ 1400.98 (en-20261102-LLY)",
+    "replace LLY fixed stop 1257.75 -> 10% trail GTC (rs-97efb864-d656-402d-92c4-019c870ba1b4)"
+   ],
+   "code_dirty": false,
+   "code_sha": "ec42238d3191720e26a370884b6a7d986e01e1e4",
+   "ended_at": "2026-11-02T14:47:25+00:00",
+   "incidents": [],
+   "intents": [
+    "en-20261102-LLY"
+   ],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "actions",
+   "refusals": [],
+   "routine": "market-open",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "market-open-20261102T141442Z-7bb22a",
+   "started_at": "2026-11-02T14:14:42+00:00",
+   "symbols": [
+    "LLY"
+   ],
+   "trigger": "cloud"
+  },
   "midday-20261019T171051Z-67d107": {
    "actions": [],
    "code_dirty": false,
@@ -14374,6 +14517,25 @@
    "rulebook_version": "v1.3",
    "run": "midday-20261030T170550Z-c615df",
    "started_at": "2026-10-30T17:05:50+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "midday-20261102T170748Z-fe36b9": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "aab7bfa22a8f04bb499deb44d6ea8fab0943bd4f",
+   "ended_at": "2026-11-02T17:08:20+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "midday",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "midday-20261102T170748Z-fe36b9",
+   "started_at": "2026-11-02T17:07:48+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -14674,6 +14836,25 @@
    "rulebook_version": "v1.3",
    "run": "pre-market-20261030T113339Z-047892",
    "started_at": "2026-10-30T11:33:39+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "pre-market-20261102T113341Z-8ca1d2": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "ab1821b79df91fd03d07319b74922d0e0476056b",
+   "ended_at": "2026-11-02T11:35:37+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261102T113341Z-8ca1d2",
+   "started_at": "2026-11-02T11:33:41+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -15354,6 +15535,25 @@
    "rulebook_version": "v1.3",
    "run": "protection-monitor-20261030T223600Z-bd2963",
    "started_at": "2026-10-30T22:36:00+00:00",
+   "symbols": [],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261102T221316Z-1e63fd": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "d77aa70c90c045c70d2664f39169d4d498425a0a",
+   "ended_at": "2026-11-02T22:13:19+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261102T221316Z-1e63fd",
+   "started_at": "2026-11-02T22:13:16+00:00",
    "symbols": [],
    "trigger": "schedule"
   },
@@ -16111,7 +16311,9 @@
    "ideas": [],
    "intents": [
     "en-20261029-LLY",
-    "en-20261030-LLY"
+    "en-20261030-LLY",
+    "en-20261102-LLY",
+    "rs-97efb864-d656-402d-92c4-019c870ba1b4"
    ],
    "last_decision": {
     "date": "2026-11-02",
@@ -16145,7 +16347,8 @@
    "round_trips": [],
    "runs": [
     "market-open-20261029T134351Z-34cfda",
-    "market-open-20261030T133339Z-1af823"
+    "market-open-20261030T133339Z-1af823",
+    "market-open-20261102T141442Z-7bb22a"
    ],
    "sector": "Health Care",
    "trade_log": [
@@ -16166,7 +16369,8 @@
     "trade/2026-11-02/midday-scan/1",
     "trade/2026-11-02/eod-snapshot/1",
     "trade/2026-11-03/market-open-trades/1",
-    "trade/2026-11-03/midday-scan/1"
+    "trade/2026-11-03/midday-scan/1",
+    "trade/2026-11-03/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -17314,7 +17518,8 @@
     "trade/2026-11-02/midday-scan/1",
     "trade/2026-11-02/eod-snapshot/1",
     "trade/2026-11-03/market-open-trades/1",
-    "trade/2026-11-03/midday-scan/1"
+    "trade/2026-11-03/midday-scan/1",
+    "trade/2026-11-03/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -17407,7 +17612,8 @@
     "trade/2026-11-02/midday-scan/1",
     "trade/2026-11-02/eod-snapshot/1",
     "trade/2026-11-03/market-open-trades/1",
-    "trade/2026-11-03/midday-scan/1"
+    "trade/2026-11-03/midday-scan/1",
+    "trade/2026-11-03/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -18087,7 +18293,8 @@
     "trade/2026-11-02/midday-scan/1",
     "trade/2026-11-02/eod-snapshot/1",
     "trade/2026-11-03/market-open-trades/1",
-    "trade/2026-11-03/midday-scan/1"
+    "trade/2026-11-03/midday-scan/1",
+    "trade/2026-11-03/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -19214,7 +19421,8 @@
     "trade/2026-11-02/midday-scan/1",
     "trade/2026-11-02/eod-snapshot/1",
     "trade/2026-11-03/market-open-trades/1",
-    "trade/2026-11-03/midday-scan/1"
+    "trade/2026-11-03/midday-scan/1",
+    "trade/2026-11-03/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
