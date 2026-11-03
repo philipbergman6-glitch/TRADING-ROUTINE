@@ -2340,6 +2340,16 @@
     "trade/2026-11-02/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-03": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-03/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -7863,6 +7873,33 @@
    "title": "Pre-Market Research (Monday, ISM Mfg / AAPL+PLTR AMC — midterms Tue, rule-12 mandate day)",
    "week": null
   },
+  "research/2026-11-03/pre-market-research/1": {
+   "date": "2026-11-03",
+   "decision": [
+    "MRK"
+   ],
+   "decision_text": "**HOLD.** In band, 5 positions, protection 5/5; midterm-result risk argues patience (rule 11). MRK 44 sh is the first add if deployment drifts below band. No stop changes; all 5 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-03/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9012,
+   "log": "research",
+   "note": "Tuesday, US midterms / JOLTS / MPC+SHOP+ETN BMO",
+   "symbols": [
+    "AMD",
+    "LLY",
+    "MPC",
+    "MRK",
+    "PLTR",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Tuesday, US midterms / JOLTS / MPC+SHOP+ETN BMO)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -12688,7 +12725,7 @@
     "round_trips": 20
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 212
+    "entries": 213
    },
    "memory/TRADE-LOG.md": {
     "entries": 282,
@@ -15472,7 +15509,8 @@
     "research/2026-09-24/pre-market-research/1",
     "research/2026-10-08/addendum/1",
     "research/2026-10-13/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -16061,7 +16099,8 @@
     "research/2026-10-28/pre-market-research/1",
     "research/2026-10-29/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -16158,7 +16197,8 @@
     "research/2026-10-18/pre-market-research/1",
     "research/2026-10-19/pre-market-research/1",
     "research/2026-10-20/pre-market-research/1",
-    "research/2026-10-27/addendum/1"
+    "research/2026-10-27/addendum/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -16234,23 +16274,25 @@
   "MRK": {
    "decisions": [
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "ideas": [],
    "intents": [
     "en-20261030-MRK"
    ],
    "last_decision": {
-    "date": "2026-11-02",
-    "entry": "research/2026-11-02/pre-market-research/1",
-    "text": "**TRADE — rule-12 mandate: LLY 10 sh** at market-open (MRK 100 sh alternate). No stop changes; all 4 stops active and correct. ---"
+    "date": "2026-11-03",
+    "entry": "research/2026-11-03/pre-market-research/1",
+    "text": "**HOLD.** In band, 5 positions, protection 5/5; midterm-result risk argues patience (rule 11). MRK 44 sh is the first add if deployment drifts below band. No stop changes; all 5 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
     "research/2026-04-30/pre-market-research/1",
     "research/2026-08-04/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -16916,7 +16958,8 @@
     "research/2026-06-03/pre-market-research/2",
     "research/2026-08-03/pre-market-research/1",
     "research/2026-09-22/conviction/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -17196,7 +17239,8 @@
     "research/2026-10-28/pre-market-research/1",
     "research/2026-10-29/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -17270,7 +17314,8 @@
     "research/2026-10-28/pre-market-research/1",
     "research/2026-10-29/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -17903,7 +17948,8 @@
     "research/2026-10-28/pre-market-research/1",
     "research/2026-10-29/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -18897,7 +18943,8 @@
     "research/2026-10-28/pre-market-research/1",
     "research/2026-10-29/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-02/pre-market-research/1"
+    "research/2026-11-02/pre-market-research/1",
+    "research/2026-11-03/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
