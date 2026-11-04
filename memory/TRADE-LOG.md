@@ -4441,3 +4441,13 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Hold; digest midterm results, watch XLE cushion (5.6%) — no new entries needed, deployment in band.
 
 ---
+
+### 2026-11-04 — Market-Open
+
+**No trades.** The research plan was HOLD (in band, no mandate, rule 11). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261104T133340Z-b1de12`. Week of 2026-11-02 trade count: **1/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **5/5 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 — no mandate (`deployed_pct` 78.81, `sessions_under_band` 0).
+
+**Live state (13:34 UTC):** equity $105,292.72, cash $22,311.20, LMV $82,981.52. Stops: LLY 10% trail $1,293.30 · SLB 10% trail $49.14 · TMO 10% trail $640.669 · XLE 10% trail $63.1359 · XLP 10% trail $81.891. MRK 44 sh is still the first add if deployment drops below the band.
+
+---
