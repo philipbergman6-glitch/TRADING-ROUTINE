@@ -4467,3 +4467,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:05 UTC):** equity $103,594.90, cash $41,944.63, LMV $61,650.27 → deployed **59.5%, below the 75–85% band**; 4 positions (below rule-3 range 5–6). MRK 44 sh is the first add (pre-market approved); market-open should re-size toward band.
 
 ---
+
+### Nov 04 — EOD Snapshot (Day 137, Wednesday, post-midterm / ADP / ISM Services)
+**Portfolio:** $103,847.45 | **Cash:** $41,944.63 (40.39%) | **Day P&L:** -$447.64 (-0.43%) | **Phase P&L:** +$3,847.45 (+3.85%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,419.035 | +0.69% | +$180.55 (+1.29%) | $1,301.364 (10% trail GTC, hwm $1,445.96) |
+| SLB | 277 | $50.08 | $50.845 | -2.47% | +$211.91 (+1.53%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $705.14 | +0.97% | +$128.55 (+1.23%) | $640.955 (10% trail GTC, hwm $712.17) |
+| XLP | 250 | $83.76 | $92.21 | +3.67% | +$2,112.50 (+10.09%) | $83.241 (10% trail GTC, hwm $92.49) |
+
+**Trades today:** SELL XLE 311 @ $63.13 (10% trailing stop `cac3cefd` filled 16:40:50 UTC; entry 09-17 @ $63.9218; realized -$246.24 / -1.24%). No buys. **Week trades: 1/3** (week of 11/02; LLY 11/02 — stop fill is not a new trade). Blotter and TRADE-LOG agree.
+
+**Notes:** Post-midterm oil slide (Democratic sweep + US–Iran talk progress) took out XLE on its trail and pushed SLB -2.5%; XLP +3.7% (new high, trail ratcheted to $83.241) and modest LLY/TMO gains offset most of it. Day P&L is against the broker's 11/03 close of $104,295.09 (the 11/03 snapshot logged $104,569.69 from pre-close marks; reconcile uses the broker value, diff 0.00). Marks are 20:10 UTC, before the close. Deployment 59.61% (LMV $61,902.82) — below the 75–85% band; 4 positions, below rule-3 range 5–6. Protection 4/4 one-for-one. Cushions: SLB 3.35% (nearest), LLY 8.29%, TMO 9.10%, XLP 9.73%. Health Care ~23.9% (LLY + TMO), Energy ~13.6% (SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (139 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261104T201045Z-d39347.
+
+**Tomorrow:** Re-deploy toward band at market-open (MRK 44 sh first add, per pre-market approval, through validate_order.py); watch SLB cushion (3.4%).
+
+---
