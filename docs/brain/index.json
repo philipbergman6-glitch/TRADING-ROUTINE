@@ -2368,11 +2368,13 @@
    "fills": [],
    "intents": [],
    "research": [
-    "research/2026-11-04/pre-market-research/1"
+    "research/2026-11-04/pre-market-research/1",
+    "research/2026-11-04/addendum/1"
    ],
    "runs": [],
    "trade_log": [
-    "trade/2026-11-04/market-open-trades/1"
+    "trade/2026-11-04/market-open-trades/1",
+    "trade/2026-11-04/midday-scan/1"
    ],
    "week": null
   }
@@ -7925,6 +7927,25 @@
    "title": "Pre-Market Research (Tuesday, US midterms / JOLTS / MPC+SHOP+ETN BMO)",
    "week": null
   },
+  "research/2026-11-04/addendum/1": {
+   "date": "2026-11-04",
+   "decision": [],
+   "decision_text": "",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-04/addendum/1",
+   "ideas": [],
+   "kind": "addendum",
+   "line": 9083,
+   "log": "research",
+   "note": "",
+   "symbols": [
+    "MRK",
+    "SLB",
+    "XLE"
+   ],
+   "title": "Midday Addendum",
+   "week": null
+  },
   "research/2026-11-04/pre-market-research/1": {
    "date": "2026-11-04",
    "decision": [
@@ -12837,6 +12858,25 @@
    ],
    "title": "Market-Open",
    "week": null
+  },
+  "trade/2026-11-04/midday-scan/1": {
+   "date": "2026-11-04",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-04/midday-scan/1",
+   "kind": "midday-scan",
+   "line": 4455,
+   "log": "trade",
+   "note": "Day 137, Wednesday, post-midterm / ADP / ISM Services",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "SLB",
+    "TMO",
+    "XLE",
+    "XLP"
+   ],
+   "title": "Midday Scan (Day 137, Wednesday, post-midterm / ADP / ISM Services)",
+   "week": null
   }
  },
  "generated_from": {
@@ -12850,10 +12890,10 @@
     "round_trips": 20
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 214
+    "entries": 215
    },
    "memory/TRADE-LOG.md": {
-    "entries": 286,
+    "entries": 287,
     "eod_snapshots": 131
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -16430,7 +16470,8 @@
     "trade/2026-11-03/market-open-trades/1",
     "trade/2026-11-03/midday-scan/1",
     "trade/2026-11-03/eod-snapshot/1",
-    "trade/2026-11-04/market-open-trades/1"
+    "trade/2026-11-04/market-open-trades/1",
+    "trade/2026-11-04/midday-scan/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -16601,7 +16642,8 @@
     "research/2026-10-30/pre-market-research/1",
     "research/2026-11-02/pre-market-research/1",
     "research/2026-11-03/pre-market-research/1",
-    "research/2026-11-04/pre-market-research/1"
+    "research/2026-11-04/pre-market-research/1",
+    "research/2026-11-04/addendum/1"
    ],
    "round_trips": [],
    "runs": [
@@ -16612,7 +16654,8 @@
     "trade/2026-10-30/market-open-trades/1",
     "trade/2026-10-30/eod-snapshot/1",
     "trade/2026-11-03/market-open-trades/1",
-    "trade/2026-11-04/market-open-trades/1"
+    "trade/2026-11-04/market-open-trades/1",
+    "trade/2026-11-04/midday-scan/1"
    ],
    "weeks": [
     "2026-10-30"
@@ -17552,7 +17595,8 @@
     "research/2026-10-30/pre-market-research/1",
     "research/2026-11-02/pre-market-research/1",
     "research/2026-11-03/pre-market-research/1",
-    "research/2026-11-04/pre-market-research/1"
+    "research/2026-11-04/pre-market-research/1",
+    "research/2026-11-04/addendum/1"
    ],
    "round_trips": [],
    "runs": [
@@ -17585,7 +17629,8 @@
     "trade/2026-11-03/market-open-trades/1",
     "trade/2026-11-03/midday-scan/1",
     "trade/2026-11-03/eod-snapshot/1",
-    "trade/2026-11-04/market-open-trades/1"
+    "trade/2026-11-04/market-open-trades/1",
+    "trade/2026-11-04/midday-scan/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -17681,7 +17726,8 @@
     "trade/2026-11-03/market-open-trades/1",
     "trade/2026-11-03/midday-scan/1",
     "trade/2026-11-03/eod-snapshot/1",
-    "trade/2026-11-04/market-open-trades/1"
+    "trade/2026-11-04/market-open-trades/1",
+    "trade/2026-11-04/midday-scan/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -18271,7 +18317,8 @@
     "research/2026-10-30/pre-market-research/1",
     "research/2026-11-02/pre-market-research/1",
     "research/2026-11-03/pre-market-research/1",
-    "research/2026-11-04/pre-market-research/1"
+    "research/2026-11-04/pre-market-research/1",
+    "research/2026-11-04/addendum/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -18364,7 +18411,8 @@
     "trade/2026-11-03/market-open-trades/1",
     "trade/2026-11-03/midday-scan/1",
     "trade/2026-11-03/eod-snapshot/1",
-    "trade/2026-11-04/market-open-trades/1"
+    "trade/2026-11-04/market-open-trades/1",
+    "trade/2026-11-04/midday-scan/1"
    ],
    "weeks": [
     "2026-07-10",
@@ -19494,7 +19542,8 @@
     "trade/2026-11-03/market-open-trades/1",
     "trade/2026-11-03/midday-scan/1",
     "trade/2026-11-03/eod-snapshot/1",
-    "trade/2026-11-04/market-open-trades/1"
+    "trade/2026-11-04/market-open-trades/1",
+    "trade/2026-11-04/midday-scan/1"
    ],
    "weeks": [
     "2026-07-03",
