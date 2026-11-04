@@ -9043,3 +9043,39 @@ Rule 14 lapsed (LLY, SLB, TMO single names). Cash $22,311; max-deployment cap (8
 **HOLD.** In band, 5 positions, protection 5/5; midterm-result risk argues patience (rule 11). MRK 44 sh is the first add if deployment drifts below band. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-04 — Pre-Market Research (Wednesday, post-midterm / ADP / ISM Services / NVO+MCD+UBER+CVS BMO)
+
+### Account snapshot
+- **Equity $104,588.20** (`last_equity` $104,295.09, +$293.11/+0.28% on premarket marks) · **Cash $22,311.20** · Long MV $82,277.00 · `buying_power` $319,620 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions** (rule-3 range 5–6): XLP 21.42% · XLE 19.71% · SLB 13.82% · LLY 13.62% · TMO 10.10%. Week trades **1/3** (week of 11/02).
+- Stops 5/5, one-for-one, qty matching: LLY 10% trail $1,293.30 (hwm $1,437) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.669 (hwm $711.85) · XLE 10% trail $63.1359 (hwm $70.151) · XLP 10% trail $81.891 (hwm $90.99). Earliest expiry XLE 2026-12-16.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261104T113253Z-ce6c17`.
+
+### Market context
+- **WTI ~$95.2 (-0.9%) · Brent ~$102.9 (-0.7%)** — slide continues on Middle East talks; some reports say an Iran deal is still distant.
+- **ES ~7,662 (+0.86%)** at 05:13 ET — futures initially fell (~-1%) on a reported Democratic sweep of Congress, then reversed on gridlock relief + AMD beat. 10y ~4.91% (-6bp), dollar weaker. **VIX 20.83** (-1.5% Tue).
+- Today: 08:15 ADP (cons +90k), 08:30 advance goods trade, 10:00 ISM Services. **No FOMC** (next 12/08–09); CPI 11/10, payrolls 11/06, PPI 11/13.
+- BMO: NVO, MCD, UBER, CVS, DDOG, EMR, GWW, GFS. AMD beat-and-raise Tue AMC (Info Tech **banned**, lifts 11/13).
+- Sector YTD (rule 9, thru 10/29): Energy +53.7%, Info Tech +24.4% (banned), Health Care +18.8% (streak 0), Materials +14.5%, Industrials +9.6% (banned, lifts 11/19).
+- Holdings: no ticker-specific news on LLY/TMO/SLB/XLE/XLP. Democratic Congress = possible drug-pricing/health-care scrutiny headline risk for LLY/TMO; oil weakness the XLE/SLB headwind.
+- Research via Perplexity (no fallback).
+
+### Trade ideas
+Rule 14 lapsed (LLY, SLB, TMO single names). Cash $22,311; 85% cap limits any add to ~$6.6k.
+1. **Merck (MRK)** — Health Care (#3 YTD, streak 0). Catalyst: Q3 beat-and-raise 10/29 (adj EPS $2.49, FY rev $66.8–67.3B); faded to $144.67 Tue (-2.5%). 44 sh, **stop $130.20 (10%)**, target $173.61 (2:1). `validate_order.py --symbol MRK --qty 44 --side buy --price 144.67 --stop-price 130.20 --trades-this-week 1 --sector "Health Care"` → **APPROVED, exit 0**, $6,365.48. First add if deployment drops below band. In `memory/SECTORS.json`.
+2. **Marathon Petroleum (MPC)** — Energy (#1 YTD). Catalyst: Q3 print 11/03; close $427.34. 15 sh, **stop $384.61 (10%)**, target $512.80 (2:1). `validate_order.py --symbol MPC --qty 15 --side buy --price 427.34 --stop-price 384.61 --trades-this-week 1 --sector "Energy"` → **APPROVED, exit 0**, $6,410.10. Energy would reach ~40% — watchlist only.
+
+### Risk factors
+- Post-midterm repricing (divided government), AI-valuation fragility; ADP/ISM Services could move yields.
+- Oil sliding: Energy ~33.5% (XLE+SLB). **XLE cushion 4.73%** (nearest), SLB 5.84% — approaching but not within rule-7 3%.
+- Health care policy headline risk under Democratic Congress: LLY + TMO ≈23.7%.
+- Cushions: XLE 4.73%, SLB 5.84%, XLP 8.61%, TMO 9.00%, LLY 9.23%. XLP 21.4% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **78.67**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `last_eod` 2026-11-03. No mandate.
+
+### Decision
+**HOLD.** In band, 5 positions, protection 5/5; no mandate, patience (rule 11). MRK 44 sh is the first add if deployment drifts below band. No stop changes; all 5 stops active and correct.
+
+---
