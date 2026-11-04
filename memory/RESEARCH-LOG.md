@@ -9079,3 +9079,11 @@ Rule 14 lapsed (LLY, SLB, TMO single names). Cash $22,311; 85% cap limits any ad
 **HOLD.** In band, 5 positions, protection 5/5; no mandate, patience (rule 11). MRK 44 sh is the first add if deployment drifts below band. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-04 — Midday Addendum
+
+- **Energy selloff:** oil down ~2.5–3% (WTI ~$93.6) as the Democratic congressional sweep and signs of US–Iran diplomatic progress dent the war risk premium; S&P 500 Energy ~-3%, oilfield services (SLB) -3–4% (Perplexity: boereport.com, Fidelity/MT Newswires, Morningstar/Dow Jones, 11/04).
+- **XLE trailing stop filled** 311 @ $63.13 (16:40 UTC), -1.24%. SLB at $49.765, 1.26% above its $49.14 stop (rule 7 standing).
+- Deployment now ~59.5% (below band), 4 positions. MRK remains the first add; re-check deployment and sizing at the next market-open.
+
+---

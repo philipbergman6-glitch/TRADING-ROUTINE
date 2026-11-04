@@ -4451,3 +4451,19 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:34 UTC):** equity $105,292.72, cash $22,311.20, LMV $82,981.52. Stops: LLY 10% trail $1,293.30 · SLB 10% trail $49.14 · TMO 10% trail $640.669 · XLE 10% trail $63.1359 · XLP 10% trail $81.891. MRK 44 sh is still the first add if deployment drops below the band.
 
 ---
+
+### 2026-11-04 — Midday Scan (Day 137, Wednesday, post-midterm / ADP / ISM Services)
+
+**No broker mutation this run. XLE stopped out** — its 10% trailing stop (`cac3cefd`) filled 311 @ $63.13 at 16:40:50 UTC on the oil slide (Democratic sweep + US–Iran talk progress denting the war premium; S&P Energy ~-3%). Realized **-$246.24 (-1.24%)** per `blotter.py --markdown` (entry 09-17 @ $63.92). Energy `--sector-streaks` streak 1, not banned. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261104T170448Z-27d896`. Week of 2026-11-02 trade count: **1/3** (stop fill is not a new trade).
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 4/4, one-for-one:** LLY 10% trail $1,301.364 (hwm $1,445.96) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.955 (hwm $712.17) · XLP 10% trail $83.241 (hwm $92.49). `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Rule 7:** STANDING SLB stop 49.14 is 1.26% below P 49.765 (rule 7: left, recorded). Other cushions: TMO 8.56%, LLY 8.95%, XLP 9.82%.
+
+**STEP 3:** no position ≤ -7% (XLP +10.20%, LLY +2.02%, TMO +0.63%, SLB -0.63%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** SLB -4.5% intraday has an explained macro cause (oil risk premium), not a single-name thesis break; held on its stop. No other thesis broken. **STEP 6:** Perplexity addendum appended to RESEARCH-LOG.
+
+**Live state (17:05 UTC):** equity $103,594.90, cash $41,944.63, LMV $61,650.27 → deployed **59.5%, below the 75–85% band**; 4 positions (below rule-3 range 5–6). MRK 44 sh is the first add (pre-market approved); market-open should re-size toward band.
+
+---
