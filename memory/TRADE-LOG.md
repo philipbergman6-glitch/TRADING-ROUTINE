@@ -4485,3 +4485,23 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Re-deploy toward band at market-open (MRK 44 sh first add, per pre-market approval, through validate_order.py); watch SLB cushion (3.4%).
 
 ---
+
+### 2026-11-05 — Market-Open (Day 138, Thursday, jobless claims / COP+CI+KMB+ZTS BMO)
+
+**BUY MRK 110 sh @ $151.2469** (pre-market TRADE plan; re-deploy toward band after the XLE stop-out). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261105T133347Z-2a68d3`. Week of 2026-11-02 trade count: **2/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **4/4 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 — no mandate (`deployed_pct` 59.87, `sessions_under_band` 1). **Rule 10:** `blotter.py --sector-streaks` exit 0, Health Care streak 0, not banned. Rule 14 lapsed (LLY, SLB, TMO single names).
+
+**Timing:** run fired 13:33 UTC (08:33 ET — DST ended 11/01, open is now 14:30 UTC). First attempt at the stale 11/04 close: `validate_order.py ... --price 150.36 --stop-price 135.32` APPROVED exit 0, then `submit_entry.py` exit 3 `refused` "quote must be no more than 60 seconds old" (intent `en-20261105-MRK`, refusal recorded, nothing sent). Waited to the open and for the first IEX print with spread <1% (14:32 UTC, last $151.16, bid/ask $151.14/$151.99), then re-validated.
+
+| Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|--------|------|--------|-------|------|--------|--------|-----|
+| MRK | buy | 110 | $151.2469 | $136.3455 (10% trail GTC, hwm $151.495) | Q3 beat-and-raise 10/29 (adj EPS $2.49, FY rev $66.8–67.3B) + post-midterm rebound; Health Care #3 YTD | $181.66 | 2:1 |
+
+- `validate_order.py --symbol MRK --qty 110 --side buy --price 151.16 --stop-price 136.04 --sector "Health Care"` → APPROVED exit 0, $16,627.60 (ledger disabled).
+- `submit_entry.py --symbol MRK --qty 110 --price 151.16 --intent en-20261105-MRK` → exit 0 `submitted`, intent `en-20261105-MRK-2` (supersedes refused `en-20261105-MRK`), order `a5c66f7e-94ad-46cb-8951-f21e70804991`. Filled 110/110 @ $151.246909 (14:35:49 UTC, via partials 23→87→110); fixed leg `e19920cb` stop $136.04 (10.05% below fill) confirmed.
+- STEP 5: `validate_stop_change.py --current-stop 136.04 --new-stop 136.13 --current-price 151.26` exit 0; `validate_order.py --side sell --price 151.26 --trail-percent 10` → exit 0; `replace_stop.py --order-id e19920cb-c843-44e5-b4c2-324e21a0af89 --trail-percent 10` → exit 0 `replaced`, trail `c8c4cb4f-e970-4332-8d67-f45cfd81ef68`, stop $136.04 → $136.3455 (not lowered). Intent `en-20261105-MRK-2` complete.
+
+**Live state (14:38 UTC):** equity $104,369.47, cash $25,307.05, LMV $79,062.42 → **75.75% deployed**, in band. 5 positions. Protection 5/5 one-for-one (`protection_monitor.py --dry-run` exit 0): LLY 10% trail $1,301.364 · MRK 10% trail $136.3455 · SLB 10% trail $49.14 · TMO 10% trail $640.955 · XLP 10% trail $83.7504. Health Care ≈39% (LLY + TMO + MRK).
+
+---
