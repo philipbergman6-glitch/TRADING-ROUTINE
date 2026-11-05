@@ -4521,3 +4521,22 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:05 UTC):** equity $102,985.82, cash $25,307.05, LMV $77,678.77 → deployed **75.4%**, in band; 5 positions.
 
 ---
+
+### Nov 05 — EOD Snapshot (Day 138, Thursday, jobless claims / COP+CI+KMB+ZTS BMO)
+**Portfolio:** $102,367.73 | **Cash:** $25,307.05 (24.72%) | **Day P&L:** -$1,615.90 (-1.55%) | **Phase P&L:** +$2,367.73 (+2.37%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,380.055 | -2.68% | -$209.25 (-1.49%) | $1,307.70 (10% trail GTC, hwm $1,453.00) |
+| MRK | 110 | $151.2469 | $147.86 | -1.66% | -$372.56 (-2.24%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| SLB | 277 | $50.08 | $50.295 | -2.45% | +$59.56 (+0.43%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $680.995 | -3.56% | -$233.63 (-2.24%) | $640.955 (10% trail GTC, hwm $712.17) |
+| XLP | 250 | $83.76 | $91.39 | -0.60% | +$1,907.50 (+9.11%) | $84.06 (10% trail GTC, hwm $93.40) |
+
+**Trades today:** BUY MRK 110 @ $151.2469 (entered 14:33 UTC, order `a5c66f7e`; 10% trail `c8c4cb4f`). No sells. **Week trades: 2/3** (week of 11/02; LLY 11/02, MRK 11/05). Blotter and TRADE-LOG agree.
+
+**Notes:** Broad down day across every holding: Health Care led lower (TMO -3.6%, LLY -2.7%, MRK -1.7% on its first day), SLB -2.5% with oil, XLP only -0.6%. MRK re-deployment brought the book into band (deployed 75.28%, LMV $77,060.68) with 5 positions. Day P&L is against the broker's 11/04 close of $103,983.63 (the 11/04 snapshot logged $103,847.45 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. Protection 5/5 one-for-one. Cushions: SLB 2.30% (nearest), LLY 5.24%, TMO 5.88%, MRK 6.65%, XLP 8.02%. Health Care ~39.3% (LLY + MRK + TMO), Energy ~13.6% (SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (140 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261105T201022Z-9aa1ff.
+
+**Tomorrow:** Hold; no new entry needed (in band, 1 trade left this week). Watch SLB cushion (2.3%) and Health Care concentration (~39%).
+
+---

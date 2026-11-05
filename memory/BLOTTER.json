@@ -407,6 +407,15 @@
       "entry_order_ids": [
         "fe10d5bc-f694-42be-9684-c71aebfb2b35"
       ]
+    },
+    {
+      "symbol": "MRK",
+      "entered": "2026-11-05T14:33:51.383663+00:00",
+      "qty": "110",
+      "avg_in": "151.2469",
+      "entry_order_ids": [
+        "a5c66f7e-94ad-46cb-8951-f21e70804991"
+      ]
     }
   ]
 }
