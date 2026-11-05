@@ -9087,3 +9087,39 @@ Rule 14 lapsed (LLY, SLB, TMO single names). Cash $22,311; 85% cap limits any ad
 - Deployment now ~59.5% (below band), 4 positions. MRK remains the first add; re-check deployment and sizing at the next market-open.
 
 ---
+
+### 2026-11-05 — Pre-Market Research (Thursday, post-midterm rally / jobless claims / COP+CI+KMB+ZTS BMO)
+
+### Account snapshot
+- **Equity $104,271.17** (`last_equity` $103,983.63, +$287.54/+0.28% on premarket marks) · **Cash $41,944.21** · Long MV $62,326.96 · `buying_power` $342,292 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions** (below rule-3 range 5–6): XLP 22.24% · LLY 13.75% · SLB 13.62% · TMO 10.16%. Week trades **1/3** (week of 11/02). XLE exited 11/04 on its trail (-1.24%).
+- Stops 4/4, one-for-one, qty matching: LLY 10% trail $1,301.364 (hwm $1,445.96) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.955 (hwm $712.17) · XLP 10% trail $83.241 (hwm $92.49). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261105T113319Z-05a989`.
+
+### Market context
+- **WTI ~$87–88 · Brent ~$94–95** — oil fell sharply on 11/04 (Brent ~-8%) after the Democratic midterm sweep and Middle East de-escalation hopes.
+- **ES ~7,683–7,720 (flat)** after Wednesday's broad risk-on rally (Dow +3.0%). **VIX 16.61** (-20% Wed).
+- Today: 08:30 jobless claims (cons 196k), Q3 productivity/ULC. No FOMC (next 12/08–09); payrolls 11/06, CPI 11/10, PPI 11/13.
+- BMO: COP (EPS est ~$3.05), CI, CAH, CMI, DUK, SO, PH, BDX, KMB, ZTS, MRNA, APD. ABNB AMC.
+- Sector YTD (rule 9, thru 10/30): Energy +53.7%, Info Tech +24.4% (**banned**, lifts 11/13), Health Care +18.8% (streak 0), Materials +14.5% (streak 1), Industrials +9.6% (**banned**, lifts 11/19). Energy streak 1 after XLE.
+- Holdings: LLY — Cantor PT to $1,600, next-gen obesity drug into Ph3. TMO — Q3 beat-and-raise holds. SLB/XLP — no news; oil collapse the SLB headwind.
+- Perplexity: 5 of 8 queries hit 429 on parallel calls, all re-run sequentially and succeeded (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (LLY, SLB, TMO single names). Cash $41,944; deployment 59.8%.
+1. **Merck (MRK)** — Health Care (#3 YTD, streak 0). Catalyst: Q3 beat-and-raise 10/29 (adj EPS $2.49, FY rev $66.8–67.3B) + post-midterm rebound to $150.36 close 11/04 (+3.9%); Lonza CDMO divestiture. 110 sh, **stop $135.32 (10%)**, target $180.44 (2:1). `validate_order.py --symbol MRK --qty 110 --side buy --price 150.36 --stop-price 135.32 --trades-this-week 1 --sector "Health Care"` → **APPROVED, exit 0**, $16,539.60 (100 sh also APPROVED, $15,036). Brings deployment to ~75.6%; Health Care ~40% (LLY+TMO+MRK).
+2. **ConocoPhillips (COP)** — Energy (#1 YTD, streak 1). Catalyst: Q3 print BMO today; close $136.94 after a -11% slide from 10/30. 100 sh, **stop $123.25 (10%)**, target $164.32 (2:1). `validate_order.py --symbol COP --qty 100 --side buy --price 136.94 --stop-price 123.25 --trades-this-week 1 --sector "Energy"` → **APPROVED, exit 0**, $13,694. Not in `memory/SECTORS.json`; oil in freefall — watchlist only.
+
+### Risk factors
+- Oil collapse on de-escalation: SLB cushion **4.17%** (nearest; not within rule-7 3%). Energy now only SLB (~13.6%).
+- Health Care concentration ~40% post-MRK; Democratic Congress drug-pricing headline risk.
+- Payrolls tomorrow; rally after -20% VIX day may fade.
+- Cushions: SLB 4.17%, TMO 9.23%, LLY 9.25%, XLP 10.26%. XLP 22.2% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **59.77**, band [75, 85], `sessions_under_band` **1**, `mandate` **false**, `exemption_allowed` false, `target_notional` $20,854, `last_eod` 2026-11-04. No mandate yet.
+
+### Decision
+**TRADE — MRK 110 sh** at market-open (re-validate at live price; 100 sh fallback), stop $135.32. Rule 2/3 compliance after the XLE stop-out; MRK was the pre-approved first add. No stop changes; all 4 stops active and correct.
+
+---
