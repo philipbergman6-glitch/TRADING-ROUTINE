@@ -2348,7 +2348,7 @@
     "trade/2026-11-02/midday-scan/1",
     "trade/2026-11-02/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-06"
   },
   "2026-11-03": {
    "fills": [],
@@ -2367,7 +2367,7 @@
     "trade/2026-11-03/midday-scan/1",
     "trade/2026-11-03/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-06"
   },
   "2026-11-04": {
    "fills": [
@@ -2397,7 +2397,7 @@
     "trade/2026-11-04/midday-scan/1",
     "trade/2026-11-04/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-06"
   },
   "2026-11-05": {
    "fills": [
@@ -2429,7 +2429,7 @@
     "trade/2026-11-05/midday-scan/1",
     "trade/2026-11-05/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-06"
   },
   "2026-11-06": {
    "fills": [],
@@ -2443,7 +2443,7 @@
     "trade/2026-11-06/midday-scan/1",
     "trade/2026-11-06/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-06"
   }
  },
  "entries": {
@@ -7965,7 +7965,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Monday, ISM Mfg / AAPL+PLTR AMC — midterms Tue, rule-12 mandate day)",
-   "week": null
+   "week": "2026-11-06"
   },
   "research/2026-11-03/pre-market-research/1": {
    "date": "2026-11-03",
@@ -7992,7 +7992,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Tuesday, US midterms / JOLTS / MPC+SHOP+ETN BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "research/2026-11-04/addendum/1": {
    "date": "2026-11-04",
@@ -8011,7 +8011,7 @@
     "XLE"
    ],
    "title": "Midday Addendum",
-   "week": null
+   "week": "2026-11-06"
   },
   "research/2026-11-04/pre-market-research/1": {
    "date": "2026-11-04",
@@ -8037,7 +8037,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Wednesday, post-midterm / ADP / ISM Services / NVO+MCD+UBER+CVS BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "research/2026-11-05/pre-market-research/1": {
    "date": "2026-11-05",
@@ -8062,7 +8062,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Thursday, post-midterm rally / jobless claims / COP+CI+KMB+ZTS BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "research/2026-11-06/pre-market-research/1": {
    "date": "2026-11-06",
@@ -8087,7 +8087,7 @@
     "XOM"
    ],
    "title": "Pre-Market Research (Friday, post-AI-rout / October payrolls / ENB+MRNA+HUM+VST BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
@@ -12864,7 +12864,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC — Deployment Backstop)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-02/market-open-trades/1": {
    "date": "2026-11-02",
@@ -12882,7 +12882,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC — Deployment Backstop)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-02/midday-scan/1": {
    "date": "2026-11-02",
@@ -12900,7 +12900,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 135, Monday, ISM Mfg / AAPL+PLTR AMC)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-03/eod-snapshot/1": {
    "date": "2026-11-03",
@@ -12918,7 +12918,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 136, Tuesday, US midterms / JOLTS / MPC BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-03/market-open-trades/1": {
    "date": "2026-11-03",
@@ -12937,7 +12937,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-03/midday-scan/1": {
    "date": "2026-11-03",
@@ -12955,7 +12955,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 136, Tuesday, US midterms / JOLTS / MPC BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-04/eod-snapshot/1": {
    "date": "2026-11-04",
@@ -12974,7 +12974,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 137, Wednesday, post-midterm / ADP / ISM Services)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-04/market-open-trades/1": {
    "date": "2026-11-04",
@@ -12993,7 +12993,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-04/midday-scan/1": {
    "date": "2026-11-04",
@@ -13012,7 +13012,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 137, Wednesday, post-midterm / ADP / ISM Services)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-05/eod-snapshot/1": {
    "date": "2026-11-05",
@@ -13030,7 +13030,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 138, Thursday, jobless claims / COP+CI+KMB+ZTS BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-05/market-open-trades/1": {
    "date": "2026-11-05",
@@ -13049,7 +13049,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 138, Thursday, jobless claims / COP+CI+KMB+ZTS BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-05/midday-scan/1": {
    "date": "2026-11-05",
@@ -13067,7 +13067,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 138, Thursday, jobless claims / COP+CI+KMB+ZTS BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-06/eod-snapshot/1": {
    "date": "2026-11-06",
@@ -13085,7 +13085,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 139, Friday, October payrolls / ENB+MRNA+HUM+VST BMO)",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-06/market-open-trades/1": {
    "date": "2026-11-06",
@@ -13104,7 +13104,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-06"
   },
   "trade/2026-11-06/midday-scan/1": {
    "date": "2026-11-06",
@@ -13122,7 +13122,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 139, Friday, October payrolls / ENB+MRNA+HUM+VST BMO)",
-   "week": null
+   "week": "2026-11-06"
   }
  },
  "generated_from": {
@@ -13143,7 +13143,7 @@
     "eod_snapshots": 134
    },
    "memory/WEEKLY-REVIEW.md": {
-    "weeks": 27
+    "weeks": 28
    },
    "state/events.jsonl": {
     "intents": 21,
@@ -17153,7 +17153,8 @@
    ],
    "weeks": [
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ]
   },
   "MPC": {
@@ -17360,7 +17361,8 @@
     "trade/2026-11-06/eod-snapshot/1"
    ],
    "weeks": [
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ]
   },
   "MSFT": {
@@ -18257,7 +18259,8 @@
     "2026-10-09",
     "2026-10-16",
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ]
   },
   "SLB": {
@@ -18345,7 +18348,8 @@
    ],
    "weeks": [
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ]
   },
   "TMO": {
@@ -18451,7 +18455,8 @@
    ],
    "weeks": [
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ]
   },
   "WMT": {
@@ -18516,7 +18521,9 @@
     "trade/2026-05-21/market-open-trades/1",
     "trade/2026-11-06/market-open-trades/1"
    ],
-   "weeks": []
+   "weeks": [
+    "2026-11-06"
+   ]
   },
   "XLB": {
    "decisions": [
@@ -19159,7 +19166,8 @@
     "2026-10-09",
     "2026-10-16",
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ]
   },
   "XLF": {
@@ -20306,7 +20314,8 @@
     "2026-10-09",
     "2026-10-16",
     "2026-10-23",
-    "2026-10-30"
+    "2026-10-30",
+    "2026-11-06"
    ]
   },
   "XOM": {
@@ -21114,6 +21123,31 @@
     "PSX",
     "SLB",
     "TMO",
+    "XLE",
+    "XLP"
+   ]
+  },
+  "2026-11-06": {
+   "closed_trades": [
+    "XLE"
+   ],
+   "ending": "2026-11-06",
+   "grade": "C-",
+   "line": 1883,
+   "open_positions": [
+    "LLY",
+    "MRK",
+    "SLB",
+    "TMO",
+    "XLP"
+   ],
+   "symbols": [
+    "LLY",
+    "MRK",
+    "PSX",
+    "SLB",
+    "TMO",
+    "WMT",
     "XLE",
     "XLP"
    ]
