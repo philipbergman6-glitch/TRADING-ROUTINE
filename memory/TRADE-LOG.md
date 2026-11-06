@@ -4540,3 +4540,13 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Hold; no new entry needed (in band, 1 trade left this week). Watch SLB cushion (2.3%) and Health Care concentration (~39%).
 
 ---
+
+### 2026-11-06 — Market-Open
+
+**No trades.** The research plan was HOLD (deployment 74.9%, a hair under band with no mandate; VIX ~28, payrolls; rule 11). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261106T133405Z-b4199f`. Week of 2026-11-02 trade count: **2/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **5/5 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 — no mandate (`deployed_pct` 74.91, `sessions_under_band` 0).
+
+**Live state (13:34 UTC, premarket marks):** equity $100,848.50, cash $25,307.04, LMV $75,541.46. Stops: LLY 10% trail $1,307.70 · MRK 10% trail $138.0329 · SLB 10% trail $49.14 · TMO 10% trail $640.955 · XLP 10% trail $84.06. Rule 7 standing: SLB stop 1.35% below $49.81 (left, recorded). WMT 40 sh is the first add if under-band persists.
+
+---
