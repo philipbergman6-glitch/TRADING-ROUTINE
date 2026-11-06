@@ -2408,11 +2408,22 @@
      "symbol": "MRK"
     }
    ],
-   "intents": [],
+   "intents": [
+    "en-20261105-MRK",
+    "en-20261105-MRK-2",
+    "rs-e19920cb-c843-44e5-b4c2-324e21a0af89"
+   ],
    "research": [
     "research/2026-11-05/pre-market-research/1"
    ],
-   "runs": [],
+   "runs": [
+    "protection-monitor-20261105T005909Z-3bade1",
+    "pre-market-20261105T113319Z-05a989",
+    "market-open-20261105T133347Z-2a68d3",
+    "midday-20261105T170448Z-328886",
+    "daily-summary-20261105T201022Z-9aa1ff",
+    "protection-monitor-20261105T203014Z-437192"
+   ],
    "trade_log": [
     "trade/2026-11-05/market-open-trades/1",
     "trade/2026-11-05/midday-scan/1",
@@ -2429,7 +2440,8 @@
    "runs": [],
    "trade_log": [
     "trade/2026-11-06/market-open-trades/1",
-    "trade/2026-11-06/midday-scan/1"
+    "trade/2026-11-06/midday-scan/1",
+    "trade/2026-11-06/eod-snapshot/1"
    ],
    "week": null
   }
@@ -13057,6 +13069,24 @@
    "title": "Midday Scan (Day 138, Thursday, jobless claims / COP+CI+KMB+ZTS BMO)",
    "week": null
   },
+  "trade/2026-11-06/eod-snapshot/1": {
+   "date": "2026-11-06",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-06/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 4570,
+   "log": "trade",
+   "note": "Day 139, Friday, October payrolls / ENB+MRNA+HUM+VST BMO",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "SLB",
+    "TMO",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 139, Friday, October payrolls / ENB+MRNA+HUM+VST BMO)",
+   "week": null
+  },
   "trade/2026-11-06/market-open-trades/1": {
    "date": "2026-11-06",
    "file": "memory/TRADE-LOG.md",
@@ -13096,7 +13126,7 @@
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-11-05 (UTC)",
+  "run_cutoff": "started before 2026-11-06 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
@@ -13109,18 +13139,18 @@
     "entries": 217
    },
    "memory/TRADE-LOG.md": {
-    "entries": 293,
-    "eod_snapshots": 133
+    "entries": 294,
+    "eod_snapshots": 134
    },
    "memory/WEEKLY-REVIEW.md": {
     "weeks": 27
    },
    "state/events.jsonl": {
-    "intents": 18,
-    "runs": 99
+    "intents": 21,
+    "runs": 105
    }
   },
-  "trade_log_asof": "2026-11-05"
+  "trade_log_asof": "2026-11-06"
  },
  "intents": {
   "en-20261019-GEV": {
@@ -13364,6 +13394,67 @@
    "last_state": "filled",
    "symbol": "LLY"
   },
+  "en-20261105-MRK": {
+   "action": "entry",
+   "first_at": "2026-11-05T13:34:38+00:00",
+   "history": [
+    {
+     "action": "entry",
+     "at": "2026-11-05T13:34:38+00:00",
+     "id": "e1773dd01d54497e9a3a21e5bfe5c381",
+     "lease": "fc72e243ea294f789f3b03b9419ca1ff",
+     "reasons": [
+      "quote must be no more than 60 seconds old"
+     ],
+     "state": "refused",
+     "symbol": "MRK",
+     "writer": "market-open-20261105T133347Z-2a68d3"
+    }
+   ],
+   "intent": "en-20261105-MRK",
+   "last_state": "refused",
+   "symbol": "MRK"
+  },
+  "en-20261105-MRK-2": {
+   "action": "entry",
+   "first_at": "2026-11-05T14:32:37+00:00",
+   "history": [
+    {
+     "action": "entry",
+     "at": "2026-11-05T14:32:37+00:00",
+     "client_order_id": "en-20261105-MRK-2",
+     "id": "16348876bf694553847ec0b21cd42d93",
+     "lease": "71ec5981fabf44acb8e1dc0e53952420",
+     "price": "151.99",
+     "qty": "110",
+     "sector": "Health Care",
+     "state": "recorded",
+     "symbol": "MRK",
+     "writer": "market-open-20261105T133347Z-2a68d3"
+    },
+    {
+     "at": "2026-11-05T14:32:43+00:00",
+     "client_order_id": "en-20261105-MRK-2",
+     "filled_qty": "0",
+     "id": "038f3f7c1e884d4ab65d5ccb071e78cc",
+     "lease": "71ec5981fabf44acb8e1dc0e53952420",
+     "state": "acknowledged",
+     "writer": "market-open-20261105T133347Z-2a68d3"
+    },
+    {
+     "at": "2026-11-05T14:36:22+00:00",
+     "client_order_id": "en-20261105-MRK-2",
+     "filled_qty": "110",
+     "id": "09f52a34ddc24ef3b00c2a9ca2f78989",
+     "lease": "b7eafc7502324639ba5989edb584702c",
+     "state": "filled",
+     "writer": "market-open-20261105T133347Z-2a68d3"
+    }
+   ],
+   "intent": "en-20261105-MRK-2",
+   "last_state": "filled",
+   "symbol": "MRK"
+  },
   "rs-1fed8260-db64-4d12-a3ac-a7a3f75fb484": {
    "action": "replace_stop",
    "first_at": "2026-10-22T17:05:36+00:00",
@@ -13597,6 +13688,36 @@
    "intent": "rs-e138322d-a9c9-4f04-9e55-16c4d1ad1a1d-3",
    "last_state": "complete",
    "symbol": "MPC"
+  },
+  "rs-e19920cb-c843-44e5-b4c2-324e21a0af89": {
+   "action": "replace_stop",
+   "first_at": "2026-11-05T14:36:24+00:00",
+   "history": [
+    {
+     "action": "replace_stop",
+     "at": "2026-11-05T14:36:24+00:00",
+     "cancels": [
+      "e19920cb-c843-44e5-b4c2-324e21a0af89"
+     ],
+     "client_order_id": "rs-e19920cb-c843-44e5-b4c2-324e21a0af89",
+     "id": "87fb2f96db144d52abfaeb5f06f4626b",
+     "lease": "b7eafc7502324639ba5989edb584702c",
+     "state": "recorded",
+     "symbol": "MRK",
+     "writer": "market-open-20261105T133347Z-2a68d3"
+    },
+    {
+     "at": "2026-11-05T14:36:34+00:00",
+     "client_order_id": "rs-e19920cb-c843-44e5-b4c2-324e21a0af89",
+     "id": "d5e6f69a7ab049119675d51bd69ff885",
+     "lease": "b7eafc7502324639ba5989edb584702c",
+     "state": "complete",
+     "writer": "market-open-20261105T133347Z-2a68d3"
+    }
+   ],
+   "intent": "rs-e19920cb-c843-44e5-b4c2-324e21a0af89",
+   "last_state": "complete",
+   "symbol": "MRK"
   },
   "rs-e9965acf-fc2e-410d-9157-f2881e196e95": {
    "action": "replace_stop",
@@ -14018,6 +14139,22 @@
    "source": "run",
    "symbol": "MRK",
    "text": "MRK 100 sh alternate entry refused by submit gate: stop_distance 13.68%"
+  },
+  {
+   "at": "2026-11-05T13:34:38+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261105T133347Z-2a68d3",
+   "source": "intent",
+   "symbol": "MRK",
+   "text": "quote must be no more than 60 seconds old"
+  },
+  {
+   "at": "2026-11-05T14:37:24+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261105T133347Z-2a68d3",
+   "source": "run",
+   "symbol": "MRK",
+   "text": "submit_entry MRK 110 refused: quote must be no more than 60 seconds old (pre-open)"
   }
  ],
  "runs": {
@@ -14355,6 +14492,27 @@
    "symbols": [],
    "trigger": "cloud"
   },
+  "daily-summary-20261105T201022Z-9aa1ff": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "d7786294938364ca72d668f0b69160e39a6d54a9",
+   "ended_at": "2026-11-05T20:11:14+00:00",
+   "incidents": [
+    "EOD email sent (id 01a1ad56) but delivery unverified: RESEND_API_KEY restricted_api_key"
+   ],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "incident",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261105T201022Z-9aa1ff",
+   "started_at": "2026-11-05T20:10:22+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
   "market-open-20261015T133553Z-a47d04": {
    "actions": [],
    "code_dirty": false,
@@ -14683,6 +14841,35 @@
    "symbols": [],
    "trigger": "cloud"
   },
+  "market-open-20261105T133347Z-2a68d3": {
+   "actions": [
+    "buy MRK 110 @ 151.246909 (OTO a5c66f7e, fixed leg 136.04)",
+    "stop replace MRK fixed 136.04 -> 10% trail c8c4cb4f (136.3455)"
+   ],
+   "code_dirty": false,
+   "code_sha": "fe573a37f13e5e0b894d3cf802683b13a89e4d42",
+   "ended_at": "2026-11-05T14:37:24+00:00",
+   "incidents": [],
+   "intents": [
+    "en-20261105-MRK",
+    "en-20261105-MRK-2"
+   ],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "actions",
+   "refusals": [
+    "submit_entry MRK 110 refused: quote must be no more than 60 seconds old (pre-open)"
+   ],
+   "routine": "market-open",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "market-open-20261105T133347Z-2a68d3",
+   "started_at": "2026-11-05T13:33:47+00:00",
+   "symbols": [
+    "MRK"
+   ],
+   "trigger": "cloud"
+  },
   "midday-20261019T171051Z-67d107": {
    "actions": [],
    "code_dirty": false,
@@ -14944,6 +15131,25 @@
    "rulebook_version": "v1.3",
    "run": "midday-20261104T170448Z-27d896",
    "started_at": "2026-11-04T17:04:48+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "midday-20261105T170448Z-328886": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "9acc133638abab6dfc20a1c3ad2227a5127dd7a6",
+   "ended_at": "2026-11-05T17:05:47+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "midday",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "midday-20261105T170448Z-328886",
+   "started_at": "2026-11-05T17:04:48+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -15301,6 +15507,25 @@
    "rulebook_version": "v1.3",
    "run": "pre-market-20261104T113253Z-ce6c17",
    "started_at": "2026-11-04T11:32:53+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "pre-market-20261105T113319Z-05a989": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "35fca7bf75b158dbb04bf934e909448fc2bfec82",
+   "ended_at": "2026-11-05T11:35:42+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261105T113319Z-05a989",
+   "started_at": "2026-11-05T11:33:19+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -16057,6 +16282,44 @@
    "rulebook_version": "v1.3",
    "run": "protection-monitor-20261104T201954Z-1e84e0",
    "started_at": "2026-11-04T20:19:54+00:00",
+   "symbols": [],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261105T005909Z-3bade1": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "eb59bc308a34b8e9ab81f0e91a4a3c28345a63ca",
+   "ended_at": "2026-11-05T00:59:11+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261105T005909Z-3bade1",
+   "started_at": "2026-11-05T00:59:09+00:00",
+   "symbols": [],
+   "trigger": "schedule"
+  },
+  "protection-monitor-20261105T203014Z-437192": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "8a4ba5dcdc962c6eaa7295798e8067095466d998",
+   "ended_at": "2026-11-05T20:30:17+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261105T203014Z-437192",
+   "started_at": "2026-11-05T20:30:14+00:00",
    "symbols": [],
    "trigger": "schedule"
   },
@@ -16885,7 +17148,8 @@
     "trade/2026-11-05/midday-scan/1",
     "trade/2026-11-05/eod-snapshot/1",
     "trade/2026-11-06/market-open-trades/1",
-    "trade/2026-11-06/midday-scan/1"
+    "trade/2026-11-06/midday-scan/1",
+    "trade/2026-11-06/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -17043,7 +17307,10 @@
    ],
    "ideas": [],
    "intents": [
-    "en-20261030-MRK"
+    "en-20261030-MRK",
+    "en-20261105-MRK",
+    "en-20261105-MRK-2",
+    "rs-e19920cb-c843-44e5-b4c2-324e21a0af89"
    ],
    "last_decision": {
     "date": "2026-11-05",
@@ -17074,7 +17341,8 @@
    ],
    "round_trips": [],
    "runs": [
-    "market-open-20261030T133339Z-1af823"
+    "market-open-20261030T133339Z-1af823",
+    "market-open-20261105T133347Z-2a68d3"
    ],
    "sector": "Health Care",
    "trade_log": [
@@ -17088,7 +17356,8 @@
     "trade/2026-11-05/midday-scan/1",
     "trade/2026-11-05/eod-snapshot/1",
     "trade/2026-11-06/market-open-trades/1",
-    "trade/2026-11-06/midday-scan/1"
+    "trade/2026-11-06/midday-scan/1",
+    "trade/2026-11-06/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-30"
@@ -18071,7 +18340,8 @@
     "trade/2026-11-05/midday-scan/1",
     "trade/2026-11-05/eod-snapshot/1",
     "trade/2026-11-06/market-open-trades/1",
-    "trade/2026-11-06/midday-scan/1"
+    "trade/2026-11-06/midday-scan/1",
+    "trade/2026-11-06/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -18176,7 +18446,8 @@
     "trade/2026-11-05/midday-scan/1",
     "trade/2026-11-05/eod-snapshot/1",
     "trade/2026-11-06/market-open-trades/1",
-    "trade/2026-11-06/midday-scan/1"
+    "trade/2026-11-06/midday-scan/1",
+    "trade/2026-11-06/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -20014,7 +20285,8 @@
     "trade/2026-11-05/midday-scan/1",
     "trade/2026-11-05/eod-snapshot/1",
     "trade/2026-11-06/market-open-trades/1",
-    "trade/2026-11-06/midday-scan/1"
+    "trade/2026-11-06/midday-scan/1",
+    "trade/2026-11-06/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
