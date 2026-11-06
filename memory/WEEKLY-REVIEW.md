@@ -1879,3 +1879,94 @@ Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues
 **+0.27% against an S&P down 0.57% — a +0.84pp relative win, back on the right side after last week's loss.** It was earned by weighting, not action: XLE and XLP carried the book, PSX's trail locked a +$283.86 winner before its print and cut energy from 49.64% to 34.64% on its own, and TMO converted to a trail the first legal session. Every validator was respected and protection stayed one-for-one with nothing lowered. Not higher, because **the rule-12 mandate came due and was not filled** — LLY and MRK were approved by `validate_order.py` and refused by `submit_entry.py` on a stop-distance check computed against a different (moving or spurious) price, so the book ends four sessions below band and below the rule-3 range with $36K idle, and missed LLY's ~11% post-print run. Not lower, because the refusals were the gate working on bad inputs rather than a rule being broken by choice, the fix is mechanical and named, and the relative result was positive.
 
 ---
+
+## Week ending 2026-11-06
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $105,833.21 (Mon Nov 02 AM = Fri Oct 30 logged close) |
+| Ending portfolio | $102,059.40 (Fri Nov 06 logged close; broker equity $101,675.58 at 21:02 UTC, a $383.82 marking difference) |
+| Week return | -$3,773.81 (-3.57%) |
+| S&P 500 week | -2.34% (7,580.07 Oct 30 → 7,402.78 Nov 6; chained from the prior week's logged close — the fetch's Oct 30 level matched it exactly, no drift) |
+| Bot vs S&P | -1.23% (UNDERPERFORMED) |
+| Trades | 2 new (W:0 / L:1 / open:5); 1 closed |
+| Win rate | 0% (0 of 1 closed) |
+| Best trade | XLE -1.24% (-$246.24) |
+| Worst trade | XLE -1.24% (only closed trade) |
+| Profit factor | 0.00 ($0 winners / $246.24 losers) |
+
+Arithmetic: week return = $102,059.40 - $105,833.21 = **-$3,773.81**; -3,773.81 / 105,833.21 = **-3.5658%**. Phase: $102,059.40 vs $100,000 = **+2.06%**.
+S&P chained = (7,402.78 - 7,580.07) / 7,580.07 = **-2.3389%**. Relative = -3.5658% - (-2.3389%) = **-1.23pp**.
+Day-by-day (logged): Mon -$681.88 (-0.64%) · Tue -$203.28 (-0.19%) · Wed -$447.64 (-0.43%) · **Thu -$1,615.90 (-1.55%)** · Fri +$224.78 (+0.22%). Sum -$2,723.92; the -$1,049.89 gap to the week figure is the pre-close marks of the 10/30 ($40.00), 11/02 ($338.36), 11/03 ($274.60), 11/04 (-$136.18) and 11/05 ($533.11) snapshots against the broker's official closes, not a cash or position discrepancy.
+Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues, 5 open lots match broker): one round_trip exited Mon 11/02 - Fri 11/06 — **XLE** (09-17 → 11-04, 311 sh, $63.92 → $63.13, **-$246.24 / -1.24%**). W = 0, L = 1, open = 5; win rate 0/1 = 0%; PF = 0 / 246.24 = 0.00. Realized net **-$246.24**. Entries: **LLY 11/02** (rule-12 mandate) and **MRK 11/05** (re-deploy after the XLE stop-out) — 2/3 of the budget. TRADE-LOG and blotter agree on every session.
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| XLE | $63.92 (09-17) | $63.13 (11-04, 16:40 UTC) | **-$246.24 (-1.24%)** | 311 sh. 10% trail (hwm $70.151) filled on the post-midterm oil slide (Democratic sweep + US–Iran talk progress). Was +9.5% at last Friday's close; gave back ~10.8pp in four sessions. Energy streak 1, not banned. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLP | $83.76 | $90.33 | +$1,642.50 (+7.84%) | $84.06 (10% trail GTC, hwm $93.40) |
+| SLB | $50.08 | $50.48 | +$110.80 (+0.80%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | $696.57 | $692.99 | -$53.70 (-0.51%) | $640.955 (10% trail GTC, hwm $712.17) |
+| LLY | $1,400.98 | $1,363.965 | -$370.15 (-2.64%) | $1,307.70 (10% trail GTC, hwm $1,453.00) |
+| MRK | $151.2469 | $146.84 | -$484.76 (-2.91%) | $138.0329 (10% trail GTC, hwm $153.37) |
+
+**Deployed:** $76,752.36 / $102,059.40 = **75.20%**, in the 75-85% band (a hair over the floor). Cash $25,307.04 (24.80%). **5 positions**, in the rule-3 range. Weights: **XLP ~22.1% (over the 20% cap on drift only — no trim) · MRK ~15.8% · LLY ~13.4% · SLB ~13.7% · TMO ~10.2%**. **Health Care = LLY + MRK + TMO ≈ 39.4% of equity**; Energy ≈ 13.7% (SLB). Protection 5/5 one-for-one, all trailing, none lowered. Cushions: SLB 2.65% (nearest — rule-7 standing condition logged 11/04-11/05), LLY 4.13%, MRK 6.00%, XLP 6.94%, TMO 7.51%. `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Bans: Info Tech to 11/13, Industrials to 11/19.
+
+### What Worked
+- **The rule-12 mandate was filled Monday (LLY 10 @ $1,400.98)** by waiting ~30 min past the open and sampling a stable IEX ask before validating — last week's fallback worked, ending a 4-session under-band streak.
+- **Re-deployment after the XLE stop-out took one session** (MRK 11/05), restoring band and the 5-position range; the gate refused the first attempt on a stale quote (`submit_entry.py` exit 3) and the retry at a fresh print went through cleanly.
+- **The book lost less than the index on the 11/05 rout** (broker -2.07% vs S&P -4.36%) — no tech exposure while Info Tech is banned, and XLP held up.
+- Risk machinery clean: `blotter --check` exit 0 and `reconcile_equity.py` RECONCILED every session, coordinator clean all week, `strategy_version.py` exit 0 every run, protection one-for-one every run, no stop lowered, no `.env`.
+
+### What Didn't Work
+- **-3.57% against an S&P down 2.34% — the worst week of the phase**, taking phase P&L from +5.83% to +2.06%. The energy unwind (XLE -3.5% Mon, then stopped out Wed; SLB to a 2.3% cushion) drove the early-week losses before the 11/05 rout hit everything.
+- **XLE round-tripped a +9.5% gain into a -1.24% loss in four sessions.** A 10% trail on a sector ETF in a war-premium unwind gives back the whole move; the rule-6 tightening starts at +15%, so a +9-10% peak has no protection beyond the base trail.
+- **Health Care rose to ~39.4% with MRK** — the pre-market entry noted "~40% post-MRK" and "drug-pricing headline risk" and took it anyway. All three Health Care names are now red (combined -$908.61); the concentration swapped from energy to health care rather than going away.
+- **Both new entries are underwater** (LLY -2.64%, MRK -2.91%), bought into a tape that sold off 4.4% three days later.
+- **Run record unavailable on 11/03** (store fetch timed out; alert emailed) — one session without an ADR-0012 record.
+
+### Key Lessons
+- **The open-timing workaround works but is manual.** Both adds this week succeeded only because the routine waited for a stable quote; the approve-then-refuse defect in `submit_entry.py` is still unfixed in code.
+- **Concentration moves, it doesn't decay, while the only constraint is unwritten.** Last week energy fell to 34.6%; this week Health Care rose to 39.4% through two "next-best" adds in the same sector.
+- **A trailing stop protects capital, not gains, below +15%.** XLE and PSX (last week) both gave back ~10-11pp from peaks under the rung.
+
+### Adjustments for Next Week
+- **No new Health Care** (~39.4%) — next add goes elsewhere (WMT/Consumer Staples is the logged first add; XLP is already ~22%, so staples combined would reach ~27%).
+- Deployment sits at 75.20%, at the floor: one more down day puts the book under band. If it drops, the rule-12 clock starts; the add should be a non-Health-Care single name.
+- Watch SLB (2.65% cushion) and LLY (4.13%). No stop changes beyond the rules.
+- Week slots reset Mon 11/09 (0/3). Bans: Info Tech lifts 11/13, Industrials 11/19. Catalysts: **CPI 11/10**, PPI 11/13; FOMC 12/08-09. VIX ~28.
+
+### Proposed Rule Change (rule 15 — sector/factor exposure cap) — RE-PROPOSED, sixth week, text unchanged
+
+**Not applied.** `memory/TRADING-STRATEGY.md` is hash-pinned (active **v1.3**); the owner applies the change and bumps the version.
+
+**Proposed text (identical to the last five weeks):**
+
+> 15. Sector exposure cap — no more than 35% of equity in any one GICS sector,
+>     counting broad-sector ETFs and single names together (an ETF counts at
+>     100% toward its own sector). Measured at the moment of entry against
+>     post-trade equity: a buy that would take a sector above 35% is rejected
+>     and the next-ranked candidate is taken instead. The cap never forces a
+>     sale — an existing overweight reached by appreciation or by a stop-out
+>     elsewhere is held and decays naturally, but no new position may be added
+>     in an over-cap sector until it is back under 35%. The reason for any
+>     candidate rejected by this cap is logged in that session's pre-market
+>     RESEARCH-LOG entry.
+
+**New evidence from this week:**
+- **A second sector breached the line by entry, not drift.** MRK on 11/05 took Health Care from ~24% to **~39%** post-trade. Under rule 15 MRK is rejected and the next-ranked candidate is taken; the re-deployment still happens (same precedent as rule 14 — WHAT, never WHETHER).
+- **The concentration cost money immediately:** Health Care names were the three largest decliners on the 11/05 rout (TMO -3.6%, LLY -2.7%, MRK -1.7%) and end the week a combined -$908.61.
+- **The informal "no new energy" note held energy under the line, but no equivalent note existed for Health Care** — an unwritten constraint covers only the sector someone remembered to write down.
+
+**Would start:** v1.4, on owner approval.
+
+### Overall Grade: C-
+
+**-3.57% against an S&P down 2.34% — a -1.23pp relative loss and the worst absolute week of the phase.** The execution side improved: the overdue rule-12 add was filled Monday, the XLE stop-out was re-deployed in one session, the gate refused a stale-quote order and the retry went through cleanly, and every validator, reconcile and protection check passed with nothing lowered. Not higher, because realized P&L was negative (PF 0.00), XLE gave a +9.5% gain back into a loss, both new entries ended red, and the book was deliberately concentrated to ~39% Health Care with the risk named in that morning's research. Not lower, because no rule was broken, the book ends in band with 5 positions and 5/5 protection, and it fell less than half as far as the index on the week's worst day.
+
+---
