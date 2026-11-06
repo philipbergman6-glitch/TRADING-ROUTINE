@@ -4566,3 +4566,22 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:05 UTC):** equity $102,247.78, cash $25,307.04, LMV $76,940.74 → deployed **75.25%**, in band; 5 positions.
 
 ---
+
+### Nov 06 — EOD Snapshot (Day 139, Friday, October payrolls / ENB+MRNA+HUM+VST BMO)
+**Portfolio:** $102,059.40 | **Cash:** $25,307.04 (24.80%) | **Day P&L:** +$224.78 (+0.22%) | **Phase P&L:** +$2,059.40 (+2.06%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,363.965 | -0.06% | -$370.15 (-2.64%) | $1,307.70 (10% trail GTC, hwm $1,453.00) |
+| MRK | 110 | $151.2469 | $146.84 | -0.07% | -$484.76 (-2.91%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| SLB | 277 | $50.08 | $50.48 | +1.69% | +$110.80 (+0.80%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $692.99 | +2.37% | -$53.70 (-0.51%) | $640.955 (10% trail GTC, hwm $712.17) |
+| XLP | 250 | $83.76 | $90.33 | -1.01% | +$1,642.50 (+7.84%) | $84.06 (10% trail GTC, hwm $93.40) |
+
+**Trades today:** none (blotter shows no entries or exits dated 11/06). **Week trades: 2/3** (week of 11/02; LLY 11/02, MRK 11/05). Blotter and TRADE-LOG agree.
+
+**Notes:** Quiet payrolls Friday, small green close. TMO +2.4% and SLB +1.7% (oil rebound) offset XLP -1.0%; LLY and MRK flat. Day P&L is against the broker's 11/05 close of $101,834.62 (the 11/05 snapshot logged $102,367.73 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. Deployed 75.20% (LMV $76,752.36), in band, 5 positions. Protection 5/5 one-for-one. Cushions: SLB 2.65% (nearest), LLY 4.13%, MRK 6.00%, XLP 6.94%, TMO 7.51%. Health Care ~39.4% (LLY + MRK + TMO), Energy ~13.7% (SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (141 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261106T201008Z-73c658.
+
+**Tomorrow:** Weekend; Monday hold in band with a fresh 3-trade week. Watch SLB cushion (2.7%) and Health Care concentration (~39%).
+
+---
