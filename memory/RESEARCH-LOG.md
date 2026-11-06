@@ -9123,3 +9123,38 @@ Rule 14 lapsed (LLY, SLB, TMO single names). Cash $41,944; deployment 59.8%.
 **TRADE — MRK 110 sh** at market-open (re-validate at live price; 100 sh fallback), stop $135.32. Rule 2/3 compliance after the XLE stop-out; MRK was the pre-approved first add. No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-11-06 — Pre-Market Research (Friday, post-AI-rout / October payrolls / ENB+MRNA+HUM+VST BMO)
+
+### Account snapshot
+- **Equity $100,931.54** (`last_equity` $101,834.62, -$903.08/-0.89% on premarket marks) · **Cash $25,307.04** · Long MV $75,624.50 · `buying_power` $312,977 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions**: XLP 22.26% · MRK 15.74% · SLB 13.61% · LLY 13.36% · TMO 9.96%. Week trades **2/3** (week of 11/02).
+- Stops 5/5, one-for-one, qty matching: LLY 10% trail $1,307.70 (hwm $1,453.00) · MRK 10% trail $138.0329 (hwm $153.37) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.955 (hwm $712.17) · XLP 10% trail $84.06 (hwm $93.40). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261106T113253Z-feb4e8`.
+
+### Market context
+- **WTI ~$91.9 (+1.6%) · Brent ~$100.3 (+2.0%)** — oil rebounding after the 11/04 collapse.
+- **Thu 11/05 rout:** S&P 500 -4.36% to 7,353.73, Dow -3.44%, Nasdaq -5.52% (correction) on AI/semis unwind over post-midterm data-center policy fears; all 11 sectors lower. **VIX 28.18** close (+70%, 5-month high), ~26.5 now. **ES ~7,396 (+0.2%)** — tentative bounce.
+- Today: **08:30 October payrolls** (cons +65k, UE 4.2%, AHE +0.3% m/m), U. Mich prelim. No FOMC (next 12/08–09); CPI 11/10, PPI 11/13.
+- BMO: ENB, MRNA, BAM, HUM, VST, UI, PPL, BIP, PAA, CHTR, KKR, BEN, CNH, FLR, DKNG.
+- Sector YTD (rule 9, thru 11/05): Energy +35.9% (WTD -10.4%), Health Care +19.6%, Consumer Staples ~+18.5%, Real Estate +11.0%, Info Tech +10.7% (WTD -12.0%, **banned**, lifts 11/13), Industrials +6.4% (**banned**, lifts 11/19). S&P 500 WTD -4.6%, YTD +7.6%. Streaks: Health Care 0, all others open at 1.
+- Holdings: LLY -3.8% Thu, retatrutide/Zepbound Ph3 data, FY guide $91–92B. MRK/TMO — no company news. SLB +0.1% Thu; OneSubsea Lyra (Norway) award; PTs $64–70; CEO sold 25k sh 11/02. XLP — no news.
+- Perplexity: all 10 queries succeeded (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (LLY, MRK, SLB, TMO single names). Cash $25,307; target_notional $5,120.
+1. **Walmart (WMT)** — Consumer Staples (~+18.5% YTD, streak 1). Catalyst: defensive rotation in the risk-off tape; held up Thu ($127.72, -1.1% vs S&P -4.4%). 40 sh, **stop $114.95 (10%)**, target $153.26 (2:1). `validate_order.py --symbol WMT --qty 40 --side buy --price 127.72 --stop-price 114.95 --trades-this-week 2 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,108.80. Staples would reach ~27% (XLP+WMT). First add if deployment stays below band.
+2. **ExxonMobil (XOM)** — Energy (#1 YTD, streak 1). Catalyst: oil rebound (Brent back to ~$100) after an -11.7% slide from 10/30 to $165.30. 30 sh, **stop $148.77 (10%)**, target $198.36 (2:1). `validate_order.py --symbol XOM --qty 30 --side buy --price 165.30 --stop-price 148.77 --trades-this-week 2 --sector "Energy"` → **APPROVED, exit 0**, $4,959.00. Energy WTD -10% — watchlist only.
+
+### Risk factors
+- Payrolls into a VIX-28 tape; Thursday's tech rout may extend; all sectors sold off Thu.
+- **Rule 7 standing: SLB stop $49.14 is 0.94% below $49.6074** (left, recorded). LLY cushion 3.05% (stop $1,307.70 vs $1,348.88) — near 3%.
+- Other cushions: TMO 4.34%, MRK 4.40%, XLP 6.44%. Health Care ~39% (LLY+MRK+TMO). XLP 22.3% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **74.93**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $5,120, `last_eod` 2026-11-05. No mandate.
+
+### Decision
+**HOLD.** Deployment 74.93% is a hair under band with no mandate; VIX 28 and payrolls argue for patience (rule 11), 1 trade left this week. WMT 40 sh is the first add if under-band persists. No stop changes; all 5 stops active and correct.
+
+---
