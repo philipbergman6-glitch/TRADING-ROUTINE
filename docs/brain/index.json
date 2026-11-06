@@ -2427,7 +2427,9 @@
     "research/2026-11-06/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-11-06/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -13053,6 +13055,25 @@
    ],
    "title": "Midday Scan (Day 138, Thursday, jobless claims / COP+CI+KMB+ZTS BMO)",
    "week": null
+  },
+  "trade/2026-11-06/market-open-trades/1": {
+   "date": "2026-11-06",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-06/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4544,
+   "log": "trade",
+   "note": "",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "SLB",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Market-Open",
+   "week": null
   }
  },
  "generated_from": {
@@ -13069,7 +13090,7 @@
     "entries": 217
    },
    "memory/TRADE-LOG.md": {
-    "entries": 291,
+    "entries": 292,
     "eod_snapshots": 133
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -16843,7 +16864,8 @@
     "trade/2026-11-04/eod-snapshot/1",
     "trade/2026-11-05/market-open-trades/1",
     "trade/2026-11-05/midday-scan/1",
-    "trade/2026-11-05/eod-snapshot/1"
+    "trade/2026-11-05/eod-snapshot/1",
+    "trade/2026-11-06/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -17044,7 +17066,8 @@
     "trade/2026-11-04/eod-snapshot/1",
     "trade/2026-11-05/market-open-trades/1",
     "trade/2026-11-05/midday-scan/1",
-    "trade/2026-11-05/eod-snapshot/1"
+    "trade/2026-11-05/eod-snapshot/1",
+    "trade/2026-11-06/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-30"
@@ -18025,7 +18048,8 @@
     "trade/2026-11-04/eod-snapshot/1",
     "trade/2026-11-05/market-open-trades/1",
     "trade/2026-11-05/midday-scan/1",
-    "trade/2026-11-05/eod-snapshot/1"
+    "trade/2026-11-05/eod-snapshot/1",
+    "trade/2026-11-06/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -18128,7 +18152,8 @@
     "trade/2026-11-04/eod-snapshot/1",
     "trade/2026-11-05/market-open-trades/1",
     "trade/2026-11-05/midday-scan/1",
-    "trade/2026-11-05/eod-snapshot/1"
+    "trade/2026-11-05/eod-snapshot/1",
+    "trade/2026-11-06/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -18194,7 +18219,8 @@
    "sector": "Consumer Staples",
    "trade_log": [
     "trade/2026-05-21/eod-snapshot/1",
-    "trade/2026-05-21/market-open-trades/1"
+    "trade/2026-05-21/market-open-trades/1",
+    "trade/2026-11-06/market-open-trades/1"
    ],
    "weeks": []
   },
@@ -19963,7 +19989,8 @@
     "trade/2026-11-04/eod-snapshot/1",
     "trade/2026-11-05/market-open-trades/1",
     "trade/2026-11-05/midday-scan/1",
-    "trade/2026-11-05/eod-snapshot/1"
+    "trade/2026-11-05/eod-snapshot/1",
+    "trade/2026-11-06/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
