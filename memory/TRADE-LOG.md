@@ -4611,3 +4611,22 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:05 UTC):** equity $102,718.66, cash $25,307.04, LMV $77,411.62 → deployed **75.36%**, in band; 5 positions.
 
 ---
+
+### Nov 09 — EOD Snapshot (Day 140, Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO)
+**Portfolio:** $103,329.90 | **Cash:** $25,307.04 (24.49%) | **Day P&L:** +$1,573.32 (+1.55%) | **Phase P&L:** +$3,329.90 (+3.33%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,417.77 | +4.71% | +$167.90 (+1.20%) | $1,307.70 (10% trail GTC, hwm $1,453.00) |
+| MRK | 110 | $151.2469 | $148.51 | +1.21% | -$301.06 (-1.81%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| SLB | 277 | $50.08 | $50.48 | +1.12% | +$110.80 (+0.80%) | $49.14 (10% trail GTC, hwm $54.60) |
+| TMO | 15 | $696.57 | $719.78 | +3.60% | +$348.15 (+3.33%) | $648.171 (10% trail GTC, hwm $720.19) |
+| XLP | 250 | $83.76 | $90.91 | +0.92% | +$1,787.50 (+8.54%) | $84.06 (10% trail GTC, hwm $93.40) |
+
+**Trades today:** none (blotter shows no entries or exits dated 11/09). **Week trades: 0/3** (week of 11/09). Blotter and TRADE-LOG agree.
+
+**Notes:** Broad green Monday into CPI week, all five positions up: LLY +4.7% and TMO +3.6% led, and TMO's trail ratcheted to $648.17 on a new hwm $720.19. Day P&L is against the broker's 11/06 close of $101,756.58 (the 11/06 snapshot logged $102,059.40 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. Deployed 75.51% (LMV $78,022.86), in band, 5 positions. Protection 5/5 one-for-one. Cushions: SLB 2.65% (nearest), MRK 7.05%, XLP 7.53%, LLY 7.76%, TMO 9.95%. Health Care ~40.0% (LLY + MRK + TMO), Energy ~13.5% (SLB). blotter --check exit 0, reconcile RECONCILED exit 0 (142 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261109T201029Z-9ec83a.
+
+**Tomorrow:** CPI Tuesday (rule 11) — hold in band, no new entries before the print. Watch SLB cushion (2.7%) and Health Care concentration (~40%).
+
+---
