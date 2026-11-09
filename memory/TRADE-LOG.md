@@ -4595,3 +4595,19 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:35 UTC, premarket marks):** equity $102,405.66, cash $25,307.04, LMV $77,098.62. Stops: LLY 10% trail $1,307.70 · MRK 10% trail $138.0329 · SLB 10% trail $49.14 · TMO 10% trail $640.955 · XLP 10% trail $84.06. Rule 7 standing: SLB stop 1.64% below $49.96 (left, recorded). WMT 40 sh is the first add if deployment slips below band.
 
 ---
+
+### 2026-11-09 — Midday Scan (Day 140, Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO)
+
+**No broker mutation this run.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261109T170444Z-8ce8d3`. Week of 2026-11-09 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 5/5, one-for-one:** LLY 10% trail $1,307.70 (hwm $1,453.00) · MRK 10% trail $138.0329 (hwm $153.37) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $640.955 (hwm $712.17) · XLP 10% trail $84.06 (hwm $93.40). `blotter.py --check` exit 0, 5 open lots match positions.
+
+**Rule 7:** STANDING SLB stop 49.14 is 2.91% below 50.615 (rule 7: left, recorded). Other cushions: LLY 6.27%, MRK 6.31%, XLP 7.07%, TMO 9.39%.
+
+**STEP 3:** no position ≤ -7% (XLP +8.00%, TMO +1.56%, SLB +1.07%, LLY -0.42%, MRK -2.59%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken; broad green day (LLY +3.0%, TMO +1.8%, SLB +1.4%, MRK/XLP +0.4%). **STEP 6:** skipped — nothing moving sharply without cause.
+
+**Live state (17:05 UTC):** equity $102,718.66, cash $25,307.04, LMV $77,411.62 → deployed **75.36%**, in band; 5 positions.
+
+---
