@@ -2444,6 +2444,16 @@
     "trade/2026-11-06/eod-snapshot/1"
    ],
    "week": "2026-11-06"
+  },
+  "2026-11-09": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-09/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8089,6 +8099,32 @@
    "title": "Pre-Market Research (Friday, post-AI-rout / October payrolls / ENB+MRNA+HUM+VST BMO)",
    "week": "2026-11-06"
   },
+  "research/2026-11-09/pre-market-research/1": {
+   "date": "2026-11-09",
+   "decision": [
+    "WMT"
+   ],
+   "decision_text": "**HOLD.** In band (75.33%), 5 positions, protection 5/5; no mandate; CPI tomorrow argues for patience (rule 11). WMT 40 sh is the first add if deployment slips below band. No stop changes; all 5 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-09/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9162,
+   "log": "research",
+   "note": "Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "NVDA",
+    "SLB",
+    "TMO",
+    "WMT",
+    "XLP",
+    "XOM"
+   ],
+   "title": "Pre-Market Research (Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -13136,7 +13172,7 @@
     "round_trips": 21
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 217
+    "entries": 218
    },
    "memory/TRADE-LOG.md": {
     "entries": 294,
@@ -17112,7 +17148,8 @@
     "research/2026-11-03/pre-market-research/1",
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-05/pre-market-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -17338,7 +17375,8 @@
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-04/addendum/1",
     "research/2026-11-05/pre-market-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -17767,7 +17805,8 @@
     "research/2026-10-07/pre-market-research/1",
     "research/2026-10-08/pre-market-research/1",
     "research/2026-10-08/addendum/1",
-    "research/2026-10-13/pre-market-research/1"
+    "research/2026-10-13/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -18303,7 +18342,8 @@
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-04/addendum/1",
     "research/2026-11-05/pre-market-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18394,7 +18434,8 @@
     "research/2026-11-03/pre-market-research/1",
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-05/pre-market-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18465,7 +18506,8 @@
     "research/2026-05-21/pre-market-research/1",
     "research/2026-05-22/pre-market-research/1",
     "research/2026-05-22/market-open-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-07/pre-market-research/2",
@@ -18478,9 +18520,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-11-06",
-    "entry": "research/2026-11-06/pre-market-research/1",
-    "text": "**HOLD.** Deployment 74.93% is a hair under band with no mandate; VIX 28 and payrolls argue for patience (rule 11), 1 trade left this week. WMT 40 sh is the first add if under-band persists. No stop changes; all 5 stops active and correct. ---"
+    "date": "2026-11-09",
+    "entry": "research/2026-11-09/pre-market-research/1",
+    "text": "**HOLD.** In band (75.33%), 5 positions, protection 5/5; no mandate; CPI tomorrow argues for patience (rule 11). WMT 40 sh is the first add if deployment slips below band. No stop changes; all 5 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
@@ -18494,7 +18536,8 @@
     "research/2026-06-03/pre-market-research/1",
     "research/2026-08-17/pre-market-research/1",
     "research/2026-08-20/pre-market-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -20063,7 +20106,8 @@
     "research/2026-11-03/pre-market-research/1",
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-05/pre-market-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20490,7 +20534,8 @@
     "research/2026-06-24/pre-market-research/1",
     "research/2026-07-31/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
-    "research/2026-11-06/pre-market-research/1"
+    "research/2026-11-06/pre-market-research/1",
+    "research/2026-11-09/pre-market-research/1"
    ],
    "round_trips": [
     {
