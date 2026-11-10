@@ -4640,3 +4640,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:35 UTC, premarket marks):** equity $103,604.50, cash $25,307.04, LMV $78,297.46. Stops: LLY 10% trail $1,307.70 · MRK 10% trail $138.0329 · SLB 10% trail $49.14 · TMO 10% trail $650.772 · XLP 10% trail $84.06. Rule 7 standing: SLB stop 1.92% below $50.10 (left, recorded). WMT 40 sh is the first add if deployment slips below band.
 
 ---
+
+### 2026-11-10 — Midday Scan (Day 141, Tuesday, October CPI)
+
+**No broker mutation this run.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261110T170446Z-507b28`. Week of 2026-11-09 trade count: **0/3**.
+
+**SLB stopped out (broker, not this run):** 10% trail (stop $49.14) filled 277 sh @ $48.75 at 14:32 UTC. Blotter round trip 10-23 → 11-10: realized **-$368.41 (-2.66%)**. Energy now 2 consecutive losses (XLE 11/04, SLB 11/10) → **rule 10 ban, lifts 2026-12-08** (`blotter.py --sector-streaks`). XOM watchlist idea is void.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 4/4, one-for-one:** LLY 10% trail $1,307.70 (hwm $1,453.00) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $650.772 (hwm $723.08) · XLP 10% trail $84.06 (hwm $93.40). `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Rule 7:** no standing stops. Cushions: MRK 5.74%, XLP 7.77%, LLY 7.95%, TMO 9.16%.
+
+**STEP 3:** no position ≤ -7% (XLP +8.81%, TMO +2.85%, LLY +1.40%, MRK -3.18%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken; MRK -1.6% on the day, LLY +0.6%, TMO -0.7%, XLP +0.3%. **STEP 6:** skipped — nothing moving sharply without cause.
+
+**Live state (17:05 UTC):** equity $102,660.34, cash $38,810.79, LMV $63,849.55 → deployed **62.19%**, **below band**; 4 positions. Under-band session 1 if EOD confirms; WMT 40 sh (Consumer Staples) remains the first add for market-open.
+
+---
