@@ -4658,3 +4658,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:05 UTC):** equity $102,660.34, cash $38,810.79, LMV $63,849.55 → deployed **62.19%**, **below band**; 4 positions. Under-band session 1 if EOD confirms; WMT 40 sh (Consumer Staples) remains the first add for market-open.
 
 ---
+
+### Nov 10 — EOD Snapshot (Day 141, Tuesday, October CPI)
+**Portfolio:** $102,863.44 | **Cash:** $38,810.79 (37.73%) | **Day P&L:** -$428.91 (-0.42%) | **Phase P&L:** +$2,863.44 (+2.86%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,430.50 | +1.31% | +$295.20 (+2.11%) | $1,307.70 (10% trail GTC, hwm $1,453.00) |
+| MRK | 110 | $151.2469 | $147.32 | -0.97% | -$431.96 (-2.60%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| TMO | 15 | $696.57 | $717.55 | -0.57% | +$314.70 (+3.01%) | $650.772 (10% trail GTC, hwm $723.08) |
+| XLP | 250 | $83.76 | $91.11 | +0.24% | +$1,837.50 (+8.78%) | $84.06 (10% trail GTC, hwm $93.40) |
+
+**Trades today:** SLB 277 sh sold @ $48.75 (10% trail stop fill, 14:32 UTC), realized -$368.41 (-2.66%). No buys. **Week trades: 0/3** entries (week of 11/09). Blotter and TRADE-LOG agree.
+
+**Notes:** CPI day: SLB's trailing stop filled early in the session, locking a -$368.41 loss and putting Energy under a rule-10 ban until 2026-12-08 (XLE 11/04, SLB 11/10). The rest was mixed: LLY +1.3%, XLP +0.2%, MRK -1.0%, TMO -0.6%. Day P&L is against the broker's 11/09 close of $103,292.35 (the 11/09 snapshot logged $103,329.90 from pre-close marks; reconcile diff 0.00). Marks are ~20:11 UTC, before the close. Deployed 62.27% (LMV $64,052.65), below band: under-band session 1; 4 positions. Protection 4/4 one-for-one. Cushions: MRK 6.30% (nearest), XLP 7.74%, LLY 8.58%, TMO 9.31%. Health Care ~40.1% (LLY + MRK + TMO). blotter --check exit 0, reconcile RECONCILED exit 0 (143 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261110T201116Z-5731ea.
+
+**Tomorrow:** Below band, so redeploy: WMT 40 sh (Consumer Staples) is the first add at market-open, subject to validate_order.py. Energy stays banned; no new Health Care adds at ~40%.
+
+---
