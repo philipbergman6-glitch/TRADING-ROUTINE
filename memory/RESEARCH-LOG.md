@@ -9193,3 +9193,38 @@ Rule 14 lapsed (LLY, MRK, SLB, TMO single names). Cash $25,307; target_notional 
 **HOLD.** In band (75.33%), 5 positions, protection 5/5; no mandate; CPI tomorrow argues for patience (rule 11). WMT 40 sh is the first add if deployment slips below band. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-10 — Pre-Market Research (Tuesday, October CPI / quiet BMO slate)
+
+### Account snapshot
+- **Equity $103,299.59** (`last_equity` $103,292.35, +$7.24/+0.01% on premarket marks) · **Cash $25,307.04** · Long MV $77,992.55 · `buying_power` $319,607 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions**: XLP 22.03% · MRK 15.92% · LLY 13.74% · SLB 13.33% · TMO 10.49%. Week trades **0/3** (week of 11/09).
+- Stops 5/5, one-for-one, qty matching: LLY 10% trail $1,307.70 (hwm $1,453.00) · MRK 10% trail $138.0329 (hwm $153.37) · SLB 10% trail $49.14 (hwm $54.60) · TMO 10% trail $650.772 (hwm $723.08) · XLP 10% trail $84.06 (hwm $93.40). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261110T113256Z-c2ddc7`.
+
+### Market context
+- **WTI ~$85.4 (-1.7%) · Brent ~$90.7 (-2.0%)** — Brent -5.8% Mon after Trump called renewed Iran strikes "highly unlikely".
+- **ES ~7,590 (+0.2%)** after Monday's rally (S&P 7,549.94 close). **VIX 19.92** (Mon close, -22%). Fed Waller backed a hike ahead of CPI; yields and dollar firmer.
+- Today: **08:30 October CPI** (cons headline +0.3% m/m / 3.9% y/y, core +0.2% m/m). PPI Fri 11/13; no FOMC (next 12/08–09).
+- BMO: no major reports (BRSL tentative). SoftBank results; TSMC Oct rev +59.7% y/y. NVDA lagging on CEO probe.
+- Sector YTD (rule 9, thru 11/06): Energy ~+38%, Consumer Staples ~+18.5%, Health Care ~+19%, Real Estate ~+10.6%, Info Tech ~+9.5% (**banned**, lifts 11/13), Industrials (**banned**, lifts 11/19). Streaks: Health Care 0, Materials 1.
+- Holdings: LLY +4.3% Mon; Foundayo OSA data; ex-div $1.73 11/13. MRK — efinopegdutide Ph2b MASH positive; soft 2027 outlook chatter. SLB/TMO/XLP — no news.
+- Perplexity: all 8 queries succeeded (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (LLY, MRK, SLB, TMO single names). Cash $25,307; target_notional $0 (in band).
+1. **Walmart (WMT)** — Consumer Staples (#2 YTD). Catalyst: defensive leadership; Q3 print due ~11/19. 40 sh @ $125.66 (11/09 close), **stop $113.09 (10%)**, target $150.79 (2:1). `validate_order.py --symbol WMT --qty 40 --side buy --price 125.66 --stop-price 113.09 --trades-this-week 0 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,026.40. First add if deployment drops below band.
+2. **ExxonMobil (XOM)** — Energy (#1 YTD). Catalyst: oil de-escalation slide (WTI ~$85); 11/09 close $164.73. 30 sh, **stop $148.26 (10%)**, target $197.68 (2:1). `validate_order.py --symbol XOM --qty 30 --side buy --price 164.73 --stop-price 148.26 --trades-this-week 0 --sector "Energy"` → **APPROVED, exit 0**, $4,941.90. Watchlist only — oil still falling.
+
+### Risk factors
+- CPI print with Waller hawkish; a hot core could reverse Monday's VIX collapse.
+- **Rule 7 standing: SLB stop $49.14 is 1.13% below $49.70** (left, recorded); oil -2% premarket — SLB stop-out likely if Energy weakens.
+- Other cushions: XLP 7.64%, MRK 7.67%, LLY 7.84%, TMO 9.94%. Health Care ~40.2% (LLY+MRK+TMO). XLP 22.0% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **75.50**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-11-09. No mandate.
+
+### Decision
+**HOLD.** In band (75.50%), 5 positions, protection 5/5; no mandate; CPI at 08:30 argues for patience (rule 11). WMT 40 sh is the first add if an SLB stop-out drops deployment below band. No stop changes; all 5 stops active and correct.
+
+---
