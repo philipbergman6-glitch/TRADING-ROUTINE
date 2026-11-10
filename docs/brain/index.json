@@ -2466,6 +2466,16 @@
     "trade/2026-11-09/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-10": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-10/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8137,6 +8147,33 @@
    "title": "Pre-Market Research (Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO)",
    "week": null
   },
+  "research/2026-11-10/pre-market-research/1": {
+   "date": "2026-11-10",
+   "decision": [
+    "SLB",
+    "WMT"
+   ],
+   "decision_text": "**HOLD.** In band (75.50%), 5 positions, protection 5/5; no mandate; CPI at 08:30 argues for patience (rule 11). WMT 40 sh is the first add if an SLB stop-out drops deployment below band. No stop changes; all 5 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-10/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9197,
+   "log": "research",
+   "note": "Tuesday, October CPI / quiet BMO slate",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "NVDA",
+    "SLB",
+    "TMO",
+    "WMT",
+    "XLP",
+    "XOM"
+   ],
+   "title": "Pre-Market Research (Tuesday, October CPI / quiet BMO slate)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -13239,7 +13276,7 @@
     "round_trips": 21
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 218
+    "entries": 219
    },
    "memory/TRADE-LOG.md": {
     "entries": 297,
@@ -17351,7 +17388,8 @@
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-05/pre-market-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -17581,7 +17619,8 @@
     "research/2026-11-04/addendum/1",
     "research/2026-11-05/pre-market-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18014,7 +18053,8 @@
     "research/2026-10-08/pre-market-research/1",
     "research/2026-10-08/addendum/1",
     "research/2026-10-13/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -18512,7 +18552,8 @@
   },
   "SLB": {
    "decisions": [
-    "research/2026-10-23/pre-market-research/1"
+    "research/2026-10-23/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "ideas": [],
    "intents": [
@@ -18521,9 +18562,9 @@
     "rs-e9965acf-fc2e-410d-9157-f2881e196e95-2"
    ],
    "last_decision": {
-    "date": "2026-10-23",
-    "entry": "research/2026-10-23/pre-market-research/1",
-    "text": "**TRADE (rule-12 mandate): BUY SLB 278 sh at market-open, 10% stop**, re-validated at a verified live print and resized to ≤ $13,904. Fallback LLY 10 sh if SLB fails validation. Existing book HOLD — no stop changes; all 4 stops active and correct. ---"
+    "date": "2026-11-10",
+    "entry": "research/2026-11-10/pre-market-research/1",
+    "text": "**HOLD.** In band (75.50%), 5 positions, protection 5/5; no mandate; CPI at 08:30 argues for patience (rule 11). WMT 40 sh is the first add if an SLB stop-out drops deployment below band. No stop changes; all 5 stops active and correct. ---"
    },
    "open_lots": [
     {
@@ -18551,7 +18592,8 @@
     "research/2026-11-04/addendum/1",
     "research/2026-11-05/pre-market-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18646,7 +18688,8 @@
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-05/pre-market-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18721,7 +18764,8 @@
     "research/2026-05-22/pre-market-research/1",
     "research/2026-05-22/market-open-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-07/pre-market-research/2",
@@ -18734,9 +18778,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-11-09",
-    "entry": "research/2026-11-09/pre-market-research/1",
-    "text": "**HOLD.** In band (75.33%), 5 positions, protection 5/5; no mandate; CPI tomorrow argues for patience (rule 11). WMT 40 sh is the first add if deployment slips below band. No stop changes; all 5 stops active and correct. ---"
+    "date": "2026-11-10",
+    "entry": "research/2026-11-10/pre-market-research/1",
+    "text": "**HOLD.** In band (75.50%), 5 positions, protection 5/5; no mandate; CPI at 08:30 argues for patience (rule 11). WMT 40 sh is the first add if an SLB stop-out drops deployment below band. No stop changes; all 5 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
@@ -18751,7 +18795,8 @@
     "research/2026-08-17/pre-market-research/1",
     "research/2026-08-20/pre-market-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -20322,7 +20367,8 @@
     "research/2026-11-04/pre-market-research/1",
     "research/2026-11-05/pre-market-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20753,7 +20799,8 @@
     "research/2026-07-31/pre-market-research/1",
     "research/2026-10-30/pre-market-research/1",
     "research/2026-11-06/pre-market-research/1",
-    "research/2026-11-09/pre-market-research/1"
+    "research/2026-11-09/pre-market-research/1",
+    "research/2026-11-10/pre-market-research/1"
    ],
    "round_trips": [
     {
