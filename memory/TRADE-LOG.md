@@ -4705,3 +4705,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:05 UTC):** equity $102,638.25, cash $38,810.50, LMV $63,827.75 → deployed **62.19%**, **below band**; 4 positions. Under-band session 2 if EOD confirms; WMT 40 sh (Consumer Staples) remains the first add for the next market-open.
 
 ---
+
+### Nov 11 — EOD Snapshot (Day 142, Wednesday)
+**Portfolio:** $102,815.09 | **Cash:** $38,810.50 (37.75%) | **Day P&L:** -$134.31 (-0.13%) | **Phase P&L:** +$2,815.09 (+2.82%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,430.81 | -0.10% | +$298.30 (+2.13%) | $1,307.70 (10% trail GTC, hwm $1,453.00) |
+| MRK | 110 | $151.2469 | $146.52 | -1.03% | -$519.96 (-3.13%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| TMO | 15 | $696.57 | $717.70 | -0.07% | +$316.99 (+3.03%) | $654.804 (10% trail GTC, hwm $727.56) |
+| XLP | 250 | $83.76 | $91.255 | +0.25% | +$1,873.75 (+8.95%) | $84.06 (10% trail GTC, hwm $93.40) |
+
+**Trades today:** none. WMT 40 sh was refused at the `submit_entry.py` gate at market-open (stop_distance off a spurious ask). **Week trades: 0/3** entries (week of 11/09). Blotter and TRADE-LOG agree.
+
+**Notes:** Quiet session, small down day. MRK led the drag at -1.0%, while LLY and TMO were roughly flat and XLP was +0.25%. Day P&L is against the broker's 11/10 close of $102,949.40 (the 11/10 snapshot logged $102,863.44 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. Deployed 62.25% (LMV $64,004.59), below band: under-band session 2; 4 positions. Protection 4/4 one-for-one. Cushions: MRK 5.79% (nearest), XLP 7.88%, LLY 8.60%, TMO 8.76%. Health Care ~40.1% (LLY + MRK + TMO). blotter --check exit 0, reconcile RECONCILED exit 0 (144 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261111T201006Z-1261e9.
+
+**Tomorrow:** Still below band: retry WMT 40 sh (Consumer Staples) at market-open after quotes settle, subject to validate_order.py and submit_entry.py. Energy stays banned until 2026-12-08; no new Health Care adds at ~40%.
+
+---
