@@ -9228,3 +9228,38 @@ Rule 14 lapsed (LLY, MRK, SLB, TMO single names). Cash $25,307; target_notional 
 **HOLD.** In band (75.50%), 5 positions, protection 5/5; no mandate; CPI at 08:30 argues for patience (rule 11). WMT 40 sh is the first add if an SLB stop-out drops deployment below band. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-11 — Pre-Market Research (Wednesday, post-hot-CPI / CRWV beat lifts AI)
+
+### Account snapshot
+- **Equity $102,423.30** (`last_equity` $102,949.40, -$526.10/-0.51% on premarket marks) · **Cash $38,810.50** · Long MV $63,612.80 · `buying_power` $333,358 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions**: XLP 22.00% · MRK 15.73% · LLY 13.86% · TMO 10.52%. Week trades **0/3** (week of 11/09). SLB stopped out 11/10 (-$368.41).
+- Stops 4/4, one-for-one, qty matching: LLY 10% trail $1,307.70 (hwm $1,453.00) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $650.772 (hwm $723.08) · XLP 10% trail $84.06 (hwm $93.40). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261111T113257Z-0cf503`.
+
+### Market context
+- **WTI ~$87.1 · Brent ~$93.3** — rebounding from Tuesday's de-escalation low.
+- **ES +0.7%** premarket after S&P -0.38% Tue; CRWV +13% AH on beat-and-raise lifts AI/chips; NVDA -5% Tue. **VIX ~20.4**.
+- **Oct CPI hot**: headline +0.4% m/m (cons 0.3), core +0.3% (cons 0.2). Waller backs a Dec hike (50bp possible); Dec hike fully priced; dollar at 4-wk high.
+- Today: no CPI/PPI/FOMC/jobs. **PPI Fri 11/13**; FOMC 12/08–09; NFP 12/04. BMO thin: FLNG, IPSC.
+- Sector YTD (rule 9): Energy ~+38% (**banned**, lifts 12/08), Consumer Staples ~+18.5%, Health Care ~+19%, Real Estate ~+10.6%, Info Tech ~+9.5% (**banned**, lifts 11/13), Industrials (**banned**, lifts 11/19). Streaks: Staples 1, Health Care 0.
+- Holdings: LLY — ex-div $1.73 11/13; retatrutide/Zepbound data at ACR. MRK — efinopegdutide Ph2b MASH positive; ENHANCE 3 COPD trial started. TMO/XLP — no news.
+- Perplexity: all 8 queries succeeded (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (LLY, MRK, TMO single names). Cash $38,810; target_notional $18,325 (under band).
+1. **Walmart (WMT)** — Consumer Staples (#2 YTD). Catalyst: defensive leadership; Q3 print due ~11/19. 40 sh @ $125.55 (11/10 close), **stop $113.00 (10%)**, target $150.66 (2:1). `validate_order.py --symbol WMT --qty 40 --side buy --price 125.55 --stop-price 113.00 --trades-this-week 0 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,022.00.
+2. **Procter & Gamble (PG)** — Consumer Staples. Catalyst: staples bid on hot CPI/hike repricing; 11/10 close $168.66, up 2 of 3 sessions. 30 sh, **stop $151.79 (10%)**, target $202.40 (2:1). `validate_order.py --symbol PG --qty 30 --side buy --price 168.66 --stop-price 151.79 --trades-this-week 0 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,059.80. Alternate if WMT gaps against.
+
+### Risk factors
+- Hot CPI + Waller 50bp talk; PPI Friday could extend the rate scare. AI rally (CRWV) vs NVDA weakness.
+- Staples concentration: XLP 22.0% + WMT ~4.9% ≈ 27%; WMT trades -2.8% off 11/04. Health Care ~40.1% (LLY+MRK+TMO) — no HC adds.
+- Rule 7: no standing stops. Cushions: MRK 5.74% (nearest), XLP 6.76%, LLY 7.88%, TMO 9.39%. XLP 22.0% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **62.11**, band [75, 85], `sessions_under_band` **1**, `mandate` **false**, `exemption_allowed` false, `target_notional` $18,325, `last_eod` 2026-11-10. No mandate (session 1 of 3).
+
+### Decision
+**TRADE: WMT 40 sh** at market-open (validated, stop $113.00 → 10% trail), per the 11/10 EOD redeploy plan; PG 30 sh is the alternate. Below band after the SLB stop-out; 3 trades left this week. No stop changes; all 4 stops active and correct.
+
+---
