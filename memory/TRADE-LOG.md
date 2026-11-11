@@ -4676,3 +4676,16 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Below band, so redeploy: WMT 40 sh (Consumer Staples) is the first add at market-open, subject to validate_order.py. Energy stays banned; no new Health Care adds at ~40%.
 
 ---
+
+### 2026-11-11 — Market-Open
+
+**No trades.** Planned WMT 40 sh was approved by `validate_order.py` and then refused at the `submit_entry.py` gate. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset). Run record `market-open-20261111T133338Z-f4340b`. Week of 2026-11-09 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **4/4 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0, no mandate (`deployed_pct` 62.12, `sessions_under_band` 1). **Rule 10:** `blotter.py --sector-streaks` exit 0; Consumer Staples streak 1, not banned. Rule 14 lapsed (LLY, MRK, TMO are single names).
+
+**Timing:** the run fired 13:33 UTC, pre-open, with stale quotes. Waited until 14:45 UTC. The IEX ask flickered between ~$125.9 and a spurious $130.79.
+**WMT (refused):** sized after two tight reads in a row (bid $125.75 / ask $125.86). `validate_order.py --symbol WMT --qty 40 --side buy --price 125.86 --stop-price 113.27 --sector "Consumer Staples"` → APPROVED exit 0, $5,034.40. `submit_entry.py --symbol WMT --qty 40 --price 125.86` → **exit 3**: `stop_distance: entry fixed stop must be 9.5–10.5% below entry, got 13.40%` (intent `en-20261111-WMT`, refusal recorded). The gate re-read the spurious $130.79 ask, the same mechanism as the 10/30 refusals. Exit 3 means skip, so it was not retried. PG was not substituted: it was the alternate only if WMT gapped against the plan, and WMT did not gap.
+
+**Live state (14:47 UTC):** equity $102,728.47, cash $38,810.50, LMV $63,917.97 → **62.2% deployed**, below band (under-band session 2 if EOD confirms). Stops: LLY 10% trail $1,307.70 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · XLP 10% trail $84.06. WMT stays the first add for the next session.
+
+---
