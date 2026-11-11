@@ -4689,3 +4689,19 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (14:47 UTC):** equity $102,728.47, cash $38,810.50, LMV $63,917.97 → **62.2% deployed**, below band (under-band session 2 if EOD confirms). Stops: LLY 10% trail $1,307.70 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · XLP 10% trail $84.06. WMT stays the first add for the next session.
 
 ---
+
+### 2026-11-11 — Midday Scan (Day 142, Wednesday)
+
+**No broker mutation this run.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261111T170442Z-692605`. Week of 2026-11-09 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 4/4, one-for-one:** LLY 10% trail $1,307.70 (hwm $1,453.00) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · XLP 10% trail $84.06 (hwm $93.40). `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Rule 7:** no standing stops. Cushions: MRK 5.42%, XLP 7.21%, LLY 8.22%, TMO 9.72%.
+
+**STEP 3:** no position ≤ -7% (XLP +8.15%, TMO +4.12%, LLY +1.70%, MRK -3.51%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken; MRK -1.4% on the day, LLY -0.5%, TMO +1.0%, XLP -0.5%. **STEP 6:** skipped — nothing moving sharply without cause.
+
+**Live state (17:05 UTC):** equity $102,638.25, cash $38,810.50, LMV $63,827.75 → deployed **62.19%**, **below band**; 4 positions. Under-band session 2 if EOD confirms; WMT 40 sh (Consumer Staples) remains the first add for the next market-open.
+
+---
