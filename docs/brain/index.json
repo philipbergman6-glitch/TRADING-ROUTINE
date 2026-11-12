@@ -2514,6 +2514,16 @@
     "trade/2026-11-11/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-12": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-12/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8238,6 +8248,30 @@
    "title": "Pre-Market Research (Wednesday, post-hot-CPI / CRWV beat lifts AI)",
    "week": null
   },
+  "research/2026-11-12/pre-market-research/1": {
+   "date": "2026-11-12",
+   "decision": [
+    "WMT"
+   ],
+   "decision_text": "**TRADE: WMT 40 sh** at market-open (validated, stop $113.10 → 10% trail), retrying the 11/11 refused entry once quotes settle; PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-12/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9267,
+   "log": "research",
+   "note": "Thursday, NVDA CEO-board report hits futures / PPI tomorrow",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "NVDA",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Thursday, NVDA CEO-board report hits futures / PPI tomorrow)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -13454,7 +13488,7 @@
     "round_trips": 22
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 220
+    "entries": 221
    },
    "memory/TRADE-LOG.md": {
     "entries": 303,
@@ -17762,7 +17796,8 @@
     "research/2026-11-06/pre-market-research/1",
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
-    "research/2026-11-11/pre-market-research/1"
+    "research/2026-11-11/pre-market-research/1",
+    "research/2026-11-12/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18000,7 +18035,8 @@
     "research/2026-11-06/pre-market-research/1",
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
-    "research/2026-11-11/pre-market-research/1"
+    "research/2026-11-11/pre-market-research/1",
+    "research/2026-11-12/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18441,7 +18477,8 @@
     "research/2026-10-13/pre-market-research/1",
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
-    "research/2026-11-11/pre-market-research/1"
+    "research/2026-11-11/pre-market-research/1",
+    "research/2026-11-12/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -19089,7 +19126,8 @@
     "research/2026-11-06/pre-market-research/1",
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
-    "research/2026-11-11/pre-market-research/1"
+    "research/2026-11-11/pre-market-research/1",
+    "research/2026-11-12/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19172,7 +19210,8 @@
     "research/2026-11-06/pre-market-research/1",
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
-    "research/2026-11-11/pre-market-research/1"
+    "research/2026-11-11/pre-market-research/1",
+    "research/2026-11-12/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-07/pre-market-research/2",
@@ -19185,9 +19224,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-11-11",
-    "entry": "research/2026-11-11/pre-market-research/1",
-    "text": "**TRADE: WMT 40 sh** at market-open (validated, stop $113.00 → 10% trail), per the 11/10 EOD redeploy plan; PG 30 sh is the alternate. Below band after the SLB stop-out; 3 trades left this week. No stop changes; all 4 stops active and correct. ---"
+    "date": "2026-11-12",
+    "entry": "research/2026-11-12/pre-market-research/1",
+    "text": "**TRADE: WMT 40 sh** at market-open (validated, stop $113.10 → 10% trail), retrying the 11/11 refused entry once quotes settle; PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
@@ -19204,7 +19243,8 @@
     "research/2026-11-06/pre-market-research/1",
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
-    "research/2026-11-11/pre-market-research/1"
+    "research/2026-11-11/pre-market-research/1",
+    "research/2026-11-12/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -20785,7 +20825,8 @@
     "research/2026-11-06/pre-market-research/1",
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
-    "research/2026-11-11/pre-market-research/1"
+    "research/2026-11-11/pre-market-research/1",
+    "research/2026-11-12/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
