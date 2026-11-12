@@ -9263,3 +9263,39 @@ Rule 14 lapsed (LLY, MRK, TMO single names). Cash $38,810; target_notional $18,3
 **TRADE: WMT 40 sh** at market-open (validated, stop $113.00 → 10% trail), per the 11/10 EOD redeploy plan; PG 30 sh is the alternate. Below band after the SLB stop-out; 3 trades left this week. No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-11-12 — Pre-Market Research (Thursday, NVDA CEO-board report hits futures / PPI tomorrow)
+
+### Account snapshot
+- **Equity $103,460.50** (`last_equity` $103,001.35, +$459.15/+0.45% on premarket marks) · **Cash $38,810.50** · Long MV $64,650.00 · `buying_power` $336,262 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions**: XLP 22.14% · MRK 15.78% · LLY 14.25% · TMO 10.32%. Week trades **0/3** (week of 11/09).
+- Stops 4/4, one-for-one, qty matching: LLY 10% trail $1,307.70 (hwm $1,453.00) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · XLP 10% trail $84.06 (hwm $93.40). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261112T113258Z-d8bce5`.
+
+### Market context
+- **WTI ~$85.9 · Brent ~$91.5** — drifting lower again.
+- **ES ~7,590 (-0.5%)** after Wed's AI rally (NDX +2.3%, CRWV +24.7%); NVDA -8% AH on report its board may weigh replacing CEO Huang (NVDA earnings 11/17). **VIX ~17.5** (Wed close, -10%).
+- Today: **08:30 jobless claims**, 10:00 existing home sales. **PPI Fri 11/13**; FOMC 12/08–09; NFP 12/04; CPI 12/10. Dec hike priced after hot Oct CPI.
+- BMO: BN, NBIS, BTDR, EYE.
+- Sector YTD (rule 9, thru 11/06): Energy ~+38% (**banned**, lifts 12/08), Consumer Staples ~+18.5%, Health Care ~+19%, Real Estate ~+10.6%, Info Tech ~+9.5% (**banned**, lifts 11/13), Industrials (**banned**, lifts 11/19). Streaks: Staples 1, Health Care 0.
+- Holdings: LLY +2.6% premarket; ex-div $1.73 11/13; Taltz+Zepbound Ph3b PsA positive. MRK — efinopegdutide Ph2b MASH; raised outlook cited. TMO/XLP — no news. WMT — no news; Q3 due ~11/19.
+- Perplexity: all 8 queries succeeded (no WebSearch fallback). Alpaca IEX quotes stale/wide (WMT bid $118.11 / ask $131.25) — sized off 11/11 SIP closes.
+
+### Trade ideas
+Rule 14 lapsed (LLY, MRK, TMO single names). Cash $38,810; target_notional $18,118 (under band).
+1. **Walmart (WMT)** — Consumer Staples (#2 YTD). Catalyst: defensive leadership into NVDA/AI wobble and PPI; Q3 print due ~11/19. 40 sh @ $125.67 (11/11 close), **stop $113.10 (10%)**, target $150.81 (2:1). `validate_order.py --symbol WMT --qty 40 --side buy --price 125.67 --stop-price 113.10 --trades-this-week 0 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,026.80.
+2. **Procter & Gamble (PG)** — Consumer Staples. Catalyst: staples bid on Dec-hike repricing; 11/11 close $167.67. 30 sh, **stop $150.90 (10%)**, target $201.21 (2:1). `validate_order.py --symbol PG --qty 30 --side buy --price 167.67 --stop-price 150.90 --trades-this-week 0 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,030.10. Alternate if WMT gaps against.
+
+### Risk factors
+- NVDA leadership headline could drag the AI complex; PPI Friday could extend the rate scare.
+- WMT entry gate: the 11/11 refusal came from a spurious IEX ask — size only after two tight consecutive reads well after the open.
+- Staples concentration: XLP 22.1% + WMT ~4.9% ≈ 27%. Health Care ~40.4% (LLY+MRK+TMO) — no HC adds.
+- Rule 7: no standing stops. Cushions: MRK 6.98% (nearest), TMO 8.05%, XLP 8.25%, LLY 11.28%. XLP 22.1% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **62.49**, band [75, 85], `sessions_under_band` **2**, `mandate` **false**, `exemption_allowed` false, `target_notional` $18,118, `last_eod` 2026-11-11. No mandate (session 2 of 3) — a 3rd under-band EOD today triggers it for 11/13.
+
+### Decision
+**TRADE: WMT 40 sh** at market-open (validated, stop $113.10 → 10% trail), retrying the 11/11 refused entry once quotes settle; PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct.
+
+---
