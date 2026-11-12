@@ -4723,3 +4723,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Still below band: retry WMT 40 sh (Consumer Staples) at market-open after quotes settle, subject to validate_order.py and submit_entry.py. Energy stays banned until 2026-12-08; no new Health Care adds at ~40%.
 
 ---
+
+### 2026-11-12 — Midday Scan (Day 143, Thursday)
+
+**No broker mutation this run.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261112T170442Z-08eabe`. Week of 2026-11-09 trade count: **0/3**.
+
+**Market-open gap:** run `market-open-20261112T133336Z-668c3c` recorded a start but no finish and no TRADE-LOG entry; no WMT position or order at the broker. Planned WMT 40 sh did not happen today.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 4/4, one-for-one:** LLY 10% trail $1,314.00 (hwm $1,460.00) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · XLP 10% trail $84.06 (hwm $93.40). `blotter.py --check` exit 0, 4 open lots match positions.
+
+**Rule 7:** no standing stops. Cushions: TMO 7.19%, MRK 7.22%, XLP 8.14%, LLY 9.46%.
+
+**STEP 3:** no position ≤ -7% (XLP +9.25%, LLY +3.59%, TMO +1.28%, MRK -1.64%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken; TMO -1.7% on the day, MRK +1.1%, LLY +1.0%, XLP +0.1%. **STEP 6:** skipped — nothing moving sharply without cause.
+
+**Live state (17:07 UTC):** equity $103,151.15, cash $38,810.50, LMV $64,340.65 → deployed **62.38%**, **below band**; 4 positions. Under-band session 3 if EOD confirms → rule 12 mandate for 11/13 market-open (WMT 40 sh first add).
+
+---
