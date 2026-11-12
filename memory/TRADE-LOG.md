@@ -4741,3 +4741,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:07 UTC):** equity $103,151.15, cash $38,810.50, LMV $64,340.65 → deployed **62.38%**, **below band**; 4 positions. Under-band session 3 if EOD confirms → rule 12 mandate for 11/13 market-open (WMT 40 sh first add).
 
 ---
+
+### Nov 12 — EOD Snapshot (Day 143, Thursday)
+**Portfolio:** $102,752.55 | **Cash:** $38,810.50 (37.77%) | **Day P&L:** -$248.80 (-0.24%) | **Phase P&L:** +$2,752.55 (+2.75%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,435.68 | -0.11% | +$347.00 (+2.48%) | $1,314.00 (10% trail GTC, hwm $1,460.00) |
+| MRK | 110 | $151.2469 | $147.63 | +0.31% | -$397.86 (-2.39%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| TMO | 15 | $696.57 | $703.23 | -2.02% | +$99.90 (+0.96%) | $654.804 (10% trail GTC, hwm $727.56) |
+| XLP | 250 | $83.76 | $91.19 | -0.28% | +$1,857.50 (+8.87%) | $84.06 (10% trail GTC, hwm $93.40) |
+
+**Trades today:** none. The market-open run (`market-open-20261112T133336Z-668c3c`) recorded a start but no finish and no TRADE-LOG entry; no WMT order or position at the broker. **Week trades: 0/3** entries (week of 11/09). Blotter and TRADE-LOG agree.
+
+**Notes:** Small down day, led by TMO at -2.0%; MRK +0.3% offset a little, LLY and XLP roughly flat. Day P&L is against the broker's 11/11 close of $103,001.35 (the 11/11 snapshot logged $102,815.09 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. Deployed 62.23% (LMV $63,942.05), below band: under-band session 3, so the rule 12 mandate applies at 11/13 market-open; 4 positions. Protection 4/4 one-for-one. Cushions: MRK 6.50% (nearest), TMO 6.89%, XLP 7.82%, LLY 8.48%. Health Care ~40.0% (LLY + MRK + TMO). blotter --check exit 0, reconcile RECONCILED exit 0 (145 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261112T201019Z-971e98.
+
+**Tomorrow:** Rule 12 mandate: deploy WMT 40 sh (Consumer Staples) at market-open after quotes settle, subject to validate_order.py and submit_entry.py. Energy stays banned until 2026-12-08; no new Health Care adds at ~40%.
+
+---
