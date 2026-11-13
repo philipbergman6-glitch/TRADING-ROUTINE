@@ -4759,3 +4759,24 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Rule 12 mandate: deploy WMT 40 sh (Consumer Staples) at market-open after quotes settle, subject to validate_order.py and submit_entry.py. Energy stays banned until 2026-12-08; no new Health Care adds at ~40%.
 
 ---
+
+### 2026-11-13 — Market-Open (Day 144, Friday, PPI day — Deployment Backstop)
+
+**BUY WMT 143 sh @ $127.2073** (rule-12 mandate filled). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261113T151340Z-629878`. Week of 2026-11-09 trade count: **1/3**.
+
+**STEP 2b:** no fixed legs (4 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **4/4 one-for-one**. **STEP 2c:** `deployment_status.py` exit 5 — **MANDATE DUE** (`deployed_pct` 62.12, `sessions_under_band` 3, `exemption_allowed` true, `target_notional` $18,318); mandate name WMT from RESEARCH-LOG, no deferral (PPI is routine data). **Rule 10:** `blotter.py --sector-streaks` exit 0, Consumer Staples streak 1, not banned. WMT already in `memory/SECTORS.json`. Rule 14 lapsed (LLY, MRK, TMO single names).
+
+**Timing:** run fired 15:13 UTC. The IEX ask flickered ($127.26–$129.72, bid dipping to $122.67), so I sampled ~20 reads and sized at P $127.60 (stop band tolerates asks $126.9–$128.2), submitting on an in-band ask. Size floor($18,318 / $127.60) = 143.
+
+| Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|--------|------|--------|-------|------|--------|--------|-----|
+| WMT | buy | 143 | $127.2073 | $114.84 (fixed GTC, 9.72% below fill) | Staples defensive leadership into PPI/rate scare; BofA PT $139; Q3 print ~11/19 | $151.95 | 2:1 |
+
+- `validate_order.py --symbol WMT --qty 143 --side buy --price 127.60 --stop-price 114.84 --sector "Consumer Staples"` → APPROVED exit 0, $18,246.80 (ledger disabled).
+- `submit_entry.py --symbol WMT --qty 143 --price 127.60` → exit 0 `submitted`, HTTP 200, intent `en-20261113-WMT`, order `50778f7d-84b8-4dec-8628-32bb8870ce4f`. **STEP-4 gate met: filled_qty 143 == qty 143, avg $127.2073** (15:16:30 UTC); leg `7e14f81b-2358-4e39-a8a6-edf27f487d41` FixedStop (`type=stop`, trail null, $114.84, GTC).
+- **STEP 5 — conversion refused, fixed leg HELD (rule 4 permitted protection).** `validate_order.py --side sell --price 127.21 --trail-percent 10` exit 0; `replace_stop.py --order-id 7e14f81b-... --trail-percent 10` → **exit 3 `refused`**: "stop_never_lowered: 114.84 -> 114.498". Old stop untouched; intent `en-20261113-WMT` recovered to `filled`. It converts the first session a 10% trail sits at or above $114.84, i.e. WMT ≥ ~$127.60.
+- Email sent (delivery=unverified, restricted key).
+
+**Live state (15:17 UTC):** equity $102,364.62, cash $20,619.86, LMV $81,744.76 → **79.86% deployed**, in band. 5 positions. Protection 5/5 one-for-one (`protection_monitor.py --dry-run` exit 0): LLY 10% trail $1,314.00 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · WMT fixed $114.84 · XLP 10% trail $84.06. Consumer Staples ≈40% (XLP + WMT); Health Care ≈39%.
+
+---
