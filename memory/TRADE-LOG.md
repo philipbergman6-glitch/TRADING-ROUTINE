@@ -4780,3 +4780,19 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (15:17 UTC):** equity $102,364.62, cash $20,619.86, LMV $81,744.76 → **79.86% deployed**, in band. 5 positions. Protection 5/5 one-for-one (`protection_monitor.py --dry-run` exit 0): LLY 10% trail $1,314.00 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · WMT fixed $114.84 · XLP 10% trail $84.06. Consumer Staples ≈40% (XLP + WMT); Health Care ≈39%.
 
 ---
+
+### 2026-11-13 — Midday Scan (Day 144, Friday)
+
+**WMT fixed leg converted to 10% trail (STEP 2b, ADR 0002).** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261113T170453Z-ac249d`. Week of 2026-11-09 trade count: **1/3**.
+
+**STEP 2b:** WMT fixed `type=stop` $114.84 (`7e14f81b-...`). P $127.77 → 10% trail stop $114.99 ≥ $114.84: `validate_stop_change.py` exit 0; `validate_order.py --symbol WMT --qty 143 --side sell --price 127.77 --trail-percent 10` APPROVED exit 0 (ledger disabled); `replace_stop.py --order-id 7e14f81b-... --trail-percent 10` → **exit 0 `replaced`**, HTTP 200, new order `53d98eca-3e87-45c4-8870-8bcd6b130608` (rs-7e14f81b-...), 10% trail, stop $114.993, hwm $127.77, GTC to 2027-02-11. **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**Protection 5/5, one-for-one:** LLY 10% trail $1,314.00 (hwm $1,460.00) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · WMT 10% trail $114.993 (hwm $127.77) · XLP 10% trail $84.06 (hwm $93.40). `blotter.py --check` exit 0, 5 open lots match positions.
+
+**Rule 7:** no standing stops. Cushions: MRK 5.66% (nearest), TMO 5.68%, LLY 8.67%, XLP 8.72%, WMT 10.01%.
+
+**STEP 3:** no position ≤ -7% (XLP +9.95%, LLY +2.70%, WMT +0.45%, TMO -0.33%, MRK -3.26%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken; XLP +1.1% on the day, WMT +1.3%, LLY +0.8%, TMO -0.7%, MRK -0.4%. **STEP 6:** skipped — nothing moving sharply without cause.
+
+**Live state (17:06 UTC):** equity $102,810.19, cash $20,619.86, LMV $82,190.33 → deployed **79.94%**, in band; 5 positions. Consumer Staples ≈40% (XLP + WMT); Health Care ≈39%.
+
+---
