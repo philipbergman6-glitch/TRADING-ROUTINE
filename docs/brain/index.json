@@ -2536,6 +2536,16 @@
     "trade/2026-11-12/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-13": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-13/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8284,6 +8294,33 @@
    "title": "Pre-Market Research (Thursday, NVDA CEO-board report hits futures / PPI tomorrow)",
    "week": null
   },
+  "research/2026-11-13/pre-market-research/1": {
+   "date": "2026-11-13",
+   "decision": [
+    "WMT"
+   ],
+   "decision_text": "**TRADE (rule 12 mandate): WMT 40 sh** at market-open after quotes settle (validated, stop $113.81 → 10% trail); PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-13/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9303,
+   "log": "research",
+   "note": "Friday, PPI day / rule 12 mandate due",
+   "symbols": [
+    "AMD",
+    "AVGO",
+    "GOOGL",
+    "LLY",
+    "MRK",
+    "NVDA",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Friday, PPI day / rule 12 mandate due)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -13536,7 +13573,7 @@
     "round_trips": 22
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 221
+    "entries": 222
    },
    "memory/TRADE-LOG.md": {
     "entries": 305,
@@ -17403,7 +17440,8 @@
     "research/2026-10-13/pre-market-research/1",
     "research/2026-11-02/pre-market-research/1",
     "research/2026-11-03/pre-market-research/1",
-    "research/2026-11-04/pre-market-research/1"
+    "research/2026-11-04/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -17558,7 +17596,8 @@
     "research/2026-07-21/pre-market-research/1",
     "research/2026-09-02/pre-market-research/1",
     "research/2026-09-03/pre-market-research/1",
-    "research/2026-10-13/pre-market-research/1"
+    "research/2026-10-13/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -17843,7 +17882,8 @@
     "research/2026-10-27/pre-market-research/1",
     "research/2026-10-28/pre-market-research/1",
     "research/2026-10-29/pre-market-research/1",
-    "research/2026-10-30/pre-market-research/1"
+    "research/2026-10-30/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -18002,7 +18042,8 @@
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
-    "research/2026-11-12/pre-market-research/1"
+    "research/2026-11-12/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18243,7 +18284,8 @@
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
-    "research/2026-11-12/pre-market-research/1"
+    "research/2026-11-12/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18687,7 +18729,8 @@
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
-    "research/2026-11-12/pre-market-research/1"
+    "research/2026-11-12/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -19336,7 +19379,8 @@
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
-    "research/2026-11-12/pre-market-research/1"
+    "research/2026-11-12/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19422,7 +19466,8 @@
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
-    "research/2026-11-12/pre-market-research/1"
+    "research/2026-11-12/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-07/pre-market-research/2",
@@ -19437,9 +19482,9 @@
     "en-20261111-WMT"
    ],
    "last_decision": {
-    "date": "2026-11-12",
-    "entry": "research/2026-11-12/pre-market-research/1",
-    "text": "**TRADE: WMT 40 sh** at market-open (validated, stop $113.10 → 10% trail), retrying the 11/11 refused entry once quotes settle; PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct. ---"
+    "date": "2026-11-13",
+    "entry": "research/2026-11-13/pre-market-research/1",
+    "text": "**TRADE (rule 12 mandate): WMT 40 sh** at market-open after quotes settle (validated, stop $113.81 → 10% trail); PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
@@ -19457,7 +19502,8 @@
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
-    "research/2026-11-12/pre-market-research/1"
+    "research/2026-11-12/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -21043,7 +21089,8 @@
     "research/2026-11-09/pre-market-research/1",
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
-    "research/2026-11-12/pre-market-research/1"
+    "research/2026-11-12/pre-market-research/1",
+    "research/2026-11-13/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
