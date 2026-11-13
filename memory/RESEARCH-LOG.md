@@ -9299,3 +9299,40 @@ Rule 14 lapsed (LLY, MRK, TMO single names). Cash $38,810; target_notional $18,1
 **TRADE: WMT 40 sh** at market-open (validated, stop $113.10 → 10% trail), retrying the 11/11 refused entry once quotes settle; PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-11-13 — Pre-Market Research (Friday, PPI day / rule 12 mandate due)
+
+### Account snapshot
+- **Equity $102,678.80** (`last_equity` $102,504.40, +$174.40/+0.17% on premarket marks) · **Cash $38,810.50** · Long MV $63,868.30 · `buying_power` $334,073 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions**: XLP 22.19% · MRK 15.83% · LLY 13.96% · TMO 10.23%. Week trades **0/3** (week of 11/09).
+- Stops 4/4, one-for-one, qty matching: LLY 10% trail $1,314.00 (hwm $1,460.00) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · XLP 10% trail $84.06 (hwm $93.40). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261113T113305Z-adfd59`.
+
+### Market context
+- **WTI ~$88.3 · Brent ~$95.5** — rebounding (Brent +3% Thu).
+- **ES ~7,632 (+0.2%)** premarket; NVDA weak on Huang departure, rotation to GOOGL/AVGO/AMD; LLY up premarket on China orforglipron approval. **VIX ~19.1** (+2%).
+- Today: **08:30 Oct PPI** (cons +0.4% m/m, core +0.3%); Fed Collins/Logan speak; NY Fed nowcast 12:45. FOMC 12/08–09; NFP 12/04; CPI 12/10. BMO thin: OWLT, MITQ (tentative).
+- Sector YTD (rule 9, thru 11/11): Energy ~+41.5% (**banned**, lifts 12/08), Industrials ~+10.1% (**banned**, lifts 11/19), Financials ~+6.9%; Staples/HC ranks not in today's table (prior: Staples ~+18.5%, HC ~+19%). Info Tech ban lifts today. Streaks: Staples 1, Health Care 0.
+- Holdings: LLY — China approves orforglipron; $3.5B PA plant; ex-div $1.73 today. MRK — Jefferies HC conference. TMO/XLP — no news. WMT — BofA PT $139; $7.8M PA settlement; Q3 next week.
+- Perplexity: all 8 queries succeeded (no WebSearch fallback). Alpaca IEX quote stale (WMT ask 0) — sized off 11/12 SIP close $126.19 / premarket ~$126.45.
+
+### Trade ideas
+Rule 14 lapsed (LLY, MRK, TMO single names). Cash $38,810; target_notional $18,274.
+1. **Walmart (WMT)** — Consumer Staples. Catalyst: defensive leadership into PPI/rate scare; BofA PT raise; Q3 print ~11/19. 40 sh @ $126.45 premarket, **stop $113.81 (10%)**, target $151.73 (2:1). `validate_order.py --symbol WMT --qty 40 --side buy --price 126.45 --stop-price 113.81 --trades-this-week 0 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,058.00.
+2. **Procter & Gamble (PG)** — Consumer Staples. Catalyst: staples bid on Dec-hike repricing; 11/12 close $168.03. 30 sh, **stop $151.23 (10%)**, target $201.63 (2:1). `validate_order.py --symbol PG --qty 30 --side buy --price 168.03 --stop-price 151.23 --trades-this-week 0 --sector "Consumer Staples"` → **APPROVED, exit 0**, $5,040.90. Alternate if WMT gaps against.
+
+### Risk factors
+- Hot PPI could extend the Dec 50bp hike scare; NVDA leadership shock weighs on AI complex; oil rebound adds inflation pressure.
+- WMT entry gate: IEX quotes stale/wide premarket — size only after two tight consecutive reads well after the open (11/11 refusal was a spurious ask).
+- Staples concentration: XLP 22.2% + WMT ~4.9% ≈ 27%. Health Care ~40.0% (LLY+MRK+TMO) — no HC adds.
+- Rule 7: no standing stops. Cushions: TMO 6.46% (nearest), MRK 6.60%, XLP 7.76%, LLY 8.30%. XLP 22.2% over cap on drift only — no trim.
+
+### Deployment
+- `deployment_status.py` exit 5: `deployed_pct` **62.20**, band [75, 85], `sessions_under_band` **3**, `mandate` **true**, `exemption_allowed` true, `target_notional` $18,274, `last_eod` 2026-11-12.
+
+**Deployment mandate:** WMT 40 sh (single name, passes Entry Checklist; rule 14 lapsed anyway), cost ~$5,058 ≤ target_notional $18,274 at premarket $126.45; catalyst: Staples defensive leadership + Q3 next week; stop $113.81 (10% below). No deferral: PPI is routine data, not a market-wide risk event.
+
+### Decision
+**TRADE (rule 12 mandate): WMT 40 sh** at market-open after quotes settle (validated, stop $113.81 → 10% trail); PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct.
+
+---
