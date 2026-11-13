@@ -2471,7 +2471,7 @@
     "trade/2026-11-09/midday-scan/1",
     "trade/2026-11-09/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-13"
   },
   "2026-11-10": {
    "fills": [
@@ -2499,7 +2499,7 @@
     "trade/2026-11-10/midday-scan/1",
     "trade/2026-11-10/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-13"
   },
   "2026-11-11": {
    "fills": [],
@@ -2522,7 +2522,7 @@
     "trade/2026-11-11/midday-scan/1",
     "trade/2026-11-11/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-13"
   },
   "2026-11-12": {
    "fills": [],
@@ -2542,7 +2542,7 @@
     "trade/2026-11-12/midday-scan/1",
     "trade/2026-11-12/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-13"
   },
   "2026-11-13": {
    "fills": [
@@ -2563,7 +2563,7 @@
     "trade/2026-11-13/midday-scan/1",
     "trade/2026-11-13/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-13"
   }
  },
  "entries": {
@@ -8233,7 +8233,7 @@
     "XOM"
    ],
    "title": "Pre-Market Research (Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO)",
-   "week": null
+   "week": "2026-11-13"
   },
   "research/2026-11-10/pre-market-research/1": {
    "date": "2026-11-10",
@@ -8260,7 +8260,7 @@
     "XOM"
    ],
    "title": "Pre-Market Research (Tuesday, October CPI / quiet BMO slate)",
-   "week": null
+   "week": "2026-11-13"
   },
   "research/2026-11-11/pre-market-research/1": {
    "date": "2026-11-11",
@@ -8286,7 +8286,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Wednesday, post-hot-CPI / CRWV beat lifts AI)",
-   "week": null
+   "week": "2026-11-13"
   },
   "research/2026-11-12/pre-market-research/1": {
    "date": "2026-11-12",
@@ -8310,7 +8310,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Thursday, NVDA CEO-board report hits futures / PPI tomorrow)",
-   "week": null
+   "week": "2026-11-13"
   },
   "research/2026-11-13/pre-market-research/1": {
    "date": "2026-11-13",
@@ -8337,7 +8337,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Friday, PPI day / rule 12 mandate due)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
@@ -13390,7 +13390,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 140, Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-09/market-open-trades/1": {
    "date": "2026-11-09",
@@ -13409,7 +13409,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-09/midday-scan/1": {
    "date": "2026-11-09",
@@ -13427,7 +13427,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 140, Monday, CPI-week open / CEG+KKR+B+FERG+NRG BMO)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-10/eod-snapshot/1": {
    "date": "2026-11-10",
@@ -13447,7 +13447,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 141, Tuesday, October CPI)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-10/market-open-trades/1": {
    "date": "2026-11-10",
@@ -13466,7 +13466,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-10/midday-scan/1": {
    "date": "2026-11-10",
@@ -13487,7 +13487,7 @@
     "XOM"
    ],
    "title": "Midday Scan (Day 141, Tuesday, October CPI)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-11/eod-snapshot/1": {
    "date": "2026-11-11",
@@ -13505,7 +13505,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 142, Wednesday)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-11/market-open-trades/1": {
    "date": "2026-11-11",
@@ -13523,7 +13523,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-11/midday-scan/1": {
    "date": "2026-11-11",
@@ -13541,7 +13541,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 142, Wednesday)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-12/eod-snapshot/1": {
    "date": "2026-11-12",
@@ -13559,7 +13559,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 143, Thursday)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-12/midday-scan/1": {
    "date": "2026-11-12",
@@ -13577,7 +13577,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 143, Thursday)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-13/eod-snapshot/1": {
    "date": "2026-11-13",
@@ -13595,7 +13595,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 144, Friday)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-13/market-open-trades/1": {
    "date": "2026-11-13",
@@ -13613,7 +13613,7 @@
     "XLP"
    ],
    "title": "Market-Open (Day 144, Friday, PPI day — Deployment Backstop)",
-   "week": null
+   "week": "2026-11-13"
   },
   "trade/2026-11-13/midday-scan/1": {
    "date": "2026-11-13",
@@ -13631,7 +13631,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 144, Friday)",
-   "week": null
+   "week": "2026-11-13"
   }
  },
  "generated_from": {
@@ -13652,7 +13652,7 @@
     "eod_snapshots": 139
    },
    "memory/WEEKLY-REVIEW.md": {
-    "weeks": 28
+    "weeks": 29
    },
    "state/events.jsonl": {
     "intents": 22,
@@ -18285,7 +18285,8 @@
    "weeks": [
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ]
   },
   "MPC": {
@@ -18512,7 +18513,8 @@
    ],
    "weeks": [
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ]
   },
   "MSFT": {
@@ -19034,7 +19036,8 @@
     "2026-05-29",
     "2026-06-05",
     "2026-06-12",
-    "2026-08-28"
+    "2026-08-28",
+    "2026-11-13"
    ]
   },
   "PLTR": {
@@ -19522,7 +19525,8 @@
    "weeks": [
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ]
   },
   "TMO": {
@@ -19648,7 +19652,8 @@
    "weeks": [
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ]
   },
   "WMT": {
@@ -19750,7 +19755,8 @@
     "trade/2026-11-13/eod-snapshot/1"
    ],
    "weeks": [
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ]
   },
   "XLB": {
@@ -20397,7 +20403,8 @@
     "2026-10-16",
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ]
   },
   "XLF": {
@@ -21564,7 +21571,8 @@
     "2026-10-16",
     "2026-10-23",
     "2026-10-30",
-    "2026-11-06"
+    "2026-11-06",
+    "2026-11-13"
    ]
   },
   "XOM": {
@@ -22397,6 +22405,31 @@
     "LLY",
     "MRK",
     "PSX",
+    "SLB",
+    "TMO",
+    "WMT",
+    "XLE",
+    "XLP"
+   ]
+  },
+  "2026-11-13": {
+   "closed_trades": [
+    "SLB"
+   ],
+   "ending": "2026-11-13",
+   "grade": "C",
+   "line": 1974,
+   "open_positions": [
+    "LLY",
+    "MRK",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "symbols": [
+    "LLY",
+    "MRK",
+    "NVDA",
     "SLB",
     "TMO",
     "WMT",
