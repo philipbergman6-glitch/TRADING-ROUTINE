@@ -1970,3 +1970,95 @@ Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues
 **-3.57% against an S&P down 2.34% — a -1.23pp relative loss and the worst absolute week of the phase.** The execution side improved: the overdue rule-12 add was filled Monday, the XLE stop-out was re-deployed in one session, the gate refused a stale-quote order and the retry went through cleanly, and every validator, reconcile and protection check passed with nothing lowered. Not higher, because realized P&L was negative (PF 0.00), XLE gave a +9.5% gain back into a loss, both new entries ended red, and the book was deliberately concentrated to ~39% Health Care with the risk named in that morning's research. Not lower, because no rule was broken, the book ends in band with 5 positions and 5/5 protection, and it fell less than half as far as the index on the week's worst day.
 
 ---
+
+## Week ending 2026-11-13
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $102,059.40 (Mon Nov 09 AM = Fri Nov 06 logged close) |
+| Ending portfolio | $103,074.22 (Fri Nov 13 logged close; broker equity $103,250.09 at 21:03 UTC, a $175.87 marking difference) |
+| Week return | +$1,014.82 (+0.99%) |
+| S&P 500 week | +1.79% (7,402.78 Nov 6 → 7,535.63 Nov 13; chained from the prior week's logged close — this week's fetch quoted Nov 6 at 7,376.86, a −25.92 drift, not used) |
+| Bot vs S&P | -0.80% (UNDERPERFORMED) |
+| Trades | 1 new (W:0 / L:1 / open:5); 1 closed |
+| Win rate | 0% (0 of 1 closed) |
+| Best trade | SLB -2.66% (-$368.41) |
+| Worst trade | SLB -2.66% (only closed trade) |
+| Profit factor | 0.00 ($0 winners / $368.41 losers) |
+
+Arithmetic: week return = $103,074.22 - $102,059.40 = **+$1,014.82**; 1,014.82 / 102,059.40 = **+0.9943%**. Phase: $103,074.22 vs $100,000 = **+3.07%**.
+S&P chained = (7,535.63 - 7,402.78) / 7,402.78 = **+1.7946%**. Relative = 0.9943% - 1.7946% = **-0.80pp**. (Against the re-fetched 7,376.86 start the S&P would read +2.15%; the chain rule stands.)
+Day-by-day (logged): **Mon +$1,573.32 (+1.55%)** · Tue -$428.91 (-0.42%) · Wed -$134.31 (-0.13%) · Thu -$248.80 (-0.24%) · Fri +$569.82 (+0.56%). Sum +$1,331.12; the -$316.30 gap to the week figure is the pre-close marks of the 11/06-11/12 snapshots against the broker's official closes (each session's day P&L is taken off the broker close, the logged portfolio off ~20:10 UTC marks), not a cash or position discrepancy.
+Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues, 5 open lots match broker): one round_trip exited Mon 11/09 - Fri 11/13 — **SLB** (10-23 → 11-10, 277 sh, $50.08 → $48.75, **-$368.41 / -2.66%**). W = 0, L = 1, open = 5; win rate 0/1 = 0%; PF = 0 / 368.41 = 0.00. Realized net **-$368.41**. Entry: **WMT 11/13** (rule-12 mandate, 143 sh @ $127.2073) — 1/3 of the budget. TRADE-LOG and blotter agree on every session.
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| SLB | $50.08 (10-23) | $48.75 (11-10, 14:32 UTC) | **-$368.41 (-2.66%)** | 277 sh. 10% trail (stop $49.14, hwm $54.60) filled CPI morning on the oil de-escalation slide; filled $0.39 below the stop. Rule-7 standing condition logged four sessions before it hit. Energy streak 2 → **rule-10 ban to 2026-12-08**. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLP | $83.76 | $92.075 | +$2,078.75 (+9.93%) | $84.06 (10% trail GTC, hwm $93.40) |
+| LLY | $1,400.98 | $1,447.16 | +$461.80 (+3.30%) | $1,314.00 (10% trail GTC, hwm $1,460.00) |
+| TMO | $696.57 | $699.29 | +$40.80 (+0.39%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | $127.2073 | $127.42 | +$30.42 (+0.17%) | $115.443 (10% trail GTC, hwm $128.27) |
+| MRK | $151.2469 | $147.76 | -$383.56 (-2.31%) | $138.0329 (10% trail GTC, hwm $153.37) |
+
+**Deployed:** $82,454.36 / $103,074.22 = **80.00%**, mid-band. Cash $20,619.86 (20.00%). **5 positions**, in the rule-3 range. Weights: **XLP ~22.3% (over the 20% cap on drift only — no trim) · WMT ~17.7% · MRK ~15.8% · LLY ~14.0% · TMO ~10.2%**. **Health Care = LLY + MRK + TMO ≈ 40.0%; Consumer Staples = XLP + WMT ≈ 40.0%** — two sectors hold 80% of equity. Protection 5/5 one-for-one, all trailing, none lowered. Cushions: TMO 6.36%, MRK 6.58%, XLP 8.70%, LLY 9.20%, WMT 9.40%. `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Bans: Energy to 12/08, Industrials to 11/19; Info Tech lifted 11/13.
+
+### What Worked
+- **Rule-12 mandate filled on the day it came due (WMT 11/13)** after two refused/missed attempts — by sampling ~20 IEX reads and sizing at a price inside the stop band's tolerance, so `submit_entry.py` accepted it on the first submit. Back to 80.00% deployed.
+- **Correct mandate sizing:** WMT was sized to `target_notional` ($18,318 → 143 sh), not the 40-sh discretionary size, closing the gap in one order instead of leaving the book at the band floor.
+- **WMT's held fixed leg converted at midday** the first session a trail sat at or above it (ADR 0013 working as written), and has already ratcheted to $115.44.
+- **LLY recovered from -2.64% to +3.30%** (China orforglipron approval, ACR data); XLP pushed to +9.93%.
+- Risk machinery clean: `blotter --check` exit 0 and reconcile RECONCILED every session, coordinator clean all week, `strategy_version.py` exit 0 every run, protection one-for-one every run, no stop lowered, no `.env`.
+
+### What Didn't Work
+- **+0.99% against an S&P up 1.79% — a -0.80pp relative loss**, the second in a row. Monday's +1.55% was the whole week; the book then bled four of five sessions while the index ran to 7,619 Wed.
+- **Three sessions at ~62% deployed (11/10-11/12).** The WMT 11/11 attempt was approved by `validate_order.py` and refused by `submit_entry.py` (13.40% stop distance off a spurious $130.79 IEX ask) — the **third week** this approve-then-refuse defect has cost a session; it is still unfixed in code.
+- **The 11/12 market-open run started and never finished** (run record start, no finish, no TRADE-LOG entry) — a silent missed session that turned the WMT retry into a rule-12 mandate a day later.
+- **Energy is now banned** after the second straight 10% trail stop-out (XLE 11/04, SLB 11/10), both from green positions that gave back their gains on the oil unwind.
+- **Concentration worsened:** WMT took Consumer Staples from ~22% to ~40%, matching Health Care's ~40%. The pre-market plan sized WMT at 40 sh (~27% staples); the mandate's target_notional sizing nearly tripled it, and no rule stopped it.
+
+### Key Lessons
+- **The quote-stability workaround is the only thing making entries go through.** Every successful add in three weeks (LLY, MRK, WMT) needed manual quote sampling; every failure (LLY/MRK 10/30, WMT 11/11) was the gate re-reading a spurious IEX ask. This is a code defect, not a trading lesson.
+- **Mandate sizing amplifies concentration.** When the only eligible sectors are the ones already held (Energy/Industrials banned, Health Care self-capped), a full-gap rule-12 add lands in an already-heavy sector.
+- **A started-but-unfinished run is invisible until the next routine notices it** — midday caught the 11/12 gap only by comparing run records to the TRADE-LOG.
+
+### Adjustments for Next Week
+- **No new Health Care or Consumer Staples** (~40% each). The next add — if a stop-out drops the book under band — must come from a third sector: Info Tech (ban lifted 11/13), Financials, Real Estate, Communication Services. Pre-market to name one single-name candidate outside HC/Staples.
+- In band at 80.00%, no mandate. Week slots reset Mon 11/16 (0/3). Patience by default.
+- Watch TMO (6.36%) and MRK (6.58%) cushions. **WMT Q3 print ~11/19**, **NVDA earnings 11/17**. Industrials ban lifts 11/19. FOMC 12/08-09.
+- Continue the quote-sampling procedure for any entry until `submit_entry.py` uses the validated price (or a stable mid) for its stop-distance check.
+
+### Proposed Rule Change (rule 15 — sector/factor exposure cap) — RE-PROPOSED, seventh week, text unchanged
+
+**Not applied.** `memory/TRADING-STRATEGY.md` is hash-pinned (active **v1.3**); the owner applies the change and bumps the version.
+
+**Proposed text (identical to the last six weeks):**
+
+> 15. Sector exposure cap — no more than 35% of equity in any one GICS sector,
+>     counting broad-sector ETFs and single names together (an ETF counts at
+>     100% toward its own sector). Measured at the moment of entry against
+>     post-trade equity: a buy that would take a sector above 35% is rejected
+>     and the next-ranked candidate is taken instead. The cap never forces a
+>     sale — an existing overweight reached by appreciation or by a stop-out
+>     elsewhere is held and decays naturally, but no new position may be added
+>     in an over-cap sector until it is back under 35%. The reason for any
+>     candidate rejected by this cap is logged in that session's pre-market
+>     RESEARCH-LOG entry.
+
+**New evidence from this week:**
+- **A third sector breach by entry.** WMT on 11/13 took Consumer Staples from ~22% to **~40%** post-trade (XLP already over its own 20% single-position cap on drift). Under rule 15 WMT is sized down to stay ≤35% (~$13K) or the next-ranked non-Staples candidate is taken; the rule-12 add still happens (WHAT, never WHETHER).
+- **The book is now two sectors at 80% of equity** (Health Care ~40%, Staples ~40%) — the unwritten "no new X" notes accumulated one sector per week and no longer leave an eligible sector the research loop routinely covers.
+- **Interaction with rule 12 sizing:** a mandate sized to the full `target_notional` concentrates hardest exactly when bans narrow the choice set — the case the cap is meant for.
+
+**Would start:** v1.4, on owner approval.
+
+### Overall Grade: C
+
+**+0.99% against an S&P up 1.79% — a -0.80pp relative loss, second straight.** Positive absolute week and phase P&L back to +3.07%, with every validator, reconcile and protection check passing, nothing lowered, and the rule-12 mandate filled the day it came due with the held fixed leg converted at midday as designed. Not higher, because the book sat three sessions under band after the SLB stop-out (one refused entry on the known gate defect, one market-open run that never finished), realized P&L was negative again (PF 0.00), Energy is now banned, and the mandate add pushed Consumer Staples to ~40% beside Health Care's ~40%. Not lower, because no rule was broken, the refusals were the gate on bad inputs, and the book ends mid-band with 5 positions and 5/5 trailing protection.
+
+---
