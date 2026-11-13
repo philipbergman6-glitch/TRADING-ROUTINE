@@ -4796,3 +4796,22 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:06 UTC):** equity $102,810.19, cash $20,619.86, LMV $82,190.33 → deployed **79.94%**, in band; 5 positions. Consumer Staples ≈40% (XLP + WMT); Health Care ≈39%.
 
 ---
+
+### Nov 13 — EOD Snapshot (Day 144, Friday)
+**Portfolio:** $103,074.22 | **Cash:** $20,619.86 (20.00%) | **Day P&L:** +$569.82 (+0.56%) | **Phase P&L:** +$3,074.22 (+3.07%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,447.16 | +1.39% | +$461.80 (+3.30%) | $1,314.00 (10% trail GTC, hwm $1,460.00) |
+| MRK | 110 | $151.2469 | $147.76 | +0.55% | -$383.56 (-2.31%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| TMO | 15 | $696.57 | $699.29 | -0.02% | +$40.80 (+0.39%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $127.42 | +0.97% | +$30.42 (+0.17%) | $115.443 (10% trail GTC, hwm $128.27) |
+| XLP | 250 | $83.76 | $92.075 | +1.12% | +$2,078.75 (+9.93%) | $84.06 (10% trail GTC, hwm $93.40) |
+
+**Trades today:** BUY WMT 143 sh @ $127.2073 (rule-12 mandate, market-open). **Week trades: 1/3** entries (week of 11/09). Blotter and TRADE-LOG agree.
+
+**Notes:** Up day across the book except flat TMO: LLY +1.4%, XLP +1.1%, WMT +1.0%, MRK +0.6%. Day P&L is against the broker's 11/12 close of $102,504.40 (the 11/12 snapshot logged $102,752.55 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. WMT filled the rule-12 mandate; its fixed leg converted to a 10% trail at midday and has since ratcheted to $115.443. Deployed 80.00% (LMV $82,454.36), in band; 5 positions. Protection 5/5 one-for-one. Cushions: TMO 6.36% (nearest), MRK 6.58%, XLP 8.70%, LLY 9.20%, WMT 9.40%. Health Care ~40.0% (LLY + MRK + TMO), Consumer Staples ~40.0% (XLP + WMT). blotter --check exit 0, reconcile RECONCILED exit 0 (146 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261113T201034Z-57ba7e.
+
+**Tomorrow:** Weekend; Monday hold all 5, trails resting. In band, no mandate. No new Health Care or Consumer Staples adds at ~40% each; Energy banned until 2026-12-08. WMT Q3 print ~11/19.
+
+---
