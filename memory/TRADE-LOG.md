@@ -4815,3 +4815,13 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Weekend; Monday hold all 5, trails resting. In band, no mandate. No new Health Care or Consumer Staples adds at ~40% each; Energy banned until 2026-12-08. WMT Q3 print ~11/19.
 
 ---
+
+### 2026-11-16 — Market-Open
+
+**No trades.** The research plan was HOLD (in band 80.12%, no mandate; NVDA earnings Tue, WMT Q3 Thu). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261116T133405Z-dcab27`. Week of 2026-11-16 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **5/5 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 — no mandate (`deployed_pct` 80.15, `sessions_under_band` 0).
+
+**Live state (13:35 UTC, premarket marks):** equity $103,870.39, cash $20,619.85, LMV $83,250.54. Stops: LLY 10% trail $1,314.00 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · WMT 10% trail $115.443 · XLP 10% trail $84.06. No rule-7 standing stops. GS is the first add if a 6th slot is wanted after NVDA.
+
+---
