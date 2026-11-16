@@ -4825,3 +4825,19 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:35 UTC, premarket marks):** equity $103,870.39, cash $20,619.85, LMV $83,250.54. Stops: LLY 10% trail $1,314.00 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · WMT 10% trail $115.443 · XLP 10% trail $84.06. No rule-7 standing stops. GS is the first add if a 6th slot is wanted after NVDA.
 
 ---
+
+### 2026-11-16 — Midday Scan (Day 145, Monday)
+
+**No action.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261116T170441Z-2a3647`. Week of 2026-11-16 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`. `blotter.py --check` exit 0, 5 open lots match positions.
+
+**Protection 5/5, one-for-one:** LLY 10% trail $1,327.725 (hwm $1,475.25) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · WMT 10% trail $116.856 (hwm $129.84) · XLP 10% trail $84.132 (hwm $93.48).
+
+**Rule 7:** no standing stops. Cushions: MRK 5.91%, TMO 5.91% (nearest), LLY 8.28%, WMT 8.87%, XLP 9.18%.
+
+**STEP 3:** no position ≤ -7% (XLP +10.60%, LLY +3.33%, WMT +0.80%, TMO -0.09%, MRK -3.01%). **STEP 4:** `--print-required` 10 for all; equal to resting trails, nothing to tighten. **STEP 5:** no thesis broken; MRK -0.7%, TMO -0.6% on the day, others +0.1–0.3%. **STEP 6:** skipped — nothing moving sharply without cause.
+
+**Live state (17:06 UTC):** equity $103,161.82, cash $20,619.85, LMV $82,541.97 → deployed **80.01%**, in band; 5 positions.
+
+---
