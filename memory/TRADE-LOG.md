@@ -4841,3 +4841,22 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:06 UTC):** equity $103,161.82, cash $20,619.85, LMV $82,541.97 → deployed **80.01%**, in band; 5 positions.
 
 ---
+
+### Nov 16 — EOD Snapshot (Day 145, Monday)
+**Portfolio:** $102,829.18 | **Cash:** $20,619.85 (20.05%) | **Day P&L:** -$386.94 (-0.37%) | **Phase P&L:** +$2,829.18 (+2.83%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,435.50 | -0.55% | +$345.20 (+2.46%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| MRK | 110 | $151.2469 | $145.645 | -1.43% | -$616.21 (-3.70%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| TMO | 15 | $696.57 | $692.24 | -1.14% | -$64.95 (-0.62%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $128.16 | +0.05% | +$136.24 (+0.75%) | $116.856 (10% trail GTC, hwm $129.84) |
+| XLP | 250 | $83.76 | $92.485 | +0.15% | +$2,181.25 (+10.42%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** none. **Week trades: 0/3** entries (week of 11/16). Blotter and TRADE-LOG agree.
+
+**Notes:** Health Care dragged: MRK -1.4%, TMO -1.1%, LLY -0.6%; staples flat-to-up (XLP +0.2%, WMT +0.1%). Day P&L is against the broker's 11/13 close of $103,216.12 (the 11/13 snapshot logged $103,074.22 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. Trails ratcheted today on LLY ($1,327.725), WMT ($116.856) and XLP ($84.132). Deployed 79.95% (LMV $82,209.33), in band; 5 positions. Protection 5/5 one-for-one. Cushions: MRK 5.23% (nearest), TMO 5.41%, LLY 7.51%, WMT 8.82%, XLP 9.03%. Health Care ~39.6% (LLY + MRK + TMO), Consumer Staples ~40.3% (XLP + WMT). blotter --check exit 0, reconcile RECONCILED exit 0 (147 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261116T201046Z-01912e.
+
+**Tomorrow:** Hold all 5, trails resting. In band, no mandate. Watch MRK/TMO cushions (~5%). No new Health Care or Consumer Staples adds at ~40% each; Energy banned until 2026-12-08. NVDA earnings Tue, WMT Q3 Thu.
+
+---
