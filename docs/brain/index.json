@@ -2564,6 +2564,16 @@
     "trade/2026-11-13/eod-snapshot/1"
    ],
    "week": "2026-11-13"
+  },
+  "2026-11-16": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-16/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8339,6 +8349,31 @@
    "title": "Pre-Market Research (Friday, PPI day / rule 12 mandate due)",
    "week": "2026-11-13"
   },
+  "research/2026-11-16/pre-market-research/1": {
+   "date": "2026-11-16",
+   "decision": [
+    "NVDA",
+    "WMT"
+   ],
+   "decision_text": "**HOLD.** In band at 80.1%; 5 positions; NVDA/WMT event risk this week. GS is the first add if a 6th slot is wanted after NVDA. No stop changes; all 5 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-16/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9340,
+   "log": "research",
+   "note": "Monday, NVDA earnings Tue / WMT Q3 Thu",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "NVDA",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Monday, NVDA earnings Tue / WMT Q3 Thu)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -13645,7 +13680,7 @@
     "round_trips": 22
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 222
+    "entries": 223
    },
    "memory/TRADE-LOG.md": {
     "entries": 308,
@@ -18229,7 +18264,8 @@
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18475,7 +18511,8 @@
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -18789,7 +18826,8 @@
     "research/2026-07-21/pre-market-research/1",
     "research/2026-08-24/pre-market-research/1",
     "research/2026-08-25/pre-market-research/1",
-    "research/2026-08-26/pre-market-research/1"
+    "research/2026-08-26/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-03/weekend-research/1",
@@ -18821,9 +18859,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-08-26",
-    "entry": "research/2026-08-26/pre-market-research/1",
-    "text": "**HOLD — no orders placed pre-market; no market-open mandate today.** Deployment 80.1% (in band); the mandate does not override patience. Futures flat and the market is positioning defensively into NVDA earnings (tonight) + Core PCE (8:30) + Jackson Hole (Aug 27-29) — no clean fresh leader base to justify forcing a 5th name into a binary event window. - **All 4 held names (XLB/XLI/XLK/XLP): HOLD.*"
+    "date": "2026-11-16",
+    "entry": "research/2026-11-16/pre-market-research/1",
+    "text": "**HOLD.** In band at 80.1%; 5 positions; NVDA/WMT event risk this week. GS is the first add if a 6th slot is wanted after NVDA. No stop changes; all 5 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
@@ -18924,7 +18962,8 @@
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -19576,7 +19615,8 @@
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19667,7 +19707,8 @@
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-07/pre-market-research/2",
@@ -19682,9 +19723,9 @@
     "en-20261111-WMT"
    ],
    "last_decision": {
-    "date": "2026-11-13",
-    "entry": "research/2026-11-13/pre-market-research/1",
-    "text": "**TRADE (rule 12 mandate): WMT 40 sh** at market-open after quotes settle (validated, stop $113.81 → 10% trail); PG 30 sh is the alternate. 3 trades left this week. No stop changes; all 4 stops active and correct. ---"
+    "date": "2026-11-16",
+    "entry": "research/2026-11-16/pre-market-research/1",
+    "text": "**HOLD.** In band at 80.1%; 5 positions; NVDA/WMT event risk this week. GS is the first add if a 6th slot is wanted after NVDA. No stop changes; all 5 stops active and correct. ---"
    },
    "open_lots": [
     {
@@ -19713,7 +19754,8 @@
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -21305,7 +21347,8 @@
     "research/2026-11-10/pre-market-research/1",
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
