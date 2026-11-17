@@ -9371,3 +9371,38 @@ Neither in `memory/SECTORS.json` yet — add before any entry.
 **HOLD.** In band at 80.1%; 5 positions; NVDA/WMT event risk this week. GS is the first add if a 6th slot is wanted after NVDA. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-17 — Pre-Market Research (Tuesday, NVDA earnings AMC / WMT Q3 Thu)
+
+### Account snapshot
+- **Equity $102,471.64** (`last_equity` $102,709.73, -$238.09/-0.23% on premarket marks) · **Cash $20,619.85** · Long MV $81,851.79 · `buying_power` $311,664 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions**: XLP 22.54% · WMT 17.83% · MRK 15.48% · LLY 13.91% · TMO 10.12%. Week trades **0/3** (week of 11/16).
+- Stops 5/5, one-for-one, qty matching: LLY 10% trail $1,327.725 (hwm $1,475.25) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · WMT 10% trail $116.856 (hwm $129.84) · XLP 10% trail $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261117T113242Z-b0dd3b`.
+
+### Market context
+- **WTI ~$86.0 · Brent ~$92.7** — easing on supply growth.
+- **ES ~7,432 (-0.1%)** premarket after Monday's selloff; AI/semis under pressure into NVDA print tonight (AMC). **VIX 22.91** (Mon close, +18.7%).
+- Today: no CPI/PPI/FOMC/NFP; weekly ADP only. BMO earnings: **HD, DIS**, KLAR, VIK, AS. FOMC minutes Wed; WMT Q3 Thu 11/19. FOMC 12/08–09; NFP 12/04; CPI 12/10.
+- Sector YTD (rule 9, thru 11/13): Energy ~+41.5% (**banned**, lifts 12/08), Health Care ~+21.8%, Consumer Staples ~+20.2%, Industrials ~+10.1% (**banned**, lifts 11/19), Financials ~+6.9%, Cons Disc ~+3.1%, Utilities ~+2.5%, Comm Svcs ~-7.3%. Streaks: Financials 1, Staples 1, Health Care 0.
+- Holdings: LLY — Stipple Bio oncology deal (up to $5.9B), Calytrix Bio acquisition (up to $1.5B). MRK — positive CHMP opinions (Welireg combo, Enflonsia). TMO/WMT/XLP — no specific news; WMT Q3 Thu.
+- Perplexity: all 9 queries succeeded (5 after a 429 retry; no WebSearch fallback). Alpaca IEX quotes stale/wide (GS bid $840.84 / ask $936.49; JPM ask 0) — sized off 11/16 closes.
+
+### Trade ideas
+Rule 14 lapsed (LLY, MRK, TMO, WMT single names). Room to band top 85% ≈ $5,250; HC and Staples each ~40% — no adds there.
+1. **Goldman Sachs (GS)** — Financials (top non-banned, non-saturated sector). Catalyst: AI-financing demand (Solomon), 2027 S&P 8,700 call, $5 div ex 12/02; -2.7% Mon pullback. 5 sh @ $891.54 (11/16 close), **stop $802.39 (10%)**, target $1,069.84 (2:1). `validate_order.py --symbol GS --qty 5 --side buy --price 891.54 --stop-price 802.39 --trades-this-week 0 --sector "Financials"` → **APPROVED, exit 0**, $4,457.70.
+2. **JPMorgan (JPM)** — Financials. Catalyst: UBS Buy PT $400; NII tailwind from higher yields; 11/16 close $338.21 (-2.3%). 14 sh, **stop $304.39 (10%)**, target $405.85 (2:1). `validate_order.py --symbol JPM --qty 14 --side buy --price 338.21 --stop-price 304.39 --trades-this-week 0 --sector "Financials"` → **APPROVED, exit 0**, $4,734.94. Headline risk (card-exec departure).
+Neither in `memory/SECTORS.json` yet — add before any entry.
+
+### Risk factors
+- NVDA print tonight is the week's swing factor; VIX jumped to ~23. WMT Q3 Thu is binary for 17.8% of book.
+- Concentration: Health Care ~39.5% (LLY+MRK+TMO), Consumer Staples ~40.4% (XLP+WMT). XLP 22.5% over cap on drift only — no trim.
+- Rule 7: no standing stops. Cushions: MRK 4.28% (nearest — watch), TMO 5.28%, LLY 6.83%, WMT 8.55%, XLP 8.93%.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **79.88**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-11-16. No mandate.
+
+### Decision
+**HOLD.** In band at 79.9%; 5 positions; VIX ~23 and NVDA tonight. GS remains the first add for a 6th slot after NVDA settles. No stop changes; all 5 stops active and correct.
+
+---
