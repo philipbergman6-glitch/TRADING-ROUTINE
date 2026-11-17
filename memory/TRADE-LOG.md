@@ -4886,3 +4886,22 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:06 UTC):** equity $102,128.42, cash $20,619.85, LMV $81,508.57 → deployed **79.81%**, in band; 5 positions.
 
 ---
+
+### Nov 17 — EOD Snapshot (Day 146, Tuesday)
+**Portfolio:** $101,901.53 | **Cash:** $20,619.85 (20.23%) | **Day P&L:** -$808.20 (-0.79%) | **Phase P&L:** +$1,901.53 (+1.90%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,403.95 | -1.94% | +$29.75 (+0.21%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| MRK | 110 | $151.2469 | $143.4525 | -0.70% | -$857.38 (-5.15%) | $138.0329 (10% trail GTC, hwm $153.37) |
+| TMO | 15 | $696.57 | $686.93 | -0.64% | -$144.60 (-1.38%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $127.62 | -0.62% | +$59.02 (+0.32%) | $116.856 (10% trail GTC, hwm $129.84) |
+| XLP | 250 | $83.76 | $91.635 | -1.04% | +$1,968.75 (+9.40%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** none. **Week trades: 0/3** entries (week of 11/16). Blotter and TRADE-LOG agree.
+
+**Notes:** Broad soft tape ahead of NVDA AMC; every position red: LLY -1.9%, XLP -1.0%, MRK -0.7%, TMO -0.6%, WMT -0.6%. Day P&L is against the broker's 11/16 close of $102,709.73 (the 11/16 snapshot logged $102,829.18 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. No trail ratchets today. Deployed 79.77% (LMV $81,281.68), in band; 5 positions. Protection 5/5 one-for-one. Cushions: MRK 3.78% (nearest — watch), TMO 4.68%, LLY 5.43%, XLP 8.19%, WMT 8.43%. Health Care ~39.4% (LLY + MRK + TMO), Consumer Staples ~40.4% (XLP + WMT). blotter --check exit 0, reconcile RECONCILED exit 0 (148 sessions), coordinator status exit 0 (no holder, no non-terminal intents, no takeovers). Run record daily-summary-20261117T201036Z-428285.
+
+**Tomorrow:** Hold all 5, trails resting. In band, no mandate. Watch MRK (3.8%) and TMO (4.7%) cushions; NVDA print tonight sets tone. No new Health Care or Consumer Staples adds at ~40% each; Energy banned until 2026-12-08. WMT Q3 Thu.
+
+---
