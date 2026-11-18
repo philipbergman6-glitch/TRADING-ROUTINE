@@ -4905,3 +4905,13 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** Hold all 5, trails resting. In band, no mandate. Watch MRK (3.8%) and TMO (4.7%) cushions; NVDA print tonight sets tone. No new Health Care or Consumer Staples adds at ~40% each; Energy banned until 2026-12-08. WMT Q3 Thu.
 
 ---
+
+### 2026-11-18 — Market-Open
+
+**No trades.** The research plan was HOLD (in band 79.7%, no mandate; VIX ~25.5, FOMC minutes 14:00 ET, WMT Q3 Thu). STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261118T133338Z-3c25a8`. Week of 2026-11-16 trade count: **0/3**.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, **5/5 one-for-one**. **STEP 2c:** `deployment_status.py` exit 0 — no mandate (`deployed_pct` 79.66, `sessions_under_band` 0).
+
+**Live state (13:34 UTC, premarket marks):** equity $101,388.23, cash $20,619.85, LMV $80,768.38. Stops: LLY 10% trail $1,327.725 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · WMT 10% trail $116.856 · XLP 10% trail $84.132. No rule-7 standing stops; MRK cushion 3.46% premarket (nearest — watch), TMO 3.71%. GS remains the first add for a 6th slot once vol settles.
+
+---
