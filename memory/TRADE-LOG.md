@@ -4915,3 +4915,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:34 UTC, premarket marks):** equity $101,388.23, cash $20,619.85, LMV $80,768.38. Stops: LLY 10% trail $1,327.725 · MRK 10% trail $138.0329 · TMO 10% trail $654.804 · WMT 10% trail $116.856 · XLP 10% trail $84.132. No rule-7 standing stops; MRK cushion 3.46% premarket (nearest — watch), TMO 3.71%. GS remains the first add for a 6th slot once vol settles.
 
 ---
+
+### 2026-11-18 — Midday Cut (Day 147, Wednesday)
+
+**Cut MRK at -7% per rule (rule 5).** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261118T170438Z-4de08e`. Week of 2026-11-16 trade count: **0/3** entries.
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`. `blotter.py --check` exit 0, 5 open lots matched positions pre-cut.
+
+**STEP 3 — MRK:** unrealized_plpc **-7.50%** (mark $139.8967 vs avg $151.2469; -2.4% on the day). `validate_order.py --symbol MRK --qty 110 --side sell --price 139.8967` → **APPROVED, exit 0** (LEDGER DISABLED). `close_position.py --symbol MRK --reason "cut at -7% per rule"` → exit 0 `close_submitted`, canceled trail `c8c4cb4f` ($138.0329), market sell `cl-20261118-MRK` (order b2c27c71). **Filled: 110 @ $139.68, realized -$1,272.36 (-7.65%)** per `blotter.py --markdown`. Position gone, no stop/sell resting. Health Care failed-trade streak now **1** (`--sector-streaks`; not banned).
+
+**Protection 4/4, one-for-one:** LLY 10% trail $1,327.725 (hwm $1,475.25) · TMO 10% trail $654.804 (hwm $727.56) · WMT 10% trail $116.856 (hwm $129.84) · XLP 10% trail $84.132 (hwm $93.48).
+
+**Rule 7:** no standing stops. Cushions: LLY 4.44% (nearest), TMO 5.21%, WMT 7.62%, XLP 8.13%.
+
+**STEP 4:** `--print-required` 10 for all (LLY -0.83%, TMO -0.83%, WMT -0.56%, XLP +9.34%); nothing to tighten. **STEP 5:** no other thesis broken; LLY -1.8%, WMT -0.8% on the day, TMO +0.6%, XLP +0.1%. **STEP 6:** skipped — MRK drift is the continuation of its multi-day slide, not an unexplained spike.
+
+**Live state (17:05 UTC):** equity $101,223.09, cash $35,984.65, LMV $65,238.44 → deployed **64.45%**, below the 75–85% band; 4 positions. Under-band streak starts at tonight's EOD (rule 12 counts EOD snapshots); refill per rule 9/14 — Health Care (~24.5%) and Consumer Staples (~40.5%) still heavy, GS first candidate.
+
+---
