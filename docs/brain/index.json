@@ -2619,6 +2619,16 @@
     "trade/2026-11-17/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-18": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-18/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8443,6 +8453,30 @@
    "title": "Pre-Market Research (Tuesday, NVDA earnings AMC / WMT Q3 Thu)",
    "week": null
   },
+  "research/2026-11-18/pre-market-research/1": {
+   "date": "2026-11-18",
+   "decision": [
+    "WMT"
+   ],
+   "decision_text": "**HOLD.** In band at 79.7%; 5 positions; VIX ~25.5, FOMC minutes today, WMT Q3 tomorrow. GS remains the first add for a 6th slot once vol settles. No stop changes; all 5 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-18/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9410,
+   "log": "research",
+   "note": "Wednesday, post-NVDA / FOMC minutes 14:00 / WMT Q3 Thu",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "NVDA",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Wednesday, post-NVDA / FOMC minutes 14:00 / WMT Q3 Thu)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -13862,7 +13896,7 @@
     "round_trips": 22
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 224
+    "entries": 225
    },
    "memory/TRADE-LOG.md": {
     "entries": 314,
@@ -18799,7 +18833,8 @@
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
-    "research/2026-11-17/pre-market-research/1"
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19053,7 +19088,8 @@
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
-    "research/2026-11-17/pre-market-research/1"
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19512,7 +19548,8 @@
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
-    "research/2026-11-17/pre-market-research/1"
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -20171,7 +20208,8 @@
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
-    "research/2026-11-17/pre-market-research/1"
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20269,7 +20307,8 @@
     "research/2026-11-11/pre-market-research/1",
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
-    "research/2026-11-16/pre-market-research/1"
+    "research/2026-11-16/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-07/pre-market-research/2",
@@ -20287,9 +20326,9 @@
     "rs-7e14f81b-2358-4e39-a8a6-edf27f487d41-2"
    ],
    "last_decision": {
-    "date": "2026-11-16",
-    "entry": "research/2026-11-16/pre-market-research/1",
-    "text": "**HOLD.** In band at 80.1%; 5 positions; NVDA/WMT event risk this week. GS is the first add if a 6th slot is wanted after NVDA. No stop changes; all 5 stops active and correct. ---"
+    "date": "2026-11-18",
+    "entry": "research/2026-11-18/pre-market-research/1",
+    "text": "**HOLD.** In band at 79.7%; 5 positions; VIX ~25.5, FOMC minutes today, WMT Q3 tomorrow. GS remains the first add for a 6th slot once vol settles. No stop changes; all 5 stops active and correct. ---"
    },
    "open_lots": [
     {
@@ -20320,7 +20359,8 @@
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
-    "research/2026-11-17/pre-market-research/1"
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -21922,7 +21962,8 @@
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
-    "research/2026-11-17/pre-market-research/1"
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
