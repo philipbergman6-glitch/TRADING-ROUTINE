@@ -4933,3 +4933,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:05 UTC):** equity $101,223.09, cash $35,984.65, LMV $65,238.44 → deployed **64.45%**, below the 75–85% band; 4 positions. Under-band streak starts at tonight's EOD (rule 12 counts EOD snapshots); refill per rule 9/14 — Health Care (~24.5%) and Consumer Staples (~40.5%) still heavy, GS first candidate.
 
 ---
+
+### Nov 18 — EOD Snapshot (Day 147, Wednesday)
+**Portfolio:** $101,182.47 | **Cash:** $35,984.65 (35.56%) | **Day P&L:** -$765.79 (-0.75%) | **Phase P&L:** +$1,182.47 (+1.18%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| LLY | 10 | $1,400.98 | $1,383.97 | -2.23% | -$170.10 (-1.21%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| TMO | 15 | $696.57 | $690.52 | +0.54% | -$90.75 (-0.87%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $127.205 | -0.25% | -$0.33 (-0.00%) | $116.856 (10% trail GTC, hwm $129.84) |
+| XLP | 250 | $83.76 | $91.24 | -0.24% | +$1,870.00 (+8.93%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** SELL MRK 110 @ $139.68 (midday -7% cut, realized -$1,272.36 / -7.65%). **Week trades: 0/3** entries (week of 11/16). Blotter and TRADE-LOG agree.
+
+**Notes:** MRK cut at midday per rule 5 after breaching -7%; that realized loss drove most of the day's -0.75%. LLY -2.2% the other drag; TMO +0.5%, WMT and XLP flat-ish. Day P&L is against the broker's 11/17 close of $101,948.26 (the 11/17 snapshot logged $101,901.53 from pre-close marks; reconcile diff 0.00). Marks are ~20:10 UTC, before the close. No trail ratchets. Deployed 64.44% (LMV $65,197.82) — below the 75–85% band, under-band streak day 1; 4 positions. Protection 4/4 one-for-one. Cushions: LLY 4.06% (nearest — watch), TMO 5.17%, XLP 7.79%, WMT 8.14%. Health Care ~23.9% (LLY + TMO), Consumer Staples ~40.5% (XLP + WMT). Health Care failed-trade streak 1. blotter --check exit 0, reconcile RECONCILED exit 0 (149 sessions), coordinator status exit 0 — intent cl-20261118-MRK still "acknowledged" though the sell filled (left for the next writer to recover). Run record daily-summary-20261118T201016Z-d369b2.
+
+**Tomorrow:** Under band — refill per rule 9/14 at market-open; GS first candidate, avoid adding Health Care/Consumer Staples (Staples ~40%). Watch LLY cushion (4.1%). WMT Q3 before the open Thu; Energy banned until 2026-12-08.
+
+---

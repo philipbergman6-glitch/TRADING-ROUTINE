@@ -385,6 +385,22 @@
       "exit_order_ids": [
         "7e6bd87b-c11f-455a-b6dc-7b674daed165"
       ]
+    },
+    {
+      "symbol": "MRK",
+      "entered": "2026-11-05T14:33:51.383663+00:00",
+      "exited": "2026-11-18T17:05:10.812190+00:00",
+      "qty": "110",
+      "avg_in": "151.2469",
+      "avg_out": "139.6800",
+      "pnl": "-1272.36",
+      "pnl_pct": "-7.65",
+      "entry_order_ids": [
+        "a5c66f7e-94ad-46cb-8951-f21e70804991"
+      ],
+      "exit_order_ids": [
+        "b2c27c71-742e-40ce-9573-649b3f584a51"
+      ]
     }
   ],
   "open_lots": [
@@ -413,15 +429,6 @@
       "avg_in": "1400.9800",
       "entry_order_ids": [
         "fe10d5bc-f694-42be-9684-c71aebfb2b35"
-      ]
-    },
-    {
-      "symbol": "MRK",
-      "entered": "2026-11-05T14:33:51.383663+00:00",
-      "qty": "110",
-      "avg_in": "151.2469",
-      "entry_order_ids": [
-        "a5c66f7e-94ad-46cb-8951-f21e70804991"
       ]
     },
     {
