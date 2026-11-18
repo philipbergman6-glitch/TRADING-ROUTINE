@@ -9406,3 +9406,38 @@ Neither in `memory/SECTORS.json` yet — add before any entry.
 **HOLD.** In band at 79.9%; 5 positions; VIX ~23 and NVDA tonight. GS remains the first add for a 6th slot after NVDA settles. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-18 — Pre-Market Research (Wednesday, post-NVDA / FOMC minutes 14:00 / WMT Q3 Thu)
+
+### Account snapshot
+- **Equity $101,440.56** (`last_equity` $101,948.26, -$507.70/-0.50% on premarket marks) · **Cash $20,619.85** · Long MV $80,820.71 · `buying_power` $308,777 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions**: XLP 22.40% · WMT 17.79% · MRK 15.55% · LLY 13.88% · TMO 10.06%. Week trades **0/3** (week of 11/16).
+- Stops 5/5, one-for-one, qty matching: LLY 10% trail $1,327.725 (hwm $1,475.25) · MRK 10% trail $138.0329 (hwm $153.37) · TMO 10% trail $654.804 (hwm $727.56) · WMT 10% trail $116.856 (hwm $129.84) · XLP 10% trail $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261118T113302Z-2fb453`.
+
+### Market context
+- **WTI ~$84.3 (-2.0%) · Brent ~$92.0 (-1.3%)**.
+- **ES ~7,396 (+0.5%)**, NQ +0.9% after NVDA beat (rev +103% y/y, ~$130B guide); Tue close S&P 7,340.53 (-1.0%), Dow -1.6%. **VIX 25.46** (Tue close, +11.1%).
+- Today: **FOMC minutes 14:00 ET**; no CPI/PPI/NFP. BMO earnings: **TJX, LOW, TGT**, ZIM, BRBR. Anthropic IPO pricing expected (debut Thu). WMT Q3 Thu 11/19. FOMC 12/08–09; NFP 12/04; CPI 12/10.
+- Sector YTD (rule 9, thru 11/13): Health Care ~+21.8%, Consumer Staples ~+20.2%, Industrials ~+13.7% (**banned**, lifts 11/19), Info Tech ~+12.4%, Materials ~+11.0%, Financials ~+6.9%. Energy **banned** (lifts 12/08); today's source lists Energy +0.8% vs ~+41.5% prior — figure unreliable. Streaks: Financials 1, Staples 1, Health Care 0.
+- Holdings: LLY — third-party vendor data-breach report; Calytrix deal; ObesityWeek data. MRK — BELLWAVE (nemtabrutinib) program update; Q1'27 dividend declared. TMO/WMT/XLP — no specific news; WMT Q3 Thu.
+- Perplexity: all 9 queries succeeded (no WebSearch fallback). Ideas sized off 11/17 closes.
+
+### Trade ideas
+Rule 14 lapsed (LLY, MRK, TMO, WMT single names). Room to band top 85% ≈ $5,400; HC (~39.5%) and Staples (~40.2%) — no adds there.
+1. **Goldman Sachs (GS)** — Financials (top non-banned, non-saturated sector). Catalyst: AI-financing demand; post-NVDA risk-on (AH $886, +1.0%); $5 div ex 12/02. 5 sh @ $877.52 (11/17 close), **stop $789.77 (10%)**, target $1,053.02 (2:1). `validate_order.py --symbol GS --qty 5 --side buy --price 877.52 --stop-price 789.77 --trades-this-week 0 --sector "Financials"` → **APPROVED, exit 0**, $4,387.60.
+2. **JPMorgan (JPM)** — Financials. Catalyst: NII tailwind from higher yields; CFO succession set (de Best after Q1'27). 11/17 close $329.96 (-2.4%, outage headline). 14 sh, **stop $296.96 (10%)**, target $395.96 (2:1). `validate_order.py --symbol JPM --qty 14 --side buy --price 329.96 --stop-price 296.96 --trades-this-week 0 --sector "Financials"` → **APPROVED, exit 0**, $4,619.44. Headline risk (outage).
+Neither in `memory/SECTORS.json` yet — add before any entry.
+
+### Risk factors
+- VIX ~25.5 and rising; FOMC minutes 14:00 could reprice Dec hike odds. NVDA bounce may fade (AI-capex worries). WMT Q3 Thu is binary for 17.8% of book.
+- Concentration: Health Care ~39.5% (LLY+MRK+TMO), Consumer Staples ~40.2% (XLP+WMT). XLP 22.4% over cap on drift only — no trim.
+- Rule 7: no standing stops. Cushions: **TMO 3.71% (nearest — watch)**, MRK 3.74% (watch), LLY 5.69%, WMT 7.39%, XLP 7.45%.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **79.67**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-11-17. No mandate.
+
+### Decision
+**HOLD.** In band at 79.7%; 5 positions; VIX ~25.5, FOMC minutes today, WMT Q3 tomorrow. GS remains the first add for a 6th slot once vol settles. No stop changes; all 5 stops active and correct.
+
+---
