@@ -2655,7 +2655,9 @@
     "research/2026-11-19/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-11-19/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -14028,6 +14030,25 @@
    ],
    "title": "Midday Cut (Day 147, Wednesday)",
    "week": null
+  },
+  "trade/2026-11-19/market-open-trades/1": {
+   "date": "2026-11-19",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-19/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 4955,
+   "log": "trade",
+   "note": "Day 148, Thursday, WMT Q3 BMO / Anthropic IPO debut",
+   "symbols": [
+    "GS",
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Market-Open Trades (Day 148, Thursday, WMT Q3 BMO / Anthropic IPO debut)",
+   "week": null
   }
  },
  "generated_from": {
@@ -14044,7 +14065,7 @@
     "entries": 226
    },
    "memory/TRADE-LOG.md": {
-    "entries": 317,
+    "entries": 318,
     "eod_snapshots": 142
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -19054,7 +19075,8 @@
     "trade/2026-11-17/market-open-trades/1",
     "trade/2026-11-18/market-open-trades/1",
     "trade/2026-11-18/midday-cut/1",
-    "trade/2026-11-18/eod-snapshot/1"
+    "trade/2026-11-18/eod-snapshot/1",
+    "trade/2026-11-19/market-open-trades/1"
    ],
    "weeks": []
   },
@@ -19096,7 +19118,8 @@
    "runs": [],
    "sector": "Financials",
    "trade_log": [
-    "trade/2026-06-25/market-open-trades/1"
+    "trade/2026-06-25/market-open-trades/1",
+    "trade/2026-11-19/market-open-trades/1"
    ],
    "weeks": []
   },
@@ -19216,7 +19239,8 @@
     "trade/2026-11-17/eod-snapshot/1",
     "trade/2026-11-18/market-open-trades/1",
     "trade/2026-11-18/midday-cut/1",
-    "trade/2026-11-18/eod-snapshot/1"
+    "trade/2026-11-18/eod-snapshot/1",
+    "trade/2026-11-19/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -20626,7 +20650,8 @@
     "trade/2026-11-17/eod-snapshot/1",
     "trade/2026-11-18/market-open-trades/1",
     "trade/2026-11-18/midday-cut/1",
-    "trade/2026-11-18/eod-snapshot/1"
+    "trade/2026-11-18/eod-snapshot/1",
+    "trade/2026-11-19/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -20752,7 +20777,8 @@
     "trade/2026-11-17/eod-snapshot/1",
     "trade/2026-11-18/market-open-trades/1",
     "trade/2026-11-18/midday-cut/1",
-    "trade/2026-11-18/eod-snapshot/1"
+    "trade/2026-11-18/eod-snapshot/1",
+    "trade/2026-11-19/market-open-trades/1"
    ],
    "weeks": [
     "2026-11-06",
@@ -22563,7 +22589,8 @@
     "trade/2026-11-17/eod-snapshot/1",
     "trade/2026-11-18/market-open-trades/1",
     "trade/2026-11-18/midday-cut/1",
-    "trade/2026-11-18/eod-snapshot/1"
+    "trade/2026-11-18/eod-snapshot/1",
+    "trade/2026-11-19/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
