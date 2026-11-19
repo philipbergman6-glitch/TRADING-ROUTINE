@@ -5,8 +5,11 @@
   "F": "Consumer Discretionary",
   "GEV": "Industrials",
   "GOOGL": "Communication Services",
+  "GS": "Financials",
+  "JPM": "Financials",
   "LLY": "Health Care",
   "MPC": "Energy",
+  "MRK": "Health Care",
   "MSFT": "Information Technology",
   "MU": "Information Technology",
   "NVDA": "Information Technology",
@@ -21,6 +24,5 @@
   "XLI": "Industrials",
   "XLK": "Information Technology",
   "XLP": "Consumer Staples",
-  "XOM": "Energy",
-  "MRK": "Health Care"
+  "XOM": "Energy"
 }
