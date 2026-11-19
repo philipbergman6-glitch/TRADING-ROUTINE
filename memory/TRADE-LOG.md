@@ -4976,3 +4976,21 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Post-trade state (14:40 UTC):** equity $100,388.47, cash $16,464.54, LMV $83,923.93 → **deployed 83.6%, back inside the 75–85% band**. **6 positions.** `protection_monitor.py --dry-run` exit 0, **6/6 one-for-one**. Stops: GS fixed $796.13 · JPM 10% trail $293.93 · LLY 10% trail $1,327.725 · TMO 10% trail $654.804 · WMT 10% trail $116.856 · XLP 10% trail $84.132. None lowered. `coordinator.py status`: no holder, no non-terminal intents. `blotter.py --check` exit 0. Trade email sent (`delivery=unverified`, restricted key — not a failure). Financials now ~19.5% (GS + JPM).
 
 ---
+
+### 2026-11-19 — Midday Scan (Day 148, Thursday)
+
+**No trades.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261119T170425Z-f8e055`. Week of 2026-11-16 trade count: **2/3** entries.
+
+**STEP 2:** 6 positions, 6 stops one-for-one; `blotter.py --check` exit 0 (6 lots match). `coordinator.py status`: no holder, no non-terminal intents. **STEP 2b:** GS fixed leg `255faca2` @ $796.13 — `validate_stop_change.py --current-stop 796.13 --new-stop 763.20 --current-price 848` → exit 3 `stop_never_lowered` → **HOLD fixed GS @ 796.13** (rule 4 permitted protection). **STEP 2c:** `build_oto_order.py expiring` → `[]`.
+
+**STANDING LLY stop 1327.725 is 2.11% below P 1356.30 (rule 7: left, recorded).**
+
+**STEP 3:** no position ≤ -7%. Worst GS -4.14%, LLY -3.19%, JPM -2.55%, WMT -1.63%, TMO -0.53%; XLP +6.93%. **STEP 4:** `--print-required` 10 for all; all trails already 10 → nothing to tighten. JPM trail ratcheted to $295.443 (hwm $328.27).
+
+**STEP 5:** no thesis broken. Tape is macro risk-off (rising Fed-hike expectations, AI-funding skepticism after the Anthropic IPO priced $83 above range) — banks weak sector-wide, LLY/WMT moves with no company-specific negative (WMT -1.8% despite beat/raise). **STEP 6:** one Perplexity query (see RESEARCH-LOG addendum).
+
+**Stops:** GS fixed $796.13 (6.12% cushion) · JPM 10% trail $295.443 (7.10%) · LLY 10% trail $1,327.725 (2.11%, standing) · TMO 10% trail $654.804 (5.49%) · WMT 10% trail $116.856 (6.61%) · XLP 10% trail $84.132 (6.07%).
+
+**Live state (17:04 UTC):** equity $99,633.57, cash $16,464.54, LMV $83,169.03 → deployed **83.47%** (in band); 6 positions.
+
+---

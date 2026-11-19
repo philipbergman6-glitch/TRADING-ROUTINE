@@ -9476,3 +9476,9 @@ Neither in `memory/SECTORS.json` yet — add before any entry.
 **HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct.
 
 ---
+
+### 2026-11-19 — Midday Addendum
+- Perplexity: S&P/Nasdaq pressured by AI/semis weakness and rising Fed-tightening expectations; Dow higher. Banks (GS -2.9%, JPM -1.9% on day) weak on tighter-financial-conditions worry. LLY -1.9% — no company catalyst found. WMT -1.8% despite Q3 beat/raise. Anthropic priced 980M sh @ $83 (above $70–78), ~$1.5T valuation.
+- No thesis broken; LLY stop now 2.11% below price (standing, rule 7).
+
+---
