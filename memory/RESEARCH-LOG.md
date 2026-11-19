@@ -9441,3 +9441,38 @@ Neither in `memory/SECTORS.json` yet — add before any entry.
 **HOLD.** In band at 79.7%; 5 positions; VIX ~25.5, FOMC minutes today, WMT Q3 tomorrow. GS remains the first add for a 6th slot once vol settles. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-19 — Pre-Market Research (Thursday, WMT Q3 BMO / Anthropic IPO debut / claims + Philly Fed 8:30)
+
+### Account snapshot
+- **Equity $100,933.26** (`last_equity` $101,210.40, -$277.14/-0.27% on premarket marks) · **Cash $35,984.32** · Long MV $64,948.94 · `buying_power` $325,794 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **4 positions**: XLP 22.46% · WMT 17.98% · LLY 13.60% · TMO 10.31%. Week trades **0/3** (week of 11/16).
+- Stops 4/4, one-for-one, qty matching: LLY 10% trail $1,327.725 (hwm $1,475.25) · TMO 10% trail $654.804 (hwm $727.56) · WMT 10% trail $116.856 (hwm $129.84) · XLP 10% trail $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers (cl-20261118-MRK no longer listed). Run record `pre-market-20261119T113306Z-cd5502`.
+
+### Market context
+- **WTI ~$83.2 · Brent ~$92.2** — flat.
+- **ES ~7,420 (+1.1%)** premarket after S&P's 5-session losing streak (Wed close 7,323.63, -0.2%; Dow -1.1%, Nasdaq +0.4%). **VIX ~21.9** (-10.9% from 24.56).
+- Today: jobless claims (cons 198K) + Philly Fed 8:30 ET, LEI 10:00; no CPI/PPI/FOMC/NFP. BMO earnings: **WMT** (call 8:00 ET; cons EPS ~$0.64), BJ, BBWI, WMG, FUTU, VVV, ROAD. **Anthropic IPO debut** (JPM lead). PANW +premarket on beat/raise. FOMC 12/08–09; NFP 12/04; CPI 12/10; PPI 12/15.
+- Sector YTD (rule 9, thru 11/13, source differs from prior): Energy ~+59.9% (**banned**, lifts 12/08), Health Care ~+21.0%, Real Estate ~+19.7%, Industrials ~+18.3% (ban lifts today, streak 2), Staples ~+16.0%, Materials ~+10.7%, Financials ~+8.9%. Streaks: Financials 1, Staples 1, Health Care 1 (MRK).
+- Holdings: WMT — Q3 FY27 reports this morning (binary for 18% of book). LLY/TMO — no fresh news (Q3 beats already priced). XLP — none.
+- Perplexity: all 10 queries succeeded (no WebSearch fallback). Alpaca IEX quotes unusable (ask 0) — sized off 11/18 closes (GS $873.18, JPM $324.11).
+
+### Trade ideas
+Rule 14 lapsed (LLY, TMO, WMT single names). Under band: 75% needs ~$10,750 added, 85% cap ~$20,840. HC (~23.9%) and Staples (~40.4%) — no Staples adds.
+1. **Goldman Sachs (GS)** — Financials (non-banned, non-saturated). Catalyst: AI-financing/IPO wave (Anthropic debut), risk-on futures, $5 div ex 12/02; GS +0.8% premarket. 11 sh @ $873.18, **stop $785.86 (10%)**, target $1,047.82 (2:1). `validate_order.py --symbol GS --qty 11 --side buy --price 873.18 --stop-price 785.86 --trades-this-week 0 --sector "Financials"` → **APPROVED, exit 0**, $9,604.98.
+2. **JPMorgan (JPM)** — Financials. Catalyst: Anthropic IPO lead-bookrunner fees, NII tailwind; -1.8% Wed pullback to $324.11. 30 sh, **stop $291.70 (10%)**, target $388.93 (2:1). `validate_order.py --symbol JPM --qty 30 --side buy --price 324.11 --stop-price 291.70 --trades-this-week 0 --sector "Financials"` → **APPROVED, exit 0**, $9,723.30. Both together → ~83.5% deployed.
+Neither in `memory/SECTORS.json` yet — add before any entry.
+
+### Risk factors
+- WMT Q3 this morning is binary for 18% of book; Anthropic IPO reception sets AI/risk tone. Futures bounce may fade (5-day losing streak).
+- Concentration: Consumer Staples ~40.4% (XLP+WMT), Health Care ~23.9% (LLY+TMO). XLP 22.5% over cap on drift only — no trim.
+- Rule 7: no standing stops. Cushions: **LLY 3.25% (nearest — watch)**, TMO 5.60%, XLP 7.23%, WMT 7.94%.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **64.35**, band [75, 85], `sessions_under_band` **1**, `mandate` **false**, `exemption_allowed` false, `target_notional` $15,797, `last_eod` 2026-11-18. No mandate yet (mandate due after 3 under-band sessions).
+
+### Decision
+**HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct.
+
+---
