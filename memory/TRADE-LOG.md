@@ -4994,3 +4994,23 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (17:04 UTC):** equity $99,633.57, cash $16,464.54, LMV $83,169.03 → deployed **83.47%** (in band); 6 positions.
 
 ---
+
+### Nov 19 — EOD Snapshot (Day 148, Thursday)
+**Portfolio:** $99,706.39 | **Cash:** $16,464.54 (16.51%) | **Day P&L:** -$1,504.01 (-1.49%) | **Phase P&L:** -$293.61 (-0.29%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| GS | 11 | $884.58 | $850.40 | -2.61% | -$375.98 (-3.86%) | $796.13 (fixed GTC OTO leg) |
+| JPM | 30 | $326.3133 | $320.26 | -1.19% | -$181.60 (-1.86%) | $295.443 (10% trail GTC, hwm $328.27) |
+| LLY | 10 | $1,400.98 | $1,350.745 | -2.31% | -$502.35 (-3.59%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| TMO | 15 | $696.57 | $687.47 | -0.76% | -$136.50 (-1.31%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $125.85 | -1.19% | -$194.09 (-1.07%) | $116.856 (10% trail GTC, hwm $129.84) |
+| XLP | 250 | $83.76 | $89.855 | -1.45% | +$1,523.75 (+7.28%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** BUY GS 11 @ $884.58, BUY JPM 30 @ $326.3133 (market-open refill). **Week trades: 2/3** entries (week of 11/16). Blotter and TRADE-LOG agree.
+
+**Notes:** Broad risk-off tape (Fed-hike repricing, AI-funding skepticism post-Anthropic IPO) — every position red; new Financials adds GS/JPM and LLY the biggest drags. Phase P&L flipped slightly negative. Day P&L is against the broker's 11/18 close of $101,210.40 (11/18 snapshot logged $101,182.47 from pre-close marks; reconcile diff 0.00). Marks ~20:10 UTC, before the close. Deployed 83.49% (LMV $83,241.85) — inside the 75–85% band; 6 positions. Protection 6/6 one-for-one; GS still fixed (trail conversion refused `stop_never_lowered`). Cushions: LLY 1.70% (nearest — stop likely to trigger on further weakness), TMO 4.75%, XLP 6.37%, GS 6.38%, WMT 7.15%, JPM 7.75%. Sectors: Consumer Staples ~40.6% (XLP + WMT), Health Care ~23.9% (LLY + TMO), Financials ~19.3% (GS + JPM). blotter --check exit 0, reconcile RECONCILED exit 0 (150 sessions), coordinator status exit 0 — no holder, no non-terminal intents, no takeovers. Run record daily-summary-20261119T201001Z-98bedb.
+
+**Tomorrow:** No new entries planned (in band, 1 entry left this week). Watch LLY (1.7% cushion — let the trail work, no manual cut unless -7%). Convert GS fixed stop to 10% trail once GS ≥ ~$884.59. Energy banned until 2026-12-08.
+
+---
