@@ -2789,6 +2789,8 @@
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-05-02/pre-market-research/1",
    "ideas": [
+    "GS",
+    "JPM",
     "XOM"
    ],
    "kind": "pre-market-research",
@@ -2797,6 +2799,8 @@
    "note": "",
    "symbols": [
     "AMD",
+    "GS",
+    "JPM",
     "NVDA",
     "PLTR",
     "XOM"
@@ -4045,6 +4049,7 @@
    "log": "research",
    "note": "",
    "symbols": [
+    "JPM",
     "NVDA",
     "PLTR",
     "WMT",
@@ -4426,13 +4431,16 @@
    "decision_text": "**No new trades.** Stop tighten on MU executed (10% → 5%). PLTR stop watch: tighten to 5% if/when it touches $164.33 (+20%). ANET fails R:R test at current price — patience. All three positions hold. Weekly trade count: 0/3. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-06-01/pre-market-research/2",
-   "ideas": [],
+   "ideas": [
+    "JPM"
+   ],
    "kind": "pre-market-research",
    "line": 3028,
    "log": "research",
    "note": "",
    "symbols": [
     "AVGO",
+    "JPM",
     "MU",
     "PLTR"
    ],
@@ -4709,6 +4717,7 @@
   "research/2026-06-08/pre-market-research/1": {
    "date": "2026-06-08",
    "decision": [
+    "JPM",
     "MSFT",
     "NVDA",
     "XOM"
@@ -4717,6 +4726,7 @@
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-06-08/pre-market-research/1",
    "ideas": [
+    "JPM",
     "XOM"
    ],
    "kind": "pre-market-research",
@@ -4724,6 +4734,7 @@
    "log": "research",
    "note": "",
    "symbols": [
+    "JPM",
     "MSFT",
     "NVDA",
     "XOM"
@@ -5094,6 +5105,7 @@
    "date": "2026-06-25",
    "decision": [
     "GOOGL",
+    "JPM",
     "XLF"
    ],
    "decision_text": "**HOLD pre-market into the 8:30 PCE print — but this is a STAGED entry, not another idle day.** The deployment plan is concrete and the market-open routine MUST fire: - **If PCE ≤ ~3.4% (in-line/cool) and tape holds green:** deploy **GOOGL + a Financials name (XLF/JPM) + CAT-or-alternative**, ~18–20% each → ~55–60% deployed (capped by the **3-new-trades/week** rule; full ammo 0/3). Each with a **1",
@@ -5101,6 +5113,7 @@
    "id": "research/2026-06-25/pre-market-research/1",
    "ideas": [
     "GOOGL",
+    "JPM",
     "XLF"
    ],
    "kind": "pre-market-research",
@@ -5109,6 +5122,7 @@
    "note": "Day 42, Thursday",
    "symbols": [
     "GOOGL",
+    "JPM",
     "MU",
     "XLF"
    ],
@@ -5136,6 +5150,7 @@
    "note": "Day 43, Friday",
    "symbols": [
     "GOOGL",
+    "JPM",
     "XLF",
     "XLI"
    ],
@@ -5496,6 +5511,8 @@
    "note": "Day 54, Monday",
    "symbols": [
     "GOOGL",
+    "GS",
+    "JPM",
     "XLB",
     "XLE",
     "XLI",
@@ -5545,6 +5562,8 @@
    "note": "Day 55, Tuesday — CPI DAY",
    "symbols": [
     "GOOGL",
+    "GS",
+    "JPM",
     "XLB",
     "XLE",
     "XLI",
@@ -7770,6 +7789,8 @@
     "AMD",
     "AVGO",
     "GEV",
+    "GS",
+    "JPM",
     "MPC",
     "NVDA",
     "PSX",
@@ -8435,6 +8456,7 @@
   "research/2026-11-16/pre-market-research/1": {
    "date": "2026-11-16",
    "decision": [
+    "GS",
     "NVDA",
     "WMT"
    ],
@@ -8447,6 +8469,8 @@
    "log": "research",
    "note": "Monday, NVDA earnings Tue / WMT Q3 Thu",
    "symbols": [
+    "GS",
+    "JPM",
     "LLY",
     "MRK",
     "NVDA",
@@ -8460,6 +8484,7 @@
   "research/2026-11-17/pre-market-research/1": {
    "date": "2026-11-17",
    "decision": [
+    "GS",
     "NVDA"
    ],
    "decision_text": "**HOLD.** In band at 79.9%; 5 positions; VIX ~23 and NVDA tonight. GS remains the first add for a 6th slot after NVDA settles. No stop changes; all 5 stops active and correct. ---",
@@ -8471,6 +8496,8 @@
    "log": "research",
    "note": "Tuesday, NVDA earnings AMC / WMT Q3 Thu",
    "symbols": [
+    "GS",
+    "JPM",
     "LLY",
     "MRK",
     "NVDA",
@@ -8484,6 +8511,7 @@
   "research/2026-11-18/pre-market-research/1": {
    "date": "2026-11-18",
    "decision": [
+    "GS",
     "WMT"
    ],
    "decision_text": "**HOLD.** In band at 79.7%; 5 positions; VIX ~25.5, FOMC minutes today, WMT Q3 tomorrow. GS remains the first add for a 6th slot once vol settles. No stop changes; all 5 stops active and correct. ---",
@@ -8495,6 +8523,8 @@
    "log": "research",
    "note": "Wednesday, post-NVDA / FOMC minutes 14:00 / WMT Q3 Thu",
    "symbols": [
+    "GS",
+    "JPM",
     "LLY",
     "MRK",
     "NVDA",
@@ -8508,6 +8538,8 @@
   "research/2026-11-19/pre-market-research/1": {
    "date": "2026-11-19",
    "decision": [
+    "GS",
+    "JPM",
     "WMT"
    ],
    "decision_text": "**HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct. ---",
@@ -8519,6 +8551,8 @@
    "log": "research",
    "note": "Thursday, WMT Q3 BMO / Anthropic IPO debut / claims + Philly Fed 8:30",
    "symbols": [
+    "GS",
+    "JPM",
     "LLY",
     "MRK",
     "TMO",
@@ -9919,6 +9953,7 @@
    "note": "",
    "symbols": [
     "GOOGL",
+    "JPM",
     "XLF"
    ],
    "title": "Market-Open Trades",
@@ -13850,6 +13885,7 @@
    "log": "trade",
    "note": "",
    "symbols": [
+    "GS",
     "LLY",
     "MRK",
     "NVDA",
@@ -13906,6 +13942,7 @@
    "log": "trade",
    "note": "",
    "symbols": [
+    "GS",
     "LLY",
     "MRK",
     "NVDA",
@@ -13944,6 +13981,7 @@
    "log": "trade",
    "note": "Day 147, Wednesday",
    "symbols": [
+    "GS",
     "LLY",
     "MRK",
     "TMO",
@@ -13962,6 +14000,7 @@
    "log": "trade",
    "note": "",
    "symbols": [
+    "GS",
     "LLY",
     "MRK",
     "TMO",
@@ -13980,6 +14019,7 @@
    "log": "trade",
    "note": "Day 147, Wednesday",
    "symbols": [
+    "GS",
     "LLY",
     "MRK",
     "TMO",
@@ -18978,6 +19018,87 @@
     "2026-10-09",
     "2026-10-30"
    ]
+  },
+  "GS": {
+   "decisions": [
+    "research/2026-11-16/pre-market-research/1",
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
+   ],
+   "ideas": [
+    "research/2026-05-02/pre-market-research/1"
+   ],
+   "intents": [],
+   "last_decision": {
+    "date": "2026-11-19",
+    "entry": "research/2026-11-19/pre-market-research/1",
+    "text": "**HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct. ---"
+   },
+   "open_lots": [],
+   "research": [
+    "research/2026-05-02/pre-market-research/1",
+    "research/2026-07-13/pre-market-research/1",
+    "research/2026-07-14/pre-market-research/1",
+    "research/2026-10-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1",
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
+   ],
+   "round_trips": [],
+   "runs": [],
+   "sector": "Financials",
+   "trade_log": [
+    "trade/2026-11-16/market-open-trades/1",
+    "trade/2026-11-17/market-open-trades/1",
+    "trade/2026-11-18/market-open-trades/1",
+    "trade/2026-11-18/midday-cut/1",
+    "trade/2026-11-18/eod-snapshot/1"
+   ],
+   "weeks": []
+  },
+  "JPM": {
+   "decisions": [
+    "research/2026-06-08/pre-market-research/1",
+    "research/2026-06-25/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
+   ],
+   "ideas": [
+    "research/2026-05-02/pre-market-research/1",
+    "research/2026-06-01/pre-market-research/2",
+    "research/2026-06-08/pre-market-research/1",
+    "research/2026-06-25/pre-market-research/1"
+   ],
+   "intents": [],
+   "last_decision": {
+    "date": "2026-11-19",
+    "entry": "research/2026-11-19/pre-market-research/1",
+    "text": "**HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct. ---"
+   },
+   "open_lots": [],
+   "research": [
+    "research/2026-05-02/pre-market-research/1",
+    "research/2026-05-22/pre-market-research/1",
+    "research/2026-06-01/pre-market-research/2",
+    "research/2026-06-08/pre-market-research/1",
+    "research/2026-06-25/pre-market-research/1",
+    "research/2026-06-26/pre-market-research/1",
+    "research/2026-07-13/pre-market-research/1",
+    "research/2026-07-14/pre-market-research/1",
+    "research/2026-10-13/pre-market-research/1",
+    "research/2026-11-16/pre-market-research/1",
+    "research/2026-11-17/pre-market-research/1",
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
+   ],
+   "round_trips": [],
+   "runs": [],
+   "sector": "Financials",
+   "trade_log": [
+    "trade/2026-06-25/market-open-trades/1"
+   ],
+   "weeks": []
   },
   "LLY": {
    "decisions": [
