@@ -2647,6 +2647,16 @@
     "trade/2026-11-18/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-19": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-19/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8495,6 +8505,29 @@
    "title": "Pre-Market Research (Wednesday, post-NVDA / FOMC minutes 14:00 / WMT Q3 Thu)",
    "week": null
   },
+  "research/2026-11-19/pre-market-research/1": {
+   "date": "2026-11-19",
+   "decision": [
+    "WMT"
+   ],
+   "decision_text": "**HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-19/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9445,
+   "log": "research",
+   "note": "Thursday, WMT Q3 BMO / Anthropic IPO debut / claims + Philly Fed 8:30",
+   "symbols": [
+    "LLY",
+    "MRK",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Thursday, WMT Q3 BMO / Anthropic IPO debut / claims + Philly Fed 8:30)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -13968,7 +14001,7 @@
     "round_trips": 23
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 225
+    "entries": 226
    },
    "memory/TRADE-LOG.md": {
     "entries": 317,
@@ -19001,7 +19034,8 @@
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
     "research/2026-11-17/pre-market-research/1",
-    "research/2026-11-18/pre-market-research/1"
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19249,7 +19283,8 @@
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
     "research/2026-11-17/pre-market-research/1",
-    "research/2026-11-18/pre-market-research/1"
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -20389,7 +20424,8 @@
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
     "research/2026-11-17/pre-market-research/1",
-    "research/2026-11-18/pre-market-research/1"
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20491,7 +20527,8 @@
     "research/2026-11-12/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
-    "research/2026-11-18/pre-market-research/1"
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-07/pre-market-research/2",
@@ -20509,9 +20546,9 @@
     "rs-7e14f81b-2358-4e39-a8a6-edf27f487d41-2"
    ],
    "last_decision": {
-    "date": "2026-11-18",
-    "entry": "research/2026-11-18/pre-market-research/1",
-    "text": "**HOLD.** In band at 79.7%; 5 positions; VIX ~25.5, FOMC minutes today, WMT Q3 tomorrow. GS remains the first add for a 6th slot once vol settles. No stop changes; all 5 stops active and correct. ---"
+    "date": "2026-11-19",
+    "entry": "research/2026-11-19/pre-market-research/1",
+    "text": "**HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct. ---"
    },
    "open_lots": [
     {
@@ -20543,7 +20580,8 @@
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
     "research/2026-11-17/pre-market-research/1",
-    "research/2026-11-18/pre-market-research/1"
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -22149,7 +22187,8 @@
     "research/2026-11-13/pre-market-research/1",
     "research/2026-11-16/pre-market-research/1",
     "research/2026-11-17/pre-market-research/1",
-    "research/2026-11-18/pre-market-research/1"
+    "research/2026-11-18/pre-market-research/1",
+    "research/2026-11-19/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
