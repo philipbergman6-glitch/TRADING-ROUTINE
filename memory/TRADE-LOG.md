@@ -5026,3 +5026,25 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Live state (13:34 UTC, premarket marks):** equity $100,296.43, cash $16,464.53, LMV $83,831.90 → deployed ~83.6% (in band). GS $838.50 (-5.21%) · JPM $318.56 (-2.38%) · LLY $1,351.69 (-3.52%) · TMO $699.00 (+0.35%) · WMT $127.90 (+0.55%) · XLP $91.04 (+8.69%).
 
 ---
+
+### 2026-11-20 — Midday Cut (Day 149, Friday)
+
+| Date | Ticker | Side | Shares | Entry | Exit | Realized P&L | Reason |
+|------|--------|------|--------|-------|------|--------------|--------|
+| 2026-11-20 | GS | SELL | 11 | $884.58 | $798.52 | -$946.66 (-9.73%) | cut at -7% per rule |
+
+STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset). Run record `midday-20261120T170431Z-6e8a77`.
+
+**STEP 2:** 6 positions, 6 stops one-for-one; `blotter.py --check` exit 0; coordinator no holder / no non-terminal intents. **STEP 2b:** GS fixed leg `255faca2` @ $796.13 — `validate_stop_change.py --current-stop 796.13 --new-stop 719.38 --current-price 799.31` → exit 3 `stop_never_lowered` → HOLD fixed GS @ 796.13. **STEP 2c:** `expiring` → `[]`.
+
+**STEP 3:** GS `unrealized_plpc` -0.0964 (≤ -7%; $799.31, 0.40% above its fixed stop). `validate_order.py --symbol GS --qty 11 --side sell --price 799.31` → exit 0. `close_position.py --symbol GS` → exit 0 `close_submitted`, HTTP 200, stop `255faca2` canceled, market sell `76a9a42d` (`cl-20261120-GS`) filled 11 @ $798.52 at 17:05:12 UTC; rerun → `close_complete`, intent `cl-20261120-GS` → complete. Blotter: -$946.66 (-9.73%). **Rule 10: Financials streak 2 → BANNED, lifts 2026-12-18.** JPM stays on its stop (not force-sold).
+
+**STANDING LLY stop 1327.725 is 2.03% below P 1355.30 (rule 7: left, recorded).**
+
+**STEP 4:** `--print-required` 10 for all; all trails already 10 → nothing to tighten. WMT trail ratcheted to $117.468 (hwm $130.52). **STEP 5:** no other thesis broken (JPM -3.5%, sector-wide bank weakness, no company-specific negative). **STEP 6:** skipped.
+
+**Stops:** JPM 10% trail $295.443 (6.14%) · LLY 10% trail $1,327.725 (2.03%, standing) · TMO 10% trail $654.804 (3.45%) · WMT 10% trail $117.468 (9.42%) · XLP 10% trail $84.132 (8.16%). 5/5 one-for-one.
+
+**Live state (17:05 UTC):** equity $99,862.64, cash $25,248.25, LMV $74,614.39 → deployed **74.7%** (just under band); 5 positions. Week of 2026-11-16 entries 2/3.
+
+---
