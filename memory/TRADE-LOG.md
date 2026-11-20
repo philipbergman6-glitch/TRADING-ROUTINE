@@ -5048,3 +5048,22 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Live state (17:05 UTC):** equity $99,862.64, cash $25,248.25, LMV $74,614.39 → deployed **74.7%** (just under band); 5 positions. Week of 2026-11-16 entries 2/3.
 
 ---
+
+### Nov 20 — EOD Snapshot (Day 149, Friday)
+**Portfolio:** $99,321.52 | **Cash:** $25,248.25 (25.42%) | **Day P&L:** -$403.61 (-0.40%) | **Phase P&L:** -$678.48 (-0.68%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| JPM | 30 | $326.3133 | $311.355 | -2.77% | -$448.75 (-4.58%) | $295.443 (10% trail GTC, hwm $328.27) |
+| LLY | 10 | $1,400.98 | $1,352.09 | +0.07% | -$488.90 (-3.49%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| TMO | 15 | $696.57 | $673.695 | -2.19% | -$343.13 (-3.28%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $128.68 | +2.10% | +$210.60 (+1.16%) | $117.468 (10% trail GTC, hwm $130.52) |
+| XLP | 250 | $83.76 | $90.83 | +1.08% | +$1,767.50 (+8.44%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** SELL GS 11 @ $798.52 (midday -7% cut; realized -$946.66, -9.73%). **Week trades: 2/3** entries (week of 11/16: GS, JPM on 11/19). Blotter and TRADE-LOG agree.
+
+**Notes:** GS cut at midday for -$946.66 — Financials now BANNED until 2026-12-18 (rule 10, streak 2). Staples (WMT +2.1%, XLP +1.1%) cushioned a weak bank/tools tape (JPM -2.8%, TMO -2.2%). Day P&L is against the broker's 11/19 close of $99,725.13 (11/19 snapshot logged $99,706.39 from pre-close marks; reconcile diff 0.00). Marks ~20:10 UTC, before the close. Deployed 74.58% (LMV $74,073.27) — just under the 75–85% band; 5 positions. Protection 5/5 one-for-one, all 10% trails. Cushions: LLY 1.80% (nearest), TMO 2.80%, JPM 5.11%, XLP 7.37%, WMT 8.71%. Sectors: Consumer Staples ~41.4% (XLP + WMT), Health Care ~23.8% (LLY + TMO), Financials ~9.4% (JPM). blotter --check exit 0, reconcile RECONCILED exit 0 (151 sessions), coordinator status exit 0 — no holder, no non-terminal intents, no takeovers. Run record daily-summary-20261120T201013Z-9c5a5d.
+
+**Tomorrow:** Weekend. Monday: fresh 0/3 week; one session under band — consider one non-Financials, non-Energy refill if research supports it. Watch LLY (1.8%) and TMO (2.8%) cushions — let trails work, cut only at -7%. Energy banned until 2026-12-08, Financials until 2026-12-18.
+
+---
