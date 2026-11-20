@@ -9482,3 +9482,38 @@ Neither in `memory/SECTORS.json` yet — add before any entry.
 - No thesis broken; LLY stop now 2.11% below price (standing, rule 7).
 
 ---
+
+### 2026-11-20 — Pre-Market Research (Friday, post-selloff / UMich sentiment 10:00 / options expiry)
+
+### Account snapshot
+- **Equity $100,395.04** (`last_equity` $99,725.13, +$669.91/+0.67% on premarket marks) · **Cash $16,464.53** · Long MV $83,930.51 · `buying_power` $300,864 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **6 positions** (max): XLP 22.63% · WMT 18.26% · LLY 13.51% · TMO 10.33% · JPM 9.63% · GS 9.25%. Week trades **2/3** (week of 11/16).
+- Stops 6/6, one-for-one, qty matching: GS fixed $796.13 (OTO leg 255faca2) · JPM 10% trail $295.443 (hwm $328.27) · LLY 10% trail $1,327.725 (hwm $1,475.25) · TMO 10% trail $654.804 (hwm $727.56) · WMT 10% trail $116.856 (hwm $129.84) · XLP 10% trail $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261120T113312Z-ebd10c`.
+
+### Market context
+- **WTI ~$81.4 (-1.3%) · Brent ~$88.1 (-1.5%)**.
+- Thu close: **S&P 7,175.83 (-2.02%)**, Dow 49,097 (-2.19%), Nasdaq 23,879 (-2.25%) — reversal from +1.1% futures (hawkish Fed repricing, AI-funding skepticism post-Anthropic IPO). **ES ~7,175 (-0.3%)**, NQ -0.8%, YM flat at 03:29 ET. **VIX 28.44** (+15.8%).
+- Today: **UMich sentiment (final) 10:00 ET**; no CPI/PPI/FOMC/NFP; monthly opex. BMO earnings: BJ, FRO, IESC, RLX, WRD, MOG.A. FOMC 12/08–09; NFP 12/04; CPI 12/10; PPI 12/15.
+- Sector YTD (rule 9, thru 11/19): Energy +43.9% (**banned**, lifts 12/08), Health Care +26.1%, Info Tech +23.6%, Staples +21.1%, Real Estate +15.3%, Materials +12.8%, Industrials +12.0%, Financials +5.3%. Streaks: Financials 1, Health Care 1, Materials 1, Info Tech 3 (not banned).
+- Holdings: GS — $5 div ex 12/02. JPM — CFO succession; outage scrutiny. LLY — Calyxtrix Bio deal (up to $1.5B). WMT — beat but cautious guide; XLP rebalance sold WMT. TMO/XLP — no news. Premarket marks green on WMT/XLP/JPM/LLY/TMO; GS -0.4%.
+- Perplexity: all 10 queries succeeded (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (GS, JPM, LLY, TMO, WMT single names). Book full (6/6) and in band (83.6%) — ideas are **contingent on a slot opening** (most likely LLY stop at $1,327.725, 2.08% cushion). Info Tech (#3 YTD, unbanned) is the replacement sector; Staples (~40.9%) — no adds.
+1. **Microsoft (MSFT)** — Info Tech. Catalyst: AI/cloud leader down to $498.30 (-1.8%, sub-$500) in sector selloff, no company-specific negative. 19 sh, **stop $448.47 (10%)**, target $597.96 (2:1). `validate_order.py --symbol MSFT --qty 19 --side buy --price 498.30 --stop-price 448.47 --trades-this-week 2 --sector "Information Technology"` → **REFUSED exit 3** (max_positions 7>6; deployment 93%) — valid only after an exit.
+2. **Broadcom (AVGO)** — Info Tech. Catalyst: AI-networking demand (AMD/AVGO cited on AI-demand optimism); $346.65 close (-2.1%) after GS PT cut to $460 — still ~33% upside to that PT. 27 sh, **stop $311.99 (10%)**, target $415.97 (2:1). `validate_order.py ... AVGO --qty 27 ... --price 346.65 --stop-price 311.99` → **REFUSED exit 3** (same reasons). Both already in `memory/SECTORS.json`.
+
+### Risk factors
+- VIX ~28.4 after a -2% day; Fed-hike repricing and AI-funding worries; opex could amplify swings.
+- Concentration: Consumer Staples ~40.9% (XLP+WMT), Health Care ~23.8% (LLY+TMO), Financials ~18.9% (GS+JPM). XLP 22.6% over cap on drift only — no trim.
+- **STANDING LLY stop $1,327.725 is 2.08% below premarket $1,355.94 (rule 7: left, recorded).** Cushions: LLY 2.08%, TMO 5.31%, GS 5.67%, XLP 7.43%, JPM 8.30%, WMT 8.83%.
+- GS fixed stop: conversion needs GS ≥ ~$884.59 (now $844) — hold fixed.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **83.6**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-11-19. No mandate.
+
+### Decision
+**HOLD.** In band at 83.6%, 6/6 positions, 2/3 weekly entries, VIX ~28. No new entries; MSFT first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct.
+
+---
