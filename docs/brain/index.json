@@ -2584,7 +2584,7 @@
     "protection-monitor-20261114T005817Z-e81d32"
    ],
    "trade_log": [],
-   "week": null
+   "week": "2026-11-20"
   },
   "2026-11-16": {
    "fills": [],
@@ -2604,7 +2604,7 @@
     "trade/2026-11-16/midday-scan/1",
     "trade/2026-11-16/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-20"
   },
   "2026-11-17": {
    "fills": [],
@@ -2624,7 +2624,7 @@
     "trade/2026-11-17/midday-scan/1",
     "trade/2026-11-17/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-20"
   },
   "2026-11-18": {
    "fills": [
@@ -2654,7 +2654,7 @@
     "trade/2026-11-18/midday-cut/1",
     "trade/2026-11-18/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-20"
   },
   "2026-11-19": {
    "fills": [
@@ -2694,7 +2694,7 @@
     "trade/2026-11-19/midday-scan/1",
     "trade/2026-11-19/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-20"
   },
   "2026-11-20": {
    "fills": [
@@ -2716,7 +2716,7 @@
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1"
    ],
-   "week": null
+   "week": "2026-11-20"
   }
  },
  "entries": {
@@ -8539,7 +8539,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Monday, NVDA earnings Tue / WMT Q3 Thu)",
-   "week": null
+   "week": "2026-11-20"
   },
   "research/2026-11-17/pre-market-research/1": {
    "date": "2026-11-17",
@@ -8566,7 +8566,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Tuesday, NVDA earnings AMC / WMT Q3 Thu)",
-   "week": null
+   "week": "2026-11-20"
   },
   "research/2026-11-18/pre-market-research/1": {
    "date": "2026-11-18",
@@ -8593,7 +8593,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Wednesday, post-NVDA / FOMC minutes 14:00 / WMT Q3 Thu)",
-   "week": null
+   "week": "2026-11-20"
   },
   "research/2026-11-19/addendum/1": {
    "date": "2026-11-19",
@@ -8613,7 +8613,7 @@
     "WMT"
    ],
    "title": "Midday Addendum",
-   "week": null
+   "week": "2026-11-20"
   },
   "research/2026-11-19/pre-market-research/1": {
    "date": "2026-11-19",
@@ -8640,7 +8640,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Thursday, WMT Q3 BMO / Anthropic IPO debut / claims + Philly Fed 8:30)",
-   "week": null
+   "week": "2026-11-20"
   },
   "research/2026-11-20/pre-market-research/1": {
    "date": "2026-11-20",
@@ -8667,7 +8667,7 @@
     "XLP"
    ],
    "title": "Pre-Market Research (Friday, post-selloff / UMich sentiment 10:00 / options expiry)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
@@ -13981,7 +13981,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 145, Monday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-16/market-open-trades/1": {
    "date": "2026-11-16",
@@ -14001,7 +14001,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-16/midday-scan/1": {
    "date": "2026-11-16",
@@ -14019,7 +14019,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 145, Monday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-17/eod-snapshot/1": {
    "date": "2026-11-17",
@@ -14038,7 +14038,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 146, Tuesday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-17/market-open-trades/1": {
    "date": "2026-11-17",
@@ -14058,7 +14058,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-17/midday-scan/1": {
    "date": "2026-11-17",
@@ -14077,7 +14077,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 146, Tuesday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-18/eod-snapshot/1": {
    "date": "2026-11-18",
@@ -14096,7 +14096,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 147, Wednesday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-18/market-open-trades/1": {
    "date": "2026-11-18",
@@ -14115,7 +14115,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-18/midday-cut/1": {
    "date": "2026-11-18",
@@ -14134,7 +14134,7 @@
     "XLP"
    ],
    "title": "Midday Cut (Day 147, Wednesday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-19/eod-snapshot/1": {
    "date": "2026-11-19",
@@ -14153,7 +14153,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 148, Thursday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-19/market-open-trades/1": {
    "date": "2026-11-19",
@@ -14172,7 +14172,7 @@
     "XLP"
    ],
    "title": "Market-Open Trades (Day 148, Thursday, WMT Q3 BMO / Anthropic IPO debut)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-19/midday-scan/1": {
    "date": "2026-11-19",
@@ -14191,7 +14191,7 @@
     "XLP"
    ],
    "title": "Midday Scan (Day 148, Thursday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-20/eod-snapshot/1": {
    "date": "2026-11-20",
@@ -14210,7 +14210,7 @@
     "XLP"
    ],
    "title": "EOD Snapshot (Day 149, Friday)",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-20/market-open-trades/1": {
    "date": "2026-11-20",
@@ -14229,7 +14229,7 @@
     "XLP"
    ],
    "title": "Market-Open",
-   "week": null
+   "week": "2026-11-20"
   },
   "trade/2026-11-20/midday-cut/1": {
    "date": "2026-11-20",
@@ -14248,7 +14248,7 @@
     "XLP"
    ],
    "title": "Midday Cut (Day 149, Friday)",
-   "week": null
+   "week": "2026-11-20"
   }
  },
  "generated_from": {
@@ -14269,7 +14269,7 @@
     "eod_snapshots": 144
    },
    "memory/WEEKLY-REVIEW.md": {
-    "weeks": 29
+    "weeks": 30
    },
    "state/events.jsonl": {
     "intents": 31,
@@ -19352,7 +19352,8 @@
    ],
    "weeks": [
     "2026-05-29",
-    "2026-06-05"
+    "2026-06-05",
+    "2026-11-20"
    ]
   },
   "GEV": {
@@ -19772,7 +19773,9 @@
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1"
    ],
-   "weeks": []
+   "weeks": [
+    "2026-11-20"
+   ]
   },
   "JPM": {
    "decisions": [
@@ -19838,7 +19841,9 @@
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1"
    ],
-   "weeks": []
+   "weeks": [
+    "2026-11-20"
+   ]
   },
   "LLY": {
    "decisions": [
@@ -19970,7 +19975,8 @@
     "2026-10-23",
     "2026-10-30",
     "2026-11-06",
-    "2026-11-13"
+    "2026-11-13",
+    "2026-11-20"
    ]
   },
   "MPC": {
@@ -20220,7 +20226,8 @@
    "weeks": [
     "2026-10-30",
     "2026-11-06",
-    "2026-11-13"
+    "2026-11-13",
+    "2026-11-20"
    ]
   },
   "MSFT": {
@@ -20318,7 +20325,8 @@
    "weeks": [
     "2026-06-05",
     "2026-06-12",
-    "2026-07-31"
+    "2026-07-31",
+    "2026-11-20"
    ]
   },
   "MU": {
@@ -21391,7 +21399,8 @@
     "2026-10-23",
     "2026-10-30",
     "2026-11-06",
-    "2026-11-13"
+    "2026-11-13",
+    "2026-11-20"
    ]
   },
   "WMT": {
@@ -21523,7 +21532,8 @@
    ],
    "weeks": [
     "2026-11-06",
-    "2026-11-13"
+    "2026-11-13",
+    "2026-11-20"
    ]
   },
   "XLB": {
@@ -23359,7 +23369,8 @@
     "2026-10-23",
     "2026-10-30",
     "2026-11-06",
-    "2026-11-13"
+    "2026-11-13",
+    "2026-11-20"
    ]
   },
   "XOM": {
@@ -24221,6 +24232,34 @@
     "TMO",
     "WMT",
     "XLE",
+    "XLP"
+   ]
+  },
+  "2026-11-20": {
+   "closed_trades": [
+    "GS",
+    "MRK",
+    "WMT"
+   ],
+   "ending": "2026-11-20",
+   "grade": "C+",
+   "line": 2066,
+   "open_positions": [
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "symbols": [
+    "AVGO",
+    "GS",
+    "JPM",
+    "LLY",
+    "MRK",
+    "MSFT",
+    "TMO",
+    "WMT",
     "XLP"
    ]
   }
