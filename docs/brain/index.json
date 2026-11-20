@@ -2683,6 +2683,16 @@
     "trade/2026-11-19/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-20": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-20/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8608,6 +8618,33 @@
    "title": "Pre-Market Research (Thursday, WMT Q3 BMO / Anthropic IPO debut / claims + Philly Fed 8:30)",
    "week": null
   },
+  "research/2026-11-20/pre-market-research/1": {
+   "date": "2026-11-20",
+   "decision": [
+    "MSFT"
+   ],
+   "decision_text": "**HOLD.** In band at 83.6%, 6/6 positions, 2/3 weekly entries, VIX ~28. No new entries; MSFT first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-20/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9486,
+   "log": "research",
+   "note": "Friday, post-selloff / UMich sentiment 10:00 / options expiry",
+   "symbols": [
+    "AMD",
+    "AVGO",
+    "GS",
+    "JPM",
+    "LLY",
+    "MSFT",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Friday, post-selloff / UMich sentiment 10:00 / options expiry)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -14144,7 +14181,7 @@
     "round_trips": 23
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 227
+    "entries": 228
    },
    "memory/TRADE-LOG.md": {
     "entries": 320,
@@ -18713,7 +18750,8 @@
     "research/2026-11-02/pre-market-research/1",
     "research/2026-11-03/pre-market-research/1",
     "research/2026-11-04/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -18869,7 +18907,8 @@
     "research/2026-09-02/pre-market-research/1",
     "research/2026-09-03/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
-    "research/2026-11-13/pre-market-research/1"
+    "research/2026-11-13/pre-market-research/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -19299,7 +19338,8 @@
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
-    "research/2026-11-19/addendum/1"
+    "research/2026-11-19/addendum/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -19359,7 +19399,8 @@
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
-    "research/2026-11-19/addendum/1"
+    "research/2026-11-19/addendum/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [],
@@ -19429,7 +19470,8 @@
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
-    "research/2026-11-19/addendum/1"
+    "research/2026-11-19/addendum/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19761,7 +19803,8 @@
     "research/2026-06-08/pre-market-research/1",
     "research/2026-06-09/pre-market-research/1",
     "research/2026-07-22/pre-market-research/1",
-    "research/2026-07-29/pre-market-research/1"
+    "research/2026-07-29/pre-market-research/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "ideas": [
     "research/2026-05-26/pre-market-research/1",
@@ -19771,9 +19814,9 @@
    ],
    "intents": [],
    "last_decision": {
-    "date": "2026-07-29",
-    "entry": "research/2026-07-29/pre-market-research/1",
-    "text": "**HOLD — no new orders pre-market.** FOMC decision lands at 2pm ET today and MSFT/META report after close; VIX bid ~19-21. Worst possible window to force a value redeploy or pre-position. Week 0/3, no clean fresh base pre-market — patience. - **XLP / XLB / XLI:** HOLD. Leading value cohort, near flat-to-green, 7.8-9.3% above stops, theses intact YTD. No held name reports today. No action. - **Rede"
+    "date": "2026-11-20",
+    "entry": "research/2026-11-20/pre-market-research/1",
+    "text": "**HOLD.** In band at 83.6%, 6/6 positions, 2/3 weekly entries, VIX ~28. No new entries; MSFT first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct. ---"
    },
    "open_lots": [],
    "research": [
@@ -19804,7 +19847,8 @@
     "research/2026-10-26/pre-market-research/1",
     "research/2026-10-27/pre-market-research/1",
     "research/2026-10-28/pre-market-research/1",
-    "research/2026-10-29/pre-market-research/1"
+    "research/2026-10-29/pre-market-research/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -20824,7 +20868,8 @@
     "research/2026-11-16/pre-market-research/1",
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
-    "research/2026-11-19/pre-market-research/1"
+    "research/2026-11-19/pre-market-research/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20984,7 +21029,8 @@
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
-    "research/2026-11-19/addendum/1"
+    "research/2026-11-19/addendum/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -22594,7 +22640,8 @@
     "research/2026-11-16/pre-market-research/1",
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
-    "research/2026-11-19/pre-market-research/1"
+    "research/2026-11-19/pre-market-research/1",
+    "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
