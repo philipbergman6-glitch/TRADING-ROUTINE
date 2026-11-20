@@ -5014,3 +5014,15 @@ Equity **$103,212.71** (**+$322.52, +0.31%** vs broker `last_equity` $102,890.19
 **Tomorrow:** No new entries planned (in band, 1 entry left this week). Watch LLY (1.7% cushion — let the trail work, no manual cut unless -7%). Convert GS fixed stop to 10% trail once GS ≥ ~$884.59. Energy banned until 2026-12-08.
 
 ---
+
+### 2026-11-20 — Market-Open
+
+**No trades.** HOLD plan per today's RESEARCH-LOG: in band, 6/6 positions (max), 2/3 weekly entries, VIX ~28. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset). Run record `market-open-20261120T133342Z-2b2a09`. Run fired 13:33 UTC (08:33 ET, pre-open).
+
+**STEP 2b:** GS fixed leg `255faca2` @ $796.13 — `validate_stop_change.py --current-stop 796.13 --new-stop 754.65 --current-price 838.50` → exit 3 `stop_never_lowered` → **HOLD fixed GS @ 796.13** (rule 4 permitted protection). No other fixed legs. **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, 6/6 one-for-one, coordinator no holder / no non-terminal intents. **STEP 2c:** `deployment_status.py` exit 0 (`deployed_pct` 83.58, `sessions_under_band` 0, `mandate` false).
+
+**STANDING LLY stop 1327.725 is 1.77% below P 1351.69 (rule 7: left, recorded).**
+
+**Live state (13:34 UTC, premarket marks):** equity $100,296.43, cash $16,464.53, LMV $83,831.90 → deployed ~83.6% (in band). GS $838.50 (-5.21%) · JPM $318.56 (-2.38%) · LLY $1,351.69 (-3.52%) · TMO $699.00 (+0.35%) · WMT $127.90 (+0.55%) · XLP $91.04 (+8.69%).
+
+---
