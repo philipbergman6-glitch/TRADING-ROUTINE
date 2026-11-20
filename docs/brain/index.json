@@ -2671,12 +2671,24 @@
      "symbol": "JPM"
     }
    ],
-   "intents": [],
+   "intents": [
+    "en-20261119-GS",
+    "en-20261119-JPM",
+    "en-20261119-JPM-2",
+    "rs-255faca2-3ce4-4b7f-be17-9e41faa3b628",
+    "rs-a29d1fd2-cf6f-49e1-a3f5-836e77d219b0"
+   ],
    "research": [
     "research/2026-11-19/pre-market-research/1",
     "research/2026-11-19/addendum/1"
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261119T113306Z-cd5502",
+    "market-open-20261119T133324Z-344116",
+    "midday-20261119T170425Z-f8e055",
+    "daily-summary-20261119T201001Z-98bedb",
+    "protection-monitor-20261119T211455Z-b464e4"
+   ],
    "trade_log": [
     "trade/2026-11-19/market-open-trades/1",
     "trade/2026-11-19/midday-scan/1",
@@ -2685,7 +2697,15 @@
    "week": null
   },
   "2026-11-20": {
-   "fills": [],
+   "fills": [
+    {
+     "avg": "798.5200",
+     "pnl": "-946.66",
+     "qty": "11",
+     "side": "exit",
+     "symbol": "GS"
+    }
+   ],
    "intents": [],
    "research": [
     "research/2026-11-20/pre-market-research/1"
@@ -2693,7 +2713,8 @@
    "runs": [],
    "trade_log": [
     "trade/2026-11-20/market-open-trades/1",
-    "trade/2026-11-20/midday-cut/1"
+    "trade/2026-11-20/midday-cut/1",
+    "trade/2026-11-20/eod-snapshot/1"
    ],
    "week": null
   }
@@ -14172,6 +14193,25 @@
    "title": "Midday Scan (Day 148, Thursday)",
    "week": null
   },
+  "trade/2026-11-20/eod-snapshot/1": {
+   "date": "2026-11-20",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-20/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 5052,
+   "log": "trade",
+   "note": "Day 149, Friday",
+   "symbols": [
+    "GS",
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 149, Friday)",
+   "week": null
+  },
   "trade/2026-11-20/market-open-trades/1": {
    "date": "2026-11-20",
    "file": "memory/TRADE-LOG.md",
@@ -14212,31 +14252,31 @@
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-11-19 (UTC)",
+  "run_cutoff": "started before 2026-11-20 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
      "F"
     ],
-    "open_lots": 6,
-    "round_trips": 23
+    "open_lots": 5,
+    "round_trips": 24
    },
    "memory/RESEARCH-LOG.md": {
     "entries": 228
    },
    "memory/TRADE-LOG.md": {
-    "entries": 322,
-    "eod_snapshots": 143
+    "entries": 323,
+    "eod_snapshots": 144
    },
    "memory/WEEKLY-REVIEW.md": {
     "weeks": 29
    },
    "state/events.jsonl": {
-    "intents": 26,
-    "runs": 156
+    "intents": 31,
+    "runs": 161
    }
   },
-  "trade_log_asof": "2026-11-19"
+  "trade_log_asof": "2026-11-20"
  },
  "intents": {
   "cl-20261118-MRK": {
@@ -14640,6 +14680,116 @@
    "last_state": "filled",
    "symbol": "WMT"
   },
+  "en-20261119-GS": {
+   "action": "entry",
+   "first_at": "2026-11-19T14:36:10+00:00",
+   "history": [
+    {
+     "action": "entry",
+     "at": "2026-11-19T14:36:10+00:00",
+     "client_order_id": "en-20261119-GS",
+     "id": "c103b82b2bd9479b8149b8058b24aa34",
+     "lease": "f84d29ba2f504d229632a016cee6c10c",
+     "price": "884.57",
+     "qty": "11",
+     "sector": "Financials",
+     "state": "recorded",
+     "symbol": "GS",
+     "writer": "market-open-20261119T133324Z-344116"
+    },
+    {
+     "at": "2026-11-19T14:36:14+00:00",
+     "client_order_id": "en-20261119-GS",
+     "filled_qty": "0",
+     "id": "c7cbf51749f44763a56dd533ecf55a4c",
+     "lease": "f84d29ba2f504d229632a016cee6c10c",
+     "state": "acknowledged",
+     "writer": "market-open-20261119T133324Z-344116"
+    },
+    {
+     "at": "2026-11-19T14:36:41+00:00",
+     "client_order_id": "en-20261119-GS",
+     "filled_qty": "11",
+     "id": "a303c61d04ac4a3da71d7c847f8067dc",
+     "lease": "a0dd3e4bb69741f5bc0269a1d1c6d056",
+     "state": "filled",
+     "writer": "market-open-20261119T133324Z-344116"
+    }
+   ],
+   "intent": "en-20261119-GS",
+   "last_state": "filled",
+   "symbol": "GS"
+  },
+  "en-20261119-JPM": {
+   "action": "entry",
+   "first_at": "2026-11-19T14:38:12+00:00",
+   "history": [
+    {
+     "action": "entry",
+     "at": "2026-11-19T14:38:12+00:00",
+     "client_order_id": "en-20261119-JPM",
+     "id": "c835082c485c4f38805fa4f85ae33dba",
+     "lease": "27eb4669b92f4ea3be170887bbe1ad2b",
+     "price": "326.3",
+     "qty": "30",
+     "sector": "Financials",
+     "state": "recorded",
+     "symbol": "JPM",
+     "writer": "market-open-20261119T133324Z-344116"
+    },
+    {
+     "at": "2026-11-19T14:38:17+00:00",
+     "id": "67186b1d9a2249ea80765f512c0eb50e",
+     "lease": "27eb4669b92f4ea3be170887bbe1ad2b",
+     "reason": "not_landed",
+     "state": "dead",
+     "writer": "market-open-20261119T133324Z-344116"
+    }
+   ],
+   "intent": "en-20261119-JPM",
+   "last_state": "dead",
+   "symbol": "JPM"
+  },
+  "en-20261119-JPM-2": {
+   "action": "entry",
+   "first_at": "2026-11-19T14:38:29+00:00",
+   "history": [
+    {
+     "action": "entry",
+     "at": "2026-11-19T14:38:29+00:00",
+     "client_order_id": "en-20261119-JPM-2",
+     "id": "7a736ea5a8ba4ae2b6aced2542408e81",
+     "lease": "b4ed09e7bdc5476d8e2c34e7ec9076b0",
+     "price": "326.56",
+     "qty": "30",
+     "sector": "Financials",
+     "state": "recorded",
+     "symbol": "JPM",
+     "writer": "market-open-20261119T133324Z-344116"
+    },
+    {
+     "at": "2026-11-19T14:38:34+00:00",
+     "client_order_id": "en-20261119-JPM-2",
+     "filled_qty": "0",
+     "id": "c96875e0b7c14abd883774d46066aa3c",
+     "lease": "b4ed09e7bdc5476d8e2c34e7ec9076b0",
+     "state": "acknowledged",
+     "writer": "market-open-20261119T133324Z-344116"
+    },
+    {
+     "at": "2026-11-19T14:39:05+00:00",
+     "client_order_id": "en-20261119-JPM-2",
+     "filled_qty": "30",
+     "id": "7d3e00b8e3324ee49a1f484f3be8a18e",
+     "lease": "d71288f219b5435da448f384ce818d6d",
+     "state": "filled",
+     "writer": "market-open-20261119T133324Z-344116"
+    }
+   ],
+   "intent": "en-20261119-JPM-2",
+   "last_state": "filled",
+   "symbol": "JPM"
+  },
   "rs-1fed8260-db64-4d12-a3ac-a7a3f75fb484": {
    "action": "replace_stop",
    "first_at": "2026-10-22T17:05:36+00:00",
@@ -14669,6 +14819,27 @@
    "intent": "rs-1fed8260-db64-4d12-a3ac-a7a3f75fb484",
    "last_state": "complete",
    "symbol": "XLP"
+  },
+  "rs-255faca2-3ce4-4b7f-be17-9e41faa3b628": {
+   "action": "replace_stop",
+   "first_at": "2026-11-19T14:36:43+00:00",
+   "history": [
+    {
+     "action": "replace_stop",
+     "at": "2026-11-19T14:36:43+00:00",
+     "id": "6d1fc10fcbb54b398c129bccb49d673e",
+     "lease": "a0dd3e4bb69741f5bc0269a1d1c6d056",
+     "reasons": [
+      "stop_never_lowered: stop may never move down: 796.13 -> 795.168"
+     ],
+     "state": "refused",
+     "symbol": "GS",
+     "writer": "market-open-20261119T133324Z-344116"
+    }
+   ],
+   "intent": "rs-255faca2-3ce4-4b7f-be17-9e41faa3b628",
+   "last_state": "refused",
+   "symbol": "GS"
   },
   "rs-3e064925-0851-4011-aa49-ccc1a6bbc1fa": {
    "action": "replace_stop",
@@ -14852,6 +15023,36 @@
    "intent": "rs-97efb864-d656-402d-92c4-019c870ba1b4",
    "last_state": "complete",
    "symbol": "LLY"
+  },
+  "rs-a29d1fd2-cf6f-49e1-a3f5-836e77d219b0": {
+   "action": "replace_stop",
+   "first_at": "2026-11-19T14:39:06+00:00",
+   "history": [
+    {
+     "action": "replace_stop",
+     "at": "2026-11-19T14:39:06+00:00",
+     "cancels": [
+      "a29d1fd2-cf6f-49e1-a3f5-836e77d219b0"
+     ],
+     "client_order_id": "rs-a29d1fd2-cf6f-49e1-a3f5-836e77d219b0",
+     "id": "12760af1f4d34204be14b073eccd9109",
+     "lease": "d71288f219b5435da448f384ce818d6d",
+     "state": "recorded",
+     "symbol": "JPM",
+     "writer": "market-open-20261119T133324Z-344116"
+    },
+    {
+     "at": "2026-11-19T14:39:12+00:00",
+     "client_order_id": "rs-a29d1fd2-cf6f-49e1-a3f5-836e77d219b0",
+     "id": "cb8c05be923e49d68993f4201f08180d",
+     "lease": "d71288f219b5435da448f384ce818d6d",
+     "state": "complete",
+     "writer": "market-open-20261119T133324Z-344116"
+    }
+   ],
+   "intent": "rs-a29d1fd2-cf6f-49e1-a3f5-836e77d219b0",
+   "last_state": "complete",
+   "symbol": "JPM"
   },
   "rs-e138322d-a9c9-4f04-9e55-16c4d1ad1a1d": {
    "action": "replace_stop",
@@ -15423,6 +15624,46 @@
    "source": "run",
    "symbol": "WMT",
    "text": "replace_stop WMT fixed->10% trail refused: stop_never_lowered 114.84 -> 114.498 (fixed leg held)"
+  },
+  {
+   "at": "2026-11-19T14:36:43+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261119T133324Z-344116",
+   "source": "intent",
+   "symbol": "GS",
+   "text": "stop_never_lowered: stop may never move down: 796.13 -> 795.168"
+  },
+  {
+   "at": "2026-11-19T14:40:11+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261119T133324Z-344116",
+   "source": "run",
+   "symbol": "GS",
+   "text": "GS trail conversion refused stop_never_lowered 796.13 -> 795.168 (fixed held)"
+  },
+  {
+   "at": "2026-11-19T14:40:11+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261119T133324Z-344116",
+   "source": "run",
+   "symbol": "JPM",
+   "text": "JPM first submit_entry exit 3 not_landed (en-20261119-JPM, nothing sent)"
+  },
+  {
+   "at": "2026-11-19T17:05:14+00:00",
+   "routine": "midday",
+   "run": "midday-20261119T170425Z-f8e055",
+   "source": "run",
+   "symbol": "GS",
+   "text": "GS fixed->trail conversion refused stop_never_lowered (796.13 -> 763.20); held fixed"
+  },
+  {
+   "at": "2026-11-19T21:14:57+00:00",
+   "routine": "protection-monitor",
+   "run": "protection-monitor-20261119T211455Z-b464e4",
+   "source": "run",
+   "symbol": "GS",
+   "text": "GS: HOLD fixed 796.13: stop_never_lowered: stop may never move down: 796.13 -> 762.777"
   }
  ],
  "runs": {
@@ -15957,6 +16198,25 @@
    "rulebook_version": "v1.3",
    "run": "daily-summary-20261118T201016Z-d369b2",
    "started_at": "2026-11-18T20:10:16+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "daily-summary-20261119T201001Z-98bedb": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "437e6358e94d7ea14c19bd5d21f38bc7d117029b",
+   "ended_at": "2026-11-19T20:10:52+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261119T201001Z-98bedb",
+   "started_at": "2026-11-19T20:10:01+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -16502,6 +16762,41 @@
    "symbols": [],
    "trigger": "cloud"
   },
+  "market-open-20261119T133324Z-344116": {
+   "actions": [
+    "BUY GS 11 @ 884.58 OTO (fixed leg 796.13)",
+    "BUY JPM 30 @ 326.31 OTO",
+    "JPM fixed leg 293.68 -> 10% trail (e6c015c9)"
+   ],
+   "code_dirty": false,
+   "code_sha": "0dfe47cf546a41447a86b58ec3f86f439723ffd8",
+   "ended_at": "2026-11-19T14:40:11+00:00",
+   "incidents": [
+    "Process deviation: reran submit_entry after exit 3 refusal for JPM instead of skipping; minted en-20261119-JPM-2, filled once, no duplicate"
+   ],
+   "intents": [
+    "en-20261119-GS",
+    "en-20261119-JPM",
+    "en-20261119-JPM-2"
+   ],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "incident",
+   "refusals": [
+    "GS trail conversion refused stop_never_lowered 796.13 -> 795.168 (fixed held)",
+    "JPM first submit_entry exit 3 not_landed (en-20261119-JPM, nothing sent)"
+   ],
+   "routine": "market-open",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "market-open-20261119T133324Z-344116",
+   "started_at": "2026-11-19T13:33:24+00:00",
+   "symbols": [
+    "GS",
+    "JPM"
+   ],
+   "trigger": "cloud"
+  },
   "midday-20261019T171051Z-67d107": {
    "actions": [],
    "code_dirty": false,
@@ -16963,6 +17258,29 @@
    "started_at": "2026-11-18T17:04:38+00:00",
    "symbols": [
     "MRK"
+   ],
+   "trigger": "cloud"
+  },
+  "midday-20261119T170425Z-f8e055": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "33a220513cc81ddbb339e4e10640f03886409a63",
+   "ended_at": "2026-11-19T17:05:14+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "refused",
+   "refusals": [
+    "GS fixed->trail conversion refused stop_never_lowered (796.13 -> 763.20); held fixed"
+   ],
+   "routine": "midday",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "midday-20261119T170425Z-f8e055",
+   "started_at": "2026-11-19T17:04:25+00:00",
+   "symbols": [
+    "GS"
    ],
    "trigger": "cloud"
   },
@@ -17510,6 +17828,25 @@
    "rulebook_version": "v1.3",
    "run": "pre-market-20261118T113302Z-2fb453",
    "started_at": "2026-11-18T11:33:02+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "pre-market-20261119T113306Z-cd5502": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "0388dbef947abd271c05e1a70af15af14574d140",
+   "ended_at": "2026-11-19T11:34:33+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261119T113306Z-cd5502",
+   "started_at": "2026-11-19T11:33:06+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -18554,6 +18891,29 @@
    "symbols": [],
    "trigger": "schedule"
   },
+  "protection-monitor-20261119T211455Z-b464e4": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "cbd618ad5cf0ab993bd75ec7fa196f1a46b247c2",
+   "ended_at": "2026-11-19T21:14:57+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "refused",
+   "refusals": [
+    "GS: HOLD fixed 796.13: stop_never_lowered: stop may never move down: 796.13 -> 762.777"
+   ],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261119T211455Z-b464e4",
+   "started_at": "2026-11-19T21:14:55+00:00",
+   "symbols": [
+    "GS"
+   ],
+   "trigger": "schedule"
+  },
   "weekly-review-20261016T210306Z-6aa915": {
    "actions": [],
    "code_dirty": false,
@@ -19353,23 +19713,16 @@
    "ideas": [
     "research/2026-05-02/pre-market-research/1"
    ],
-   "intents": [],
+   "intents": [
+    "en-20261119-GS",
+    "rs-255faca2-3ce4-4b7f-be17-9e41faa3b628"
+   ],
    "last_decision": {
     "date": "2026-11-19",
     "entry": "research/2026-11-19/pre-market-research/1",
     "text": "**HOLD — refill-ready.** Under band at 64.4% (streak 1); no mandate. GS is the first add at market-open if WMT print and open are orderly (VIX easing ~22); JPM second. Add both to SECTORS.json before entry. No stop changes; all 4 stops active and correct. ---"
    },
-   "open_lots": [
-    {
-     "avg_in": "884.5800",
-     "entered": "2026-11-19T14:36:29.039441+00:00",
-     "entry_order_ids": [
-      "a7a61a91-a2b2-47ab-af1a-545444795517"
-     ],
-     "qty": "11",
-     "symbol": "GS"
-    }
-   ],
+   "open_lots": [],
    "research": [
     "research/2026-05-02/pre-market-research/1",
     "research/2026-07-13/pre-market-research/1",
@@ -19382,8 +19735,29 @@
     "research/2026-11-19/addendum/1",
     "research/2026-11-20/pre-market-research/1"
    ],
-   "round_trips": [],
-   "runs": [],
+   "round_trips": [
+    {
+     "avg_in": "884.5800",
+     "avg_out": "798.5200",
+     "entered": "2026-11-19T14:36:29.039441+00:00",
+     "entry_order_ids": [
+      "a7a61a91-a2b2-47ab-af1a-545444795517"
+     ],
+     "exit_order_ids": [
+      "76a9a42d-8b10-462c-bf9c-f341ddd67655"
+     ],
+     "exited": "2026-11-20T17:05:12.280037+00:00",
+     "pnl": "-946.66",
+     "pnl_pct": "-9.73",
+     "qty": "11",
+     "symbol": "GS"
+    }
+   ],
+   "runs": [
+    "market-open-20261119T133324Z-344116",
+    "midday-20261119T170425Z-f8e055",
+    "protection-monitor-20261119T211455Z-b464e4"
+   ],
    "sector": "Financials",
    "trade_log": [
     "trade/2026-11-16/market-open-trades/1",
@@ -19395,7 +19769,8 @@
     "trade/2026-11-19/midday-scan/1",
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
-    "trade/2026-11-20/midday-cut/1"
+    "trade/2026-11-20/midday-cut/1",
+    "trade/2026-11-20/eod-snapshot/1"
    ],
    "weeks": []
   },
@@ -19411,7 +19786,11 @@
     "research/2026-06-08/pre-market-research/1",
     "research/2026-06-25/pre-market-research/1"
    ],
-   "intents": [],
+   "intents": [
+    "en-20261119-JPM",
+    "en-20261119-JPM-2",
+    "rs-a29d1fd2-cf6f-49e1-a3f5-836e77d219b0"
+   ],
    "last_decision": {
     "date": "2026-11-19",
     "entry": "research/2026-11-19/pre-market-research/1",
@@ -19446,7 +19825,9 @@
     "research/2026-11-20/pre-market-research/1"
    ],
    "round_trips": [],
-   "runs": [],
+   "runs": [
+    "market-open-20261119T133324Z-344116"
+   ],
    "sector": "Financials",
    "trade_log": [
     "trade/2026-06-25/market-open-trades/1",
@@ -19454,7 +19835,8 @@
     "trade/2026-11-19/midday-scan/1",
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
-    "trade/2026-11-20/midday-cut/1"
+    "trade/2026-11-20/midday-cut/1",
+    "trade/2026-11-20/eod-snapshot/1"
    ],
    "weeks": []
   },
@@ -19581,7 +19963,8 @@
     "trade/2026-11-19/midday-scan/1",
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
-    "trade/2026-11-20/midday-cut/1"
+    "trade/2026-11-20/midday-cut/1",
+    "trade/2026-11-20/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -21001,7 +21384,8 @@
     "trade/2026-11-19/midday-scan/1",
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
-    "trade/2026-11-20/midday-cut/1"
+    "trade/2026-11-20/midday-cut/1",
+    "trade/2026-11-20/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -21134,7 +21518,8 @@
     "trade/2026-11-19/midday-scan/1",
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
-    "trade/2026-11-20/midday-cut/1"
+    "trade/2026-11-20/midday-cut/1",
+    "trade/2026-11-20/eod-snapshot/1"
    ],
    "weeks": [
     "2026-11-06",
@@ -22951,7 +23336,8 @@
     "trade/2026-11-19/midday-scan/1",
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
-    "trade/2026-11-20/midday-cut/1"
+    "trade/2026-11-20/midday-cut/1",
+    "trade/2026-11-20/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
