@@ -5067,3 +5067,17 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Tomorrow:** Weekend. Monday: fresh 0/3 week; one session under band — consider one non-Financials, non-Energy refill if research supports it. Watch LLY (1.8%) and TMO (2.8%) cushions — let trails work, cut only at -7%. Energy banned until 2026-12-08, Financials until 2026-12-18.
 
 ---
+
+### 2026-11-23 — Market-Open
+
+**No trades.** Planned DUK refill (70 sh, Utilities) approved by the risk engine but **refused at submit**: `submit_entry.py --symbol DUK --qty 70 --price 129.78` → exit 3 `{"state": "refused", "client_order_id": "en-20261123-DUK", "intent": "en-20261123-DUK", "reason": "quote must be no more than 60 seconds old", "refusal_recorded": true}`. Run fired 13:34 UTC (08:34 ET, pre-open); latest DUK quote was Friday's 21:00 UTC print (bid $123.45 / ask $137.05). Skipped per STEP 4. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset). Run record `market-open-20261123T133401Z-9a568c`.
+
+**Discretionary, not mandated.** `deployment_status.py` exit 0 (`deployed_pct` 74.63, `sessions_under_band` 1, `mandate` false, `target_notional` $5,347). Rule 10: `blotter.py --sector-streaks` exit 0, Utilities `banned: false`, streak 0. DUK added to `memory/SECTORS.json` (Utilities). Rule 14 lapsed (JPM/LLY/TMO/WMT single names). `validate_order.py --symbol DUK --qty 70 --side buy --price 129.78 --stop-price 116.80 --sector "Utilities"` → exit 0 approved, notional $9,084.60 (P = 11/20 SIP close $129.78).
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, 5/5 one-for-one.
+
+**STANDING LLY stop 1327.725 is 2.01% below P 1354.96 (rule 7: left, recorded).**
+
+**Live state (13:34 UTC, premarket marks):** equity $99,500.04, cash $25,248.05, LMV $74,251.99 → deployed ~74.6% (just under band, streak 1). JPM $314.00 (-3.77%) · LLY $1,354.96 (-3.29%) · TMO $680.46 (-2.31%) · WMT $128.50 (+1.02%) · XLP $90.80 (+8.41%). Week of 11/23 entries 0/3. DUK refill remains the plan for the next session with a fresh quote; SO alternate.
+
+---

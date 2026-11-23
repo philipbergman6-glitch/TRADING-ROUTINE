@@ -2,6 +2,7 @@
   "_note": "GICS sector per traded symbol, recorded by the routine before entry. Sector ETFs carry their own sector. Required by v2 rules 3 and 10; a symbol missing here is refused, not guessed.",
   "AMD": "Information Technology",
   "AVGO": "Information Technology",
+  "DUK": "Utilities",
   "F": "Consumer Discretionary",
   "GEV": "Industrials",
   "GOOGL": "Communication Services",
