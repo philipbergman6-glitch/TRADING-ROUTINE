@@ -2725,7 +2725,9 @@
     "research/2026-11-23/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-11-23/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -8358,6 +8360,7 @@
    "log": "research",
    "note": "Thursday, post-midterm rally / jobless claims / COP+CI+KMB+ZTS BMO",
    "symbols": [
+    "DUK",
     "LLY",
     "MRK",
     "SLB",
@@ -8681,7 +8684,9 @@
   },
   "research/2026-11-23/pre-market-research/1": {
    "date": "2026-11-23",
-   "decision": [],
+   "decision": [
+    "DUK"
+   ],
    "decision_text": "**HOLD — refill-ready.** Just under band (74.7%, streak 1); no mandate. DUK is the first add at market-open if the open is orderly (VIX easing toward <30) — add DUK to SECTORS.json first; SO is the alternate. No stop changes; all 5 stops active and correct. ---",
    "file": "memory/RESEARCH-LOG.md",
    "id": "research/2026-11-23/pre-market-research/1",
@@ -8692,6 +8697,7 @@
    "note": "Monday, relief bounce after Friday rout / Core PCE Wed / Thanksgiving week",
    "symbols": [
     "AVGO",
+    "DUK",
     "JPM",
     "LLY",
     "MSFT",
@@ -14282,6 +14288,25 @@
    ],
    "title": "Midday Cut (Day 149, Friday)",
    "week": "2026-11-20"
+  },
+  "trade/2026-11-23/market-open-trades/1": {
+   "date": "2026-11-23",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-23/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 5071,
+   "log": "trade",
+   "note": "",
+   "symbols": [
+    "DUK",
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Market-Open",
+   "week": null
   }
  },
  "generated_from": {
@@ -14298,7 +14323,7 @@
     "entries": 229
    },
    "memory/TRADE-LOG.md": {
-    "entries": 323,
+    "entries": 324,
     "eod_snapshots": 144
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -19390,6 +19415,30 @@
     "2026-11-20"
    ]
   },
+  "DUK": {
+   "decisions": [
+    "research/2026-11-23/pre-market-research/1"
+   ],
+   "ideas": [],
+   "intents": [],
+   "last_decision": {
+    "date": "2026-11-23",
+    "entry": "research/2026-11-23/pre-market-research/1",
+    "text": "**HOLD — refill-ready.** Just under band (74.7%, streak 1); no mandate. DUK is the first add at market-open if the open is orderly (VIX easing toward <30) — add DUK to SECTORS.json first; SO is the alternate. No stop changes; all 5 stops active and correct. ---"
+   },
+   "open_lots": [],
+   "research": [
+    "research/2026-11-05/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
+   ],
+   "round_trips": [],
+   "runs": [],
+   "sector": "Utilities",
+   "trade_log": [
+    "trade/2026-11-23/market-open-trades/1"
+   ],
+   "weeks": []
+  },
   "GEV": {
    "decisions": [
     "research/2026-10-05/pre-market-research/1",
@@ -19874,7 +19923,8 @@
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
-    "trade/2026-11-20/eod-snapshot/1"
+    "trade/2026-11-20/eod-snapshot/1",
+    "trade/2026-11-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-11-20"
@@ -20005,7 +20055,8 @@
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
-    "trade/2026-11-20/eod-snapshot/1"
+    "trade/2026-11-20/eod-snapshot/1",
+    "trade/2026-11-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -21431,7 +21482,8 @@
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
-    "trade/2026-11-20/eod-snapshot/1"
+    "trade/2026-11-20/eod-snapshot/1",
+    "trade/2026-11-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -21567,7 +21619,8 @@
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
-    "trade/2026-11-20/eod-snapshot/1"
+    "trade/2026-11-20/eod-snapshot/1",
+    "trade/2026-11-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-11-06",
@@ -23387,7 +23440,8 @@
     "trade/2026-11-19/eod-snapshot/1",
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
-    "trade/2026-11-20/eod-snapshot/1"
+    "trade/2026-11-20/eod-snapshot/1",
+    "trade/2026-11-23/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
