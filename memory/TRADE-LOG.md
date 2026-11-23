@@ -5081,3 +5081,22 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Live state (13:34 UTC, premarket marks):** equity $99,500.04, cash $25,248.05, LMV $74,251.99 → deployed ~74.6% (just under band, streak 1). JPM $314.00 (-3.77%) · LLY $1,354.96 (-3.29%) · TMO $680.46 (-2.31%) · WMT $128.50 (+1.02%) · XLP $90.80 (+8.41%). Week of 11/23 entries 0/3. DUK refill remains the plan for the next session with a fresh quote; SO alternate.
 
 ---
+
+### Nov 23 — EOD Snapshot (Day 150, Monday)
+**Portfolio:** $99,843.14 | **Cash:** $25,248.05 (25.29%) | **Day P&L:** +$853.14 (+0.86%) | **Phase P&L:** -$156.86 (-0.16%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| JPM | 30 | $326.3133 | $317.68 | +2.30% | -$259.00 (-2.65%) | $295.443 (10% trail GTC, hwm $328.27) |
+| LLY | 10 | $1,400.98 | $1,361.63 | +1.08% | -$393.50 (-2.81%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| TMO | 15 | $696.57 | $687.93 | +2.75% | -$129.60 (-1.24%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $129.28 | +1.04% | +$296.40 (+1.63%) | $117.468 (10% trail GTC, hwm $130.52) |
+| XLP | 250 | $83.76 | $90.57 | +0.12% | +$1,702.50 (+8.13%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** none (DUK refill refused at market-open on a stale pre-open quote). **Week trades: 0/3** entries (week of 11/23). Blotter and TRADE-LOG agree.
+
+**Notes:** Broad rebound day — all five positions green, led by TMO (+2.7%) and JPM (+2.3%); phase P&L nearly back to flat. Day P&L is against the broker's 11/20 close of $98,990.00 (11/20 snapshot logged $99,321.52 from pre-close marks; reconcile diff 0.00). Marks ~20:10 UTC, before the close. Deployed 74.71% (LMV $74,595.09) — still just under the 75–85% band (second session under); 5 positions. Protection 5/5 one-for-one, all 10% trails. Cushions: LLY 2.49% (nearest), TMO 4.82%, JPM 7.00%, XLP 7.11%, WMT 9.14%. Sectors: Consumer Staples ~41.2% (XLP + WMT), Health Care ~23.97% (LLY + TMO), Financials ~9.5% (JPM). blotter --check exit 0, reconcile RECONCILED exit 0 (152 sessions), coordinator status exit 0 — no holder, no non-terminal intents, no takeovers. Run record daily-summary-20261123T201010Z-67a9f1.
+
+**Tomorrow:** Retry the DUK refill (Utilities, ~70 sh) at market-open with a fresh quote, SO alternate — brings deployment back into band. Watch LLY (2.5% cushion), let trails work, cut only at -7%. Energy banned until 2026-12-08, Financials until 2026-12-18.
+
+---
