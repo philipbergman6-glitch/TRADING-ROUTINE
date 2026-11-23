@@ -2706,11 +2706,20 @@
      "symbol": "GS"
     }
    ],
-   "intents": [],
+   "intents": [
+    "cl-20261120-GS"
+   ],
    "research": [
     "research/2026-11-20/pre-market-research/1"
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261120T113312Z-ebd10c",
+    "market-open-20261120T133342Z-2b2a09",
+    "midday-20261120T170431Z-6e8a77",
+    "daily-summary-20261120T201013Z-9c5a5d",
+    "protection-monitor-20261120T205745Z-18a6ff",
+    "weekly-review-20261120T210248Z-362707"
+   ],
    "trade_log": [
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
@@ -2726,7 +2735,8 @@
    ],
    "runs": [],
    "trade_log": [
-    "trade/2026-11-23/market-open-trades/1"
+    "trade/2026-11-23/market-open-trades/1",
+    "trade/2026-11-23/eod-snapshot/1"
    ],
    "week": null
   }
@@ -14289,6 +14299,25 @@
    "title": "Midday Cut (Day 149, Friday)",
    "week": "2026-11-20"
   },
+  "trade/2026-11-23/eod-snapshot/1": {
+   "date": "2026-11-23",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-23/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 5085,
+   "log": "trade",
+   "note": "Day 150, Monday",
+   "symbols": [
+    "DUK",
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 150, Monday)",
+   "week": null
+  },
   "trade/2026-11-23/market-open-trades/1": {
    "date": "2026-11-23",
    "file": "memory/TRADE-LOG.md",
@@ -14310,7 +14339,7 @@
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-11-20 (UTC)",
+  "run_cutoff": "started before 2026-11-23 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
@@ -14323,18 +14352,18 @@
     "entries": 229
    },
    "memory/TRADE-LOG.md": {
-    "entries": 324,
-    "eod_snapshots": 144
+    "entries": 325,
+    "eod_snapshots": 145
    },
    "memory/WEEKLY-REVIEW.md": {
     "weeks": 30
    },
    "state/events.jsonl": {
-    "intents": 31,
-    "runs": 161
+    "intents": 32,
+    "runs": 167
    }
   },
-  "trade_log_asof": "2026-11-20"
+  "trade_log_asof": "2026-11-23"
  },
  "intents": {
   "cl-20261118-MRK": {
@@ -14374,6 +14403,44 @@
    "intent": "cl-20261118-MRK",
    "last_state": "complete",
    "symbol": "MRK"
+  },
+  "cl-20261120-GS": {
+   "action": "close",
+   "first_at": "2026-11-20T17:05:06+00:00",
+   "history": [
+    {
+     "action": "close",
+     "at": "2026-11-20T17:05:06+00:00",
+     "cancels": [
+      "255faca2-3ce4-4b7f-be17-9e41faa3b628"
+     ],
+     "client_order_id": "cl-20261120-GS",
+     "id": "5632ac9906e343e29f956085c61337fb",
+     "lease": "64382f89bbaa4363a6411bbf12ab6034",
+     "state": "recorded",
+     "symbol": "GS",
+     "writer": "midday-20261120T170431Z-6e8a77"
+    },
+    {
+     "at": "2026-11-20T17:05:11+00:00",
+     "client_order_id": "cl-20261120-GS",
+     "id": "bc3192b3d46b4ab88e9c06df26c85ccb",
+     "lease": "64382f89bbaa4363a6411bbf12ab6034",
+     "state": "acknowledged",
+     "writer": "midday-20261120T170431Z-6e8a77"
+    },
+    {
+     "at": "2026-11-20T17:05:37+00:00",
+     "client_order_id": "cl-20261120-GS",
+     "id": "5c6cca607a034bdba9356c0e70da0e36",
+     "lease": "fd8c4fa0a109452ab6c1ab3aaad170c2",
+     "state": "complete",
+     "writer": "midday-20261120T170431Z-6e8a77"
+    }
+   ],
+   "intent": "cl-20261120-GS",
+   "last_state": "complete",
+   "symbol": "GS"
   },
   "en-20261019-GEV": {
    "action": "entry",
@@ -15722,6 +15789,38 @@
    "source": "run",
    "symbol": "GS",
    "text": "GS: HOLD fixed 796.13: stop_never_lowered: stop may never move down: 796.13 -> 762.777"
+  },
+  {
+   "at": "2026-11-20T11:35:01+00:00",
+   "routine": "pre-market",
+   "run": "pre-market-20261120T113312Z-ebd10c",
+   "source": "run",
+   "symbol": "AVGO",
+   "text": "validate_order AVGO 27 buy (idea check): max_positions, max_deployment_pct"
+  },
+  {
+   "at": "2026-11-20T11:35:01+00:00",
+   "routine": "pre-market",
+   "run": "pre-market-20261120T113312Z-ebd10c",
+   "source": "run",
+   "symbol": "MSFT",
+   "text": "validate_order MSFT 19 buy (idea check): max_positions, max_deployment_pct"
+  },
+  {
+   "at": "2026-11-20T13:34:30+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261120T133342Z-2b2a09",
+   "source": "run",
+   "symbol": "GS",
+   "text": "GS fixed->trail conversion: stop_never_lowered (HOLD fixed 796.13)"
+  },
+  {
+   "at": "2026-11-20T17:06:17+00:00",
+   "routine": "midday",
+   "run": "midday-20261120T170431Z-6e8a77",
+   "source": "run",
+   "symbol": "GS",
+   "text": "GS fixed stop trail conversion refused stop_never_lowered (held)"
   }
  ],
  "runs": {
@@ -16275,6 +16374,25 @@
    "rulebook_version": "v1.3",
    "run": "daily-summary-20261119T201001Z-98bedb",
    "started_at": "2026-11-19T20:10:01+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "daily-summary-20261120T201013Z-9c5a5d": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "47b04cbc755427a37d6b8dc86eaa8a91652bab05",
+   "ended_at": "2026-11-20T20:11:07+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261120T201013Z-9c5a5d",
+   "started_at": "2026-11-20T20:10:13+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -16855,6 +16973,29 @@
    ],
    "trigger": "cloud"
   },
+  "market-open-20261120T133342Z-2b2a09": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "92dc9238bf6b77e8151b4d30f5caba9f9755ae62",
+   "ended_at": "2026-11-20T13:34:30+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "refused",
+   "refusals": [
+    "GS fixed->trail conversion: stop_never_lowered (HOLD fixed 796.13)"
+   ],
+   "routine": "market-open",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "market-open-20261120T133342Z-2b2a09",
+   "started_at": "2026-11-20T13:33:42+00:00",
+   "symbols": [
+    "GS"
+   ],
+   "trigger": "cloud"
+  },
   "midday-20261019T171051Z-67d107": {
    "actions": [],
    "code_dirty": false,
@@ -17337,6 +17478,33 @@
    "rulebook_version": "v1.3",
    "run": "midday-20261119T170425Z-f8e055",
    "started_at": "2026-11-19T17:04:25+00:00",
+   "symbols": [
+    "GS"
+   ],
+   "trigger": "cloud"
+  },
+  "midday-20261120T170431Z-6e8a77": {
+   "actions": [
+    "SELL GS 11 @ 798.52 market (cut at -7%, close_position cl-20261120-GS)"
+   ],
+   "code_dirty": false,
+   "code_sha": "e2da34f6d0fce1b8df447a542dd315108184e409",
+   "ended_at": "2026-11-20T17:06:17+00:00",
+   "incidents": [],
+   "intents": [
+    "cl-20261120-GS"
+   ],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "actions",
+   "refusals": [
+    "GS fixed stop trail conversion refused stop_never_lowered (held)"
+   ],
+   "routine": "midday",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "midday-20261120T170431Z-6e8a77",
+   "started_at": "2026-11-20T17:04:31+00:00",
    "symbols": [
     "GS"
    ],
@@ -17906,6 +18074,31 @@
    "run": "pre-market-20261119T113306Z-cd5502",
    "started_at": "2026-11-19T11:33:06+00:00",
    "symbols": [],
+   "trigger": "cloud"
+  },
+  "pre-market-20261120T113312Z-ebd10c": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "89a8ba0662c144626c400ccb7ff799c70761c96b",
+   "ended_at": "2026-11-20T11:35:01+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "refused",
+   "refusals": [
+    "validate_order MSFT 19 buy (idea check): max_positions, max_deployment_pct",
+    "validate_order AVGO 27 buy (idea check): max_positions, max_deployment_pct"
+   ],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261120T113312Z-ebd10c",
+   "started_at": "2026-11-20T11:33:12+00:00",
+   "symbols": [
+    "AVGO",
+    "MSFT"
+   ],
    "trigger": "cloud"
   },
   "protection-monitor-20261012T213829Z-783273": {
@@ -18972,6 +19165,25 @@
    ],
    "trigger": "schedule"
   },
+  "protection-monitor-20261120T205745Z-18a6ff": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "5123a0496bed4734364db4cd1630cc4e3c0d5e85",
+   "ended_at": "2026-11-20T20:57:47+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": null,
+   "model_source": "not-applicable",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "protection-monitor",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "protection-monitor-20261120T205745Z-18a6ff",
+   "started_at": "2026-11-20T20:57:45+00:00",
+   "symbols": [],
+   "trigger": "schedule"
+  },
   "weekly-review-20261016T210306Z-6aa915": {
    "actions": [],
    "code_dirty": false,
@@ -19070,6 +19282,25 @@
    "rulebook_version": "v1.3",
    "run": "weekly-review-20261113T210243Z-a0c15f",
    "started_at": "2026-11-13T21:02:43+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "weekly-review-20261120T210248Z-362707": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "8fe3afe9266d79f15a378072766f92e5d005d8b1",
+   "ended_at": "2026-11-20T21:04:58+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "weekly-review",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "weekly-review-20261120T210248Z-362707",
+   "started_at": "2026-11-20T21:02:48+00:00",
    "symbols": [],
    "trigger": "cloud"
   }
@@ -19388,7 +19619,9 @@
      "symbol": "AVGO"
     }
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261120T113312Z-ebd10c"
+   ],
    "sector": "Information Technology",
    "trade_log": [
     "trade/2026-05-27/eod-snapshot/1",
@@ -19435,7 +19668,8 @@
    "runs": [],
    "sector": "Utilities",
    "trade_log": [
-    "trade/2026-11-23/market-open-trades/1"
+    "trade/2026-11-23/market-open-trades/1",
+    "trade/2026-11-23/eod-snapshot/1"
    ],
    "weeks": []
   },
@@ -19798,6 +20032,7 @@
     "research/2026-05-02/pre-market-research/1"
    ],
    "intents": [
+    "cl-20261120-GS",
     "en-20261119-GS",
     "rs-255faca2-3ce4-4b7f-be17-9e41faa3b628"
    ],
@@ -19840,7 +20075,9 @@
    "runs": [
     "market-open-20261119T133324Z-344116",
     "midday-20261119T170425Z-f8e055",
-    "protection-monitor-20261119T211455Z-b464e4"
+    "protection-monitor-20261119T211455Z-b464e4",
+    "market-open-20261120T133342Z-2b2a09",
+    "midday-20261120T170431Z-6e8a77"
    ],
    "sector": "Financials",
    "trade_log": [
@@ -19924,7 +20161,8 @@
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1",
-    "trade/2026-11-23/market-open-trades/1"
+    "trade/2026-11-23/market-open-trades/1",
+    "trade/2026-11-23/eod-snapshot/1"
    ],
    "weeks": [
     "2026-11-20"
@@ -20056,7 +20294,8 @@
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1",
-    "trade/2026-11-23/market-open-trades/1"
+    "trade/2026-11-23/market-open-trades/1",
+    "trade/2026-11-23/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -20393,7 +20632,9 @@
      "symbol": "MSFT"
     }
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261120T113312Z-ebd10c"
+   ],
    "sector": "Information Technology",
    "trade_log": [
     "trade/2026-06-03/eod-snapshot/1",
@@ -21483,7 +21724,8 @@
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1",
-    "trade/2026-11-23/market-open-trades/1"
+    "trade/2026-11-23/market-open-trades/1",
+    "trade/2026-11-23/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -21620,7 +21862,8 @@
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1",
-    "trade/2026-11-23/market-open-trades/1"
+    "trade/2026-11-23/market-open-trades/1",
+    "trade/2026-11-23/eod-snapshot/1"
    ],
    "weeks": [
     "2026-11-06",
@@ -23441,7 +23684,8 @@
     "trade/2026-11-20/market-open-trades/1",
     "trade/2026-11-20/midday-cut/1",
     "trade/2026-11-20/eod-snapshot/1",
-    "trade/2026-11-23/market-open-trades/1"
+    "trade/2026-11-23/market-open-trades/1",
+    "trade/2026-11-23/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
