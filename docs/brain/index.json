@@ -2717,6 +2717,16 @@
     "trade/2026-11-20/eod-snapshot/1"
    ],
    "week": "2026-11-20"
+  },
+  "2026-11-23": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-23/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8669,6 +8679,29 @@
    "title": "Pre-Market Research (Friday, post-selloff / UMich sentiment 10:00 / options expiry)",
    "week": "2026-11-20"
   },
+  "research/2026-11-23/pre-market-research/1": {
+   "date": "2026-11-23",
+   "decision": [],
+   "decision_text": "**HOLD — refill-ready.** Just under band (74.7%, streak 1); no mandate. DUK is the first add at market-open if the open is orderly (VIX easing toward <30) — add DUK to SECTORS.json first; SO is the alternate. No stop changes; all 5 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-23/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9521,
+   "log": "research",
+   "note": "Monday, relief bounce after Friday rout / Core PCE Wed / Thanksgiving week",
+   "symbols": [
+    "AVGO",
+    "JPM",
+    "LLY",
+    "MSFT",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Monday, relief bounce after Friday rout / Core PCE Wed / Thanksgiving week)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -14262,7 +14295,7 @@
     "round_trips": 24
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 228
+    "entries": 229
    },
    "memory/TRADE-LOG.md": {
     "entries": 323,
@@ -19309,7 +19342,8 @@
     "research/2026-09-03/pre-market-research/1",
     "research/2026-10-13/pre-market-research/1",
     "research/2026-11-13/pre-market-research/1",
-    "research/2026-11-20/pre-market-research/1"
+    "research/2026-11-20/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -19825,7 +19859,8 @@
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
     "research/2026-11-19/addendum/1",
-    "research/2026-11-20/pre-market-research/1"
+    "research/2026-11-20/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -19903,7 +19938,8 @@
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
     "research/2026-11-19/addendum/1",
-    "research/2026-11-20/pre-market-research/1"
+    "research/2026-11-20/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20285,7 +20321,8 @@
     "research/2026-10-27/pre-market-research/1",
     "research/2026-10-28/pre-market-research/1",
     "research/2026-10-29/pre-market-research/1",
-    "research/2026-11-20/pre-market-research/1"
+    "research/2026-11-20/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -21307,7 +21344,8 @@
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
-    "research/2026-11-20/pre-market-research/1"
+    "research/2026-11-20/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -21472,7 +21510,8 @@
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
     "research/2026-11-19/addendum/1",
-    "research/2026-11-20/pre-market-research/1"
+    "research/2026-11-20/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -23087,7 +23126,8 @@
     "research/2026-11-17/pre-market-research/1",
     "research/2026-11-18/pre-market-research/1",
     "research/2026-11-19/pre-market-research/1",
-    "research/2026-11-20/pre-market-research/1"
+    "research/2026-11-20/pre-market-research/1",
+    "research/2026-11-23/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
