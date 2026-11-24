@@ -5100,3 +5100,25 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Tomorrow:** Retry the DUK refill (Utilities, ~70 sh) at market-open with a fresh quote, SO alternate — brings deployment back into band. Watch LLY (2.5% cushion), let trails work, cut only at -7%. Energy banned until 2026-12-08, Financials until 2026-12-18.
 
 ---
+
+## 2026-11-24 — Market-Open Trades (Day 151, Tuesday, AI-led rebound / Core PCE Wed / Thanksgiving week)
+
+| Date | Ticker | Side | Shares | Entry | Stop | Thesis | Target | R:R |
+|------|--------|------|--------|-------|------|--------|--------|-----|
+| 2026-11-24 | DUK | BUY | 70 | $129.55 | $116.3025 (10% trail GTC 7b1dc080, hwm $129.225; converted from fixed leg $116.23) | Under-band refill into Utilities (unbanned, defensive leadership in a VIX ~29 tape). Catalyst: NC rate increases approved eff. 2027-01-01; Q3 beat; MS PT raised to $138. Single name | $155.46 (2:1) | 2:1 |
+
+**Week of 2026-11-23 trade count: 1/3**
+
+**Notes:** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. LEDGER DISABLED (`DATABASE_URL` unset — `ledger_order_id` null, `record_broker_response` no-op). Run record `market-open-20261124T133405Z-478454`.
+
+**Discretionary, not mandated.** `deployment_status.py` exit 0 (`deployed_pct` 74.76, `sessions_under_band` 2, `mandate` false, `target_notional` $5,238). Rule 10: `blotter.py --sector-streaks` exit 0, Utilities `banned: false`, streak 0; DUK already in `memory/SECTORS.json`. Rule 14 lapsed (JPM/LLY/TMO/WMT single names).
+
+**STEP 2b:** no fixed legs (5 trails). **STEP 2b-ii:** `protection_monitor.py --dry-run` exit 0, 5/5 one-for-one before the buy.
+
+**Timing:** run fired 13:34 UTC (08:34 ET, pre-open); DUK quote was Monday's 21:00 UTC print (the stale-quote refusal of 11/23). Waited for the open; fresh quote 14:31:31 UTC $128.91/$129.14.
+
+**DUK.** `validate_order.py --symbol DUK --qty 70 --side buy --price 129.14 --stop-price 116.23 --sector "Utilities"` → **exit 0**, notional $9,039.80. `submit_entry.py --symbol DUK --qty 70 --price 129.14` → **exit 0 `submitted`**, HTTP 200, intent `en-20261124-DUK`, parent `dd8bbb0e`. **STEP-4 gate met: filled_qty 70 == qty 70, avg $129.55** (14:32:33 UTC); leg `950ceb23` FixedStop $116.23 (`type=stop`, trail null). **STEP 5:** `validate_order.py ... --side sell --price 133.43 --trail-percent 10` exit 0; `replace_stop.py --order-id 950ceb23 --trail-percent 10` → **exit 0 `replaced`**, HTTP 200, new order `7b1dc080` (`rs-950ceb23-…`), 10% trail, stop $116.3025 (hwm $129.225) ≥ old $116.23; intent `en-20261124-DUK` → `filled`/complete.
+
+**Post-trade state (14:35 UTC):** equity $100,402.78, cash $16,179.55, LMV $84,223.23 → **deployed 83.89%, back inside the 75–85% band**. **6 positions.** `protection_monitor.py --dry-run` exit 0, **6/6 one-for-one**. Stops: DUK 10% trail $116.3025 · JPM 10% trail $295.443 · LLY 10% trail $1,327.725 · TMO 10% trail $654.804 · WMT 10% trail $117.468 · XLP 10% trail $84.132. None lowered. Utilities ~9.0% (DUK). Trade email sent (`delivery=unverified`, restricted key — not a failure).
+
+---
