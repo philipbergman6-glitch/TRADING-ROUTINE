@@ -464,6 +464,15 @@
       "entry_order_ids": [
         "93733b6b-100b-49de-803d-45f593fa27a3"
       ]
+    },
+    {
+      "symbol": "DUK",
+      "entered": "2026-11-24T14:32:33.858960+00:00",
+      "qty": "70",
+      "avg_in": "129.5500",
+      "entry_order_ids": [
+        "dd8bbb0e-7020-434d-9f57-51fcc58f2ca3"
+      ]
     }
   ]
 }

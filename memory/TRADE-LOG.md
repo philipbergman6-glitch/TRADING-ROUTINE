@@ -5122,3 +5122,23 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Post-trade state (14:35 UTC):** equity $100,402.78, cash $16,179.55, LMV $84,223.23 → **deployed 83.89%, back inside the 75–85% band**. **6 positions.** `protection_monitor.py --dry-run` exit 0, **6/6 one-for-one**. Stops: DUK 10% trail $116.3025 · JPM 10% trail $295.443 · LLY 10% trail $1,327.725 · TMO 10% trail $654.804 · WMT 10% trail $117.468 · XLP 10% trail $84.132. None lowered. Utilities ~9.0% (DUK). Trade email sent (`delivery=unverified`, restricted key — not a failure).
 
 ---
+
+### Nov 24 — EOD Snapshot (Day 151, Tuesday)
+**Portfolio:** $101,188.78 | **Cash:** $16,179.55 (15.99%) | **Day P&L:** +$1,348.79 (+1.35%) | **Phase P&L:** +$1,188.78 (+1.19%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| DUK | 70 | $129.55 | $131.35 | +1.45% | +$126.00 (+1.39%) | $118.809 (10% trail GTC, hwm $132.01) |
+| JPM | 30 | $326.3133 | $316.245 | -0.13% | -$302.05 (-3.09%) | $295.443 (10% trail GTC, hwm $328.27) |
+| LLY | 10 | $1,400.98 | $1,412.01 | +3.47% | +$110.30 (+0.79%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| TMO | 15 | $696.57 | $695.54 | +1.08% | -$15.45 (-0.15%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $131.76 | +1.68% | +$651.04 (+3.58%) | $119.178 (10% trail GTC, hwm $132.42) |
+| XLP | 250 | $83.76 | $91.73 | +1.49% | +$1,992.50 (+9.52%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** BUY DUK 70 @ $129.55 (market-open under-band refill, Utilities). **Week trades: 1/3** entries (week of 11/23). Blotter and TRADE-LOG agree.
+
+**Notes:** Strong up day — phase P&L back positive (+1.19%), first time above $101k in weeks. LLY led (+3.5%), staples and DUK all green; only JPM flat. Day P&L is against the broker's 11/23 close of $99,839.99 (11/23 snapshot logged $99,843.14 from pre-close marks; reconcile diff 0.00). Marks ~20:10 UTC, before the close. Deployed 84.01% (LMV $85,009.23) — back inside the 75–85% band, near the top; 6 positions. Protection 6/6 one-for-one, all 10% trails; DUK and WMT trails ratcheted up intraday (DUK $118.809, WMT $119.178). Cushions: TMO 5.86% (nearest), LLY 5.97%, JPM 6.58%, XLP 8.28%, DUK 9.55%, WMT 9.55%. Sectors: Consumer Staples ~41.3% (XLP + WMT), Health Care ~24.3% (LLY + TMO), Financials ~9.4% (JPM), Utilities ~9.1% (DUK). blotter --check exit 0, reconcile RECONCILED exit 0 (153 sessions), coordinator status exit 0 — no holder, no non-terminal intents, no takeovers. Run record daily-summary-20261124T200944Z-748518.
+
+**Tomorrow:** Core PCE Wednesday, half-week into Thanksgiving. Fully deployed at the top of band — no new entries needed; hold, let trails work, cut only at -7%. Energy banned until 2026-12-08, Financials until 2026-12-18.
+
+---
