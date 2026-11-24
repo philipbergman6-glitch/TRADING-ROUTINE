@@ -9552,3 +9552,38 @@ Rule 14 lapsed (JPM, LLY, TMO, WMT single names). Under band: 75% needs ~$5,300 
 **HOLD — refill-ready.** Just under band (74.7%, streak 1); no mandate. DUK is the first add at market-open if the open is orderly (VIX easing toward <30) — add DUK to SECTORS.json first; SO is the alternate. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-24 — Pre-Market Research (Tuesday, AI-led rebound / Core PCE Wed / Thanksgiving week)
+
+### Account snapshot
+- **Equity $100,364.54** (`last_equity` $99,839.99, +$524.55/+0.53% on premarket marks) · **Cash $25,248.05** · Long MV $75,116.49 · `buying_power` $311,318 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **5 positions**: XLP 22.67% · WMT 18.58% · LLY 13.77% · TMO 10.36% · JPM 9.46%. Week trades **0/3** (week of 11/23).
+- Stops 5/5, one-for-one, qty matching, all 10% trails: JPM $295.443 (hwm $328.27) · LLY $1,327.725 (hwm $1,475.25) · TMO $654.804 (hwm $727.56) · WMT $117.468 (hwm $130.52) · XLP $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261124T113325Z-08309d`.
+
+### Market context
+- **WTI ~$80.0 · Brent ~$89.2** (near 3-month low, surplus concerns).
+- Mon: broad rebound (book all green). Overnight AI catalysts reported (Nvidia CEO reinstatement, Oracle–OpenAI funding secured). **ES ~7,224–7,265 (-0.3% to -0.8%)** premarket, sources conflict. **VIX 28.83** (+8.3%).
+- Today: S&P Global PMIs, Conf. Board consumer confidence 10:00 ET, NY Fed Williams speaks, $70B 5-yr auction; no CPI/PPI/FOMC/NFP. **Core PCE Wed**; Thanksgiving Thu (closed), half-day Fri. BMO earnings: MDT, ADI, SJM, RJF; DELL/WDAY after close. NFP 12/04; FOMC 12/09; CPI 12/10; PPI 12/15.
+- Sector YTD (rule 9, thru 11/20; partial table): Energy +34.8% (**banned**, lifts 12/08), Staples +17.8%, Real Estate +6.1%, Industrials +0.6%, Financials -0.5% (**banned**, lifts 12/18), Comm Svcs -15.5%. Utilities not reported today; 11/23 source had Utilities #1 (+18.0%). Leadership defensive.
+- Holdings: JPM — JBND ETF listing transfer; vendor cyberattack follow-up. LLY — LoQus23 Therapeutics acquisition ($725M, neuroscience); EU Mounjaro contraception advisory. TMO — no news. WMT — ad revenue +25%, raised guide. XLP — no news.
+- Watchlist: DUK premarket $130.23 (+0.59%, prior close $129.47); Morgan Stanley PT $138 (from $128), Hold. SO prior close $93.11; MS PT $90, Sell.
+- Perplexity: all 9 queries succeeded sequentially (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (JPM, LLY, TMO, WMT single names). Under band: 75% needs ~$5,200 (`target_notional` $5,175), 85% cap ~$10,200. Staples (~41.3%) saturated — no adds; Utilities (streak 0, unbanned) remains the refill sector. Alpaca latest quotes are still Monday's 21:00 UTC prints — market-open must submit with a fresh (<60s) quote, i.e. after 09:30 ET.
+1. **Duke Energy (DUK)** — Utilities. Catalyst: NC rate increases approved eff. 2027-01-01; Q3 beat; MS PT raised to $138; defensive leadership in high-VIX tape. 70 sh @ $130.23, **stop $117.21 (10%)**, target $156.27 (2:1). `validate_order.py --symbol DUK --qty 70 --side buy --price 130.23 --stop-price 117.21 --trades-this-week 0 --sector "Utilities"` → **APPROVED, exit 0**, $9,116.10 → ~83.9% deployed.
+2. **Southern Co (SO)** — Utilities. Catalyst: Q3 beat; 21 GW contracted data-center/large-load demand. 97 sh @ $93.11, **stop $83.80 (10%)**, target $111.73 (2:1). `validate_order.py --symbol SO --qty 97 --side buy --price 93.11 --stop-price 83.80 --trades-this-week 0 --sector "Utilities"` → **APPROVED, exit 0**, $9,031.67. Alternate to DUK, not both (85% cap). Not in `memory/SECTORS.json` — add as "Utilities" before any entry.
+
+### Risk factors
+- VIX ~29 and rising premarket; futures red after Monday's bounce. Core PCE Wed could reprice Fed hike odds; thin holiday liquidity Thu/Fri.
+- Concentration: Consumer Staples ~41.3% (XLP+WMT), Health Care ~24.1% (LLY+TMO), Financials ~9.5% (JPM). XLP 22.7% over cap on drift only — no trim.
+- Cushions (premarket): LLY 3.94% (nearest, now >3% — rule-7 condition cleared), TMO 5.51%, JPM 6.65%, XLP 7.56%, WMT 9.94%.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **74.84**, band [75, 85], `sessions_under_band` **2**, `mandate` **false**, `exemption_allowed` false, `target_notional` $5,175, `last_eod` 2026-11-23. No mandate yet — one more under-band EOD makes it due.
+
+### Decision
+**HOLD — refill-ready.** Just under band (74.8%, streak 2); no mandate. DUK is the first add at market-open once a fresh post-09:30 ET quote is available; SO is the alternate. No stop changes; all 5 stops active and correct.
+
+---
