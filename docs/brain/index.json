@@ -2729,11 +2729,18 @@
   },
   "2026-11-23": {
    "fills": [],
-   "intents": [],
+   "intents": [
+    "en-20261123-DUK"
+   ],
    "research": [
     "research/2026-11-23/pre-market-research/1"
    ],
-   "runs": [],
+   "runs": [
+    "pre-market-20261123T113318Z-c58dcb",
+    "market-open-20261123T133401Z-9a568c",
+    "midday-20261123T170456Z-772a44",
+    "daily-summary-20261123T201010Z-67a9f1"
+   ],
    "trade_log": [
     "trade/2026-11-23/market-open-trades/1",
     "trade/2026-11-23/eod-snapshot/1"
@@ -2741,14 +2748,22 @@
    "week": null
   },
   "2026-11-24": {
-   "fills": [],
+   "fills": [
+    {
+     "avg": "129.5500",
+     "qty": "70",
+     "side": "entry",
+     "symbol": "DUK"
+    }
+   ],
    "intents": [],
    "research": [
     "research/2026-11-24/pre-market-research/1"
    ],
    "runs": [],
    "trade_log": [
-    "trade/2026-11-24/market-open-trades/1"
+    "trade/2026-11-24/market-open-trades/1",
+    "trade/2026-11-24/eod-snapshot/1"
    ],
    "week": null
   }
@@ -14373,6 +14388,25 @@
    "title": "Market-Open",
    "week": null
   },
+  "trade/2026-11-24/eod-snapshot/1": {
+   "date": "2026-11-24",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-24/eod-snapshot/1",
+   "kind": "eod-snapshot",
+   "line": 5126,
+   "log": "trade",
+   "note": "Day 151, Tuesday",
+   "symbols": [
+    "DUK",
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "EOD Snapshot (Day 151, Tuesday)",
+   "week": null
+  },
   "trade/2026-11-24/market-open-trades/1": {
    "date": "2026-11-24",
    "file": "memory/TRADE-LOG.md",
@@ -14394,31 +14428,31 @@
   }
  },
  "generated_from": {
-  "run_cutoff": "started before 2026-11-23 (UTC)",
+  "run_cutoff": "started before 2026-11-24 (UTC)",
   "sources": {
    "memory/BLOTTER.json": {
     "excluded_symbols": [
      "F"
     ],
-    "open_lots": 5,
+    "open_lots": 6,
     "round_trips": 24
    },
    "memory/RESEARCH-LOG.md": {
     "entries": 230
    },
    "memory/TRADE-LOG.md": {
-    "entries": 326,
-    "eod_snapshots": 145
+    "entries": 327,
+    "eod_snapshots": 146
    },
    "memory/WEEKLY-REVIEW.md": {
     "weeks": 30
    },
    "state/events.jsonl": {
-    "intents": 32,
-    "runs": 167
+    "intents": 33,
+    "runs": 171
    }
   },
-  "trade_log_asof": "2026-11-23"
+  "trade_log_asof": "2026-11-24"
  },
  "intents": {
   "cl-20261118-MRK": {
@@ -14969,6 +15003,27 @@
    "intent": "en-20261119-JPM-2",
    "last_state": "filled",
    "symbol": "JPM"
+  },
+  "en-20261123-DUK": {
+   "action": "entry",
+   "first_at": "2026-11-23T13:35:10+00:00",
+   "history": [
+    {
+     "action": "entry",
+     "at": "2026-11-23T13:35:10+00:00",
+     "id": "cd23642e5baa4251a6d32d552b6bd00c",
+     "lease": "82901243f8c84dcf95955c4c54185d07",
+     "reasons": [
+      "quote must be no more than 60 seconds old"
+     ],
+     "state": "refused",
+     "symbol": "DUK",
+     "writer": "market-open-20261123T133401Z-9a568c"
+    }
+   ],
+   "intent": "en-20261123-DUK",
+   "last_state": "refused",
+   "symbol": "DUK"
   },
   "rs-1fed8260-db64-4d12-a3ac-a7a3f75fb484": {
    "action": "replace_stop",
@@ -15876,6 +15931,22 @@
    "source": "run",
    "symbol": "GS",
    "text": "GS fixed stop trail conversion refused stop_never_lowered (held)"
+  },
+  {
+   "at": "2026-11-23T13:35:10+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261123T133401Z-9a568c",
+   "source": "intent",
+   "symbol": "DUK",
+   "text": "quote must be no more than 60 seconds old"
+  },
+  {
+   "at": "2026-11-23T13:35:42+00:00",
+   "routine": "market-open",
+   "run": "market-open-20261123T133401Z-9a568c",
+   "source": "run",
+   "symbol": "DUK",
+   "text": "BUY DUK 70: submit_entry exit 3 — quote must be no more than 60 seconds old (pre-open stale quote)"
   }
  ],
  "runs": {
@@ -16448,6 +16519,25 @@
    "rulebook_version": "v1.3",
    "run": "daily-summary-20261120T201013Z-9c5a5d",
    "started_at": "2026-11-20T20:10:13+00:00",
+   "symbols": [],
+   "trigger": "cloud"
+  },
+  "daily-summary-20261123T201010Z-67a9f1": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "96c73619a626a30d94ac81a36fa09225e35958dd",
+   "ended_at": "2026-11-23T20:10:54+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "daily-summary",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "daily-summary-20261123T201010Z-67a9f1",
+   "started_at": "2026-11-23T20:10:10+00:00",
    "symbols": [],
    "trigger": "cloud"
   },
@@ -17051,6 +17141,31 @@
    ],
    "trigger": "cloud"
   },
+  "market-open-20261123T133401Z-9a568c": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "b9e6f65cc76a997565d0e8a142d583a68855535d",
+   "ended_at": "2026-11-23T13:35:42+00:00",
+   "incidents": [],
+   "intents": [
+    "en-20261123-DUK"
+   ],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "refused",
+   "refusals": [
+    "BUY DUK 70: submit_entry exit 3 — quote must be no more than 60 seconds old (pre-open stale quote)"
+   ],
+   "routine": "market-open",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "market-open-20261123T133401Z-9a568c",
+   "started_at": "2026-11-23T13:34:01+00:00",
+   "symbols": [
+    "DUK"
+   ],
+   "trigger": "cloud"
+  },
   "midday-20261019T171051Z-67d107": {
    "actions": [],
    "code_dirty": false,
@@ -17563,6 +17678,25 @@
    "symbols": [
     "GS"
    ],
+   "trigger": "cloud"
+  },
+  "midday-20261123T170456Z-772a44": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "1a5a318cc76ee1b32d46a110a34a2d123e8339ac",
+   "ended_at": "2026-11-23T17:05:16+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "midday",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "midday-20261123T170456Z-772a44",
+   "started_at": "2026-11-23T17:04:56+00:00",
+   "symbols": [],
    "trigger": "cloud"
   },
   "pre-market-20261013T113314Z-54bdd3": {
@@ -18154,6 +18288,25 @@
     "AVGO",
     "MSFT"
    ],
+   "trigger": "cloud"
+  },
+  "pre-market-20261123T113318Z-c58dcb": {
+   "actions": [],
+   "code_dirty": false,
+   "code_sha": "036082070cf3115782735ddcdf3c47f325756959",
+   "ended_at": "2026-11-23T11:35:26+00:00",
+   "incidents": [],
+   "intents": [],
+   "model_id": "claude-opus-5-5",
+   "model_source": "self-reported",
+   "outcome": "no-trade",
+   "refusals": [],
+   "routine": "pre-market",
+   "rulebook_pinned": true,
+   "rulebook_version": "v1.3",
+   "run": "pre-market-20261123T113318Z-c58dcb",
+   "started_at": "2026-11-23T11:33:18+00:00",
+   "symbols": [],
    "trigger": "cloud"
   },
   "protection-monitor-20261012T213829Z-783273": {
@@ -19709,25 +19862,40 @@
     "research/2026-11-24/pre-market-research/1"
    ],
    "ideas": [],
-   "intents": [],
+   "intents": [
+    "en-20261123-DUK"
+   ],
    "last_decision": {
     "date": "2026-11-24",
     "entry": "research/2026-11-24/pre-market-research/1",
     "text": "**HOLD — refill-ready.** Just under band (74.8%, streak 2); no mandate. DUK is the first add at market-open once a fresh post-09:30 ET quote is available; SO is the alternate. No stop changes; all 5 stops active and correct. ---"
    },
-   "open_lots": [],
+   "open_lots": [
+    {
+     "avg_in": "129.5500",
+     "entered": "2026-11-24T14:32:33.858960+00:00",
+     "entry_order_ids": [
+      "dd8bbb0e-7020-434d-9f57-51fcc58f2ca3"
+     ],
+     "qty": "70",
+     "symbol": "DUK"
+    }
+   ],
    "research": [
     "research/2026-11-05/pre-market-research/1",
     "research/2026-11-23/pre-market-research/1",
     "research/2026-11-24/pre-market-research/1"
    ],
    "round_trips": [],
-   "runs": [],
+   "runs": [
+    "market-open-20261123T133401Z-9a568c"
+   ],
    "sector": "Utilities",
    "trade_log": [
     "trade/2026-11-23/market-open-trades/1",
     "trade/2026-11-23/eod-snapshot/1",
-    "trade/2026-11-24/market-open-trades/1"
+    "trade/2026-11-24/market-open-trades/1",
+    "trade/2026-11-24/eod-snapshot/1"
    ],
    "weeks": []
   },
@@ -20222,7 +20390,8 @@
     "trade/2026-11-20/eod-snapshot/1",
     "trade/2026-11-23/market-open-trades/1",
     "trade/2026-11-23/eod-snapshot/1",
-    "trade/2026-11-24/market-open-trades/1"
+    "trade/2026-11-24/market-open-trades/1",
+    "trade/2026-11-24/eod-snapshot/1"
    ],
    "weeks": [
     "2026-11-20"
@@ -20357,7 +20526,8 @@
     "trade/2026-11-20/eod-snapshot/1",
     "trade/2026-11-23/market-open-trades/1",
     "trade/2026-11-23/eod-snapshot/1",
-    "trade/2026-11-24/market-open-trades/1"
+    "trade/2026-11-24/market-open-trades/1",
+    "trade/2026-11-24/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -21789,7 +21959,8 @@
     "trade/2026-11-20/eod-snapshot/1",
     "trade/2026-11-23/market-open-trades/1",
     "trade/2026-11-23/eod-snapshot/1",
-    "trade/2026-11-24/market-open-trades/1"
+    "trade/2026-11-24/market-open-trades/1",
+    "trade/2026-11-24/eod-snapshot/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -21929,7 +22100,8 @@
     "trade/2026-11-20/eod-snapshot/1",
     "trade/2026-11-23/market-open-trades/1",
     "trade/2026-11-23/eod-snapshot/1",
-    "trade/2026-11-24/market-open-trades/1"
+    "trade/2026-11-24/market-open-trades/1",
+    "trade/2026-11-24/eod-snapshot/1"
    ],
    "weeks": [
     "2026-11-06",
@@ -23753,7 +23925,8 @@
     "trade/2026-11-20/eod-snapshot/1",
     "trade/2026-11-23/market-open-trades/1",
     "trade/2026-11-23/eod-snapshot/1",
-    "trade/2026-11-24/market-open-trades/1"
+    "trade/2026-11-24/market-open-trades/1",
+    "trade/2026-11-24/eod-snapshot/1"
    ],
    "weeks": [
     "2026-07-03",
