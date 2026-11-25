@@ -9587,3 +9587,37 @@ Rule 14 lapsed (JPM, LLY, TMO, WMT single names). Under band: 75% needs ~$5,200 
 **HOLD — refill-ready.** Just under band (74.8%, streak 2); no mandate. DUK is the first add at market-open once a fresh post-09:30 ET quote is available; SO is the alternate. No stop changes; all 5 stops active and correct.
 
 ---
+
+### 2026-11-25 — Pre-Market Research (Wednesday, Core PCE + GDP rev / AI-chip unwind / pre-Thanksgiving)
+
+### Account snapshot
+- **Equity $101,361.94** (`last_equity` $101,260.27, +$101.67/+0.10% on premarket marks) · **Cash $16,179.54** · Long MV $85,182.40 · `buying_power` $303,229 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **6 positions**: XLP 22.77% · WMT 18.69% · LLY 13.93% · TMO 10.31% · JPM 9.29% · DUK 9.04%. Week trades **1/3** (week of 11/23).
+- Stops 6/6, one-for-one, qty matching, all 10% trails: DUK $118.809 (hwm $132.01) · JPM $295.443 (hwm $328.27) · LLY $1,327.725 (hwm $1,475.25) · TMO $654.804 (hwm $727.56) · WMT $119.178 (hwm $132.42) · XLP $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261125T113327Z-b54f92`.
+
+### Market context
+- **WTI ~$81.3 · Brent ~$91.0** (both -0.5% to -0.9%).
+- Tue: semis -7.9% (AI-spend unwind); S&P closed 7,201. **ES ~7,157 (-0.85%)** premarket. **VIX ~28.7–29.3** (+9–11% from 26.36).
+- Today: **Oct Core PCE + Q3 GDP 2nd est.**, durable goods, jobless claims (cons 201k), new-home sales, Beige Book. No CPI/PPI/FOMC/NFP. Thanksgiving Thu (closed), half-day Fri. BMO earnings: DE, LI, BZ, NNOX; DELL after close. NFP 12/04; FOMC 12/09; CPI 12/10; PPI 12/15.
+- Sector YTD (rule 9, thru 11/20; partial): Energy +34.8% (**banned**, lifts 12/08), Staples +17.8%, Real Estate +6.1%, Industrials +0.6%, Financials -0.5% (**banned**, lifts 12/18), Comm Svcs -15.5%. Utilities not reported (11/23 source: #1, +18.0%). Leadership defensive.
+- Holdings: DUK — $875M 6.05% 2036 notes; NC settlements approved. JPM — Treasury survey neutral ahead of PCE; no company news. LLY/TMO/XLP — no company news. WMT — raised FY guide (US comps light).
+- Perplexity: all 9 queries succeeded sequentially (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (DUK, JPM, LLY, TMO, WMT single names). Book full (6/6) and in band (84.04%) — ideas are **contingent on a slot opening**. Utilities (defensive leader, unbanned, streak 0) is the replacement sector; Staples (~41.5%) — no adds. Neither name in `memory/SECTORS.json` — add as "Utilities" before any entry.
+1. **Southern Co (SO)** — Utilities. Catalyst: AI/data-center load growth (21 GW contracted); Erste raised FY26 EPS; closed $94.11 (+1.1%) Tue. 95 sh, **stop $84.70 (10%)**, target $112.93 (2:1). `validate_order.py --symbol SO --qty 95 --side buy --price 94.11 --stop-price 84.70 --trades-this-week 1 --sector "Utilities"` → **REFUSED exit 3** (max_positions 7>6; deployment 92.9%) — valid only after an exit. Overhang: $1.75B equity-units offering.
+2. **NextEra (NEE)** — Utilities. Catalyst: renewables/data-center power demand; three straight up closes to $84.58. 106 sh, **stop $76.12 (10%)**, target $101.50 (2:1). `validate_order.py ... NEE --qty 106 ... --price 84.58 --stop-price 76.12` → **REFUSED exit 3** (same reasons). Alternate to SO.
+
+### Risk factors
+- VIX ~29 and rising; futures -0.85% on AI/semis unwind. Core PCE/GDP can reprice Fed hike odds; holiday liquidity thin into Thu/Fri.
+- Concentration: Consumer Staples ~41.5% (XLP+WMT), Health Care ~24.2% (LLY+TMO), Financials ~9.3% (JPM), Utilities ~9.0% (DUK). XLP 22.8% over cap on drift only — no trim.
+- Cushions (Tue close marks): JPM 5.91% (nearest), LLY 5.97%, TMO 6.01%, XLP 8.86%, DUK 9.28%, WMT 10.05%. None within 3%. JPM -3.77% unrealized; -7% cut line ~$303.47.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **84.04**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-11-24. No mandate.
+
+### Decision
+**HOLD.** In band at 84.0% (top), 6/6 positions, 1/3 weekly entries, VIX ~29 into PCE. No new entries; SO first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct.
+
+---
