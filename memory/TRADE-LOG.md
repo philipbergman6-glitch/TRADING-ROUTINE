@@ -5150,3 +5150,19 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Checks:** STEP 2b no fixed legs (6 trails). STEP 2b-ii `protection_monitor.py --dry-run` exit 0, 6/6 one-for-one. STEP 2c `deployment_status.py` exit 0 (`deployed_pct` 84.05, `sessions_under_band` 0, `mandate` false). Account 13:35 UTC (pre-open marks): equity $101,409.14, cash $16,179.54, LMV $85,229.60. Stops unchanged: DUK $118.809 · JPM $295.443 · LLY $1,327.725 · TMO $654.804 · WMT $119.178 · XLP $84.132 (all 10% trail GTC). JPM -3.56% unrealized, above -7% cut line. SO remains first replacement if a slot frees.
 
 ---
+
+### 2026-11-25 — Midday Scan (Day 152, Wednesday)
+
+**No trades.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261125T170448Z-0250cd`. Week of 2026-11-23 trade count: **1/3** entries.
+
+**STEP 2:** 6 positions, 6 stops one-for-one; `blotter.py --check` exit 0 (6 lots match). `coordinator.py status`: no holder, no non-terminal intents. **STEP 2b:** no fixed legs (6 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`. No stop within 3% of price.
+
+**STEP 3:** no position ≤ -7%. Worst JPM -4.13%, TMO -2.61%, LLY -1.34%; DUK +2.11%, WMT +3.91%, XLP +10.48%. **STEP 4:** `--print-required` 10 for all; all trails already 10 → nothing to tighten. DUK trail ratcheted to $119.448 (hwm $132.72), WMT to $119.871 (hwm $133.19).
+
+**STEP 5:** no thesis broken. Healthcare soft (TMO -2.5%, LLY -1.8% on the day), JPM -1.3% — no company-specific negatives, no sharp unexplained moves. **STEP 6:** skipped.
+
+**Stops:** DUK 10% trail $119.448 (9.70% cushion) · JPM 10% trail $295.443 (5.56%) · LLY 10% trail $1,327.725 (3.94%) · TMO 10% trail $654.804 (3.48%) · WMT 10% trail $119.871 (9.32%) · XLP 10% trail $84.132 (9.08%).
+
+**Live state (17:05 UTC):** equity $100,857.94, cash $16,179.54, LMV $84,678.40 → deployed **83.96%** (in band); 6 positions.
+
+---
