@@ -5142,3 +5142,11 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Tomorrow:** Core PCE Wednesday, half-week into Thanksgiving. Fully deployed at the top of band — no new entries needed; hold, let trails work, cut only at -7%. Energy banned until 2026-12-08, Financials until 2026-12-18.
 
 ---
+
+### 2026-11-25 — Market-Open (Day 152, Wednesday, Core PCE + GDP rev / pre-Thanksgiving)
+
+**No trades.** HOLD plan: book full (6/6) and in band, VIX ~29 into Core PCE. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261125T133431Z-f51a56`. Week of 2026-11-23 trade count: **1/3**.
+
+**Checks:** STEP 2b no fixed legs (6 trails). STEP 2b-ii `protection_monitor.py --dry-run` exit 0, 6/6 one-for-one. STEP 2c `deployment_status.py` exit 0 (`deployed_pct` 84.05, `sessions_under_band` 0, `mandate` false). Account 13:35 UTC (pre-open marks): equity $101,409.14, cash $16,179.54, LMV $85,229.60. Stops unchanged: DUK $118.809 · JPM $295.443 · LLY $1,327.725 · TMO $654.804 · WMT $119.178 · XLP $84.132 (all 10% trail GTC). JPM -3.56% unrealized, above -7% cut line. SO remains first replacement if a slot frees.
+
+---
