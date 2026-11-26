@@ -2798,7 +2798,9 @@
     "research/2026-11-26/pre-market-research/1"
    ],
    "runs": [],
-   "trade_log": [],
+   "trade_log": [
+    "trade/2026-11-26/market-open-trades/1"
+   ],
    "week": null
   }
  },
@@ -14560,6 +14562,25 @@
    ],
    "title": "Midday Scan (Day 152, Wednesday)",
    "week": null
+  },
+  "trade/2026-11-26/market-open-trades/1": {
+   "date": "2026-11-26",
+   "file": "memory/TRADE-LOG.md",
+   "id": "trade/2026-11-26/market-open-trades/1",
+   "kind": "market-open-trades",
+   "line": 5190,
+   "log": "trade",
+   "note": "Day 153, Thursday, Thanksgiving — US markets closed",
+   "symbols": [
+    "DUK",
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Market-Open (Day 153, Thursday, Thanksgiving — US markets closed)",
+   "week": null
   }
  },
  "generated_from": {
@@ -14576,7 +14597,7 @@
     "entries": 232
    },
    "memory/TRADE-LOG.md": {
-    "entries": 330,
+    "entries": 331,
     "eod_snapshots": 147
    },
    "memory/WEEKLY-REVIEW.md": {
@@ -20229,7 +20250,8 @@
     "trade/2026-11-24/eod-snapshot/1",
     "trade/2026-11-25/market-open-trades/1",
     "trade/2026-11-25/midday-scan/1",
-    "trade/2026-11-25/eod-snapshot/1"
+    "trade/2026-11-25/eod-snapshot/1",
+    "trade/2026-11-26/market-open-trades/1"
    ],
    "weeks": []
   },
@@ -20730,7 +20752,8 @@
     "trade/2026-11-24/eod-snapshot/1",
     "trade/2026-11-25/market-open-trades/1",
     "trade/2026-11-25/midday-scan/1",
-    "trade/2026-11-25/eod-snapshot/1"
+    "trade/2026-11-25/eod-snapshot/1",
+    "trade/2026-11-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-11-20"
@@ -20871,7 +20894,8 @@
     "trade/2026-11-24/eod-snapshot/1",
     "trade/2026-11-25/market-open-trades/1",
     "trade/2026-11-25/midday-scan/1",
-    "trade/2026-11-25/eod-snapshot/1"
+    "trade/2026-11-25/eod-snapshot/1",
+    "trade/2026-11-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -22309,7 +22333,8 @@
     "trade/2026-11-24/eod-snapshot/1",
     "trade/2026-11-25/market-open-trades/1",
     "trade/2026-11-25/midday-scan/1",
-    "trade/2026-11-25/eod-snapshot/1"
+    "trade/2026-11-25/eod-snapshot/1",
+    "trade/2026-11-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-10-23",
@@ -22455,7 +22480,8 @@
     "trade/2026-11-24/eod-snapshot/1",
     "trade/2026-11-25/market-open-trades/1",
     "trade/2026-11-25/midday-scan/1",
-    "trade/2026-11-25/eod-snapshot/1"
+    "trade/2026-11-25/eod-snapshot/1",
+    "trade/2026-11-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-11-06",
@@ -24285,7 +24311,8 @@
     "trade/2026-11-24/eod-snapshot/1",
     "trade/2026-11-25/market-open-trades/1",
     "trade/2026-11-25/midday-scan/1",
-    "trade/2026-11-25/eod-snapshot/1"
+    "trade/2026-11-25/eod-snapshot/1",
+    "trade/2026-11-26/market-open-trades/1"
    ],
    "weeks": [
     "2026-07-03",
