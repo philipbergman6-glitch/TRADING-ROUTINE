@@ -9621,3 +9621,38 @@ Rule 14 lapsed (DUK, JPM, LLY, TMO, WMT single names). Book full (6/6) and in ba
 **HOLD.** In band at 84.0% (top), 6/6 positions, 1/3 weekly entries, VIX ~29 into PCE. No new entries; SO first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct.
 
 ---
+
+### 2026-11-26 — Pre-Market Research (Thursday, Thanksgiving — US markets closed)
+
+### Account snapshot
+- **Equity $101,062.16** (`last_equity` $101,062.16, Wed close) · **Cash $16,179.54** · Long MV $84,882.62 · `buying_power` $302,390 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **6 positions**: XLP 22.83% · WMT 18.67% · LLY 13.78% · TMO 10.17% · JPM 9.40% · DUK 9.14%. Week trades **1/3** (week of 11/23).
+- Stops 6/6, one-for-one, qty matching, all 10% trails GTC: DUK $119.5785 (hwm $132.865) · JPM $295.443 (hwm $328.27) · LLY $1,327.725 (hwm $1,475.25) · TMO $654.804 (hwm $727.56) · WMT $119.871 (hwm $133.19) · XLP $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261126T113301Z-49f784`.
+
+### Market context
+- **Closed today (Thanksgiving); Fri half-day (13:00 ET close).** No US earnings, no CPI/PPI/FOMC/NFP today.
+- **WTI ~$83.9 · Brent ~$94.4** (flat).
+- Wed: S&P closed 7,182.78. **ES ~7,248 (+0.7%)** (last quote Wed 20:26 ET). **VIX 27.28** (-3.6%). 10-yr ~4.46% (+9 bp) after hot Core PCE; tariff proposals; AI/tech rebound globally.
+- Upcoming: NFP 12/04; FOMC 12/09; CPI 12/10; PPI 12/15. HPE/ZM results being digested.
+- Sector YTD (rule 9, thru 11/20–23): Energy +34.8% (**banned**, lifts 12/08), Utilities +18.8%, Staples +17.8%, Health Care +14.3%, Tech -5.2%, Financials -0.5% (**banned**, lifts 12/18). Leadership defensive.
+- Holdings: DUK — NC regulators advance reliability/growth plan. JPM — projects ~$450B AI bond issuance 2027. LLY — Moody's upgrade to Aa2; Calytrix Bio deal (up to $1.5B). TMO — no news. WMT — tariff concerns vs. lower gas prices; added weight in XLP rebalance (11/23). XLP — rebalance adds WMT/COST.
+- Perplexity: all 8 queries succeeded sequentially (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (DUK, JPM, LLY, TMO, WMT single names). Book full (6/6) and in band (83.99%) — ideas are **contingent on a slot opening**. Utilities (#2 YTD, unbanned) is the replacement sector; Staples (~41.5%) — no adds. Neither name in `memory/SECTORS.json` — add as "Utilities" before any entry.
+1. **Southern Co (SO)** — Utilities. Catalyst: AI/data-center load growth (21 GW contracted); closed $95.00 (+0.9%) Wed. 94 sh, **stop $85.50 (10%)**, target $114.00 (2:1). `validate_order.py --symbol SO --qty 94 --side buy --price 95.00 --stop-price 85.50 --trades-this-week 1 --sector "Utilities"` → **REFUSED exit 3** (max_positions 7>6; deployment 92.8%) — valid only after an exit.
+2. **NextEra (NEE)** — Utilities. Catalyst: renewables/data-center power demand; four straight up closes to $85.41. 105 sh, **stop $76.87 (10%)**, target $102.50 (2:1). `validate_order.py ... NEE --qty 105 ... --price 85.41 --stop-price 76.87` → **REFUSED exit 3** (same reasons). Alternate to SO.
+
+### Risk factors
+- Fri half-day, thin liquidity — exaggerated moves possible. Yields up after hot PCE; tariff headlines.
+- Concentration: Consumer Staples ~41.5% (XLP+WMT), Health Care ~24.0% (LLY+TMO), Financials ~9.4% (JPM), Utilities ~9.1% (DUK). XLP 22.8% over cap on drift only — no trim.
+- Cushions (Wed close): TMO 4.48% (nearest), LLY 4.63%, JPM 6.72%, XLP 8.85%, WMT 9.15%, DUK 9.34%. None within 3%. JPM -2.93% unrealized; -7% cut line ~$303.47.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **83.99**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-11-25. No mandate.
+
+### Decision
+**HOLD.** Market closed; in band at 84.0%, 6/6 positions, 1/3 weekly entries. No new entries; SO first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct.
+
+---
