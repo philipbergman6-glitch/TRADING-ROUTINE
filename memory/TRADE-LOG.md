@@ -5208,3 +5208,21 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Live state (17:05 UTC):** equity $101,062.16, cash $16,179.54, LMV $84,882.62 → deployed **83.99%** (in band); 6 positions.
 
 ---
+
+### Nov 26 — EOD Snapshot (Day 153, Thursday)
+**Portfolio:** $101,062.16 | **Cash:** $16,179.54 (16.01%) | **Day P&L:** +$0.00 (+0.00%) | **Phase P&L:** +$1,062.16 (+1.06%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| DUK | 70 | $129.55 | $131.90 | +0.00% | +$164.50 (+1.81%) | $119.5785 (10% trail GTC, hwm $132.865) |
+| JPM | 30 | $326.3133 | $316.74 | +0.00% | -$287.20 (-2.93%) | $295.443 (10% trail GTC, hwm $328.27) |
+| LLY | 10 | $1,400.98 | $1,392.22 | +0.00% | -$87.60 (-0.63%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| TMO | 15 | $696.57 | $685.52 | +0.00% | -$165.75 (-1.59%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $131.94 | +0.00% | +$676.78 (+3.72%) | $119.871 (10% trail GTC, hwm $133.19) |
+| XLP | 250 | $83.76 | $92.30 | +0.00% | +$2,135.00 (+10.20%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** none. **Week trades: 1/3** entries (week of 11/23, DUK 11/24). Blotter and TRADE-LOG agree.
+
+**Notes:** Thanksgiving — US markets closed, no session; marks are the Wed 11/25 close. Day P&L is against the broker's 11/25 close of $101,062.16 (flat); the 11/25 snapshot logged $101,164.11 from pre-close ~20:10 UTC marks, so the real Wed close was -$101.95 below that line (reconcile diff 0.00 on 11/25). Deployed 83.99% (LMV $84,882.62), in band; 6 positions. Protection 6/6 one-for-one, all 10% trails, unchanged. Cushions: TMO 4.48% (nearest), LLY 4.63%, JPM 6.72%, XLP 8.85%, WMT 9.15%, DUK 9.34%. No position near -7% (worst JPM -2.93%). blotter --check exit 0, reconcile RECONCILED exit 0 (155 sessions), coordinator status exit 0 — no holder, no non-terminal intents, no takeovers. Run record daily-summary-20261126T200942Z-f2df35.
+
+**Tomorrow:** Friday half-day (13:00 ET close). Hold, let trails work, cut only at -7%; watch TMO/LLY cushions. Energy banned until 2026-12-08, Financials until 2026-12-18.
