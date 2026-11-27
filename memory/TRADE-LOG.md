@@ -5248,3 +5248,23 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Stops:** DUK 10% trail $119.5785 (9.44% cushion) · JPM 10% trail $295.443 (8.87%) · LLY 10% trail $1,327.725 (4.86%) · TMO 10% trail $654.804 (4.10%) · WMT 10% trail $119.871 (9.51%) · XLP 10% trail $84.132 (9.16%).
 
 **Live state (17:05 UTC):** equity $101,444.32, cash $16,179.54, LMV $85,264.78 → deployed **84.05%** (in band); 6 positions.
+
+---
+
+### Nov 27 — EOD Snapshot (Day 154, Friday)
+**Portfolio:** $101,502.18 | **Cash:** $16,179.54 (15.94%) | **Day P&L:** +$440.02 (+0.44%) | **Phase P&L:** +$1,502.18 (+1.50%)
+
+| Ticker | Shares | Entry | Close | Day Chg | Unrealized P&L | Stop |
+|--------|--------|-------|-------|---------|----------------|------|
+| DUK | 70 | $129.55 | $131.479 | -0.32% | +$135.03 (+1.49%) | $119.5785 (10% trail GTC, hwm $132.865) |
+| JPM | 30 | $326.3133 | $323.29 | +2.07% | -$90.70 (-0.93%) | $295.443 (10% trail GTC, hwm $328.27) |
+| LLY | 10 | $1,400.98 | $1,394.845 | +0.19% | -$61.35 (-0.44%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| TMO | 15 | $696.57 | $683.03 | -0.36% | -$203.10 (-1.94%) | $654.804 (10% trail GTC, hwm $727.56) |
+| WMT | 143 | $127.2073 | $133.02 | +0.82% | +$831.22 (+4.57%) | $119.871 (10% trail GTC, hwm $133.19) |
+| XLP | 250 | $83.76 | $92.8186 | +0.56% | +$2,264.65 (+10.82%) | $84.132 (10% trail GTC, hwm $93.48) |
+
+**Trades today:** none. **Week trades: 1/3** entries (week of 11/23, DUK 11/24). Blotter and TRADE-LOG agree.
+
+**Notes:** Post-Thanksgiving half-day (13:00 ET close), quiet up day led by JPM +2.07% on the risk-on rebound and WMT/XLP extending; Day P&L is vs the 11/26 snapshot $101,062.16 (= broker last_equity). Deployed 84.06% (LMV $85,322.64), in band; 6 positions. Protection 6/6 one-for-one, all 10% trails, unchanged. Cushions: TMO 4.13% (nearest), LLY 4.81%, JPM 8.61%, DUK 9.05%, XLP 9.36%, WMT 9.89%. No position near -7% (worst TMO -1.94%). blotter --check exit 0, reconcile RECONCILED exit 0 (155 sessions, last 11/25 diff 0.00), coordinator status exit 0 — no holder, no non-terminal intents, no takeovers. Run record daily-summary-20261127T200935Z-e8e36f.
+
+**Tomorrow:** Weekend; Monday hold, let trails work, cut only at -7%; watch TMO/LLY cushions. Energy banned until 2026-12-08, Financials until 2026-12-18.
