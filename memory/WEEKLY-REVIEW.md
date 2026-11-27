@@ -2154,3 +2154,93 @@ Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues
 **-3.64% against an S&P down 6.37% — a +2.73pp relative gain, the first outperformance in three weeks, in a correction week.** Every validator, reconcile and protection check passed, both rule-5 cuts executed cleanly, nothing was lowered, and the MRK stop-out was refilled the next session. Not higher, because realized P&L was -$2,219.02 (0/2, PF 0.00), phase P&L went negative, both Financials entries were bought the same morning and GS was cut a day later at -9.73% (overshooting -7%) into a sector ban, and the JPM entry was retried against the routine's exit-3 handling. Not lower, because no rule was broken, the relative result is the mission metric, and the book ends with 5 positions, 5/5 trailing protection and 25% cash just under band.
 
 ---
+
+## Week ending 2026-11-27
+
+### Stats
+| Metric | Value |
+|--------|-------|
+| Starting portfolio | $99,321.52 (Mon Nov 23 AM = Fri Nov 20 logged close) |
+| Ending portfolio | $101,502.18 (Fri Nov 27 logged close; broker equity $101,675.89 at 21:03 UTC, a $173.71 marking difference) |
+| Week return | +$2,180.66 (+2.20%) |
+| S&P 500 week | +3.43% (7,055.70 Nov 20 → 7,297.49 Nov 27; chained from the prior week's logged close per the errata rule. The fetch returned 6,910.39 for Nov 20 — a -145.31 point drift against the logged close, NOT used: the chain is preserved. As-actual Fri-Fri would read +5.60%) |
+| Bot vs S&P | -1.23% (UNDERPERFORMED) |
+| Trades | 1 new (W:0 / L:0 / open:6); 0 closed |
+| Win rate | n/a (0 closed) |
+| Best trade | n/a (no closed trades) |
+| Worst trade | n/a (no closed trades) |
+| Profit factor | n/a ($0 winners / $0 losers) |
+
+Arithmetic: week return = $101,502.18 - $99,321.52 = **+$2,180.66**; 2,180.66 / 99,321.52 = **+2.1956%**. Phase: $101,502.18 vs $100,000 = **+1.50%**.
+S&P chained = (7,297.49 - 7,055.70) / 7,055.70 = **+3.4269%**. Relative = 2.1956% - 3.4269% = **-1.23pp** (as-actual -3.41pp).
+Day-by-day (logged): Mon +$853.14 (+0.86%) · Tue +$1,348.79 (+1.35%) · Wed -$96.16 (-0.09%) · Thu $0.00 (closed) · Fri +$440.02 (+0.44%). Sum +$2,545.79; the -$365.13 gap to the week figure is the 11/20 logged pre-close mark ($99,321.52) vs the broker's 11/20 close ($98,990.00) that Monday's day P&L is taken off, net of later pre-close marks — not a cash or position discrepancy.
+Closed-trade stats from broker fills (`blotter.py --check` **exit 0**, no issues, 6 open lots match broker): **no round_trips exited Mon 11/23 - Fri 11/27.** W = 0, L = 0, open = 6; win rate and PF n/a. Realized **$0.00**. Entry: **DUK 11/24** (discretionary under-band refill, streak 2) — 1/3 of the budget. TRADE-LOG and blotter agree on every session.
+
+### Closed Trades
+| Ticker | Entry | Exit | P&L | Notes |
+|--------|-------|------|-----|-------|
+| — | — | — | — | No round trips exited this week. |
+
+### Open Positions at Week End
+| Ticker | Entry | Close | Unrealized | Stop |
+|--------|-------|-------|------------|------|
+| XLP | $83.76 | $92.8186 | +$2,264.65 (+10.82%) | $84.132 (10% trail GTC, hwm $93.48) |
+| WMT | $127.2073 | $133.02 | +$831.22 (+4.57%) | $119.871 (10% trail GTC, hwm $133.19) |
+| DUK | $129.55 | $131.479 | +$135.03 (+1.49%) | $119.5785 (10% trail GTC, hwm $132.865) |
+| LLY | $1,400.98 | $1,394.845 | -$61.35 (-0.44%) | $1,327.725 (10% trail GTC, hwm $1,475.25) |
+| JPM | $326.3133 | $323.29 | -$90.70 (-0.93%) | $295.443 (10% trail GTC, hwm $328.27) |
+| TMO | $696.57 | $683.03 | -$203.10 (-1.94%) | $654.804 (10% trail GTC, hwm $727.56) |
+
+**Deployed:** $85,322.64 / $101,502.18 = **84.06%**, in band (top). Cash $16,179.54 (15.94%). **6 positions**, rule-3 max. Weights: **XLP ~22.9% (over the 20% cap on drift only — no trim) · WMT ~18.7% · LLY ~13.7% · TMO ~10.1% · JPM ~9.6% · DUK ~9.1%**. **Consumer Staples ≈ 41.6%, Health Care ≈ 23.8%, Financials ≈ 9.6%, Utilities ≈ 9.1%.** Protection 6/6 one-for-one, all 10% trails, none lowered. Cushions: TMO 4.13%, LLY 4.81%, JPM 8.61%, DUK 9.05%, XLP 9.36%, WMT 9.89% — none within 3%. `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Bans: Energy to 12/08, Financials to 12/18.
+
+### What Worked
+- **Positive absolute week (+2.20%) and phase P&L back positive (+1.50%)** after last week's dip below starting capital; every holding but TMO ended the week up from Friday.
+- **Under-band streak closed in two sessions without a mandate:** DUK refused 11/23 on a stale pre-open quote, was correctly logged and skipped (not retried), and filled 11/24 after waiting for a fresh quote — book to 84% the same morning.
+- **The refill diversified:** DUK went to Utilities (unbanned, unsaturated), not Staples/Health Care, and was the only entry — one per session as last week's lesson asked.
+- Risk machinery clean: `blotter --check` exit 0 and reconcile RECONCILED every session, coordinator clean, `strategy_version.py` exit 0 every run, protection 6/6 one-for-one, fixed leg converted to trail at entry, no stop lowered, no `.env`.
+
+### What Didn't Work
+- **-1.23pp vs the S&P (chained), -3.41pp as-actual** — a +5.6% rebound week (Mon +4.7%) led by AI/tech that the defensive book (Staples ~42%, Utilities, Health Care) only partly caught. The tilt that won last week lost this one.
+- **Benchmark drift:** the Nov 20 S&P close logged last week (7,055.70) is now reported as 6,910.39 by every source (-8.61% week). Chain preserved per the errata rule, but last week's logged -6.37% / +2.73pp likely understated the S&P's drop, and this week's chained +3.43% understates its rebound. Last week's "close sources conflict" note should have flagged this for the errata table.
+- **Market-open fires 08:34 ET, pre-open** — the stale-quote refusal on 11/23 cost a session under band; on 11/24 the run had to wait for the open by hand. The schedule/quote-age gate interaction is a recurring defect, not a one-off.
+- **No closed trade for a fourth straight week**, and still no Info Tech exposure despite MSFT/AVGO being named the first refills last week — the slot went to Utilities, so the book missed the tech-led rebound.
+
+### Key Lessons
+- **A two-sided defensive book is a beta trade, not alpha:** +2.7pp in the down week, -1.2pp in the up week — over two weeks chained the bot is -1.53% vs S&P -3.16% from 11/13 (+1.63pp), and the edge came entirely from the down week.
+- **Fetch the benchmark close on the Friday itself and record conflicts as errata candidates**, not as footnotes — a 145-point drift is a 2pp misstatement.
+- Logging and skipping on exit 3 worked cleanly; the next session's fresh quote filled without incident.
+
+### Adjustments for Next Week
+- In band (84.06%), 6/6 positions — no slot. Hold; let trails work, cut only at -7%. Week slots reset Mon 11/30 (0/3).
+- **TMO (4.13%) and LLY (4.81%) are the nearest cushions**; a Health Care stop-out frees the first slot. Next entry from an unbanned, unsaturated sector — **Info Tech first (MSFT/AVGO)**, then Utilities (SO) — no Staples, Financials or Energy.
+- Market-open runs: wait for a quote <60s old after 09:30 ET before submitting. NFP 12/04, FOMC 12/08-09; Energy ban lifts 12/08.
+- Owner: consider adding the 11/20 drift (7,055.70 vs 6,910.39) to the Benchmark Data Errata table.
+
+### Proposed Rule Change (rule 15 — sector/factor exposure cap) — RE-PROPOSED, ninth week, text unchanged
+
+**Not applied.** `memory/TRADING-STRATEGY.md` is hash-pinned (active **v1.3**); the owner applies the change and bumps the version.
+
+**Proposed text (identical to the last eight weeks):**
+
+> 15. Sector exposure cap — no more than 35% of equity in any one GICS sector,
+>     counting broad-sector ETFs and single names together (an ETF counts at
+>     100% toward its own sector). Measured at the moment of entry against
+>     post-trade equity: a buy that would take a sector above 35% is rejected
+>     and the next-ranked candidate is taken instead. The cap never forces a
+>     sale — an existing overweight reached by appreciation or by a stop-out
+>     elsewhere is held and decays naturally, but no new position may be added
+>     in an over-cap sector until it is back under 35%. The reason for any
+>     candidate rejected by this cap is logged in that session's pre-market
+>     RESEARCH-LOG entry.
+
+**New evidence from this week:**
+- No new breach by entry: the DUK refill went to Utilities because Staples (~41%) was informally capped — the unwritten constraint held again, by judgment only.
+- Staples drifted to ~41.6% and cost relative return in a tech-led rebound — the other side of last week's counter-evidence; across the two weeks the book still leads the chained S&P by +1.63pp.
+
+**Would start:** v1.4, on owner approval.
+
+### Overall Grade: C
+
+**+2.20% against an S&P up 3.43% (chained) — a -1.23pp relative loss after last week's +2.73pp gain.** Phase P&L back positive (+1.50%), the under-band streak closed in two sessions with the exit-3 refusal handled by the book, every validator, reconcile and protection check passed, and the book ends at 84% with 6/6 trailing protection. Not higher, because the mission metric was negative, no closed trade for four weeks, the refill went to another defensive sector rather than the tech leadership driving the rebound, and the benchmark chain now carries a 145-point drift. Not lower, because no rule was broken and nothing was lost to process.
+
+---
