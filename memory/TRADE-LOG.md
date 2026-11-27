@@ -5226,3 +5226,11 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **Notes:** Thanksgiving — US markets closed, no session; marks are the Wed 11/25 close. Day P&L is against the broker's 11/25 close of $101,062.16 (flat); the 11/25 snapshot logged $101,164.11 from pre-close ~20:10 UTC marks, so the real Wed close was -$101.95 below that line (reconcile diff 0.00 on 11/25). Deployed 83.99% (LMV $84,882.62), in band; 6 positions. Protection 6/6 one-for-one, all 10% trails, unchanged. Cushions: TMO 4.48% (nearest), LLY 4.63%, JPM 6.72%, XLP 8.85%, WMT 9.15%, DUK 9.34%. No position near -7% (worst JPM -2.93%). blotter --check exit 0, reconcile RECONCILED exit 0 (155 sessions), coordinator status exit 0 — no holder, no non-terminal intents, no takeovers. Run record daily-summary-20261126T200942Z-f2df35.
 
 **Tomorrow:** Friday half-day (13:00 ET close). Hold, let trails work, cut only at -7%; watch TMO/LLY cushions. Energy banned until 2026-12-08, Financials until 2026-12-18.
+
+---
+
+### 2026-11-27 — Market-Open (Day 154, Friday, post-Thanksgiving half-day)
+
+**No trades.** HOLD plan — book full (6/6), in band, half-day session. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261127T133338Z-855293`. Week of 2026-11-23 trade count: **1/3**.
+
+**Checks:** STEP 2b no fixed legs (6 trails). STEP 2b-ii `protection_monitor.py --dry-run` exit 0, 6/6 one-for-one. STEP 2c `deployment_status.py` exit 0 (`deployed_pct` 84.01, `sessions_under_band` 0, `mandate` false). Account 13:35 UTC: equity $101,169.89, cash $16,179.54, LMV $84,990.35. Stops unchanged: DUK $119.5785 · JPM $295.443 · LLY $1,327.725 · TMO $654.804 · WMT $119.871 · XLP $84.132 (all 10% trail GTC). Nearest cushions LLY 4.29%, TMO 4.48%; none within 3%. Worst unrealized TMO -1.59%, above -7% cut line. SO remains first replacement if a slot frees.
