@@ -9656,3 +9656,37 @@ Rule 14 lapsed (DUK, JPM, LLY, TMO, WMT single names). Book full (6/6) and in ba
 **HOLD.** Market closed; in band at 84.0%, 6/6 positions, 1/3 weekly entries. No new entries; SO first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct.
 
 ---
+
+### 2026-11-27 — Pre-Market Research (Friday, post-Thanksgiving half-day / AI rebound)
+
+### Account snapshot
+- **Equity $101,056.61** (`last_equity` $101,062.16, -$5.55 on stale/premarket marks) · **Cash $16,179.54** · Long MV $84,877.07 · `buying_power` $302,374 (margin — never a sizing input, rule 13). No day-trade count (PDT abolished).
+- **6 positions**: XLP 22.77% · WMT 18.60% · LLY 13.83% · TMO 10.18% · JPM 9.54% · DUK 9.08%. Week trades **1/3** (week of 11/23).
+- Stops 6/6, one-for-one, qty matching, all 10% trails GTC: DUK $119.5785 (hwm $132.865) · JPM $295.443 (hwm $328.27) · LLY $1,327.725 (hwm $1,475.25) · TMO $654.804 (hwm $727.56) · WMT $119.871 (hwm $133.19) · XLP $84.132 (hwm $93.48). Earliest expiry XLP 2027-01-20.
+- `coordinator.py status` exit 0: holder null, no non-terminal intents, no takeovers. Run record `pre-market-20261127T113319Z-064304`.
+
+### Market context
+- **Half-day today (13:00 ET close)**, thin post-holiday liquidity. No CPI/PPI/FOMC/NFP today; BMO earnings negligible (XYF). Upcoming: NFP 12/04; FOMC 12/09; CPI 12/10; PPI 12/15.
+- **WTI ~$85.7 (+2.5%) · Brent ~$97.0 (+0.5%)** — Middle East supply risk.
+- **ES ~7,335 (+1.9%)** vs S&P 7,182.78 Wed close; NQ +2% on AI/tech rebound (Nvidia leadership news, Kioxia–Nvidia memory deal). **VIX 24.9** (-7%).
+- Sector YTD (rule 9, thru 11/20; partial): Energy +34.8% (**banned**, lifts 12/08), Staples +17.8%, Real Estate +6.1%, Industrials +0.6%, Financials -0.5% (**banned**, lifts 12/18), Comm Svcs -15.5%. Utilities (+18.8% per 11/26 source) and Health Care also leading. Defensive leadership; risk-on rotation today could weigh on staples/utilities.
+- Holdings: DUK — rate approval, Carolinas resource plan. JPM — CFO succession (de Best to succeed Barnum); AI bond issuance outlook. LLY — Moody's Aa2; bimagrumab HF progress. TMO — broader FDA clearance for EXENT blood-cancer monitoring. WMT — Black Friday; Apple Pay reversal headlines. XLP — rebalance adds incl. WMT.
+- Perplexity: all 9 queries succeeded sequentially (no WebSearch fallback).
+
+### Trade ideas
+Rule 14 lapsed (DUK, JPM, LLY, TMO, WMT single names). Book full (6/6) and in band (83.99%) — ideas are **contingent on a slot opening**. Utilities (unbanned, streak 0) is the replacement sector; Staples (~41.4%) — no adds. Neither name in `memory/SECTORS.json` — add as "Utilities" before any entry.
+1. **Southern Co (SO)** — Utilities. Catalyst: Q3 beat, FY26 EPS guide $4.70, data-center load growth; Truist PT $98. 94 sh @ $95.00, **stop $85.50 (10%)**, target $114.00 (2:1). `validate_order.py --symbol SO --qty 94 --side buy --price 95.00 --stop-price 85.50 --trades-this-week 1 --sector "Utilities"` → **REFUSED exit 3** (max_positions 7>6; deployment 92.8%) — valid only after an exit.
+2. **NextEra (NEE)** — Utilities. Catalyst: MS PT $117 (from $110), Buy; renewables/data-center demand. 105 sh @ $85.41, **stop $76.87 (10%)**, target $102.50 (2:1). `validate_order.py ... NEE --qty 105 ... --price 85.41 --stop-price 76.87` → **REFUSED exit 3** (same reasons). Alternate to SO.
+
+### Risk factors
+- Half-day thin liquidity — exaggerated moves; risk-on AI rotation may pull flows from defensives (XLP/WMT/DUK ~50% of book).
+- Concentration: Consumer Staples ~41.4% (XLP+WMT), Health Care ~24.0% (LLY+TMO), Financials ~9.5% (JPM), Utilities ~9.1% (DUK). XLP 22.8% over cap on drift only — no trim.
+- Cushions (premarket marks): TMO 4.48% (nearest), LLY 5.00%, JPM 8.02%, XLP 8.60%, DUK 8.75%, WMT 8.80%. None within 3%. Worst unrealized TMO -1.59%; nothing near -7%.
+
+### Deployment
+- `deployment_status.py` exit 0: `deployed_pct` **83.99**, band [75, 85], `sessions_under_band` **0**, `mandate` **false**, `exemption_allowed` false, `target_notional` $0, `last_eod` 2026-11-26. No mandate.
+
+### Decision
+**HOLD.** In band at 84.0%, 6/6 positions, 1/3 weekly entries, half-day session. No new entries; SO first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct.
+
+---
