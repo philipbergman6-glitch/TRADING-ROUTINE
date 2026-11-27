@@ -5234,3 +5234,17 @@ STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_versi
 **No trades.** HOLD plan — book full (6/6), in band, half-day session. STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `market-open-20261127T133338Z-855293`. Week of 2026-11-23 trade count: **1/3**.
 
 **Checks:** STEP 2b no fixed legs (6 trails). STEP 2b-ii `protection_monitor.py --dry-run` exit 0, 6/6 one-for-one. STEP 2c `deployment_status.py` exit 0 (`deployed_pct` 84.01, `sessions_under_band` 0, `mandate` false). Account 13:35 UTC: equity $101,169.89, cash $16,179.54, LMV $84,990.35. Stops unchanged: DUK $119.5785 · JPM $295.443 · LLY $1,327.725 · TMO $654.804 · WMT $119.871 · XLP $84.132 (all 10% trail GTC). Nearest cushions LLY 4.29%, TMO 4.48%; none within 3%. Worst unrealized TMO -1.59%, above -7% cut line. SO remains first replacement if a slot frees.
+
+---
+
+### 2026-11-27 — Midday Scan (Day 154, Friday, post-Thanksgiving half-day)
+
+**No trades.** STRATEGY_VERSION: v1 (env v1, approved v1.3, rulebook pinned — `strategy_version.py` exit 0). All six required vars set; no `.env`. Run record `midday-20261127T170449Z-a33261`. Week of 2026-11-23 trade count: **1/3** entries.
+
+**STEP 2:** 6 positions, 6 stops one-for-one; `blotter.py --check` exit 0 (6 lots match). `coordinator.py status`: no holder, no non-terminal intents. **STEP 2b:** no fixed legs (6 trails). **STEP 2c:** `build_oto_order.py expiring` → `[]`. No stop within 3% of price.
+
+**STEP 3:** no position ≤ -7%. Worst TMO -1.98%, JPM -0.65%, LLY -0.39%; DUK +1.92%, WMT +4.14%, XLP +10.58%. **STEP 4:** `--print-required` 10 (max gain XLP +10.58%); all trails already 10 → nothing to tighten. **STEP 5:** no thesis broken (JPM +2.4% on AI/risk-on rebound). **STEP 6:** skipped (no sharp unexplained move).
+
+**Stops:** DUK 10% trail $119.5785 (9.44% cushion) · JPM 10% trail $295.443 (8.87%) · LLY 10% trail $1,327.725 (4.86%) · TMO 10% trail $654.804 (4.10%) · WMT 10% trail $119.871 (9.51%) · XLP 10% trail $84.132 (9.16%).
+
+**Live state (17:05 UTC):** equity $101,444.32, cash $16,179.54, LMV $85,264.78 → deployed **84.05%** (in band); 6 positions.
