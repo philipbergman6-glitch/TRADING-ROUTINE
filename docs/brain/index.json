@@ -2810,6 +2810,16 @@
     "trade/2026-11-26/eod-snapshot/1"
    ],
    "week": null
+  },
+  "2026-11-27": {
+   "fills": [],
+   "intents": [],
+   "research": [
+    "research/2026-11-27/pre-market-research/1"
+   ],
+   "runs": [],
+   "trade_log": [],
+   "week": null
   }
  },
  "entries": {
@@ -8857,6 +8867,28 @@
    "title": "Pre-Market Research (Thursday, Thanksgiving — US markets closed)",
    "week": null
   },
+  "research/2026-11-27/pre-market-research/1": {
+   "date": "2026-11-27",
+   "decision": [],
+   "decision_text": "**HOLD.** In band at 84.0%, 6/6 positions, 1/3 weekly entries, half-day session. No new entries; SO first replacement only if a stop frees a slot. No stop changes; all 6 stops active and correct. ---",
+   "file": "memory/RESEARCH-LOG.md",
+   "id": "research/2026-11-27/pre-market-research/1",
+   "ideas": [],
+   "kind": "pre-market-research",
+   "line": 9660,
+   "log": "research",
+   "note": "Friday, post-Thanksgiving half-day / AI rebound",
+   "symbols": [
+    "DUK",
+    "JPM",
+    "LLY",
+    "TMO",
+    "WMT",
+    "XLP"
+   ],
+   "title": "Pre-Market Research (Friday, post-Thanksgiving half-day / AI rebound)",
+   "week": null
+  },
   "trade/2026-04-27/eod-snapshot/1": {
    "date": "2026-04-27",
    "file": "memory/TRADE-LOG.md",
@@ -14640,7 +14672,7 @@
     "round_trips": 24
    },
    "memory/RESEARCH-LOG.md": {
-    "entries": 232
+    "entries": 233
    },
    "memory/TRADE-LOG.md": {
     "entries": 333,
@@ -20395,7 +20427,8 @@
     "research/2026-11-23/pre-market-research/1",
     "research/2026-11-24/pre-market-research/1",
     "research/2026-11-25/pre-market-research/1",
-    "research/2026-11-26/pre-market-research/1"
+    "research/2026-11-26/pre-market-research/1",
+    "research/2026-11-27/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20893,7 +20926,8 @@
     "research/2026-11-23/pre-market-research/1",
     "research/2026-11-24/pre-market-research/1",
     "research/2026-11-25/pre-market-research/1",
-    "research/2026-11-26/pre-market-research/1"
+    "research/2026-11-26/pre-market-research/1",
+    "research/2026-11-27/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -20985,7 +21019,8 @@
     "research/2026-11-23/pre-market-research/1",
     "research/2026-11-24/pre-market-research/1",
     "research/2026-11-25/pre-market-research/1",
-    "research/2026-11-26/pre-market-research/1"
+    "research/2026-11-26/pre-market-research/1",
+    "research/2026-11-27/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -22406,7 +22441,8 @@
     "research/2026-11-23/pre-market-research/1",
     "research/2026-11-24/pre-market-research/1",
     "research/2026-11-25/pre-market-research/1",
-    "research/2026-11-26/pre-market-research/1"
+    "research/2026-11-26/pre-market-research/1",
+    "research/2026-11-27/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
@@ -22585,7 +22621,8 @@
     "research/2026-11-23/pre-market-research/1",
     "research/2026-11-24/pre-market-research/1",
     "research/2026-11-25/pre-market-research/1",
-    "research/2026-11-26/pre-market-research/1"
+    "research/2026-11-26/pre-market-research/1",
+    "research/2026-11-27/pre-market-research/1"
    ],
    "round_trips": [
     {
@@ -24214,7 +24251,8 @@
     "research/2026-11-23/pre-market-research/1",
     "research/2026-11-24/pre-market-research/1",
     "research/2026-11-25/pre-market-research/1",
-    "research/2026-11-26/pre-market-research/1"
+    "research/2026-11-26/pre-market-research/1",
+    "research/2026-11-27/pre-market-research/1"
    ],
    "round_trips": [],
    "runs": [
